@@ -12,6 +12,7 @@ struct WordFeedView: View {
     @State private var likeScale: CGFloat = 1.0
     @State private var bookmarkScale: CGFloat = 1.0
     @State private var showShareSheet = false
+    @State private var showStats = false
 
     var body: some View {
         ZStack {
@@ -42,6 +43,9 @@ struct WordFeedView: View {
             if let word = viewModel.currentWord {
                 ShareSheet(items: ["\(word.text) — \(word.definition)\n\nLearn more with Verbum app."])
             }
+        }
+        .sheet(isPresented: $showStats) {
+            StatsView().environmentObject(userProfile)
         }
     }
 
@@ -119,9 +123,11 @@ struct WordFeedView: View {
             .onEnded { val in
                 let threshold: CGFloat = 50
                 if val.translation.height < -threshold {
+                    HapticManager.selection()
                     withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
                     resetActionScales()
                 } else if val.translation.height > threshold {
+                    HapticManager.selection()
                     withAnimation(.easeInOut(duration: 0.25)) { viewModel.previousWord() }
                     resetActionScales()
                 }
@@ -148,6 +154,7 @@ struct WordFeedView: View {
                         .actionIcon()
                 }
                 Button {
+                    HapticManager.impact(.soft)
                     userProfile.likeWord(word.id)
                     likeScale = 1.4
                     withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { likeScale = 1.0 }
@@ -158,6 +165,7 @@ struct WordFeedView: View {
                         .scaleEffect(likeScale)
                 }
                 Button {
+                    HapticManager.impact(.medium)
                     userProfile.bookmarkWord(word.id)
                     bookmarkScale = 1.4
                     withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { bookmarkScale = 1.0 }
@@ -180,7 +188,7 @@ struct WordFeedView: View {
             Spacer()
             BottomNavButton(icon: "graduationcap", label: "Practice") { showPractice = true }
             Spacer()
-            BottomNavButton(icon: "chart.bar", label: "Stats") {}
+            BottomNavButton(icon: "chart.bar", label: "Stats") { showStats = true }
             Spacer()
         }
         .padding(.bottom, AppSpacing.lg)

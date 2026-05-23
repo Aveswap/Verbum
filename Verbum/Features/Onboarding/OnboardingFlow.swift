@@ -10,15 +10,37 @@ struct OnboardingFlow: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @State private var currentStep: OnboardingStep = .welcome
 
+    private var stepProgress: Double {
+        let total = Double(OnboardingStep.allCases.count - 1)
+        return Double(currentStep.rawValue) / total
+    }
+
     var body: some View {
         ZStack {
             AppColors.background.ignoresSafeArea()
-            stepView
-                .transition(.asymmetric(
-                    insertion: .move(edge: .trailing),
-                    removal: .move(edge: .leading)
-                ))
-                .id(currentStep)
+
+            VStack(spacing: 0) {
+                // Progress bar (hidden on welcome screen)
+                if currentStep != .welcome {
+                    GeometryReader { geo in
+                        ZStack(alignment: .leading) {
+                            Rectangle().fill(AppColors.surface).frame(height: 3)
+                            Rectangle()
+                                .fill(AppColors.accent)
+                                .frame(width: geo.size.width * stepProgress, height: 3)
+                                .animation(.easeInOut(duration: 0.4), value: stepProgress)
+                        }
+                    }
+                    .frame(height: 3)
+                }
+
+                stepView
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
+                    .id(currentStep)
+            }
         }
         .animation(.easeInOut(duration: 0.3), value: currentStep)
     }
@@ -95,6 +117,7 @@ struct OnboardingFlow: View {
     }
 
     private func advance() {
+        HapticManager.selection()
         let steps = OnboardingStep.allCases
         guard let idx = steps.firstIndex(of: currentStep), idx + 1 < steps.count else { return }
         currentStep = steps[idx + 1]

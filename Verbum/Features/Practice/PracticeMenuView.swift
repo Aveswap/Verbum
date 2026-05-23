@@ -3,6 +3,8 @@ import SwiftUI
 struct PracticeMenuView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showQuiz = false
+    @State private var showFillGap = false
+    @State private var showSynonyms = false
 
     var body: some View {
         NavigationView {
@@ -43,8 +45,12 @@ struct PracticeMenuView: View {
                         PracticeRow(title: "Word Meaning", subtitle: "Choose the correct definition", icon: "questionmark.circle") {
                             showQuiz = true
                         }
-                        PracticeRow(title: "Fill the Gap", subtitle: "Complete the sentence", icon: "text.cursor") {}
-                        PracticeRow(title: "Find Synonyms", subtitle: "Match similar words", icon: "arrow.left.arrow.right") {}
+                        PracticeRow(title: "Fill the Gap", subtitle: "Complete the sentence", icon: "text.cursor") {
+                            showFillGap = true
+                        }
+                        PracticeRow(title: "Find Synonyms", subtitle: "Match similar words", icon: "arrow.left.arrow.right") {
+                            showSynonyms = true
+                        }
                         PracticeRow(title: "Guess the Word", subtitle: "From definition to word", icon: "lightbulb") {}
                         PracticeRow(title: "Word Definition", subtitle: "Pick the right meaning", icon: "book") {}
                     }
@@ -71,9 +77,9 @@ struct PracticeMenuView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showQuiz) {
-            QuizView()
-        }
+        .sheet(isPresented: $showQuiz) { QuizView() }
+        .sheet(isPresented: $showFillGap) { FillGapView() }
+        .sheet(isPresented: $showSynonyms) { SynonymsView() }
     }
 
     private func sectionHeader(_ title: String) -> some View {

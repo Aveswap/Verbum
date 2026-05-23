@@ -36,6 +36,11 @@ class QuizViewModel: ObservableObject {
         guard selectedAnswer == nil, let q = currentQuestion else { return }
         selectedAnswer = answer
         isCorrect = answer == q.correct
-        if isCorrect == true { score += 1 }
+        if isCorrect == true {
+            score += 1
+            HapticManager.success()
+        } else {
+            HapticManager.error()
+        }
     }
 }
