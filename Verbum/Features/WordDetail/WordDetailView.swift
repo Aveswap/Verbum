@@ -95,6 +95,31 @@ struct WordDetailView: View {
                             .cornerRadius(AppSpacing.cornerRadius)
                         }
 
+                        // Etymology (expert words only)
+                        if let etymology = word.etymology, word.level == .expert {
+                            VStack(alignment: .leading, spacing: AppSpacing.sm) {
+                                HStack(spacing: 6) {
+                                    Text("📜")
+                                        .font(.system(size: 15))
+                                    Text("Word History")
+                                        .font(.system(size: 13, weight: .semibold))
+                                        .foregroundColor(AppColors.accent)
+                                }
+                                Text(etymology)
+                                    .font(.system(size: 15))
+                                    .foregroundColor(AppColors.textPrimary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                            .padding(AppSpacing.md)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(AppColors.accent.opacity(0.08))
+                            .cornerRadius(AppSpacing.cornerRadius)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: AppSpacing.cornerRadius)
+                                    .stroke(AppColors.accent.opacity(0.25), lineWidth: 1)
+                            )
+                        }
+
                         // Category badge
                         HStack {
                             Label(word.category, systemImage: "folder")

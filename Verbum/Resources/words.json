@@ -16,7 +16,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000002",
@@ -34,7 +35,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Latin 'ubique' (everywhere), from 'ubi' (where). Related to the same root as 'alibi' — both are about location."
   },
   {
     "id": "00000000-0000-0000-0000-000000000003",
@@ -53,7 +55,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000004",
@@ -72,7 +75,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000005",
@@ -91,7 +95,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000006",
@@ -110,7 +115,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000007",
@@ -129,7 +135,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000008",
@@ -148,7 +155,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000009",
@@ -167,7 +175,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000010",
@@ -186,7 +195,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000011",
@@ -205,7 +215,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'verbosus' (full of words), from 'verbum' (word). The same root gives us 'verb' and 'proverb.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000012",
@@ -224,7 +235,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000013",
@@ -243,7 +255,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000014",
@@ -262,7 +275,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000015",
@@ -281,7 +295,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000016",
@@ -300,7 +315,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "Coined by philosopher Auguste Comte from Italian 'altrui' (of others) and Latin 'alter' (other). The deliberate opposite of 'egoistic.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000017",
@@ -319,7 +335,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Greek 'kakophōnia,' combining 'kakos' (bad) + 'phōnē' (sound). The 'phōnē' root also lives in 'telephone' and 'symphony.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000018",
@@ -338,7 +355,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000019",
@@ -357,7 +375,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000020",
@@ -376,7 +395,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'fortuitus' (by chance), from 'fors' (luck). Originally it meant purely accidental — not necessarily positive."
   },
   {
     "id": "00000000-0000-0000-0000-000000000021",
@@ -395,7 +415,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000022",
@@ -414,7 +435,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "Directly from Greek 'hybris,' meaning violent arrogance against the gods. In Greek tragedy it was always the fatal flaw that led to downfall."
   },
   {
     "id": "00000000-0000-0000-0000-000000000023",
@@ -433,7 +455,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000024",
@@ -452,7 +475,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'juxta' (beside) + French 'poser' (to place). Literally: to set things side by side so their differences become visible."
   },
   {
     "id": "00000000-0000-0000-0000-000000000025",
@@ -471,7 +495,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000026",
@@ -490,7 +515,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'loquax' (talkative), from 'loqui' (to speak). The same root gives us 'eloquent,' 'colloquial,' and 'soliloquy.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000027",
@@ -509,7 +535,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000028",
@@ -528,7 +555,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000029",
@@ -547,7 +575,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000030",
@@ -566,7 +595,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000031",
@@ -585,7 +615,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'querulus' (complaining), from 'queri' (to complain). Related to 'quarrel' and 'query' — all from a root about expressing discontent."
   },
   {
     "id": "00000000-0000-0000-0000-000000000032",
@@ -604,7 +635,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'recalcitrare' (to kick back), from 'calx' (heel). It originally described a mule or horse that literally kicks backward against control."
   },
   {
     "id": "00000000-0000-0000-0000-000000000033",
@@ -623,7 +655,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000034",
@@ -642,7 +675,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'tangere' (to touch). A geometric tangent line merely 'touches' a curve without crossing — barely relevant, just touching the edge."
   },
   {
     "id": "00000000-0000-0000-0000-000000000035",
@@ -661,7 +695,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000036",
@@ -680,7 +715,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'vacuus' (empty), from 'vacare' (to be empty). Related to 'vacuum,' 'vacant,' and 'vacation' — all share the idea of emptiness."
   },
   {
     "id": "00000000-0000-0000-0000-000000000037",
@@ -699,7 +735,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000038",
@@ -718,7 +755,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000039",
@@ -737,7 +775,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000040",
@@ -756,7 +795,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'aberrare' (to wander away), from 'ab-' (away) + 'errare' (to wander). Related to 'error' — both suggest straying from the right path."
   },
   {
     "id": "00000000-0000-0000-0000-000000000041",
@@ -775,7 +815,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Old French 'banal' (belonging to a lord's public mill), meaning forced communal use. What everyone shared became synonymous with the ordinary."
   },
   {
     "id": "00000000-0000-0000-0000-000000000042",
@@ -794,7 +835,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'clandestinus' (hidden), from 'clam' (secretly). Shares a root with 'occult' — both describe things concealed from the public eye."
   },
   {
     "id": "00000000-0000-0000-0000-000000000043",
@@ -813,7 +855,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Old English 'deorþe' (dearness, costliness). What was once 'dear' (expensive) came to mean scarce — rare things always cost more."
   },
   {
     "id": "00000000-0000-0000-0000-000000000044",
@@ -832,7 +875,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'eruditus' (polished, instructed), from 'e-' (out) + 'rudis' (rough). Education was seen as removing roughness — literally 'to de-rough.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000045",
@@ -851,7 +895,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000046",
@@ -870,7 +915,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Latin 'garrulus' (chattering), from 'garrire' (to chatter). The root may be onomatopoeic — imitating the sound of unceasing birdsong or babbling."
   },
   {
     "id": "00000000-0000-0000-0000-000000000047",
@@ -889,7 +935,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000048",
@@ -908,7 +955,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000049",
@@ -927,7 +975,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000050",
@@ -946,7 +995,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": false
+    "isNew": false,
+    "etymology": "From Old French 'languiss-,' from Latin 'languere' (to be faint). Related to 'languid' and 'languor' — all evoke slow, drooping exhaustion."
   },
   {
     "id": "00000000-0000-0000-0000-000000000051",
@@ -965,7 +1015,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000052",
@@ -984,7 +1035,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Latin 'taciturnus' (silent), from 'tacere' (to be silent). The same root gives us 'tacit' — things understood without being spoken."
   },
   {
     "id": "00000000-0000-0000-0000-000000000053",
@@ -1003,7 +1055,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000054",
@@ -1022,7 +1075,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Greek 'sykophantēs,' from 'sykon' (fig) + 'phainein' (to show). The exact origin is disputed — one theory involves a contemptuous fig gesture."
   },
   {
     "id": "00000000-0000-0000-0000-000000000055",
@@ -1041,7 +1095,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000056",
@@ -1060,7 +1115,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000057",
@@ -1079,7 +1135,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000058",
@@ -1098,7 +1155,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000059",
@@ -1117,7 +1175,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000060",
@@ -1136,7 +1195,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000061",
@@ -1155,7 +1215,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Greek 'empeirikos' (experienced), from 'en-' (in) + 'peira' (trial). Knowledge built from direct experiment, not inherited from authority."
   },
   {
     "id": "00000000-0000-0000-0000-000000000062",
@@ -1174,7 +1235,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000063",
@@ -1193,7 +1255,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Greek 'paradeigma' (pattern, example), from 'para-' (beside) + 'deiknynai' (to show). Thomas Kuhn gave it its modern scientific meaning in 1962."
   },
   {
     "id": "00000000-0000-0000-0000-000000000064",
@@ -1212,7 +1275,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000065",
@@ -1231,7 +1295,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000066",
@@ -1250,7 +1315,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000067",
@@ -1269,7 +1335,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000068",
@@ -1288,7 +1355,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000069",
@@ -1307,7 +1375,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000070",
@@ -1326,7 +1395,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From French 'piquant' (stinging), from 'piquer' (to prick). Related to 'pike' and 'peak' — all from a root about sharpness or a pointed end."
   },
   {
     "id": "00000000-0000-0000-0000-000000000071",
@@ -1345,7 +1415,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000072",
@@ -1364,7 +1435,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From French 'égalitaire,' from Latin 'aequalis' (equal). The French Revolution's 'Liberté, égalité, fraternité' brought this concept into politics."
   },
   {
     "id": "00000000-0000-0000-0000-000000000073",
@@ -1383,7 +1455,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000074",
@@ -1402,7 +1475,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000075",
@@ -1421,7 +1495,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000076",
@@ -1440,7 +1515,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000077",
@@ -1459,7 +1535,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000078",
@@ -1478,7 +1555,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000079",
@@ -1497,7 +1575,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000080",
@@ -1516,7 +1595,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Latin 'alacritas' (liveliness, eagerness), from 'alacer' (brisk). The root suggests energetic quickness — the opposite of sluggishness."
   },
   {
     "id": "00000000-0000-0000-0000-000000000081",
@@ -1535,7 +1615,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000082",
@@ -1554,7 +1635,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000083",
@@ -1573,7 +1655,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000084",
@@ -1592,7 +1675,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Latin 'latens' (lying hidden), from 'latere' (to lie hidden). Related to 'latent' — something that exists but hasn't yet revealed itself."
   },
   {
     "id": "00000000-0000-0000-0000-000000000085",
@@ -1611,7 +1695,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000086",
@@ -1630,7 +1715,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000087",
@@ -1649,7 +1735,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Medieval Latin 'intrinsecus' (inward), from 'intra' (within). Describes a quality belonging to something by its very nature, not added from outside."
   },
   {
     "id": "00000000-0000-0000-0000-000000000088",
@@ -1668,7 +1755,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000089",
@@ -1687,7 +1775,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000090",
@@ -1706,7 +1795,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000091",
@@ -1725,7 +1815,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000092",
@@ -1743,7 +1834,8 @@
       "defer"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000093",
@@ -1761,7 +1853,8 @@
       "strike a chord"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000094",
@@ -1779,7 +1872,8 @@
       "mull over"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000095",
@@ -1798,7 +1892,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000096",
@@ -1817,7 +1912,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000097",
@@ -1836,7 +1932,8 @@
     "level": "expert",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": "From Latin 'magnanimus' (great-souled), from 'magnus' (great) + 'animus' (soul). The 'magnus' root also gives us 'magnificent' and 'magnitude.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000098",
@@ -1854,7 +1951,8 @@
       "analyze"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000099",
@@ -1872,7 +1970,8 @@
       "team up"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000100",
@@ -1891,7 +1990,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000101",
@@ -1909,7 +2009,8 @@
       "understand"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000102",
@@ -1928,7 +2029,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000103",
@@ -1947,7 +2049,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000104",
@@ -1965,7 +2068,8 @@
       "pine"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000105",
@@ -1983,7 +2087,8 @@
       "continue"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000106",
@@ -2002,7 +2107,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000107",
@@ -2021,7 +2127,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000108",
@@ -2040,7 +2147,8 @@
     "level": "intermediate",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000109",
@@ -2059,7 +2167,8 @@
     "level": "beginner",
     "isBookmarked": false,
     "isLiked": false,
-    "isNew": true
+    "isNew": true,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000110",
@@ -2077,7 +2186,8 @@
       "convey"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000111",
@@ -2095,7 +2205,8 @@
       "lessen"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000112",
@@ -2113,7 +2224,8 @@
       "roam"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000113",
@@ -2131,7 +2243,8 @@
       "foster"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000114",
@@ -2149,7 +2262,8 @@
       "degrade"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000115",
@@ -2167,7 +2281,8 @@
       "overcome"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Latin 'transcendere' (to climb over), from 'trans-' (across) + 'scandere' (to climb). 'Scandere' also gives us 'ascend,' 'descend,' and 'scandal.'"
   },
   {
     "id": "00000000-0000-0000-0000-000000000116",
@@ -2185,7 +2300,8 @@
       "reflect"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000117",
@@ -2203,7 +2319,8 @@
       "incite"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000118",
@@ -2221,7 +2338,8 @@
       "yield"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Latin 'relinquere' (to leave behind), from 're-' + 'linquere' (to leave). Related to 'relic' — objects left behind — and 'delinquent' — one who abandons duty."
   },
   {
     "id": "00000000-0000-0000-0000-000000000119",
@@ -2239,7 +2357,8 @@
       "pioneer"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000120",
@@ -2257,7 +2376,8 @@
       "waver"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000121",
@@ -2275,7 +2395,8 @@
       "thoroughly"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000122",
@@ -2293,7 +2414,8 @@
       "zealously"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000123",
@@ -2311,7 +2433,8 @@
       "by mistake"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Medieval Latin 'inadvertens,' from 'in-' (not) + 'advertere' (to turn toward). Related to 'advertise' — not turning attention toward something."
   },
   {
     "id": "00000000-0000-0000-0000-000000000124",
@@ -2329,7 +2452,8 @@
       "steadfastly"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000125",
@@ -2347,7 +2471,8 @@
       "uncertainly"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000126",
@@ -2365,7 +2490,8 @@
       "intensely"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000127",
@@ -2383,7 +2509,8 @@
       "unremittingly"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000128",
@@ -2401,7 +2528,8 @@
       "completely"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000129",
@@ -2419,7 +2547,8 @@
       "cunning"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Latin 'insidiosus' (cunning), from 'insidiae' (ambush), from 'insidere' (to sit in). Literally: danger lurking in ambush beneath an innocent surface."
   },
   {
     "id": "00000000-0000-0000-0000-000000000130",
@@ -2437,7 +2566,8 @@
       "affable"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000131",
@@ -2455,7 +2585,8 @@
       "pretentious"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Latin 'ostentare' (to show off), from 'ostendere' (to display). The root 'tendere' means to stretch — as if stretching something in front of others."
   },
   {
     "id": "00000000-0000-0000-0000-000000000132",
@@ -2473,7 +2604,8 @@
       "contemplative"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000133",
@@ -2491,7 +2623,8 @@
       "unpredictable"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000134",
@@ -2509,7 +2642,8 @@
       "gainful"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000135",
@@ -2527,7 +2661,8 @@
       "harmonious"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000136",
@@ -2545,7 +2680,8 @@
       "inquiring"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000137",
@@ -2563,7 +2699,8 @@
       "conundrum"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000138",
@@ -2581,7 +2718,8 @@
       "realization"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000139",
@@ -2599,7 +2737,8 @@
       "force"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000140",
@@ -2617,7 +2756,8 @@
       "misfortune"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000141",
@@ -2635,7 +2775,8 @@
       "poise"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Latin 'aequilibrium,' from 'aequus' (equal) + 'libra' (scales). 'Libra' is also the zodiac sign and the origin of the pound (lb) as a unit of weight."
   },
   {
     "id": "00000000-0000-0000-0000-000000000142",
@@ -2653,7 +2794,8 @@
       "aloneness"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000143",
@@ -2671,7 +2813,8 @@
       "acknowledgment"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000144",
@@ -2689,7 +2832,8 @@
       "softening"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "From Greek 'euphēmismos,' from 'eu-' (good) + 'phēmē' (speech). Literally 'good speaking' — using pleasant words to avoid unpleasant ones."
   },
   {
     "id": "00000000-0000-0000-0000-000000000145",
@@ -2707,7 +2851,8 @@
       "spectacle"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000146",
@@ -2725,7 +2870,8 @@
       "assumption"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000147",
@@ -2743,7 +2889,8 @@
       "appeal"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000148",
@@ -2761,7 +2908,8 @@
       "fortitude"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000149",
@@ -2779,7 +2927,8 @@
       "freedom"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": null
   },
   {
     "id": "00000000-0000-0000-0000-000000000150",
@@ -2797,6 +2946,7 @@
       "conflict"
     ],
     "isBookmarked": false,
-    "isLiked": false
+    "isLiked": false,
+    "etymology": "Coined by psychiatrist Eugen Bleuler (~1910) from Latin 'ambi-' (both) + 'valentia' (strength). Originally a clinical term for holding two contradictory feelings at once."
   }
 ]

@@ -452,6 +452,20 @@ private struct WordCardView: View {
                 .background(AppColors.accent.opacity(0.12))
                 .cornerRadius(20)
 
+            // Etymology hint for expert words
+            if word.level == .expert, let etymology = word.etymology {
+                HStack(spacing: 4) {
+                    Text("📜")
+                        .font(.system(size: 10))
+                    Text(etymology)
+                        .font(.system(size: 11))
+                        .foregroundColor(AppColors.textSecondary.opacity(0.55))
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                }
+                .padding(.horizontal, AppSpacing.xl)
+            }
+
             Spacer()
         }
         .frame(maxWidth: .infinity)

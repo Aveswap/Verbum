@@ -13,6 +13,7 @@ struct Word: Identifiable, Codable {
     var isBookmarked: Bool
     var isLiked: Bool
     let isNew: Bool
+    let etymology: String?
 }
 
 enum WordLevel: String, Codable, CaseIterable {
