@@ -1,0 +1,184 @@
+import SwiftUI
+
+struct CategoriesView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var searchText = ""
+
+    var body: some View {
+        NavigationView {
+            ZStack(alignment: .bottom) {
+                AppColors.background.ignoresSafeArea()
+
+                ScrollView {
+                    VStack(alignment: .leading, spacing: AppSpacing.lg) {
+                        // Quick access 2x2
+                        LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                            QuickCard(title: "Favorites", icon: "heart.fill")
+                            QuickCard(title: "Collections", icon: "folder.fill")
+                            QuickCard(title: "My Words", icon: "plus.circle.fill")
+                            QuickCard(title: "History", icon: "clock.fill")
+                        }
+
+                        CategorySection(title: "ABOUT US") {
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: AppSpacing.sm) {
+                                    ForEach(["People", "Body", "Food & Drink"], id: \.self) { cat in
+                                        HScrollCard(title: cat)
+                                    }
+                                }
+                            }
+                        }
+
+                        CategorySection(title: "PROFESSIONAL") {
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                                ForEach(["Technology", "Science", "Medicine", "Literature"], id: \.self) { cat in
+                                    LockedCard(title: cat, isLocked: true)
+                                }
+                            }
+                        }
+
+                        CategorySection(title: "BY PART OF SPEECH") {
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                                ForEach(["Verbs", "Nouns", "Adjectives"], id: \.self) { cat in
+                                    SmallCard(title: cat)
+                                }
+                            }
+                        }
+
+                        CategorySection(title: "BY LEVEL") {
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                                ForEach(["Beginner", "Intermediate", "Expert"], id: \.self) { cat in
+                                    SmallCard(title: cat)
+                                }
+                            }
+                        }
+                    }
+                    .padding(AppSpacing.md)
+                    .padding(.bottom, 80)
+                }
+
+                // Search bar pinned at bottom
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(AppColors.textSecondary)
+                    TextField("Search categories…", text: $searchText)
+                        .foregroundColor(AppColors.textPrimary)
+                }
+                .padding(AppSpacing.md)
+                .background(AppColors.surfaceSecondary)
+                .cornerRadius(AppSpacing.cornerRadius)
+                .padding(AppSpacing.md)
+            }
+            .navigationTitle("Explore Categories")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark").foregroundColor(AppColors.textSecondary)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    HStack {
+                        Button("Edit") {}.foregroundColor(AppColors.accent)
+                        Button("Unlock All") {}
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundColor(AppColors.textOnAccent)
+                            .padding(.horizontal, AppSpacing.sm)
+                            .padding(.vertical, 4)
+                            .background(AppColors.accent)
+                            .cornerRadius(20)
+                    }
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+    }
+}
+
+private struct CategorySection<Content: View>: View {
+    let title: String
+    @ViewBuilder let content: Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Text(title)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundColor(AppColors.textSecondary)
+            content
+        }
+    }
+}
+
+private struct QuickCard: View {
+    let title: String
+    let icon: String
+    var body: some View {
+        HStack {
+            Image(systemName: icon).foregroundColor(AppColors.accent)
+            Text(title).font(.system(size: 14, weight: .medium)).foregroundColor(AppColors.textPrimary)
+            Spacer()
+        }
+        .padding(AppSpacing.sm)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
+    }
+}
+
+private struct HScrollCard: View {
+    let title: String
+    var body: some View {
+        VStack(spacing: AppSpacing.sm) {
+            Image(systemName: "folder.fill")
+                .font(.system(size: 28))
+                .foregroundColor(AppColors.accent)
+            Text(title)
+                .font(.system(size: 13))
+                .foregroundColor(AppColors.textPrimary)
+        }
+        .frame(width: 100, height: 85)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
+    }
+}
+
+private struct LockedCard: View {
+    let title: String
+    let isLocked: Bool
+    var body: some View {
+        ZStack(alignment: .topTrailing) {
+            Text(title)
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(AppColors.textPrimary)
+                .frame(maxWidth: .infinity)
+                .frame(height: 60)
+                .background(AppColors.surface)
+                .cornerRadius(AppSpacing.cornerRadius)
+            if isLocked {
+                Image(systemName: "lock.fill")
+                    .font(.system(size: 10))
+                    .foregroundColor(AppColors.locked)
+                    .padding(6)
+            }
+        }
+    }
+}
+
+private struct SmallCard: View {
+    let title: String
+    var body: some View {
+        Text(title)
+            .font(.system(size: 13, weight: .medium))
+            .foregroundColor(AppColors.textPrimary)
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
+    }
+}
+
+struct CategoryDetailView: View {
+    let categoryName: String
+    var body: some View {
+        Text("Category: \(categoryName)").foregroundColor(AppColors.textPrimary)
+    }
+}
