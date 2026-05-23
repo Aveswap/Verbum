@@ -37,12 +37,12 @@ struct WordProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WordOfDayEntry>) -> Void) {
         let entry = WordOfDayEntry(date: Date(), word: todaysWord())
-        // Refresh at midnight
-        var comps = Calendar.current.dateComponents([.year, .month, .day], from: Date())
-        comps.day! += 1
-        comps.hour = 0
-        comps.minute = 1
-        let nextMidnight = Calendar.current.date(from: comps) ?? Date().addingTimeInterval(86400)
+        // Refresh at next 00:01
+        let nextMidnight = Calendar.current.nextDate(
+            after: Date(),
+            matching: DateComponents(hour: 0, minute: 1),
+            matchingPolicy: .nextTime
+        ) ?? Date().addingTimeInterval(86400)
         let timeline = Timeline(entries: [entry], policy: .after(nextMidnight))
         completion(timeline)
     }

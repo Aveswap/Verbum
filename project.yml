@@ -39,7 +39,6 @@ targets:
             green: 0.11
             blue: 0.118
             alpha: 1.0
-        NSMicrophoneUsageDescription: ""
 
   VerbumWidgetExtension:
     type: app-extension

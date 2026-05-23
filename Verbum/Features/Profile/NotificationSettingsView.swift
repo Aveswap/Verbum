@@ -91,7 +91,9 @@ struct NotificationSettingsView: View {
                     userProfile.profile.notificationsEnabled = enabled
                     userProfile.profile.notificationCount = count
                     if enabled {
-                        NotificationManager.requestAndSchedule(count: count)
+                        let startHour = NotificationManager.hoursFrom(userProfile.profile.notificationStart)
+                        let endHour   = NotificationManager.hoursFrom(userProfile.profile.notificationEnd)
+                        NotificationManager.requestAndSchedule(count: count, startHour: startHour, endHour: endHour)
                     } else {
                         NotificationManager.cancelAll()
                     }
