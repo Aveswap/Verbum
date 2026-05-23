@@ -10,6 +10,7 @@ struct ProfileView: View {
     @State private var showLiked = false
     @State private var showLevelTest = false
     @State private var showReminders = false
+    @State private var showLeaderboard = false
 
     var body: some View {
         NavigationView {
@@ -19,8 +20,12 @@ struct ProfileView: View {
                     VStack(spacing: AppSpacing.lg) {
                         premiumCard
                         levelTestCard
+                        pointsCard
                         customizeSection
                         vocabularySection
+                        if !userProfile.profile.earnedBadges.isEmpty {
+                            badgesSection
+                        }
                     }
                     .padding(AppSpacing.md)
                 }
@@ -50,6 +55,9 @@ struct ProfileView: View {
         .sheet(isPresented: $showReminders) {
             NavigationView { NotificationSettingsView().environmentObject(userProfile) }
                 .preferredColorScheme(.dark)
+        }
+        .sheet(isPresented: $showLeaderboard) {
+            LeaderboardView().environmentObject(userProfile)
         }
     }
 
@@ -95,6 +103,93 @@ struct ProfileView: View {
             .padding(AppSpacing.md)
             .background(AppColors.surface)
             .cornerRadius(AppSpacing.cornerRadius)
+        }
+    }
+
+    // MARK: - Points Card
+
+    private var pointsCard: some View {
+        let rank = LeaderboardStore.shared.rank(for: userProfile.profile.quarterlyPoints)
+        let tier = LeaderboardStore.shared.badgeTier(for: rank)
+
+        return Button { showLeaderboard = true } label: {
+            HStack(spacing: AppSpacing.md) {
+                ZStack {
+                    Circle()
+                        .fill(tierColor(tier).opacity(0.15))
+                        .frame(width: 52, height: 52)
+                    if let tier {
+                        Text(tier.emoji)
+                            .font(.system(size: 26))
+                    } else {
+                        Image(systemName: "trophy")
+                            .font(.system(size: 22))
+                            .foregroundColor(AppColors.accent)
+                    }
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(tier.map { "\($0.emoji) \($0.label) Badge" } ?? "No Badge Yet")
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(tier == nil ? AppColors.textPrimary : tierColor(tier))
+                    Text("Rank #\(rank) this quarter")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+
+                Spacer()
+
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text("\(userProfile.profile.quarterlyPoints)")
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(AppColors.accent)
+                    Text("pts")
+                        .font(.system(size: 11))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+            .padding(AppSpacing.md)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
+        }
+    }
+
+    // MARK: - Badges Section
+
+    private var badgesSection: some View {
+        ProfileSection(title: "EARNED BADGES") {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: AppSpacing.sm) {
+                    ForEach(userProfile.profile.earnedBadges.sorted { $0.date > $1.date }) { badge in
+                        VStack(spacing: 6) {
+                            Text(badge.tier.emoji)
+                                .font(.system(size: 32))
+                            Text(badge.period)
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundColor(tierColor(badge.tier))
+                            Text("\(badge.points) pts")
+                                .font(.system(size: 10))
+                                .foregroundColor(AppColors.textSecondary)
+                        }
+                        .frame(width: 80, height: 90)
+                        .background(AppColors.surface)
+                        .cornerRadius(AppSpacing.cornerRadius)
+                    }
+                }
+            }
+        }
+    }
+
+    private func tierColor(_ tier: BadgeTier?) -> Color {
+        switch tier {
+        case .gold:   return Color(red: 1.0, green: 0.84, blue: 0)
+        case .silver: return Color(red: 0.75, green: 0.75, blue: 0.75)
+        case .bronze: return Color(red: 0.8, green: 0.5, blue: 0.2)
+        case nil:     return AppColors.accent
         }
     }
 

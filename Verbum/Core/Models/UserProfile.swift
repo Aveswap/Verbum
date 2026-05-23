@@ -19,6 +19,10 @@ struct UserProfile: Codable {
     var longestStreak: Int = 0
     var lastOpenedDate: Date? = nil
     var seenWordIds: [UUID] = []
+    var totalPoints: Int = 0
+    var quarterlyPoints: Int = 0
+    var quarterlyResetDate: Date = Date()
+    var earnedBadges: [EarnedBadge] = []
 }
 
 enum AgeRange: String, Codable, CaseIterable {

@@ -13,11 +13,14 @@ struct WordFeedView: View {
     @State private var bookmarkScale: CGFloat = 1.0
     @State private var showShareSheet = false
     @State private var showStats = false
+    @State private var showLeaderboard = false
     @State private var showStreakBanner = false
     @State private var showPremium = false
     @AppStorage("hasSeenSwipeHint") private var hasSeenSwipeHint = false
     @State private var showSwipeHint = false
     @State private var showEndOfFeed = false
+    @State private var showBatchQuiz = false
+    @State private var pendingNextWord = false
 
     var body: some View {
         ZStack {
@@ -62,6 +65,23 @@ struct WordFeedView: View {
             StatsView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showPremium) { PremiumSheet() }
+        .sheet(isPresented: $showLeaderboard) {
+            LeaderboardView().environmentObject(userProfile)
+        }
+        .sheet(isPresented: $showBatchQuiz, onDismiss: {
+            if pendingNextWord {
+                pendingNextWord = false
+                withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+            }
+        }) {
+            BatchQuizView(
+                words: viewModel.currentBatchWords,
+                allWords: viewModel.words
+            ) { pts in
+                userProfile.addPoints(pts)
+            }
+            .environmentObject(userProfile)
+        }
         .onAppear {
             if userProfile.profile.currentStreak > 1 {
                 showStreakBanner = true
@@ -196,10 +216,10 @@ struct WordFeedView: View {
 
             VStack(spacing: 4) {
                 WordProgressBar(
-                    current: min(userProfile.profile.bookmarkedWordIds.count, 5),
+                    current: viewModel.batchProgress,
                     total: 5
                 )
-                Text("\(viewModel.currentIndex + 1) / \(viewModel.words.count)")
+                Text("\(viewModel.currentIndex + 1) of \(viewModel.words.count)")
                     .font(.system(size: 10))
                     .foregroundColor(AppColors.textSecondary)
             }
@@ -257,12 +277,16 @@ struct WordFeedView: View {
                 if val.translation.height < -threshold {
                     HapticManager.selection()
                     if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
+                    resetActionScales()
                     if viewModel.isAtEnd {
                         withAnimation(.spring()) { showEndOfFeed = true }
+                    } else if viewModel.isEndOfBatch {
+                        // Show quiz before advancing
+                        pendingNextWord = true
+                        showBatchQuiz = true
                     } else {
                         withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
                     }
-                    resetActionScales()
                 } else if val.translation.height > threshold {
                     if viewModel.isAtStart {
                         HapticManager.error()
@@ -328,6 +352,8 @@ struct WordFeedView: View {
             BottomNavButton(icon: "square.grid.2x2", label: "Categories") { showCategories = true }
             Spacer()
             BottomNavButton(icon: "graduationcap", label: "Practice") { showPractice = true }
+            Spacer()
+            BottomNavButton(icon: "trophy", label: "Ranking") { showLeaderboard = true }
             Spacer()
             BottomNavButton(icon: "chart.bar", label: "Stats") { showStats = true }
             Spacer()
@@ -400,7 +426,7 @@ private struct WordCardView: View {
 
             // English example
             if let example = word.exampleSentence {
-                Text(""\(example)"")
+                Text("\u{201C}\(example)\u{201D}")
                     .font(.system(size: 13).italic())
                     .foregroundColor(AppColors.textSecondary.opacity(0.6))
                     .multilineTextAlignment(.center)
@@ -409,7 +435,7 @@ private struct WordCardView: View {
 
                 // Translated example
                 if showTranslation, let tex = translatedEx {
-                    Text(""\(tex)"")
+                    Text("\u{201C}\(tex)\u{201D}")
                         .font(.system(size: 13).italic())
                         .foregroundColor(AppColors.accent.opacity(0.7))
                         .multilineTextAlignment(.center)

@@ -73,6 +73,35 @@ class UserProfileStore: ObservableObject {
     func resetOnboarding() {
         profile.onboardingCompleted = false
     }
+
+    func addPoints(_ points: Int) {
+        checkQuarterlyReset()
+        profile.totalPoints += points
+        profile.quarterlyPoints += points
+    }
+
+    var currentBadgeTier: BadgeTier? {
+        let rank = LeaderboardStore.shared.rank(for: profile.quarterlyPoints)
+        return LeaderboardStore.shared.badgeTier(for: rank)
+    }
+
+    private func checkQuarterlyReset() {
+        let threeMonthsLater = Calendar.current.date(byAdding: .month, value: 3, to: profile.quarterlyResetDate) ?? Date()
+        guard Date() >= threeMonthsLater else { return }
+        let rank = LeaderboardStore.shared.rank(for: profile.quarterlyPoints)
+        if let tier = LeaderboardStore.shared.badgeTier(for: rank) {
+            let badge = EarnedBadge(tier: tier, period: quarterLabel(for: profile.quarterlyResetDate), points: profile.quarterlyPoints, date: Date())
+            profile.earnedBadges.append(badge)
+        }
+        profile.quarterlyPoints = 0
+        profile.quarterlyResetDate = Date()
+    }
+
+    private func quarterLabel(for date: Date) -> String {
+        let month = Calendar.current.component(.month, from: date)
+        let year  = Calendar.current.component(.year, from: date)
+        return "Q\((month - 1) / 3 + 1) \(year)"
+    }
 }
 
 class WordStore: ObservableObject {

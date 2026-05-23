@@ -39,6 +39,22 @@ class WordFeedViewModel: ObservableObject {
         currentIndex == 0
     }
 
+    // Batch progress: 1-5, resets naturally via modulo after quiz
+    var batchProgress: Int {
+        (currentIndex % 5) + 1
+    }
+
+    // Words in the current batch ending at currentIndex
+    var currentBatchWords: [Word] {
+        let start = max(0, currentIndex - 4)
+        return Array(words[start...currentIndex])
+    }
+
+    // True when user is at the end of a batch (every 5th word)
+    var isEndOfBatch: Bool {
+        batchProgress == 5
+    }
+
     func nextWord() {
         guard currentIndex < words.count - 1 else { return }
         goingBack = false
