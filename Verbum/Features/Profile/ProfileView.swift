@@ -9,6 +9,7 @@ struct ProfileView: View {
     @State private var showPremium = false
     @State private var showLiked = false
     @State private var showLevelTest = false
+    @State private var showReminders = false
 
     var body: some View {
         NavigationView {
@@ -16,75 +17,10 @@ struct ProfileView: View {
                 AppColors.background.ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: AppSpacing.lg) {
-                        // Premium card
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Go Premium")
-                                    .font(.system(size: 18, weight: .bold))
-                                    .foregroundColor(AppColors.textOnAccent)
-                                Text("Unlock all words, games & themes")
-                                    .font(.system(size: 13))
-                                    .foregroundColor(AppColors.textOnAccent.opacity(0.8))
-                            }
-                            Spacer()
-                            Image(systemName: "crown.fill")
-                                .font(.system(size: 40))
-                                .foregroundColor(AppColors.textOnAccent.opacity(0.5))
-                        }
-                        .padding(AppSpacing.md)
-                        .background(AppColors.accent)
-                        .cornerRadius(AppSpacing.cornerRadius)
-
-                        // Level test card
-                        Button { showLevelTest = true } label: {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text("Take the test to find your level")
-                                        .font(.system(size: 15, weight: .medium))
-                                        .foregroundColor(AppColors.textPrimary)
-                                    Text("Current: \(userProfile.profile.level.displayName)")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(AppColors.textSecondary)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(AppColors.textSecondary)
-                            }
-                            .padding(AppSpacing.md)
-                            .background(AppColors.surface)
-                            .cornerRadius(AppSpacing.cornerRadius)
-                        }
-
-                        // Customize
-                        ProfileSection(title: "CUSTOMIZE APP") {
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                                ForEach(["Categories", "Reminders", "Voice", "Widgets",
-                                          "Lock Screen", "Apple Watch", "Themes", "App Icon"], id: \.self) { item in
-                                    SettingCard(title: item)
-                                }
-                            }
-                        }
-
-                        // Vocabulary
-                        ProfileSection(title: "YOUR VOCABULARY") {
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                                Button { showFavorites = true } label: {
-                                    SettingCard(title: "Favorites", badge: "\(userProfile.profile.bookmarkedWordIds.count)")
-                                }
-                                Button { showLiked = true } label: {
-                                    SettingCard(title: "Liked", badge: "\(userProfile.profile.likedWordIds.count)")
-                                }
-                                Button { showPremium = true } label: {
-                                    SettingCard(title: "My Words")
-                                }
-                                Button { showPremium = true } label: {
-                                    SettingCard(title: "Collections")
-                                }
-                                Button { showHistory = true } label: {
-                                    SettingCard(title: "History", badge: "\(userProfile.profile.seenWordIds.count)")
-                                }
-                            }
-                        }
+                        premiumCard
+                        levelTestCard
+                        customizeSection
+                        vocabularySection
                     }
                     .padding(AppSpacing.md)
                 }
@@ -111,9 +47,114 @@ struct ProfileView: View {
         .sheet(isPresented: $showHistory)    { HistoryView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium)    { PremiumSheet() }
         .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }
+        .sheet(isPresented: $showReminders) {
+            NavigationView { NotificationSettingsView().environmentObject(userProfile) }
+                .preferredColorScheme(.dark)
+        }
+    }
+
+    // MARK: - Premium Card
+    private var premiumCard: some View {
+        Button { showPremium = true } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Go Premium")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(AppColors.textOnAccent)
+                    Text("Unlock all words, games & themes")
+                        .font(.system(size: 13))
+                        .foregroundColor(AppColors.textOnAccent.opacity(0.8))
+                }
+                Spacer()
+                Image(systemName: "crown.fill")
+                    .font(.system(size: 40))
+                    .foregroundColor(AppColors.textOnAccent.opacity(0.5))
+            }
+            .padding(AppSpacing.md)
+            .background(AppColors.accent)
+            .cornerRadius(AppSpacing.cornerRadius)
+        }
+    }
+
+    // MARK: - Level Test Card
+    private var levelTestCard: some View {
+        Button { showLevelTest = true } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Take the test to find your level")
+                        .font(.system(size: 15, weight: .medium))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("Current: \(userProfile.profile.level.displayName)")
+                        .font(.system(size: 13))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(AppColors.textSecondary)
+            }
+            .padding(AppSpacing.md)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
+        }
+    }
+
+    // MARK: - Customize App
+    private var customizeSection: some View {
+        ProfileSection(title: "CUSTOMIZE APP") {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                Button { showReminders = true } label: {
+                    SettingCard(title: "Reminders", icon: "bell.fill")
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Themes", icon: "paintpalette.fill", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Voice", icon: "speaker.wave.2.fill", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Widgets", icon: "square.grid.2x2.fill", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Lock Screen", icon: "lock.fill", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Apple Watch", icon: "applewatch", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "App Icon", icon: "app.fill", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Categories", icon: "folder.fill", locked: true)
+                }
+            }
+        }
+    }
+
+    // MARK: - Vocabulary
+    private var vocabularySection: some View {
+        ProfileSection(title: "YOUR VOCABULARY") {
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                Button { showFavorites = true } label: {
+                    SettingCard(title: "Favorites", badge: "\(userProfile.profile.bookmarkedWordIds.count)")
+                }
+                Button { showLiked = true } label: {
+                    SettingCard(title: "Liked", badge: "\(userProfile.profile.likedWordIds.count)")
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "My Words", locked: true)
+                }
+                Button { showPremium = true } label: {
+                    SettingCard(title: "Collections", locked: true)
+                }
+                Button { showHistory = true } label: {
+                    SettingCard(title: "History", badge: "\(userProfile.profile.seenWordIds.count)")
+                }
+            }
+        }
     }
 }
 
+// MARK: - Sub-components
 private struct ProfileSection<Content: View>: View {
     let title: String
     @ViewBuilder let content: Content
@@ -130,11 +171,21 @@ private struct ProfileSection<Content: View>: View {
 private struct SettingCard: View {
     let title: String
     var badge: String? = nil
+    var icon: String? = nil
+    var locked: Bool = false
+
     var body: some View {
-        HStack {
+        HStack(spacing: AppSpacing.xs) {
+            if let icon {
+                Image(systemName: icon)
+                    .font(.system(size: 13))
+                    .foregroundColor(locked ? AppColors.locked : AppColors.accent)
+                    .frame(width: 18)
+            }
             Text(title)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(AppColors.textPrimary)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundColor(locked ? AppColors.textSecondary : AppColors.textPrimary)
+                .lineLimit(1)
             Spacer()
             if let badge, badge != "0" {
                 Text(badge)
@@ -145,9 +196,9 @@ private struct SettingCard: View {
                     .background(AppColors.accent)
                     .cornerRadius(10)
             }
-            Image(systemName: "chevron.right")
+            Image(systemName: locked ? "lock.fill" : "chevron.right")
                 .font(.system(size: 11))
-                .foregroundColor(AppColors.textSecondary)
+                .foregroundColor(locked ? AppColors.locked : AppColors.textSecondary)
         }
         .padding(AppSpacing.sm)
         .frame(height: 50)
