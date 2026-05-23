@@ -13,7 +13,7 @@ struct CategoryWordListView: View {
             case .category(let c):     return c
             case .level(let l):        return l.displayName
             case .partOfSpeech(let p): return p.capitalized
-            case .search(let q):       return ""\(q)""
+            case .search(let q):       return "\"\(q)\""
             }
         }
 

@@ -3,6 +3,8 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @Environment(\.dismiss) private var dismiss
+    @State private var editingName = false
+    @State private var nameInput = ""
 
     var body: some View {
         NavigationView {
@@ -12,7 +14,9 @@ struct SettingsView: View {
                 }
 
                 Section("ABOUT YOU") {
-                    row("Name", value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name)
+                    Button { editingName = true } label: {
+                        row("Name", value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name)
+                    }
                     row("Gender", value: userProfile.profile.gender?.rawValue ?? "Not set")
                     row("Age", value: userProfile.profile.age?.rawValue ?? "Not set")
                     row("Level", value: userProfile.profile.level.displayName)
@@ -21,8 +25,11 @@ struct SettingsView: View {
 
                 Section("SETTINGS") {
                     Toggle("Sound", isOn: .constant(true))
+                        .tint(AppColors.accent)
                     NavigationLink("Language") { EmptyView() }
-                    NavigationLink("Notifications") { EmptyView() }
+                    NavigationLink("Notifications") {
+                        NotificationSettingsView().environmentObject(userProfile)
+                    }
                 }
 
                 Section("ACCOUNT") {
@@ -69,6 +76,15 @@ struct SettingsView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .alert("Your Name", isPresented: $editingName) {
+            TextField("Enter name", text: $nameInput)
+            Button("Save") {
+                let trimmed = nameInput.trimmingCharacters(in: .whitespaces)
+                if !trimmed.isEmpty { userProfile.profile.name = trimmed }
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+        .onAppear { nameInput = userProfile.profile.name }
     }
 
     private func row(_ label: String, value: String) -> some View {

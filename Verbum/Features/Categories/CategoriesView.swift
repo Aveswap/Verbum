@@ -25,10 +25,10 @@ struct CategoriesView: View {
                             QuickCard(title: "History", icon: "clock.fill") { showHistory = true }
                         }
 
-                        CategorySection(title: "ABOUT US") {
+                        CategorySection(title: "EVERYDAY LIFE") {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: AppSpacing.sm) {
-                                    ForEach(["People", "Body", "Food & Drink"], id: \.self) { cat in
+                                    ForEach(["People", "Body", "Food & Drink", "Emotions", "Society", "Character"], id: \.self) { cat in
                                         HScrollCard(title: cat) {
                                             activeFilter = .category(cat)
                                             showWordList = true
@@ -40,7 +40,7 @@ struct CategoriesView: View {
 
                         CategorySection(title: "PROFESSIONAL") {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                                ForEach(["Technology", "Science", "Medicine", "Literature"], id: \.self) { cat in
+                                ForEach(["Technology", "Science", "Medicine", "Literature", "Psychology"], id: \.self) { cat in
                                     LockedCard(title: cat, isLocked: true) { showPremium = true }
                                 }
                             }

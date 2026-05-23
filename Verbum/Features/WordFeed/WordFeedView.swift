@@ -376,6 +376,15 @@ private struct WordCardView: View {
                 .padding(.horizontal, AppSpacing.xl)
                 .lineLimit(3)
 
+            if let example = word.exampleSentence {
+                Text(""\(example)"")
+                    .font(.system(size: 13).italic())
+                    .foregroundColor(AppColors.textSecondary.opacity(0.6))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, AppSpacing.xl)
+                    .lineLimit(2)
+            }
+
             Text(word.category)
                 .font(.system(size: 11, weight: .medium))
                 .foregroundColor(AppColors.accent.opacity(0.9))
