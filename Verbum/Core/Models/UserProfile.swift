@@ -14,6 +14,10 @@ struct UserProfile: Codable {
     var onboardingCompleted: Bool = false
     var bookmarkedWordIds: [UUID] = []
     var likedWordIds: [UUID] = []
+    var currentStreak: Int = 0
+    var longestStreak: Int = 0
+    var lastOpenedDate: Date? = nil
+    var seenWordIds: [UUID] = []
 }
 
 enum AgeRange: String, Codable, CaseIterable {

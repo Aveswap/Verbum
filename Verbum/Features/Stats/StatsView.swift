@@ -37,6 +37,18 @@ struct StatsView: View {
     private var summaryGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
             StatCard(
+                value: "\(userProfile.profile.currentStreak)",
+                label: "Day Streak 🔥",
+                icon: "flame.fill",
+                color: .orange
+            )
+            StatCard(
+                value: "\(userProfile.profile.longestStreak)",
+                label: "Best Streak",
+                icon: "trophy.fill",
+                color: .yellow
+            )
+            StatCard(
                 value: "\(userProfile.profile.bookmarkedWordIds.count)",
                 label: "Bookmarked",
                 icon: "bookmark.fill",
@@ -47,6 +59,12 @@ struct StatsView: View {
                 label: "Liked",
                 icon: "heart.fill",
                 color: .red
+            )
+            StatCard(
+                value: "\(userProfile.profile.seenWordIds.count)",
+                label: "Words Seen",
+                icon: "eye.fill",
+                color: .purple
             )
             StatCard(
                 value: "\(userProfile.profile.wordsPerWeek)",

@@ -13,6 +13,8 @@ struct WordFeedView: View {
     @State private var bookmarkScale: CGFloat = 1.0
     @State private var showShareSheet = false
     @State private var showStats = false
+    @State private var showStreakBanner = false
+    @State private var showPremium = false
 
     var body: some View {
         ZStack {
@@ -20,6 +22,7 @@ struct WordFeedView: View {
 
             VStack(spacing: 0) {
                 topBar
+                if showStreakBanner { streakBanner }
                 wordArea
                 actionRow
                 bottomNav
@@ -47,6 +50,36 @@ struct WordFeedView: View {
         .sheet(isPresented: $showStats) {
             StatsView().environmentObject(userProfile)
         }
+        .sheet(isPresented: $showPremium) { PremiumSheet() }
+        .onAppear {
+            if userProfile.profile.currentStreak > 1 {
+                showStreakBanner = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    withAnimation(.easeOut) { showStreakBanner = false }
+                }
+            }
+        }
+    }
+
+    // MARK: - Streak Banner
+    private var streakBanner: some View {
+        HStack(spacing: AppSpacing.sm) {
+            Text("🔥")
+                .font(.system(size: 20))
+            Text("\(userProfile.profile.currentStreak) day streak! Keep it up!")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(AppColors.textOnAccent)
+            Spacer()
+            Button { withAnimation { showStreakBanner = false } } label: {
+                Image(systemName: "xmark")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(AppColors.textOnAccent.opacity(0.7))
+            }
+        }
+        .padding(.horizontal, AppSpacing.md)
+        .padding(.vertical, AppSpacing.sm)
+        .background(Color.orange)
+        .transition(.move(edge: .top).combined(with: .opacity))
     }
 
     // MARK: - Top Bar
@@ -76,7 +109,7 @@ struct WordFeedView: View {
 
             Spacer()
 
-            Button {} label: {
+            Button { showPremium = true } label: {
                 Image(systemName: "crown.fill")
                     .font(.system(size: 17))
                     .foregroundColor(AppColors.accent)
@@ -124,6 +157,7 @@ struct WordFeedView: View {
                 let threshold: CGFloat = 50
                 if val.translation.height < -threshold {
                     HapticManager.selection()
+                    if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
                     withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
                     resetActionScales()
                 } else if val.translation.height > threshold {

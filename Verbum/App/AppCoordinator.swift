@@ -6,6 +6,7 @@ struct AppCoordinator: View {
     var body: some View {
         if userProfile.profile.onboardingCompleted {
             WordFeedView()
+                .onAppear { userProfile.recordDailyOpen() }
         } else {
             OnboardingFlow()
         }

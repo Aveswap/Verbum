@@ -38,6 +38,14 @@ struct SettingsView: View {
                         .foregroundColor(AppColors.textPrimary)
                 }
 
+                Section("DEVELOPER") {
+                    Button("Reset Onboarding") {
+                        userProfile.resetOnboarding()
+                        dismiss()
+                    }
+                    .foregroundColor(.red)
+                }
+
                 Section {
                     HStack {
                         Spacer()
