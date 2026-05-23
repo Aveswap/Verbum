@@ -9,6 +9,9 @@ struct WordFeedView: View {
     @State private var showPractice = false
     @State private var showCategories = false
     @State private var dragOffset: CGFloat = 0
+    @State private var likeScale: CGFloat = 1.0
+    @State private var bookmarkScale: CGFloat = 1.0
+    @State private var showShareSheet = false
 
     var body: some View {
         ZStack {
@@ -35,6 +38,11 @@ struct WordFeedView: View {
         .sheet(isPresented: $showCategories) {
             CategoriesView()
         }
+        .sheet(isPresented: $showShareSheet) {
+            if let word = viewModel.currentWord {
+                ShareSheet(items: ["\(word.text) — \(word.definition)\n\nLearn more with Verbum app."])
+            }
+        }
     }
 
     // MARK: - Top Bar
@@ -51,10 +59,15 @@ struct WordFeedView: View {
 
             Spacer()
 
-            WordProgressBar(
-                current: min(userProfile.profile.bookmarkedWordIds.count, 5),
-                total: 5
-            )
+            VStack(spacing: 4) {
+                WordProgressBar(
+                    current: min(userProfile.profile.bookmarkedWordIds.count, 5),
+                    total: 5
+                )
+                Text("\(viewModel.currentIndex + 1) / \(viewModel.words.count)")
+                    .font(.system(size: 10))
+                    .foregroundColor(AppColors.textSecondary)
+            }
             .frame(width: 130)
 
             Spacer()
@@ -107,11 +120,18 @@ struct WordFeedView: View {
                 let threshold: CGFloat = 50
                 if val.translation.height < -threshold {
                     withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+                    resetActionScales()
                 } else if val.translation.height > threshold {
                     withAnimation(.easeInOut(duration: 0.25)) { viewModel.previousWord() }
+                    resetActionScales()
                 }
-                dragOffset = 0
+                withAnimation(.easeOut(duration: 0.2)) { dragOffset = 0 }
             }
+    }
+
+    private func resetActionScales() {
+        likeScale = 1.0
+        bookmarkScale = 1.0
     }
 
     // MARK: - Action Row
@@ -123,23 +143,29 @@ struct WordFeedView: View {
                     Image(systemName: "info.circle")
                         .actionIcon()
                 }
-                Button {} label: {
+                Button { showShareSheet = true } label: {
                     Image(systemName: "square.and.arrow.up")
                         .actionIcon()
                 }
-                Button { userProfile.likeWord(word.id) } label: {
+                Button {
+                    userProfile.likeWord(word.id)
+                    likeScale = 1.4
+                    withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { likeScale = 1.0 }
+                } label: {
                     Image(systemName: userProfile.profile.likedWordIds.contains(word.id) ? "heart.fill" : "heart")
                         .font(.system(size: 22))
                         .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)
+                        .scaleEffect(likeScale)
                 }
                 Button {
-                    withAnimation(.interpolatingSpring(stiffness: 300, damping: 15)) {
-                        userProfile.bookmarkWord(word.id)
-                    }
+                    userProfile.bookmarkWord(word.id)
+                    bookmarkScale = 1.4
+                    withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { bookmarkScale = 1.0 }
                 } label: {
                     Image(systemName: userProfile.profile.bookmarkedWordIds.contains(word.id) ? "bookmark.fill" : "bookmark")
                         .font(.system(size: 22))
                         .foregroundColor(userProfile.profile.bookmarkedWordIds.contains(word.id) ? AppColors.accent : AppColors.textSecondary)
+                        .scaleEffect(bookmarkScale)
                 }
             }
             .padding(.vertical, AppSpacing.md)
@@ -237,4 +263,16 @@ private extension Image {
     func actionIcon() -> some View {
         self.font(.system(size: 22)).foregroundColor(AppColors.textSecondary)
     }
+}
+
+// MARK: - Share Sheet
+import UIKit
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: items, applicationActivities: nil)
+    }
+    func updateUIViewController(_ vc: UIActivityViewController, context: Context) {}
 }

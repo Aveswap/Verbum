@@ -13,6 +13,8 @@ targets:
     deploymentTarget: "16.0"
     sources:
       - path: Verbum
+    dependencies:
+      - target: VerbumWidgetExtension
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.verbum.app
@@ -33,3 +35,29 @@ targets:
         UILaunchScreen:
           UIColorName: ""
         NSMicrophoneUsageDescription: ""
+
+  VerbumWidgetExtension:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: VerbumWidget
+      - path: Verbum/Resources/words.json
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.verbum.app.widget
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.9"
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: "YES"
+    info:
+      path: VerbumWidget/Info.plist
+      properties:
+        CFBundleName: VerbumWidget
+        CFBundleDisplayName: Verbum Widget
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
