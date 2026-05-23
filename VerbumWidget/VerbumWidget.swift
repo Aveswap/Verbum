@@ -168,6 +168,35 @@ struct VerbumWidgetMediumView: View {
     }
 }
 
+// MARK: - Lock Screen Views
+
+struct VerbumWidgetRectangularView: View {
+    let entry: WordOfDayEntry
+    var body: some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(entry.word.text)
+                .font(.system(size: 15, weight: .bold, design: .serif))
+                .foregroundColor(.white)
+            Text(entry.word.phonetic)
+                .font(.system(size: 10, design: .monospaced))
+                .foregroundColor(.white.opacity(0.7))
+            Text(entry.word.definition)
+                .font(.system(size: 11))
+                .foregroundColor(.white.opacity(0.85))
+                .lineLimit(2)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+struct VerbumWidgetInlineView: View {
+    let entry: WordOfDayEntry
+    var body: some View {
+        Text("\(entry.word.text) — \(entry.word.definition)")
+            .lineLimit(1)
+    }
+}
+
 // MARK: - Widget Configuration
 
 struct VerbumWidget: Widget {
@@ -206,6 +235,19 @@ struct VerbumWidgetMedium: Widget {
     }
 }
 
+struct VerbumLockScreenWidget: Widget {
+    let kind = "VerbumLockScreen"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: WordProvider()) { entry in
+            VerbumWidgetRectangularView(entry: entry)
+        }
+        .configurationDisplayName("Word of the Day")
+        .description("See today's word on your lock screen.")
+        .supportedFamilies([.accessoryRectangular, .accessoryInline])
+    }
+}
+
 // MARK: - Bundle
 
 @main
@@ -213,5 +255,6 @@ struct VerbumWidgetBundle: WidgetBundle {
     var body: some Widget {
         VerbumWidget()
         VerbumWidgetMedium()
+        VerbumLockScreenWidget()
     }
 }

@@ -225,14 +225,15 @@ struct WordFeedView: View {
         Group {
             if let word = viewModel.currentWord {
                 WordCardView(word: word, viewModel: viewModel)
+                    .environmentObject(userProfile)
                     .offset(y: dragOffset * 0.08)
                     .animation(.interactiveSpring(), value: dragOffset)
                     .gesture(swipeGesture)
                     .onTapGesture { showDetail = true }
                     .id(viewModel.currentIndex)
                     .transition(.asymmetric(
-                        insertion: .move(edge: .bottom).combined(with: .opacity),
-                        removal: .move(edge: .top).combined(with: .opacity)
+                        insertion: .move(edge: viewModel.goingBack ? .top : .bottom).combined(with: .opacity),
+                        removal: .move(edge: viewModel.goingBack ? .bottom : .top).combined(with: .opacity)
                     ))
             } else {
                 VStack {
@@ -263,9 +264,13 @@ struct WordFeedView: View {
                     }
                     resetActionScales()
                 } else if val.translation.height > threshold {
-                    HapticManager.selection()
-                    withAnimation(.easeInOut(duration: 0.25)) { viewModel.previousWord() }
-                    resetActionScales()
+                    if viewModel.isAtStart {
+                        HapticManager.error()
+                    } else {
+                        HapticManager.selection()
+                        withAnimation(.easeInOut(duration: 0.25)) { viewModel.previousWord() }
+                        resetActionScales()
+                    }
                 }
                 withAnimation(.easeOut(duration: 0.2)) { dragOffset = 0 }
             }
@@ -335,9 +340,15 @@ struct WordFeedView: View {
 private struct WordCardView: View {
     let word: Word
     let viewModel: WordFeedViewModel
+    @EnvironmentObject var userProfile: UserProfileStore
+
+    private var lang: String { userProfile.profile.nativeLanguage }
+    private var translatedDef: String? { TranslationStore.shared.definition(wordId: word.id, language: lang) }
+    private var translatedEx: String? { TranslationStore.shared.example(wordId: word.id, language: lang) }
+    private var showTranslation: Bool { lang != "en" }
 
     var body: some View {
-        VStack(spacing: AppSpacing.md) {
+        VStack(spacing: AppSpacing.sm) {
             Spacer()
 
             if word.isNew {
@@ -369,13 +380,25 @@ private struct WordCardView: View {
                 }
             }
 
+            // Translation (if language is set)
+            if showTranslation, let tr = translatedDef {
+                Text(tr)
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundColor(AppColors.textPrimary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, AppSpacing.xl)
+                    .lineLimit(2)
+            }
+
+            // English definition
             Text("\(word.partOfSpeech)  \(word.definition)")
                 .font(AppTypography.definition)
-                .foregroundColor(AppColors.textSecondary)
+                .foregroundColor(showTranslation ? AppColors.textSecondary.opacity(0.7) : AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
                 .lineLimit(3)
 
+            // English example
             if let example = word.exampleSentence {
                 Text(""\(example)"")
                     .font(.system(size: 13).italic())
@@ -383,6 +406,16 @@ private struct WordCardView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, AppSpacing.xl)
                     .lineLimit(2)
+
+                // Translated example
+                if showTranslation, let tex = translatedEx {
+                    Text(""\(tex)"")
+                        .font(.system(size: 13).italic())
+                        .foregroundColor(AppColors.accent.opacity(0.7))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, AppSpacing.xl)
+                        .lineLimit(2)
+                }
             }
 
             Text(word.category)

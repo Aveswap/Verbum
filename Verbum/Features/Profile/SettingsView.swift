@@ -13,6 +13,7 @@ struct SettingsView: View {
     @State private var editingAge = false
     @State private var editingLevel = false
     @State private var editingWordsPerWeek = false
+    @State private var editingLanguage = false
     @State private var wordsInput = ""
     @State private var showLevelTest = false
 
@@ -44,7 +45,10 @@ struct SettingsView: View {
                 Section("SETTINGS") {
                     Toggle("Sound", isOn: $soundEnabled)
                         .tint(AppColors.accent)
-                    NavigationLink("Language") { EmptyView() }
+                    Button { editingLanguage = true } label: {
+                        row("Translation language",
+                            value: TranslationStore.supportedLanguages.first(where: { $0.code == userProfile.profile.nativeLanguage })?.name ?? "English only")
+                    }
                     NavigationLink("Notifications") {
                         NotificationSettingsView().environmentObject(userProfile)
                     }
@@ -131,6 +135,13 @@ struct SettingsView: View {
         .confirmationDialog("Select Age Range", isPresented: $editingAge, titleVisibility: .visible) {
             ForEach(AgeRange.allCases, id: \.self) { a in
                 Button(a.rawValue) { userProfile.profile.age = a }
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+        // Translation language
+        .confirmationDialog("Translation Language", isPresented: $editingLanguage, titleVisibility: .visible) {
+            ForEach(TranslationStore.supportedLanguages, id: \.code) { lang in
+                Button(lang.name) { userProfile.profile.nativeLanguage = lang.code }
             }
             Button("Cancel", role: .cancel) {}
         }
