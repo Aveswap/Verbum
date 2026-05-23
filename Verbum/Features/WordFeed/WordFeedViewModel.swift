@@ -9,7 +9,19 @@ class WordFeedViewModel: ObservableObject {
     private let synthesizer = AVSpeechSynthesizer()
 
     init() {
-        self.words = wordStore.words
+        self.words = wordStore.words.shuffled()
+    }
+
+    func filterByCategory(_ category: String?) {
+        let all = wordStore.words.shuffled()
+        words = category == nil ? all : all.filter { $0.category == category }
+        currentIndex = 0
+    }
+
+    func filterByLevel(_ level: WordLevel?) {
+        let all = wordStore.words.shuffled()
+        words = level == nil ? all : all.filter { $0.level == level }
+        currentIndex = 0
     }
 
     var currentWord: Word? {

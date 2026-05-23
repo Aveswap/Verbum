@@ -4,6 +4,9 @@ struct ProfileView: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @Environment(\.dismiss) private var dismiss
     @State private var showSettings = false
+    @State private var showFavorites = false
+    @State private var showHistory = false
+    @State private var showPremium = false
 
     var body: some View {
         NavigationView {
@@ -61,8 +64,17 @@ struct ProfileView: View {
                         // Vocabulary
                         ProfileSection(title: "YOUR VOCABULARY") {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                                ForEach(["Favorites", "My Words", "Collections", "History"], id: \.self) { item in
-                                    SettingCard(title: item)
+                                Button { showFavorites = true } label: {
+                                    SettingCard(title: "Favorites", badge: "\(userProfile.profile.bookmarkedWordIds.count)")
+                                }
+                                Button { showPremium = true } label: {
+                                    SettingCard(title: "My Words")
+                                }
+                                Button { showPremium = true } label: {
+                                    SettingCard(title: "Collections")
+                                }
+                                Button { showHistory = true } label: {
+                                    SettingCard(title: "History", badge: "\(userProfile.profile.seenWordIds.count)")
                                 }
                             }
                         }
@@ -86,9 +98,10 @@ struct ProfileView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showSettings) {
-            SettingsView().environmentObject(userProfile)
-        }
+        .sheet(isPresented: $showSettings)  { SettingsView().environmentObject(userProfile) }
+        .sheet(isPresented: $showFavorites) { FavoritesView().environmentObject(userProfile) }
+        .sheet(isPresented: $showHistory)   { HistoryView().environmentObject(userProfile) }
+        .sheet(isPresented: $showPremium)   { PremiumSheet() }
     }
 }
 
@@ -107,12 +120,22 @@ private struct ProfileSection<Content: View>: View {
 
 private struct SettingCard: View {
     let title: String
+    var badge: String? = nil
     var body: some View {
         HStack {
             Text(title)
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(AppColors.textPrimary)
             Spacer()
+            if let badge, badge != "0" {
+                Text(badge)
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(AppColors.accent)
+                    .cornerRadius(10)
+            }
             Image(systemName: "chevron.right")
                 .font(.system(size: 11))
                 .foregroundColor(AppColors.textSecondary)

@@ -32,8 +32,13 @@ targets:
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        UIUserInterfaceStyle: Dark
         UILaunchScreen:
-          UIColorName: ""
+          UIBackgroundColor:
+            red: 0.11
+            green: 0.11
+            blue: 0.118
+            alpha: 1.0
         NSMicrophoneUsageDescription: ""
 
   VerbumWidgetExtension:

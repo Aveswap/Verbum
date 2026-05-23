@@ -1,8 +1,12 @@
 import SwiftUI
 
 struct CategoriesView: View {
+    @EnvironmentObject var userProfile: UserProfileStore
     @Environment(\.dismiss) private var dismiss
     @State private var searchText = ""
+    @State private var showFavorites = false
+    @State private var showHistory = false
+    @State private var showPremium = false
 
     var body: some View {
         NavigationView {
@@ -13,10 +17,10 @@ struct CategoriesView: View {
                     VStack(alignment: .leading, spacing: AppSpacing.lg) {
                         // Quick access 2x2
                         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                            QuickCard(title: "Favorites", icon: "heart.fill")
-                            QuickCard(title: "Collections", icon: "folder.fill")
-                            QuickCard(title: "My Words", icon: "plus.circle.fill")
-                            QuickCard(title: "History", icon: "clock.fill")
+                            QuickCard(title: "Favorites", icon: "heart.fill") { showFavorites = true }
+                            QuickCard(title: "Collections", icon: "folder.fill") { showPremium = true }
+                            QuickCard(title: "My Words", icon: "plus.circle.fill") { showPremium = true }
+                            QuickCard(title: "History", icon: "clock.fill") { showHistory = true }
                         }
 
                         CategorySection(title: "ABOUT US") {
@@ -32,7 +36,7 @@ struct CategoriesView: View {
                         CategorySection(title: "PROFESSIONAL") {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
                                 ForEach(["Technology", "Science", "Medicine", "Literature"], id: \.self) { cat in
-                                    LockedCard(title: cat, isLocked: true)
+                                    LockedCard(title: cat, isLocked: true) { showPremium = true }
                                 }
                             }
                         }
@@ -92,6 +96,9 @@ struct CategoriesView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .sheet(isPresented: $showFavorites) { FavoritesView().environmentObject(userProfile) }
+        .sheet(isPresented: $showHistory)   { HistoryView().environmentObject(userProfile) }
+        .sheet(isPresented: $showPremium)   { PremiumSheet() }
     }
 }
 
@@ -112,15 +119,19 @@ private struct CategorySection<Content: View>: View {
 private struct QuickCard: View {
     let title: String
     let icon: String
+    var action: (() -> Void)? = nil
     var body: some View {
-        HStack {
-            Image(systemName: icon).foregroundColor(AppColors.accent)
-            Text(title).font(.system(size: 14, weight: .medium)).foregroundColor(AppColors.textPrimary)
-            Spacer()
+        Button(action: { action?() }) {
+            HStack {
+                Image(systemName: icon).foregroundColor(AppColors.accent)
+                Text(title).font(.system(size: 14, weight: .medium)).foregroundColor(AppColors.textPrimary)
+                Spacer()
+                Image(systemName: "chevron.right").font(.system(size: 11)).foregroundColor(AppColors.textSecondary)
+            }
+            .padding(AppSpacing.sm)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
         }
-        .padding(AppSpacing.sm)
-        .background(AppColors.surface)
-        .cornerRadius(AppSpacing.cornerRadius)
     }
 }
 
@@ -144,20 +155,23 @@ private struct HScrollCard: View {
 private struct LockedCard: View {
     let title: String
     let isLocked: Bool
+    var onTap: (() -> Void)? = nil
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            Text(title)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(AppColors.textPrimary)
-                .frame(maxWidth: .infinity)
-                .frame(height: 60)
-                .background(AppColors.surface)
-                .cornerRadius(AppSpacing.cornerRadius)
-            if isLocked {
-                Image(systemName: "lock.fill")
-                    .font(.system(size: 10))
-                    .foregroundColor(AppColors.locked)
-                    .padding(6)
+        Button(action: { onTap?() }) {
+            ZStack(alignment: .topTrailing) {
+                Text(title)
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.textPrimary)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .background(AppColors.surface)
+                    .cornerRadius(AppSpacing.cornerRadius)
+                if isLocked {
+                    Image(systemName: "lock.fill")
+                        .font(.system(size: 10))
+                        .foregroundColor(AppColors.locked)
+                        .padding(6)
+                }
             }
         }
     }

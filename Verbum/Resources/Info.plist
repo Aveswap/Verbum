@@ -24,12 +24,23 @@
 	<string></string>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UIColorName</key>
-		<string></string>
+		<key>UIBackgroundColor</key>
+		<dict>
+			<key>alpha</key>
+			<real>1</real>
+			<key>blue</key>
+			<real>0.11799999999999999</real>
+			<key>green</key>
+			<real>0.11</real>
+			<key>red</key>
+			<real>0.11</real>
+		</dict>
 	</dict>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Dark</string>
 </dict>
 </plist>

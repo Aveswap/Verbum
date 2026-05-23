@@ -15,6 +15,8 @@ struct WordFeedView: View {
     @State private var showStats = false
     @State private var showStreakBanner = false
     @State private var showPremium = false
+    @AppStorage("hasSeenSwipeHint") private var hasSeenSwipeHint = false
+    @State private var showSwipeHint = false
 
     var body: some View {
         ZStack {
@@ -26,6 +28,10 @@ struct WordFeedView: View {
                 wordArea
                 actionRow
                 bottomNav
+            }
+
+            if showSwipeHint {
+                swipeHint
             }
         }
         .sheet(isPresented: $showDetail) {
@@ -58,6 +64,15 @@ struct WordFeedView: View {
                     withAnimation(.easeOut) { showStreakBanner = false }
                 }
             }
+            if !hasSeenSwipeHint {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    withAnimation { showSwipeHint = true }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation { showSwipeHint = false }
+                        hasSeenSwipeHint = true
+                    }
+                }
+            }
         }
     }
 
@@ -80,6 +95,29 @@ struct WordFeedView: View {
         .padding(.vertical, AppSpacing.sm)
         .background(Color.orange)
         .transition(.move(edge: .top).combined(with: .opacity))
+    }
+
+    // MARK: - Swipe Hint Overlay
+    private var swipeHint: some View {
+        VStack {
+            Spacer()
+            VStack(spacing: AppSpacing.sm) {
+                Image(systemName: "chevron.up")
+                    .font(.system(size: 20, weight: .semibold))
+                    .foregroundColor(AppColors.accent)
+                    .symbolEffect(.bounce, options: .repeating)
+                Text("Swipe up for the next word")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(AppColors.textPrimary)
+            }
+            .padding(.vertical, AppSpacing.md)
+            .padding(.horizontal, AppSpacing.xl)
+            .background(.ultraThinMaterial)
+            .cornerRadius(AppSpacing.cornerRadius)
+            .shadow(color: .black.opacity(0.3), radius: 12, y: 4)
+            .padding(.bottom, 120)
+        }
+        .transition(.opacity.combined(with: .scale))
     }
 
     // MARK: - Top Bar
