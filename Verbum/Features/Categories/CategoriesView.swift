@@ -47,9 +47,9 @@ struct CategoriesView: View {
                         }
 
                         CategorySection(title: "BY PART OF SPEECH") {
-                            let posMap: [String: String] = ["Verbs": "verb", "Nouns": "noun", "Adjectives": "adjective"]
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                                ForEach(["Verbs", "Nouns", "Adjectives"], id: \.self) { cat in
+                            let posMap: [String: String] = ["Verbs": "v.", "Nouns": "n.", "Adjectives": "adj.", "Adverbs": "adv."]
+                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+                                ForEach(["Verbs", "Nouns", "Adjectives", "Adverbs"], id: \.self) { cat in
                                     SmallCard(title: cat) {
                                         activeFilter = .partOfSpeech(posMap[cat] ?? cat.lowercased())
                                         showWordList = true
