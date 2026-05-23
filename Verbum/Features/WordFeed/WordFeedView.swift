@@ -48,7 +48,7 @@ struct WordFeedView: View {
             ProfileView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showPractice) {
-            PracticeMenuView()
+            PracticeMenuView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showCategories) {
             CategoriesView()
@@ -107,10 +107,18 @@ struct WordFeedView: View {
         VStack {
             Spacer()
             VStack(spacing: AppSpacing.sm) {
-                Image(systemName: "chevron.up")
-                    .font(.system(size: 20, weight: .semibold))
-                    .foregroundColor(AppColors.accent)
-                    .symbolEffect(.bounce, options: .repeating)
+                Group {
+                    if #available(iOS 18.0, *) {
+                        Image(systemName: "chevron.up")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(AppColors.accent)
+                            .symbolEffect(.bounce, options: .repeating)
+                    } else {
+                        Image(systemName: "chevron.up")
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(AppColors.accent)
+                    }
+                }
                 Text("Swipe up for the next word")
                     .font(.system(size: 14, weight: .medium))
                     .foregroundColor(AppColors.textPrimary)
@@ -367,6 +375,14 @@ private struct WordCardView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
                 .lineLimit(3)
+
+            Text(word.category)
+                .font(.system(size: 11, weight: .medium))
+                .foregroundColor(AppColors.accent.opacity(0.9))
+                .padding(.horizontal, AppSpacing.sm)
+                .padding(.vertical, 4)
+                .background(AppColors.accent.opacity(0.12))
+                .cornerRadius(20)
 
             Spacer()
         }

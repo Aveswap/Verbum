@@ -20,6 +20,7 @@
 		415BBCB7DFABF2CC1FAC62B3 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF790BB6AB4C75379219B4AC /* Typography.swift */; };
 		4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5189B465BCE9B4F0634218B /* Assets.xcassets */; };
 		4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E15B1BDA53EAD060209F /* CategoriesView.swift */; };
+		514DF89DA836245BF4E3F79C /* LevelTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */; };
 		55776CFFF09E41D66EC9A570 /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05BD5D70477C6F1D2EBC5D /* WordData.swift */; };
 		5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE77BC5E1F3C579B4403031 /* HistoryView.swift */; };
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
@@ -30,6 +31,7 @@
 		879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28C193C7BC73D85820163A1 /* WordFeedView.swift */; };
 		8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837A7A327A614F779F75B887 /* OnboardingFlow.swift */; };
 		952A8DD995A6688243461622 /* SynonymsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF08B79256CCCF0F41560C /* SynonymsView.swift */; };
+		999398853EDED46DF2113702 /* LevelTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */; };
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
@@ -105,6 +107,8 @@
 		A00F070C603FE504217EDA4A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		A8542CDE04150A527445C516 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		B0A60EE41CA03C91B64D6107 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestViewModel.swift; sourceTree = "<group>"; };
+		B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestView.swift; sourceTree = "<group>"; };
 		B40971FC207D1701A44859D9 /* PremiumSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSheet.swift; sourceTree = "<group>"; };
 		B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		BB05BD5D70477C6F1D2EBC5D /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 			children = (
 				F9771B8BC82C082859F3C175 /* FillGapView.swift */,
 				6DFFC1788A87089728F16A36 /* GuessWordView.swift */,
+				B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */,
+				B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */,
 				357806ACCB3D66F2867A3E80 /* PracticeMenuView.swift */,
 				2968154FE6B16D65BCB011D1 /* QuizView.swift */,
 				A00F070C603FE504217EDA4A /* QuizViewModel.swift */,
@@ -451,6 +457,8 @@
 				DBAE558F86BDFD6B66CF22F7 /* GuessWordView.swift in Sources */,
 				EE685211A5C75DBB3B17ADFE /* HapticManager.swift in Sources */,
 				5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */,
+				999398853EDED46DF2113702 /* LevelTestView.swift in Sources */,
+				514DF89DA836245BF4E3F79C /* LevelTestViewModel.swift in Sources */,
 				9C07D77964AD69422176D390 /* LikedView.swift in Sources */,
 				063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */,
 				8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */,

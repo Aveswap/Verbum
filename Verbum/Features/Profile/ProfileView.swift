@@ -8,6 +8,7 @@ struct ProfileView: View {
     @State private var showHistory = false
     @State private var showPremium = false
     @State private var showLiked = false
+    @State private var showLevelTest = false
 
     var body: some View {
         NavigationView {
@@ -35,22 +36,24 @@ struct ProfileView: View {
                         .cornerRadius(AppSpacing.cornerRadius)
 
                         // Level test card
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Take the test to find your level")
-                                    .font(.system(size: 15, weight: .medium))
-                                    .foregroundColor(AppColors.textPrimary)
-                                Text("Current: \(userProfile.profile.level.displayName)")
-                                    .font(.system(size: 13))
+                        Button { showLevelTest = true } label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Take the test to find your level")
+                                        .font(.system(size: 15, weight: .medium))
+                                        .foregroundColor(AppColors.textPrimary)
+                                    Text("Current: \(userProfile.profile.level.displayName)")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
                                     .foregroundColor(AppColors.textSecondary)
                             }
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(AppColors.textSecondary)
+                            .padding(AppSpacing.md)
+                            .background(AppColors.surface)
+                            .cornerRadius(AppSpacing.cornerRadius)
                         }
-                        .padding(AppSpacing.md)
-                        .background(AppColors.surface)
-                        .cornerRadius(AppSpacing.cornerRadius)
 
                         // Customize
                         ProfileSection(title: "CUSTOMIZE APP") {
@@ -102,11 +105,12 @@ struct ProfileView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showSettings)  { SettingsView().environmentObject(userProfile) }
-        .sheet(isPresented: $showFavorites) { FavoritesView().environmentObject(userProfile) }
-        .sheet(isPresented: $showLiked)     { LikedView().environmentObject(userProfile) }
-        .sheet(isPresented: $showHistory)   { HistoryView().environmentObject(userProfile) }
-        .sheet(isPresented: $showPremium)   { PremiumSheet() }
+        .sheet(isPresented: $showSettings)   { SettingsView().environmentObject(userProfile) }
+        .sheet(isPresented: $showFavorites)  { FavoritesView().environmentObject(userProfile) }
+        .sheet(isPresented: $showLiked)      { LikedView().environmentObject(userProfile) }
+        .sheet(isPresented: $showHistory)    { HistoryView().environmentObject(userProfile) }
+        .sheet(isPresented: $showPremium)    { PremiumSheet() }
+        .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }
     }
 }
 

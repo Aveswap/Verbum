@@ -6,12 +6,14 @@ struct CategoryWordListView: View {
         case category(String)
         case level(WordLevel)
         case partOfSpeech(String)
+        case search(String)
 
         var title: String {
             switch self {
-            case .category(let c): return c
-            case .level(let l):    return l.displayName
-            case .partOfSpeech(let p): return p
+            case .category(let c):     return c
+            case .level(let l):        return l.displayName
+            case .partOfSpeech(let p): return p.capitalized
+            case .search(let q):       return ""\(q)""
             }
         }
 
@@ -24,6 +26,10 @@ struct CategoryWordListView: View {
                 return word.level == l
             case .partOfSpeech(let p):
                 return word.partOfSpeech.localizedCaseInsensitiveContains(p)
+            case .search(let q):
+                return word.text.localizedCaseInsensitiveContains(q) ||
+                       word.definition.localizedCaseInsensitiveContains(q) ||
+                       word.category.localizedCaseInsensitiveContains(q)
             }
         }
     }

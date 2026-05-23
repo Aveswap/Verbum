@@ -80,8 +80,23 @@ struct CategoriesView: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(AppColors.textSecondary)
-                    TextField("Search categories…", text: $searchText)
+                    TextField("Search words…", text: $searchText)
                         .foregroundColor(AppColors.textPrimary)
+                        .submitLabel(.search)
+                        .onSubmit {
+                            let q = searchText.trimmingCharacters(in: .whitespaces)
+                            guard !q.isEmpty else { return }
+                            activeFilter = .search(q)
+                            showWordList = true
+                        }
+                    if !searchText.isEmpty {
+                        Button {
+                            searchText = ""
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(AppColors.textSecondary)
+                        }
+                    }
                 }
                 .padding(AppSpacing.md)
                 .background(AppColors.surfaceSecondary)

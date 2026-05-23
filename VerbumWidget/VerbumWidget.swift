@@ -3,7 +3,7 @@ import SwiftUI
 
 // MARK: - Shared Word Model (duplicated for widget bundle isolation)
 
-private struct WidgetWord: Codable {
+struct WidgetWord: Codable {
     let text: String
     let phonetic: String
     let partOfSpeech: String
@@ -53,7 +53,13 @@ struct WordProvider: TimelineProvider {
               let words = try? JSONDecoder().decode([WidgetWord].self, from: data),
               !words.isEmpty
         else {
-            return placeholder(in: .init(displaySize: .zero, environmentVariants: nil)).word
+            return WidgetWord(
+                text: "ephemeral",
+                phonetic: "/ɪˈfem.ər.əl/",
+                partOfSpeech: "adj.",
+                definition: "Lasting for a very short time",
+                level: "intermediate"
+            )
         }
         let dayIndex = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
         return words[(dayIndex - 1) % words.count]

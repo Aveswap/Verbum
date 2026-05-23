@@ -2,10 +2,12 @@ import SwiftUI
 
 struct PracticeMenuView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var userProfile: UserProfileStore
     @State private var showQuiz = false
     @State private var showFillGap = false
     @State private var showSynonyms = false
     @State private var showGuessWord = false
+    @State private var showLevelTest = false
 
     var body: some View {
         NavigationView {
@@ -14,22 +16,24 @@ struct PracticeMenuView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: AppSpacing.lg) {
                         // Level test card
-                        HStack {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("What's your level?")
-                                    .font(.system(size: 16, weight: .semibold))
-                                    .foregroundColor(AppColors.textPrimary)
-                                Text("Take the free test")
-                                    .font(.system(size: 14))
-                                    .foregroundColor(AppColors.accent)
+                        Button { showLevelTest = true } label: {
+                            HStack {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("What's your level?")
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundColor(AppColors.textPrimary)
+                                    Text("Current: \(userProfile.profile.level.displayName) · Take the free test")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.accent)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(AppColors.textSecondary)
                             }
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(AppColors.textSecondary)
+                            .padding(AppSpacing.md)
+                            .background(AppColors.surface)
+                            .cornerRadius(AppSpacing.cornerRadius)
                         }
-                        .padding(AppSpacing.md)
-                        .background(AppColors.surface)
-                        .cornerRadius(AppSpacing.cornerRadius)
 
                         // Challenges
                         sectionHeader("CHALLENGES")
@@ -91,6 +95,7 @@ struct PracticeMenuView: View {
         .sheet(isPresented: $showFillGap) { FillGapView() }
         .sheet(isPresented: $showSynonyms) { SynonymsView() }
         .sheet(isPresented: $showGuessWord) { GuessWordView() }
+        .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
     }
 
     private func sectionHeader(_ title: String) -> some View {
