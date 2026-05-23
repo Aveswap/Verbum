@@ -29,9 +29,18 @@ class WordFeedViewModel: ObservableObject {
         return words[currentIndex]
     }
 
+    var isAtEnd: Bool {
+        !words.isEmpty && currentIndex >= words.count - 1
+    }
+
     func nextWord() {
         guard currentIndex < words.count - 1 else { return }
         currentIndex += 1
+    }
+
+    func restartFeed() {
+        words = words.shuffled()
+        currentIndex = 0
     }
 
     func previousWord() {

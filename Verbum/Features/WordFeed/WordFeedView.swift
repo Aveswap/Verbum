@@ -17,6 +17,7 @@ struct WordFeedView: View {
     @State private var showPremium = false
     @AppStorage("hasSeenSwipeHint") private var hasSeenSwipeHint = false
     @State private var showSwipeHint = false
+    @State private var showEndOfFeed = false
 
     var body: some View {
         ZStack {
@@ -32,6 +33,10 @@ struct WordFeedView: View {
 
             if showSwipeHint {
                 swipeHint
+            }
+
+            if showEndOfFeed {
+                endOfFeedOverlay
             }
         }
         .sheet(isPresented: $showDetail) {
@@ -120,6 +125,53 @@ struct WordFeedView: View {
         .transition(.opacity.combined(with: .scale))
     }
 
+    // MARK: - End of Feed Overlay
+    private var endOfFeedOverlay: some View {
+        ZStack {
+            AppColors.background.opacity(0.95).ignoresSafeArea()
+            VStack(spacing: AppSpacing.lg) {
+                Text("🎉")
+                    .font(.system(size: 64))
+                Text("All caught up!")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(AppColors.textPrimary)
+                Text("You've seen all \(viewModel.words.count) words.\nReady for another round?")
+                    .font(.system(size: 16))
+                    .foregroundColor(AppColors.textSecondary)
+                    .multilineTextAlignment(.center)
+                VStack(spacing: AppSpacing.sm) {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.3)) { showEndOfFeed = false }
+                        viewModel.restartFeed()
+                    } label: {
+                        Text("Restart Feed")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundColor(AppColors.textOnAccent)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, AppSpacing.md)
+                            .background(AppColors.accent)
+                            .cornerRadius(AppSpacing.pillRadius)
+                    }
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.3)) { showEndOfFeed = false }
+                        showPractice = true
+                    } label: {
+                        Text("Go to Practice")
+                            .font(.system(size: 17, weight: .medium))
+                            .foregroundColor(AppColors.accent)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, AppSpacing.md)
+                            .background(AppColors.surface)
+                            .cornerRadius(AppSpacing.pillRadius)
+                    }
+                }
+                .padding(.horizontal, AppSpacing.xl)
+            }
+            .padding(AppSpacing.xl)
+        }
+        .transition(.opacity.combined(with: .scale))
+    }
+
     // MARK: - Top Bar
     private var topBar: some View {
         HStack {
@@ -196,7 +248,11 @@ struct WordFeedView: View {
                 if val.translation.height < -threshold {
                     HapticManager.selection()
                     if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
-                    withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+                    if viewModel.isAtEnd {
+                        withAnimation(.spring()) { showEndOfFeed = true }
+                    } else {
+                        withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+                    }
                     resetActionScales()
                 } else if val.translation.height > threshold {
                     HapticManager.selection()

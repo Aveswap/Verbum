@@ -7,6 +7,8 @@ struct CategoriesView: View {
     @State private var showFavorites = false
     @State private var showHistory = false
     @State private var showPremium = false
+    @State private var showWordList = false
+    @State private var activeFilter: CategoryWordListView.FilterKind = .category("People")
 
     var body: some View {
         NavigationView {
@@ -27,7 +29,10 @@ struct CategoriesView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: AppSpacing.sm) {
                                     ForEach(["People", "Body", "Food & Drink"], id: \.self) { cat in
-                                        HScrollCard(title: cat)
+                                        HScrollCard(title: cat) {
+                                            activeFilter = .category(cat)
+                                            showWordList = true
+                                        }
                                     }
                                 }
                             }
@@ -42,17 +47,27 @@ struct CategoriesView: View {
                         }
 
                         CategorySection(title: "BY PART OF SPEECH") {
+                            let posMap: [String: String] = ["Verbs": "verb", "Nouns": "noun", "Adjectives": "adjective"]
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
                                 ForEach(["Verbs", "Nouns", "Adjectives"], id: \.self) { cat in
-                                    SmallCard(title: cat)
+                                    SmallCard(title: cat) {
+                                        activeFilter = .partOfSpeech(posMap[cat] ?? cat.lowercased())
+                                        showWordList = true
+                                    }
                                 }
                             }
                         }
 
                         CategorySection(title: "BY LEVEL") {
+                            let levelMap: [String: WordLevel] = ["Beginner": .beginner, "Intermediate": .intermediate, "Expert": .expert]
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
                                 ForEach(["Beginner", "Intermediate", "Expert"], id: \.self) { cat in
-                                    SmallCard(title: cat)
+                                    SmallCard(title: cat) {
+                                        if let level = levelMap[cat] {
+                                            activeFilter = .level(level)
+                                            showWordList = true
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -99,6 +114,7 @@ struct CategoriesView: View {
         .sheet(isPresented: $showFavorites) { FavoritesView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)   { HistoryView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium)   { PremiumSheet() }
+        .sheet(isPresented: $showWordList)  { CategoryWordListView(filter: activeFilter).environmentObject(userProfile) }
     }
 }
 
@@ -137,18 +153,21 @@ private struct QuickCard: View {
 
 private struct HScrollCard: View {
     let title: String
+    var action: (() -> Void)? = nil
     var body: some View {
-        VStack(spacing: AppSpacing.sm) {
-            Image(systemName: "folder.fill")
-                .font(.system(size: 28))
-                .foregroundColor(AppColors.accent)
-            Text(title)
-                .font(.system(size: 13))
-                .foregroundColor(AppColors.textPrimary)
+        Button(action: { action?() }) {
+            VStack(spacing: AppSpacing.sm) {
+                Image(systemName: "folder.fill")
+                    .font(.system(size: 28))
+                    .foregroundColor(AppColors.accent)
+                Text(title)
+                    .font(.system(size: 13))
+                    .foregroundColor(AppColors.textPrimary)
+            }
+            .frame(width: 100, height: 85)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
         }
-        .frame(width: 100, height: 85)
-        .background(AppColors.surface)
-        .cornerRadius(AppSpacing.cornerRadius)
     }
 }
 
@@ -179,14 +198,17 @@ private struct LockedCard: View {
 
 private struct SmallCard: View {
     let title: String
+    var action: (() -> Void)? = nil
     var body: some View {
-        Text(title)
-            .font(.system(size: 13, weight: .medium))
-            .foregroundColor(AppColors.textPrimary)
-            .frame(maxWidth: .infinity)
-            .frame(height: 48)
-            .background(AppColors.surface)
-            .cornerRadius(AppSpacing.cornerRadius)
+        Button(action: { action?() }) {
+            Text(title)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundColor(AppColors.textPrimary)
+                .frame(maxWidth: .infinity)
+                .frame(height: 48)
+                .background(AppColors.surface)
+                .cornerRadius(AppSpacing.cornerRadius)
+        }
     }
 }
 

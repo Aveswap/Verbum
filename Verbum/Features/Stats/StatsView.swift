@@ -4,7 +4,7 @@ struct StatsView: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @Environment(\.dismiss) private var dismiss
 
-    private let totalWords = 50
+    private let totalWords = 80
 
     var body: some View {
         NavigationView {
@@ -13,6 +13,7 @@ struct StatsView: View {
                 ScrollView {
                     VStack(spacing: AppSpacing.lg) {
                         summaryGrid
+                        wordsProgressCard
                         personalizationCard
                         weeklyGoalCard
                         profileCard
@@ -79,6 +80,47 @@ struct StatsView: View {
                 color: .purple
             )
         }
+    }
+
+    // MARK: - Words discovered progress
+    private var wordsProgressCard: some View {
+        let seen = min(userProfile.profile.seenWordIds.count, totalWords)
+        let progress = Double(seen) / Double(totalWords)
+        return VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Label("Words Discovered", systemImage: "books.vertical.fill")
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundColor(AppColors.textSecondary)
+
+            HStack(alignment: .bottom) {
+                Text("\(seen)")
+                    .font(.system(size: 36, weight: .bold))
+                    .foregroundColor(AppColors.textPrimary)
+                Text("/ \(totalWords) words")
+                    .font(.system(size: 14))
+                    .foregroundColor(AppColors.textSecondary)
+                    .padding(.bottom, 6)
+            }
+
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    RoundedRectangle(cornerRadius: 4).fill(AppColors.surfaceSecondary).frame(height: 8)
+                    RoundedRectangle(cornerRadius: 4)
+                        .fill(AppColors.accent)
+                        .frame(width: geo.size.width * progress, height: 8)
+                        .animation(.easeOut(duration: 0.6), value: seen)
+                }
+            }
+            .frame(height: 8)
+
+            Text(seen == totalWords
+                 ? "You've discovered all words! Great job!"
+                 : "\(totalWords - seen) more to discover")
+                .font(.system(size: 12))
+                .foregroundColor(AppColors.textSecondary)
+        }
+        .padding(AppSpacing.md)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
     }
 
     // MARK: - Personalization progress

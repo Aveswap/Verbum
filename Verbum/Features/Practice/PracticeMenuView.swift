@@ -55,7 +55,14 @@ struct PracticeMenuView: View {
                         PracticeRow(title: "Guess the Word", subtitle: "From definition to word", icon: "lightbulb") {
                             showGuessWord = true
                         }
-                        PracticeRow(title: "Word Definition", subtitle: "Pick the right meaning", icon: "book") {}
+                        PracticeRow(title: "Random Practice", subtitle: "Surprise me with a game", icon: "shuffle") {
+                            switch Int.random(in: 0...3) {
+                            case 0: showQuiz = true
+                            case 1: showFillGap = true
+                            case 2: showSynonyms = true
+                            default: showGuessWord = true
+                            }
+                        }
                     }
                     .padding(AppSpacing.md)
                 }

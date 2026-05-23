@@ -7,6 +7,7 @@ struct ProfileView: View {
     @State private var showFavorites = false
     @State private var showHistory = false
     @State private var showPremium = false
+    @State private var showLiked = false
 
     var body: some View {
         NavigationView {
@@ -67,6 +68,9 @@ struct ProfileView: View {
                                 Button { showFavorites = true } label: {
                                     SettingCard(title: "Favorites", badge: "\(userProfile.profile.bookmarkedWordIds.count)")
                                 }
+                                Button { showLiked = true } label: {
+                                    SettingCard(title: "Liked", badge: "\(userProfile.profile.likedWordIds.count)")
+                                }
                                 Button { showPremium = true } label: {
                                     SettingCard(title: "My Words")
                                 }
@@ -100,6 +104,7 @@ struct ProfileView: View {
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showSettings)  { SettingsView().environmentObject(userProfile) }
         .sheet(isPresented: $showFavorites) { FavoritesView().environmentObject(userProfile) }
+        .sheet(isPresented: $showLiked)     { LikedView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)   { HistoryView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium)   { PremiumSheet() }
     }

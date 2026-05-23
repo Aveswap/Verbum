@@ -24,11 +24,13 @@
 		5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE77BC5E1F3C579B4403031 /* HistoryView.swift */; };
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
 		6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77E8835D95DB845DF4A1B83 /* WordListView.swift */; };
+		7D78B2E6B4464A9FEBD34AE1 /* CategoryWordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DE072F4CCDB4928A7EA0CB /* CategoryWordListView.swift */; };
 		83E469F0405852685C17601A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCA694741309C6D900CD665 /* WelcomeView.swift */; };
 		869F5F5C647E47083B5A3C54 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */; };
 		879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28C193C7BC73D85820163A1 /* WordFeedView.swift */; };
 		8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837A7A327A614F779F75B887 /* OnboardingFlow.swift */; };
 		952A8DD995A6688243461622 /* SynonymsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF08B79256CCCF0F41560C /* SynonymsView.swift */; };
+		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
 		AF1BE975A6BEEAC52B76509A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8542CDE04150A527445C516 /* Category.swift */; };
@@ -98,6 +100,7 @@
 		837A7A327A614F779F75B887 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		87548990CA3B40003EB7EBCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		87620CA6EA78E01907CAC03C /* WordFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedViewModel.swift; sourceTree = "<group>"; };
+		87DE072F4CCDB4928A7EA0CB /* CategoryWordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWordListView.swift; sourceTree = "<group>"; };
 		9BFF885EECBBFF36393A0207 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A00F070C603FE504217EDA4A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		A8542CDE04150A527445C516 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -107,6 +110,7 @@
 		BB05BD5D70477C6F1D2EBC5D /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
 		C21B3590E4FD7FF17ACFAA57 /* Verbum.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Verbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28C193C7BC73D85820163A1 /* WordFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedView.swift; sourceTree = "<group>"; };
+		C7CD9166BA32297E2C16426C /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
 		C8BE0AC736303A807180D482 /* VerbumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbumApp.swift; sourceTree = "<group>"; };
 		D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D998E15B1BDA53EAD060209F /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				D998E15B1BDA53EAD060209F /* CategoriesView.swift */,
+				87DE072F4CCDB4928A7EA0CB /* CategoryWordListView.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -304,6 +309,7 @@
 			children = (
 				38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */,
 				FEE77BC5E1F3C579B4403031 /* HistoryView.swift */,
+				C7CD9166BA32297E2C16426C /* LikedView.swift */,
 				E77E8835D95DB845DF4A1B83 /* WordListView.swift */,
 			);
 			path = WordList;
@@ -438,12 +444,14 @@
 				869F5F5C647E47083B5A3C54 /* AppCoordinator.swift in Sources */,
 				4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */,
 				AF1BE975A6BEEAC52B76509A /* Category.swift in Sources */,
+				7D78B2E6B4464A9FEBD34AE1 /* CategoryWordListView.swift in Sources */,
 				6152418B92E9EEDF172F600A /* Colors.swift in Sources */,
 				B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */,
 				FF8413B877176170454BA142 /* FillGapView.swift in Sources */,
 				DBAE558F86BDFD6B66CF22F7 /* GuessWordView.swift in Sources */,
 				EE685211A5C75DBB3B17ADFE /* HapticManager.swift in Sources */,
 				5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */,
+				9C07D77964AD69422176D390 /* LikedView.swift in Sources */,
 				063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */,
 				8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */,
 				C0D846C0FB617A42B06CB2DD /* PillButton.swift in Sources */,
