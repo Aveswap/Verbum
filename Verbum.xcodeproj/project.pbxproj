@@ -39,6 +39,7 @@
 		999398853EDED46DF2113702 /* LevelTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */; };
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
 		AF1BE975A6BEEAC52B76509A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8542CDE04150A527445C516 /* Category.swift */; };
 		B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */; };
@@ -90,6 +91,7 @@
 		0506F780D4C3F3F5705BCD8C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
 		22CF08B79256CCCF0F41560C /* SynonymsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymsView.swift; sourceTree = "<group>"; };
 		2968154FE6B16D65BCB011D1 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				7E579B213FF7BFC07CA00913 /* PillButton.swift */,
 				9BFF885EECBBFF36393A0207 /* ProgressBar.swift */,
 				6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */,
+				1B6DEE253BAE83C18158646A /* SoundManager.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */,
 				372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */,
 				17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */,
+				A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */,
 				D35923D0663FCF28916789B7 /* Spacing.swift in Sources */,
 				335DB077660578203921C7B0 /* StatsView.swift in Sources */,
 				952A8DD995A6688243461622 /* SynonymsView.swift in Sources */,

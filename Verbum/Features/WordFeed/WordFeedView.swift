@@ -275,7 +275,7 @@ struct WordFeedView: View {
             .onEnded { val in
                 let threshold: CGFloat = 50
                 if val.translation.height < -threshold {
-                    HapticManager.selection()
+                    HapticManager.swipeWave()
                     if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
                     resetActionScales()
                     if viewModel.isAtEnd {
@@ -291,7 +291,7 @@ struct WordFeedView: View {
                     if viewModel.isAtStart {
                         HapticManager.error()
                     } else {
-                        HapticManager.selection()
+                        HapticManager.swipeWave()
                         withAnimation(.easeInOut(duration: 0.25)) { viewModel.previousWord() }
                         resetActionScales()
                     }

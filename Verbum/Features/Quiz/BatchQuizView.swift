@@ -45,6 +45,10 @@ final class BatchQuizViewModel: ObservableObject {
         if index == correctIndex {
             correctCount += 1
             pointsEarned += points(for: currentWord)
+            HapticManager.correctAnswer()
+            SoundManager.shared.playCorrectChime()
+        } else {
+            HapticManager.wrongAnswer()
         }
     }
 
