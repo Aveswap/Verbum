@@ -46,16 +46,23 @@ final class WordDatabase {
         guard let dbQueue else { return }
         try dbQueue.write { db in
             try db.create(table: "words", ifNotExists: true) { t in
-                t.column("id",            .text).primaryKey()
-                t.column("text",          .text).notNull()
-                t.column("phonetic",      .text).notNull().defaults(to: "")
-                t.column("partOfSpeech",  .text).notNull().defaults(to: "")
-                t.column("definition",    .text).notNull()
+                t.column("id",              .text).primaryKey()
+                t.column("text",            .text).notNull()
+                t.column("phonetic",        .text).notNull().defaults(to: "")
+                t.column("partOfSpeech",    .text).notNull().defaults(to: "")
+                t.column("definition",      .text).notNull()
                 t.column("exampleSentence", .text)
-                t.column("synonyms",      .text).notNull().defaults(to: "[]")
-                t.column("category",      .text).notNull().defaults(to: "")
-                t.column("level",         .text).notNull()
-                t.column("etymology",     .text)
+                t.column("synonyms",        .text).notNull().defaults(to: "[]")
+                t.column("category",        .text).notNull().defaults(to: "")
+                t.column("level",           .text).notNull()
+                t.column("etymology",       .text)
+            }
+            try db.create(table: "translations", ifNotExists: true) { t in
+                t.column("word_id",    .text).notNull().references("words", onDelete: .cascade)
+                t.column("lang",       .text).notNull()
+                t.column("definition", .text).notNull()
+                t.column("example",    .text)
+                t.primaryKey(["word_id", "lang"])
             }
             if try !db.tableExists("words_fts") {
                 try db.execute(sql: """
@@ -64,6 +71,44 @@ final class WordDatabase {
                         content=words, content_rowid=rowid
                     )
                 """)
+            }
+        }
+    }
+
+    // MARK: - Translations
+
+    struct Translation {
+        let definition: String
+        let example: String?
+    }
+
+    func translation(wordId: UUID, lang: String) -> Translation? {
+        guard let dbQueue else { return nil }
+        return try? dbQueue.read { db in
+            guard let row = try Row.fetchOne(db, sql: """
+                SELECT definition, example FROM translations
+                WHERE word_id = ? AND lang = ?
+            """, arguments: [wordId.uuidString.lowercased(), lang]) else { return nil }
+            return Translation(
+                definition: row["definition"] as? String ?? "",
+                example:    row["example"]    as? String
+            )
+        }
+    }
+
+    func importTranslations(_ bundle: [String: [String: [String: String?]]]) throws {
+        // bundle format: { lang: { wordId: { "d": def, "e": example? } } }
+        guard let dbQueue else { return }
+        try dbQueue.write { db in
+            for (lang, entries) in bundle {
+                for (wordId, fields) in entries {
+                    guard let def = fields["d"] as? String else { continue }
+                    let ex = fields["e"] as? String
+                    try db.execute(sql: """
+                        INSERT OR REPLACE INTO translations (word_id, lang, definition, example)
+                        VALUES (?, ?, ?, ?)
+                    """, arguments: [wordId, lang, def, ex])
+                }
             }
         }
     }

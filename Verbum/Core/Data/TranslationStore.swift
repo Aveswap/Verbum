@@ -5,24 +5,42 @@ struct WordTranslation: Codable {
     let e: String?  // example sentence translation
 }
 
+/// Provides translated definitions and examples.
+/// Source priority: local SQLite DB (50k words) → bundled translations.json (150 words).
+/// Both sources share the same public API — callers need no changes.
 final class TranslationStore {
     static let shared = TranslationStore()
 
-    private var data: [String: [String: WordTranslation]] = [:]
+    // Bundle fallback: loaded once, used when DB is absent
+    private var bundleData: [String: [String: WordTranslation]] = [:]
 
     private init() {
-        guard let url = Bundle.main.url(forResource: "translations", withExtension: "json"),
-              let jsonData = try? Data(contentsOf: url) else { return }
-        data = (try? JSONDecoder().decode([String: [String: WordTranslation]].self, from: jsonData)) ?? [:]
+        loadBundle()
+        // When the full DB finishes installing, bundle data can be freed
+        NotificationCenter.default.addObserver(
+            forName: .wordDatabaseInstalled, object: nil, queue: .main
+        ) { [weak self] _ in
+            self?.bundleData = [:]
+        }
     }
 
+    // MARK: - Public API
+
     func definition(wordId: UUID, language: String) -> String? {
-        data[language]?[wordId.uuidString.lowercased()]?.d
+        if WordDatabase.shared.isAvailable {
+            return WordDatabase.shared.translation(wordId: wordId, lang: language)?.definition
+        }
+        return bundleData[language]?[wordId.uuidString.lowercased()]?.d
     }
 
     func example(wordId: UUID, language: String) -> String? {
-        data[language]?[wordId.uuidString.lowercased()]?.e
+        if WordDatabase.shared.isAvailable {
+            return WordDatabase.shared.translation(wordId: wordId, lang: language)?.example
+        }
+        return bundleData[language]?[wordId.uuidString.lowercased()]?.e
     }
+
+    // MARK: - Supported languages
 
     static let supportedLanguages: [(code: String, name: String)] = [
         ("en", "English only"),
@@ -34,4 +52,14 @@ final class TranslationStore {
         ("it", "Italiano"),
         ("pt", "Português"),
     ]
+
+    // MARK: - Bundle
+
+    private func loadBundle() {
+        guard let url  = Bundle.main.url(forResource: "translations", withExtension: "json"),
+              let data = try? Data(contentsOf: url)
+        else { return }
+        bundleData = (try? JSONDecoder()
+            .decode([String: [String: WordTranslation]].self, from: data)) ?? [:]
+    }
 }
