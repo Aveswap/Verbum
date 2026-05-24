@@ -2,11 +2,9 @@ import SwiftUI
 
 struct FavoritesView: View {
     @EnvironmentObject var userProfile: UserProfileStore
-    private let allWords = WordRepository.shared.all
 
     private var bookmarked: [Word] {
-        let ids = userProfile.profile.bookmarkedWordIds
-        return allWords.filter { ids.contains($0.id) }
+        WordRepository.shared.words(ids: userProfile.profile.bookmarkedWordIds)
     }
 
     var body: some View {

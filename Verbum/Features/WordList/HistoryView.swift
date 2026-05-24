@@ -2,13 +2,10 @@ import SwiftUI
 
 struct HistoryView: View {
     @EnvironmentObject var userProfile: UserProfileStore
-    private let allWords = WordRepository.shared.all
 
     private var seen: [Word] {
-        // Preserve seen order (most recent last → show reversed)
-        let ids = userProfile.profile.seenWordIds
-        let wordMap = Dictionary(uniqueKeysWithValues: allWords.map { ($0.id, $0) })
-        return ids.compactMap { wordMap[$0] }.reversed()
+        // seenWordIds is oldest-first; reverse so most recent appears at top
+        WordRepository.shared.words(ids: userProfile.profile.seenWordIds.reversed())
     }
 
     var body: some View {

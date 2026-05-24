@@ -54,7 +54,7 @@ struct WordFeedView: View {
             PracticeMenuView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showCategories) {
-            CategoriesView()
+            CategoriesView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showShareSheet) {
             if let word = viewModel.currentWord {
@@ -72,6 +72,8 @@ struct WordFeedView: View {
             if pendingNextWord {
                 pendingNextWord = false
                 withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+            } else if viewModel.isAtEnd {
+                withAnimation(.spring()) { showEndOfFeed = true }
             }
         }) {
             BatchQuizView(
@@ -278,12 +280,12 @@ struct WordFeedView: View {
                     HapticManager.swipeWave()
                     if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
                     resetActionScales()
-                    if viewModel.isAtEnd {
-                        withAnimation(.spring()) { showEndOfFeed = true }
-                    } else if viewModel.isEndOfBatch {
-                        // Show quiz before advancing
-                        pendingNextWord = true
+                    if viewModel.isEndOfBatch {
+                        // Quiz first — even on the last word of the feed
+                        pendingNextWord = !viewModel.isAtEnd
                         showBatchQuiz = true
+                    } else if viewModel.isAtEnd {
+                        withAnimation(.spring()) { showEndOfFeed = true }
                     } else {
                         withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
                     }

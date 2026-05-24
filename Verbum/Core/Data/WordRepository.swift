@@ -68,6 +68,22 @@ final class WordRepository {
         all.first { $0.id == id }
     }
 
+    /// Fetch words by IDs, preserving the order of the input array.
+    /// Uses SQLite batch lookup when DB is available, falls back to in-memory.
+    func words(ids: [UUID]) -> [Word] {
+        guard !ids.isEmpty else { return [] }
+        let fetched: [Word]
+        if WordDatabase.shared.isAvailable {
+            fetched = WordDatabase.shared.fetchWords(ids: ids)
+        } else {
+            let dict = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })
+            fetched = ids.compactMap { dict[$0] }
+            return fetched
+        }
+        let dict = Dictionary(uniqueKeysWithValues: fetched.map { ($0.id, $0) })
+        return ids.compactMap { dict[$0] }
+    }
+
     func todaysWord() -> Word? {
         if WordDatabase.shared.isAvailable {
             return WordDatabase.shared.todaysWord()

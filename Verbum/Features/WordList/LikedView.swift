@@ -2,11 +2,9 @@ import SwiftUI
 
 struct LikedView: View {
     @EnvironmentObject var userProfile: UserProfileStore
-    private let allWords = WordRepository.shared.all
 
     private var liked: [Word] {
-        let ids = userProfile.profile.likedWordIds
-        return allWords.filter { ids.contains($0.id) }
+        WordRepository.shared.words(ids: userProfile.profile.likedWordIds)
     }
 
     var body: some View {

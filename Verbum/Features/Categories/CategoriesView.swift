@@ -47,7 +47,7 @@ struct CategoriesView: View {
                         }
 
                         CategorySection(title: "BY PART OF SPEECH") {
-                            let posMap: [String: String] = ["Verbs": "v.", "Nouns": "n.", "Adjectives": "adj.", "Adverbs": "adv."]
+                            let posMap: [String: String] = ["Verbs": "verb", "Nouns": "noun", "Adjectives": "adjective", "Adverbs": "adverb"]
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
                                 ForEach(["Verbs", "Nouns", "Adjectives", "Adverbs"], id: \.self) { cat in
                                     SmallCard(title: cat) {

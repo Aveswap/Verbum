@@ -170,6 +170,18 @@ final class WordDatabase {
         }) ?? []
     }
 
+    func fetchWords(ids: [UUID]) -> [Word] {
+        guard let dbQueue, !ids.isEmpty else { return [] }
+        let placeholders = ids.map { _ in "?" }.joined(separator: ",")
+        let args = ids.map { $0.uuidString } as [DatabaseValueConvertible]
+        return (try? dbQueue.read { db in
+            try Row.fetchAll(db,
+                sql: "SELECT * FROM words WHERE id IN (\(placeholders))",
+                arguments: StatementArguments(args))
+            .compactMap(Self.word(from:))
+        }) ?? []
+    }
+
     func totalCount() -> Int {
         guard let dbQueue else { return 0 }
         return (try? dbQueue.read { db in

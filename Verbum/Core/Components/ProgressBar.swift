@@ -12,7 +12,7 @@ struct WordProgressBar: View {
     var body: some View {
         VStack(spacing: 4) {
             HStack(spacing: 4) {
-                Image(systemName: "bookmark.fill")
+                Image(systemName: "brain")
                     .foregroundColor(AppColors.textSecondary)
                     .font(.system(size: 11))
                 Text("\(current)/\(total)")

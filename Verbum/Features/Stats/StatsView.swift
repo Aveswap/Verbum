@@ -4,7 +4,7 @@ struct StatsView: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @Environment(\.dismiss) private var dismiss
 
-    private let totalWords = 110
+    private var totalWords: Int { WordRepository.shared.totalWordCount }
 
     var body: some View {
         NavigationView {

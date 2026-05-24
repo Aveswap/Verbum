@@ -6,24 +6,11 @@ class WordFeedViewModel: ObservableObject {
     @Published var currentIndex: Int = 0
     @Published var goingBack: Bool = false
 
-    private let wordStore = WordStore()
     private let synthesizer = AVSpeechSynthesizer()
 
     init() {
-        self.words = wordStore.words.shuffled()
+        self.words = WordRepository.shared.all.shuffled()
         configureAudioSession()
-    }
-
-    func filterByCategory(_ category: String?) {
-        let all = wordStore.words.shuffled()
-        words = category == nil ? all : all.filter { $0.category == category }
-        currentIndex = 0
-    }
-
-    func filterByLevel(_ level: WordLevel?) {
-        let all = wordStore.words.shuffled()
-        words = level == nil ? all : all.filter { $0.level == level }
-        currentIndex = 0
     }
 
     var currentWord: Word? {
@@ -39,18 +26,15 @@ class WordFeedViewModel: ObservableObject {
         currentIndex == 0
     }
 
-    // Batch progress: 1-5, resets naturally via modulo after quiz
     var batchProgress: Int {
         (currentIndex % 5) + 1
     }
 
-    // Words in the current batch ending at currentIndex
     var currentBatchWords: [Word] {
         let start = max(0, currentIndex - 4)
         return Array(words[start...currentIndex])
     }
 
-    // True when user is at the end of a batch (every 5th word)
     var isEndOfBatch: Bool {
         batchProgress == 5
     }
@@ -68,7 +52,7 @@ class WordFeedViewModel: ObservableObject {
     }
 
     func restartFeed() {
-        words = words.shuffled()
+        words = WordRepository.shared.all.shuffled()
         goingBack = false
         currentIndex = 0
     }
@@ -92,8 +76,6 @@ class WordFeedViewModel: ObservableObject {
                 options: [.mixWithOthers, .allowBluetoothHFP]
             )
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {
-            // Audio session configuration is best-effort
-        }
+        } catch {}
     }
 }
