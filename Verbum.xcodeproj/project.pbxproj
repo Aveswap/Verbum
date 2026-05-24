@@ -10,6 +10,7 @@
 		043DF0EEE7D9F8A442869F87 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFF885EECBBFF36393A0207 /* ProgressBar.swift */; };
 		063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E65753117638048641719 /* NotificationsSetupView.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
+		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
 		2D340578381485FD8894507E /* VerbumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE0AC736303A807180D482 /* VerbumApp.swift */; };
 		2FBE902D8E472DD311783D17 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 7065EA90832D7B55B091ECF2 /* words.json */; };
@@ -17,6 +18,7 @@
 		3638E2784BCD24A1EC73A154 /* translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 551CA09F41CBB9A77AA52313 /* translations.json */; };
 		369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF54206A121475D1DB43775 /* Word.swift */; };
 		372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */; };
+		3B36F4C2BFF0624DD1C89DF7 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 08855E15BC1D1540CB22C18F /* GRDB */; };
 		41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */; };
 		415BBCB7DFABF2CC1FAC62B3 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF790BB6AB4C75379219B4AC /* Typography.swift */; };
 		4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5189B465BCE9B4F0634218B /* Assets.xcassets */; };
@@ -37,6 +39,7 @@
 		952A8DD995A6688243461622 /* SynonymsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF08B79256CCCF0F41560C /* SynonymsView.swift */; };
 		963AE7507F748C374F47FB23 /* BatchQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30774A2D9419603F01BD410 /* BatchQuizView.swift */; };
 		999398853EDED46DF2113702 /* LevelTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */; };
+		9B7B30E93778BDA7A8B477D2 /* DatabaseStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */; };
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
@@ -51,6 +54,7 @@
 		C2D154D2972BE298747DAEB7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF39C6A2496F507062F7F84 /* UserProfile.swift */; };
 		C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A07099C0B9D49EADC6F4E46 /* LeaderboardView.swift */; };
 		D35923D0663FCF28916789B7 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BFE1DC6BC631FE00C1392 /* Spacing.swift */; };
+		DA4428337D5EA213220B76EA /* DatabaseDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */; };
 		DBAE558F86BDFD6B66CF22F7 /* GuessWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFFC1788A87089728F16A36 /* GuessWordView.swift */; };
 		DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F070C603FE504217EDA4A /* QuizViewModel.swift */; };
 		DD9EE0D1A601D7F6A5EBC12A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2968154FE6B16D65BCB011D1 /* QuizView.swift */; };
@@ -121,7 +125,9 @@
 		9BFF885EECBBFF36393A0207 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A00F070C603FE504217EDA4A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		A8542CDE04150A527445C516 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseStatusBanner.swift; sourceTree = "<group>"; };
 		AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStore.swift; sourceTree = "<group>"; };
+		B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDownloadManager.swift; sourceTree = "<group>"; };
 		B0A60EE41CA03C91B64D6107 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestViewModel.swift; sourceTree = "<group>"; };
 		B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestView.swift; sourceTree = "<group>"; };
@@ -144,9 +150,21 @@
 		EFCA694741309C6D900CD665 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F9771B8BC82C082859F3C175 /* FillGapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillGapView.swift; sourceTree = "<group>"; };
 		FCF54206A121475D1DB43775 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDatabase.swift; sourceTree = "<group>"; };
 		FEE77BC5E1F3C579B4403031 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		FF790BB6AB4C75379219B4AC /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FADFBD71523E891878687FA6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B36F4C2BFF0624DD1C89DF7 /* GRDB in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2051B1995995727EA60FADC7 /* WordDetail */ = {
@@ -209,6 +227,7 @@
 		5CED0C16C7232577A5E34EA3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */,
 				0506F780D4C3F3F5705BCD8C /* HapticManager.swift */,
 				CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */,
 				7E579B213FF7BFC07CA00913 /* PillButton.swift */,
@@ -291,8 +310,10 @@
 		C87133722F1D695FF2BDFDE0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */,
 				AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */,
 				BB05BD5D70477C6F1D2EBC5D /* WordData.swift */,
+				FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */,
 				BA8E9091A467ADE090DC3610 /* WordRepository.swift */,
 				E2748444E7D3D6A626DCCD28 /* WordStore.swift */,
 			);
@@ -389,6 +410,7 @@
 			buildPhases = (
 				45F5B2EAD3BA38F49995E439 /* Sources */,
 				DAA52573C1682DAFDA089E31 /* Resources */,
+				FADFBD71523E891878687FA6 /* Frameworks */,
 				2709A3B218086B1768A9C988 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -398,6 +420,7 @@
 			);
 			name = Verbum;
 			packageProductDependencies = (
+				08855E15BC1D1540CB22C18F /* GRDB */,
 			);
 			productName = Verbum;
 			productReference = C21B3590E4FD7FF17ACFAA57 /* Verbum.app */;
@@ -449,6 +472,9 @@
 			);
 			mainGroup = 7C7FB6E41802C5F3524D7DEF;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2C23C9E482462D5AC7C9DE39 /* Products */;
 			projectDirPath = "";
@@ -501,6 +527,8 @@
 				AF1BE975A6BEEAC52B76509A /* Category.swift in Sources */,
 				7D78B2E6B4464A9FEBD34AE1 /* CategoryWordListView.swift in Sources */,
 				6152418B92E9EEDF172F600A /* Colors.swift in Sources */,
+				DA4428337D5EA213220B76EA /* DatabaseDownloadManager.swift in Sources */,
+				9B7B30E93778BDA7A8B477D2 /* DatabaseStatusBanner.swift in Sources */,
 				B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */,
 				FF8413B877176170454BA142 /* FillGapView.swift in Sources */,
 				DBAE558F86BDFD6B66CF22F7 /* GuessWordView.swift in Sources */,
@@ -536,6 +564,7 @@
 				83E469F0405852685C17601A /* WelcomeView.swift in Sources */,
 				369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */,
 				55776CFFF09E41D66EC9A570 /* WordData.swift in Sources */,
+				217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */,
 				E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */,
 				41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */,
 				879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */,
@@ -795,6 +824,25 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.29.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08855E15BC1D1540CB22C18F /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 40DBA824FA9D1DF3B3B10DA7 /* Project object */;
 }

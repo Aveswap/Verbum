@@ -54,6 +54,10 @@ struct SettingsView: View {
                     }
                 }
 
+                Section("DICTIONARY") {
+                    DatabaseStatusBanner()
+                }
+
                 Section("ACCOUNT") {
                     NavigationLink("Sign In") { EmptyView() }
                 }

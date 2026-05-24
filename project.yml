@@ -6,6 +6,11 @@ options:
   createIntermediateGroups: true
   xcodeVersion: "15"
 
+packages:
+  GRDB:
+    url: https://github.com/groue/GRDB.swift
+    from: "6.29.0"
+
 targets:
   Verbum:
     type: application
@@ -15,6 +20,8 @@ targets:
       - path: Verbum
     dependencies:
       - target: VerbumWidgetExtension
+      - package: GRDB
+        product: GRDB
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.verbum.app
