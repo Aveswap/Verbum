@@ -1,22 +1,31 @@
 import AVFoundation
 
-/// Generates tones programmatically — no audio assets needed in the bundle.
+/// Synthesizes tones via a pre-allocated AVAudioPlayerNode pool.
+/// No audio assets needed. Pool eliminates per-note attach/detach overhead.
 final class SoundManager {
     static let shared = SoundManager()
 
-    private let engine = AVAudioEngine()
-    private let mixer = AVAudioMixerNode()
-    private let sampleRate: Double = 44100
+    private let engine  = AVAudioEngine()
+    private let mixer   = AVAudioMixerNode()
+    private let format  = AVAudioFormat(standardFormatWithSampleRate: 44100, channels: 1)!
+
+    // 4-node pool — enough for a 3-note chime + 1 overlap buffer
+    private let pool: [AVAudioPlayerNode] = (0..<4).map { _ in AVAudioPlayerNode() }
+    private var poolIndex = 0
 
     private init() {
         engine.attach(mixer)
         engine.connect(mixer, to: engine.outputNode, format: nil)
+        for node in pool {
+            engine.attach(node)
+            engine.connect(node, to: mixer, format: format)
+        }
         try? engine.start()
     }
 
     // MARK: - Public
 
-    /// Pleasant ascending C5→E5→G5 arpeggio played when a quiz answer is correct.
+    /// Ascending C5 → E5 → G5 arpeggio on correct quiz answer.
     func playCorrectChime() {
         guard soundEnabled else { return }
         let notes: [(freq: Double, delay: Double)] = [
@@ -25,16 +34,16 @@ final class SoundManager {
             (783.99, 0.24),   // G5
         ]
         for note in notes {
-            DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + note.delay) {
-                self.scheduleNote(frequency: note.freq, duration: 0.30, amplitude: 0.35)
+            DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + note.delay) { [weak self] in
+                self?.scheduleNote(frequency: note.freq, duration: 0.30, amplitude: 0.35)
             }
         }
     }
 
-    /// Short single chime — used for milestones, streaks, etc.
+    /// Single G5 chime — for streaks / milestones.
     func playChime() {
         guard soundEnabled else { return }
-        scheduleNote(frequency: 783.99, duration: 0.25, amplitude: 0.3)
+        scheduleNote(frequency: 783.99, duration: 0.25, amplitude: 0.30)
     }
 
     // MARK: - Private
@@ -44,19 +53,18 @@ final class SoundManager {
     }
 
     private func scheduleNote(frequency: Double, duration: Double, amplitude: Float) {
-        let frameCount = AVAudioFrameCount(sampleRate * duration)
-        let format = AVAudioFormat(standardFormatWithSampleRate: sampleRate, channels: 1)!
-        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount) else { return }
+        let sampleRate  = format.sampleRate
+        let frameCount  = AVAudioFrameCount(sampleRate * duration)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount),
+              let data   = buffer.floatChannelData?[0] else { return }
         buffer.frameLength = frameCount
 
-        guard let data = buffer.floatChannelData?[0] else { return }
-        let attackFrames = Int(sampleRate * 0.02)   // 20 ms attack
-        let releaseStart = Int(Double(frameCount) * 0.55)
+        let attackFrames  = Int(sampleRate * 0.02)
+        let releaseStart  = Int(Double(frameCount) * 0.55)
 
         for frame in 0..<Int(frameCount) {
-            let t = Double(frame) / sampleRate
-            let sample = Float(sin(2 * .pi * frequency * t))
-
+            let t   = Double(frame) / sampleRate
+            let raw = Float(sin(2 * .pi * frequency * t))
             let env: Float
             if frame < attackFrames {
                 env = Float(frame) / Float(attackFrames)
@@ -66,19 +74,18 @@ final class SoundManager {
             } else {
                 env = 1.0
             }
-            data[frame] = amplitude * env * sample
+            data[frame] = amplitude * env * raw
         }
 
-        let playerNode = AVAudioPlayerNode()
-        engine.attach(playerNode)
-        engine.connect(playerNode, to: mixer, format: format)
-        playerNode.scheduleBuffer(buffer) {
-            DispatchQueue.main.async {
-                playerNode.stop()
-                self.engine.detach(playerNode)
-            }
-        }
+        let node = nextPoolNode()
         if !engine.isRunning { try? engine.start() }
-        playerNode.play()
+        node.scheduleBuffer(buffer, completionHandler: nil)
+        if !node.isPlaying { node.play() }
+    }
+
+    private func nextPoolNode() -> AVAudioPlayerNode {
+        let node = pool[poolIndex]
+        poolIndex = (poolIndex + 1) % pool.count
+        return node
     }
 }

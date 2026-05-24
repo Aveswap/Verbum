@@ -36,7 +36,7 @@ struct CategoryWordListView: View {
 
     let filter: FilterKind
     @EnvironmentObject var userProfile: UserProfileStore
-    private let allWords = WordData.loadAll()
+    private let allWords = WordRepository.shared.all
 
     private var filtered: [Word] {
         allWords.filter { filter.matches($0) }

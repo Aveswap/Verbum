@@ -12,7 +12,7 @@ class LevelTestViewModel: ObservableObject {
     private var cachedOptions: [String] = []
 
     init() {
-        let all = WordData.loadAll()
+        let all = WordRepository.shared.all
         allWords = all
         questions = Array(all.shuffled().prefix(10))
         cachedOptions = []

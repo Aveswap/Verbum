@@ -2,7 +2,7 @@ import SwiftUI
 
 struct LikedView: View {
     @EnvironmentObject var userProfile: UserProfileStore
-    private let allWords = WordData.loadAll()
+    private let allWords = WordRepository.shared.all
 
     private var liked: [Word] {
         let ids = userProfile.profile.likedWordIds

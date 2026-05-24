@@ -2,7 +2,7 @@ import SwiftUI
 
 struct HistoryView: View {
     @EnvironmentObject var userProfile: UserProfileStore
-    private let allWords = WordData.loadAll()
+    private let allWords = WordRepository.shared.all
 
     private var seen: [Word] {
         // Preserve seen order (most recent last → show reversed)

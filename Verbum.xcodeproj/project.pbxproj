@@ -57,6 +57,7 @@
 		DFAF38158805A595D167D0D7 /* PremiumSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40971FC207D1701A44859D9 /* PremiumSheet.swift */; };
 		E500B0A59C7D229DB2AADF9C /* TranslationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */; };
 		E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940C88040FD8E5FC518EE9F /* WordDetailView.swift */; };
+		EABF0BC49A27AE92CB054590 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E9091A467ADE090DC3610 /* WordRepository.swift */; };
 		EE685211A5C75DBB3B17ADFE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506F780D4C3F3F5705BCD8C /* HapticManager.swift */; };
 		F6CCA03B30F7FC4520024616 /* WordFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87620CA6EA78E01907CAC03C /* WordFeedViewModel.swift */; };
 		FF4EC6622D81417E083B2D59 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 7065EA90832D7B55B091ECF2 /* words.json */; };
@@ -127,6 +128,7 @@
 		B30774A2D9419603F01BD410 /* BatchQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchQuizView.swift; sourceTree = "<group>"; };
 		B40971FC207D1701A44859D9 /* PremiumSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSheet.swift; sourceTree = "<group>"; };
 		B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		BA8E9091A467ADE090DC3610 /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		BB05BD5D70477C6F1D2EBC5D /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
 		C21B3590E4FD7FF17ACFAA57 /* Verbum.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Verbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28C193C7BC73D85820163A1 /* WordFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedView.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			children = (
 				AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */,
 				BB05BD5D70477C6F1D2EBC5D /* WordData.swift */,
+				BA8E9091A467ADE090DC3610 /* WordRepository.swift */,
 				E2748444E7D3D6A626DCCD28 /* WordStore.swift */,
 			);
 			path = Data;
@@ -538,6 +541,7 @@
 				879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */,
 				F6CCA03B30F7FC4520024616 /* WordFeedViewModel.swift in Sources */,
 				6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */,
+				EABF0BC49A27AE92CB054590 /* WordRepository.swift in Sources */,
 				B8B564ACAD6501DAADD414FC /* WordStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

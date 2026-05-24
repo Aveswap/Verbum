@@ -89,7 +89,7 @@ class WordFeedViewModel: ObservableObject {
             try AVAudioSession.sharedInstance().setCategory(
                 .playback,
                 mode: .voicePrompt,
-                options: [.duckOthers, .allowBluetooth]
+                options: [.mixWithOthers, .allowBluetoothHFP]
             )
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         } catch {

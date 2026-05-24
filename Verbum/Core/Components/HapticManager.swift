@@ -6,14 +6,25 @@ enum HapticManager {
     // MARK: - Engine
 
     private static var _engine: CHHapticEngine?
+    private static var _engineRunning = false
 
     private static var engine: CHHapticEngine? {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return nil }
         if _engine == nil {
             _engine = try? CHHapticEngine()
             _engine?.isAutoShutdownEnabled = true
-            _engine?.stoppedHandler = { _ in _engine = nil }
-            _engine?.resetHandler = { try? _engine?.start() }
+            _engine?.stoppedHandler = { _ in
+                _engine = nil
+                _engineRunning = false
+            }
+            _engine?.resetHandler = {
+                _engineRunning = false
+                try? _engine?.start()
+                _engineRunning = true
+            }
+            // Start once — subsequent calls check _engineRunning
+            try? _engine?.start()
+            _engineRunning = true
         }
         return _engine
     }
@@ -89,7 +100,11 @@ enum HapticManager {
         }
         guard let pattern = try? CHHapticPattern(events: hapticEvents, parameters: []) else { return }
         do {
-            try engine.start()
+            // Restart only if engine was auto-shutdown since last use
+            if !_engineRunning {
+                try engine.start()
+                _engineRunning = true
+            }
             let player = try engine.makePlayer(with: pattern)
             try player.start(atTime: CHHapticTimeImmediate)
         } catch {}

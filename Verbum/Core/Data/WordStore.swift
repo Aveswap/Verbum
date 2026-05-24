@@ -3,10 +3,11 @@ import Combine
 
 class UserProfileStore: ObservableObject {
     @Published var profile: UserProfile {
-        didSet { save() }
+        didSet { scheduleSave() }
     }
 
     private let key = "userProfile"
+    private var saveWorkItem: DispatchWorkItem?
 
     init() {
         if let data = UserDefaults.standard.data(forKey: key),
@@ -17,11 +18,32 @@ class UserProfileStore: ObservableObject {
         }
     }
 
-    private func save() {
+    // MARK: - Persistence
+
+    /// Debounced: coalesces rapid writes (e.g. swiping through words)
+    /// into a single UserDefaults write 0.5 s after the last change.
+    private func scheduleSave() {
+        saveWorkItem?.cancel()
+        let item = DispatchWorkItem { [weak self] in
+            self?.persist()
+        }
+        saveWorkItem = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: item)
+    }
+
+    /// Immediate write — call for critical state (streak, points, onboarding).
+    func saveNow() {
+        saveWorkItem?.cancel()
+        persist()
+    }
+
+    private func persist() {
         if let data = try? JSONEncoder().encode(profile) {
             UserDefaults.standard.set(data, forKey: key)
         }
     }
+
+    // MARK: - Word interactions
 
     func bookmarkWord(_ id: UUID) {
         if profile.bookmarkedWordIds.contains(id) {
@@ -45,39 +67,38 @@ class UserProfileStore: ObservableObject {
         }
     }
 
-    /// Call once per app session to update streak
+    // MARK: - Streak
+
     func recordDailyOpen() {
         let cal = Calendar.current
         let today = cal.startOfDay(for: Date())
-
         if let last = profile.lastOpenedDate {
             let lastDay = cal.startOfDay(for: last)
-            if cal.isDate(lastDay, inSameDayAs: today) {
-                // Already recorded today
-                return
-            }
+            if cal.isDate(lastDay, inSameDayAs: today) { return }
             let diff = cal.dateComponents([.day], from: lastDay, to: today).day ?? 0
-            if diff == 1 {
-                profile.currentStreak += 1
-            } else {
-                profile.currentStreak = 1
-            }
+            profile.currentStreak = diff == 1 ? profile.currentStreak + 1 : 1
         } else {
             profile.currentStreak = 1
         }
-
         profile.longestStreak = max(profile.longestStreak, profile.currentStreak)
         profile.lastOpenedDate = Date()
+        saveNow()
     }
+
+    // MARK: - Onboarding
 
     func resetOnboarding() {
         profile.onboardingCompleted = false
+        saveNow()
     }
+
+    // MARK: - Points
 
     func addPoints(_ points: Int) {
         checkQuarterlyReset()
         profile.totalPoints += points
         profile.quarterlyPoints += points
+        saveNow()
     }
 
     var currentBadgeTier: BadgeTier? {
@@ -90,7 +111,12 @@ class UserProfileStore: ObservableObject {
         guard Date() >= threeMonthsLater else { return }
         let rank = LeaderboardStore.shared.rank(for: profile.quarterlyPoints)
         if let tier = LeaderboardStore.shared.badgeTier(for: rank) {
-            let badge = EarnedBadge(tier: tier, period: quarterLabel(for: profile.quarterlyResetDate), points: profile.quarterlyPoints, date: Date())
+            let badge = EarnedBadge(
+                tier: tier,
+                period: quarterLabel(for: profile.quarterlyResetDate),
+                points: profile.quarterlyPoints,
+                date: Date()
+            )
             profile.earnedBadges.append(badge)
         }
         profile.quarterlyPoints = 0
@@ -104,18 +130,7 @@ class UserProfileStore: ObservableObject {
     }
 }
 
+// WordStore now delegates to the shared repository — no second JSON read.
 class WordStore: ObservableObject {
-    @Published var words: [Word] = []
-
-    init() {
-        loadWords()
-    }
-
-    private func loadWords() {
-        guard let url = Bundle.main.url(forResource: "words", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let loaded = try? JSONDecoder().decode([Word].self, from: data)
-        else { return }
-        self.words = loaded
-    }
+    @Published var words: [Word] = WordRepository.shared.all
 }
