@@ -112,16 +112,13 @@ struct CategoriesView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Button("Edit") {}.foregroundColor(AppColors.accent)
-                        Button("Unlock All") {}
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundColor(AppColors.textOnAccent)
-                            .padding(.horizontal, AppSpacing.sm)
-                            .padding(.vertical, 4)
-                            .background(AppColors.accent)
-                            .cornerRadius(20)
-                    }
+                    Button("Unlock All") { showPremium = true }
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(AppColors.textOnAccent)
+                        .padding(.horizontal, AppSpacing.sm)
+                        .padding(.vertical, 4)
+                        .background(AppColors.accent)
+                        .cornerRadius(20)
                 }
             }
         }
@@ -224,12 +221,5 @@ private struct SmallCard: View {
                 .background(AppColors.surface)
                 .cornerRadius(AppSpacing.cornerRadius)
         }
-    }
-}
-
-struct CategoryDetailView: View {
-    let categoryName: String
-    var body: some View {
-        Text("Category: \(categoryName)").foregroundColor(AppColors.textPrimary)
     }
 }

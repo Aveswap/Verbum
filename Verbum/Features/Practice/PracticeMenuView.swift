@@ -8,6 +8,7 @@ struct PracticeMenuView: View {
     @State private var showSynonyms = false
     @State private var showGuessWord = false
     @State private var showLevelTest = false
+    @State private var showPremium = false
 
     var body: some View {
         NavigationView {
@@ -80,7 +81,7 @@ struct PracticeMenuView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Unlock All") {}
+                    Button("Unlock All") { showPremium = true }
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(AppColors.textOnAccent)
                         .padding(.horizontal, AppSpacing.sm)
@@ -96,6 +97,7 @@ struct PracticeMenuView: View {
         .sheet(isPresented: $showSynonyms) { SynonymsView() }
         .sheet(isPresented: $showGuessWord) { GuessWordView() }
         .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
+        .sheet(isPresented: $showPremium) { PremiumSheet() }
     }
 
     private func sectionHeader(_ title: String) -> some View {
