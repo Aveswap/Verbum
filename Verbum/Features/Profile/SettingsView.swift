@@ -13,7 +13,6 @@ struct SettingsView: View {
     @State private var editingAge = false
     @State private var editingLevel = false
     @State private var editingWordsPerWeek = false
-    @State private var editingLanguage = false
     @State private var wordsInput = ""
     @State private var showLevelTest = false
 
@@ -45,10 +44,6 @@ struct SettingsView: View {
                 Section("SETTINGS") {
                     Toggle("Sound", isOn: $soundEnabled)
                         .tint(AppColors.accent)
-                    Button { editingLanguage = true } label: {
-                        row("Translation language",
-                            value: TranslationStore.supportedLanguages.first(where: { $0.code == userProfile.profile.nativeLanguage })?.name ?? "English only")
-                    }
                     NavigationLink("Notifications") {
                         NotificationSettingsView().environmentObject(userProfile)
                     }
@@ -106,7 +101,6 @@ struct SettingsView: View {
             nameInput = userProfile.profile.name
             wordsInput = "\(userProfile.profile.wordsPerWeek)"
         }
-        // Name
         .alert("Your Name", isPresented: $editingName) {
             TextField("Enter name", text: $nameInput)
             Button("Save") {
@@ -115,7 +109,6 @@ struct SettingsView: View {
             }
             Button("Cancel", role: .cancel) {}
         }
-        // Words per week
         .alert("Words per week", isPresented: $editingWordsPerWeek) {
             TextField("Number (1–100)", text: $wordsInput)
                 .keyboardType(.numberPad)
@@ -128,28 +121,18 @@ struct SettingsView: View {
         } message: {
             Text("How many words do you want to learn per week?")
         }
-        // Gender
         .confirmationDialog("Select Gender", isPresented: $editingGender, titleVisibility: .visible) {
             ForEach(Gender.allCases, id: \.self) { g in
                 Button(g.rawValue) { userProfile.profile.gender = g }
             }
             Button("Cancel", role: .cancel) {}
         }
-        // Age
         .confirmationDialog("Select Age Range", isPresented: $editingAge, titleVisibility: .visible) {
             ForEach(AgeRange.allCases, id: \.self) { a in
                 Button(a.rawValue) { userProfile.profile.age = a }
             }
             Button("Cancel", role: .cancel) {}
         }
-        // Translation language
-        .confirmationDialog("Translation Language", isPresented: $editingLanguage, titleVisibility: .visible) {
-            ForEach(TranslationStore.supportedLanguages, id: \.code) { lang in
-                Button(lang.name) { userProfile.profile.nativeLanguage = lang.code }
-            }
-            Button("Cancel", role: .cancel) {}
-        }
-        // Level
         .confirmationDialog("Select Level", isPresented: $editingLevel, titleVisibility: .visible) {
             ForEach(WordLevel.allCases, id: \.self) { l in
                 Button(l.displayName) { userProfile.profile.level = l }
@@ -174,7 +157,6 @@ struct SettingsView: View {
         }
     }
 
-    // MARK: - Actions
     private func shareApp() {
         let text = "Learn English with Verbum — a new word every day! 📖"
         let vc = UIActivityViewController(activityItems: [text], applicationActivities: nil)

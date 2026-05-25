@@ -26,7 +26,6 @@
 		4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E15B1BDA53EAD060209F /* CategoriesView.swift */; };
 		506F22E3AD9EDD8BF8C0D97B /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC7F5F28B7CA69B1A0BDFD /* Badge.swift */; };
 		514DF89DA836245BF4E3F79C /* LevelTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */; };
-		55776CFFF09E41D66EC9A570 /* WordData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB05BD5D70477C6F1D2EBC5D /* WordData.swift */; };
 		5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE77BC5E1F3C579B4403031 /* HistoryView.swift */; };
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
 		6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */; };
@@ -58,7 +57,6 @@
 		DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F070C603FE504217EDA4A /* QuizViewModel.swift */; };
 		DD9EE0D1A601D7F6A5EBC12A /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2968154FE6B16D65BCB011D1 /* QuizView.swift */; };
 		DFAF38158805A595D167D0D7 /* PremiumSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40971FC207D1701A44859D9 /* PremiumSheet.swift */; };
-		E500B0A59C7D229DB2AADF9C /* TranslationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */; };
 		E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4940C88040FD8E5FC518EE9F /* WordDetailView.swift */; };
 		EABF0BC49A27AE92CB054590 /* WordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8E9091A467ADE090DC3610 /* WordRepository.swift */; };
 		EE685211A5C75DBB3B17ADFE /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0506F780D4C3F3F5705BCD8C /* HapticManager.swift */; };
@@ -124,7 +122,6 @@
 		9BFF885EECBBFF36393A0207 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A00F070C603FE504217EDA4A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseStatusBanner.swift; sourceTree = "<group>"; };
-		AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStore.swift; sourceTree = "<group>"; };
 		B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDownloadManager.swift; sourceTree = "<group>"; };
 		B0A60EE41CA03C91B64D6107 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestViewModel.swift; sourceTree = "<group>"; };
@@ -133,7 +130,6 @@
 		B40971FC207D1701A44859D9 /* PremiumSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSheet.swift; sourceTree = "<group>"; };
 		B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		BA8E9091A467ADE090DC3610 /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
-		BB05BD5D70477C6F1D2EBC5D /* WordData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordData.swift; sourceTree = "<group>"; };
 		C21B3590E4FD7FF17ACFAA57 /* Verbum.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Verbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28C193C7BC73D85820163A1 /* WordFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedView.swift; sourceTree = "<group>"; };
 		C7CD9166BA32297E2C16426C /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
@@ -308,8 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */,
-				AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */,
-				BB05BD5D70477C6F1D2EBC5D /* WordData.swift */,
 				FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */,
 				BA8E9091A467ADE090DC3610 /* WordRepository.swift */,
 				E2748444E7D3D6A626DCCD28 /* WordStore.swift */,
@@ -470,7 +464,7 @@
 			mainGroup = 7C7FB6E41802C5F3524D7DEF;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+				D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2C23C9E482462D5AC7C9DE39 /* Products */;
@@ -553,13 +547,11 @@
 				D35923D0663FCF28916789B7 /* Spacing.swift in Sources */,
 				335DB077660578203921C7B0 /* StatsView.swift in Sources */,
 				952A8DD995A6688243461622 /* SynonymsView.swift in Sources */,
-				E500B0A59C7D229DB2AADF9C /* TranslationStore.swift in Sources */,
 				415BBCB7DFABF2CC1FAC62B3 /* Typography.swift in Sources */,
 				C2D154D2972BE298747DAEB7 /* UserProfile.swift in Sources */,
 				2D340578381485FD8894507E /* VerbumApp.swift in Sources */,
 				83E469F0405852685C17601A /* WelcomeView.swift in Sources */,
 				369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */,
-				55776CFFF09E41D66EC9A570 /* WordData.swift in Sources */,
 				217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */,
 				E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */,
 				41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */,
@@ -822,7 +814,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+		D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift";
 			requirement = {
@@ -835,7 +827,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		08855E15BC1D1540CB22C18F /* GRDB */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			package = D8392FCB33D222532FA184DD /* XCRemoteSwiftPackageReference "GRDB" */;
 			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -31,6 +31,7 @@ class WordFeedViewModel: ObservableObject {
     }
 
     var currentBatchWords: [Word] {
+        guard !words.isEmpty, words.indices.contains(currentIndex) else { return [] }
         let start = max(0, currentIndex - 4)
         return Array(words[start...currentIndex])
     }
