@@ -126,7 +126,23 @@ struct GenderSelectionView: View {
 struct NameInputView: View {
     let onNext: (String) -> Void
     @State private var name = ""
+    @State private var errorMessage: String? = nil
     @FocusState private var isFocused: Bool
+
+    private let blockedWords: Set<String> = [
+        "fuck", "shit", "ass", "bitch", "bastard", "dick", "cock", "pussy",
+        "cunt", "whore", "slut", "nigger", "nigga", "faggot", "retard",
+        "блядь", "сука", "хуй", "пизда", "єбать", "їбать", "мудак", "підарас"
+    ]
+
+    private var trimmed: String { name.trimmingCharacters(in: .whitespaces) }
+
+    private func validate() -> String? {
+        if trimmed.isEmpty { return "Please enter your name" }
+        let lower = trimmed.lowercased()
+        if blockedWords.contains(where: { lower.contains($0) }) { return "Please choose a different name" }
+        return nil
+    }
 
     var body: some View {
         VStack(spacing: AppSpacing.lg) {
@@ -136,20 +152,35 @@ struct NameInputView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, AppSpacing.xl * 2)
 
-            TextField("Your name", text: $name)
-                .font(AppTypography.optionLabel)
-                .foregroundColor(AppColors.textPrimary)
-                .padding(AppSpacing.md)
-                .background(AppColors.surface)
-                .cornerRadius(AppSpacing.cornerRadius)
-                .padding(.horizontal, AppSpacing.lg)
-                .focused($isFocused)
-                .onAppear { isFocused = true }
+            VStack(alignment: .leading, spacing: AppSpacing.xs) {
+                TextField("Your name", text: $name)
+                    .font(AppTypography.optionLabel)
+                    .foregroundColor(AppColors.textPrimary)
+                    .padding(AppSpacing.md)
+                    .background(AppColors.surface)
+                    .cornerRadius(AppSpacing.cornerRadius)
+                    .focused($isFocused)
+                    .onAppear { isFocused = true }
+                    .onChange(of: name) { _ in errorMessage = nil }
+
+                if let msg = errorMessage {
+                    Text(msg)
+                        .font(.system(size: 13))
+                        .foregroundColor(.red)
+                        .padding(.horizontal, AppSpacing.sm)
+                }
+            }
+            .padding(.horizontal, AppSpacing.lg)
 
             Spacer()
 
             PillButton(title: "Next") {
-                onNext(name.trimmingCharacters(in: .whitespaces).isEmpty ? "Learner" : name)
+                if let err = validate() {
+                    errorMessage = err
+                    HapticManager.error()
+                } else {
+                    onNext(trimmed)
+                }
             }
             .padding(.horizontal, AppSpacing.lg)
             .padding(.bottom, AppSpacing.xl)

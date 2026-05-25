@@ -210,15 +210,6 @@ struct ProfileView: View {
                     SettingCard(title: "Widgets", icon: "square.grid.2x2.fill", locked: true)
                 }
                 Button { showPremium = true } label: {
-                    SettingCard(title: "Lock Screen", icon: "lock.fill", locked: true)
-                }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "Apple Watch", icon: "applewatch", locked: true)
-                }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "App Icon", icon: "app.fill", locked: true)
-                }
-                Button { showPremium = true } label: {
                     SettingCard(title: "Categories", icon: "folder.fill", locked: true)
                 }
             }

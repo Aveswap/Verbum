@@ -11,7 +11,6 @@ struct UserProfile: Codable {
     var notificationStart: String = "09:00"
     var notificationEnd: String = "22:00"
     var selectedTheme: AppTheme = .dark
-    var nativeLanguage: String = "en"
     var onboardingCompleted: Bool = false
     var bookmarkedWordIds: [UUID] = []
     var likedWordIds: [UUID] = []
@@ -37,7 +36,6 @@ enum AgeRange: String, Codable, CaseIterable {
 enum Gender: String, Codable, CaseIterable {
     case male          = "Male"
     case female        = "Female"
-    case other         = "Other"
     case preferNotToSay = "Prefer not to say"
 }
 

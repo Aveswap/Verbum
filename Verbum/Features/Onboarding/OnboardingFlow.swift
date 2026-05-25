@@ -3,7 +3,7 @@ import SwiftUI
 enum OnboardingStep: Int, CaseIterable {
     case welcome, referralSource, personalizationPromo, age, gender, name,
          customizePromo, wordsPerWeek, widgetsPromo, notifications,
-         goalsPromo, level, wordCheck, theme
+         goalsPromo, level, wordCheck
 }
 
 struct OnboardingFlow: View {
@@ -108,18 +108,16 @@ struct OnboardingFlow: View {
             }
         case .wordCheck:
             WordCheckView { advance() }
-        case .theme:
-            ThemeSelectionView { theme in
-                userProfile.profile.selectedTheme = theme
-                userProfile.profile.onboardingCompleted = true
-            }
         }
     }
 
     private func advance() {
         HapticManager.selection()
         let steps = OnboardingStep.allCases
-        guard let idx = steps.firstIndex(of: currentStep), idx + 1 < steps.count else { return }
+        guard let idx = steps.firstIndex(of: currentStep), idx + 1 < steps.count else {
+            userProfile.profile.onboardingCompleted = true
+            return
+        }
         currentStep = steps[idx + 1]
     }
 }

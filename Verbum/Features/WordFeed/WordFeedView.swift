@@ -21,10 +21,16 @@ struct WordFeedView: View {
     @State private var showEndOfFeed = false
     @State private var showBatchQuiz = false
     @State private var pendingNextWord = false
+    @State private var greenFlashOpacity: Double = 0
 
     var body: some View {
         ZStack {
             AppColors.background.ignoresSafeArea()
+
+            Color.green
+                .opacity(greenFlashOpacity)
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
 
             VStack(spacing: 0) {
                 topBar
@@ -280,6 +286,8 @@ struct WordFeedView: View {
                     HapticManager.swipeWave()
                     if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
                     resetActionScales()
+                    greenFlashOpacity = 0.18
+                    withAnimation(.easeOut(duration: 0.5)) { greenFlashOpacity = 0 }
                     if viewModel.isEndOfBatch {
                         // Quiz first — even on the last word of the feed
                         pendingNextWord = !viewModel.isAtEnd
@@ -370,11 +378,6 @@ private struct WordCardView: View {
     let viewModel: WordFeedViewModel
     @EnvironmentObject var userProfile: UserProfileStore
 
-    private var lang: String { userProfile.profile.nativeLanguage }
-    private var translatedDef: String? { TranslationStore.shared.definition(wordId: word.id, language: lang) }
-    private var translatedEx: String? { TranslationStore.shared.example(wordId: word.id, language: lang) }
-    private var showTranslation: Bool { lang != "en" }
-
     var body: some View {
         VStack(spacing: AppSpacing.sm) {
             Spacer()
@@ -408,25 +411,13 @@ private struct WordCardView: View {
                 }
             }
 
-            // Translation (if language is set)
-            if showTranslation, let tr = translatedDef {
-                Text(tr)
-                    .font(.system(size: 17, weight: .semibold))
-                    .foregroundColor(AppColors.textPrimary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, AppSpacing.xl)
-                    .lineLimit(2)
-            }
-
-            // English definition
             Text("\(word.partOfSpeech)  \(word.definition)")
                 .font(AppTypography.definition)
-                .foregroundColor(showTranslation ? AppColors.textSecondary.opacity(0.7) : AppColors.textSecondary)
+                .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
                 .lineLimit(3)
 
-            // English example
             if let example = word.exampleSentence {
                 Text("\u{201C}\(example)\u{201D}")
                     .font(.system(size: 13).italic())
@@ -434,27 +425,8 @@ private struct WordCardView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, AppSpacing.xl)
                     .lineLimit(2)
-
-                // Translated example
-                if showTranslation, let tex = translatedEx {
-                    Text("\u{201C}\(tex)\u{201D}")
-                        .font(.system(size: 13).italic())
-                        .foregroundColor(AppColors.accent.opacity(0.7))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, AppSpacing.xl)
-                        .lineLimit(2)
-                }
             }
 
-            Text(word.category)
-                .font(.system(size: 11, weight: .medium))
-                .foregroundColor(AppColors.accent.opacity(0.9))
-                .padding(.horizontal, AppSpacing.sm)
-                .padding(.vertical, 4)
-                .background(AppColors.accent.opacity(0.12))
-                .cornerRadius(20)
-
-            // Etymology hint for expert words
             if word.level == .expert, let etymology = word.etymology {
                 HStack(spacing: 4) {
                     Text("📜")
