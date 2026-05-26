@@ -140,7 +140,8 @@ final class WordDatabase {
 
     // MARK: - Queries
 
-    func fetchWords(level: WordLevel? = nil, offset: Int = 0, limit: Int = 200) -> [Word] {
+    /// limit: 0 = no limit (fetch all)
+    func fetchWords(level: WordLevel? = nil, offset: Int = 0, limit: Int = 0) -> [Word] {
         guard let dbQueue else { return [] }
         return (try? dbQueue.read { db -> [Word] in
             var sql = "SELECT * FROM words"
@@ -149,9 +150,11 @@ final class WordDatabase {
                 sql += " WHERE level = ?"
                 args.append(level.rawValue)
             }
-            sql += " LIMIT ? OFFSET ?"
-            args.append(limit)
-            args.append(offset)
+            if limit > 0 {
+                sql += " LIMIT ? OFFSET ?"
+                args.append(limit)
+                args.append(offset)
+            }
             return try Row.fetchAll(db, sql: sql, arguments: StatementArguments(args))
                 .compactMap(Self.word(from:))
         }) ?? []
@@ -224,8 +227,6 @@ final class WordDatabase {
             synonyms:        synonyms,
             category:        row["category"] as? String ?? "",
             level:           level,
-            isBookmarked:    false,
-            isLiked:         false,
             isNew:           false,
             etymology:       row["etymology"] as? String
         )

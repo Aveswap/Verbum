@@ -1,8 +1,8 @@
 import SwiftUI
 
 enum OnboardingStep: Int, CaseIterable {
-    case welcome, referralSource, personalizationPromo, age, gender, name,
-         customizePromo, wordsPerWeek, widgetsPromo, notifications,
+    case welcome, referralSource, age, gender, name,
+         customizePromo, wordsPerWeek, notifications,
          goalsPromo, level, wordCheck
 }
 
@@ -52,14 +52,6 @@ struct OnboardingFlow: View {
             WelcomeView { advance() }
         case .referralSource:
             ReferralSourceView(onSkip: { advance() }, onSelect: { _ in advance() })
-        case .personalizationPromo:
-            PromoSlideView(
-                title: "We're personalizing\nyour word recommendations",
-                subtitle: "Based on your preferences, we'll suggest words you'll love",
-                icon: "wand.and.stars",
-                buttonTitle: "Great!",
-                action: { advance() }
-            )
         case .age:
             AgeSelectionView(onSkip: { advance() }, onSelect: { age in
                 userProfile.profile.age = age; advance()
@@ -84,14 +76,6 @@ struct OnboardingFlow: View {
             WordsPerWeekView { count in
                 userProfile.profile.wordsPerWeek = count; advance()
             }
-        case .widgetsPromo:
-            PromoSlideView(
-                title: "Choose from\nseveral widgets",
-                subtitle: "Add Verbum widgets to your home screen for daily learning",
-                icon: "rectangle.grid.2x2",
-                buttonTitle: "Next",
-                action: { advance() }
-            )
         case .notifications:
             NotificationsSetupView { advance() }
         case .goalsPromo:

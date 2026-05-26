@@ -109,8 +109,7 @@ struct ProfileView: View {
     // MARK: - Points Card
 
     private var pointsCard: some View {
-        let rank = LeaderboardStore.shared.rank(for: userProfile.profile.quarterlyPoints)
-        let tier = LeaderboardStore.shared.badgeTier(for: rank)
+        let tier = UserProfileStore.badgeTier(for: userProfile.profile.quarterlyPoints)
 
         return Button { showLeaderboard = true } label: {
             HStack(spacing: AppSpacing.md) {
@@ -119,8 +118,7 @@ struct ProfileView: View {
                         .fill(tierColor(tier).opacity(0.15))
                         .frame(width: 52, height: 52)
                     if let tier {
-                        Text(tier.emoji)
-                            .font(.system(size: 26))
+                        Text(tier.emoji).font(.system(size: 26))
                     } else {
                         Image(systemName: "trophy")
                             .font(.system(size: 22))
@@ -132,7 +130,7 @@ struct ProfileView: View {
                     Text(tier.map { "\($0.emoji) \($0.label) Badge" } ?? "No Badge Yet")
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundColor(tier == nil ? AppColors.textPrimary : tierColor(tier))
-                    Text("Rank #\(rank) this quarter")
+                    Text("This quarter")
                         .font(.system(size: 12))
                         .foregroundColor(AppColors.textSecondary)
                 }
@@ -201,13 +199,7 @@ struct ProfileView: View {
                     SettingCard(title: "Reminders", icon: "bell.fill")
                 }
                 Button { showPremium = true } label: {
-                    SettingCard(title: "Themes", icon: "paintpalette.fill", locked: true)
-                }
-                Button { showPremium = true } label: {
                     SettingCard(title: "Voice", icon: "speaker.wave.2.fill", locked: true)
-                }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "Widgets", icon: "square.grid.2x2.fill", locked: true)
                 }
                 Button { showPremium = true } label: {
                     SettingCard(title: "Categories", icon: "folder.fill", locked: true)

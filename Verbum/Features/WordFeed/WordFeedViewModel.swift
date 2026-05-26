@@ -6,6 +6,11 @@ class WordFeedViewModel: ObservableObject {
     @Published var currentIndex: Int = 0
     @Published var goingBack: Bool = false
 
+    /// Counts forward swipes since the last quiz — resets on quiz shown and on filter change.
+    private(set) var swipesSinceLastQuiz: Int = 0
+    /// The last 5 swiped words for the batch quiz.
+    private var recentBatchWords: [Word] = []
+
     private let synthesizer = AVSpeechSynthesizer()
 
     init() {
@@ -27,35 +32,53 @@ class WordFeedViewModel: ObservableObject {
     }
 
     var batchProgress: Int {
-        (currentIndex % 5) + 1
+        swipesSinceLastQuiz + 1
     }
 
     var currentBatchWords: [Word] {
-        guard !words.isEmpty, words.indices.contains(currentIndex) else { return [] }
-        let start = max(0, currentIndex - 4)
-        return Array(words[start...currentIndex])
+        recentBatchWords
     }
 
     var isEndOfBatch: Bool {
-        batchProgress == 5
+        swipesSinceLastQuiz == 4
     }
 
     func nextWord() {
         guard currentIndex < words.count - 1 else { return }
         goingBack = false
+        if let word = currentWord {
+            recentBatchWords.append(word)
+            if recentBatchWords.count > 5 { recentBatchWords.removeFirst() }
+        }
+        swipesSinceLastQuiz += 1
         currentIndex += 1
     }
 
     func previousWord() {
         guard currentIndex > 0 else { return }
         goingBack = true
+        if swipesSinceLastQuiz > 0 { swipesSinceLastQuiz -= 1 }
+        if !recentBatchWords.isEmpty { recentBatchWords.removeLast() }
         currentIndex -= 1
+    }
+
+    func resetBatchCounter() {
+        swipesSinceLastQuiz = 0
+        recentBatchWords = []
     }
 
     func restartFeed() {
         words = WordRepository.shared.all.shuffled()
         goingBack = false
         currentIndex = 0
+        resetBatchCounter()
+    }
+
+    func loadWords(_ newWords: [Word]) {
+        words = newWords.shuffled()
+        currentIndex = 0
+        goingBack = false
+        resetBatchCounter()
     }
 
     func speakWord(_ text: String) {

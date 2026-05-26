@@ -75,6 +75,7 @@ struct WordFeedView: View {
             LeaderboardView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showBatchQuiz, onDismiss: {
+            viewModel.resetBatchCounter()
             if pendingNextWord {
                 pendingNextWord = false
                 withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }

@@ -22,7 +22,7 @@ final class WordRepository {
 
     private func load() {
         if WordDatabase.shared.isAvailable {
-            all = WordDatabase.shared.fetchWords(limit: 200)
+            all = WordDatabase.shared.fetchWords(limit: 0)
         } else {
             all = loadBundle()
         }
@@ -30,14 +30,14 @@ final class WordRepository {
 
     func reloadFromDatabase() {
         guard WordDatabase.shared.isAvailable else { return }
-        all = WordDatabase.shared.fetchWords(limit: 200)
+        all = WordDatabase.shared.fetchWords(limit: 0)
     }
 
     // MARK: - Filtered access
 
     func words(level: WordLevel) -> [Word] {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.fetchWords(level: level, limit: 500)
+            return WordDatabase.shared.fetchWords(level: level)
         }
         return all.filter { $0.level == level }
     }

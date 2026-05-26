@@ -102,15 +102,20 @@ class UserProfileStore: ObservableObject {
     }
 
     var currentBadgeTier: BadgeTier? {
-        let rank = LeaderboardStore.shared.rank(for: profile.quarterlyPoints)
-        return LeaderboardStore.shared.badgeTier(for: rank)
+        Self.badgeTier(for: profile.quarterlyPoints)
+    }
+
+    static func badgeTier(for pts: Int) -> BadgeTier? {
+        if pts >= 900 { return .gold }
+        if pts >= 400 { return .silver }
+        if pts >= 200 { return .bronze }
+        return nil
     }
 
     private func checkQuarterlyReset() {
         let threeMonthsLater = Calendar.current.date(byAdding: .month, value: 3, to: profile.quarterlyResetDate) ?? Date()
         guard Date() >= threeMonthsLater else { return }
-        let rank = LeaderboardStore.shared.rank(for: profile.quarterlyPoints)
-        if let tier = LeaderboardStore.shared.badgeTier(for: rank) {
+        if let tier = Self.badgeTier(for: profile.quarterlyPoints) {
             let badge = EarnedBadge(
                 tier: tier,
                 period: quarterLabel(for: profile.quarterlyResetDate),

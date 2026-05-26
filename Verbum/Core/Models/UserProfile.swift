@@ -40,16 +40,7 @@ enum Gender: String, Codable, CaseIterable {
 }
 
 enum AppTheme: String, Codable, CaseIterable {
-    case dark, light, forest, ocean, sunset, midnight
+    case dark
 
-    var displayName: String {
-        switch self {
-        case .dark:     return "Dark"
-        case .light:    return "Light"
-        case .forest:   return "Forest"
-        case .ocean:    return "Ocean"
-        case .sunset:   return "Sunset"
-        case .midnight: return "Midnight"
-        }
-    }
+    var displayName: String { "Dark" }
 }

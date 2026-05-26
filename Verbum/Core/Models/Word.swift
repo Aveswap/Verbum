@@ -10,8 +10,6 @@ struct Word: Identifiable, Codable {
     let synonyms: [String]
     let category: String
     let level: WordLevel
-    var isBookmarked: Bool
-    var isLiked: Bool
     let isNew: Bool
     let etymology: String?
 }
