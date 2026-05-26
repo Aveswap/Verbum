@@ -192,3 +192,7 @@ class UserProfileStore: ObservableObject {
     }
 }
 
+class WordStore: ObservableObject {
+    @Published var words: [Word] = WordRepository.shared.all
+}
+

@@ -11,6 +11,15 @@ struct PracticeMenuView: View {
     @State private var showLevelTest = false
     @State private var showPremium = false
 
+    private var gamesRemaining: Int { userProfile.practiceGamesRemaining() }
+    private var canPlay: Bool { subscriptions.isPro || gamesRemaining > 0 }
+
+    private func startGame(_ action: @escaping () -> Void) {
+        guard canPlay else { showPremium = true; return }
+        if !subscriptions.isPro { userProfile.recordPracticeGame() }
+        action()
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -47,26 +56,57 @@ struct PracticeMenuView: View {
                             }
                         }
 
+                        // Daily limit banner (free users only)
+                        if !subscriptions.isPro {
+                            HStack {
+                                Image(systemName: canPlay ? "gamecontroller" : "lock.fill")
+                                    .foregroundColor(canPlay ? AppColors.accent : AppColors.locked)
+                                    .font(.system(size: 15))
+                                if canPlay {
+                                    Text("\(gamesRemaining) of \(UserProfile.freePracticeLimit) sessions left today")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.textSecondary)
+                                } else {
+                                    Text("Daily limit reached · Resets at midnight")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
+                                Spacer()
+                                Button("Unlock") { showPremium = true }
+                                    .font(.system(size: 12, weight: .semibold))
+                                    .foregroundColor(AppColors.textOnAccent)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 4)
+                                    .background(AppColors.accent)
+                                    .cornerRadius(12)
+                            }
+                            .padding(AppSpacing.sm)
+                            .background(AppColors.surface)
+                            .cornerRadius(AppSpacing.cornerRadius)
+                        }
+
                         // Practice games
                         sectionHeader("PRACTICE")
-                        PracticeRow(title: "Word Meaning", subtitle: "Choose the correct definition", icon: "questionmark.circle") {
-                            showQuiz = true
+                        PracticeRow(title: "Word Meaning", subtitle: "Choose the correct definition", icon: "questionmark.circle", isLocked: !canPlay) {
+                            startGame { showQuiz = true }
                         }
-                        PracticeRow(title: "Fill the Gap", subtitle: "Complete the sentence", icon: "text.cursor") {
-                            showFillGap = true
+                        PracticeRow(title: "Fill the Gap", subtitle: "Complete the sentence", icon: "text.cursor", isLocked: !canPlay) {
+                            startGame { showFillGap = true }
                         }
-                        PracticeRow(title: "Find Synonyms", subtitle: "Match similar words", icon: "arrow.left.arrow.right") {
-                            showSynonyms = true
+                        PracticeRow(title: "Find Synonyms", subtitle: "Match similar words", icon: "arrow.left.arrow.right", isLocked: !canPlay) {
+                            startGame { showSynonyms = true }
                         }
-                        PracticeRow(title: "Guess the Word", subtitle: "From definition to word", icon: "lightbulb") {
-                            showGuessWord = true
+                        PracticeRow(title: "Guess the Word", subtitle: "From definition to word", icon: "lightbulb", isLocked: !canPlay) {
+                            startGame { showGuessWord = true }
                         }
-                        PracticeRow(title: "Random Practice", subtitle: "Surprise me with a game", icon: "shuffle") {
-                            switch Int.random(in: 0...3) {
-                            case 0: showQuiz = true
-                            case 1: showFillGap = true
-                            case 2: showSynonyms = true
-                            default: showGuessWord = true
+                        PracticeRow(title: "Random Practice", subtitle: "Surprise me with a game", icon: "shuffle", isLocked: !canPlay) {
+                            startGame {
+                                switch Int.random(in: 0...3) {
+                                case 0: showQuiz = true
+                                case 1: showFillGap = true
+                                case 2: showSynonyms = true
+                                default: showGuessWord = true
+                                }
                             }
                         }
                     }
@@ -140,6 +180,7 @@ private struct PracticeRow: View {
     let title: String
     let subtitle: String
     let icon: String
+    var isLocked: Bool = false
     let action: () -> Void
 
     var body: some View {
@@ -147,24 +188,25 @@ private struct PracticeRow: View {
             HStack {
                 Image(systemName: icon)
                     .font(.system(size: 22))
-                    .foregroundColor(AppColors.accent)
+                    .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.accent)
                     .frame(width: 36)
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(AppColors.textPrimary)
+                        .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.textPrimary)
                     Text(subtitle)
                         .font(.system(size: 13))
                         .foregroundColor(AppColors.textSecondary)
                 }
                 Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundColor(AppColors.textSecondary)
+                Image(systemName: isLocked ? "lock.fill" : "chevron.right")
+                    .foregroundColor(isLocked ? AppColors.locked : AppColors.textSecondary)
                     .font(.system(size: 13))
             }
             .padding(AppSpacing.md)
             .background(AppColors.surface)
             .cornerRadius(AppSpacing.cornerRadius)
+            .opacity(isLocked ? 0.6 : 1)
         }
     }
 }

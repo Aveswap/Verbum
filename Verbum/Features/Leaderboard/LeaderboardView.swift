@@ -233,8 +233,6 @@ struct LeaderboardView: View {
     private func currentYear() -> Int {
         Calendar.current.component(.year, from: Date())
     }
-
-    private func tierColor(_ tier: BadgeTier?) -> Color { tier?.color ?? AppColors.accent }
 }
 
 // MARK: - Sub-components

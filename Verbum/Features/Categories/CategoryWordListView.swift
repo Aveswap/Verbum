@@ -4,24 +4,27 @@ import SwiftUI
 struct CategoryWordListView: View {
     enum FilterKind {
         case category(String)
+        case categoryGroup(name: String, dbCategories: [String])
         case level(WordLevel)
         case partOfSpeech(String)
         case search(String)
 
         var title: String {
             switch self {
-            case .category(let c):     return c
-            case .level(let l):        return l.displayName
-            case .partOfSpeech(let p): return p.capitalized
-            case .search(let q):       return "\"\(q)\""
+            case .category(let c):              return c
+            case .categoryGroup(let n, _):      return n
+            case .level(let l):                 return l.displayName
+            case .partOfSpeech(let p):          return p.capitalized
+            case .search(let q):                return "\"\(q)\""
             }
         }
 
         func matches(_ word: Word) -> Bool {
             switch self {
             case .category(let c):
-                return word.category.localizedCaseInsensitiveContains(c) ||
-                       c.localizedCaseInsensitiveContains(word.category)
+                return word.category == c
+            case .categoryGroup(_, let cats):
+                return cats.contains(word.category)
             case .level(let l):
                 return word.level == l
             case .partOfSpeech(let p):

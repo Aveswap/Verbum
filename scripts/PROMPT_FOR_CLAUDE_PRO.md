@@ -56,12 +56,26 @@ For each batch output exactly two blocks, nothing else:
   "synonyms":        ["syn1", "syn2"],
   "category":        "<see list below>",
   "level":           "beginner | intermediate | expert",
-  "isBookmarked":    false,
-  "isLiked":         false,
   "isNew":           false,
-  "etymology":       "<origin language + root meaning — required for expert, null for others>"
+  "etymology":       "<1-2 sentences: source language + root + related words — required for expert, null for others>",
+  "frequencyRank":   <integer NGSL/COCA rank, or null if unknown>,
+  "antonyms":        ["ant1", "ant2"],
+  "collocations":    ["common phrase 1", "common phrase 2"],
+  "register":        "formal | informal | neutral | slang | archaic | null",
+  "domainTags":      ["tag1", "tag2"]
 }
 ```
+
+**Field rules by level:**
+
+| Field | Beginner | Intermediate | Expert |
+|---|---|---|---|
+| `etymology` | null | null | **required** (1-2 sentences) |
+| `antonyms` | [] | optional (1-2) | **required** (1-3) |
+| `collocations` | [] | **required** (2-3 phrases) | **required** (2-3 phrases) |
+| `register` | null | recommended | **required** |
+| `domainTags` | [] | optional | recommended |
+| `frequencyRank` | provide if in NGSL top 2,809 | provide if known | provide if known |
 
 **Categories** (pick exactly one per word):
 `Food` `Travel` `Technology` `Business` `Nature` `Health` `Art`
@@ -69,8 +83,7 @@ For each batch output exactly two blocks, nothing else:
 
 **Rules:**
 - `phonetic` is always required — never empty or null
-- `etymology` — required for expert words, null for beginner/intermediate
-- `isBookmarked`, `isLiked`, `isNew` — always false
+- `isNew` — always false
 - Max 75 words (15%) from any single category per batch
 - All 500 words in a batch must be unique from each other and from all previous batches
 
