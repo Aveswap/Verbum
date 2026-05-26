@@ -2,13 +2,23 @@ import SwiftUI
 
 struct CategoriesView: View {
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
     @Environment(\.dismiss) private var dismiss
     @State private var searchText = ""
     @State private var showFavorites = false
     @State private var showHistory = false
     @State private var showPremium = false
     @State private var showWordList = false
-    @State private var activeFilter: CategoryWordListView.FilterKind = .category("People")
+    @State private var activeFilter: CategoryWordListView.FilterKind = .level(.beginner)
+
+    // Categories that are fully free (Beginner-only content)
+    private let everydayCategories = ["Daily Life", "Food", "Social", "Emotion", "Communication", "Health", "Sports", "Travel"]
+    // Categories that contain premium (Intermediate/Expert) words
+    private let professionalCategories = ["Technology", "Business", "Science", "Academic", "Finance", "Law", "Art", "Nature"]
+
+    private func isAvailable(_ category: String) -> Bool {
+        subscriptions.isPro || everydayCategories.contains(category)
+    }
 
     var body: some View {
         NavigationView {
@@ -28,7 +38,7 @@ struct CategoriesView: View {
                         CategorySection(title: "EVERYDAY LIFE") {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: AppSpacing.sm) {
-                                    ForEach(["People", "Body", "Food & Drink", "Emotions", "Society", "Character"], id: \.self) { cat in
+                                    ForEach(everydayCategories, id: \.self) { cat in
                                         HScrollCard(title: cat) {
                                             activeFilter = .category(cat)
                                             showWordList = true
@@ -40,8 +50,15 @@ struct CategoriesView: View {
 
                         CategorySection(title: "PROFESSIONAL") {
                             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-                                ForEach(["Technology", "Science", "Medicine", "Literature", "Psychology"], id: \.self) { cat in
-                                    LockedCard(title: cat, isLocked: true) { showPremium = true }
+                                ForEach(professionalCategories, id: \.self) { cat in
+                                    LockedCard(title: cat, isLocked: !subscriptions.isPro) {
+                                        if subscriptions.isPro {
+                                            activeFilter = .category(cat)
+                                            showWordList = true
+                                        } else {
+                                            showPremium = true
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -125,7 +142,7 @@ struct CategoriesView: View {
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showFavorites) { FavoritesView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)   { HistoryView().environmentObject(userProfile) }
-        .sheet(isPresented: $showPremium)   { PremiumSheet() }
+        .sheet(isPresented: $showPremium)   { PremiumSheet().environmentObject(subscriptions) }
         .sheet(isPresented: $showWordList)  { CategoryWordListView(filter: activeFilter).environmentObject(userProfile) }
     }
 }

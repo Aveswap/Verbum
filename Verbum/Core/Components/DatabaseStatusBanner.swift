@@ -38,7 +38,7 @@ struct DatabaseStatusBanner: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Full Dictionary")
                     .foregroundColor(AppColors.textPrimary)
-                Text("Download 50,000 words for offline use")
+                Text("Download the full 1,000-word dictionary")
                     .font(.system(size: 12))
                     .foregroundColor(AppColors.textSecondary)
             }

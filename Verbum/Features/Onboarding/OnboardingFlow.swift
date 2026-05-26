@@ -3,7 +3,7 @@ import SwiftUI
 enum OnboardingStep: Int, CaseIterable {
     case welcome, referralSource, age, gender, name,
          customizePromo, wordsPerWeek, notifications,
-         goalsPromo, level, wordCheck
+         level, wordCheck
 }
 
 struct OnboardingFlow: View {
@@ -66,8 +66,8 @@ struct OnboardingFlow: View {
             }
         case .customizePromo:
             PromoSlideView(
-                title: "Customize the app\nfor yourself",
-                subtitle: "Set your goals and we'll help you achieve them",
+                title: "Set your daily\nword target",
+                subtitle: "Pick how many words to learn per week — we'll send 1-tap reminders to keep you on track",
                 icon: "slider.horizontal.3",
                 buttonTitle: "Next",
                 action: { advance() }
@@ -78,14 +78,6 @@ struct OnboardingFlow: View {
             }
         case .notifications:
             NotificationsSetupView { advance() }
-        case .goalsPromo:
-            PromoSlideView(
-                title: "Bookmark words to\nachieve your goals",
-                subtitle: "Save 5 words to start receiving personalized recommendations",
-                icon: "bookmark.fill",
-                buttonTitle: "Next",
-                action: { advance() }
-            )
         case .level:
             LevelSelectionView { level in
                 userProfile.profile.level = level; advance()

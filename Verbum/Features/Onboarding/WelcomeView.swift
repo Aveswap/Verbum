@@ -34,9 +34,9 @@ struct WelcomeView: View {
             HStack(spacing: 0) {
                 StatColumn(value: "1,000+", label: "Words")
                 Rectangle().fill(AppColors.surface).frame(width: 1, height: 40)
-                StatColumn(value: "4.8★", label: "Rating")
+                StatColumn(value: "100%", label: "Offline")
                 Rectangle().fill(AppColors.surface).frame(width: 1, height: 40)
-                StatColumn(value: "1M+", label: "Learners")
+                StatColumn(value: "0 Ads", label: "Free")
             }
             .padding(.horizontal, AppSpacing.xl)
             .padding(.bottom, AppSpacing.lg)

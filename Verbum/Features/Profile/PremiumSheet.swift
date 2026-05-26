@@ -176,30 +176,40 @@ struct PremiumSheet: View {
     // MARK: - Purchase button
 
     private var purchaseButton: some View {
-        Button {
-            HapticManager.impact(.medium)
-            Task {
-                if let product = subscriptions.products.first(where: { $0.id == selectedProductID }) {
-                    await subscriptions.purchase(product)
-                    if subscriptions.isPro { dismiss() }
+        VStack(spacing: AppSpacing.xs) {
+            Button {
+                HapticManager.impact(.medium)
+                Task {
+                    if let product = subscriptions.products.first(where: { $0.id == selectedProductID }) {
+                        await subscriptions.purchase(product)
+                        if subscriptions.isPro { dismiss() }
+                    }
                 }
-            }
-        } label: {
-            Group {
-                if selectedProductID == SubscriptionManager.lifetimeID {
-                    Text("Get Lifetime Access")
-                } else {
-                    Text("Start 3-Day Free Trial")
+            } label: {
+                Group {
+                    if selectedProductID == SubscriptionManager.lifetimeID {
+                        Text("Get Lifetime Access")
+                    } else {
+                        Text("Start 3-Day Free Trial")
+                    }
                 }
+                .font(.system(size: 17, weight: .bold))
+                .foregroundColor(AppColors.textOnAccent)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, AppSpacing.md)
+                .background(AppColors.accentButton)
+                .clipShape(Capsule())
             }
-            .font(.system(size: 17, weight: .bold))
-            .foregroundColor(AppColors.textOnAccent)
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, AppSpacing.md)
-            .background(AppColors.accentButton)
-            .clipShape(Capsule())
+            .padding(.top, AppSpacing.sm)
+
+            if selectedProductID != SubscriptionManager.lifetimeID {
+                Text("3-day free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal.")
+                    .font(.system(size: 10))
+                    .foregroundColor(AppColors.textSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, AppSpacing.md)
+            }
         }
-        .padding(.top, AppSpacing.sm)
     }
 
     // MARK: - Footer
@@ -212,11 +222,13 @@ struct PremiumSheet: View {
             .font(.system(size: 12))
             .foregroundColor(AppColors.textSecondary)
 
-            Button("Privacy Policy") {}
+            Link("Privacy Policy",
+                 destination: URL(string: "https://verbum.app/privacy")!)
                 .font(.system(size: 12))
                 .foregroundColor(AppColors.textSecondary)
 
-            Button("Terms of Use") {}
+            Link("Terms of Use",
+                 destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
                 .font(.system(size: 12))
                 .foregroundColor(AppColors.textSecondary)
         }

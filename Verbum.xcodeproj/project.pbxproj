@@ -93,6 +93,7 @@
 		0506F780D4C3F3F5705BCD8C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0B2E43542FC57CF500F40D8E /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		0B2E43562FC5F0F500F40D8E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -267,6 +268,7 @@
 				6AD9078077C2ECF8F7E17DA4 /* Verbum */,
 				D5088D1E77AE4A06A23D3156 /* VerbumWidget */,
 				2C23C9E482462D5AC7C9DE39 /* Products */,
+				0B2E43562FC5F0F500F40D8E /* PrivacyInfo.xcprivacy */,
 			);
 			sourceTree = "<group>";
 		};

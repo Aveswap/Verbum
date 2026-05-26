@@ -20,7 +20,12 @@ struct SettingsView: View {
         NavigationView {
             List {
                 Section("PREMIUM") {
-                    NavigationLink("Manage Subscription") { EmptyView() }
+                    Button("Manage Subscription") {
+                        if let url = URL(string: "itms-apps://apps.apple.com/account/subscriptions") {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                    .foregroundColor(AppColors.textPrimary)
                 }
 
                 Section("ABOUT YOU") {
@@ -54,7 +59,14 @@ struct SettingsView: View {
                 }
 
                 Section("ACCOUNT") {
-                    NavigationLink("Sign In") { EmptyView() }
+                    HStack {
+                        Text("Sign In")
+                            .foregroundColor(AppColors.textPrimary)
+                        Spacer()
+                        Text("Coming Soon")
+                            .font(.system(size: 12))
+                            .foregroundColor(AppColors.textSecondary)
+                    }
                 }
 
                 Section {
@@ -66,6 +78,7 @@ struct SettingsView: View {
                         .foregroundColor(AppColors.textPrimary)
                 }
 
+                #if DEBUG
                 Section("DEVELOPER") {
                     Button("Reset Onboarding") {
                         userProfile.resetOnboarding()
@@ -73,6 +86,7 @@ struct SettingsView: View {
                     }
                     .foregroundColor(.red)
                 }
+                #endif
 
                 Section {
                     HStack {

@@ -1,7 +1,7 @@
 import Foundation
 import GRDB
 
-/// Local SQLite store for the full word database (up to 50k words).
+/// Local SQLite store for the full word database (up to 1,000+ words).
 /// Words are queried on-demand; the bundle JSON is the fallback when DB is absent.
 final class WordDatabase {
     static let shared = WordDatabase()
@@ -157,6 +157,28 @@ final class WordDatabase {
             }
             return try Row.fetchAll(db, sql: sql, arguments: StatementArguments(args))
                 .compactMap(Self.word(from:))
+        }) ?? []
+    }
+
+    func fetchWords(category: String, limit: Int = 0) -> [Word] {
+        guard let dbQueue else { return [] }
+        return (try? dbQueue.read { db -> [Word] in
+            var sql = "SELECT * FROM words WHERE category = ?"
+            var args: [DatabaseValueConvertible] = [category]
+            if limit > 0 {
+                sql += " LIMIT ?"
+                args.append(limit)
+            }
+            return try Row.fetchAll(db, sql: sql, arguments: StatementArguments(args))
+                .compactMap(Self.word(from:))
+        }) ?? []
+    }
+
+    func allCategories() -> [String] {
+        guard let dbQueue else { return [] }
+        return (try? dbQueue.read { db in
+            let rows = try Row.fetchAll(db, sql: "SELECT DISTINCT category FROM words ORDER BY category")
+            return rows.compactMap { $0["category"] as? String }.filter { !$0.isEmpty }
         }) ?? []
     }
 

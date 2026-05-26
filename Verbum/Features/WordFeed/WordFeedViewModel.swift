@@ -11,10 +11,15 @@ class WordFeedViewModel: ObservableObject {
     /// The last 5 swiped words for the batch quiz.
     private var recentBatchWords: [Word] = []
 
+    // Current active filters — preserved across restartFeed()
+    var levelFilter: WordLevel? = nil
+    var categoryFilter: String? = nil
+    var isPro: Bool = false
+
     private let synthesizer = AVSpeechSynthesizer()
 
     init() {
-        self.words = WordRepository.shared.all.shuffled()
+        self.words = WordRepository.shared.feedWords(isPro: false).shuffled()
         configureAudioSession()
     }
 
@@ -68,10 +73,17 @@ class WordFeedViewModel: ObservableObject {
     }
 
     func restartFeed() {
-        words = WordRepository.shared.all.shuffled()
+        var pool = WordRepository.shared.feedWords(isPro: isPro)
+        if let lv = levelFilter { pool = pool.filter { $0.level == lv } }
+        if let ct = categoryFilter { pool = pool.filter { $0.category == ct } }
+        words = pool.shuffled()
         goingBack = false
         currentIndex = 0
         resetBatchCounter()
+    }
+
+    func reloadFromRepository() {
+        restartFeed()
     }
 
     func loadWords(_ newWords: [Word]) {

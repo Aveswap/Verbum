@@ -10,8 +10,12 @@ struct Word: Identifiable, Codable {
     let synonyms: [String]
     let category: String
     let level: WordLevel
-    let isNew: Bool
+    let isNew: Bool  // deprecated: use isNew(for:) — kept for Codable compatibility
     let etymology: String?
+
+    func isNew(for seenIds: Set<UUID>) -> Bool {
+        !seenIds.contains(id)
+    }
 }
 
 enum WordLevel: String, Codable, CaseIterable {

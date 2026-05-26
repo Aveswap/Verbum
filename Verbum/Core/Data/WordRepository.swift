@@ -33,6 +33,18 @@ final class WordRepository {
         all = WordDatabase.shared.fetchWords(limit: 0)
     }
 
+    // MARK: - Paywall gate
+
+    /// Words available for the swipe feed respecting the subscription state.
+    /// Free users get all Beginner (A1–A2) words. Pro users get everything.
+    func feedWords(isPro: Bool) -> [Word] {
+        isPro ? all : all.filter { $0.level == .beginner }
+    }
+
+    func canAccess(_ word: Word, isPro: Bool) -> Bool {
+        isPro || word.level == .beginner
+    }
+
     // MARK: - Filtered access
 
     func words(level: WordLevel) -> [Word] {
@@ -44,12 +56,16 @@ final class WordRepository {
 
     func words(category: String) -> [Word] {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.search(query: category, limit: 300)
+            return WordDatabase.shared.fetchWords(category: category)
         }
-        return all.filter {
-            $0.category.localizedCaseInsensitiveContains(category)
-            || category.localizedCaseInsensitiveContains($0.category)
+        return all.filter { $0.category == category }
+    }
+
+    func allCategories() -> [String] {
+        if WordDatabase.shared.isAvailable {
+            return WordDatabase.shared.allCategories()
         }
+        return Array(Set(all.map(\.category))).sorted().filter { !$0.isEmpty }
     }
 
     func words(matching query: String) -> [Word] {

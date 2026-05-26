@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-/// Downloads the full 50k-word SQLite database in a URLSession background task.
+/// Downloads the full 1,000-word SQLite database in a URLSession background task.
 /// Replace `remoteURL` with your CDN URL once the database is ready.
 final class DatabaseDownloadManager: NSObject, ObservableObject {
     static let shared = DatabaseDownloadManager()

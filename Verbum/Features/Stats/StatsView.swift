@@ -14,7 +14,7 @@ struct StatsView: View {
                     VStack(spacing: AppSpacing.lg) {
                         summaryGrid
                         wordsProgressCard
-                        personalizationCard
+                        bookmarksCard
                         weeklyGoalCard
                         profileCard
                     }
@@ -123,37 +123,36 @@ struct StatsView: View {
         .cornerRadius(AppSpacing.cornerRadius)
     }
 
-    // MARK: - Personalization progress
-    private var personalizationCard: some View {
-        let bookmarked = min(userProfile.profile.bookmarkedWordIds.count, 5)
-        let remaining = max(5 - bookmarked, 0)
+    // MARK: - Bookmarks card
+    private var bookmarksCard: some View {
+        let bookmarked = userProfile.profile.bookmarkedWordIds.count
+        let liked = userProfile.profile.likedWordIds.count
         return VStack(alignment: .leading, spacing: AppSpacing.sm) {
-            Label("Personalization", systemImage: "wand.and.stars")
+            Label("Saved Words", systemImage: "bookmark.fill")
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(AppColors.textSecondary)
 
-            Text(remaining > 0
-                 ? "Bookmark \(remaining) more word\(remaining == 1 ? "" : "s") to unlock personalized recommendations"
-                 : "🎉 Personalized recommendations are active!")
-                .font(.system(size: 14))
-                .foregroundColor(AppColors.textPrimary)
-
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 4).fill(AppColors.surfaceSecondary).frame(height: 8)
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(AppColors.accent)
-                        .frame(width: geo.size.width * Double(bookmarked) / 5.0, height: 8)
-                        .animation(.easeOut(duration: 0.6), value: bookmarked)
+            HStack(spacing: AppSpacing.lg) {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(bookmarked)")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("Bookmarked")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(liked)")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("Liked")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
                 }
             }
-            .frame(height: 8)
-
-            Text("\(bookmarked) / 5 words saved")
-                .font(.system(size: 12))
-                .foregroundColor(AppColors.textSecondary)
         }
         .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(AppColors.surface)
         .cornerRadius(AppSpacing.cornerRadius)
     }

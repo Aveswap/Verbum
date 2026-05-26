@@ -2,6 +2,7 @@ import SwiftUI
 
 struct WordFeedView: View {
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
     @StateObject private var viewModel = WordFeedViewModel()
 
     @State private var showDetail = false
@@ -60,7 +61,7 @@ struct WordFeedView: View {
             PracticeMenuView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showCategories) {
-            CategoriesView().environmentObject(userProfile)
+            CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)
         }
         .sheet(isPresented: $showShareSheet) {
             if let word = viewModel.currentWord {
@@ -70,7 +71,7 @@ struct WordFeedView: View {
         .sheet(isPresented: $showStats) {
             StatsView().environmentObject(userProfile)
         }
-        .sheet(isPresented: $showPremium) { PremiumSheet() }
+        .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
         .sheet(isPresented: $showLeaderboard) {
             LeaderboardView().environmentObject(userProfile)
         }
@@ -92,6 +93,8 @@ struct WordFeedView: View {
             .environmentObject(userProfile)
         }
         .onAppear {
+            viewModel.isPro = subscriptions.isPro
+            viewModel.reloadFromRepository()
             if userProfile.profile.currentStreak > 1 {
                 showStreakBanner = true
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
@@ -107,6 +110,13 @@ struct WordFeedView: View {
                     }
                 }
             }
+        }
+        .onChange(of: subscriptions.isPro) { newValue in
+            viewModel.isPro = newValue
+            viewModel.reloadFromRepository()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .wordDatabaseInstalled)) { _ in
+            viewModel.reloadFromRepository()
         }
     }
 
@@ -383,7 +393,7 @@ private struct WordCardView: View {
         VStack(spacing: AppSpacing.sm) {
             Spacer()
 
-            if word.isNew {
+            if word.isNew(for: Set(userProfile.profile.seenWordIds)) {
                 Text("NEW")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(AppColors.textOnAccent)
