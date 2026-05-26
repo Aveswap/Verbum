@@ -58,7 +58,6 @@ enum AppTheme: String, Codable, CaseIterable {
 
 enum NativeLanguage: String, Codable, CaseIterable {
     case ukrainian  = "uk"
-    case russian    = "ru"
     case spanish    = "es"
     case french     = "fr"
     case german     = "de"
@@ -76,7 +75,6 @@ enum NativeLanguage: String, Codable, CaseIterable {
     var displayName: String {
         switch self {
         case .ukrainian:  return "Ukrainian 🇺🇦"
-        case .russian:    return "Russian 🇷🇺"
         case .spanish:    return "Spanish 🇪🇸"
         case .french:     return "French 🇫🇷"
         case .german:     return "German 🇩🇪"
