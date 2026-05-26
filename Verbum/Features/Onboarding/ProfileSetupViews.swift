@@ -74,6 +74,52 @@ struct PromoSlideView: View {
     }
 }
 
+// MARK: - Native Language
+struct NativeLanguageView: View {
+    let onSkip: () -> Void
+    let onSelect: (NativeLanguage) -> Void
+    @State private var selected: NativeLanguage?
+
+    var body: some View {
+        VStack(spacing: AppSpacing.lg) {
+            HStack {
+                Spacer()
+                Button("Skip", action: onSkip)
+                    .foregroundColor(AppColors.textSecondary)
+                    .padding(.trailing, AppSpacing.md)
+            }
+            .padding(.top, AppSpacing.md)
+
+            Text("What's your\nnative language?")
+                .font(AppTypography.heroTitle)
+                .foregroundColor(AppColors.textPrimary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, AppSpacing.lg)
+
+            Text("We'll use this to personalise your learning")
+                .font(.system(size: 15))
+                .foregroundColor(AppColors.textSecondary)
+                .multilineTextAlignment(.center)
+
+            Spacer()
+
+            ScrollView {
+                VStack(spacing: AppSpacing.sm) {
+                    ForEach(NativeLanguage.allCases, id: \.self) { lang in
+                        RadioOptionRow(title: lang.displayName, isSelected: selected == lang) {
+                            selected = lang
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect(lang) }
+                        }
+                    }
+                }
+                .padding(.horizontal, AppSpacing.lg)
+            }
+
+            Spacer()
+        }
+    }
+}
+
 // MARK: - Referral Source
 struct ReferralSourceView: View {
     let onSkip: () -> Void
@@ -236,12 +282,14 @@ struct LevelSelectionView: View {
 
 // MARK: - Word Check
 struct WordCheckView: View {
-    let onNext: () -> Void
+    // knownCount: how many of the 15 test words the user recognised
+    let onNext: (_ knownCount: Int) -> Void
     @State private var known: Set<String> = []
 
-    private let words = ["ephemeral", "ubiquitous", "serendipity", "melancholy", "resilient",
-                          "eloquent", "pragmatic", "ambiguous", "tenacious", "lucid",
-                          "verbose", "candid", "astute", "benevolent", "discern"]
+    // 5 Beginner, 5 Intermediate, 5 Expert words — position signals difficulty
+    private let words = ["resilient", "candid", "lucid", "vivid", "serene",
+                         "eloquent", "pragmatic", "ambiguous", "tenacious", "verbose",
+                         "ephemeral", "ubiquitous", "serendipity", "melancholy", "discern"]
 
     var body: some View {
         VStack(spacing: AppSpacing.lg) {
@@ -251,7 +299,7 @@ struct WordCheckView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, AppSpacing.xl * 2)
 
-            Text("Select all that apply")
+            Text("Tap all the words you recognise")
                 .foregroundColor(AppColors.textSecondary)
 
             ScrollView {
@@ -273,7 +321,7 @@ struct WordCheckView: View {
                 .padding(.horizontal, AppSpacing.lg)
             }
 
-            PillButton(title: "Next", action: onNext)
+            PillButton(title: "Next") { onNext(known.count) }
                 .padding(.horizontal, AppSpacing.lg)
                 .padding(.bottom, AppSpacing.xl)
         }

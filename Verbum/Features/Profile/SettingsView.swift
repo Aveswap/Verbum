@@ -1,16 +1,22 @@
 import SwiftUI
 import UIKit
+import AuthenticationServices
 
 struct SettingsView: View {
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
+    @EnvironmentObject var auth: AuthService
     @Environment(\.dismiss) private var dismiss
 
     @AppStorage("soundEnabled") private var soundEnabled = true
+    @State private var isRestoring = false
+    @State private var showDeleteConfirm = false
 
     @State private var editingName = false
     @State private var nameInput = ""
     @State private var editingGender = false
     @State private var editingAge = false
+    @State private var editingLanguage = false
     @State private var editingLevel = false
     @State private var editingWordsPerWeek = false
     @State private var wordsInput = ""
@@ -26,6 +32,30 @@ struct SettingsView: View {
                         }
                     }
                     .foregroundColor(AppColors.textPrimary)
+
+                    Button {
+                        isRestoring = true
+                        Task {
+                            await subscriptions.restorePurchases()
+                            isRestoring = false
+                        }
+                    } label: {
+                        HStack {
+                            Text("Restore Purchases")
+                                .foregroundColor(AppColors.textPrimary)
+                            if isRestoring {
+                                Spacer()
+                                ProgressView().tint(AppColors.accent)
+                            }
+                        }
+                    }
+                    .disabled(isRestoring)
+
+                    if let error = subscriptions.purchaseError {
+                        Text(error)
+                            .font(.system(size: 12))
+                            .foregroundColor(.red)
+                    }
                 }
 
                 Section("ABOUT YOU") {
@@ -37,6 +67,9 @@ struct SettingsView: View {
                     }
                     Button { editingAge = true } label: {
                         row("Age", value: userProfile.profile.age?.rawValue ?? "Not set")
+                    }
+                    Button { editingLanguage = true } label: {
+                        row("Native Language", value: userProfile.profile.nativeLanguage?.displayName ?? "Not set")
                     }
                     Button { editingLevel = true } label: {
                         row("Level", value: userProfile.profile.level.displayName)
@@ -59,14 +92,42 @@ struct SettingsView: View {
                 }
 
                 Section("ACCOUNT") {
-                    HStack {
-                        Text("Sign In")
-                            .foregroundColor(AppColors.textPrimary)
-                        Spacer()
-                        Text("Coming Soon")
-                            .font(.system(size: 12))
-                            .foregroundColor(AppColors.textSecondary)
+                    if auth.isSignedIn {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Signed in with Apple")
+                                    .foregroundColor(AppColors.textPrimary)
+                                if !userProfile.profile.name.isEmpty {
+                                    Text(userProfile.profile.name)
+                                        .font(.system(size: 12))
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
+                            }
+                            Spacer()
+                            Image(systemName: "checkmark.seal.fill")
+                                .foregroundColor(AppColors.accent)
+                        }
+                        Button("Sign Out") { auth.signOut() }
+                            .foregroundColor(.red)
+                    } else {
+                        SignInWithAppleButton(.signIn) { request in
+                            request.requestedScopes = [.fullName, .email]
+                        } onCompletion: { result in
+                            auth.handleSignInResult(result)
+                        }
+                        .signInWithAppleButtonStyle(.white)
+                        .frame(height: 44)
+                        .cornerRadius(AppSpacing.cornerRadius)
                     }
+
+                    if let error = auth.error {
+                        Text(error)
+                            .font(.system(size: 12))
+                            .foregroundColor(.red)
+                    }
+
+                    Button("Delete Account") { showDeleteConfirm = true }
+                        .foregroundColor(.red)
                 }
 
                 Section {
@@ -157,6 +218,25 @@ struct SettingsView: View {
         .sheet(isPresented: $showLevelTest) {
             LevelTestView().environmentObject(userProfile)
         }
+        .sheet(isPresented: $editingLanguage) {
+            LanguagePickerSheet(selected: userProfile.profile.nativeLanguage) { lang in
+                userProfile.profile.nativeLanguage = lang
+                editingLanguage = false
+            }
+        }
+        .confirmationDialog(
+            "Delete Account",
+            isPresented: $showDeleteConfirm,
+            titleVisibility: .visible
+        ) {
+            Button("Delete All Data", role: .destructive) {
+                auth.deleteAccount()
+                dismiss()
+            }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This permanently deletes all your progress, streaks, and settings. This cannot be undone.")
+        }
     }
 
     private func row(_ label: String, value: String) -> some View {
@@ -193,5 +273,50 @@ struct SettingsView: View {
         guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let root = scene.windows.first?.rootViewController else { return }
         root.present(vc, animated: true)
+    }
+}
+
+// MARK: - Language Picker Sheet
+
+private struct LanguagePickerSheet: View {
+    let selected: NativeLanguage?
+    let onSelect: (NativeLanguage) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationView {
+            ZStack {
+                AppColors.background.ignoresSafeArea()
+                List {
+                    ForEach(NativeLanguage.allCases, id: \.self) { lang in
+                        Button {
+                            onSelect(lang)
+                        } label: {
+                            HStack {
+                                Text(lang.displayName)
+                                    .foregroundColor(AppColors.textPrimary)
+                                Spacer()
+                                if selected == lang {
+                                    Image(systemName: "checkmark")
+                                        .foregroundColor(AppColors.accent)
+                                }
+                            }
+                        }
+                    }
+                }
+                .scrollContentBackground(.hidden)
+                .background(AppColors.background)
+            }
+            .navigationTitle("Native Language")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { dismiss() } label: {
+                        Image(systemName: "xmark").foregroundColor(AppColors.textSecondary)
+                    }
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
     }
 }

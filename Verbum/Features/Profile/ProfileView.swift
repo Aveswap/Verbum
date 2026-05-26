@@ -2,6 +2,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
+    @EnvironmentObject var auth: AuthService
     @Environment(\.dismiss) private var dismiss
     @State private var showSettings = false
     @State private var showFavorites = false
@@ -46,11 +48,11 @@ struct ProfileView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showSettings)   { SettingsView().environmentObject(userProfile) }
+        .sheet(isPresented: $showSettings)   { SettingsView().environmentObject(userProfile).environmentObject(subscriptions).environmentObject(auth) }
         .sheet(isPresented: $showFavorites)  { FavoritesView().environmentObject(userProfile) }
         .sheet(isPresented: $showLiked)      { LikedView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)    { HistoryView().environmentObject(userProfile) }
-        .sheet(isPresented: $showPremium)    { PremiumSheet() }
+        .sheet(isPresented: $showPremium)    { PremiumSheet().environmentObject(subscriptions) }
         .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showReminders) {
             NavigationView { NotificationSettingsView().environmentObject(userProfile) }
@@ -69,7 +71,7 @@ struct ProfileView: View {
                     Text("Go Premium")
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(AppColors.textOnAccent)
-                    Text("Unlock all words, games & themes")
+                    Text("Unlock all words & practice modes")
                         .font(.system(size: 13))
                         .foregroundColor(AppColors.textOnAccent.opacity(0.8))
                 }

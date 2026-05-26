@@ -3,6 +3,7 @@ import SwiftUI
 struct PracticeMenuView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
     @State private var showQuiz = false
     @State private var showFillGap = false
     @State private var showSynonyms = false
@@ -97,7 +98,7 @@ struct PracticeMenuView: View {
         .sheet(isPresented: $showSynonyms) { SynonymsView() }
         .sheet(isPresented: $showGuessWord) { GuessWordView() }
         .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
-        .sheet(isPresented: $showPremium) { PremiumSheet() }
+        .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
     }
 
     private func sectionHeader(_ title: String) -> some View {

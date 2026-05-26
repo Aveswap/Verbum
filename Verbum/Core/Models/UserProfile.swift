@@ -4,7 +4,9 @@ struct UserProfile: Codable {
     var name: String = ""
     var age: AgeRange? = nil
     var gender: Gender? = nil
+    var nativeLanguage: NativeLanguage? = nil
     var level: WordLevel = .beginner
+    var appleUserID: String? = nil  // stable Sign in with Apple identifier
     var wordsPerWeek: Int = 30
     var notificationsEnabled: Bool = false
     var notificationCount: Int = 3
@@ -43,4 +45,42 @@ enum AppTheme: String, Codable, CaseIterable {
     case dark
 
     var displayName: String { "Dark" }
+}
+
+enum NativeLanguage: String, Codable, CaseIterable {
+    case ukrainian  = "uk"
+    case russian    = "ru"
+    case spanish    = "es"
+    case french     = "fr"
+    case german     = "de"
+    case portuguese = "pt"
+    case italian    = "it"
+    case polish     = "pl"
+    case chinese    = "zh"
+    case japanese   = "ja"
+    case korean     = "ko"
+    case arabic     = "ar"
+    case turkish    = "tr"
+    case hindi      = "hi"
+    case other      = "other"
+
+    var displayName: String {
+        switch self {
+        case .ukrainian:  return "Ukrainian 🇺🇦"
+        case .russian:    return "Russian 🇷🇺"
+        case .spanish:    return "Spanish 🇪🇸"
+        case .french:     return "French 🇫🇷"
+        case .german:     return "German 🇩🇪"
+        case .portuguese: return "Portuguese 🇧🇷"
+        case .italian:    return "Italian 🇮🇹"
+        case .polish:     return "Polish 🇵🇱"
+        case .chinese:    return "Chinese 🇨🇳"
+        case .japanese:   return "Japanese 🇯🇵"
+        case .korean:     return "Korean 🇰🇷"
+        case .arabic:     return "Arabic 🇸🇦"
+        case .turkish:    return "Turkish 🇹🇷"
+        case .hindi:      return "Hindi 🇮🇳"
+        case .other:      return "Other"
+        }
+    }
 }

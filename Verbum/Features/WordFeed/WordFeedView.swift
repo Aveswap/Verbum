@@ -3,6 +3,7 @@ import SwiftUI
 struct WordFeedView: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @EnvironmentObject var subscriptions: SubscriptionManager
+    @EnvironmentObject var auth: AuthService
     @StateObject private var viewModel = WordFeedViewModel()
 
     @State private var showDetail = false
@@ -55,10 +56,10 @@ struct WordFeedView: View {
             }
         }
         .sheet(isPresented: $showProfile) {
-            ProfileView().environmentObject(userProfile)
+            ProfileView().environmentObject(userProfile).environmentObject(subscriptions).environmentObject(auth)
         }
         .sheet(isPresented: $showPractice) {
-            PracticeMenuView().environmentObject(userProfile)
+            PracticeMenuView().environmentObject(userProfile).environmentObject(subscriptions)
         }
         .sheet(isPresented: $showCategories) {
             CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)

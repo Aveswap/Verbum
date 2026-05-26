@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum OnboardingStep: Int, CaseIterable {
-    case welcome, referralSource, age, gender, name,
+    case welcome, nativeLanguage, referralSource, age, gender, name,
          customizePromo, wordsPerWeek, notifications,
          level, wordCheck
 }
@@ -50,6 +50,10 @@ struct OnboardingFlow: View {
         switch currentStep {
         case .welcome:
             WelcomeView { advance() }
+        case .nativeLanguage:
+            NativeLanguageView(onSkip: { advance() }, onSelect: { lang in
+                userProfile.profile.nativeLanguage = lang; advance()
+            })
         case .referralSource:
             ReferralSourceView(onSkip: { advance() }, onSelect: { _ in advance() })
         case .age:
@@ -83,7 +87,19 @@ struct OnboardingFlow: View {
                 userProfile.profile.level = level; advance()
             }
         case .wordCheck:
-            WordCheckView { advance() }
+            WordCheckView { knownCount in
+                // 15 words: first 5 = Beginner, next 5 = Intermediate, last 5 = Expert
+                // Use score to suggest a starting level (user already chose their own level above,
+                // this overrides only if the placement score disagrees significantly)
+                if knownCount >= 10 {
+                    userProfile.profile.level = .expert
+                } else if knownCount >= 5 {
+                    userProfile.profile.level = .intermediate
+                } else {
+                    userProfile.profile.level = .beginner
+                }
+                advance()
+            }
         }
     }
 

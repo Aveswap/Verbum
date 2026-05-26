@@ -1,11 +1,13 @@
 import Foundation
 import Combine
 
+@MainActor
 class UserProfileStore: ObservableObject {
     @Published var profile: UserProfile {
         didSet { scheduleSave() }
     }
 
+    let cloudKit = CloudKitSyncManager()
     private let key = "userProfile"
     private var saveWorkItem: DispatchWorkItem?
 
@@ -20,8 +22,6 @@ class UserProfileStore: ObservableObject {
 
     // MARK: - Persistence
 
-    /// Debounced: coalesces rapid writes (e.g. swiping through words)
-    /// into a single UserDefaults write 0.5 s after the last change.
     private func scheduleSave() {
         saveWorkItem?.cancel()
         let item = DispatchWorkItem { [weak self] in
@@ -31,7 +31,6 @@ class UserProfileStore: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: item)
     }
 
-    /// Immediate write — call for critical state (streak, points, onboarding).
     func saveNow() {
         saveWorkItem?.cancel()
         persist()
@@ -40,6 +39,10 @@ class UserProfileStore: ObservableObject {
     private func persist() {
         if let data = try? JSONEncoder().encode(profile) {
             UserDefaults.standard.set(data, forKey: key)
+        }
+        if profile.appleUserID != nil {
+            let snapshot = profile
+            Task { await cloudKit.push(snapshot) }
         }
     }
 
@@ -90,6 +93,14 @@ class UserProfileStore: ObservableObject {
     func resetOnboarding() {
         profile.onboardingCompleted = false
         saveNow()
+    }
+
+    // MARK: - Account Deletion
+
+    func deleteAllLocalData() {
+        UserDefaults.standard.removeObject(forKey: key)
+        KeychainHelper.delete("appleEmail")
+        profile = UserProfile()
     }
 
     // MARK: - Points

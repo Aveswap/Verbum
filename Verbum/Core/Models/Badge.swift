@@ -19,14 +19,6 @@ enum BadgeTier: String, Codable, CaseIterable {
         }
     }
 
-    // Top 10% / 20% / 30% of ~1000 simulated users
-    var rankThreshold: Int {
-        switch self {
-        case .gold:   return 100
-        case .silver: return 200
-        case .bronze: return 300
-        }
-    }
 }
 
 struct EarnedBadge: Codable, Identifiable {
