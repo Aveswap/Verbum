@@ -51,6 +51,14 @@ struct WordDetailView: View {
                             Text(word.definition)
                                 .font(AppTypography.definition)
                                 .foregroundColor(AppColors.textPrimary)
+                            // L1 translation — shown for Beginner words when user has a native language set
+                            if let t = viewModel.translatedDefinition {
+                                Divider()
+                                    .background(AppColors.surfaceSecondary)
+                                Text(t)
+                                    .font(AppTypography.definition)
+                                    .foregroundColor(AppColors.textSecondary)
+                            }
                         }
                         .padding(AppSpacing.md)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -66,6 +74,11 @@ struct WordDetailView: View {
                                 Text(example)
                                     .font(.system(size: 16).italic())
                                     .foregroundColor(AppColors.textPrimary)
+                                if let te = viewModel.translatedExample {
+                                    Text(te)
+                                        .font(.system(size: 15).italic())
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
                             }
                             .padding(AppSpacing.md)
                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -73,13 +86,10 @@ struct WordDetailView: View {
                             .cornerRadius(AppSpacing.cornerRadius)
                         }
 
-                        // Synonyms
-                        if !word.synonyms.isEmpty {
-                            VStack(alignment: .leading, spacing: AppSpacing.sm) {
-                                Text("Synonyms")
-                                    .font(.system(size: 13, weight: .semibold))
-                                    .foregroundColor(AppColors.textSecondary)
-                                FlowLayout(items: word.synonyms) { synonym in
+                        // Synonyms (Intermediate+)
+                        if !word.synonyms.isEmpty && word.level != .beginner {
+                            WordDetailSection(title: "Synonyms") {
+                                FlowLayout(items: Array(word.synonyms.prefix(4))) { synonym in
                                     Text(synonym)
                                         .font(.system(size: 14))
                                         .foregroundColor(AppColors.textPrimary)
@@ -89,18 +99,43 @@ struct WordDetailView: View {
                                         .cornerRadius(20)
                                 }
                             }
-                            .padding(AppSpacing.md)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(AppColors.surface)
-                            .cornerRadius(AppSpacing.cornerRadius)
                         }
 
-                        // Etymology (expert words only)
+                        // Collocations (Intermediate+)
+                        if !word.collocations.isEmpty && word.level != .beginner {
+                            WordDetailSection(title: "Common Phrases") {
+                                VStack(alignment: .leading, spacing: 4) {
+                                    ForEach(word.collocations, id: \.self) { col in
+                                        Text("• \(col)")
+                                            .font(.system(size: 15))
+                                            .foregroundColor(AppColors.textPrimary)
+                                    }
+                                }
+                            }
+                        }
+
+                        // Antonyms (Expert only)
+                        if !word.antonyms.isEmpty && word.level == .expert {
+                            WordDetailSection(title: "Antonyms") {
+                                FlowLayout(items: word.antonyms) { ant in
+                                    Text(ant)
+                                        .font(.system(size: 14))
+                                        .foregroundColor(AppColors.textPrimary)
+                                        .padding(.horizontal, AppSpacing.sm)
+                                        .padding(.vertical, 4)
+                                        .background(AppColors.surfaceSecondary)
+                                        .cornerRadius(20)
+                                }
+                            }
+                        }
+
+                        // Etymology (Expert only)
                         if let etymology = word.etymology, word.level == .expert {
                             VStack(alignment: .leading, spacing: AppSpacing.sm) {
                                 HStack(spacing: 6) {
-                                    Text("📜")
-                                        .font(.system(size: 15))
+                                    Image(systemName: "book.closed.fill")
+                                        .font(.system(size: 13))
+                                        .foregroundColor(AppColors.accent)
                                     Text("Word History")
                                         .font(.system(size: 13, weight: .semibold))
                                         .foregroundColor(AppColors.accent)
@@ -120,12 +155,21 @@ struct WordDetailView: View {
                             )
                         }
 
-                        // Category badge
-                        HStack {
+                        // Category / level / meta row
+                        HStack(spacing: AppSpacing.sm) {
                             Label(word.category, systemImage: "folder")
                                 .font(.system(size: 13))
                                 .foregroundColor(AppColors.textSecondary)
                             Spacer()
+                            if let reg = word.register {
+                                Text(reg.displayName)
+                                    .font(.system(size: 11, weight: .medium))
+                                    .foregroundColor(AppColors.textSecondary)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 3)
+                                    .background(AppColors.surfaceSecondary)
+                                    .cornerRadius(12)
+                            }
                             Text(word.level.displayName)
                                 .font(.system(size: 12, weight: .semibold))
                                 .foregroundColor(AppColors.textOnAccent)
@@ -137,6 +181,20 @@ struct WordDetailView: View {
                         .padding(AppSpacing.md)
                         .background(AppColors.surface)
                         .cornerRadius(AppSpacing.cornerRadius)
+
+                        // Domain tags (Expert only)
+                        if !word.domainTags.isEmpty && word.level == .expert {
+                            FlowLayout(items: word.domainTags) { tag in
+                                Text(tag)
+                                    .font(.system(size: 11, weight: .medium))
+                                    .foregroundColor(AppColors.textSecondary)
+                                    .padding(.horizontal, 8)
+                                    .padding(.vertical, 3)
+                                    .background(AppColors.surfaceSecondary)
+                                    .cornerRadius(12)
+                            }
+                            .padding(.horizontal, AppSpacing.md)
+                        }
                     }
                     .padding(AppSpacing.md)
                 }
@@ -162,6 +220,29 @@ struct WordDetailView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            if let lang = userProfile.profile.nativeLanguage?.rawValue {
+                viewModel.loadTranslation(lang: lang)
+            }
+        }
+    }
+}
+
+private struct WordDetailSection<Content: View>: View {
+    let title: String
+    @ViewBuilder let content: Content
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Text(title)
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundColor(AppColors.textSecondary)
+            content
+        }
+        .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
     }
 }
 

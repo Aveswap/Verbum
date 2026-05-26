@@ -37,7 +37,7 @@ struct LeaderboardView: View {
     // MARK: - Quarter Points + Badge
 
     private var quarterCard: some View {
-        let tier = badgeTier(for: userProfile.profile.quarterlyPoints)
+        let tier = UserProfileStore.badgeTier(for: userProfile.profile.quarterlyPoints)
         return VStack(spacing: AppSpacing.sm) {
             HStack(spacing: AppSpacing.md) {
                 ZStack {
@@ -209,13 +209,6 @@ struct LeaderboardView: View {
 
     // MARK: - Helpers
 
-    private func badgeTier(for pts: Int) -> BadgeTier? {
-        if pts >= 900 { return .gold }
-        if pts >= 400 { return .silver }
-        if pts >= 200 { return .bronze }
-        return nil
-    }
-
     private func nextTarget(current: BadgeTier?) -> (tier: BadgeTier, pts: Int) {
         switch current {
         case nil:    return (.bronze, 200)
@@ -240,6 +233,8 @@ struct LeaderboardView: View {
     private func currentYear() -> Int {
         Calendar.current.component(.year, from: Date())
     }
+
+    private func tierColor(_ tier: BadgeTier?) -> Color { tier?.color ?? AppColors.accent }
 }
 
 // MARK: - Sub-components

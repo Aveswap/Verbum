@@ -25,6 +25,7 @@ final class WordDatabase {
         let path = Self.databaseURL.path
         guard FileManager.default.fileExists(atPath: path) else { return }
         dbQueue = try? DatabaseQueue(path: path)
+        try? runMigrations()
     }
 
     // MARK: - Install
@@ -37,14 +38,19 @@ final class WordDatabase {
         }
         try FileManager.default.moveItem(at: tempURL, to: dest)
         dbQueue = try DatabaseQueue(path: dest.path)
-        try createSchema()
+        try runMigrations()
     }
 
-    // MARK: - Schema
+    // MARK: - Migrations
 
-    func createSchema() throws {
-        guard let dbQueue else { return }
-        try dbQueue.write { db in
+    private static var migrator: DatabaseMigrator {
+        var m = DatabaseMigrator()
+        #if DEBUG
+        // WARNING: Any schema change will DELETE the entire local database. Comment out when you need to preserve data during testing.
+        m.eraseDatabaseOnSchemaChange = true
+        #endif
+
+        m.registerMigration("v1_createWords") { db in
             try db.create(table: "words", ifNotExists: true) { t in
                 t.column("id",              .text).primaryKey()
                 t.column("text",            .text).notNull()
@@ -53,8 +59,8 @@ final class WordDatabase {
                 t.column("definition",      .text).notNull()
                 t.column("exampleSentence", .text)
                 t.column("synonyms",        .text).notNull().defaults(to: "[]")
-                t.column("category",        .text).notNull().defaults(to: "")
-                t.column("level",           .text).notNull()
+                t.column("category",        .text).notNull().defaults(to: "").indexed()
+                t.column("level",           .text).notNull().indexed()
                 t.column("etymology",       .text)
             }
             try db.create(table: "translations", ifNotExists: true) { t in
@@ -73,7 +79,26 @@ final class WordDatabase {
                 """)
             }
         }
+
+        m.registerMigration("v2_enrichment") { db in
+            try db.alter(table: "words") { t in
+                t.add(column: "frequencyRank", .integer)
+                t.add(column: "antonyms",      .text)
+                t.add(column: "collocations",  .text)
+                t.add(column: "register",      .text)
+                t.add(column: "domainTags",    .text)
+            }
+        }
+
+        return m
     }
+
+    func runMigrations() throws {
+        guard let dbQueue else { return }
+        try Self.migrator.migrate(dbQueue)
+    }
+
+    func createSchema() throws { try runMigrations() }
 
     // MARK: - Translations
 
@@ -83,17 +108,20 @@ final class WordDatabase {
     }
 
     func translation(wordId: UUID, lang: String) -> Translation? {
-        guard let dbQueue else { return nil }
-        return try? dbQueue.read { db in
-            guard let row = try Row.fetchOne(db, sql: """
-                SELECT definition, example FROM translations
-                WHERE word_id = ? AND lang = ?
-            """, arguments: [wordId.uuidString.lowercased(), lang]) else { return nil }
-            return Translation(
-                definition: row["definition"] as? String ?? "",
-                example:    row["example"]    as? String
-            )
+        if let dbQueue,
+           let result = try? dbQueue.read({ db -> Translation? in
+               guard let row = try Row.fetchOne(db, sql: """
+                   SELECT definition, example FROM translations
+                   WHERE word_id = ? AND lang = ?
+               """, arguments: [wordId.uuidString.lowercased(), lang]) else { return nil }
+               return Translation(
+                   definition: row["definition"] as? String ?? "",
+                   example:    row["example"]    as? String
+               )
+           }) {
+            return result
         }
+        return TranslationStore.shared.translation(wordId: wordId, lang: lang)
     }
 
     func importTranslations(_ bundle: [String: [String: [String: String?]]]) throws {
@@ -117,21 +145,28 @@ final class WordDatabase {
 
     func importWords(_ words: [Word]) throws {
         guard let dbQueue else { return }
-        let encoder = JSONEncoder()
+        let enc = JSONEncoder()
+        func jsonStr<T: Encodable>(_ v: T) -> String? {
+            (try? enc.encode(v)).flatMap { String(data: $0, encoding: .utf8) }
+        }
         try dbQueue.write { db in
             for word in words {
-                let synonymsJSON = (try? encoder.encode(word.synonyms))
-                    .flatMap { String(data: $0, encoding: .utf8) } ?? "[]"
                 try db.execute(sql: """
                     INSERT OR REPLACE INTO words
                     (id, text, phonetic, partOfSpeech, definition,
-                     exampleSentence, synonyms, category, level, etymology)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                     exampleSentence, synonyms, category, level, etymology,
+                     frequencyRank, antonyms, collocations, register, domainTags)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, arguments: [
                     word.id.uuidString, word.text, word.phonetic,
                     word.partOfSpeech, word.definition,
-                    word.exampleSentence, synonymsJSON,
-                    word.category, word.level.rawValue, word.etymology
+                    word.exampleSentence, jsonStr(word.synonyms) ?? "[]",
+                    word.category, word.level.rawValue, word.etymology,
+                    word.frequencyRank,
+                    jsonStr(word.antonyms) ?? "[]",
+                    jsonStr(word.collocations) ?? "[]",
+                    word.register?.rawValue,
+                    jsonStr(word.domainTags) ?? "[]"
                 ])
             }
             try db.execute(sql: "INSERT INTO words_fts(words_fts) VALUES('rebuild')")
@@ -234,10 +269,11 @@ final class WordDatabase {
               let def      = row["definition"] as? String
         else { return nil }
 
-        let synonymsData = (row["synonyms"] as? String)?.data(using: .utf8)
-        let synonyms = (synonymsData.flatMap {
-            try? JSONDecoder().decode([String].self, from: $0)
-        }) ?? []
+        let dec = JSONDecoder()
+        func jsonArray(_ key: String) -> [String] {
+            guard let s = row[key] as? String, let d = s.data(using: .utf8) else { return [] }
+            return (try? dec.decode([String].self, from: d)) ?? []
+        }
 
         return Word(
             id:              id,
@@ -246,11 +282,16 @@ final class WordDatabase {
             partOfSpeech:    row["partOfSpeech"] as? String ?? "",
             definition:      def,
             exampleSentence: row["exampleSentence"] as? String,
-            synonyms:        synonyms,
+            synonyms:        jsonArray("synonyms"),
             category:        row["category"] as? String ?? "",
             level:           level,
             isNew:           false,
-            etymology:       row["etymology"] as? String
+            etymology:       row["etymology"] as? String,
+            frequencyRank:   row["frequencyRank"] as? Int,
+            antonyms:        jsonArray("antonyms"),
+            collocations:    jsonArray("collocations"),
+            register:        (row["register"] as? String).flatMap(WordRegister.init),
+            domainTags:      jsonArray("domainTags")
         )
     }
 }

@@ -184,14 +184,7 @@ struct ProfileView: View {
         }
     }
 
-    private func tierColor(_ tier: BadgeTier?) -> Color {
-        switch tier {
-        case .gold:   return Color(red: 1.0, green: 0.84, blue: 0)
-        case .silver: return Color(red: 0.75, green: 0.75, blue: 0.75)
-        case .bronze: return Color(red: 0.8, green: 0.5, blue: 0.2)
-        case nil:     return AppColors.accent
-        }
-    }
+    private func tierColor(_ tier: BadgeTier?) -> Color { tier?.color ?? AppColors.accent }
 
     // MARK: - Customize App
     private var customizeSection: some View {

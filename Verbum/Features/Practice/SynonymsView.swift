@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 class SynonymsViewModel: ObservableObject {
     struct SynonymQuestion {
         let word: Word
@@ -15,21 +16,18 @@ class SynonymsViewModel: ObservableObject {
     @Published var isFinished = false
 
     private let totalQuestions = 5
-    private let wordStore = WordStore()
 
     init() { nextQuestion() }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
 
-        let words = wordStore.words.filter { !$0.synonyms.isEmpty }
-        guard words.count >= 4 else { isFinished = true; return }
+        let words = WordRepository.shared.all.filter { !$0.synonyms.isEmpty }
+        guard words.count >= 4,
+              let word = words.randomElement(),
+              let correctSynonym = word.synonyms.randomElement() else { isFinished = true; return }
 
-        let word = words.randomElement()!
-        let correctSynonym = word.synonyms.randomElement()!
-
-        // Distractors: random words (not synonyms of this word)
-        let distractors = wordStore.words
+        let distractors = WordRepository.shared.all
             .filter { $0.id != word.id && !word.synonyms.contains($0.text) }
             .shuffled()
             .prefix(3)

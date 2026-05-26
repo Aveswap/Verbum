@@ -1,18 +1,22 @@
 import Foundation
-import AVFoundation
 
 class WordDetailViewModel: ObservableObject {
     let word: Word
-    private let synthesizer = AVSpeechSynthesizer()
+    @Published private(set) var translatedDefinition: String? = nil
+    @Published private(set) var translatedExample: String? = nil
 
     init(word: Word) {
         self.word = word
     }
 
+    func loadTranslation(lang: String) {
+        guard !lang.isEmpty, lang != "en" else { return }
+        let t = WordDatabase.shared.translation(wordId: word.id, lang: lang)
+        translatedDefinition = t?.definition
+        translatedExample    = t?.example
+    }
+
     func speakWord() {
-        let utterance = AVSpeechUtterance(string: word.text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.4
-        synthesizer.speak(utterance)
+        SpeechService.speak(word.text)
     }
 }

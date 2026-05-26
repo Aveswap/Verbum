@@ -43,6 +43,39 @@ enum NotificationManager {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
+    /// Schedules a once-off streak-at-risk notification at 20:00 today if the user
+    /// hasn't opened the app today. Call this before recordDailyOpen() so lastOpened
+    /// still reflects the previous session.
+    static func scheduleStreakReminder(currentStreak: Int, lastOpened: Date?) {
+        guard currentStreak > 1 else {
+            UNUserNotificationCenter.current()
+                .removePendingNotificationRequests(withIdentifiers: ["verbum_streak_risk"])
+            return
+        }
+        let openedToday = lastOpened.map { Calendar.current.isDateInToday($0) } ?? false
+        if openedToday {
+            UNUserNotificationCenter.current()
+                .removePendingNotificationRequests(withIdentifiers: ["verbum_streak_risk"])
+            return
+        }
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            guard settings.authorizationStatus == .authorized else { return }
+            UNUserNotificationCenter.current()
+                .removePendingNotificationRequests(withIdentifiers: ["verbum_streak_risk"])
+            let content = UNMutableNotificationContent()
+            content.title = "Verbum"
+            content.body  = "Your \(currentStreak)-day streak is at risk! 🔥 Open Verbum for 30 seconds."
+            content.sound = .default
+            var comps = DateComponents()
+            comps.hour   = 20
+            comps.minute = 0
+            let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+            UNUserNotificationCenter.current().add(
+                UNNotificationRequest(identifier: "verbum_streak_risk", content: content, trigger: trigger)
+            )
+        }
+    }
+
     static func hoursFrom(_ timeString: String) -> Int {
         Int(timeString.prefix(2)) ?? 9
     }

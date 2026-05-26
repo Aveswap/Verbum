@@ -10,6 +10,8 @@ class UserProfileStore: ObservableObject {
     let cloudKit = CloudKitSyncManager()
     private let key = "userProfile"
     private var saveWorkItem: DispatchWorkItem?
+    private var cloudKitWorkItem: DispatchWorkItem?
+    private var seenSet: Set<UUID> = []
 
     init() {
         if let data = UserDefaults.standard.data(forKey: key),
@@ -18,6 +20,7 @@ class UserProfileStore: ObservableObject {
         } else {
             self.profile = UserProfile()
         }
+        self.seenSet = Set(self.profile.seenWordIds)
     }
 
     // MARK: - Persistence
@@ -25,21 +28,39 @@ class UserProfileStore: ObservableObject {
     private func scheduleSave() {
         saveWorkItem?.cancel()
         let item = DispatchWorkItem { [weak self] in
-            self?.persist()
+            self?.persistLocally()
         }
         saveWorkItem = item
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: item)
+        scheduleCloudKitPush()
+    }
+
+    private func scheduleCloudKitPush() {
+        guard profile.appleUserID != nil else { return }
+        cloudKitWorkItem?.cancel()
+        let item = DispatchWorkItem { [weak self] in
+            guard let self else { return }
+            let snapshot = self.profile
+            Task { await self.cloudKit.push(snapshot) }
+        }
+        cloudKitWorkItem = item
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: item)
     }
 
     func saveNow() {
         saveWorkItem?.cancel()
+        cloudKitWorkItem?.cancel()
         persist()
     }
 
-    private func persist() {
+    private func persistLocally() {
         if let data = try? JSONEncoder().encode(profile) {
             UserDefaults.standard.set(data, forKey: key)
         }
+    }
+
+    private func persist() {
+        persistLocally()
         if profile.appleUserID != nil {
             let snapshot = profile
             Task { await cloudKit.push(snapshot) }
@@ -65,9 +86,8 @@ class UserProfileStore: ObservableObject {
     }
 
     func markWordSeen(_ id: UUID) {
-        if !profile.seenWordIds.contains(id) {
-            profile.seenWordIds.append(id)
-        }
+        guard seenSet.insert(id).inserted else { return }
+        profile.seenWordIds.append(id)
     }
 
     // MARK: - Streak
@@ -85,6 +105,12 @@ class UserProfileStore: ObservableObject {
         }
         profile.longestStreak = max(profile.longestStreak, profile.currentStreak)
         profile.lastOpenedDate = Date()
+        // Append today to daily opens (deduplicated, trimmed to last 7 days)
+        let sevenDaysAgo = cal.date(byAdding: .day, value: -6, to: today)!
+        profile.dailyOpens.removeAll { cal.startOfDay(for: $0) < sevenDaysAgo }
+        if !profile.dailyOpens.contains(where: { cal.isDate($0, inSameDayAs: today) }) {
+            profile.dailyOpens.append(today)
+        }
         saveNow()
     }
 
@@ -95,12 +121,32 @@ class UserProfileStore: ObservableObject {
         saveNow()
     }
 
+    // MARK: - Practice gate
+
+    func practiceGamesRemaining() -> Int {
+        resetPracticeIfNewDay()
+        return max(0, UserProfile.freePracticeLimit - profile.practiceGamesPlayedToday)
+    }
+
+    func recordPracticeGame() {
+        resetPracticeIfNewDay()
+        profile.practiceGamesPlayedToday += 1
+        saveNow()
+    }
+
+    private func resetPracticeIfNewDay() {
+        guard !Calendar.current.isDateInToday(profile.practiceGamesDate) else { return }
+        profile.practiceGamesPlayedToday = 0
+        profile.practiceGamesDate = Date()
+    }
+
     // MARK: - Account Deletion
 
     func deleteAllLocalData() {
         UserDefaults.standard.removeObject(forKey: key)
         KeychainHelper.delete("appleEmail")
         profile = UserProfile()
+        seenSet = []
     }
 
     // MARK: - Points
@@ -146,7 +192,3 @@ class UserProfileStore: ObservableObject {
     }
 }
 
-// WordStore now delegates to the shared repository — no second JSON read.
-class WordStore: ObservableObject {
-    @Published var words: [Word] = WordRepository.shared.all
-}

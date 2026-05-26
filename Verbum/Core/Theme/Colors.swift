@@ -21,11 +21,12 @@ extension Color {
 }
 
 enum AppColors {
-    static let background       = Color(hex: "#1C1C1E")
-    static let surface          = Color(hex: "#2C2C2E")
-    static let surfaceSecondary = Color(hex: "#3A3A3C")
-    static let accent           = Color(hex: "#7EC8C8")
-    static let accentButton     = Color(hex: "#85CBCA")
+    static let background        = Color(hex: "#1C1C1E")
+    static let surface           = Color(hex: "#2C2C2E")
+    static let surfaceSecondary  = Color(hex: "#3A3A3C")
+    static let surfaceTertiary   = Color(hex: "#48484A")
+    static let accent            = Color(hex: "#6ECFCF")
+    static let accentButton      = Color(hex: "#5ED4D4")
     static let textPrimary      = Color.white
     static let textSecondary    = Color(hex: "#8E8E93")
     static let textOnAccent     = Color.black

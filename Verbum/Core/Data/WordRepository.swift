@@ -1,13 +1,13 @@
 import Foundation
+import Combine
 
 /// Single source of truth for word data.
 /// Uses local SQLite (WordDatabase) when available; falls back to the bundled words.json.
 /// After the database downloads, call reloadFromDatabase() to switch sources without a restart.
-final class WordRepository {
+final class WordRepository: ObservableObject {
     static let shared = WordRepository()
 
-    // First 200 words for the swipe feed; all list/category views use query methods directly.
-    private(set) var all: [Word] = []
+    @Published private(set) var all: [Word] = []
 
     /// Total word count across the active source (DB or bundle).
     var totalWordCount: Int {
@@ -30,7 +30,8 @@ final class WordRepository {
 
     func reloadFromDatabase() {
         guard WordDatabase.shared.isAvailable else { return }
-        all = WordDatabase.shared.fetchWords(limit: 0)
+        let words = WordDatabase.shared.fetchWords(limit: 0)
+        DispatchQueue.main.async { self.all = words }
     }
 
     // MARK: - Paywall gate

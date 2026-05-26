@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUI
 
 enum BadgeTier: String, Codable, CaseIterable {
     case gold, silver, bronze
@@ -19,6 +20,13 @@ enum BadgeTier: String, Codable, CaseIterable {
         }
     }
 
+    var color: Color {
+        switch self {
+        case .gold:   return Color(red: 1.0, green: 0.84, blue: 0)
+        case .silver: return Color(red: 0.75, green: 0.75, blue: 0.75)
+        case .bronze: return Color(red: 0.8, green: 0.5, blue: 0.2)
+        }
+    }
 }
 
 struct EarnedBadge: Codable, Identifiable {

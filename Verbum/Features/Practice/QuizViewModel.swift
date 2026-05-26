@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 class QuizViewModel: ObservableObject {
     struct QuizQuestion {
         let word: Word
@@ -15,15 +16,13 @@ class QuizViewModel: ObservableObject {
     @Published var isFinished = false
 
     private let totalQuestions = 5
-    private let wordStore = WordStore()
 
     init() { nextQuestion() }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
-        let words = wordStore.words
-        guard words.count >= 4 else { return }
-        let word = words.randomElement()!
+        let words = WordRepository.shared.all
+        guard words.count >= 4, let word = words.randomElement() else { return }
         let distractors = words.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
         let options = ([word.definition] + distractors).shuffled()
         currentQuestion = QuizQuestion(word: word, options: options, correct: word.definition)

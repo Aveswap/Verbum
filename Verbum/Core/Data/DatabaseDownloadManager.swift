@@ -44,6 +44,7 @@ final class DatabaseDownloadManager: NSObject, ObservableObject {
     // MARK: - Public
 
     func startIfNeeded() {
+        #warning("Replace Self.remoteURL with the real CDN URL before App Store submission")
         guard !WordDatabase.shared.isAvailable, state == .idle else { return }
         state = .downloading(progress: 0)
         downloadTask = session.downloadTask(with: Self.remoteURL)

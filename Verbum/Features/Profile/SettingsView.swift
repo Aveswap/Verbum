@@ -24,143 +24,186 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                Section("PREMIUM") {
-                    Button("Manage Subscription") {
-                        if let url = URL(string: "itms-apps://apps.apple.com/account/subscriptions") {
-                            UIApplication.shared.open(url)
-                        }
-                    }
-                    .foregroundColor(AppColors.textPrimary)
-
-                    Button {
-                        isRestoring = true
-                        Task {
-                            await subscriptions.restorePurchases()
-                            isRestoring = false
-                        }
-                    } label: {
-                        HStack {
-                            Text("Restore Purchases")
-                                .foregroundColor(AppColors.textPrimary)
-                            if isRestoring {
-                                Spacer()
-                                ProgressView().tint(AppColors.accent)
-                            }
-                        }
-                    }
-                    .disabled(isRestoring)
-
-                    if let error = subscriptions.purchaseError {
-                        Text(error)
-                            .font(.system(size: 12))
-                            .foregroundColor(.red)
-                    }
-                }
-
-                Section("ABOUT YOU") {
-                    Button { editingName = true } label: {
-                        row("Name", value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name)
-                    }
-                    Button { editingGender = true } label: {
-                        row("Gender", value: userProfile.profile.gender?.rawValue ?? "Not set")
-                    }
-                    Button { editingAge = true } label: {
-                        row("Age", value: userProfile.profile.age?.rawValue ?? "Not set")
-                    }
-                    Button { editingLanguage = true } label: {
-                        row("Native Language", value: userProfile.profile.nativeLanguage?.displayName ?? "Not set")
-                    }
-                    Button { editingLevel = true } label: {
-                        row("Level", value: userProfile.profile.level.displayName)
-                    }
-                    Button { editingWordsPerWeek = true } label: {
-                        row("Words per week", value: "\(userProfile.profile.wordsPerWeek)")
-                    }
-                }
-
-                Section("SETTINGS") {
-                    Toggle("Sound", isOn: $soundEnabled)
-                        .tint(AppColors.accent)
-                    NavigationLink("Notifications") {
-                        NotificationSettingsView().environmentObject(userProfile)
-                    }
-                }
-
-                Section("DICTIONARY") {
-                    DatabaseStatusBanner()
-                }
-
-                Section("ACCOUNT") {
-                    if auth.isSignedIn {
-                        HStack {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Signed in with Apple")
-                                    .foregroundColor(AppColors.textPrimary)
-                                if !userProfile.profile.name.isEmpty {
-                                    Text(userProfile.profile.name)
-                                        .font(.system(size: 12))
-                                        .foregroundColor(AppColors.textSecondary)
+            ZStack {
+                AppColors.background.ignoresSafeArea()
+                ScrollView {
+                    VStack(spacing: AppSpacing.md) {
+                        // PREMIUM
+                        sectionLabel("Premium")
+                        settingsCard {
+                            iconRow(icon: "crown.fill", iconColor: AppColors.accent, label: "Manage Subscription") {
+                                if let url = URL(string: "itms-apps://apps.apple.com/account/subscriptions") {
+                                    UIApplication.shared.open(url)
                                 }
                             }
-                            Spacer()
-                            Image(systemName: "checkmark.seal.fill")
-                                .foregroundColor(AppColors.accent)
+                            cardDivider
+                            Button {
+                                isRestoring = true
+                                Task { await subscriptions.restorePurchases(); isRestoring = false }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "arrow.clockwise")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.blue)
+                                        .frame(width: 28)
+                                    Text("Restore Purchases")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(AppColors.textPrimary)
+                                    Spacer()
+                                    if isRestoring { ProgressView().tint(AppColors.accent) }
+                                    else { Image(systemName: "chevron.right").font(.system(size: 12)).foregroundColor(AppColors.textSecondary) }
+                                }
+                            }
+                            .disabled(isRestoring)
+                            if let error = subscriptions.purchaseError {
+                                Text(error).font(.system(size: 12)).foregroundColor(.red).padding(.leading, 36)
+                            }
                         }
-                        Button("Sign Out") { auth.signOut() }
-                            .foregroundColor(.red)
-                    } else {
-                        SignInWithAppleButton(.signIn) { request in
-                            request.requestedScopes = [.fullName, .email]
-                        } onCompletion: { result in
-                            auth.handleSignInResult(result)
+
+                        // ABOUT YOU
+                        sectionLabel("About You")
+                        settingsCard {
+                            iconEditRow(icon: "person.fill", iconColor: .purple, label: "Name",
+                                        value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name) { editingName = true }
+                            cardDivider
+                            iconEditRow(icon: "person.2.fill", iconColor: .indigo, label: "Gender",
+                                        value: userProfile.profile.gender?.rawValue ?? "Not set") { editingGender = true }
+                            cardDivider
+                            iconEditRow(icon: "calendar", iconColor: .orange, label: "Age",
+                                        value: userProfile.profile.age?.rawValue ?? "Not set") { editingAge = true }
+                            cardDivider
+                            iconEditRow(icon: "globe", iconColor: .blue, label: "Native Language",
+                                        value: userProfile.profile.nativeLanguage?.displayName ?? "Not set") { editingLanguage = true }
+                            cardDivider
+                            iconEditRow(icon: "chart.bar.fill", iconColor: .green, label: "Level",
+                                        value: userProfile.profile.level.displayName) { editingLevel = true }
+                            cardDivider
+                            iconEditRow(icon: "flag.fill", iconColor: .red, label: "Words per week",
+                                        value: "\(userProfile.profile.wordsPerWeek)") { editingWordsPerWeek = true }
                         }
-                        .signInWithAppleButtonStyle(.white)
-                        .frame(height: 44)
-                        .cornerRadius(AppSpacing.cornerRadius)
-                    }
 
-                    if let error = auth.error {
-                        Text(error)
-                            .font(.system(size: 12))
-                            .foregroundColor(.red)
-                    }
+                        // SETTINGS
+                        sectionLabel("Settings")
+                        settingsCard {
+                            HStack(spacing: AppSpacing.sm) {
+                                Image(systemName: "speaker.wave.2.fill")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.pink)
+                                    .frame(width: 28)
+                                Toggle("Sound", isOn: $soundEnabled)
+                                    .font(.system(size: 16))
+                                    .tint(AppColors.accent)
+                            }
+                            cardDivider
+                            NavigationLink(destination: NotificationSettingsView().environmentObject(userProfile)) {
+                                HStack(spacing: AppSpacing.sm) {
+                                    Image(systemName: "bell.fill")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.yellow)
+                                        .frame(width: 28)
+                                    Text("Notifications")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(AppColors.textPrimary)
+                                }
+                            }
+                        }
 
-                    Button("Delete Account") { showDeleteConfirm = true }
-                        .foregroundColor(.red)
-                }
+                        // DICTIONARY
+                        sectionLabel("Dictionary")
+                        settingsCard {
+                            DatabaseStatusBanner()
+                        }
 
-                Section {
-                    Button("Share App") { shareApp() }
-                        .foregroundColor(AppColors.textPrimary)
-                    Button("Rate App") { rateApp() }
-                        .foregroundColor(AppColors.textPrimary)
-                    Button("Follow us on Instagram") { openInstagram() }
-                        .foregroundColor(AppColors.textPrimary)
-                }
+                        // ACCOUNT
+                        sectionLabel("Account")
+                        settingsCard {
+                            if auth.isSignedIn {
+                                HStack(spacing: AppSpacing.sm) {
+                                    Image(systemName: "applelogo")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(AppColors.textPrimary)
+                                        .frame(width: 28)
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("Signed in with Apple")
+                                            .font(.system(size: 16))
+                                            .foregroundColor(AppColors.textPrimary)
+                                        if !userProfile.profile.name.isEmpty {
+                                            Text(userProfile.profile.name)
+                                                .font(.system(size: 12))
+                                                .foregroundColor(AppColors.textSecondary)
+                                        }
+                                    }
+                                    Spacer()
+                                    Image(systemName: "checkmark.seal.fill").foregroundColor(AppColors.accent)
+                                }
+                                cardDivider
+                                Button { auth.signOut() } label: {
+                                    HStack(spacing: AppSpacing.sm) {
+                                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                                            .font(.system(size: 16)).foregroundColor(.red).frame(width: 28)
+                                        Text("Sign Out").font(.system(size: 16)).foregroundColor(.red)
+                                        Spacer()
+                                    }
+                                }
+                            } else {
+                                SignInWithAppleButton(.signIn) { request in
+                                    request.requestedScopes = [.fullName, .email]
+                                } onCompletion: { result in
+                                    auth.handleSignInResult(result)
+                                }
+                                .signInWithAppleButtonStyle(.white)
+                                .frame(height: 44)
+                                .cornerRadius(AppSpacing.cornerRadius)
+                            }
+                            if let error = auth.error {
+                                Text(error).font(.system(size: 12)).foregroundColor(.red)
+                            }
+                            cardDivider
+                            Button { showDeleteConfirm = true } label: {
+                                HStack(spacing: AppSpacing.sm) {
+                                    Image(systemName: "trash.fill")
+                                        .font(.system(size: 16)).foregroundColor(.red).frame(width: 28)
+                                    Text("Delete Account").font(.system(size: 16)).foregroundColor(.red)
+                                    Spacer()
+                                }
+                            }
+                        }
 
-                #if DEBUG
-                Section("DEVELOPER") {
-                    Button("Reset Onboarding") {
-                        userProfile.resetOnboarding()
-                        dismiss()
-                    }
-                    .foregroundColor(.red)
-                }
-                #endif
+                        // SOCIAL
+                        sectionLabel("Community")
+                        settingsCard {
+                            iconRow(icon: "square.and.arrow.up", iconColor: AppColors.accent, label: "Share App") { shareApp() }
+                            cardDivider
+                            iconRow(icon: "star.fill", iconColor: .yellow, label: "Rate App") { rateApp() }
+                            cardDivider
+                            iconRow(icon: "camera.fill", iconColor: .pink, label: "Follow us on Instagram") { openInstagram() }
+                        }
 
-                Section {
-                    HStack {
-                        Spacer()
+                        #if DEBUG
+                        sectionLabel("Developer")
+                        settingsCard {
+                            Button {
+                                userProfile.resetOnboarding()
+                                dismiss()
+                            } label: {
+                                HStack(spacing: AppSpacing.sm) {
+                                    Image(systemName: "arrow.counterclockwise")
+                                        .font(.system(size: 16)).foregroundColor(.red).frame(width: 28)
+                                    Text("Reset Onboarding").font(.system(size: 16)).foregroundColor(.red)
+                                    Spacer()
+                                }
+                            }
+                        }
+                        #endif
+
                         Text("Verbum v1.0.0")
-                            .foregroundColor(AppColors.textSecondary)
                             .font(.system(size: 13))
-                        Spacer()
+                            .foregroundColor(AppColors.textSecondary)
+                            .padding(.vertical, AppSpacing.sm)
                     }
+                    .padding(AppSpacing.md)
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(AppColors.background)
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -239,15 +282,67 @@ struct SettingsView: View {
         }
     }
 
-    private func row(_ label: String, value: String) -> some View {
-        HStack {
-            Text(label).foregroundColor(AppColors.textPrimary)
-            Spacer()
-            Text(value).foregroundColor(AppColors.textSecondary)
-            Image(systemName: "chevron.right")
-                .font(.system(size: 11))
-                .foregroundColor(AppColors.textSecondary)
-                .padding(.leading, 2)
+    private func sectionLabel(_ text: String) -> some View {
+        Text(text.uppercased())
+            .font(.system(size: 12, weight: .semibold))
+            .foregroundColor(AppColors.textSecondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, AppSpacing.xs)
+            .padding(.top, AppSpacing.xs)
+    }
+
+    @ViewBuilder
+    private func settingsCard<Content: View>(@ViewBuilder content: () -> Content) -> some View {
+        VStack(spacing: AppSpacing.sm) {
+            content()
+        }
+        .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
+    }
+
+    private var cardDivider: some View {
+        Divider().background(AppColors.surfaceSecondary)
+    }
+
+    private func iconRow(icon: String, iconColor: Color, label: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: AppSpacing.sm) {
+                Image(systemName: icon)
+                    .font(.system(size: 16))
+                    .foregroundColor(iconColor)
+                    .frame(width: 28)
+                Text(label)
+                    .font(.system(size: 16))
+                    .foregroundColor(AppColors.textPrimary)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+        }
+    }
+
+    private func iconEditRow(icon: String, iconColor: Color, label: String, value: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack(spacing: AppSpacing.sm) {
+                Image(systemName: icon)
+                    .font(.system(size: 16))
+                    .foregroundColor(iconColor)
+                    .frame(width: 28)
+                Text(label)
+                    .font(.system(size: 16))
+                    .foregroundColor(AppColors.textPrimary)
+                Spacer()
+                Text(value)
+                    .font(.system(size: 15))
+                    .foregroundColor(AppColors.textSecondary)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.textSecondary)
+                    .padding(.leading, 2)
+            }
         }
     }
 

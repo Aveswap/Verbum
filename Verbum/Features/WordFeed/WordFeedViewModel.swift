@@ -1,6 +1,6 @@
 import Foundation
-import AVFoundation
 
+@MainActor
 class WordFeedViewModel: ObservableObject {
     @Published var words: [Word] = []
     @Published var currentIndex: Int = 0
@@ -16,11 +16,12 @@ class WordFeedViewModel: ObservableObject {
     var categoryFilter: String? = nil
     var isPro: Bool = false
 
-    private let synthesizer = AVSpeechSynthesizer()
-
     init() {
-        self.words = WordRepository.shared.feedWords(isPro: false).shuffled()
-        configureAudioSession()
+        SpeechService.configureAudioSession()
+        Task.detached { [weak self] in
+            let shuffled = WordRepository.shared.feedWords(isPro: false).shuffled()
+            await MainActor.run { self?.words = shuffled }
+        }
     }
 
     var currentWord: Word? {
@@ -73,10 +74,29 @@ class WordFeedViewModel: ObservableObject {
     }
 
     func restartFeed() {
-        var pool = WordRepository.shared.feedWords(isPro: isPro)
+        // Always load the full catalog; locked words are shown blurred in the card (soft paywall).
+        // If a level or category filter is active, respect it — but don't filter by pro tier here.
+        // NOTE: restartFeed() calls resetBatchCounter() at the end — callers do NOT need to reset separately.
+        var pool = WordRepository.shared.all
         if let lv = levelFilter { pool = pool.filter { $0.level == lv } }
         if let ct = categoryFilter { pool = pool.filter { $0.category == ct } }
-        words = pool.shuffled()
+        if !isPro && levelFilter == nil && categoryFilter == nil {
+            // Unfiltered feed: lead with all Beginner words, then sprinkle locked previews (1 in 5)
+            let free = pool.filter { $0.level == .beginner }.shuffled()
+            let locked = pool.filter { $0.level != .beginner }.shuffled()
+            var mixed: [Word] = []
+            var lockedIdx = 0
+            for (i, w) in free.enumerated() {
+                mixed.append(w)
+                if (i + 1) % 4 == 0, lockedIdx < locked.count {
+                    mixed.append(locked[lockedIdx])
+                    lockedIdx += 1
+                }
+            }
+            words = mixed
+        } else {
+            words = pool.shuffled()
+        }
         goingBack = false
         currentIndex = 0
         resetBatchCounter()
@@ -94,24 +114,6 @@ class WordFeedViewModel: ObservableObject {
     }
 
     func speakWord(_ text: String) {
-        synthesizer.stopSpeaking(at: .immediate)
-        let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-            ?? AVSpeechSynthesisVoice(language: "en-GB")
-        utterance.rate = 0.42
-        utterance.pitchMultiplier = 1.05
-        utterance.volume = 1.0
-        synthesizer.speak(utterance)
-    }
-
-    private func configureAudioSession() {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(
-                .playback,
-                mode: .voicePrompt,
-                options: [.mixWithOthers, .allowBluetoothHFP]
-            )
-            try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {}
+        SpeechService.speak(text)
     }
 }

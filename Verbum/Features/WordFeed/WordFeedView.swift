@@ -6,24 +6,24 @@ struct WordFeedView: View {
     @EnvironmentObject var auth: AuthService
     @StateObject private var viewModel = WordFeedViewModel()
 
-    @State private var showDetail = false
-    @State private var showProfile = false
-    @State private var showPractice = false
-    @State private var showCategories = false
+    private enum ActiveSheet: String, Identifiable {
+        case detail, profile, practice, categories, share, stats, premium, leaderboard
+        var id: RawValue { rawValue }
+    }
+
+    @State private var activeSheet: ActiveSheet?
+    @State private var showBatchQuiz = false
     @State private var dragOffset: CGFloat = 0
     @State private var likeScale: CGFloat = 1.0
     @State private var bookmarkScale: CGFloat = 1.0
-    @State private var showShareSheet = false
-    @State private var showStats = false
-    @State private var showLeaderboard = false
     @State private var showStreakBanner = false
-    @State private var showPremium = false
     @AppStorage("hasSeenSwipeHint") private var hasSeenSwipeHint = false
     @State private var showSwipeHint = false
     @State private var showEndOfFeed = false
-    @State private var showBatchQuiz = false
     @State private var pendingNextWord = false
     @State private var greenFlashOpacity: Double = 0
+    @State private var seenWordIdsSet: Set<UUID> = []
+    @State private var showQuizToast = false
 
     var body: some View {
         ZStack {
@@ -42,6 +42,10 @@ struct WordFeedView: View {
                 bottomNav
             }
 
+            if showQuizToast {
+                quizToast
+            }
+
             if showSwipeHint {
                 swipeHint
             }
@@ -50,37 +54,35 @@ struct WordFeedView: View {
                 endOfFeedOverlay
             }
         }
-        .sheet(isPresented: $showDetail) {
-            if let word = viewModel.currentWord {
-                WordDetailView(word: word).environmentObject(userProfile)
+        .sheet(item: $activeSheet) { sheet in
+            switch sheet {
+            case .detail:
+                if let word = viewModel.currentWord {
+                    WordDetailView(word: word).environmentObject(userProfile)
+                }
+            case .profile:
+                ProfileView().environmentObject(userProfile).environmentObject(subscriptions).environmentObject(auth)
+            case .practice:
+                PracticeMenuView().environmentObject(userProfile).environmentObject(subscriptions)
+            case .categories:
+                CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)
+            case .share:
+                if let word = viewModel.currentWord {
+                    ShareSheet(items: ["\(word.text) — \(word.definition)\n\nLearn more with Verbum app."])
+                }
+            case .stats:
+                StatsView().environmentObject(userProfile)
+            case .premium:
+                PremiumSheet().environmentObject(subscriptions)
+            case .leaderboard:
+                LeaderboardView().environmentObject(userProfile)
             }
-        }
-        .sheet(isPresented: $showProfile) {
-            ProfileView().environmentObject(userProfile).environmentObject(subscriptions).environmentObject(auth)
-        }
-        .sheet(isPresented: $showPractice) {
-            PracticeMenuView().environmentObject(userProfile).environmentObject(subscriptions)
-        }
-        .sheet(isPresented: $showCategories) {
-            CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)
-        }
-        .sheet(isPresented: $showShareSheet) {
-            if let word = viewModel.currentWord {
-                ShareSheet(items: ["\(word.text) — \(word.definition)\n\nLearn more with Verbum app."])
-            }
-        }
-        .sheet(isPresented: $showStats) {
-            StatsView().environmentObject(userProfile)
-        }
-        .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
-        .sheet(isPresented: $showLeaderboard) {
-            LeaderboardView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showBatchQuiz, onDismiss: {
             viewModel.resetBatchCounter()
             if pendingNextWord {
                 pendingNextWord = false
-                withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.75, blendDuration: 0)) { viewModel.nextWord() }
             } else if viewModel.isAtEnd {
                 withAnimation(.spring()) { showEndOfFeed = true }
             }
@@ -94,11 +96,12 @@ struct WordFeedView: View {
             .environmentObject(userProfile)
         }
         .onAppear {
+            seenWordIdsSet = Set(userProfile.profile.seenWordIds)
             viewModel.isPro = subscriptions.isPro
             viewModel.reloadFromRepository()
             if userProfile.profile.currentStreak > 1 {
                 showStreakBanner = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     withAnimation(.easeOut) { showStreakBanner = false }
                 }
             }
@@ -112,6 +115,9 @@ struct WordFeedView: View {
                 }
             }
         }
+        .onChange(of: userProfile.profile.seenWordIds) { newValue in
+            seenWordIdsSet = Set(newValue)
+        }
         .onChange(of: subscriptions.isPro) { newValue in
             viewModel.isPro = newValue
             viewModel.reloadFromRepository()
@@ -119,6 +125,25 @@ struct WordFeedView: View {
         .onReceive(NotificationCenter.default.publisher(for: .wordDatabaseInstalled)) { _ in
             viewModel.reloadFromRepository()
         }
+    }
+
+    // MARK: - Quiz Toast
+
+    private var quizToast: some View {
+        VStack {
+            Text("Quiz after next word! 🧠")
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundColor(AppColors.textOnAccent)
+                .padding(.horizontal, AppSpacing.md)
+                .padding(.vertical, AppSpacing.sm)
+                .background(AppColors.accent.opacity(0.92))
+                .clipShape(Capsule())
+                .shadow(color: .black.opacity(0.2), radius: 8, y: 2)
+            Spacer()
+        }
+        .padding(.top, AppSpacing.sm)
+        .transition(.move(edge: .top).combined(with: .opacity))
+        .allowsHitTesting(false)
     }
 
     // MARK: - Streak Banner
@@ -130,7 +155,19 @@ struct WordFeedView: View {
                 .font(.system(size: 14, weight: .semibold))
                 .foregroundColor(AppColors.textOnAccent)
             Spacer()
-            Button { withAnimation { showStreakBanner = false } } label: {
+            Button {
+                activeSheet = .leaderboard
+                withAnimation(.easeOut) { showStreakBanner = false }
+            } label: {
+                Text("View Progress")
+                    .font(.system(size: 12, weight: .bold))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color.black.opacity(0.2))
+                    .cornerRadius(6)
+            }
+            Button { withAnimation(.easeOut) { showStreakBanner = false } } label: {
                 Image(systemName: "xmark")
                     .font(.system(size: 12, weight: .bold))
                     .foregroundColor(AppColors.textOnAccent.opacity(0.7))
@@ -140,6 +177,14 @@ struct WordFeedView: View {
         .padding(.vertical, AppSpacing.sm)
         .background(Color.orange)
         .transition(.move(edge: .top).combined(with: .opacity))
+        .gesture(
+            DragGesture(minimumDistance: 10)
+                .onEnded { val in
+                    if val.translation.height < -10 {
+                        withAnimation(.easeOut) { showStreakBanner = false }
+                    }
+                }
+        )
     }
 
     // MARK: - Swipe Hint Overlay
@@ -202,7 +247,7 @@ struct WordFeedView: View {
                     }
                     Button {
                         withAnimation(.easeInOut(duration: 0.3)) { showEndOfFeed = false }
-                        showPractice = true
+                        activeSheet = .practice
                     } label: {
                         Text("Go to Practice")
                             .font(.system(size: 17, weight: .medium))
@@ -223,7 +268,7 @@ struct WordFeedView: View {
     // MARK: - Top Bar
     private var topBar: some View {
         HStack {
-            Button { showProfile = true } label: {
+            Button { activeSheet = .profile } label: {
                 Image(systemName: "person.fill")
                     .font(.system(size: 17))
                     .foregroundColor(AppColors.textPrimary)
@@ -247,7 +292,7 @@ struct WordFeedView: View {
 
             Spacer()
 
-            Button { showPremium = true } label: {
+            Button { activeSheet = .premium } label: {
                 Image(systemName: "crown.fill")
                     .font(.system(size: 17))
                     .foregroundColor(AppColors.accent)
@@ -264,27 +309,27 @@ struct WordFeedView: View {
     private var wordArea: some View {
         Group {
             if let word = viewModel.currentWord {
-                WordCardView(word: word, viewModel: viewModel)
+                WordCardView(word: word, viewModel: viewModel, seenSet: seenWordIdsSet)
                     .environmentObject(userProfile)
-                    .offset(y: dragOffset * 0.08)
+                    .environmentObject(subscriptions)
+                    .offset(y: dragOffset * 0.35)
+                    .rotation3DEffect(.degrees(Double(dragOffset) * 0.015), axis: (x: 1, y: 0, z: 0))
                     .animation(.interactiveSpring(), value: dragOffset)
                     .gesture(swipeGesture)
-                    .onTapGesture { showDetail = true }
+                    .onTapGesture {
+                        if !subscriptions.isPro && word.level != .beginner {
+                            activeSheet = .premium
+                        } else {
+                            activeSheet = .detail
+                        }
+                    }
                     .id(viewModel.currentIndex)
                     .transition(.asymmetric(
                         insertion: .move(edge: viewModel.goingBack ? .top : .bottom).combined(with: .opacity),
                         removal: .move(edge: viewModel.goingBack ? .bottom : .top).combined(with: .opacity)
                     ))
             } else {
-                VStack {
-                    Spacer()
-                    ProgressView()
-                        .tint(AppColors.accent)
-                    Text("Loading words…")
-                        .foregroundColor(AppColors.textSecondary)
-                        .padding(.top, AppSpacing.sm)
-                    Spacer()
-                }
+                SkeletonWordCard()
             }
         }
     }
@@ -307,14 +352,20 @@ struct WordFeedView: View {
                     } else if viewModel.isAtEnd {
                         withAnimation(.spring()) { showEndOfFeed = true }
                     } else {
-                        withAnimation(.easeInOut(duration: 0.25)) { viewModel.nextWord() }
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.75, blendDuration: 0)) { viewModel.nextWord() }
+                        if viewModel.swipesSinceLastQuiz == 3 {
+                            withAnimation { showQuizToast = true }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation { showQuizToast = false }
+                            }
+                        }
                     }
                 } else if val.translation.height > threshold {
                     if viewModel.isAtStart {
                         HapticManager.error()
                     } else {
                         HapticManager.swipeWave()
-                        withAnimation(.easeInOut(duration: 0.25)) { viewModel.previousWord() }
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.75, blendDuration: 0)) { viewModel.previousWord() }
                         resetActionScales()
                     }
                 }
@@ -332,11 +383,11 @@ struct WordFeedView: View {
     private var actionRow: some View {
         if let word = viewModel.currentWord {
             HStack(spacing: AppSpacing.xl) {
-                Button { showDetail = true } label: {
+                Button { activeSheet = .detail } label: {
                     Image(systemName: "info.circle")
                         .actionIcon()
                 }
-                Button { showShareSheet = true } label: {
+                Button { activeSheet = .share } label: {
                     Image(systemName: "square.and.arrow.up")
                         .actionIcon()
                 }
@@ -371,13 +422,13 @@ struct WordFeedView: View {
     private var bottomNav: some View {
         HStack {
             Spacer()
-            BottomNavButton(icon: "square.grid.2x2", label: "Categories") { showCategories = true }
+            BottomNavButton(icon: "square.grid.2x2", label: "Categories") { activeSheet = .categories }
             Spacer()
-            BottomNavButton(icon: "graduationcap", label: "Practice") { showPractice = true }
+            BottomNavButton(icon: "graduationcap", label: "Practice") { activeSheet = .practice }
             Spacer()
-            BottomNavButton(icon: "trophy", label: "Ranking") { showLeaderboard = true }
+            BottomNavButton(icon: "trophy", label: "Ranking") { activeSheet = .leaderboard }
             Spacer()
-            BottomNavButton(icon: "chart.bar", label: "Stats") { showStats = true }
+            BottomNavButton(icon: "chart.bar", label: "Stats") { activeSheet = .stats }
             Spacer()
         }
         .padding(.bottom, AppSpacing.lg)
@@ -388,13 +439,46 @@ struct WordFeedView: View {
 private struct WordCardView: View {
     let word: Word
     let viewModel: WordFeedViewModel
+    let seenSet: Set<UUID>
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
+    @State private var translatedDef: String? = nil
+
+    private var isLocked: Bool { !subscriptions.isPro && word.level != .beginner }
 
     var body: some View {
+        ZStack {
+            cardContent
+                .blur(radius: isLocked ? 10 : 0)
+                .allowsHitTesting(!isLocked)
+
+            if isLocked {
+                VStack(spacing: AppSpacing.sm) {
+                    Text(String(word.text.prefix(3)) + "…")
+                        .font(.system(size: 34, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("This word has a fascinating history")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(AppColors.textPrimary)
+                        .multilineTextAlignment(.center)
+                    Text("Tap to unlock all 1,000 words →")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.accent)
+                }
+                .padding(AppSpacing.xl)
+                .background(.ultraThinMaterial)
+                .cornerRadius(AppSpacing.cornerRadius)
+                .shadow(color: .black.opacity(0.25), radius: 12, y: 4)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private var cardContent: some View {
         VStack(spacing: AppSpacing.sm) {
             Spacer()
 
-            if word.isNew(for: Set(userProfile.profile.seenWordIds)) {
+            if word.isNew(for: seenSet) {
                 Text("NEW")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(AppColors.textOnAccent)
@@ -430,6 +514,15 @@ private struct WordCardView: View {
                 .padding(.horizontal, AppSpacing.xl)
                 .lineLimit(3)
 
+            if let t = translatedDef, word.level == .beginner {
+                Text(t)
+                    .font(AppTypography.definition)
+                    .foregroundColor(AppColors.textSecondary.opacity(0.7))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, AppSpacing.xl)
+                    .lineLimit(2)
+            }
+
             if let example = word.exampleSentence {
                 Text("\u{201C}\(example)\u{201D}")
                     .font(.system(size: 13).italic())
@@ -439,10 +532,11 @@ private struct WordCardView: View {
                     .lineLimit(2)
             }
 
-            if word.level == .expert, let etymology = word.etymology {
+            if word.level != .beginner, let etymology = word.etymology {
                 HStack(spacing: 4) {
-                    Text("📜")
+                    Image(systemName: "book.closed")
                         .font(.system(size: 10))
+                        .foregroundColor(AppColors.textSecondary.opacity(0.55))
                     Text(etymology)
                         .font(.system(size: 11))
                         .foregroundColor(AppColors.textSecondary.opacity(0.55))
@@ -454,7 +548,13 @@ private struct WordCardView: View {
 
             Spacer()
         }
-        .frame(maxWidth: .infinity)
+        .onAppear {
+            if word.level == .beginner,
+               let lang = userProfile.profile.nativeLanguage?.rawValue,
+               lang != "en" {
+                translatedDef = WordDatabase.shared.translation(wordId: word.id, lang: lang)?.definition
+            }
+        }
     }
 }
 
@@ -482,6 +582,46 @@ private struct BottomNavButton: View {
 private extension Image {
     func actionIcon() -> some View {
         self.font(.system(size: 22)).foregroundColor(AppColors.textSecondary)
+    }
+}
+
+// MARK: - Skeleton Loading
+
+private struct SkeletonWordCard: View {
+    var body: some View {
+        VStack(spacing: AppSpacing.md) {
+            Spacer()
+            ShimmerBlock(width: 80,  height: 14, radius: 6)
+            ShimmerBlock(width: 200, height: 44, radius: 14)
+            ShimmerBlock(width: 90,  height: 14, radius: 6)
+            ShimmerBlock(width: 260, height: 14, radius: 6)
+            ShimmerBlock(width: 220, height: 14, radius: 6)
+            ShimmerBlock(width: 180, height: 12, radius: 6)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+
+private struct ShimmerBlock: View {
+    let width: CGFloat
+    let height: CGFloat
+    let radius: CGFloat
+    @State private var animating = false
+
+    var body: some View {
+        LinearGradient(
+            colors: [AppColors.surface, AppColors.surface.opacity(0.3), AppColors.surface],
+            startPoint: .init(x: animating ? 1.5 : -0.5, y: 0.5),
+            endPoint:   .init(x: animating ? 2.5 :  0.5, y: 0.5)
+        )
+        .frame(width: width, height: height)
+        .cornerRadius(radius)
+        .onAppear {
+            withAnimation(.linear(duration: 1.2).repeatForever(autoreverses: false)) {
+                animating = true
+            }
+        }
     }
 }
 

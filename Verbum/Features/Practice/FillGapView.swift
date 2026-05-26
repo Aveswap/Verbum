@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 class FillGapViewModel: ObservableObject {
     struct GapQuestion {
         let word: Word
@@ -17,17 +18,14 @@ class FillGapViewModel: ObservableObject {
     @Published var isFinished = false
 
     private let totalQuestions = 5
-    private let wordStore = WordStore()
 
     init() { nextQuestion() }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
 
-        let words = wordStore.words.filter { $0.exampleSentence != nil }
-        guard words.count >= 4 else { isFinished = true; return }
-
-        let word = words.randomElement()!
+        let words = WordRepository.shared.all.filter { $0.exampleSentence != nil }
+        guard words.count >= 4, let word = words.randomElement() else { isFinished = true; return }
         guard let sentence = word.exampleSentence else { nextQuestion(); return }
 
         let blanked = sentence.replacingOccurrences(
@@ -36,7 +34,7 @@ class FillGapViewModel: ObservableObject {
             options: .caseInsensitive
         )
 
-        let distractors = words
+        let distractors = WordRepository.shared.all
             .filter { $0.id != word.id }
             .shuffled()
             .prefix(3)

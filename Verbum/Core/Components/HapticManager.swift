@@ -7,22 +7,27 @@ enum HapticManager {
 
     private static var _engine: CHHapticEngine?
     private static var _engineRunning = false
+    private static let lock = NSLock()
 
     private static var engine: CHHapticEngine? {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return nil }
+        lock.lock(); defer { lock.unlock() }
         if _engine == nil {
             _engine = try? CHHapticEngine()
             _engine?.isAutoShutdownEnabled = true
             _engine?.stoppedHandler = { _ in
-                _engine = nil
-                _engineRunning = false
+                HapticManager.lock.lock()
+                HapticManager._engine = nil
+                HapticManager._engineRunning = false
+                HapticManager.lock.unlock()
             }
             _engine?.resetHandler = {
-                _engineRunning = false
-                try? _engine?.start()
-                _engineRunning = true
+                HapticManager.lock.lock()
+                HapticManager._engineRunning = false
+                try? HapticManager._engine?.start()
+                HapticManager._engineRunning = true
+                HapticManager.lock.unlock()
             }
-            // Start once — subsequent calls check _engineRunning
             try? _engine?.start()
             _engineRunning = true
         }
@@ -100,13 +105,21 @@ enum HapticManager {
         }
         guard let pattern = try? CHHapticPattern(events: hapticEvents, parameters: []) else { return }
         do {
-            // Restart only if engine was auto-shutdown since last use
-            if !_engineRunning {
+            lock.lock()
+            let needsRestart = !_engineRunning
+            lock.unlock()
+            if needsRestart {
                 try engine.start()
+                lock.lock()
                 _engineRunning = true
+                lock.unlock()
             }
             let player = try engine.makePlayer(with: pattern)
             try player.start(atTime: CHHapticTimeImmediate)
-        } catch {}
+        } catch {
+            #if DEBUG
+            print("[HapticManager] play failed: \(error)")
+            #endif
+        }
     }
 }

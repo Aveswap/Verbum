@@ -6,11 +6,11 @@ struct PremiumSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     private let features: [(icon: String, title: String, subtitle: String)] = [
-        ("infinity",          "Full Word Library",   "Access all 1,000+ curated words"),
-        ("gamecontroller.fill","All Practice Games",  "Unlock every game mode and challenge"),
-        ("rectangle.grid.2x2","All Categories",      "Technology, science, medicine & more"),
-        ("bell.badge.fill",   "Smart Reminders",     "Personalized notification schedule"),
-        ("chart.line.uptrend.xyaxis", "Detailed Stats", "Deep insights into your progress"),
+        ("infinity",          "Master 1,000 Words",         "Curated by linguists to maximize retention"),
+        ("gamecontroller.fill","Practice Until You're Fluent","No daily caps — play as much as you want"),
+        ("rectangle.grid.2x2","Every Domain, Explored",     "From Law to Art to Medicine and beyond"),
+        ("bell.badge.fill",   "Smart Reminders",            "Personalized schedule that keeps you on track"),
+        ("chart.line.uptrend.xyaxis", "Deep Progress Insights", "See exactly how your vocabulary is growing"),
     ]
 
     var body: some View {
@@ -131,12 +131,12 @@ struct PremiumSheet: View {
                     product: monthly,
                     isSelected: selectedProductID == monthly.id,
                     badge: nil,
-                    note: nil
+                    note: "$4.99/mo"
                 ) { selectedProductID = monthly.id }
             } else {
                 ProductRow(id: SubscriptionManager.monthlyID, price: "$4.99", period: "Monthly",
                            isSelected: selectedProductID == SubscriptionManager.monthlyID,
-                           badge: nil, note: nil) {
+                           badge: nil, note: "$4.99/mo") {
                     selectedProductID = SubscriptionManager.monthlyID
                 }
             }
@@ -146,12 +146,12 @@ struct PremiumSheet: View {
                     product: yearly,
                     isSelected: selectedProductID == yearly.id,
                     badge: "Best Value",
-                    note: "= $2.08/mo"
+                    note: "$2.08/mo · Save 58%"
                 ) { selectedProductID = yearly.id }
             } else {
                 ProductRow(id: SubscriptionManager.yearlyID, price: "$24.99", period: "Yearly",
                            isSelected: selectedProductID == SubscriptionManager.yearlyID,
-                           badge: "Best Value", note: "= $2.08/mo") {
+                           badge: "Best Value", note: "$2.08/mo · Save 58%") {
                     selectedProductID = SubscriptionManager.yearlyID
                 }
             }
@@ -175,35 +175,45 @@ struct PremiumSheet: View {
 
     // MARK: - Purchase button
 
+    private var selectedProduct: Product? {
+        subscriptions.products.first { $0.id == selectedProductID }
+    }
+
+    private var hasFreeTrial: Bool {
+        guard selectedProductID != SubscriptionManager.lifetimeID else { return false }
+        return selectedProduct?.subscription?.introductoryOffer?.paymentMode == .freeTrial
+    }
+
+    private var ctaTitle: String {
+        if selectedProductID == SubscriptionManager.lifetimeID { return "Get Lifetime Access" }
+        return hasFreeTrial ? "Start Free Trial" : "Subscribe Now"
+    }
+
     private var purchaseButton: some View {
         VStack(spacing: AppSpacing.xs) {
             Button {
                 HapticManager.impact(.medium)
                 Task {
-                    if let product = subscriptions.products.first(where: { $0.id == selectedProductID }) {
+                    if let product = selectedProduct {
                         await subscriptions.purchase(product)
                         if subscriptions.isPro { dismiss() }
                     }
                 }
             } label: {
-                Group {
-                    if selectedProductID == SubscriptionManager.lifetimeID {
-                        Text("Get Lifetime Access")
-                    } else {
-                        Text("Start 3-Day Free Trial")
-                    }
-                }
-                .font(.system(size: 17, weight: .bold))
-                .foregroundColor(AppColors.textOnAccent)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, AppSpacing.md)
-                .background(AppColors.accentButton)
-                .clipShape(Capsule())
+                Text(ctaTitle)
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, AppSpacing.md)
+                    .background(AppColors.accentButton)
+                    .clipShape(Capsule())
             }
             .padding(.top, AppSpacing.sm)
 
             if selectedProductID != SubscriptionManager.lifetimeID {
-                Text("3-day free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal.")
+                Text(hasFreeTrial
+                     ? "Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal."
+                     : "Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal.")
                     .font(.system(size: 10))
                     .foregroundColor(AppColors.textSecondary)
                     .multilineTextAlignment(.center)

@@ -12,9 +12,9 @@ struct StatsView: View {
                 AppColors.background.ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: AppSpacing.lg) {
-                        summaryGrid
+                        streakHeroCard
                         wordsProgressCard
-                        bookmarksCard
+                        statsGrid
                         weeklyGoalCard
                         profileCard
                     }
@@ -34,21 +34,46 @@ struct StatsView: View {
         .preferredColorScheme(.dark)
     }
 
-    // MARK: - Summary grid
-    private var summaryGrid: some View {
+    // MARK: - Streak hero card (full-width)
+    private var streakHeroCard: some View {
+        HStack(alignment: .center) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text("Current Streak")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.white.opacity(0.8))
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Text("\(userProfile.profile.currentStreak)")
+                        .font(.system(size: 64, weight: .bold, design: .rounded))
+                        .foregroundColor(.white)
+                    Text("days")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white.opacity(0.8))
+                        .padding(.bottom, 8)
+                }
+                Text("Best: \(userProfile.profile.longestStreak) days")
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundColor(.white.opacity(0.7))
+            }
+            Spacer()
+            Text("🔥")
+                .font(.system(size: 64))
+        }
+        .padding(.horizontal, AppSpacing.lg)
+        .padding(.vertical, AppSpacing.lg)
+        .frame(maxWidth: .infinity)
+        .background(
+            LinearGradient(
+                colors: [Color.orange, Color(hex: "#FF6B00")],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .cornerRadius(AppSpacing.cornerRadius)
+    }
+
+    // MARK: - Summary stats grid
+    private var statsGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
-            StatCard(
-                value: "\(userProfile.profile.currentStreak)",
-                label: "Day Streak 🔥",
-                icon: "flame.fill",
-                color: .orange
-            )
-            StatCard(
-                value: "\(userProfile.profile.longestStreak)",
-                label: "Best Streak",
-                icon: "trophy.fill",
-                color: .yellow
-            )
             StatCard(
                 value: "\(userProfile.profile.bookmarkedWordIds.count)",
                 label: "Bookmarked",
@@ -60,12 +85,6 @@ struct StatsView: View {
                 label: "Liked",
                 icon: "heart.fill",
                 color: .red
-            )
-            StatCard(
-                value: "\(userProfile.profile.seenWordIds.count)",
-                label: "Words Seen",
-                icon: "eye.fill",
-                color: .purple
             )
             StatCard(
                 value: "\(userProfile.profile.wordsPerWeek)",
@@ -159,30 +178,47 @@ struct StatsView: View {
 
     // MARK: - Weekly goal card
     private var weeklyGoalCard: some View {
-        VStack(alignment: .leading, spacing: AppSpacing.sm) {
-            Label("Weekly Goal", systemImage: "calendar")
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        let openedDays = Set(userProfile.profile.dailyOpens.map { cal.startOfDay(for: $0) })
+        // Generate Mon–Sun of the current week
+        let weekday = cal.component(.weekday, from: today)
+        let daysFromMon = (weekday + 5) % 7  // Mon=0, Sun=6
+        let monday = cal.date(byAdding: .day, value: -daysFromMon, to: today)!
+        let weekDays = (0..<7).compactMap { cal.date(byAdding: .day, value: $0, to: monday) }
+        let labels = ["M", "T", "W", "T", "F", "S", "S"]
+        let openedCount = weekDays.filter { openedDays.contains($0) }.count
+
+        return VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Label("This Week", systemImage: "calendar")
                 .font(.system(size: 13, weight: .semibold))
                 .foregroundColor(AppColors.textSecondary)
 
             HStack(alignment: .bottom) {
-                Text("\(userProfile.profile.wordsPerWeek)")
+                Text("\(openedCount)")
                     .font(.system(size: 36, weight: .bold))
                     .foregroundColor(AppColors.textPrimary)
-                Text("words / week")
+                Text("/ 7 days opened")
                     .font(.system(size: 14))
                     .foregroundColor(AppColors.textSecondary)
                     .padding(.bottom, 6)
             }
 
-            // Day progress dots (visual only)
             HStack(spacing: 6) {
-                ForEach(["M", "T", "W", "T", "F", "S", "S"], id: \.self) { day in
+                ForEach(Array(zip(labels, weekDays)), id: \.1) { label, day in
+                    let isOpened = openedDays.contains(day)
+                    let isToday = cal.isDate(day, inSameDayAs: today)
                     VStack(spacing: 4) {
                         Circle()
-                            .fill(AppColors.accent.opacity(0.3))
+                            .fill(isOpened ? AppColors.accent : AppColors.accent.opacity(0.15))
                             .frame(width: 28, height: 28)
                             .overlay(
-                                Text(day).font(.system(size: 11, weight: .medium)).foregroundColor(AppColors.accent)
+                                Text(label)
+                                    .font(.system(size: 11, weight: .medium))
+                                    .foregroundColor(isOpened ? AppColors.textOnAccent : AppColors.accent)
+                            )
+                            .overlay(
+                                Circle().stroke(AppColors.accent, lineWidth: isToday ? 2 : 0)
                             )
                     }
                 }

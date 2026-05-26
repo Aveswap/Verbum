@@ -1,5 +1,6 @@
 import CloudKit
 import Foundation
+import os
 
 /// Syncs UserProfile to the user's private CloudKit database.
 /// One CKRecord per user, keyed by the stable Apple User ID.
@@ -13,6 +14,7 @@ import Foundation
 @MainActor
 final class CloudKitSyncManager {
 
+    private let logger = Logger(subsystem: "com.verbum.app", category: "CloudKit")
     private let container = CKContainer.default()
     private var db: CKDatabase { container.privateCloudDatabase }
 
@@ -35,7 +37,7 @@ final class CloudKitSyncManager {
             encode(profile, into: record)
             try await db.save(record)
         } catch {
-            print("[CloudKit] push failed: \(error)")
+            logger.error("[CloudKit] push failed: \(error, privacy: .public)")
         }
     }
 
@@ -53,7 +55,7 @@ final class CloudKitSyncManager {
         } catch let ckErr as CKError where ckErr.code == .unknownItem {
             await push(store.profile)
         } catch {
-            print("[CloudKit] pull failed: \(error)")
+            logger.error("[CloudKit] pull failed: \(error, privacy: .public)")
         }
     }
 
@@ -70,7 +72,7 @@ final class CloudKitSyncManager {
         do {
             _ = try await db.modifyRecordZones(saving: [], deleting: [Self.zoneID])
         } catch {
-            print("[CloudKit] zone deletion failed: \(error)")
+            logger.error("[CloudKit] zone deletion failed: \(error, privacy: .public)")
         }
     }
 

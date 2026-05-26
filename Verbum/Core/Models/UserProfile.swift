@@ -24,6 +24,15 @@ struct UserProfile: Codable {
     var quarterlyPoints: Int = 0
     var quarterlyResetDate: Date = Date()
     var earnedBadges: [EarnedBadge] = []
+
+    // Practice gate — resets at local midnight each day
+    var practiceGamesPlayedToday: Int = 0
+    var practiceGamesDate: Date = .distantPast
+
+    // Daily opens: up to one date per calendar day, trimmed to last 7 days
+    var dailyOpens: [Date] = []
+
+    static let freePracticeLimit = 3
 }
 
 enum AgeRange: String, Codable, CaseIterable {

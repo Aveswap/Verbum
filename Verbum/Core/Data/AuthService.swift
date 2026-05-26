@@ -99,7 +99,7 @@ extension AuthService: ASAuthorizationControllerDelegate {
         guard let cred = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
         Task { @MainActor in
             profileStore?.profile.appleUserID = cred.user
-            if let given = cred.fullName?.givenName, !(profileStore?.profile.name.isEmpty ?? true) == false {
+            if let given = cred.fullName?.givenName, profileStore?.profile.name.isEmpty == true {
                 profileStore?.profile.name = given
             }
             if let email = cred.email {

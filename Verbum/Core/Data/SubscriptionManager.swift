@@ -19,10 +19,11 @@ final class SubscriptionManager: ObservableObject {
     @Published private(set) var purchaseError: String? = nil
 
     private var updatesTask: Task<Void, Never>?
+    private var initTask: Task<Void, Never>?
 
     init() {
         updatesTask = Task { await listenForTransactions() }
-        Task {
+        initTask = Task {
             await loadProducts()
             await refreshEntitlements()
         }
@@ -30,6 +31,7 @@ final class SubscriptionManager: ObservableObject {
 
     deinit {
         updatesTask?.cancel()
+        initTask?.cancel()
     }
 
     // MARK: - Products

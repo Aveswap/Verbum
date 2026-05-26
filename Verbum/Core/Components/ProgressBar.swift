@@ -27,6 +27,7 @@ struct WordProgressBar: View {
                     RoundedRectangle(cornerRadius: 2)
                         .fill(AppColors.accent)
                         .frame(width: geo.size.width * progress, height: 4)
+                        .animation(.easeOut(duration: 0.3), value: progress)
                 }
             }
             .frame(height: 4)

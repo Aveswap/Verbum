@@ -61,6 +61,11 @@ struct WordListView: View {
         }
     }
 
+    private var emptyCTALabel: String {
+        if title.lowercased().contains("history") { return "Start Swiping" }
+        return "Browse Categories"
+    }
+
     private var emptyState: some View {
         VStack(spacing: AppSpacing.lg) {
             Image(systemName: emptyIcon)
@@ -71,6 +76,16 @@ struct WordListView: View {
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
+            Button { dismiss() } label: {
+                Text(emptyCTALabel)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .padding(.horizontal, AppSpacing.xl)
+                    .padding(.vertical, AppSpacing.sm)
+                    .background(AppColors.accentButton)
+                    .clipShape(Capsule())
+            }
+            .padding(.top, AppSpacing.sm)
         }
     }
 }

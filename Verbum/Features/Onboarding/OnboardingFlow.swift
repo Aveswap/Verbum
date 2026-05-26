@@ -1,9 +1,7 @@
 import SwiftUI
 
 enum OnboardingStep: Int, CaseIterable {
-    case welcome, nativeLanguage, referralSource, age, gender, name,
-         customizePromo, wordsPerWeek, notifications,
-         level, wordCheck
+    case welcome, name, nativeLanguage, level, wordCheck
 }
 
 struct OnboardingFlow: View {
@@ -50,47 +48,20 @@ struct OnboardingFlow: View {
         switch currentStep {
         case .welcome:
             WelcomeView { advance() }
-        case .nativeLanguage:
-            NativeLanguageView(onSkip: { advance() }, onSelect: { lang in
-                userProfile.profile.nativeLanguage = lang; advance()
-            })
-        case .referralSource:
-            ReferralSourceView(onSkip: { advance() }, onSelect: { _ in advance() })
-        case .age:
-            AgeSelectionView(onSkip: { advance() }, onSelect: { age in
-                userProfile.profile.age = age; advance()
-            })
-        case .gender:
-            GenderSelectionView(onSkip: { advance() }, onSelect: { gender in
-                userProfile.profile.gender = gender; advance()
-            })
         case .name:
             NameInputView { name in
                 userProfile.profile.name = name; advance()
             }
-        case .customizePromo:
-            PromoSlideView(
-                title: "Set your daily\nword target",
-                subtitle: "Pick how many words to learn per week — we'll send 1-tap reminders to keep you on track",
-                icon: "slider.horizontal.3",
-                buttonTitle: "Next",
-                action: { advance() }
-            )
-        case .wordsPerWeek:
-            WordsPerWeekView { count in
-                userProfile.profile.wordsPerWeek = count; advance()
-            }
-        case .notifications:
-            NotificationsSetupView { advance() }
+        case .nativeLanguage:
+            NativeLanguageView(onSkip: { advance() }, onSelect: { lang in
+                userProfile.profile.nativeLanguage = lang; advance()
+            })
         case .level:
             LevelSelectionView { level in
                 userProfile.profile.level = level; advance()
             }
         case .wordCheck:
             WordCheckView { knownCount in
-                // 15 words: first 5 = Beginner, next 5 = Intermediate, last 5 = Expert
-                // Use score to suggest a starting level (user already chose their own level above,
-                // this overrides only if the placement score disagrees significantly)
                 if knownCount >= 10 {
                     userProfile.profile.level = .expert
                 } else if knownCount >= 5 {
