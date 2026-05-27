@@ -79,7 +79,7 @@ struct WordFeedView: View {
                 CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)
             case .share:
                 if let word = viewModel.currentWord {
-                    ShareSheet(items: ["\(word.text) — \(word.definition)\n\nLearn more with Verbum app."])
+                    WordShareSheet(word: word, translation: nil)
                 }
             case .stats:
                 StatsView().environmentObject(userProfile)
@@ -517,7 +517,15 @@ struct WordFeedView: View {
                     Image(systemName: "info.circle")
                         .actionIcon()
                 }
-                Button { activeSheet = .share } label: {
+                Button {
+                    // Free users can only share words they actually have access to —
+                    // otherwise the "shareable card" would expose locked premium content.
+                    if WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
+                        activeSheet = .share
+                    } else {
+                        activeSheet = .premium
+                    }
+                } label: {
                     Image(systemName: "square.and.arrow.up")
                         .actionIcon()
                 }

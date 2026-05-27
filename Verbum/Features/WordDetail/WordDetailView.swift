@@ -7,6 +7,7 @@ struct WordDetailView: View {
     @StateObject private var viewModel: WordDetailViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var showPremium = false
+    @State private var showShare = false
 
     init(word: Word) {
         self.word = word
@@ -36,6 +37,10 @@ struct WordDetailView: View {
                 if !isLocked {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack(spacing: AppSpacing.sm) {
+                            Button { showShare = true } label: {
+                                Image(systemName: "square.and.arrow.up")
+                                    .foregroundColor(AppColors.textSecondary)
+                            }
                             if !userProfile.profile.decks.isEmpty {
                                 Menu {
                                     ForEach(userProfile.profile.decks) { deck in
@@ -69,6 +74,9 @@ struct WordDetailView: View {
             }
             .sheet(isPresented: $showPremium) {
                 PremiumSheet().environmentObject(subscriptions)
+            }
+            .sheet(isPresented: $showShare) {
+                WordShareSheet(word: word, translation: viewModel.translatedDefinition)
             }
         }
         .preferredColorScheme(.dark)
