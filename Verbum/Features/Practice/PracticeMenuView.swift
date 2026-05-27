@@ -10,6 +10,7 @@ struct PracticeMenuView: View {
     @State private var showGuessWord = false
     @State private var showLevelTest = false
     @State private var showPremium = false
+    @State private var activeChallenge: ChallengeKind?
 
     private var gamesRemaining: Int { userProfile.practiceGamesRemaining() }
     private var canPlay: Bool { subscriptions.isPro || gamesRemaining > 0 }
@@ -50,8 +51,13 @@ struct PracticeMenuView: View {
                         sectionHeader("CHALLENGES")
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: AppSpacing.sm) {
-                                ForEach(["Perfection", "Rush", "Sprint"], id: \.self) { name in
-                                    ChallengeCard(title: name, isLocked: true)
+                                ForEach(ChallengeKind.allCases) { kind in
+                                    let high = userProfile.profile.challengeHighScores[kind.rawValue] ?? 0
+                                    Button {
+                                        startGame { activeChallenge = kind }
+                                    } label: {
+                                        ChallengeCard(kind: kind, highScore: high, isLocked: !canPlay)
+                                    }
                                 }
                             }
                         }
@@ -139,6 +145,10 @@ struct PracticeMenuView: View {
         .sheet(isPresented: $showGuessWord) { GuessWordView(seenIds: Set(userProfile.profile.seenWordIds)) }
         .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
+        .sheet(item: $activeChallenge) { kind in
+            ChallengeView(kind: kind, seenIds: Set(userProfile.profile.seenWordIds))
+                .environmentObject(userProfile)
+        }
     }
 
     private func sectionHeader(_ title: String) -> some View {
@@ -149,22 +159,36 @@ struct PracticeMenuView: View {
 }
 
 private struct ChallengeCard: View {
-    let title: String
+    let kind: ChallengeKind
+    let highScore: Int
     let isLocked: Bool
 
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            VStack(spacing: AppSpacing.sm) {
-                Image(systemName: "trophy.fill")
-                    .font(.system(size: 32))
+            VStack(spacing: AppSpacing.xs) {
+                Image(systemName: kind.icon)
+                    .font(.system(size: 28))
                     .foregroundColor(AppColors.accent)
-                Text(title)
+                Text(kind.title)
                     .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(AppColors.textPrimary)
+                if highScore > 0 {
+                    Text("Best: \(highScore)")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundColor(AppColors.textSecondary)
+                } else {
+                    Text(kind.subtitle)
+                        .font(.system(size: 10))
+                        .foregroundColor(AppColors.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                        .padding(.horizontal, 4)
+                }
             }
-            .frame(width: 120, height: 100)
+            .frame(width: 130, height: 120)
             .background(AppColors.surface)
             .cornerRadius(AppSpacing.cornerRadius)
+            .opacity(isLocked ? 0.5 : 1)
 
             if isLocked {
                 Image(systemName: "lock.fill")

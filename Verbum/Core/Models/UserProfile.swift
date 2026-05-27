@@ -50,6 +50,9 @@ struct UserProfile: Codable {
     // FSRS-5 review state keyed by word UUID string
     var reviews: [String: WordReview] = [:]
 
+    // Challenge high scores keyed by ChallengeKind rawValue
+    var challengeHighScores: [String: Int] = [:]
+
     static let freePracticeLimit = 3
 }
 

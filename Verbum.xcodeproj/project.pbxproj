@@ -14,6 +14,7 @@
 		0B2E435A2FC5FAA600F40D8E /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43592FC5FAA600F40D8E /* CloudKitSyncManager.swift */; };
 		0B2E435C2FC5FAB800F40D8E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E435B2FC5FAB800F40D8E /* AuthService.swift */; };
 		0B2E43602FC656AD00F40D8E /* TranslationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */; };
+		0B2E43632FC6F2D800F40D8E /* InsufficientWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
@@ -104,6 +105,7 @@
 		0B2E435D2FC5FB3400F40D8E /* Verbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Verbum.entitlements; sourceTree = "<group>"; };
 		0B2E435E2FC5FBBD00F40D8E /* Verbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Verbum.entitlements; sourceTree = "<group>"; };
 		0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStore.swift; sourceTree = "<group>"; };
+		0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsufficientWordsView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -172,6 +174,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2E43612FC6F2D800F40D8E /* Decks 2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Decks 2";
+			sourceTree = "<group>";
+		};
+		0B2E43642FC6F2E200F40D8E /* Decks 3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Decks 3";
+			sourceTree = "<group>";
+		};
+		0B2E43652FC6F2F600F40D8E /* Decks 4 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Decks 4";
+			sourceTree = "<group>";
+		};
+		0B2E43662FC6F37F00F40D8E /* Decks 5 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Decks 5";
+			sourceTree = "<group>";
+		};
 		2051B1995995727EA60FADC7 /* WordDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +390,10 @@
 				2051B1995995727EA60FADC7 /* WordDetail */,
 				66AE1E098D2522C453804C9D /* WordFeed */,
 				E4A562BA51095B127FE66E51 /* WordList */,
+				0B2E43612FC6F2D800F40D8E /* Decks 2 */,
+				0B2E43642FC6F2E200F40D8E /* Decks 3 */,
+				0B2E43652FC6F2F600F40D8E /* Decks 4 */,
+				0B2E43662FC6F37F00F40D8E /* Decks 5 */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -406,6 +440,7 @@
 				2968154FE6B16D65BCB011D1 /* QuizView.swift */,
 				A00F070C603FE504217EDA4A /* QuizViewModel.swift */,
 				22CF08B79256CCCF0F41560C /* SynonymsView.swift */,
+				0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -569,6 +604,7 @@
 				C2D154D2972BE298747DAEB7 /* UserProfile.swift in Sources */,
 				2D340578381485FD8894507E /* VerbumApp.swift in Sources */,
 				83E469F0405852685C17601A /* WelcomeView.swift in Sources */,
+				0B2E43632FC6F2D800F40D8E /* InsufficientWordsView.swift in Sources */,
 				369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */,
 				217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */,
 				E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */,
