@@ -20,6 +20,8 @@ struct SettingsView: View {
     @State private var editingLevel = false
     @State private var editingWordsPerWeek = false
     @State private var wordsInput = ""
+    @State private var editingDailyGoal = false
+    @State private var dailyGoalInput: Double = 5
     @State private var showLevelTest = false
 
     var body: some View {
@@ -78,8 +80,11 @@ struct SettingsView: View {
                             iconEditRow(icon: "chart.bar.fill", iconColor: .green, label: "Level",
                                         value: userProfile.profile.level.displayName) { editingLevel = true }
                             cardDivider
-                            iconEditRow(icon: "flag.fill", iconColor: .red, label: "Words per week",
-                                        value: "\(userProfile.profile.wordsPerWeek)") { editingWordsPerWeek = true }
+                            iconEditRow(icon: "target", iconColor: .orange, label: "Daily goal",
+                                        value: "\(userProfile.profile.dailyGoal) words") {
+                                dailyGoalInput = Double(userProfile.profile.dailyGoal)
+                                editingDailyGoal = true
+                            }
                         }
 
                         // SETTINGS
@@ -267,6 +272,14 @@ struct SettingsView: View {
                 editingLanguage = false
             }
         }
+        .sheet(isPresented: $editingDailyGoal) {
+            DailyGoalSheet(initial: userProfile.profile.dailyGoal) { newGoal in
+                userProfile.profile.dailyGoal = newGoal
+                editingDailyGoal = false
+            } onCancel: {
+                editingDailyGoal = false
+            }
+        }
         .confirmationDialog(
             "Delete Account",
             isPresented: $showDeleteConfirm,
@@ -407,6 +420,69 @@ private struct LanguagePickerSheet: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button { dismiss() } label: {
+                        Image(systemName: "xmark").foregroundColor(AppColors.textSecondary)
+                    }
+                }
+            }
+        }
+        .preferredColorScheme(.dark)
+    }
+}
+
+// MARK: - Daily Goal Sheet
+
+private struct DailyGoalSheet: View {
+    @State private var value: Double
+    let onSave: (Int) -> Void
+    let onCancel: () -> Void
+
+    init(initial: Int, onSave: @escaping (Int) -> Void, onCancel: @escaping () -> Void) {
+        _value = State(initialValue: Double(initial))
+        self.onSave = onSave
+        self.onCancel = onCancel
+    }
+
+    var body: some View {
+        NavigationView {
+            ZStack {
+                AppColors.background.ignoresSafeArea()
+                VStack(spacing: AppSpacing.xl) {
+                    Spacer()
+                    Image(systemName: "target")
+                        .font(.system(size: 48))
+                        .foregroundColor(AppColors.accent)
+                    Text("\(Int(value))")
+                        .font(.system(size: 84, weight: .bold, design: .rounded))
+                        .foregroundColor(AppColors.textPrimary)
+                        .contentTransition(.numericText())
+                        .animation(.spring(response: 0.3), value: value)
+                    Text("words per day")
+                        .font(.system(size: 16))
+                        .foregroundColor(AppColors.textSecondary)
+                    Slider(value: $value, in: 1...30, step: 1)
+                        .tint(AppColors.accent)
+                        .padding(.horizontal, AppSpacing.lg)
+                    HStack {
+                        Text("Casual")
+                        Spacer()
+                        Text("Serious")
+                        Spacer()
+                        Text("Intense")
+                    }
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.textSecondary)
+                    .padding(.horizontal, AppSpacing.lg)
+                    Spacer()
+                    PillButton(title: "Save") { onSave(Int(value)) }
+                        .padding(.horizontal, AppSpacing.lg)
+                        .padding(.bottom, AppSpacing.xl)
+                }
+            }
+            .navigationTitle("Daily Goal")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button { onCancel() } label: {
                         Image(systemName: "xmark").foregroundColor(AppColors.textSecondary)
                     }
                 }

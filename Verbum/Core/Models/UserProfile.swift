@@ -44,7 +44,18 @@ struct UserProfile: Codable {
     // Keyed by word UUID as string for Codable compatibility.
     var wordMastery: [String: Int] = [:]
 
+    // Custom decks created by the user (e.g. "Travel words", "SAT prep")
+    var decks: [WordDeck] = []
+
     static let freePracticeLimit = 3
+}
+
+struct WordDeck: Codable, Identifiable, Hashable {
+    var id: UUID = UUID()
+    var name: String
+    var icon: String       // SF Symbol name
+    var wordIds: [UUID]
+    var createdAt: Date = Date()
 }
 
 enum AgeRange: String, Codable, CaseIterable {

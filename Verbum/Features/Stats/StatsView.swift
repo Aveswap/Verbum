@@ -86,9 +86,29 @@ struct StatsView: View {
         .cornerRadius(AppSpacing.cornerRadius)
     }
 
+    private var masteredCount: Int {
+        userProfile.profile.wordMastery.values.filter { $0 >= 4 }.count
+    }
+
+    private var learningCount: Int {
+        userProfile.profile.wordMastery.values.filter { $0 >= 1 && $0 < 4 }.count
+    }
+
     // MARK: - Summary stats grid
     private var statsGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: AppSpacing.sm) {
+            StatCard(
+                value: "\(masteredCount)",
+                label: "Mastered",
+                icon: "checkmark.seal.fill",
+                color: AppColors.accent
+            )
+            StatCard(
+                value: "\(learningCount)",
+                label: "Learning",
+                icon: "graduationcap.fill",
+                color: .yellow
+            )
             StatCard(
                 value: "\(userProfile.profile.bookmarkedWordIds.count)",
                 label: "Bookmarked",
@@ -102,16 +122,16 @@ struct StatsView: View {
                 color: .red
             )
             StatCard(
-                value: "\(userProfile.profile.wordsPerWeek)",
-                label: "Goal / week",
-                icon: "flag.fill",
-                color: .orange
-            )
-            StatCard(
                 value: userProfile.profile.level.displayName,
                 label: "Level",
                 icon: "chart.bar.fill",
                 color: .purple
+            )
+            StatCard(
+                value: "\(userProfile.profile.dailyGoal)",
+                label: "Daily Goal",
+                icon: "target",
+                color: .orange
             )
         }
     }

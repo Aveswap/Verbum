@@ -546,6 +546,22 @@ private struct WordCardView: View {
                     .padding(.vertical, 4)
                     .background(AppColors.accent)
                     .cornerRadius(8)
+            } else {
+                let mastery = userProfile.mastery(for: word.id)
+                if mastery > 0 {
+                    HStack(spacing: 4) {
+                        ForEach(0..<5, id: \.self) { i in
+                            Circle()
+                                .fill(i < mastery ? AppColors.accent : AppColors.surfaceSecondary)
+                                .frame(width: 7, height: 7)
+                        }
+                        if mastery == 5 {
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size: 11))
+                                .foregroundColor(AppColors.accent)
+                        }
+                    }
+                }
             }
 
             Text(word.text)

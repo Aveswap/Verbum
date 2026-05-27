@@ -36,6 +36,25 @@ struct WordDetailView: View {
                 if !isLocked {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack(spacing: AppSpacing.sm) {
+                            if !userProfile.profile.decks.isEmpty {
+                                Menu {
+                                    ForEach(userProfile.profile.decks) { deck in
+                                        Button {
+                                            userProfile.toggleWord(word.id, in: deck.id)
+                                        } label: {
+                                            HStack {
+                                                Text(deck.name)
+                                                if deck.wordIds.contains(word.id) {
+                                                    Image(systemName: "checkmark")
+                                                }
+                                            }
+                                        }
+                                    }
+                                } label: {
+                                    Image(systemName: "rectangle.stack.badge.plus")
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
+                            }
                             Button { userProfile.likeWord(word.id) } label: {
                                 Image(systemName: userProfile.profile.likedWordIds.contains(word.id) ? "heart.fill" : "heart")
                                     .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)

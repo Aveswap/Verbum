@@ -130,6 +130,26 @@ class UserProfileStore: ObservableObject {
         profile.wordMastery[key] = new
     }
 
+    // MARK: - Decks
+
+    func createDeck(name: String, icon: String = "books.vertical") {
+        let deck = WordDeck(name: name, icon: icon, wordIds: [])
+        profile.decks.append(deck)
+    }
+
+    func deleteDeck(_ id: UUID) {
+        profile.decks.removeAll { $0.id == id }
+    }
+
+    func toggleWord(_ wordId: UUID, in deckId: UUID) {
+        guard let idx = profile.decks.firstIndex(where: { $0.id == deckId }) else { return }
+        if let wordIdx = profile.decks[idx].wordIds.firstIndex(of: wordId) {
+            profile.decks[idx].wordIds.remove(at: wordIdx)
+        } else {
+            profile.decks[idx].wordIds.append(wordId)
+        }
+    }
+
     // MARK: - Streak
 
     func recordDailyOpen() {

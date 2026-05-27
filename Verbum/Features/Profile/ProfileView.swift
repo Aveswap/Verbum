@@ -8,6 +8,7 @@ struct ProfileView: View {
     @State private var showSettings = false
     @State private var showFavorites = false
     @State private var showHistory = false
+    @State private var showDecks = false
     @State private var showPremium = false
     @State private var showLiked = false
     @State private var showLevelTest = false
@@ -25,6 +26,7 @@ struct ProfileView: View {
                         } else {
                             premiumCard
                         }
+                        streakCard
                         levelTestCard
                         pointsCard
                         customizeSection
@@ -56,6 +58,7 @@ struct ProfileView: View {
         .sheet(isPresented: $showFavorites)  { FavoritesView().environmentObject(userProfile) }
         .sheet(isPresented: $showLiked)      { LikedView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)    { HistoryView().environmentObject(userProfile) }
+        .sheet(isPresented: $showDecks)      { DecksView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium)    { PremiumSheet().environmentObject(subscriptions) }
         .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showReminders) {
@@ -138,6 +141,40 @@ struct ProfileView: View {
     }
 
     // MARK: - Points Card
+
+    // MARK: - Streak Card (with freeze count)
+    private var streakCard: some View {
+        HStack(spacing: AppSpacing.md) {
+            Text("🔥")
+                .font(.system(size: 32))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("\(userProfile.profile.currentStreak) day streak")
+                    .font(.system(size: 17, weight: .bold))
+                    .foregroundColor(AppColors.textPrimary)
+                Text("Best: \(userProfile.profile.longestStreak) · learn today to keep it")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+            Spacer()
+            if userProfile.profile.streakFreezes > 0 {
+                HStack(spacing: 4) {
+                    Image(systemName: "snowflake")
+                        .font(.system(size: 14, weight: .semibold))
+                    Text("\(userProfile.profile.streakFreezes)")
+                        .font(.system(size: 16, weight: .bold))
+                }
+                .foregroundColor(.cyan)
+                .padding(.horizontal, AppSpacing.sm)
+                .padding(.vertical, 4)
+                .background(Color.cyan.opacity(0.15))
+                .cornerRadius(10)
+            }
+        }
+        .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
+    }
 
     private var pointsCard: some View {
         let tier = UserProfileStore.badgeTier(for: userProfile.profile.quarterlyPoints)
@@ -242,11 +279,8 @@ struct ProfileView: View {
                 Button { showLiked = true } label: {
                     SettingCard(title: "Liked", badge: "\(userProfile.profile.likedWordIds.count)")
                 }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "My Words", locked: true)
-                }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "Collections", locked: true)
+                Button { showDecks = true } label: {
+                    SettingCard(title: "Decks", badge: "\(userProfile.profile.decks.count)")
                 }
                 Button { showHistory = true } label: {
                     SettingCard(title: "History", badge: "\(userProfile.profile.seenWordIds.count)")

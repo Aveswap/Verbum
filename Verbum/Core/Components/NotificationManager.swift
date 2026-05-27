@@ -12,11 +12,19 @@ enum NotificationManager {
     static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             guard granted else { return }
-            reschedule(count: count, startHour: startHour, endHour: endHour)
+            Task { @MainActor in
+                reschedule(count: count, startHour: startHour, endHour: endHour)
+            }
         }
     }
 
+    @MainActor
     static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22) {
+        // Sample real beginner words so each notification teases an actual word,
+        // not a generic prompt. Reading WordRepository requires main actor.
+        let all = WordRepository.shared.all.filter { $0.level == .beginner }
+        let sampledWords = Array(all.shuffled().prefix(count))
+
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -24,8 +32,13 @@ enum NotificationManager {
             let step = max(span / max(count, 1), 1)
             for i in 0..<count {
                 let content = UNMutableNotificationContent()
-                content.title = "Verbum"
-                content.body = messages[i % messages.count]
+                if let word = sampledWords[safe: i] {
+                    content.title = "Today's word: \(word.text)"
+                    content.body = word.definition
+                } else {
+                    content.title = "Verbum"
+                    content.body = messages[i % messages.count]
+                }
                 content.sound = .default
                 content.badge = 1
                 var comps = DateComponents()
@@ -78,5 +91,11 @@ enum NotificationManager {
 
     static func hoursFrom(_ timeString: String) -> Int {
         Int(timeString.prefix(2)) ?? 9
+    }
+}
+
+private extension Array {
+    subscript(safe index: Int) -> Element? {
+        indices.contains(index) ? self[index] : nil
     }
 }
