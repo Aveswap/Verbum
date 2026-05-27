@@ -56,9 +56,12 @@ final class ChallengeViewModel: ObservableObject {
 
     private var timer: Timer?
 
-    init(kind: ChallengeKind, seenIds: Set<UUID>) {
+    init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
         self.kind = kind
-        self.pool = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+        self.pool = WordRepository.shared.all.filter { word in
+            seenIds.contains(word.id) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }
         if pool.count < 4 {
             insufficientWords = true
             isFinished = true
@@ -173,9 +176,11 @@ struct ChallengeView: View {
     @StateObject private var vm: ChallengeViewModel
     let kind: ChallengeKind
 
-    init(kind: ChallengeKind, seenIds: Set<UUID>) {
+    init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
         self.kind = kind
-        _vm = StateObject(wrappedValue: ChallengeViewModel(kind: kind, seenIds: seenIds))
+        _vm = StateObject(wrappedValue: ChallengeViewModel(
+            kind: kind, seenIds: seenIds, isPro: isPro, userLevel: userLevel
+        ))
     }
 
     var body: some View {

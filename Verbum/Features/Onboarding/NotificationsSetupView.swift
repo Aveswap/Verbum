@@ -3,6 +3,7 @@ import UserNotifications
 
 struct NotificationsSetupView: View {
     let onContinue: () -> Void
+    @EnvironmentObject var userProfile: UserProfileStore
     @State private var count = 3
 
     var body: some View {
@@ -82,6 +83,6 @@ struct NotificationsSetupView: View {
     }
 
     private func scheduleNotifications(count: Int) {
-        NotificationManager.requestAndSchedule(count: count)
+        NotificationManager.requestAndSchedule(count: count, level: userProfile.profile.level)
     }
 }

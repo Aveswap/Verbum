@@ -109,6 +109,7 @@ struct WordFeedView: View {
         .onAppear {
             seenWordIdsSet = Set(userProfile.profile.seenWordIds)
             viewModel.isPro = subscriptions.isPro
+            viewModel.userLevel = userProfile.profile.level
             viewModel.dueReviewIds = userProfile.dueReviews()
             viewModel.reloadFromRepository()
             if userProfile.profile.currentStreak > 1 {
@@ -132,6 +133,10 @@ struct WordFeedView: View {
         }
         .onChange(of: subscriptions.isPro) { newValue in
             viewModel.isPro = newValue
+            viewModel.reloadFromRepository()
+        }
+        .onChange(of: userProfile.profile.level) { newLevel in
+            viewModel.userLevel = newLevel
             viewModel.reloadFromRepository()
         }
         .onReceive(NotificationCenter.default.publisher(for: .wordDatabaseInstalled)) { _ in
@@ -297,21 +302,32 @@ struct WordFeedView: View {
                     total: 5
                 )
                 HStack(spacing: 4) {
-                    Image(systemName: userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? "checkmark.circle.fill" : "target")
-                        .font(.system(size: 9))
-                        .foregroundColor(userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? .green : AppColors.textSecondary)
-                    Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
-                        .font(.system(size: 10))
-                        .foregroundColor(AppColors.textSecondary)
-                    let due = userProfile.dueTodayCount()
-                    if due > 0 {
-                        Text("· \(due) due")
+                    let remaining = viewModel.remainingFreeCount(seenIds: seenWordIdsSet)
+                    if !subscriptions.isPro, remaining <= 5, remaining > 0 {
+                        // Final-five warning — urgency before the paywall
+                        Image(systemName: "lock.open.fill")
+                            .font(.system(size: 9))
+                            .foregroundColor(.orange)
+                        Text("\(remaining) free word\(remaining == 1 ? "" : "s") left")
                             .font(.system(size: 10, weight: .semibold))
-                            .foregroundColor(AppColors.accent)
+                            .foregroundColor(.orange)
+                    } else {
+                        Image(systemName: userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? "checkmark.circle.fill" : "target")
+                            .font(.system(size: 9))
+                            .foregroundColor(userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? .green : AppColors.textSecondary)
+                        Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
+                            .font(.system(size: 10))
+                            .foregroundColor(AppColors.textSecondary)
+                        let due = userProfile.dueTodayCount()
+                        if due > 0 {
+                            Text("· \(due) due")
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundColor(AppColors.accent)
+                        }
                     }
                 }
             }
-            .frame(width: 160)
+            .frame(width: 180)
 
             Spacer()
 
@@ -331,7 +347,10 @@ struct WordFeedView: View {
     // MARK: - Word Area
     private var wordArea: some View {
         Group {
-            if let word = viewModel.currentWord {
+            if viewModel.isFreePoolExhausted(seenIds: seenWordIdsSet) {
+                paywallCard
+                    .gesture(TapGesture().onEnded { activeSheet = .premium })
+            } else if let word = viewModel.currentWord {
                 WordCardView(word: word, viewModel: viewModel, seenSet: seenWordIdsSet)
                     .environmentObject(userProfile)
                     .environmentObject(subscriptions)
@@ -340,7 +359,7 @@ struct WordFeedView: View {
                     .animation(.interactiveSpring(), value: dragOffset)
                     .gesture(swipeGesture)
                     .onTapGesture {
-                        if !subscriptions.isPro && word.level != .beginner {
+                        if !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
                             activeSheet = .premium
                         } else {
                             activeSheet = .detail
@@ -357,6 +376,47 @@ struct WordFeedView: View {
         }
     }
 
+    // MARK: - Paywall card (shown when free pool is exhausted)
+
+    private var paywallCard: some View {
+        let levelName = userProfile.profile.level.displayName
+        let lockedCount = WordAccess.lockedAtLevelCount(userLevel: userProfile.profile.level)
+        return VStack(spacing: AppSpacing.lg) {
+            Image(systemName: "crown.fill")
+                .font(.system(size: 56))
+                .foregroundColor(AppColors.accent)
+
+            Text("You learned all \(WordAccess.freeLimit) free \(levelName) words 🎉")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(AppColors.textPrimary)
+                .multilineTextAlignment(.center)
+
+            if lockedCount > 0 {
+                Text("Unlock \(lockedCount) more \(levelName) words")
+                    .font(.system(size: 16))
+                    .foregroundColor(AppColors.textSecondary)
+                    .multilineTextAlignment(.center)
+            } else {
+                Text("Go Premium to unlock the rest of the catalog")
+                    .font(.system(size: 16))
+                    .foregroundColor(AppColors.textSecondary)
+                    .multilineTextAlignment(.center)
+            }
+
+            Text("Your \(WordAccess.freeLimit) words remain free to practice, review, and add to decks — forever.")
+                .font(.system(size: 13))
+                .foregroundColor(AppColors.textSecondary.opacity(0.85))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, AppSpacing.lg)
+
+            PillButton(title: "Get Premium") { activeSheet = .premium }
+                .padding(.horizontal, AppSpacing.lg)
+                .padding(.top, AppSpacing.sm)
+        }
+        .padding(AppSpacing.lg)
+        .frame(maxWidth: .infinity)
+    }
+
     private var swipeGesture: some Gesture {
         DragGesture()
             .onChanged { dragOffset = $0.translation.height }
@@ -365,10 +425,8 @@ struct WordFeedView: View {
                 if val.translation.height < -threshold {
                     HapticManager.swipeWave()
                     if let word = viewModel.currentWord {
-                        // Locked (premium) words are blurred — the user hasn't actually seen
-                        // them, so they must NOT count toward seen/daily goal/batch quiz.
-                        let isLocked = !subscriptions.isPro && word.level != .beginner
-                        if !isLocked {
+                        // Only access-granted words count toward seen / daily goal / batch.
+                        if WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
                             let goalJustHit = userProfile.markWordSeen(word.id)
                             if goalJustHit { triggerGoalCelebration() }
                         }
@@ -516,7 +574,9 @@ private struct WordCardView: View {
     @EnvironmentObject var subscriptions: SubscriptionManager
     @State private var translatedDef: String? = nil
 
-    private var isLocked: Bool { !subscriptions.isPro && word.level != .beginner }
+    private var isLocked: Bool {
+        !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level)
+    }
 
     var body: some View {
         ZStack {
@@ -525,6 +585,8 @@ private struct WordCardView: View {
                 .allowsHitTesting(!isLocked)
 
             if isLocked {
+                let levelName = userProfile.profile.level.displayName
+                let lockedCount = WordAccess.lockedAtLevelCount(userLevel: userProfile.profile.level)
                 VStack(spacing: AppSpacing.sm) {
                     Text(String(word.text.prefix(3)) + "…")
                         .font(.system(size: 34, weight: .bold))
@@ -533,7 +595,9 @@ private struct WordCardView: View {
                         .font(.system(size: 14, weight: .medium))
                         .foregroundColor(AppColors.textPrimary)
                         .multilineTextAlignment(.center)
-                    Text("Tap to unlock all 1,000 words →")
+                    Text(lockedCount > 0
+                         ? "Tap to unlock \(lockedCount) more \(levelName) words →"
+                         : "Tap to unlock Premium →")
                         .font(.system(size: 12))
                         .foregroundColor(AppColors.accent)
                 }

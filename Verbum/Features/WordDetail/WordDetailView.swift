@@ -14,7 +14,7 @@ struct WordDetailView: View {
     }
 
     private var isLocked: Bool {
-        !subscriptions.isPro && word.level != .beginner
+        !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level)
     }
 
     var body: some View {

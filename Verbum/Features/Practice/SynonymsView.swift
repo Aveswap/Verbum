@@ -22,8 +22,11 @@ class SynonymsViewModel: ObservableObject {
     private let pool: [Word]
     private let distractorPool: [Word]
 
-    init(seenIds: Set<UUID>) {
-        let seen = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        let seen = WordRepository.shared.all.filter { word in
+            seenIds.contains(word.id) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }
         self.distractorPool = seen
         self.pool = seen.filter { !$0.synonyms.isEmpty }
         if pool.count < 1 || distractorPool.count < 4 {
@@ -71,8 +74,10 @@ struct SynonymsView: View {
     @StateObject private var viewModel: SynonymsViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>) {
-        _viewModel = StateObject(wrappedValue: SynonymsViewModel(seenIds: seenIds))
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        _viewModel = StateObject(wrappedValue: SynonymsViewModel(
+            seenIds: seenIds, isPro: isPro, userLevel: userLevel
+        ))
     }
 
     var body: some View {

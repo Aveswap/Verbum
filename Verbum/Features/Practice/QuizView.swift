@@ -5,8 +5,10 @@ struct QuizView: View {
     @StateObject private var viewModel: QuizViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>) {
-        _viewModel = StateObject(wrappedValue: QuizViewModel(seenIds: seenIds))
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        _viewModel = StateObject(wrappedValue: QuizViewModel(
+            seenIds: seenIds, isPro: isPro, userLevel: userLevel
+        ))
     }
 
     var body: some View {

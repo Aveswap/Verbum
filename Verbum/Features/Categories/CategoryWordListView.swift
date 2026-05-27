@@ -39,10 +39,18 @@ struct CategoryWordListView: View {
 
     let filter: FilterKind
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
     private let allWords = WordRepository.shared.all
 
+    /// Filter by chosen kind AND honor the free-pool gate so locked words don't leak
+    /// into the list. Premium subscribers see everything at their level.
     private var filtered: [Word] {
-        allWords.filter { filter.matches($0) }
+        let isPro = subscriptions.isPro
+        let userLevel = userProfile.profile.level
+        return allWords.filter { word in
+            filter.matches(word) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }
     }
 
     var body: some View {
@@ -50,8 +58,9 @@ struct CategoryWordListView: View {
             title: filter.title,
             words: filtered,
             emptyIcon: "magnifyingglass",
-            emptyMessage: "No words found in this category yet.\nMore coming soon!"
+            emptyMessage: "No words to show here yet. Keep swiping the feed to unlock more."
         )
         .environmentObject(userProfile)
+        .environmentObject(subscriptions)
     }
 }

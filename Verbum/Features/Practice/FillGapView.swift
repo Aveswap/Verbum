@@ -24,8 +24,11 @@ class FillGapViewModel: ObservableObject {
     private let pool: [Word]
     private let distractorPool: [Word]
 
-    init(seenIds: Set<UUID>) {
-        let seen = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        let seen = WordRepository.shared.all.filter { word in
+            seenIds.contains(word.id) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }
         self.distractorPool = seen
         // FillGap requires words with example sentences containing the word as a whole token
         self.pool = seen.filter { word in
@@ -109,8 +112,10 @@ struct FillGapView: View {
     @StateObject private var viewModel: FillGapViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>) {
-        _viewModel = StateObject(wrappedValue: FillGapViewModel(seenIds: seenIds))
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        _viewModel = StateObject(wrappedValue: FillGapViewModel(
+            seenIds: seenIds, isPro: isPro, userLevel: userLevel
+        ))
     }
 
     var body: some View {

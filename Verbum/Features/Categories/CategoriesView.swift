@@ -34,8 +34,19 @@ struct CategoriesView: View {
 
     private let allWords = WordRepository.shared.all
 
+    /// Word count visible to *this* user inside the bucket — respects level + free-pool gating.
+    /// Premium buckets still report their full count so the locked card shows "X words" while
+    /// remaining tap-to-upgrade.
     private func wordCount(for bucket: CategoryBucket) -> Int {
-        allWords.filter { bucket.dbCategories.contains($0.category) }.count
+        if bucket.premium {
+            return allWords.filter { bucket.dbCategories.contains($0.category) }.count
+        }
+        let userLevel = userProfile.profile.level
+        let isPro = subscriptions.isPro
+        return allWords.filter { word in
+            bucket.dbCategories.contains(word.category) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }.count
     }
 
     var body: some View {

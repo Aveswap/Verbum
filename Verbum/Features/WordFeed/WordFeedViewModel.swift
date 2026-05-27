@@ -15,14 +15,17 @@ class WordFeedViewModel: ObservableObject {
     var levelFilter: WordLevel? = nil
     var categoryFilter: String? = nil
     var isPro: Bool = false
+    /// User's currently-selected level. Drives the soft-paywall free pool.
+    var userLevel: WordLevel = .beginner
     /// IDs of words FSRS says are due for review. Set from outside (WordFeedView.onAppear)
     /// because the VM has no access to UserProfileStore.
     var dueReviewIds: [UUID] = []
 
     init() {
         SpeechService.configureAudioSession()
-        // WordRepository is @MainActor; we're already on the main actor so a direct read is fine.
-        self.words = WordRepository.shared.feedWords(isPro: false).shuffled()
+        // Real feed is loaded in restartFeed() once onAppear sets isPro + userLevel.
+        // Empty initial state shows the skeleton card.
+        self.words = []
     }
 
     var currentWord: Word? {
@@ -54,10 +57,8 @@ class WordFeedViewModel: ObservableObject {
         guard currentIndex < words.count - 1 else { return }
         goingBack = false
         if let word = currentWord {
-            // Locked (premium) cards are blurred; the user hasn't actually read them
-            // so they don't count for batch-quiz progress.
-            let isLocked = !isPro && word.level != .beginner
-            if !isLocked {
+            // Locked cards (premium tease + paywall card) don't count for batch progress.
+            if WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel) {
                 recentBatchWords.append(word)
                 if recentBatchWords.count > 5 { recentBatchWords.removeFirst() }
                 swipesSinceLastQuiz += 1
@@ -80,34 +81,41 @@ class WordFeedViewModel: ObservableObject {
     }
 
     func restartFeed() {
-        // Always load the full catalog; locked words are shown blurred in the card (soft paywall).
-        // If a level or category filter is active, respect it — but don't filter by pro tier here.
-        // NOTE: restartFeed() calls resetBatchCounter() at the end — callers do NOT need to reset separately.
-        var pool = WordRepository.shared.all
-        if let lv = levelFilter { pool = pool.filter { $0.level == lv } }
-        if let ct = categoryFilter { pool = pool.filter { $0.category == ct } }
-        if !isPro && levelFilter == nil && categoryFilter == nil {
-            // Unfiltered feed: lead with all Beginner words and drop one locked preview
-            // roughly once every 35 cards. With a 300-beginner free tier that is ~8
-            // teases across the whole free experience — a gentle nudge, not nagging.
-            let free = pool.filter { $0.level == .beginner }.shuffled()
-            let locked = pool.filter { $0.level != .beginner }.shuffled()
-            var mixed: [Word] = []
-            var lockedIdx = 0
-            for (i, w) in free.enumerated() {
-                mixed.append(w)
-                if (i + 1) % 35 == 0, lockedIdx < locked.count {
-                    mixed.append(locked[lockedIdx])
-                    lockedIdx += 1
-                }
-            }
-            words = prependDueReviews(mixed)
-        } else {
+        // Feed = the words this user is allowed to see at their selected level.
+        // Free users get WordAccess.freePool(level:) in deterministic freq-rank order;
+        // pro users get the full catalog at that level (shuffled for variety).
+        // Level/category filters (set externally, e.g. by category drill-down) override.
+        if let lv = levelFilter {
+            var pool = WordRepository.shared.all.filter { $0.level == lv }
+            if let ct = categoryFilter { pool = pool.filter { $0.category == ct } }
             words = prependDueReviews(pool.shuffled())
+        } else if let ct = categoryFilter {
+            let pool = WordRepository.shared.all.filter { $0.category == ct }
+            words = prependDueReviews(pool.shuffled())
+        } else if isPro {
+            // Pro, no filter: full catalog at the user's selected level
+            let pool = WordRepository.shared.all.filter { $0.level == userLevel }
+            words = prependDueReviews(pool.shuffled())
+        } else {
+            // Free, no filter: the locked 50 of this level in freq-rank order
+            words = WordAccess.freePool(level: userLevel)
         }
         goingBack = false
         currentIndex = 0
         resetBatchCounter()
+    }
+
+    /// Count of free pool words the user hasn't yet swiped at their current level.
+    /// Drives the "5 left" badge in the feed top bar (only meaningful for free users).
+    func remainingFreeCount(seenIds: Set<UUID>) -> Int {
+        guard !isPro else { return 0 }
+        return WordAccess.remainingFreeCount(seenIds: seenIds, userLevel: userLevel)
+    }
+
+    /// True when a free user has consumed every word in their level's free pool.
+    /// The view layer shows a paywall card on the final swipe.
+    func isFreePoolExhausted(seenIds: Set<UUID>) -> Bool {
+        !isPro && remainingFreeCount(seenIds: seenIds) == 0 && !words.isEmpty
     }
 
     /// Front-loads up to 10 FSRS-due reviews ahead of the rest of the feed.

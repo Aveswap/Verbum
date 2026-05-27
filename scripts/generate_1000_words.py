@@ -36,49 +36,41 @@ MODEL  = "claude-opus-4-7"      # latest reasoning model — best for accurate e
 DB_PATH        = Path(__file__).parent / "words_v2.db"
 PROGRESS_PATH  = Path(__file__).parent / "progress_v2.json"
 
-# (category, level, count) — sums to 1000
+# (category, level, count) — initial seed: 50 free-pool words per level for the
+# soft-paywall MVP. Categories below intentionally skip the premium DB-categories
+# (Technology / Science / Literature / Society) so the free 50 at each level can
+# safely be drawn from non-premium content. Premium content is generated later
+# (phase 2) and lives in those four categories.
 PLAN = [
-    # ─── Beginner: 300 ──
-    ("Daily Life & Social",   "beginner", 45),
-    ("Emotions & Psychology", "beginner", 35),
-    ("Communication",         "beginner", 30),
-    ("Body & Health",         "beginner", 25),
-    ("Nature & Environment",  "beginner", 25),
-    ("Technology & Science",  "beginner", 20),
-    ("Business & Finance",    "beginner", 20),
-    ("Arts & Literature",     "beginner", 20),
-    ("Law & Society",         "beginner", 15),
-    ("Academic & Philosophy", "beginner", 15),
-    ("Food & Culture",        "beginner", 30),
-    ("Character",             "beginner", 20),
-    # ─── Intermediate: 450 ──
-    ("Daily Life & Social",   "intermediate", 50),
-    ("Emotions & Psychology", "intermediate", 55),
-    ("Communication",         "intermediate", 50),
-    ("Body & Health",         "intermediate", 40),
-    ("Nature & Environment",  "intermediate", 35),
-    ("Technology & Science",  "intermediate", 45),
-    ("Business & Finance",    "intermediate", 40),
-    ("Arts & Literature",     "intermediate", 35),
-    ("Law & Society",         "intermediate", 35),
-    ("Academic & Philosophy", "intermediate", 30),
-    ("Food & Culture",        "intermediate", 25),
-    ("Character",             "intermediate", 10),
-    # ─── Expert: 250 ──
-    ("Daily Life & Social",   "expert", 20),
-    ("Emotions & Psychology", "expert", 30),
-    ("Communication",         "expert", 25),
-    ("Body & Health",         "expert", 20),
-    ("Nature & Environment",  "expert", 15),
-    ("Technology & Science",  "expert", 30),
-    ("Business & Finance",    "expert", 25),
-    ("Arts & Literature",     "expert", 25),
-    ("Law & Society",         "expert", 25),
-    ("Academic & Philosophy", "expert", 20),
-    ("Food & Culture",        "expert",  5),
-    ("Character",             "expert", 10),
+    # ─── Beginner: 50 ──
+    ("Daily Life & Social",   "beginner", 12),
+    ("Emotions & Psychology", "beginner",  8),
+    ("Communication",         "beginner",  6),
+    ("Body & Health",         "beginner",  6),
+    ("Nature & Environment",  "beginner",  6),
+    ("Business & Finance",    "beginner",  4),
+    ("Food & Culture",        "beginner",  4),
+    ("Character",             "beginner",  4),
+    # ─── Intermediate: 50 ──
+    ("Daily Life & Social",   "intermediate", 10),
+    ("Emotions & Psychology", "intermediate", 10),
+    ("Communication",         "intermediate",  8),
+    ("Body & Health",         "intermediate",  6),
+    ("Nature & Environment",  "intermediate",  4),
+    ("Business & Finance",    "intermediate",  6),
+    ("Food & Culture",        "intermediate",  4),
+    ("Character",             "intermediate",  2),
+    # ─── Expert: 50 ──
+    ("Daily Life & Social",   "expert",  6),
+    ("Emotions & Psychology", "expert", 10),
+    ("Communication",         "expert",  8),
+    ("Body & Health",         "expert",  6),
+    ("Nature & Environment",  "expert",  4),
+    ("Business & Finance",    "expert",  8),
+    ("Food & Culture",        "expert",  4),
+    ("Character",             "expert",  4),
 ]
-assert sum(c for _, _, c in PLAN) == 1000
+assert sum(c for _, _, c in PLAN) == 150
 
 LEVEL_FREQ_HINT = {
     "beginner":     "1-3000",

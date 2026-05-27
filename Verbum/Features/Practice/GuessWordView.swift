@@ -23,8 +23,11 @@ class GuessWordViewModel: ObservableObject {
     private let pool: [Word]
     private var currentWordId: UUID?
 
-    init(seenIds: Set<UUID>) {
-        self.pool = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        self.pool = WordRepository.shared.all.filter { word in
+            seenIds.contains(word.id) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }
         if pool.count < 4 {
             insufficientWords = true
             isFinished = true
@@ -67,8 +70,10 @@ struct GuessWordView: View {
     @StateObject private var viewModel: GuessWordViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>) {
-        _viewModel = StateObject(wrappedValue: GuessWordViewModel(seenIds: seenIds))
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        _viewModel = StateObject(wrappedValue: GuessWordViewModel(
+            seenIds: seenIds, isPro: isPro, userLevel: userLevel
+        ))
     }
 
     var body: some View {

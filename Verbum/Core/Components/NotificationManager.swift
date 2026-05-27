@@ -9,20 +9,21 @@ enum NotificationManager {
         "1 minute a day keeps ignorance away 💡"
     ]
 
-    static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22) {
+    static func requestAndSchedule(count: Int, level: WordLevel = .beginner, startHour: Int = 9, endHour: Int = 22) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             guard granted else { return }
             Task { @MainActor in
-                reschedule(count: count, startHour: startHour, endHour: endHour)
+                reschedule(count: count, level: level, startHour: startHour, endHour: endHour)
             }
         }
     }
 
     @MainActor
-    static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22) {
-        // Sample real beginner words so each notification teases an actual word,
-        // not a generic prompt. Reading WordRepository requires main actor.
-        let all = WordRepository.shared.all.filter { $0.level == .beginner }
+    static func reschedule(count: Int, level: WordLevel = .beginner, startHour: Int = 9, endHour: Int = 22) {
+        // Sample real words from the user's own free pool so the notifications never
+        // leak words above their level (and so a free user can immediately tap-open
+        // anything the notification mentions).
+        let all = WordAccess.freePool(level: level)
         let sampledWords = Array(all.shuffled().prefix(count))
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in

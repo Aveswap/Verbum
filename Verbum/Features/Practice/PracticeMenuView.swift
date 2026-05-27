@@ -139,14 +139,33 @@ struct PracticeMenuView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showQuiz) { QuizView(seenIds: Set(userProfile.profile.seenWordIds)) }
-        .sheet(isPresented: $showFillGap) { FillGapView(seenIds: Set(userProfile.profile.seenWordIds)) }
-        .sheet(isPresented: $showSynonyms) { SynonymsView(seenIds: Set(userProfile.profile.seenWordIds)) }
-        .sheet(isPresented: $showGuessWord) { GuessWordView(seenIds: Set(userProfile.profile.seenWordIds)) }
+        .sheet(isPresented: $showQuiz) {
+            QuizView(seenIds: Set(userProfile.profile.seenWordIds),
+                     isPro: subscriptions.isPro,
+                     userLevel: userProfile.profile.level)
+        }
+        .sheet(isPresented: $showFillGap) {
+            FillGapView(seenIds: Set(userProfile.profile.seenWordIds),
+                        isPro: subscriptions.isPro,
+                        userLevel: userProfile.profile.level)
+        }
+        .sheet(isPresented: $showSynonyms) {
+            SynonymsView(seenIds: Set(userProfile.profile.seenWordIds),
+                         isPro: subscriptions.isPro,
+                         userLevel: userProfile.profile.level)
+        }
+        .sheet(isPresented: $showGuessWord) {
+            GuessWordView(seenIds: Set(userProfile.profile.seenWordIds),
+                          isPro: subscriptions.isPro,
+                          userLevel: userProfile.profile.level)
+        }
         .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
         .sheet(item: $activeChallenge) { kind in
-            ChallengeView(kind: kind, seenIds: Set(userProfile.profile.seenWordIds))
+            ChallengeView(kind: kind,
+                          seenIds: Set(userProfile.profile.seenWordIds),
+                          isPro: subscriptions.isPro,
+                          userLevel: userProfile.profile.level)
                 .environmentObject(userProfile)
         }
     }

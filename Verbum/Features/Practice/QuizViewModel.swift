@@ -21,8 +21,14 @@ class QuizViewModel: ObservableObject {
     private let totalQuestions = 5
     private let pool: [Word]
 
-    init(seenIds: Set<UUID>) {
-        self.pool = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+        // Pool = words the user has seen AND still has access to.
+        // After the locked-as-seen bug fix, the two sets already line up — the
+        // extra canAccess check is defensive in case of stale persisted data.
+        self.pool = WordRepository.shared.all.filter { word in
+            seenIds.contains(word.id) &&
+            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+        }
         if pool.count < 4 {
             insufficientWords = true
             isFinished = true
