@@ -248,13 +248,4 @@ struct VerbumLockScreenWidget: Widget {
     }
 }
 
-// MARK: - Bundle
 
-@main
-struct VerbumWidgetBundle: WidgetBundle {
-    var body: some Widget {
-        VerbumWidget()
-        VerbumWidgetMedium()
-        VerbumLockScreenWidget()
-    }
-}

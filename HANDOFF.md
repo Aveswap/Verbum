@@ -193,7 +193,7 @@ Numbered for cross-reference with the audit. Grouped by impact.
 |---|---|---|---|
 | 1 | **Word of the Day Widget** (WidgetKit + App Group) | High | 3-4 days (new Xcode target) |
 | 2 | **Apple Watch glance** — daily word on wrist | High | 2-3 days (new Xcode target) |
-| 3 | **Translation pipeline for 13 languages** (es/fr/de/pt/it/pl/zh/ja/ko/ar/tr/hi) | High | 1 day + ~$15 Claude API |
+| 3 | **Translation pipeline for 4 languages** (uk → then de, it, fr — see §6 Content strategy) | High | uk: ~½ day + ~$3 Claude API; per extra lang: ~½ day + ~$3 |
 | 4 | **Search bar in feed/home** — quick lookup outside Categories | Medium | ½ day |
 | 5 | **Spotlight Search integration** — words findable from iOS Spotlight | Medium | ½ day |
 | 6 | **Onboarding feed preview** — sample card before commitment for higher conversion | Medium | ½ day |
@@ -255,6 +255,24 @@ write side until extensions are listening.
 3. **App icon set** — there's an `AppIcon.appiconset` placeholder. Real icon TBD.
 4. **Default Apple Sign-In flow** — works in code; needs the App ID to have the Sign in with Apple capability provisioned. Verify before submission.
 5. **Russian language** — explicitly removed from `NativeLanguage` enum. Decision is final; don't re-add.
+
+### Content strategy — revised 2026-05-28
+
+The original audit listed 13 native languages. **Scope reduced to 4**: Ukrainian (uk), German (de), Italian (it), French (fr) + "Other". Translation rollout is staged:
+
+1. **Phase 1 — Complete the catalog (in progress)**
+   - Run `generate_1000_words.py` with full PLAN (300/450/250 = 1000 words)
+   - Verify SQLite output opens cleanly in Swift via GRDB migrations
+   - Upload `words_v2.db` to CDN, point `DatabaseDownloadManager.remoteURL` at it
+2. **Phase 2 — Ukrainian translations only**
+   - Write `generate_translations.py` script (TBD)
+   - Populate `translations` table for `lang='uk'`
+   - Ship — UA users get full L1 support, other free users see "translation coming soon" indicator (already implemented)
+3. **Phase 3 — German + Italian + French**
+   - Re-run translation script with `--langs de,it,fr`
+   - Push updated `words_v2.db` to CDN, bump version
+
+The reduced NativeLanguage enum is already shipped. Existing user profiles holding any of the removed locales (es/pt/pl/zh/ja/ko/ar/tr/hi) decode to `nil` via `flatMap(NativeLanguage.init)` and are treated as having no L1 selected — no crash, just no translation surfaced.
 
 ---
 

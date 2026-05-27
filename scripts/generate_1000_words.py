@@ -36,41 +36,89 @@ MODEL  = "claude-opus-4-7"      # latest reasoning model — best for accurate e
 DB_PATH        = Path(__file__).parent / "words_v2.db"
 PROGRESS_PATH  = Path(__file__).parent / "progress_v2.json"
 
-# (category, level, count) — initial seed: 50 free-pool words per level for the
-# soft-paywall MVP. Categories below intentionally skip the premium DB-categories
-# (Technology / Science / Literature / Society) so the free 50 at each level can
-# safely be drawn from non-premium content. Premium content is generated later
-# (phase 2) and lives in those four categories.
+# (category, level, count) — full 1000-word catalog, 300/450/250 split.
+#
+# Categories below match the `category` column EXACTLY (used by WordRepository,
+# CategoriesView, WordAccess). Premium DB-categories (Technology / Science /
+# Literature / Society) are tagged with a comment — the iOS app blocks free
+# users from seeing those entirely, while non-premium category words make up
+# the free-pool 50 per level (top-by-frequency).
+#
+# IMPORTANT: keep these spelled exactly as the iOS code expects:
+#   Body, Character, Communication, Emotions, Food, General, Literature,
+#   People, Psychology, Science, Society, Technology
 PLAN = [
-    # ─── Beginner: 50 ──
-    ("Daily Life & Social",   "beginner", 12),
-    ("Emotions & Psychology", "beginner",  8),
-    ("Communication",         "beginner",  6),
-    ("Body & Health",         "beginner",  6),
-    ("Nature & Environment",  "beginner",  6),
-    ("Business & Finance",    "beginner",  4),
-    ("Food & Culture",        "beginner",  4),
-    ("Character",             "beginner",  4),
-    # ─── Intermediate: 50 ──
-    ("Daily Life & Social",   "intermediate", 10),
-    ("Emotions & Psychology", "intermediate", 10),
-    ("Communication",         "intermediate",  8),
-    ("Body & Health",         "intermediate",  6),
-    ("Nature & Environment",  "intermediate",  4),
-    ("Business & Finance",    "intermediate",  6),
-    ("Food & Culture",        "intermediate",  4),
-    ("Character",             "intermediate",  2),
-    # ─── Expert: 50 ──
-    ("Daily Life & Social",   "expert",  6),
-    ("Emotions & Psychology", "expert", 10),
-    ("Communication",         "expert",  8),
-    ("Body & Health",         "expert",  6),
-    ("Nature & Environment",  "expert",  4),
-    ("Business & Finance",    "expert",  8),
-    ("Food & Culture",        "expert",  4),
-    ("Character",             "expert",  4),
+    # ─── Beginner: 300 ──
+    # Non-premium: 240
+    ("General",       "beginner", 40),
+    ("People",        "beginner", 30),
+    ("Food",          "beginner", 25),
+    ("Body",          "beginner", 30),
+    ("Emotions",      "beginner", 30),
+    ("Psychology",    "beginner", 25),
+    ("Communication", "beginner", 30),
+    ("Character",     "beginner", 30),
+    # Premium: 60
+    ("Technology",    "beginner", 15),
+    ("Science",       "beginner", 15),
+    ("Literature",    "beginner", 15),
+    ("Society",       "beginner", 15),
+
+    # ─── Intermediate: 450 ──
+    # Non-premium: 320
+    ("General",       "intermediate", 50),
+    ("People",        "intermediate", 40),
+    ("Food",          "intermediate", 30),
+    ("Body",          "intermediate", 40),
+    ("Emotions",      "intermediate", 45),
+    ("Psychology",    "intermediate", 40),
+    ("Communication", "intermediate", 45),
+    ("Character",     "intermediate", 30),
+    # Premium: 130
+    ("Technology",    "intermediate", 35),
+    ("Science",       "intermediate", 35),
+    ("Literature",    "intermediate", 30),
+    ("Society",       "intermediate", 30),
+
+    # ─── Expert: 250 ──
+    # Non-premium: 175
+    ("General",       "expert", 25),
+    ("People",        "expert", 20),
+    ("Food",          "expert", 15),
+    ("Body",          "expert", 25),
+    ("Emotions",      "expert", 25),
+    ("Psychology",    "expert", 25),
+    ("Communication", "expert", 25),
+    ("Character",     "expert", 15),
+    # Premium: 75
+    ("Technology",    "expert", 25),
+    ("Science",       "expert", 20),
+    ("Literature",    "expert", 15),
+    ("Society",       "expert", 15),
 ]
-assert sum(c for _, _, c in PLAN) == 150
+assert sum(c for _, _, c in PLAN) == 1000
+
+# Categories the iOS app treats as premium — kept here so the generator can
+# differentiate prompts (premium words tend to be more specialist).
+PREMIUM_CATEGORIES = {"Technology", "Science", "Literature", "Society"}
+
+# Human-readable scope hints for each DB-category. The category names in the
+# database are deliberately terse (one word) for clean filter UI, but Claude
+# needs a concrete theme so the generated vocabulary stays on-topic.
+CATEGORY_DESCRIPTIONS = {
+    "General":       "everyday actions, abstract concepts, common verbs, time and place",
+    "People":        "human relationships, social roles, kinship, interaction",
+    "Food":          "ingredients, cooking, dining, taste and texture",
+    "Body":          "anatomy, health, physical states, movement and sensation",
+    "Emotions":      "feelings, moods, emotional reactions and nuance",
+    "Psychology":    "mental states, cognitive processes, behavior, motivation",
+    "Communication": "speech acts, writing, conversation, persuasion, language",
+    "Character":     "personality traits, virtues, vices, temperament",
+    "Technology":    "computing, software, devices, the digital world",
+    "Science":       "physics, chemistry, biology, scientific reasoning, research",
+    "Literature":    "writing styles, narrative devices, rhetoric, literary terms",
+    "Society":       "law, politics, governance, public life, civic concepts",
+}
 
 LEVEL_FREQ_HINT = {
     "beginner":     "1-3000",
@@ -98,7 +146,8 @@ OUTPUT — strict JSON array, no prose, no markdown fences, no commentary.
 The array length must equal the requested count exactly.
 """
 
-USER_TEMPLATE = """Generate {count} {level}-level English words for the category "{category}".
+USER_TEMPLATE = """Generate {count} {level}-level English words for the "{category}" category.
+Theme: {description}
 
 Requirements:
 - frequencyRank between {freq_hint}
@@ -106,6 +155,7 @@ Requirements:
 - At least {etym_count} words should have an interesting (but accurate) etymology
 - Each word: 2-3 synonyms, 1-2 antonyms (or [] if none), 1-2 natural collocations
 - Register mostly neutral or formal for non-beginner levels
+- The "category" field in each item MUST be exactly "{category}" — no variations
 
 Already used in this run — DO NOT regenerate these:
 {used}
@@ -173,6 +223,15 @@ CREATE VIRTUAL TABLE IF NOT EXISTS words_fts USING fts5(
 
 CREATE INDEX IF NOT EXISTS idx_words_category ON words(category);
 CREATE INDEX IF NOT EXISTS idx_words_level    ON words(level);
+
+-- GRDB tracks applied migrations in this table. We pre-seed it so that
+-- when the iOS app opens the downloaded DB, GRDB sees v1_createWords +
+-- v2_enrichment as already applied and DOESN'T try to ALTER TABLE again
+-- (which would fail with "duplicate column" because we created all v2
+-- columns up-front above). Migration identifiers MUST match WordDatabase.swift.
+CREATE TABLE IF NOT EXISTS grdb_migrations (identifier TEXT NOT NULL PRIMARY KEY);
+INSERT OR IGNORE INTO grdb_migrations(identifier) VALUES ('v1_createWords');
+INSERT OR IGNORE INTO grdb_migrations(identifier) VALUES ('v2_enrichment');
 """
 
 def init_db():
@@ -221,6 +280,7 @@ def generate_slice(category: str, level: str, count: int, used: set[str]) -> lis
         count=count,
         level=level,
         category=category,
+        description=CATEGORY_DESCRIPTIONS.get(category, "general vocabulary"),
         freq_hint=LEVEL_FREQ_HINT[level],
         etym_count=etym_count,
         used=", ".join(sample) or "(none yet)",

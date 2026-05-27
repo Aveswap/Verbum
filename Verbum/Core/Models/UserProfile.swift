@@ -114,37 +114,22 @@ enum AppTheme: String, Codable, CaseIterable {
 }
 
 enum NativeLanguage: String, Codable, CaseIterable {
-    case ukrainian  = "uk"
-    case spanish    = "es"
-    case french     = "fr"
-    case german     = "de"
-    case portuguese = "pt"
-    case italian    = "it"
-    case polish     = "pl"
-    case chinese    = "zh"
-    case japanese   = "ja"
-    case korean     = "ko"
-    case arabic     = "ar"
-    case turkish    = "tr"
-    case hindi      = "hi"
-    case other      = "other"
+    // Supported translation languages — phase 1 ships uk only; de/it/fr follow.
+    // Other locales decode to nil (Codable optional) and the user is treated as
+    // having no native language selected — translation UI gracefully omits.
+    case ukrainian = "uk"
+    case german    = "de"
+    case italian   = "it"
+    case french    = "fr"
+    case other     = "other"
 
     var displayName: String {
         switch self {
-        case .ukrainian:  return "Ukrainian 🇺🇦"
-        case .spanish:    return "Spanish 🇪🇸"
-        case .french:     return "French 🇫🇷"
-        case .german:     return "German 🇩🇪"
-        case .portuguese: return "Portuguese 🇧🇷"
-        case .italian:    return "Italian 🇮🇹"
-        case .polish:     return "Polish 🇵🇱"
-        case .chinese:    return "Chinese 🇨🇳"
-        case .japanese:   return "Japanese 🇯🇵"
-        case .korean:     return "Korean 🇰🇷"
-        case .arabic:     return "Arabic 🇸🇦"
-        case .turkish:    return "Turkish 🇹🇷"
-        case .hindi:      return "Hindi 🇮🇳"
-        case .other:      return "Other"
+        case .ukrainian: return "Ukrainian 🇺🇦"
+        case .german:    return "German 🇩🇪"
+        case .italian:   return "Italian 🇮🇹"
+        case .french:    return "French 🇫🇷"
+        case .other:     return "Other"
         }
     }
 }

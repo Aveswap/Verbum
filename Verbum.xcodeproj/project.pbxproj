@@ -20,7 +20,17 @@
 		0B2E436F2FC71F2300F40D8E /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */; };
 		0B2E43712FC71F2400F40D8E /* CommitmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43702FC71F2400F40D8E /* CommitmentView.swift */; };
 		0B2E43732FC71F2500F40D8E /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43722FC71F2500F40D8E /* ChallengeView.swift */; };
-		0B2E43752FC7248A00F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43742FC7248A00F40D8E /* DecksView.swift */; };
+		0B2E43772FC777FE00F40D8E /* WordAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43762FC777FE00F40D8E /* WordAccess.swift */; };
+		0B2E43792FC777FF00F40D8E /* SharedWordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43782FC777FF00F40D8E /* SharedWordStore.swift */; };
+		0B2E437B2FC7780000F40D8E /* SharedTimelinePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E437A2FC7780000F40D8E /* SharedTimelinePublisher.swift */; };
+		0B2E437F2FC7782800F40D8E /* ShareableWordCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E437E2FC7782800F40D8E /* ShareableWordCard.swift */; };
+		0B2E43812FC7782900F40D8E /* WordShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43802FC7782900F40D8E /* WordShareSheet.swift */; };
+		0B2E43832FC7786E00F40D8E /* VerbumWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43822FC7786E00F40D8E /* VerbumWidgetBundle.swift */; };
+		0B2E43852FC7786F00F40D8E /* SharedWordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43842FC7786E00F40D8E /* SharedWordStore.swift */; };
+		0B2E43872FC7787000F40D8E /* WordOfDayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43862FC7787000F40D8E /* WordOfDayWidget.swift */; };
+		0B2E43892FC7787100F40D8E /* WordOfDayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43882FC7787100F40D8E /* WordOfDayProvider.swift */; };
+		0B2E438B2FC7787200F40D8E /* WordOfDayEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E438A2FC7787200F40D8E /* WordOfDayEntryView.swift */; };
+		0B2E438D2FC778AA00F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E438C2FC778AA00F40D8E /* DecksView.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
@@ -117,7 +127,17 @@
 		0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		0B2E43702FC71F2400F40D8E /* CommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentView.swift; sourceTree = "<group>"; };
 		0B2E43722FC71F2500F40D8E /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
-		0B2E43742FC7248A00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
+		0B2E43762FC777FE00F40D8E /* WordAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccess.swift; sourceTree = "<group>"; };
+		0B2E43782FC777FF00F40D8E /* SharedWordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWordStore.swift; sourceTree = "<group>"; };
+		0B2E437A2FC7780000F40D8E /* SharedTimelinePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTimelinePublisher.swift; sourceTree = "<group>"; };
+		0B2E437E2FC7782800F40D8E /* ShareableWordCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareableWordCard.swift; sourceTree = "<group>"; };
+		0B2E43802FC7782900F40D8E /* WordShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordShareSheet.swift; sourceTree = "<group>"; };
+		0B2E43822FC7786E00F40D8E /* VerbumWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbumWidgetBundle.swift; sourceTree = "<group>"; };
+		0B2E43842FC7786E00F40D8E /* SharedWordStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedWordStore.swift; sourceTree = "<group>"; };
+		0B2E43862FC7787000F40D8E /* WordOfDayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayWidget.swift; sourceTree = "<group>"; };
+		0B2E43882FC7787100F40D8E /* WordOfDayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayProvider.swift; sourceTree = "<group>"; };
+		0B2E438A2FC7787200F40D8E /* WordOfDayEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayEntryView.swift; sourceTree = "<group>"; };
+		0B2E438C2FC778AA00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -343,6 +363,9 @@
 				0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */,
 				0B2E436A2FC71F2100F40D8E /* FSRS.swift */,
 				0B2E436C2FC71F2200F40D8E /* GameCenterService.swift */,
+				0B2E43762FC777FE00F40D8E /* WordAccess.swift */,
+				0B2E43782FC777FF00F40D8E /* SharedWordStore.swift */,
+				0B2E437A2FC7780000F40D8E /* SharedTimelinePublisher.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -361,6 +384,11 @@
 			children = (
 				87548990CA3B40003EB7EBCC /* Info.plist */,
 				3B124CA958B5492B2AA44C00 /* VerbumWidget.swift */,
+				0B2E43822FC7786E00F40D8E /* VerbumWidgetBundle.swift */,
+				0B2E43842FC7786E00F40D8E /* SharedWordStore.swift */,
+				0B2E43862FC7787000F40D8E /* WordOfDayWidget.swift */,
+				0B2E43882FC7787100F40D8E /* WordOfDayProvider.swift */,
+				0B2E438A2FC7787200F40D8E /* WordOfDayEntryView.swift */,
 			);
 			path = VerbumWidget;
 			sourceTree = "<group>";
@@ -398,7 +426,7 @@
 				B40971FC207D1701A44859D9 /* PremiumSheet.swift */,
 				B0A60EE41CA03C91B64D6107 /* ProfileView.swift */,
 				D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */,
-				0B2E43742FC7248A00F40D8E /* DecksView.swift */,
+				0B2E438C2FC778AA00F40D8E /* DecksView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -410,6 +438,8 @@
 				FEE77BC5E1F3C579B4403031 /* HistoryView.swift */,
 				C7CD9166BA32297E2C16426C /* LikedView.swift */,
 				E77E8835D95DB845DF4A1B83 /* WordListView.swift */,
+				0B2E437E2FC7782800F40D8E /* ShareableWordCard.swift */,
+				0B2E43802FC7782900F40D8E /* WordShareSheet.swift */,
 			);
 			path = WordList;
 			sourceTree = "<group>";
@@ -540,7 +570,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B2E43832FC7786E00F40D8E /* VerbumWidgetBundle.swift in Sources */,
+				0B2E43852FC7786F00F40D8E /* SharedWordStore.swift in Sources */,
 				B4F2A4302D6A0D6DFA5FD090 /* VerbumWidget.swift in Sources */,
+				0B2E43892FC7787100F40D8E /* WordOfDayProvider.swift in Sources */,
+				0B2E43872FC7787000F40D8E /* WordOfDayWidget.swift in Sources */,
+				0B2E438B2FC7787200F40D8E /* WordOfDayEntryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,6 +597,8 @@
 				B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */,
 				FF8413B877176170454BA142 /* FillGapView.swift in Sources */,
 				DBAE558F86BDFD6B66CF22F7 /* GuessWordView.swift in Sources */,
+				0B2E43792FC777FF00F40D8E /* SharedWordStore.swift in Sources */,
+				0B2E437F2FC7782800F40D8E /* ShareableWordCard.swift in Sources */,
 				EE685211A5C75DBB3B17ADFE /* HapticManager.swift in Sources */,
 				5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */,
 				C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */,
@@ -571,9 +608,9 @@
 				6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */,
 				0B2E435C2FC5FAB800F40D8E /* AuthService.swift in Sources */,
 				C1ABEA8BB748FBA001BFB65B /* NotificationSettingsView.swift in Sources */,
-				0B2E43752FC7248A00F40D8E /* DecksView.swift in Sources */,
 				063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */,
 				8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */,
+				0B2E43812FC7782900F40D8E /* WordShareSheet.swift in Sources */,
 				C0D846C0FB617A42B06CB2DD /* PillButton.swift in Sources */,
 				BA17D3B8C8F4328C549244F6 /* PracticeMenuView.swift in Sources */,
 				DFAF38158805A595D167D0D7 /* PremiumSheet.swift in Sources */,
@@ -582,6 +619,7 @@
 				A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */,
 				043DF0EEE7D9F8A442869F87 /* ProgressBar.swift in Sources */,
 				DD9EE0D1A601D7F6A5EBC12A /* QuizView.swift in Sources */,
+				0B2E437B2FC7780000F40D8E /* SharedTimelinePublisher.swift in Sources */,
 				DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */,
 				372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */,
 				17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */,
@@ -598,9 +636,11 @@
 				369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */,
 				217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */,
 				E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */,
+				0B2E438D2FC778AA00F40D8E /* DecksView.swift in Sources */,
 				41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */,
 				879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */,
 				F6CCA03B30F7FC4520024616 /* WordFeedViewModel.swift in Sources */,
+				0B2E43772FC777FE00F40D8E /* WordAccess.swift in Sources */,
 				0B2E43552FC57CF500F40D8E /* SubscriptionManager.swift in Sources */,
 				0B2E43602FC656AD00F40D8E /* TranslationStore.swift in Sources */,
 				6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */,

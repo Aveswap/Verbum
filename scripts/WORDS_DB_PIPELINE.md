@@ -12,7 +12,26 @@ End-to-end guide for generating the production word database, validating it, and
 | Intermediate | 450 | 45 % | Main locked tier. Rank 3000–8000 |
 | Expert       | 250 | 25 % | Specialist + rare. Rank 8000+ |
 
-Spread across 12 categories with caps in `PLAN` inside `generate_1000_words.py`.
+Spread across the 12 DB-categories used by the iOS app:
+- **Non-premium** (8): General, People, Food, Body, Emotions, Psychology, Communication, Character
+- **Premium** (4): Technology, Science, Literature, Society
+
+Exact per-(category, level) counts in `PLAN` inside `generate_1000_words.py`.
+The free-pool 50 per level is the deterministic top-50 by `frequencyRank` ASC
+from the non-premium subset — `WordAccess.freePool(level:)` in Swift assumes
+this implicitly.
+
+### ⚠️ Critical schema gotcha
+
+The generator script **must** seed the GRDB migration metadata table or the
+iOS app will crash on `install()` when re-running v2 migration on an already-
+fully-formed DB.
+
+`generate_1000_words.py` handles this — it creates `grdb_migrations` and
+inserts both `v1_createWords` and `v2_enrichment` identifiers. If you ever
+add a new migration in `WordDatabase.swift`, you MUST also append the new
+identifier in the script's DDL. Migration identifiers are case-sensitive and
+must match Swift exactly.
 
 ---
 
