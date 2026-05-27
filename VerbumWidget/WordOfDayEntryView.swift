@@ -160,8 +160,6 @@ struct WordOfDayEntryView: View {
     }
 }
 
-// Widget targets can't link to AppColors directly without sharing source files —
-// these are local constants tuned to match the main app palette.
 enum WidgetColors {
     static let accent       = Color(hex: "#6ECFCF")
     static let textOnAccent = Color.black

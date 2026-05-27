@@ -29,8 +29,6 @@ struct WordOfDayProvider: TimelineProvider {
         completion(currentEntry(now: Date()))
     }
 
-    /// Builds entries for each of the next 14 days from the shared store, scheduled at
-    /// each day's start so iOS swaps the displayed word at midnight without us running.
     func getTimeline(in context: Context, completion: @escaping (Timeline<WordEntry>) -> Void) {
         let now = Date()
         let snapshot = SharedWordStore.readSnapshot()
@@ -40,8 +38,6 @@ struct WordOfDayProvider: TimelineProvider {
             ? [currentEntry(now: now)]
             : timeline.map { WordEntry(date: $0.date, word: $0, snapshot: snapshot) }
 
-        // Refresh ~1 hour after the last entry's day, so we pick up profile changes
-        // (level swap, premium upgrade) that the main app may have published.
         let refresh = entries.last.map {
             Calendar.current.date(byAdding: .hour, value: 25, to: $0.date) ?? now.addingTimeInterval(3600)
         } ?? now.addingTimeInterval(3600)

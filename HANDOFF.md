@@ -217,13 +217,34 @@ Numbered for cross-reference with the audit. Grouped by impact.
 
 ### ⚙️ MANUAL — non-code blockers
 
-| # | Item | Blocker |
+| # | Item | Blocker | Status |
+|---|---|---|---|
+| 19 | Run `generate_1000_words.py` → upload `words_v2.db` to CDN | Needs `ANTHROPIC_API_KEY` + CDN account (Cloudflare R2 recommended) | ❌ not done |
+| 20 | Replace `itms-apps://itunes.apple.com/app/id` in [SettingsView.swift](Verbum/Features/Profile/SettingsView.swift) `rateApp()` with real App Store ID | App Store Connect registration | ❌ not done |
+| 21 | Enable Game Center capability in Xcode + create leaderboards `com.verbum.app.quarterly_points` and `com.verbum.app.all_time_points` | App Store Connect | ❌ not done |
+| 22 | Wire `Verbum.storekit` into Scheme → Run → Options → StoreKit Configuration | Manual one-time in Xcode | ❌ not done |
+| 23 | Add `Verbum.storekit` to the project file (right-click `Verbum` group → Add Files) | Manual | ❌ not done |
+
+#### Widget + Apple Watch — Xcode wiring (code is in repo, targets are not)
+
+Code shipped in commit `4334f56`. The two extension *targets* themselves still
+need to be created in the Xcode project, and the App Group capability has
+to be enabled on all three targets. Full step-by-step in
+[scripts/WIDGET_AND_WATCH_SETUP.md](scripts/WIDGET_AND_WATCH_SETUP.md).
+
+| # | Item | Status |
 |---|---|---|
-| 19 | Run `generate_1000_words.py` → upload `words_v2.db` to CDN | Needs `ANTHROPIC_API_KEY` + CDN account (Cloudflare R2 recommended) |
-| 20 | Replace `itms-apps://itunes.apple.com/app/id` in [SettingsView.swift](Verbum/Features/Profile/SettingsView.swift) `rateApp()` with real App Store ID | App Store Connect registration |
-| 21 | Enable Game Center capability in Xcode + create leaderboards `com.verbum.app.quarterly_points` and `com.verbum.app.all_time_points` | App Store Connect |
-| 22 | Wire `Verbum.storekit` into Scheme → Run → Options → StoreKit Configuration | Manual one-time in Xcode |
-| 23 | Add `Verbum.storekit` to the project file (right-click `Verbum` group → Add Files) | Manual |
+| 24 | Apple Developer portal → Identifiers → enable **App Groups** capability + create `group.com.verbum.app` (only required for App Store / paid Developer Program; for simulator + Personal Team development Xcode auto-provisions it) | ❌ not done |
+| 25 | Xcode → **main Verbum target** → Signing & Capabilities → **+ App Groups** → check `group.com.verbum.app` (entitlement file already declares it, the capability still needs to be added in the target UI so Xcode signs against it) | ❌ not done |
+| 26 | Xcode → **File → New → Target → Widget Extension** → name `VerbumWidget` → drag the four files from [`VerbumWidget/`](VerbumWidget/) into the new target → set target membership for each | ❌ not done |
+| 27 | Xcode → **File → New → Target → Watch App** → name `VerbumWatch` → drag both files from [`VerbumWatch Watch App/`](VerbumWatch%20Watch%20App/) into the new target | ❌ not done |
+| 28 | On **both extension targets**: Signing & Capabilities → **+ App Groups** → check `group.com.verbum.app` | ❌ not done |
+| 29 | On **both extension targets**: add target membership for [`Verbum/Core/Data/SharedWordStore.swift`](Verbum/Core/Data/SharedWordStore.swift) — and ONLY that file, **not** `Colors.swift` or the rest of `Core/` | ❌ not done |
+
+Until these manual steps are done, the widget never appears in the system
+widget gallery and the watch app can't be installed onto the simulator/device.
+The main app keeps publishing the timeline regardless — it's a no-op on the
+write side until extensions are listening.
 
 ---
 
