@@ -59,7 +59,7 @@ struct ProfileView: View {
         .sheet(isPresented: $showFavorites)  { FavoritesView().environmentObject(userProfile) }
         .sheet(isPresented: $showLiked)      { LikedView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)    { HistoryView().environmentObject(userProfile) }
-        .sheet(isPresented: $showDecks)      { DecksView().environmentObject(userProfile) }
+        .sheet(isPresented: $showDecks)      { DecksView().environmentObject(userProfile).environmentObject(subscriptions) }
         .sheet(isPresented: $showCategories) { CategoriesView().environmentObject(userProfile).environmentObject(subscriptions) }
         .sheet(isPresented: $showPremium)    { PremiumSheet().environmentObject(subscriptions) }
         .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }

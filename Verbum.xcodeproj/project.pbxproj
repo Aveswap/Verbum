@@ -15,12 +15,12 @@
 		0B2E435C2FC5FAB800F40D8E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E435B2FC5FAB800F40D8E /* AuthService.swift */; };
 		0B2E43602FC656AD00F40D8E /* TranslationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */; };
 		0B2E43632FC6F2D800F40D8E /* InsufficientWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */; };
-		0B2E43692FC71E3000F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43682FC71E3000F40D8E /* DecksView.swift */; };
 		0B2E436B2FC71F2100F40D8E /* FSRS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436A2FC71F2100F40D8E /* FSRS.swift */; };
 		0B2E436D2FC71F2200F40D8E /* GameCenterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436C2FC71F2200F40D8E /* GameCenterService.swift */; };
 		0B2E436F2FC71F2300F40D8E /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */; };
 		0B2E43712FC71F2400F40D8E /* CommitmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43702FC71F2400F40D8E /* CommitmentView.swift */; };
 		0B2E43732FC71F2500F40D8E /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43722FC71F2500F40D8E /* ChallengeView.swift */; };
+		0B2E43752FC7248A00F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43742FC7248A00F40D8E /* DecksView.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
@@ -112,12 +112,12 @@
 		0B2E435E2FC5FBBD00F40D8E /* Verbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Verbum.entitlements; sourceTree = "<group>"; };
 		0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStore.swift; sourceTree = "<group>"; };
 		0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsufficientWordsView.swift; sourceTree = "<group>"; };
-		0B2E43682FC71E3000F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		0B2E436A2FC71F2100F40D8E /* FSRS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRS.swift; sourceTree = "<group>"; };
 		0B2E436C2FC71F2200F40D8E /* GameCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterService.swift; sourceTree = "<group>"; };
 		0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		0B2E43702FC71F2400F40D8E /* CommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentView.swift; sourceTree = "<group>"; };
 		0B2E43722FC71F2500F40D8E /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
+		0B2E43742FC7248A00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		357806ACCB3D66F2867A3E80 /* PracticeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeMenuView.swift; sourceTree = "<group>"; };
 		38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		3B124CA958B5492B2AA44C00 /* VerbumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbumWidget.swift; sourceTree = "<group>"; };
-		3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = VerbumWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VerbumWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewModel.swift; sourceTree = "<group>"; };
 		407BFE1DC6BC631FE00C1392 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		4940C88040FD8E5FC518EE9F /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 				B40971FC207D1701A44859D9 /* PremiumSheet.swift */,
 				B0A60EE41CA03C91B64D6107 /* ProfileView.swift */,
 				D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */,
-				0B2E43682FC71E3000F40D8E /* DecksView.swift */,
+				0B2E43742FC7248A00F40D8E /* DecksView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -487,7 +487,6 @@
 						ProvisioningStyle = Automatic;
 					};
 					D2002E6BF18631A010AE57A0 = {
-						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -572,9 +571,9 @@
 				6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */,
 				0B2E435C2FC5FAB800F40D8E /* AuthService.swift in Sources */,
 				C1ABEA8BB748FBA001BFB65B /* NotificationSettingsView.swift in Sources */,
+				0B2E43752FC7248A00F40D8E /* DecksView.swift in Sources */,
 				063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */,
 				8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */,
-				0B2E43692FC71E3000F40D8E /* DecksView.swift in Sources */,
 				C0D846C0FB617A42B06CB2DD /* PillButton.swift in Sources */,
 				BA17D3B8C8F4328C549244F6 /* PracticeMenuView.swift in Sources */,
 				DFAF38158805A595D167D0D7 /* PremiumSheet.swift in Sources */,
@@ -651,7 +650,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8FBFRUZ735;
 				INFOPLIST_FILE = VerbumWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -752,7 +751,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 8FBFRUZ735;
 				INFOPLIST_FILE = VerbumWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (

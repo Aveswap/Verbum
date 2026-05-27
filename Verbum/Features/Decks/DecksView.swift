@@ -3,10 +3,12 @@ import SwiftUI
 /// Lists the user's custom word collections. Tapping a deck opens its words via WordListView.
 struct DecksView: View {
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
     @Environment(\.dismiss) private var dismiss
     @State private var showNewDeck = false
     @State private var newDeckName = ""
     @State private var openDeck: WordDeck?
+    @State private var showCategories = false
 
     var body: some View {
         NavigationView {
@@ -59,9 +61,24 @@ struct DecksView: View {
                 title: deck.name,
                 words: words,
                 emptyIcon: "books.vertical",
-                emptyMessage: "This deck is empty. Add words from any word's detail screen."
+                emptyMessage: "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here.",
+                onEmptyCTA: {
+                    // Hop from the deck sheet to the categories sheet so the user can
+                    // actually find words to add. Drop the deck sheet first to avoid
+                    // SwiftUI dropping the chained presentation on iOS 16.
+                    openDeck = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        showCategories = true
+                    }
+                }
             )
             .environmentObject(userProfile)
+            .environmentObject(subscriptions)
+        }
+        .sheet(isPresented: $showCategories) {
+            CategoriesView()
+                .environmentObject(userProfile)
+                .environmentObject(subscriptions)
         }
     }
 

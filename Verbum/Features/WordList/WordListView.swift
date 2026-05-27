@@ -6,6 +6,9 @@ struct WordListView: View {
     let words: [Word]
     let emptyIcon: String
     let emptyMessage: String
+    /// Optional override for the empty-state CTA. When nil, the CTA falls back
+    /// to dismissing the sheet (parent decides what "browse" means).
+    var onEmptyCTA: (() -> Void)? = nil
 
     @EnvironmentObject var userProfile: UserProfileStore
     @Environment(\.dismiss) private var dismiss
@@ -76,7 +79,7 @@ struct WordListView: View {
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
-            Button { dismiss() } label: {
+            Button { onEmptyCTA?() ?? dismiss() } label: {
                 Text(emptyCTALabel)
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(AppColors.textOnAccent)

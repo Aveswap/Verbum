@@ -87,14 +87,16 @@ class WordFeedViewModel: ObservableObject {
         if let lv = levelFilter { pool = pool.filter { $0.level == lv } }
         if let ct = categoryFilter { pool = pool.filter { $0.category == ct } }
         if !isPro && levelFilter == nil && categoryFilter == nil {
-            // Unfiltered feed: lead with all Beginner words, then sprinkle locked previews (1 in 5)
+            // Unfiltered feed: lead with all Beginner words, drop one locked preview
+            // roughly once every 12 cards — frequent enough to nudge upgrade, rare
+            // enough that the "fascinating history" tease doesn't feel spammy.
             let free = pool.filter { $0.level == .beginner }.shuffled()
             let locked = pool.filter { $0.level != .beginner }.shuffled()
             var mixed: [Word] = []
             var lockedIdx = 0
             for (i, w) in free.enumerated() {
                 mixed.append(w)
-                if (i + 1) % 4 == 0, lockedIdx < locked.count {
+                if (i + 1) % 12 == 0, lockedIdx < locked.count {
                     mixed.append(locked[lockedIdx])
                     lockedIdx += 1
                 }

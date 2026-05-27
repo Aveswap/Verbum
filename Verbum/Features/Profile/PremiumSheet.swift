@@ -17,10 +17,21 @@ struct PremiumSheet: View {
         ZStack {
             AppColors.background.ignoresSafeArea()
 
-            VStack(spacing: 0) {
-                header
-                featuresList
-                ctaSection
+            // Single ScrollView so the header + features can compress on small screens
+            // and the user can always reach the product rows + purchase button.
+            ScrollView {
+                VStack(spacing: AppSpacing.md) {
+                    header
+                    featuresList
+                    productRowsSection
+                }
+                .padding(.bottom, 120)  // leaves room for the pinned purchase button
+            }
+
+            // Pin the CTA to the bottom so it's always tappable, even mid-scroll
+            VStack {
+                Spacer()
+                purchaseStickyFooter
             }
         }
         .preferredColorScheme(.dark)
@@ -34,7 +45,7 @@ struct PremiumSheet: View {
                 colors: [AppColors.accent.opacity(0.4), AppColors.background],
                 startPoint: .top, endPoint: .bottom
             )
-            .frame(height: 220)
+            .frame(height: 180)
 
             Button { dismiss() } label: {
                 Image(systemName: "xmark.circle.fill")
@@ -43,82 +54,93 @@ struct PremiumSheet: View {
                     .padding(AppSpacing.md)
             }
 
-            VStack(spacing: AppSpacing.sm) {
+            VStack(spacing: 6) {
                 Image(systemName: "crown.fill")
-                    .font(.system(size: 52))
+                    .font(.system(size: 44))
                     .foregroundColor(AppColors.accent)
-                    .padding(.top, AppSpacing.xl)
+                    .padding(.top, AppSpacing.lg)
                 Text("Verbum Premium")
-                    .font(.custom("Georgia-Bold", size: 28))
+                    .font(.custom("Georgia-Bold", size: 26))
                     .foregroundColor(AppColors.textPrimary)
                 Text("Learn without limits")
-                    .font(.system(size: 16))
+                    .font(.system(size: 14))
                     .foregroundColor(AppColors.textSecondary)
             }
             .frame(maxWidth: .infinity)
-            .padding(.top, AppSpacing.lg)
+            .padding(.top, AppSpacing.md)
         }
     }
 
-    // MARK: - Features
+    // MARK: - Features (compact one-line rows)
 
     private var featuresList: some View {
-        ScrollView {
-            VStack(spacing: AppSpacing.sm) {
-                ForEach(features, id: \.title) { feature in
-                    HStack(spacing: AppSpacing.md) {
-                        Image(systemName: feature.icon)
-                            .font(.system(size: 20))
-                            .foregroundColor(AppColors.accent)
-                            .frame(width: 32)
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(feature.title)
-                                .font(.system(size: 15, weight: .semibold))
-                                .foregroundColor(AppColors.textPrimary)
-                            Text(feature.subtitle)
-                                .font(.system(size: 13))
-                                .foregroundColor(AppColors.textSecondary)
-                        }
-                        Spacer()
-                        Image(systemName: "checkmark.circle.fill")
-                            .foregroundColor(AppColors.accent)
+        VStack(spacing: 10) {
+            ForEach(features, id: \.title) { feature in
+                HStack(spacing: AppSpacing.md) {
+                    Image(systemName: feature.icon)
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(AppColors.accent)
+                        .frame(width: 24)
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(feature.title)
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundColor(AppColors.textPrimary)
+                            .lineLimit(1)
+                        Text(feature.subtitle)
+                            .font(.system(size: 12))
+                            .foregroundColor(AppColors.textSecondary)
+                            .lineLimit(1)
                     }
-                    .padding(AppSpacing.md)
-                    .background(AppColors.surface)
-                    .cornerRadius(AppSpacing.cornerRadius)
+                    Spacer()
                 }
             }
-            .padding(.horizontal, AppSpacing.md)
-            .padding(.bottom, AppSpacing.lg)
+        }
+        .padding(.horizontal, AppSpacing.lg)
+    }
+
+    // MARK: - Product rows (scrollable inline)
+
+    private var productRowsSection: some View {
+        VStack(spacing: AppSpacing.sm) {
+            if subscriptions.isLoading {
+                ProgressView().tint(AppColors.accent).padding()
+            } else {
+                productRows
+                    .padding(.horizontal, AppSpacing.md)
+            }
         }
     }
 
-    // MARK: - CTA
+    // MARK: - Sticky purchase footer
 
-    private var ctaSection: some View {
-        VStack(spacing: AppSpacing.sm) {
-            if subscriptions.isLoading {
-                ProgressView().tint(AppColors.accent)
-                    .padding()
-            } else {
-                productRows
-            }
-
+    private var purchaseStickyFooter: some View {
+        VStack(spacing: AppSpacing.xs) {
             purchaseButton
-
             if let error = subscriptions.purchaseError {
                 Text(error)
-                    .font(.system(size: 12))
+                    .font(.system(size: 11))
                     .foregroundColor(.red)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, AppSpacing.md)
             }
-
             footerLinks
+                .padding(.top, 2)
         }
         .padding(.horizontal, AppSpacing.md)
-        .padding(.bottom, AppSpacing.xl)
+        .padding(.top, AppSpacing.sm)
+        .padding(.bottom, AppSpacing.md)
+        .background(
+            LinearGradient(
+                colors: [AppColors.background.opacity(0), AppColors.background, AppColors.background],
+                startPoint: .top, endPoint: .bottom
+            )
+            .frame(height: 160)
+            .offset(y: -20)
+            .ignoresSafeArea(edges: .bottom)
+        )
     }
+
+    // MARK: - CTA
 
     // MARK: - Product rows
 

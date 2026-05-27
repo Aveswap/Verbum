@@ -290,17 +290,21 @@ private struct AnswerButton: View {
 
     var body: some View {
         Button(action: action) {
-            HStack {
+            HStack(spacing: AppSpacing.sm) {
                 Text(text)
                     .font(.system(size: 15))
                     .foregroundColor(textColor)
                     .multilineTextAlignment(.leading)
-                Spacer()
-                if state == .correct {
-                    Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
-                } else if state == .wrong {
-                    Image(systemName: "xmark.circle.fill").foregroundColor(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                // Reserved trailing slot so the layout doesn't reflow when the icon appears.
+                Group {
+                    switch state {
+                    case .correct: Image(systemName: "checkmark.circle.fill").foregroundColor(.green)
+                    case .wrong:   Image(systemName: "xmark.circle.fill").foregroundColor(.red)
+                    case .idle:    Color.clear
+                    }
                 }
+                .frame(width: 22, height: 22)
             }
             .padding(AppSpacing.md)
             .background(backgroundColor)
