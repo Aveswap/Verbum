@@ -97,6 +97,7 @@ final class CloudKitSyncManager {
         r["quarterlyPoints"]       = p.quarterlyPoints as CKRecordValue
         r["lastOpenedDate"]        = p.lastOpenedDate as? CKRecordValue
         r["quarterlyResetDate"]    = p.quarterlyResetDate as CKRecordValue
+        r["profileUpdatedAt"]      = p.profileUpdatedAt as CKRecordValue
         r["bookmarkedWordIds"]     = p.bookmarkedWordIds.map(\.uuidString) as CKRecordValue
         r["likedWordIds"]          = p.likedWordIds.map(\.uuidString) as CKRecordValue
         r["seenWordIds"]           = p.seenWordIds.map(\.uuidString) as CKRecordValue
@@ -125,6 +126,7 @@ final class CloudKitSyncManager {
         p.quarterlyPoints      = r["quarterlyPoints"] as? Int ?? 0
         p.lastOpenedDate       = r["lastOpenedDate"] as? Date
         p.quarterlyResetDate   = r["quarterlyResetDate"] as? Date ?? Date()
+        p.profileUpdatedAt     = r["profileUpdatedAt"] as? Date ?? .distantPast
         p.bookmarkedWordIds    = (r["bookmarkedWordIds"] as? [String] ?? []).compactMap(UUID.init)
         p.likedWordIds         = (r["likedWordIds"] as? [String] ?? []).compactMap(UUID.init)
         p.seenWordIds          = (r["seenWordIds"] as? [String] ?? []).compactMap(UUID.init)
@@ -140,18 +142,24 @@ final class CloudKitSyncManager {
     private func merge(local: UserProfile, remote: UserProfile) -> UserProfile {
         var merged = local
 
-        if !remote.name.isEmpty         { merged.name = remote.name }
-        if remote.age != nil            { merged.age = remote.age }
-        if remote.gender != nil         { merged.gender = remote.gender }
-        if remote.nativeLanguage != nil { merged.nativeLanguage = remote.nativeLanguage }
-        merged.level                 = remote.level
-        merged.wordsPerWeek          = remote.wordsPerWeek
-        merged.notificationsEnabled  = remote.notificationsEnabled
-        merged.notificationCount     = remote.notificationCount
-        merged.notificationStart     = remote.notificationStart
-        merged.notificationEnd       = remote.notificationEnd
-        merged.selectedTheme         = remote.selectedTheme
-        merged.onboardingCompleted   = local.onboardingCompleted || remote.onboardingCompleted
+        // Scalar fields: pick the side whose profileUpdatedAt is newer (Last-Write-Wins by timestamp).
+        // Old records without profileUpdatedAt default to .distantPast and lose to any newer write.
+        let useRemoteScalars = remote.profileUpdatedAt > local.profileUpdatedAt
+        if useRemoteScalars {
+            if !remote.name.isEmpty         { merged.name = remote.name }
+            if remote.age != nil            { merged.age = remote.age }
+            if remote.gender != nil         { merged.gender = remote.gender }
+            if remote.nativeLanguage != nil { merged.nativeLanguage = remote.nativeLanguage }
+            merged.level                = remote.level
+            merged.wordsPerWeek         = remote.wordsPerWeek
+            merged.notificationsEnabled = remote.notificationsEnabled
+            merged.notificationCount    = remote.notificationCount
+            merged.notificationStart    = remote.notificationStart
+            merged.notificationEnd      = remote.notificationEnd
+            merged.selectedTheme        = remote.selectedTheme
+        }
+        merged.onboardingCompleted = local.onboardingCompleted || remote.onboardingCompleted
+        merged.profileUpdatedAt    = max(local.profileUpdatedAt, remote.profileUpdatedAt)
 
         merged.currentStreak   = max(local.currentStreak, remote.currentStreak)
         merged.longestStreak   = max(local.longestStreak, remote.longestStreak)

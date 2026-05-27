@@ -25,7 +25,17 @@ class UserProfileStore: ObservableObject {
 
     // MARK: - Persistence
 
+    private var isTouchingTimestamp = false
+
     private func scheduleSave() {
+        // Bump the per-profile mtime so CloudKit merge can resolve scalar-field conflicts
+        // by timestamp instead of always letting the remote side win.
+        // Reentrancy guard avoids the didSet→scheduleSave→didSet infinite loop.
+        if !isTouchingTimestamp {
+            isTouchingTimestamp = true
+            profile.profileUpdatedAt = Date()
+            isTouchingTimestamp = false
+        }
         saveWorkItem?.cancel()
         let item = DispatchWorkItem { [weak self] in
             self?.persistLocally()
