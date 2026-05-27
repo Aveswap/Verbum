@@ -270,6 +270,11 @@ class UserProfileStore: ObservableObject {
         profile.totalPoints += points
         profile.quarterlyPoints += points
         saveNow()
+        // Push to Game Center (no-op if not authenticated / capability not enabled)
+        GameCenterService.shared.submitScore(profile.quarterlyPoints,
+                                             to: GameCenterService.LeaderboardID.quarterlyPoints)
+        GameCenterService.shared.submitScore(profile.totalPoints,
+                                             to: GameCenterService.LeaderboardID.allTimePoints)
     }
 
     var currentBadgeTier: BadgeTier? {

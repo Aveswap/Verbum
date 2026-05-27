@@ -2,6 +2,7 @@ import SwiftUI
 
 struct LeaderboardView: View {
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var gameCenter: GameCenterService
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -11,6 +12,7 @@ struct LeaderboardView: View {
                 ScrollView {
                     VStack(spacing: AppSpacing.md) {
                         quarterCard
+                        globalLeaderboardCard
                         streakCard
                         progressCard
                         if !userProfile.profile.earnedBadges.isEmpty {
@@ -32,6 +34,39 @@ struct LeaderboardView: View {
             }
         }
         .preferredColorScheme(.dark)
+    }
+
+    // MARK: - Game Center Global Leaderboard
+
+    private var globalLeaderboardCard: some View {
+        Button { gameCenter.showLeaderboard() } label: {
+            HStack(spacing: AppSpacing.md) {
+                Image(systemName: "globe.americas.fill")
+                    .font(.system(size: 28))
+                    .foregroundColor(AppColors.accent)
+                    .frame(width: 52, height: 52)
+                    .background(AppColors.accent.opacity(0.15))
+                    .clipShape(Circle())
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(gameCenter.isAuthenticated ? "Global Leaderboard" : "Sign in to Game Center")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text(gameCenter.isAuthenticated
+                         ? "Compare your points with players worldwide"
+                         : "Compete with friends and players worldwide")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundColor(AppColors.textSecondary)
+                    .font(.system(size: 13))
+            }
+            .padding(AppSpacing.md)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
+        }
     }
 
     // MARK: - Quarter Points + Badge
