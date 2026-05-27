@@ -17,8 +17,11 @@ class GuessWordViewModel: ObservableObject {
     @Published var isFinished = false
     @Published var insufficientWords = false
 
+    var onAnswer: ((UUID, Bool) -> Void)?
+
     private let totalQuestions = 5
     private let pool: [Word]
+    private var currentWordId: UUID?
 
     init(seenIds: Set<UUID>) {
         self.pool = WordRepository.shared.all.filter { seenIds.contains($0.id) }
@@ -36,6 +39,7 @@ class GuessWordViewModel: ObservableObject {
         let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.text)
         let options = ([word.text] + distractors).shuffled()
 
+        currentWordId = word.id
         currentQuestion = GuessQuestion(
             definition: word.definition,
             partOfSpeech: word.partOfSpeech,
@@ -50,13 +54,16 @@ class GuessWordViewModel: ObservableObject {
     func selectAnswer(_ answer: String) {
         guard selectedAnswer == nil, let q = currentQuestion else { return }
         selectedAnswer = answer
-        isCorrect = answer == q.correct
-        if isCorrect == true { score += 1; HapticManager.success() }
+        let correct = answer == q.correct
+        isCorrect = correct
+        if let id = currentWordId { onAnswer?(id, correct) }
+        if correct { score += 1; HapticManager.success() }
         else { HapticManager.error() }
     }
 }
 
 struct GuessWordView: View {
+    @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var viewModel: GuessWordViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -84,6 +91,11 @@ struct GuessWordView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            viewModel.onAnswer = { id, correct in
+                userProfile.recordReview(id, rating: correct ? .good : .again)
+            }
+        }
     }
 
     private var finishedView: some View {

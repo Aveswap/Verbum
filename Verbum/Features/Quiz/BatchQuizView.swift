@@ -121,7 +121,10 @@ struct BatchQuizView: View {
         .preferredColorScheme(.dark)
         .onAppear {
             vm.onAnswer = { id, correct in
-                userProfile.bumpMastery(id, correct: correct)
+                // Quiz answer drives both the mastery dots and the FSRS scheduler.
+                // We map binary correctness to FSRS ratings: again on wrong, good on right.
+                // (A future "Hard / Easy" UI could expand this to the full 4-rating scale.)
+                userProfile.recordReview(id, rating: correct ? .good : .again)
             }
         }
     }

@@ -16,6 +16,8 @@ class QuizViewModel: ObservableObject {
     @Published var isFinished = false
     @Published var insufficientWords = false
 
+    var onAnswer: ((UUID, Bool) -> Void)?
+
     private let totalQuestions = 5
     private let pool: [Word]
 
@@ -43,8 +45,10 @@ class QuizViewModel: ObservableObject {
     func selectAnswer(_ answer: String) {
         guard selectedAnswer == nil, let q = currentQuestion else { return }
         selectedAnswer = answer
-        isCorrect = answer == q.correct
-        if isCorrect == true {
+        let correct = answer == q.correct
+        isCorrect = correct
+        onAnswer?(q.word.id, correct)
+        if correct {
             score += 1
             HapticManager.success()
         } else {

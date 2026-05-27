@@ -109,6 +109,7 @@ struct WordFeedView: View {
         .onAppear {
             seenWordIdsSet = Set(userProfile.profile.seenWordIds)
             viewModel.isPro = subscriptions.isPro
+            viewModel.dueReviewIds = userProfile.dueReviews()
             viewModel.reloadFromRepository()
             if userProfile.profile.currentStreak > 1 {
                 showStreakBanner = true
@@ -302,9 +303,15 @@ struct WordFeedView: View {
                     Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
                         .font(.system(size: 10))
                         .foregroundColor(AppColors.textSecondary)
+                    let due = userProfile.dueTodayCount()
+                    if due > 0 {
+                        Text("· \(due) due")
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundColor(AppColors.accent)
+                    }
                 }
             }
-            .frame(width: 130)
+            .frame(width: 160)
 
             Spacer()
 

@@ -130,6 +130,35 @@ class UserProfileStore: ObservableObject {
         profile.wordMastery[key] = new
     }
 
+    // MARK: - FSRS spaced repetition
+
+    /// Records a review for a word with the given rating; updates FSRS state and
+    /// bumps mastery (rating ≥ good counts as "correct" for the simple mastery dots).
+    func recordReview(_ wordId: UUID, rating: FSRSRating, now: Date = Date()) {
+        let key = wordId.uuidString
+        let current = profile.reviews[key] ?? WordReview.newCard(now: now)
+        let updated = FSRS.next(current, rating: rating, now: now)
+        profile.reviews[key] = updated
+        bumpMastery(wordId, correct: rating != .again)
+    }
+
+    /// Words that are due for review right now (dueDate <= now). Sorted oldest-due first.
+    func dueReviews(now: Date = Date()) -> [UUID] {
+        let pairs = profile.reviews
+            .compactMap { (key, review) -> (UUID, Date)? in
+                guard let id = UUID(uuidString: key) else { return nil }
+                guard review.state != .new, review.dueDate <= now else { return nil }
+                return (id, review.dueDate)
+            }
+            .sorted { $0.1 < $1.1 }
+        return pairs.map(\.0)
+    }
+
+    /// Count of reviews due today (for surface badges).
+    func dueTodayCount(now: Date = Date()) -> Int {
+        profile.reviews.values.filter { $0.state != .new && $0.dueDate <= now }.count
+    }
+
     // MARK: - Decks
 
     func createDeck(name: String, icon: String = "books.vertical") {

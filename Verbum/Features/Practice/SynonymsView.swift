@@ -16,6 +16,8 @@ class SynonymsViewModel: ObservableObject {
     @Published var isFinished = false
     @Published var insufficientWords = false
 
+    var onAnswer: ((UUID, Bool) -> Void)?
+
     private let totalQuestions = 5
     private let pool: [Word]
     private let distractorPool: [Word]
@@ -54,15 +56,18 @@ class SynonymsViewModel: ObservableObject {
     }
 
     func selectAnswer(_ answer: String) {
-        guard selectedAnswer == nil else { return }
+        guard selectedAnswer == nil, let q = currentQuestion else { return }
         selectedAnswer = answer
-        isCorrect = answer == currentQuestion?.correct
-        if isCorrect == true { score += 1; HapticManager.success() }
+        let correct = answer == q.correct
+        isCorrect = correct
+        onAnswer?(q.word.id, correct)
+        if correct { score += 1; HapticManager.success() }
         else { HapticManager.error() }
     }
 }
 
 struct SynonymsView: View {
+    @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var viewModel: SynonymsViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -93,6 +98,11 @@ struct SynonymsView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            viewModel.onAnswer = { id, correct in
+                userProfile.recordReview(id, rating: correct ? .good : .again)
+            }
+        }
     }
 
     private var finishedView: some View {

@@ -13,6 +13,7 @@ struct StatsView: View {
                 ScrollView {
                     VStack(spacing: AppSpacing.lg) {
                         streakHeroCard
+                        if dueTodayCount > 0 { reviewQueueCard }
                         wordsProgressCard
                         statsGrid
                         weeklyGoalCard
@@ -92,6 +93,33 @@ struct StatsView: View {
 
     private var learningCount: Int {
         userProfile.profile.wordMastery.values.filter { $0 >= 1 && $0 < 4 }.count
+    }
+
+    private var dueTodayCount: Int { userProfile.dueTodayCount() }
+
+    // MARK: - Review queue (FSRS due today)
+    private var reviewQueueCard: some View {
+        HStack(spacing: AppSpacing.md) {
+            Image(systemName: "arrow.triangle.2.circlepath")
+                .font(.system(size: 28))
+                .foregroundColor(AppColors.accent)
+                .frame(width: 52, height: 52)
+                .background(AppColors.accent.opacity(0.15))
+                .clipShape(Circle())
+            VStack(alignment: .leading, spacing: 2) {
+                Text("\(dueTodayCount) word\(dueTodayCount == 1 ? "" : "s") to review")
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(AppColors.textPrimary)
+                Text("Spaced repetition keeps memory fresh — open the feed to review.")
+                    .font(.system(size: 12))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+            Spacer()
+        }
+        .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
     }
 
     // MARK: - Summary stats grid

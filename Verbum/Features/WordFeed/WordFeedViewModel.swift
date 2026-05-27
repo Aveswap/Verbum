@@ -15,6 +15,9 @@ class WordFeedViewModel: ObservableObject {
     var levelFilter: WordLevel? = nil
     var categoryFilter: String? = nil
     var isPro: Bool = false
+    /// IDs of words FSRS says are due for review. Set from outside (WordFeedView.onAppear)
+    /// because the VM has no access to UserProfileStore.
+    var dueReviewIds: [UUID] = []
 
     init() {
         SpeechService.configureAudioSession()
@@ -91,13 +94,24 @@ class WordFeedViewModel: ObservableObject {
                     lockedIdx += 1
                 }
             }
-            words = mixed
+            words = prependDueReviews(mixed)
         } else {
-            words = pool.shuffled()
+            words = prependDueReviews(pool.shuffled())
         }
         goingBack = false
         currentIndex = 0
         resetBatchCounter()
+    }
+
+    /// Front-loads up to 10 FSRS-due reviews ahead of the rest of the feed.
+    /// Limits to 10 so a long backlog doesn't drown out new content.
+    private func prependDueReviews(_ rest: [Word]) -> [Word] {
+        guard !dueReviewIds.isEmpty else { return rest }
+        let dueSet = Set(dueReviewIds)
+        let dueWords = rest.filter { dueSet.contains($0.id) }.prefix(10)
+        let dueIds = Set(dueWords.map(\.id))
+        let remainder = rest.filter { !dueIds.contains($0.id) }
+        return Array(dueWords) + remainder
     }
 
     func reloadFromRepository() {

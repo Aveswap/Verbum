@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct QuizView: View {
+    @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var viewModel: QuizViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -32,6 +33,11 @@ struct QuizView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            viewModel.onAnswer = { id, correct in
+                userProfile.recordReview(id, rating: correct ? .good : .again)
+            }
+        }
     }
 
     private var finishedView: some View {

@@ -18,6 +18,8 @@ class FillGapViewModel: ObservableObject {
     @Published var isFinished = false
     @Published var insufficientWords = false
 
+    var onAnswer: ((UUID, Bool) -> Void)?
+
     private let totalQuestions = 5
     private let pool: [Word]
     private let distractorPool: [Word]
@@ -69,8 +71,10 @@ class FillGapViewModel: ObservableObject {
     func selectAnswer(_ answer: String) {
         guard selectedAnswer == nil, let q = currentQuestion else { return }
         selectedAnswer = answer
-        isCorrect = answer.lowercased() == q.correct.lowercased()
-        if isCorrect == true {
+        let correct = answer.lowercased() == q.correct.lowercased()
+        isCorrect = correct
+        onAnswer?(q.word.id, correct)
+        if correct {
             score += 1
             HapticManager.success()
         } else {
@@ -101,6 +105,7 @@ class FillGapViewModel: ObservableObject {
 }
 
 struct FillGapView: View {
+    @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var viewModel: FillGapViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -131,6 +136,11 @@ struct FillGapView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            viewModel.onAnswer = { id, correct in
+                userProfile.recordReview(id, rating: correct ? .good : .again)
+            }
+        }
     }
 
     private var finishedView: some View {

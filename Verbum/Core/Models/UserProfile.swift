@@ -47,7 +47,37 @@ struct UserProfile: Codable {
     // Custom decks created by the user (e.g. "Travel words", "SAT prep")
     var decks: [WordDeck] = []
 
+    // FSRS-5 review state keyed by word UUID string
+    var reviews: [String: WordReview] = [:]
+
     static let freePracticeLimit = 3
+}
+
+/// Per-word FSRS-5 spaced-repetition state.
+/// Updated on every quiz answer; controls when the word resurfaces in the feed.
+struct WordReview: Codable, Hashable {
+    var stability: Double          // S — interval in days where retention drops to 90%
+    var difficulty: Double         // D — 1...10
+    var elapsedDays: Double        // days between last and current review
+    var scheduledDays: Double      // interval that was scheduled at last review
+    var reps: Int                  // total successful reviews
+    var lapses: Int                // times rated "again" after a successful review
+    var state: ReviewState
+    var lastReview: Date?
+    var dueDate: Date              // when the word is next eligible for review
+
+    enum ReviewState: String, Codable { case new, learning, review, relearning }
+
+    /// Convenience initializer for a brand-new (never reviewed) card.
+    static func newCard(now: Date = Date()) -> WordReview {
+        WordReview(
+            stability: 0, difficulty: 0,
+            elapsedDays: 0, scheduledDays: 0,
+            reps: 0, lapses: 0,
+            state: .new, lastReview: nil,
+            dueDate: now
+        )
+    }
 }
 
 struct WordDeck: Codable, Identifiable, Hashable {
