@@ -1,0 +1,22 @@
+import WidgetKit
+import SwiftUI
+
+struct WordOfDayWidget: Widget {
+    let kind = "VerbumWordOfTheDay"
+
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: WordOfDayProvider()) { entry in
+            WordOfDayEntryView(entry: entry)
+                .containerBackground(for: .widget) {
+                    LinearGradient(
+                        colors: [Color(hex: "#0F1F25"), Color(hex: "#1A2F38")],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    )
+                }
+        }
+        .configurationDisplayName("Word of the Day")
+        .description("A new English word every morning at your level.")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+    }
+}
