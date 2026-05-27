@@ -1,0 +1,104 @@
+{
+  "identifier" : "VerbumStoreKit",
+  "nonRenewingSubscriptions" : [],
+  "products" : [
+    {
+      "displayPrice" : "59.99",
+      "familyShareable" : false,
+      "internalID" : "pro_lifetime",
+      "localizations" : [
+        {
+          "description" : "One-time purchase. All 1,000+ words, all practice modes, all categories — forever.",
+          "displayName" : "Verbum Premium (Lifetime)",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "pro_lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "verbum",
+    "_developerTeamID" : "VERBUM",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      { "current" : null, "enabled" : false, "name" : "Load Products" },
+      { "current" : null, "enabled" : false, "name" : "Purchase" },
+      { "current" : null, "enabled" : false, "name" : "Verification" },
+      { "current" : null, "enabled" : false, "name" : "App Store Sync" },
+      { "current" : null, "enabled" : false, "name" : "Subscription Status" },
+      { "current" : null, "enabled" : false, "name" : "App Transaction" },
+      { "current" : null, "enabled" : false, "name" : "Manage Subscriptions Sheet" },
+      { "current" : null, "enabled" : false, "name" : "Refund Request Sheet" },
+      { "current" : null, "enabled" : false, "name" : "Offer Code Redeem Sheet" }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "verbum_pro_group",
+      "localizations" : [
+        {
+          "description" : "Verbum Premium subscription tiers",
+          "displayName" : "Verbum Premium",
+          "locale" : "en_US"
+        }
+      ],
+      "name" : "Verbum Premium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "pro_monthly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "All 1,000+ words and practice modes, billed monthly.",
+              "displayName" : "Verbum Premium (Monthly)",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "pro_monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "verbum_pro_group",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "24.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "pro_yearly",
+          "introductoryOffer" : {
+            "internalID" : "yearly_trial",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "All 1,000+ words and practice modes. 1-week free trial, then $24.99 / year.",
+              "displayName" : "Verbum Premium (Yearly)",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "pro_yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Yearly",
+          "subscriptionGroupID" : "verbum_pro_group",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

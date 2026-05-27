@@ -54,10 +54,15 @@ class WordFeedViewModel: ObservableObject {
         guard currentIndex < words.count - 1 else { return }
         goingBack = false
         if let word = currentWord {
-            recentBatchWords.append(word)
-            if recentBatchWords.count > 5 { recentBatchWords.removeFirst() }
+            // Locked (premium) cards are blurred; the user hasn't actually read them
+            // so they don't count for batch-quiz progress.
+            let isLocked = !isPro && word.level != .beginner
+            if !isLocked {
+                recentBatchWords.append(word)
+                if recentBatchWords.count > 5 { recentBatchWords.removeFirst() }
+                swipesSinceLastQuiz += 1
+            }
         }
-        swipesSinceLastQuiz += 1
         currentIndex += 1
     }
 

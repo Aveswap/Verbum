@@ -9,6 +9,7 @@ struct ProfileView: View {
     @State private var showFavorites = false
     @State private var showHistory = false
     @State private var showDecks = false
+    @State private var showCategories = false
     @State private var showPremium = false
     @State private var showLiked = false
     @State private var showLevelTest = false
@@ -59,6 +60,7 @@ struct ProfileView: View {
         .sheet(isPresented: $showLiked)      { LikedView().environmentObject(userProfile) }
         .sheet(isPresented: $showHistory)    { HistoryView().environmentObject(userProfile) }
         .sheet(isPresented: $showDecks)      { DecksView().environmentObject(userProfile) }
+        .sheet(isPresented: $showCategories) { CategoriesView().environmentObject(userProfile).environmentObject(subscriptions) }
         .sheet(isPresented: $showPremium)    { PremiumSheet().environmentObject(subscriptions) }
         .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showReminders) {
@@ -259,11 +261,8 @@ struct ProfileView: View {
                 Button { showReminders = true } label: {
                     SettingCard(title: "Reminders", icon: "bell.fill")
                 }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "Voice", icon: "speaker.wave.2.fill", locked: true)
-                }
-                Button { showPremium = true } label: {
-                    SettingCard(title: "Categories", icon: "folder.fill", locked: true)
+                Button { showCategories = true } label: {
+                    SettingCard(title: "Categories", icon: "folder.fill")
                 }
             }
         }

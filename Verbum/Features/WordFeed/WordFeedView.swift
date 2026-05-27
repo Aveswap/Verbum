@@ -365,8 +365,13 @@ struct WordFeedView: View {
                 if val.translation.height < -threshold {
                     HapticManager.swipeWave()
                     if let word = viewModel.currentWord {
-                        let goalJustHit = userProfile.markWordSeen(word.id)
-                        if goalJustHit { triggerGoalCelebration() }
+                        // Locked (premium) words are blurred — the user hasn't actually seen
+                        // them, so they must NOT count toward seen/daily goal/batch quiz.
+                        let isLocked = !subscriptions.isPro && word.level != .beginner
+                        if !isLocked {
+                            let goalJustHit = userProfile.markWordSeen(word.id)
+                            if goalJustHit { triggerGoalCelebration() }
+                        }
                     }
                     resetActionScales()
                     greenFlashOpacity = 0.07

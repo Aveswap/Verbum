@@ -62,12 +62,18 @@ struct OnboardingFlow: View {
             }
         case .wordCheck:
             WordCheckView { knownCount in
-                if knownCount >= 10 {
-                    userProfile.profile.level = .expert
-                } else if knownCount >= 5 {
-                    userProfile.profile.level = .intermediate
-                } else {
-                    userProfile.profile.level = .beginner
+                // Never downgrade the user's own self-assessment — only upgrade if the
+                // recognition score is clearly higher than what they picked.
+                let suggested: WordLevel = {
+                    if knownCount >= 10 { return .expert }
+                    if knownCount >= 5  { return .intermediate }
+                    return .beginner
+                }()
+                let picked = userProfile.profile.level
+                let pickedRank = WordLevel.allCases.firstIndex(of: picked) ?? 0
+                let suggestedRank = WordLevel.allCases.firstIndex(of: suggested) ?? 0
+                if suggestedRank > pickedRank {
+                    userProfile.profile.level = suggested
                 }
                 advance()
             }

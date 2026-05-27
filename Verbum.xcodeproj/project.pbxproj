@@ -15,6 +15,12 @@
 		0B2E435C2FC5FAB800F40D8E /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E435B2FC5FAB800F40D8E /* AuthService.swift */; };
 		0B2E43602FC656AD00F40D8E /* TranslationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */; };
 		0B2E43632FC6F2D800F40D8E /* InsufficientWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */; };
+		0B2E43692FC71E3000F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43682FC71E3000F40D8E /* DecksView.swift */; };
+		0B2E436B2FC71F2100F40D8E /* FSRS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436A2FC71F2100F40D8E /* FSRS.swift */; };
+		0B2E436D2FC71F2200F40D8E /* GameCenterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436C2FC71F2200F40D8E /* GameCenterService.swift */; };
+		0B2E436F2FC71F2300F40D8E /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */; };
+		0B2E43712FC71F2400F40D8E /* CommitmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43702FC71F2400F40D8E /* CommitmentView.swift */; };
+		0B2E43732FC71F2500F40D8E /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43722FC71F2500F40D8E /* ChallengeView.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
@@ -106,6 +112,12 @@
 		0B2E435E2FC5FBBD00F40D8E /* Verbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Verbum.entitlements; sourceTree = "<group>"; };
 		0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStore.swift; sourceTree = "<group>"; };
 		0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsufficientWordsView.swift; sourceTree = "<group>"; };
+		0B2E43682FC71E3000F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
+		0B2E436A2FC71F2100F40D8E /* FSRS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRS.swift; sourceTree = "<group>"; };
+		0B2E436C2FC71F2200F40D8E /* GameCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterService.swift; sourceTree = "<group>"; };
+		0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
+		0B2E43702FC71F2400F40D8E /* CommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentView.swift; sourceTree = "<group>"; };
+		0B2E43722FC71F2500F40D8E /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -174,34 +186,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B2E43612FC6F2D800F40D8E /* Decks 2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Decks 2";
-			sourceTree = "<group>";
-		};
-		0B2E43642FC6F2E200F40D8E /* Decks 3 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Decks 3";
-			sourceTree = "<group>";
-		};
-		0B2E43652FC6F2F600F40D8E /* Decks 4 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Decks 4";
-			sourceTree = "<group>";
-		};
-		0B2E43662FC6F37F00F40D8E /* Decks 5 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Decks 5";
-			sourceTree = "<group>";
-		};
 		2051B1995995727EA60FADC7 /* WordDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,6 +227,7 @@
 				837A7A327A614F779F75B887 /* OnboardingFlow.swift */,
 				1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */,
 				EFCA694741309C6D900CD665 /* WelcomeView.swift */,
+				0B2E43702FC71F2400F40D8E /* CommitmentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -267,6 +252,7 @@
 				9BFF885EECBBFF36393A0207 /* ProgressBar.swift */,
 				6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */,
 				1B6DEE253BAE83C18158646A /* SoundManager.swift */,
+				0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -355,6 +341,8 @@
 				0B2E43592FC5FAA600F40D8E /* CloudKitSyncManager.swift */,
 				0B2E435B2FC5FAB800F40D8E /* AuthService.swift */,
 				0B2E435F2FC656AD00F40D8E /* TranslationStore.swift */,
+				0B2E436A2FC71F2100F40D8E /* FSRS.swift */,
+				0B2E436C2FC71F2200F40D8E /* GameCenterService.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -390,10 +378,6 @@
 				2051B1995995727EA60FADC7 /* WordDetail */,
 				66AE1E098D2522C453804C9D /* WordFeed */,
 				E4A562BA51095B127FE66E51 /* WordList */,
-				0B2E43612FC6F2D800F40D8E /* Decks 2 */,
-				0B2E43642FC6F2E200F40D8E /* Decks 3 */,
-				0B2E43652FC6F2F600F40D8E /* Decks 4 */,
-				0B2E43662FC6F37F00F40D8E /* Decks 5 */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -414,6 +398,7 @@
 				B40971FC207D1701A44859D9 /* PremiumSheet.swift */,
 				B0A60EE41CA03C91B64D6107 /* ProfileView.swift */,
 				D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */,
+				0B2E43682FC71E3000F40D8E /* DecksView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -441,6 +426,7 @@
 				A00F070C603FE504217EDA4A /* QuizViewModel.swift */,
 				22CF08B79256CCCF0F41560C /* SynonymsView.swift */,
 				0B2E43622FC6F2D800F40D8E /* InsufficientWordsView.swift */,
+				0B2E43722FC71F2500F40D8E /* ChallengeView.swift */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -565,11 +551,13 @@
 			files = (
 				869F5F5C647E47083B5A3C54 /* AppCoordinator.swift in Sources */,
 				506F22E3AD9EDD8BF8C0D97B /* Badge.swift in Sources */,
+				0B2E436F2FC71F2300F40D8E /* ConfettiView.swift in Sources */,
 				963AE7507F748C374F47FB23 /* BatchQuizView.swift in Sources */,
 				0B2E43582FC5FA8400F40D8E /* KeychainHelper.swift in Sources */,
 				4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */,
 				7D78B2E6B4464A9FEBD34AE1 /* CategoryWordListView.swift in Sources */,
 				6152418B92E9EEDF172F600A /* Colors.swift in Sources */,
+				0B2E43732FC71F2500F40D8E /* ChallengeView.swift in Sources */,
 				DA4428337D5EA213220B76EA /* DatabaseDownloadManager.swift in Sources */,
 				9B7B30E93778BDA7A8B477D2 /* DatabaseStatusBanner.swift in Sources */,
 				B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */,
@@ -586,9 +574,11 @@
 				C1ABEA8BB748FBA001BFB65B /* NotificationSettingsView.swift in Sources */,
 				063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */,
 				8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */,
+				0B2E43692FC71E3000F40D8E /* DecksView.swift in Sources */,
 				C0D846C0FB617A42B06CB2DD /* PillButton.swift in Sources */,
 				BA17D3B8C8F4328C549244F6 /* PracticeMenuView.swift in Sources */,
 				DFAF38158805A595D167D0D7 /* PremiumSheet.swift in Sources */,
+				0B2E436B2FC71F2100F40D8E /* FSRS.swift in Sources */,
 				2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */,
 				A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */,
 				043DF0EEE7D9F8A442869F87 /* ProgressBar.swift in Sources */,
@@ -601,6 +591,7 @@
 				335DB077660578203921C7B0 /* StatsView.swift in Sources */,
 				952A8DD995A6688243461622 /* SynonymsView.swift in Sources */,
 				415BBCB7DFABF2CC1FAC62B3 /* Typography.swift in Sources */,
+				0B2E436D2FC71F2200F40D8E /* GameCenterService.swift in Sources */,
 				C2D154D2972BE298747DAEB7 /* UserProfile.swift in Sources */,
 				2D340578381485FD8894507E /* VerbumApp.swift in Sources */,
 				83E469F0405852685C17601A /* WelcomeView.swift in Sources */,
@@ -615,6 +606,7 @@
 				0B2E43602FC656AD00F40D8E /* TranslationStore.swift in Sources */,
 				6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */,
 				EABF0BC49A27AE92CB054590 /* WordRepository.swift in Sources */,
+				0B2E43712FC71F2400F40D8E /* CommitmentView.swift in Sources */,
 				0B2E435A2FC5FAA600F40D8E /* CloudKitSyncManager.swift in Sources */,
 				B8B564ACAD6501DAADD414FC /* WordStore.swift in Sources */,
 			);
