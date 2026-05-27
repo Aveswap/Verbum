@@ -116,6 +116,7 @@ struct WordRow: View {
                     .font(.system(size: 13))
                     .foregroundColor(AppColors.textSecondary)
                     .lineLimit(2)
+                MasteryDots(level: userProfile.mastery(for: word.id))
             }
             Spacer()
             VStack(spacing: AppSpacing.sm) {
@@ -132,6 +133,19 @@ struct WordRow: View {
         .padding(AppSpacing.md)
         .background(AppColors.surface)
         .cornerRadius(AppSpacing.cornerRadius)
+    }
+}
+
+private struct MasteryDots: View {
+    let level: Int  // 0...5
+    var body: some View {
+        HStack(spacing: 3) {
+            ForEach(0..<5, id: \.self) { i in
+                Circle()
+                    .fill(i < level ? AppColors.accent : AppColors.surfaceSecondary)
+                    .frame(width: 5, height: 5)
+            }
+        }
     }
 }
 

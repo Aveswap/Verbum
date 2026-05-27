@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum OnboardingStep: Int, CaseIterable {
-    case welcome, name, nativeLanguage, level, wordCheck
+    case welcome, name, nativeLanguage, level, wordCheck, commitment, notifications
 }
 
 struct OnboardingFlow: View {
@@ -71,6 +71,13 @@ struct OnboardingFlow: View {
                 }
                 advance()
             }
+        case .commitment:
+            CommitmentView(
+                level: userProfile.profile.level,
+                dailyGoal: userProfile.profile.dailyGoal
+            ) { advance() }
+        case .notifications:
+            NotificationsSetupView { advance() }
         }
     }
 

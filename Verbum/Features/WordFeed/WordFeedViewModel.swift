@@ -18,10 +18,8 @@ class WordFeedViewModel: ObservableObject {
 
     init() {
         SpeechService.configureAudioSession()
-        Task.detached { [weak self] in
-            let shuffled = WordRepository.shared.feedWords(isPro: false).shuffled()
-            await MainActor.run { self?.words = shuffled }
-        }
+        // WordRepository is @MainActor; we're already on the main actor so a direct read is fine.
+        self.words = WordRepository.shared.feedWords(isPro: false).shuffled()
     }
 
     var currentWord: Word? {

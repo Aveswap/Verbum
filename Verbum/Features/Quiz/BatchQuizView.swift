@@ -11,6 +11,8 @@ final class BatchQuizViewModel: ObservableObject {
     @Published var correctCount = 0
     @Published var pointsEarned = 0
 
+    var onAnswer: ((UUID, Bool) -> Void)?
+
     private let options: [[String]]
     private let correctIndices: [Int]
 
@@ -42,7 +44,9 @@ final class BatchQuizViewModel: ObservableObject {
     func select(_ index: Int) {
         guard selectedAnswer == nil else { return }
         selectedAnswer = index
-        if index == correctIndex {
+        let correct = index == correctIndex
+        onAnswer?(currentWord.id, correct)
+        if correct {
             correctCount += 1
             pointsEarned += points(for: currentWord)
             HapticManager.correctAnswer()
@@ -78,6 +82,7 @@ struct BatchQuizView: View {
     let allWords: [Word]
     var onFinish: (Int) -> Void   // passes points earned
 
+    @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var vm: BatchQuizViewModel
     @Environment(\.dismiss) private var dismiss
 
@@ -92,13 +97,33 @@ struct BatchQuizView: View {
         ZStack {
             AppColors.background.ignoresSafeArea()
 
-            if vm.showResult {
+            if words.count < 2 {
+                // Guard against an empty/insufficient batch (would crash on words[currentIndex])
+                VStack(spacing: AppSpacing.lg) {
+                    Image(systemName: "checkmark.circle")
+                        .font(.system(size: 60))
+                        .foregroundColor(AppColors.accent)
+                    Text("Not enough new words to quiz yet")
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(AppColors.textPrimary)
+                    PillButton(title: "Continue") {
+                        onFinish(0)
+                        dismiss()
+                    }
+                    .padding(.horizontal, AppSpacing.lg)
+                }
+            } else if vm.showResult {
                 resultScreen
             } else {
                 questionScreen
             }
         }
         .preferredColorScheme(.dark)
+        .onAppear {
+            vm.onAnswer = { id, correct in
+                userProfile.bumpMastery(id, correct: correct)
+            }
+        }
     }
 
     // MARK: - Question Screen

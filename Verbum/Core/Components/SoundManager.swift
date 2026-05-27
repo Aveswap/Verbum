@@ -55,7 +55,13 @@ final class SoundManager {
             engine.attach(node)
             engine.connect(node, to: mixer, format: format)
         }
-        try? engine.start()
+        // Engine is started lazily in scheduleNote() when sound is actually requested.
+        // Avoids holding the audio session active when sound is disabled.
+    }
+
+    /// Stops the engine when sound is disabled — releases the audio session and saves battery.
+    func stopEngine() {
+        if engine.isRunning { engine.stop() }
     }
 
     // MARK: - Public
@@ -88,6 +94,7 @@ final class SoundManager {
     }
 
     private func scheduleNote(frequency: Double, duration: Double, amplitude: Float) {
+        guard soundEnabled else { stopEngine(); return }
         let sampleRate  = format.sampleRate
         let frameCount  = AVAudioFrameCount(sampleRate * duration)
         guard let buffer = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: frameCount),

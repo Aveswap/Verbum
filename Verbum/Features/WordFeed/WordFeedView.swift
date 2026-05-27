@@ -24,6 +24,8 @@ struct WordFeedView: View {
     @State private var greenFlashOpacity: Double = 0
     @State private var seenWordIdsSet: Set<UUID> = []
     @State private var showQuizToast = false
+    @State private var showConfetti = false
+    @State private var showGoalToast = false
 
     var body: some View {
         ZStack {
@@ -46,12 +48,21 @@ struct WordFeedView: View {
                 quizToast
             }
 
+            if showGoalToast {
+                goalToast
+            }
+
             if showSwipeHint {
                 swipeHint
             }
 
             if showEndOfFeed {
                 endOfFeedOverlay
+            }
+
+            if showConfetti {
+                ConfettiView()
+                    .ignoresSafeArea()
             }
         }
         .sheet(item: $activeSheet) { sheet in
@@ -284,9 +295,14 @@ struct WordFeedView: View {
                     current: viewModel.batchProgress,
                     total: 5
                 )
-                Text("\(viewModel.currentIndex + 1) of \(viewModel.words.count)")
-                    .font(.system(size: 10))
-                    .foregroundColor(AppColors.textSecondary)
+                HStack(spacing: 4) {
+                    Image(systemName: userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? "checkmark.circle.fill" : "target")
+                        .font(.system(size: 9))
+                        .foregroundColor(userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? .green : AppColors.textSecondary)
+                    Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
+                        .font(.system(size: 10))
+                        .foregroundColor(AppColors.textSecondary)
+                }
             }
             .frame(width: 130)
 
@@ -341,10 +357,13 @@ struct WordFeedView: View {
                 let threshold: CGFloat = 50
                 if val.translation.height < -threshold {
                     HapticManager.swipeWave()
-                    if let word = viewModel.currentWord { userProfile.markWordSeen(word.id) }
+                    if let word = viewModel.currentWord {
+                        let goalJustHit = userProfile.markWordSeen(word.id)
+                        if goalJustHit { triggerGoalCelebration() }
+                    }
                     resetActionScales()
-                    greenFlashOpacity = 0.18
-                    withAnimation(.easeOut(duration: 0.5)) { greenFlashOpacity = 0 }
+                    greenFlashOpacity = 0.07
+                    withAnimation(.easeOut(duration: 0.4)) { greenFlashOpacity = 0 }
                     if viewModel.isEndOfBatch {
                         // Quiz first — even on the last word of the feed
                         pendingNextWord = !viewModel.isAtEnd
@@ -376,6 +395,47 @@ struct WordFeedView: View {
     private func resetActionScales() {
         likeScale = 1.0
         bookmarkScale = 1.0
+    }
+
+    /// Triggers confetti + toast + haptic for hitting the daily goal.
+    private func triggerGoalCelebration() {
+        HapticManager.correctAnswer()
+        SoundManager.shared.playCorrectChime()
+        withAnimation(.easeOut(duration: 0.2)) {
+            showConfetti = true
+            showGoalToast = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+            withAnimation { showConfetti = false }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            withAnimation { showGoalToast = false }
+        }
+    }
+
+    private var goalToast: some View {
+        VStack {
+            HStack(spacing: AppSpacing.sm) {
+                Text("🎯")
+                    .font(.system(size: 20))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Daily goal reached!")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("\(userProfile.profile.dailyGoal) words learned today")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+            }
+            .padding(AppSpacing.md)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
+            .shadow(color: .black.opacity(0.3), radius: 8, y: 4)
+            .padding(.top, 60)
+            Spacer()
+        }
+        .transition(.move(edge: .top).combined(with: .opacity))
+        .allowsHitTesting(false)
     }
 
     // MARK: - Action Row

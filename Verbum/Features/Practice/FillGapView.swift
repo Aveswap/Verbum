@@ -16,25 +16,37 @@ class FillGapViewModel: ObservableObject {
     @Published var selectedAnswer: String?
     @Published var isCorrect: Bool?
     @Published var isFinished = false
+    @Published var insufficientWords = false
 
     private let totalQuestions = 5
+    private let pool: [Word]
+    private let distractorPool: [Word]
 
-    init() { nextQuestion() }
+    init(seenIds: Set<UUID>) {
+        let seen = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+        self.distractorPool = seen
+        // FillGap requires words with example sentences containing the word as a whole token
+        self.pool = seen.filter { word in
+            guard let sentence = word.exampleSentence else { return false }
+            return Self.findWordRange(of: word.text, in: sentence) != nil
+        }
+        if pool.count < 1 || distractorPool.count < 4 {
+            insufficientWords = true
+            isFinished = true
+        } else {
+            nextQuestion()
+        }
+    }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
+        guard let word = pool.randomElement(), let sentence = word.exampleSentence else {
+            isFinished = true; return
+        }
 
-        let words = WordRepository.shared.all.filter { $0.exampleSentence != nil }
-        guard words.count >= 4, let word = words.randomElement() else { isFinished = true; return }
-        guard let sentence = word.exampleSentence else { nextQuestion(); return }
+        let blanked = Self.blankOut(word: word.text, in: sentence)
 
-        let blanked = sentence.replacingOccurrences(
-            of: word.text,
-            with: "___",
-            options: .caseInsensitive
-        )
-
-        let distractors = WordRepository.shared.all
+        let distractors = distractorPool
             .filter { $0.id != word.id }
             .shuffled()
             .prefix(3)
@@ -65,17 +77,44 @@ class FillGapViewModel: ObservableObject {
             HapticManager.error()
         }
     }
+
+    /// Match the word as a whole token (\bword\b style), case-insensitive.
+    /// Avoids matching "run" inside "running" or "rerun".
+    static func findWordRange(of word: String, in sentence: String) -> Range<String.Index>? {
+        let pattern = "\\b\(NSRegularExpression.escapedPattern(for: word))\\b"
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
+            return nil
+        }
+        let range = NSRange(sentence.startIndex..., in: sentence)
+        guard let match = regex.firstMatch(in: sentence, range: range) else { return nil }
+        return Range(match.range, in: sentence)
+    }
+
+    static func blankOut(word: String, in sentence: String) -> String {
+        let pattern = "\\b\(NSRegularExpression.escapedPattern(for: word))\\b"
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
+            return sentence
+        }
+        let range = NSRange(sentence.startIndex..., in: sentence)
+        return regex.stringByReplacingMatches(in: sentence, range: range, withTemplate: "___")
+    }
 }
 
 struct FillGapView: View {
-    @StateObject private var viewModel = FillGapViewModel()
+    @StateObject private var viewModel: FillGapViewModel
     @Environment(\.dismiss) private var dismiss
+
+    init(seenIds: Set<UUID>) {
+        _viewModel = StateObject(wrappedValue: FillGapViewModel(seenIds: seenIds))
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
-                if viewModel.isFinished {
+                if viewModel.insufficientWords {
+                    InsufficientWordsView(needed: 4) { dismiss() }
+                } else if viewModel.isFinished {
                     finishedView
                 } else if let question = viewModel.currentQuestion {
                     questionView(question)

@@ -50,9 +50,24 @@ struct StatsView: View {
                         .foregroundColor(.white.opacity(0.8))
                         .padding(.bottom, 8)
                 }
-                Text("Best: \(userProfile.profile.longestStreak) days")
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(.white.opacity(0.7))
+                HStack(spacing: AppSpacing.sm) {
+                    Text("Best: \(userProfile.profile.longestStreak) days")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(.white.opacity(0.7))
+                    if userProfile.profile.streakFreezes > 0 {
+                        HStack(spacing: 2) {
+                            Image(systemName: "snowflake")
+                                .font(.system(size: 11, weight: .bold))
+                            Text("\(userProfile.profile.streakFreezes)")
+                                .font(.system(size: 13, weight: .semibold))
+                        }
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Color.white.opacity(0.2))
+                        .cornerRadius(8)
+                    }
+                }
             }
             Spacer()
             Text("🔥")

@@ -7,7 +7,9 @@ enum HapticManager {
 
     private static var _engine: CHHapticEngine?
     private static var _engineRunning = false
-    private static let lock = NSLock()
+    // Recursive lock so reset/stopped handlers (which can fire while we're inside `engine`)
+    // don't deadlock when they try to mutate the same state.
+    private static let lock = NSRecursiveLock()
 
     private static var engine: CHHapticEngine? {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return nil }

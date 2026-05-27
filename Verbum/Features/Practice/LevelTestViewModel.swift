@@ -1,21 +1,22 @@
 import Foundation
 
+@MainActor
 class LevelTestViewModel: ObservableObject {
     @Published var currentIndex: Int = 0
     @Published var selectedOption: String? = nil
     @Published var isCorrect: Bool? = nil
     @Published var score: Int = 0
     @Published var isFinished: Bool = false
+    @Published private(set) var options: [String] = []
 
     let questions: [Word]
     private let allWords: [Word]
-    private var cachedOptions: [String] = []
 
     init() {
         let all = WordRepository.shared.all
         allWords = all
         questions = Array(all.shuffled().prefix(10))
-        cachedOptions = []
+        regenerateOptions()
     }
 
     var currentQuestion: Word? {
@@ -23,17 +24,15 @@ class LevelTestViewModel: ObservableObject {
         return questions[currentIndex]
     }
 
-    var options: [String] {
-        if !cachedOptions.isEmpty { return cachedOptions }
-        guard let q = currentQuestion else { return [] }
+    private func regenerateOptions() {
+        guard let q = currentQuestion else { options = []; return }
         var opts = Set([q.definition])
         let distractors = allWords.filter { $0.id != q.id }.shuffled()
         for w in distractors {
             opts.insert(w.definition)
             if opts.count == 4 { break }
         }
-        cachedOptions = opts.shuffled()
-        return cachedOptions
+        options = opts.shuffled()
     }
 
     func select(_ option: String) {
@@ -44,11 +43,11 @@ class LevelTestViewModel: ObservableObject {
     }
 
     func next() {
-        cachedOptions = []
         if currentIndex < questions.count - 1 {
             currentIndex += 1
             selectedOption = nil
             isCorrect = nil
+            regenerateOptions()
         } else {
             isFinished = true
         }

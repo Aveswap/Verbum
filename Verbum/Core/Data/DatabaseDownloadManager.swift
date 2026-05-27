@@ -3,6 +3,7 @@ import Combine
 
 /// Downloads the full 1,000-word SQLite database in a URLSession background task.
 /// Replace `remoteURL` with your CDN URL once the database is ready.
+@MainActor
 final class DatabaseDownloadManager: NSObject, ObservableObject {
     static let shared = DatabaseDownloadManager()
 
@@ -60,49 +61,59 @@ final class DatabaseDownloadManager: NSObject, ObservableObject {
         downloadTask?.cancel()
         state = .idle
     }
+
+    // MARK: - Internal state setters (called from delegate Tasks)
+
+    fileprivate func setState(_ newState: State) {
+        state = newState
+    }
+
+    fileprivate func handleDownloadFinished(from location: URL) {
+        state = .installing
+        do {
+            try WordDatabase.shared.install(from: location)
+            WordRepository.shared.reloadFromDatabase()
+            state = .done
+            NotificationCenter.default.post(name: .wordDatabaseInstalled, object: nil)
+        } catch {
+            state = .failed(error.localizedDescription)
+        }
+    }
 }
 
 // MARK: - URLSessionDownloadDelegate
 
 extension DatabaseDownloadManager: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didWriteData _: Int64,
-                    totalBytesWritten: Int64,
-                    totalBytesExpectedToWrite: Int64) {
+    nonisolated func urlSession(_ session: URLSession,
+                                downloadTask: URLSessionDownloadTask,
+                                didWriteData _: Int64,
+                                totalBytesWritten: Int64,
+                                totalBytesExpectedToWrite: Int64) {
         guard totalBytesExpectedToWrite > 0 else { return }
         let pct = Double(totalBytesWritten) / Double(totalBytesExpectedToWrite)
-        DispatchQueue.main.async { self.state = .downloading(progress: pct) }
+        Task { @MainActor in self.setState(.downloading(progress: pct)) }
     }
 
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didFinishDownloadingTo location: URL) {
-        DispatchQueue.main.async { self.state = .installing }
-        do {
-            try WordDatabase.shared.install(from: location)
-            WordRepository.shared.reloadFromDatabase()
-            DispatchQueue.main.async {
-                self.state = .done
-                NotificationCenter.default.post(name: .wordDatabaseInstalled, object: nil)
-            }
-        } catch {
-            DispatchQueue.main.async {
-                self.state = .failed(error.localizedDescription)
-            }
+    nonisolated func urlSession(_ session: URLSession,
+                                downloadTask: URLSessionDownloadTask,
+                                didFinishDownloadingTo location: URL) {
+        // Copy file synchronously here on the delegate queue — the temp file is gone after this returns.
+        let tmp = FileManager.default.temporaryDirectory
+            .appendingPathComponent("verbum_download_\(UUID().uuidString).db")
+        try? FileManager.default.copyItem(at: location, to: tmp)
+        Task { @MainActor in
+            self.handleDownloadFinished(from: tmp)
+            try? FileManager.default.removeItem(at: tmp)
         }
     }
 
-    func urlSession(_ session: URLSession,
-                    task: URLSessionTask,
-                    didCompleteWithError error: Error?) {
+    nonisolated func urlSession(_ session: URLSession,
+                                task: URLSessionTask,
+                                didCompleteWithError error: Error?) {
         guard let error else { return }
         let nsErr = error as NSError
-        // Ignore cancellation
         guard nsErr.code != NSURLErrorCancelled else { return }
-        DispatchQueue.main.async {
-            self.state = .failed(error.localizedDescription)
-        }
+        Task { @MainActor in self.setState(.failed(error.localizedDescription)) }
     }
 }
 

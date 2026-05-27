@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 class GuessWordViewModel: ObservableObject {
     struct GuessQuestion {
         let definition: String
@@ -14,19 +15,25 @@ class GuessWordViewModel: ObservableObject {
     @Published var selectedAnswer: String?
     @Published var isCorrect: Bool?
     @Published var isFinished = false
+    @Published var insufficientWords = false
 
     private let totalQuestions = 5
-    private let wordStore = WordStore()
+    private let pool: [Word]
 
-    init() { nextQuestion() }
+    init(seenIds: Set<UUID>) {
+        self.pool = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+        if pool.count < 4 {
+            insufficientWords = true
+            isFinished = true
+        } else {
+            nextQuestion()
+        }
+    }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
-        let words = wordStore.words
-        guard words.count >= 4 else { return }
-
-        let word = words.randomElement()!
-        let distractors = words.filter { $0.id != word.id }.shuffled().prefix(3).map(\.text)
+        guard let word = pool.randomElement() else { return }
+        let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.text)
         let options = ([word.text] + distractors).shuffled()
 
         currentQuestion = GuessQuestion(
@@ -50,14 +57,20 @@ class GuessWordViewModel: ObservableObject {
 }
 
 struct GuessWordView: View {
-    @StateObject private var viewModel = GuessWordViewModel()
+    @StateObject private var viewModel: GuessWordViewModel
     @Environment(\.dismiss) private var dismiss
+
+    init(seenIds: Set<UUID>) {
+        _viewModel = StateObject(wrappedValue: GuessWordViewModel(seenIds: seenIds))
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
-                if viewModel.isFinished { finishedView }
+                if viewModel.insufficientWords {
+                    InsufficientWordsView(needed: 4) { dismiss() }
+                } else if viewModel.isFinished { finishedView }
                 else if let q = viewModel.currentQuestion { questionView(q) }
             }
             .navigationTitle("Guess the Word")

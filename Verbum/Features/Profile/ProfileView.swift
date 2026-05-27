@@ -20,7 +20,11 @@ struct ProfileView: View {
                 AppColors.background.ignoresSafeArea()
                 ScrollView {
                     VStack(spacing: AppSpacing.lg) {
-                        premiumCard
+                        if subscriptions.isPro {
+                            premiumActiveCard
+                        } else {
+                            premiumCard
+                        }
                         levelTestCard
                         pointsCard
                         customizeSection
@@ -63,7 +67,7 @@ struct ProfileView: View {
         }
     }
 
-    // MARK: - Premium Card
+    // MARK: - Premium Card (locked / not subscribed)
     private var premiumCard: some View {
         Button { showPremium = true } label: {
             HStack {
@@ -84,6 +88,31 @@ struct ProfileView: View {
             .background(AppColors.accent)
             .cornerRadius(AppSpacing.cornerRadius)
         }
+    }
+
+    // MARK: - Premium Active Card (subscribed)
+    private var premiumActiveCard: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack(spacing: 6) {
+                    Image(systemName: "crown.fill")
+                        .foregroundColor(AppColors.textOnAccent)
+                    Text("Verbum Premium")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(AppColors.textOnAccent)
+                }
+                Text("All words and features unlocked")
+                    .font(.system(size: 13))
+                    .foregroundColor(AppColors.textOnAccent.opacity(0.85))
+            }
+            Spacer()
+            Image(systemName: "checkmark.seal.fill")
+                .font(.system(size: 32))
+                .foregroundColor(AppColors.textOnAccent.opacity(0.8))
+        }
+        .padding(AppSpacing.md)
+        .background(AppColors.accent)
+        .cornerRadius(AppSpacing.cornerRadius)
     }
 
     // MARK: - Level Test Card

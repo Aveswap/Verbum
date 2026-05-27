@@ -3,19 +3,92 @@ import SwiftUI
 struct WordDetailView: View {
     let word: Word
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
     @StateObject private var viewModel: WordDetailViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var showPremium = false
 
     init(word: Word) {
         self.word = word
         _viewModel = StateObject(wrappedValue: WordDetailViewModel(word: word))
     }
 
+    private var isLocked: Bool {
+        !subscriptions.isPro && word.level != .beginner
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
-                ScrollView {
+                if isLocked {
+                    lockedView
+                } else {
+                    detailScroll
+                }
+            }
+            .navigationTitle(word.text)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Done") { dismiss() }.foregroundColor(AppColors.accent)
+                }
+                if !isLocked {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HStack(spacing: AppSpacing.sm) {
+                            Button { userProfile.likeWord(word.id) } label: {
+                                Image(systemName: userProfile.profile.likedWordIds.contains(word.id) ? "heart.fill" : "heart")
+                                    .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)
+                            }
+                            Button { userProfile.bookmarkWord(word.id) } label: {
+                                Image(systemName: userProfile.profile.bookmarkedWordIds.contains(word.id) ? "bookmark.fill" : "bookmark")
+                                    .foregroundColor(AppColors.accent)
+                            }
+                        }
+                    }
+                }
+            }
+            .sheet(isPresented: $showPremium) {
+                PremiumSheet().environmentObject(subscriptions)
+            }
+        }
+        .preferredColorScheme(.dark)
+        .onAppear {
+            if !isLocked, let lang = userProfile.profile.nativeLanguage?.rawValue {
+                viewModel.loadTranslation(lang: lang)
+            }
+        }
+    }
+
+    private var lockedView: some View {
+        VStack(spacing: AppSpacing.lg) {
+            Spacer()
+            Image(systemName: "lock.fill")
+                .font(.system(size: 60))
+                .foregroundColor(AppColors.accent)
+            Text(word.text)
+                .font(AppTypography.wordTitle)
+                .foregroundColor(AppColors.textPrimary)
+                .blur(radius: 6)
+            Text("Premium word")
+                .font(.system(size: 18, weight: .semibold))
+                .foregroundColor(AppColors.textPrimary)
+            Text("Unlock 1,000+ words across all difficulty levels.")
+                .font(.system(size: 15))
+                .foregroundColor(AppColors.textSecondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, AppSpacing.xl)
+            Spacer()
+            PillButton(title: "Get Premium") { showPremium = true }
+                .padding(.horizontal, AppSpacing.lg)
+            Button("Close") { dismiss() }
+                .foregroundColor(AppColors.textSecondary)
+                .padding(.bottom, AppSpacing.xl)
+        }
+    }
+
+    private var detailScroll: some View {
+        ScrollView {
                     VStack(alignment: .leading, spacing: AppSpacing.md) {
                         // Word header
                         VStack(spacing: AppSpacing.sm) {
@@ -58,6 +131,16 @@ struct WordDetailView: View {
                                 Text(t)
                                     .font(AppTypography.definition)
                                     .foregroundColor(AppColors.textSecondary)
+                            } else if let lang = userProfile.profile.nativeLanguage, lang != .ukrainian, lang != .other {
+                                Divider()
+                                    .background(AppColors.surfaceSecondary)
+                                HStack(spacing: 6) {
+                                    Image(systemName: "globe")
+                                        .font(.system(size: 11))
+                                    Text("\(lang.displayName) translation coming soon")
+                                        .font(.system(size: 12))
+                                }
+                                .foregroundColor(AppColors.textSecondary.opacity(0.7))
                             }
                         }
                         .padding(AppSpacing.md)
@@ -198,33 +281,6 @@ struct WordDetailView: View {
                     }
                     .padding(AppSpacing.md)
                 }
-            }
-            .navigationTitle(word.text)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Done") { dismiss() }.foregroundColor(AppColors.accent)
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(spacing: AppSpacing.sm) {
-                        Button { userProfile.likeWord(word.id) } label: {
-                            Image(systemName: userProfile.profile.likedWordIds.contains(word.id) ? "heart.fill" : "heart")
-                                .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)
-                        }
-                        Button { userProfile.bookmarkWord(word.id) } label: {
-                            Image(systemName: userProfile.profile.bookmarkedWordIds.contains(word.id) ? "bookmark.fill" : "bookmark")
-                                .foregroundColor(AppColors.accent)
-                        }
-                    }
-                }
-            }
-        }
-        .preferredColorScheme(.dark)
-        .onAppear {
-            if let lang = userProfile.profile.nativeLanguage?.rawValue {
-                viewModel.loadTranslation(lang: lang)
-            }
-        }
     }
 }
 

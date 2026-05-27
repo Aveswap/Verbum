@@ -14,16 +14,25 @@ class QuizViewModel: ObservableObject {
     @Published var selectedAnswer: String?
     @Published var isCorrect: Bool?
     @Published var isFinished = false
+    @Published var insufficientWords = false
 
     private let totalQuestions = 5
+    private let pool: [Word]
 
-    init() { nextQuestion() }
+    init(seenIds: Set<UUID>) {
+        self.pool = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+        if pool.count < 4 {
+            insufficientWords = true
+            isFinished = true
+        } else {
+            nextQuestion()
+        }
+    }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
-        let words = WordRepository.shared.all
-        guard words.count >= 4, let word = words.randomElement() else { return }
-        let distractors = words.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
+        guard let word = pool.randomElement() else { return }
+        let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
         let options = ([word.definition] + distractors).shuffled()
         currentQuestion = QuizQuestion(word: word, options: options, correct: word.definition)
         selectedAnswer = nil

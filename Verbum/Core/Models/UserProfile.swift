@@ -19,6 +19,9 @@ struct UserProfile: Codable {
     var currentStreak: Int = 0
     var longestStreak: Int = 0
     var lastOpenedDate: Date? = nil
+    var streakTimezone: String? = nil  // IANA identifier; locked at first daily open
+    var streakFreezes: Int = 0         // available freezes; +1 per 7-day streak milestone
+    var streakFreezeUsedDates: [Date] = []
     var seenWordIds: [UUID] = []
     var totalPoints: Int = 0
     var quarterlyPoints: Int = 0
@@ -31,6 +34,15 @@ struct UserProfile: Codable {
 
     // Daily opens: up to one date per calendar day, trimmed to last 7 days
     var dailyOpens: [Date] = []
+
+    // Daily learning goal — words swiped per day before celebration
+    var dailyGoal: Int = 5
+    var wordsLearnedToday: Int = 0
+    var wordsLearnedDate: Date = .distantPast
+
+    // Word mastery: 0 (unseen) → 5 (mastered). +1 on quiz correct, -1 on quiz wrong.
+    // Keyed by word UUID as string for Codable compatibility.
+    var wordMastery: [String: Int] = [:]
 
     static let freePracticeLimit = 3
 }

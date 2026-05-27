@@ -133,10 +133,10 @@ struct PracticeMenuView: View {
             }
         }
         .preferredColorScheme(.dark)
-        .sheet(isPresented: $showQuiz) { QuizView() }
-        .sheet(isPresented: $showFillGap) { FillGapView() }
-        .sheet(isPresented: $showSynonyms) { SynonymsView() }
-        .sheet(isPresented: $showGuessWord) { GuessWordView() }
+        .sheet(isPresented: $showQuiz) { QuizView(seenIds: Set(userProfile.profile.seenWordIds)) }
+        .sheet(isPresented: $showFillGap) { FillGapView(seenIds: Set(userProfile.profile.seenWordIds)) }
+        .sheet(isPresented: $showSynonyms) { SynonymsView(seenIds: Set(userProfile.profile.seenWordIds)) }
+        .sheet(isPresented: $showGuessWord) { GuessWordView(seenIds: Set(userProfile.profile.seenWordIds)) }
         .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
     }

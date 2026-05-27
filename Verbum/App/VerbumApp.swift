@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct VerbumApp: App {
     @StateObject private var userProfile: UserProfileStore
-    @StateObject private var subscriptions = SubscriptionManager()
+    @StateObject private var subscriptions: SubscriptionManager
     @StateObject private var auth: AuthService
 
     init() {

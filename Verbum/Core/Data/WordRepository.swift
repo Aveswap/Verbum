@@ -4,6 +4,7 @@ import Combine
 /// Single source of truth for word data.
 /// Uses local SQLite (WordDatabase) when available; falls back to the bundled words.json.
 /// After the database downloads, call reloadFromDatabase() to switch sources without a restart.
+@MainActor
 final class WordRepository: ObservableObject {
     static let shared = WordRepository()
 
@@ -30,8 +31,7 @@ final class WordRepository: ObservableObject {
 
     func reloadFromDatabase() {
         guard WordDatabase.shared.isAvailable else { return }
-        let words = WordDatabase.shared.fetchWords(limit: 0)
-        DispatchQueue.main.async { self.all = words }
+        all = WordDatabase.shared.fetchWords(limit: 0)
     }
 
     // MARK: - Paywall gate

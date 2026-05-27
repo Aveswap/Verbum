@@ -14,20 +14,32 @@ class SynonymsViewModel: ObservableObject {
     @Published var selectedAnswer: String?
     @Published var isCorrect: Bool?
     @Published var isFinished = false
+    @Published var insufficientWords = false
 
     private let totalQuestions = 5
+    private let pool: [Word]
+    private let distractorPool: [Word]
 
-    init() { nextQuestion() }
+    init(seenIds: Set<UUID>) {
+        let seen = WordRepository.shared.all.filter { seenIds.contains($0.id) }
+        self.distractorPool = seen
+        self.pool = seen.filter { !$0.synonyms.isEmpty }
+        if pool.count < 1 || distractorPool.count < 4 {
+            insufficientWords = true
+            isFinished = true
+        } else {
+            nextQuestion()
+        }
+    }
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
+        guard let word = pool.randomElement(),
+              let correctSynonym = word.synonyms.randomElement() else {
+            isFinished = true; return
+        }
 
-        let words = WordRepository.shared.all.filter { !$0.synonyms.isEmpty }
-        guard words.count >= 4,
-              let word = words.randomElement(),
-              let correctSynonym = word.synonyms.randomElement() else { isFinished = true; return }
-
-        let distractors = WordRepository.shared.all
+        let distractors = distractorPool
             .filter { $0.id != word.id && !word.synonyms.contains($0.text) }
             .shuffled()
             .prefix(3)
@@ -51,14 +63,20 @@ class SynonymsViewModel: ObservableObject {
 }
 
 struct SynonymsView: View {
-    @StateObject private var viewModel = SynonymsViewModel()
+    @StateObject private var viewModel: SynonymsViewModel
     @Environment(\.dismiss) private var dismiss
+
+    init(seenIds: Set<UUID>) {
+        _viewModel = StateObject(wrappedValue: SynonymsViewModel(seenIds: seenIds))
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
-                if viewModel.isFinished {
+                if viewModel.insufficientWords {
+                    InsufficientWordsView(needed: 4) { dismiss() }
+                } else if viewModel.isFinished {
                     finishedView
                 } else if let question = viewModel.currentQuestion {
                     questionView(question)

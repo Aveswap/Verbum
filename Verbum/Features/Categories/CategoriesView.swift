@@ -19,15 +19,17 @@ struct CategoriesView: View {
         let premium: Bool
     }
 
+    // dbCategories must match the `category` column actually stored in words.json / words.db.
+    // Current DB categories: Body, Character, Communication, Emotions, Food, General,
+    // Literature, People, Psychology, Science, Society, Technology.
     private let buckets: [CategoryBucket] = [
-        CategoryBucket(name: "Daily Life",    icon: "house.fill",         dbCategories: ["Daily Life", "Food", "Social"],       premium: false),
-        CategoryBucket(name: "Health & Body", icon: "heart.fill",         dbCategories: ["Health", "Sports"],                   premium: false),
-        CategoryBucket(name: "Mind & Emotion",icon: "brain.head.profile", dbCategories: ["Emotion", "Communication"],           premium: false),
-        CategoryBucket(name: "World & Nature",icon: "globe",              dbCategories: ["Travel", "Nature"],                   premium: false),
-        CategoryBucket(name: "Tech & Science",icon: "cpu",                dbCategories: ["Technology", "Science"],              premium: true),
-        CategoryBucket(name: "Work & Money",  icon: "briefcase.fill",     dbCategories: ["Business", "Finance"],                premium: true),
-        CategoryBucket(name: "Arts & Ideas",  icon: "paintbrush.fill",    dbCategories: ["Art", "Academic"],                    premium: true),
-        CategoryBucket(name: "Society & Law", icon: "building.columns.fill", dbCategories: ["Law"],                             premium: true),
+        CategoryBucket(name: "Daily Life",     icon: "house.fill",            dbCategories: ["General", "Food", "People"],                premium: false),
+        CategoryBucket(name: "Health & Body",  icon: "heart.fill",            dbCategories: ["Body"],                                     premium: false),
+        CategoryBucket(name: "Mind & Emotion", icon: "brain.head.profile",    dbCategories: ["Emotions", "Psychology", "Communication"],  premium: false),
+        CategoryBucket(name: "Character",      icon: "person.fill",           dbCategories: ["Character"],                                premium: false),
+        CategoryBucket(name: "Tech & Science", icon: "cpu",                   dbCategories: ["Technology", "Science"],                    premium: true),
+        CategoryBucket(name: "Arts & Ideas",   icon: "paintbrush.fill",       dbCategories: ["Literature"],                               premium: true),
+        CategoryBucket(name: "Society",        icon: "building.columns.fill", dbCategories: ["Society"],                                  premium: true),
     ]
 
     private let allWords = WordRepository.shared.all

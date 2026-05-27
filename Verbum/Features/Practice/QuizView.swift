@@ -1,15 +1,21 @@
 import SwiftUI
 
 struct QuizView: View {
-    @StateObject private var viewModel = QuizViewModel()
+    @StateObject private var viewModel: QuizViewModel
     @Environment(\.dismiss) private var dismiss
+
+    init(seenIds: Set<UUID>) {
+        _viewModel = StateObject(wrappedValue: QuizViewModel(seenIds: seenIds))
+    }
 
     var body: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
 
-                if viewModel.isFinished {
+                if viewModel.insufficientWords {
+                    InsufficientWordsView(needed: 4) { dismiss() }
+                } else if viewModel.isFinished {
                     finishedView
                 } else if let question = viewModel.currentQuestion {
                     questionView(question)
