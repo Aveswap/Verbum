@@ -329,10 +329,17 @@ across every level.
 
 The original audit listed 13 native languages. **Scope reduced to 4**: Ukrainian (uk), German (de), Italian (it), French (fr) + "Other". Translation rollout is staged:
 
-1. **Phase 1 — Complete the catalog (in progress)**
-   - Run `generate_1000_words.py` with full PLAN (300/450/250 = 1000 words)
-   - Verify SQLite output opens cleanly in Swift via GRDB migrations
-   - Upload `words_v2.db` to CDN, point `DatabaseDownloadManager.remoteURL` at it
+1. **Phase 1 — Complete the catalog ✅ DONE + integrated (bundled)**
+   - 1000 words authored as JSON batches, assembled by `import_batches.py` into
+     `scripts/words_v2.db` (300/450/250, 0 dups).
+   - **Delivery decision: bundle in app (not CDN).** The DB is only 647 KB.
+     `Verbum/Resources/words_v2.db` is committed and added to the **Verbum** app
+     target (pbxproj). `WordDatabase.seedFromBundleIfNeeded()` copies it into the
+     writable Application Support dir on first launch (and re-seeds when
+     `bundledDBVersion` is bumped on an app update). `DatabaseDownloadManager` is
+     now dormant (kept as a future OTA hook).
+   - **To update words later:** rebuild `scripts/words_v2.db`, copy it to
+     `Verbum/Resources/words_v2.db`, and bump `WordDatabase.bundledDBVersion`.
 2. **Phase 2 — Ukrainian translations only**
    - Write `generate_translations.py` script (TBD)
    - Populate `translations` table for `lang='uk'`

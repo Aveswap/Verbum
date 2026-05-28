@@ -19,13 +19,39 @@ final class WordDatabase {
 
     var isAvailable: Bool { dbQueue != nil }
 
-    private init() { openIfExists() }
+    /// Bump this whenever Resources/words_v2.db is updated so an app update
+    /// re-seeds the writable copy with the new content.
+    private static let bundledDBVersion = 1
+    private static let bundledVersionKey = "verbum.bundledDBVersion"
+
+    private init() {
+        seedFromBundleIfNeeded()
+        openIfExists()
+    }
 
     func openIfExists() {
         let path = Self.databaseURL.path
         guard FileManager.default.fileExists(atPath: path) else { return }
         dbQueue = try? DatabaseQueue(path: path)
         try? runMigrations()
+    }
+
+    /// Copies the bundled 1,000-word database into the writable location on first
+    /// launch, and replaces it when an app update ships a newer bundled version.
+    /// The writable copy is needed because the app rebuilds FTS and writes translations.
+    private func seedFromBundleIfNeeded() {
+        let dest = Self.databaseURL
+        let exists = FileManager.default.fileExists(atPath: dest.path)
+        let installedVersion = UserDefaults.standard.integer(forKey: Self.bundledVersionKey)
+        guard !exists || installedVersion < Self.bundledDBVersion else { return }
+        guard let bundled = Bundle.main.url(forResource: "words_v2", withExtension: "db") else { return }
+        do {
+            if exists { try FileManager.default.removeItem(at: dest) }
+            try FileManager.default.copyItem(at: bundled, to: dest)
+            UserDefaults.standard.set(Self.bundledDBVersion, forKey: Self.bundledVersionKey)
+        } catch {
+            // Leave any existing database in place if the copy fails.
+        }
     }
 
     // MARK: - Install

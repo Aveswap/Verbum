@@ -1,8 +1,10 @@
 import Foundation
 import Combine
 
-/// Downloads the full 1,000-word SQLite database in a URLSession background task.
-/// Replace `remoteURL` with your CDN URL once the database is ready.
+/// Optional over-the-air download path for the word database.
+/// NOTE: The 1,000-word DB now ships bundled in the app (see WordDatabase.seedFromBundleIfNeeded),
+/// so this manager is dormant — `startIfNeeded()` no-ops because the DB is already available.
+/// Kept as a future hook for OTA word updates; wire up `remoteURL` to a real CDN to enable it.
 @MainActor
 final class DatabaseDownloadManager: NSObject, ObservableObject {
     static let shared = DatabaseDownloadManager()
@@ -45,7 +47,7 @@ final class DatabaseDownloadManager: NSObject, ObservableObject {
     // MARK: - Public
 
     func startIfNeeded() {
-        #warning("Replace Self.remoteURL with the real CDN URL before App Store submission")
+        // DB is bundled, so this guard returns early in normal operation.
         guard !WordDatabase.shared.isAvailable, state == .idle else { return }
         state = .downloading(progress: 0)
         downloadTask = session.downloadTask(with: Self.remoteURL)

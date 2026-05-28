@@ -38,6 +38,7 @@
 		2FBE902D8E472DD311783D17 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 7065EA90832D7B55B091ECF2 /* words.json */; };
 		335DB077660578203921C7B0 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */; };
 		3638E2784BCD24A1EC73A154 /* translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 551CA09F41CBB9A77AA52313 /* translations.json */; };
+		A1B2C3D4E5F600000000DB01 /* words_v2.db in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000DB02 /* words_v2.db */; };
 		369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF54206A121475D1DB43775 /* Word.swift */; };
 		372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */; };
 		3B36F4C2BFF0624DD1C89DF7 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 08855E15BC1D1540CB22C18F /* GRDB */; };
@@ -151,6 +152,7 @@
 		407BFE1DC6BC631FE00C1392 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		4940C88040FD8E5FC518EE9F /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		551CA09F41CBB9A77AA52313 /* translations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = translations.json; sourceTree = "<group>"; };
+		A1B2C3D4E5F600000000DB02 /* words_v2.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = words_v2.db; sourceTree = "<group>"; };
 		626B6BE3FF009B4C26107D5A /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		668CE3026DC6F136C89050F6 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		693E65753117638048641719 /* NotificationsSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupView.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				0D8B7721046486BB75B8E066 /* Info.plist */,
 				551CA09F41CBB9A77AA52313 /* translations.json */,
 				7065EA90832D7B55B091ECF2 /* words.json */,
+				A1B2C3D4E5F600000000DB02 /* words_v2.db */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */,
 				3638E2784BCD24A1EC73A154 /* translations.json in Resources */,
 				2FBE902D8E472DD311783D17 /* words.json in Resources */,
+				A1B2C3D4E5F600000000DB01 /* words_v2.db in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
