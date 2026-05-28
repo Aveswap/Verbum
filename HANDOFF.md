@@ -262,13 +262,13 @@ Words are being authored **by Claude directly in chat** (no Anthropic API key
 needed) as JSON batches in `scripts/word_batches/`, then assembled locally by
 `scripts/import_batches.py` into `scripts/words_v2.db`.
 
-**Current: 338 / 1000 words committed** (all validate, 0 duplicates):
+**Current: 488 / 1000 words committed** (all validate, 0 duplicates):
 
 | Level | Have | Target | Remaining |
 |-------|-----:|-------:|----------:|
-| Beginner | 104 | 300 | 196 |
-| Intermediate | 148 | 450 | 302 |
-| Expert | 86 | 250 | 164 |
+| Beginner | 154 | 300 | 146 |
+| Intermediate | 198 | 450 | 252 |
+| Expert | 136 | 250 | 114 |
 
 ✅ **Free pool complete** — 50 non-premium words at every level, so
 `WordAccess.freePool(level:)` is fully satisfied.
@@ -283,6 +283,9 @@ Batches committed:
 - `batch_05_premium_intermediate.json` (50)
 - `batch_06_premium_expert.json` (36)
 - `batch_07_intermediate_expansion.json` (50) — non-premium intermediate
+- `batch_08_beginner_expansion.json` (50) — non-premium beginner
+- `batch_09_expert_expansion.json` (50) — non-premium expert
+- `batch_10_intermediate_expansion.json` (50) — non-premium intermediate
 
 **Calibration (confirmed by user):** every word must be *interesting* — never
 primitive. The level reflects how often a learner *encounters* the word, not
@@ -303,7 +306,7 @@ raw difficulty:
 6. `cd scripts && python3 import_batches.py --validate` then `python3 import_batches.py`
 7. Commit each batch with a per-batch message
 
-Remaining work: ~196 Beginner, ~302 Intermediate, ~164 Expert — all in the
+Remaining work: ~146 Beginner, ~252 Intermediate, ~114 Expert — all in the
 8 non-premium categories (Body, Character, Communication, Emotions, Food,
 General, People, Psychology), since premium categories are already covered.
 
