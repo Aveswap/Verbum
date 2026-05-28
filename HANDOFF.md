@@ -256,6 +256,57 @@ write side until extensions are listening.
 4. **Default Apple Sign-In flow** — works in code; needs the App ID to have the Sign in with Apple capability provisioned. Verify before submission.
 5. **Russian language** — explicitly removed from `NativeLanguage` enum. Decision is final; don't re-add.
 
+### Word generation progress — 2026-05-28
+
+Words are being authored **by Claude directly in chat** (no Anthropic API key
+needed) as JSON batches in `scripts/word_batches/`, then assembled locally by
+`scripts/import_batches.py` into `scripts/words_v2.db`.
+
+**Current: 338 / 1000 words committed** (all validate, 0 duplicates):
+
+| Level | Have | Target | Remaining |
+|-------|-----:|-------:|----------:|
+| Beginner | 104 | 300 | 196 |
+| Intermediate | 148 | 450 | 302 |
+| Expert | 86 | 250 | 164 |
+
+✅ **Free pool complete** — 50 non-premium words at every level, so
+`WordAccess.freePool(level:)` is fully satisfied.
+✅ **Premium complete at all levels** — Technology / Science / Literature /
+Society each have Beginner + Intermediate + Expert content.
+
+Batches committed:
+- `batch_01_beginner_freepool.json` (50) — B2-C1 recognizable
+- `batch_02_intermediate_freepool.json` (50) — C1-C2 less common
+- `batch_03_expert_freepool.json` (50) — C2 rare/interesting
+- `batch_04_premium_beginner.json` (54) — Tech/Science/Literature/Society
+- `batch_05_premium_intermediate.json` (50)
+- `batch_06_premium_expert.json` (36)
+- `batch_07_intermediate_expansion.json` (50) — non-premium intermediate
+
+**Calibration (confirmed by user):** every word must be *interesting* — never
+primitive. The level reflects how often a learner *encounters* the word, not
+raw difficulty:
+- **Beginner** = B2-C1, interesting but likely already heard (serene, eloquent)
+- **Intermediate** = C1-C2, encountered occasionally (ambivalent, sardonic)
+- **Expert** = C2, rarely or never met (ineffable, perspicacious, sangfroid)
+
+**To resume generation next session:**
+1. Read this table + the existing batch files to see which words are already used
+2. Author new `batch_NN_*.json` files in `scripts/word_batches/` avoiding ALL
+   existing words (importer rejects duplicates by text + id)
+3. Use valid UUID v4 ids (the importer enforces the variant rule — if unsure,
+   run `python3 -c "import json,glob,uuid; ..."` to reassign)
+4. Register must be one of: formal, informal, neutral, slang, archaic
+   (NOT "literary" — use "formal" and put "literary" in domainTags instead)
+5. Category must be exactly one of the 12 DB-categories
+6. `cd scripts && python3 import_batches.py --validate` then `python3 import_batches.py`
+7. Commit each batch with a per-batch message
+
+Remaining work: ~196 Beginner, ~302 Intermediate, ~164 Expert — all in the
+8 non-premium categories (Body, Character, Communication, Emotions, Food,
+General, People, Psychology), since premium categories are already covered.
+
 ### Content strategy — revised 2026-05-28
 
 The original audit listed 13 native languages. **Scope reduced to 4**: Ukrainian (uk), German (de), Italian (it), French (fr) + "Other". Translation rollout is staged:
