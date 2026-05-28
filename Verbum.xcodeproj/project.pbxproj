@@ -30,7 +30,7 @@
 		0B2E43872FC7787000F40D8E /* WordOfDayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43862FC7787000F40D8E /* WordOfDayWidget.swift */; };
 		0B2E43892FC7787100F40D8E /* WordOfDayProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E43882FC7787100F40D8E /* WordOfDayProvider.swift */; };
 		0B2E438B2FC7787200F40D8E /* WordOfDayEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E438A2FC7787200F40D8E /* WordOfDayEntryView.swift */; };
-		0B2E438D2FC778AA00F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E438C2FC778AA00F40D8E /* DecksView.swift */; };
+		0B2E438F2FC874EC00F40D8E /* DecksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E438E2FC874EC00F40D8E /* DecksView.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
@@ -38,7 +38,6 @@
 		2FBE902D8E472DD311783D17 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 7065EA90832D7B55B091ECF2 /* words.json */; };
 		335DB077660578203921C7B0 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */; };
 		3638E2784BCD24A1EC73A154 /* translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 551CA09F41CBB9A77AA52313 /* translations.json */; };
-		A1B2C3D4E5F600000000DB01 /* words_v2.db in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000DB02 /* words_v2.db */; };
 		369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF54206A121475D1DB43775 /* Word.swift */; };
 		372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */; };
 		3B36F4C2BFF0624DD1C89DF7 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 08855E15BC1D1540CB22C18F /* GRDB */; };
@@ -63,6 +62,7 @@
 		9B7B30E93778BDA7A8B477D2 /* DatabaseStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */; };
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A1B2C3D4E5F600000000DB01 /* words_v2.db in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000DB02 /* words_v2.db */; };
 		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
 		B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */; };
@@ -138,7 +138,7 @@
 		0B2E43862FC7787000F40D8E /* WordOfDayWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayWidget.swift; sourceTree = "<group>"; };
 		0B2E43882FC7787100F40D8E /* WordOfDayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayProvider.swift; sourceTree = "<group>"; };
 		0B2E438A2FC7787200F40D8E /* WordOfDayEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayEntryView.swift; sourceTree = "<group>"; };
-		0B2E438C2FC778AA00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
+		0B2E438E2FC874EC00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -152,7 +152,6 @@
 		407BFE1DC6BC631FE00C1392 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		4940C88040FD8E5FC518EE9F /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		551CA09F41CBB9A77AA52313 /* translations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = translations.json; sourceTree = "<group>"; };
-		A1B2C3D4E5F600000000DB02 /* words_v2.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = words_v2.db; sourceTree = "<group>"; };
 		626B6BE3FF009B4C26107D5A /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		668CE3026DC6F136C89050F6 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		693E65753117638048641719 /* NotificationsSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupView.swift; sourceTree = "<group>"; };
@@ -168,6 +167,7 @@
 		87DE072F4CCDB4928A7EA0CB /* CategoryWordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWordListView.swift; sourceTree = "<group>"; };
 		9BFF885EECBBFF36393A0207 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		A00F070C603FE504217EDA4A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F600000000DB02 /* words_v2.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = words_v2.db; sourceTree = "<group>"; };
 		AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseStatusBanner.swift; sourceTree = "<group>"; };
 		B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDownloadManager.swift; sourceTree = "<group>"; };
 		B0A60EE41CA03C91B64D6107 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 				B40971FC207D1701A44859D9 /* PremiumSheet.swift */,
 				B0A60EE41CA03C91B64D6107 /* ProfileView.swift */,
 				D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */,
-				0B2E438C2FC778AA00F40D8E /* DecksView.swift */,
+				0B2E438E2FC874EC00F40D8E /* DecksView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -640,7 +640,7 @@
 				369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */,
 				217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */,
 				E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */,
-				0B2E438D2FC778AA00F40D8E /* DecksView.swift in Sources */,
+				0B2E438F2FC874EC00F40D8E /* DecksView.swift in Sources */,
 				41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */,
 				879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */,
 				F6CCA03B30F7FC4520024616 /* WordFeedViewModel.swift in Sources */,
