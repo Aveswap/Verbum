@@ -1,0 +1,1551 @@
+[
+  {
+    "id": "573c9fc3-66f9-44bc-9a97-36bcc38c6406",
+    "text": "glum",
+    "phonetic": "/ɡlʌm/",
+    "partOfSpeech": "adjective",
+    "definition": "Looking or feeling dejected; sullen and low-spirited.",
+    "exampleSentence": "He sat glum and silent through the whole celebration.",
+    "synonyms": [
+      "morose",
+      "downcast",
+      "sullen"
+    ],
+    "antonyms": [
+      "cheerful",
+      "buoyant"
+    ],
+    "collocations": [
+      "glum expression",
+      "looked glum",
+      "glum mood"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "Probably from Middle English 'gloumen' meaning to look sullen.",
+    "frequencyRank": 6010,
+    "register": "neutral",
+    "domainTags": [
+      "mood",
+      "emotion"
+    ]
+  },
+  {
+    "id": "2cd21c5e-8419-41ae-8ac6-38e146bcf618",
+    "text": "anguish",
+    "phonetic": "/ˈæŋɡwɪʃ/",
+    "partOfSpeech": "noun",
+    "definition": "Severe mental or physical suffering and distress.",
+    "exampleSentence": "Her face was twisted in anguish as she heard the news.",
+    "synonyms": [
+      "agony",
+      "torment",
+      "distress"
+    ],
+    "antonyms": [
+      "comfort",
+      "relief"
+    ],
+    "collocations": [
+      "mental anguish",
+      "cry of anguish",
+      "in anguish"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Latin 'angustia' meaning tightness, distress.",
+    "frequencyRank": 6020,
+    "register": "neutral",
+    "domainTags": [
+      "suffering",
+      "emotion"
+    ]
+  },
+  {
+    "id": "ac3c4f97-958a-4253-9fc3-6cd8b3883fb5",
+    "text": "qualm",
+    "phonetic": "/kwɑːm/",
+    "partOfSpeech": "noun",
+    "definition": "An uneasy feeling of doubt, worry, or scruple about one's conduct.",
+    "exampleSentence": "She had no qualms about telling him the blunt truth.",
+    "synonyms": [
+      "misgiving",
+      "scruple",
+      "reservation"
+    ],
+    "antonyms": [
+      "confidence",
+      "assurance"
+    ],
+    "collocations": [
+      "no qualms",
+      "qualms about",
+      "moral qualms"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "Old English 'cwealm' meaning death, plague; later sense of sudden misgiving.",
+    "frequencyRank": 6030,
+    "register": "neutral",
+    "domainTags": [
+      "doubt",
+      "conscience"
+    ]
+  },
+  {
+    "id": "863d8cbe-d4f6-43b8-857f-6c45ede34fdd",
+    "text": "dread",
+    "phonetic": "/dred/",
+    "partOfSpeech": "noun",
+    "definition": "Great fear or apprehension about something that may happen.",
+    "exampleSentence": "A sense of dread settled over her before the interview.",
+    "synonyms": [
+      "terror",
+      "foreboding",
+      "apprehension"
+    ],
+    "antonyms": [
+      "anticipation",
+      "eagerness"
+    ],
+    "collocations": [
+      "sense of dread",
+      "fill with dread",
+      "creeping dread"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "Middle English 'dreden', shortened from Old English 'ondrǣdan'.",
+    "frequencyRank": 6040,
+    "register": "neutral",
+    "domainTags": [
+      "fear",
+      "emotion"
+    ]
+  },
+  {
+    "id": "3d8d58d4-940b-4408-8c67-b7bf015383d7",
+    "text": "wrath",
+    "phonetic": "/rɒθ/",
+    "partOfSpeech": "noun",
+    "definition": "Extreme anger, often expressed as a desire for vengeance.",
+    "exampleSentence": "He feared the wrath of his employer more than the deadline.",
+    "synonyms": [
+      "fury",
+      "rage",
+      "ire"
+    ],
+    "antonyms": [
+      "calm",
+      "forgiveness"
+    ],
+    "collocations": [
+      "divine wrath",
+      "incur the wrath",
+      "wrath of"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "Old English 'wrǣþþu', from 'wrāth' meaning angry.",
+    "frequencyRank": 6050,
+    "register": "formal",
+    "domainTags": [
+      "anger",
+      "emotion"
+    ]
+  },
+  {
+    "id": "12baddbe-c34c-4817-a239-962b1db31b6b",
+    "text": "rapt",
+    "phonetic": "/ræpt/",
+    "partOfSpeech": "adjective",
+    "definition": "Completely fascinated by or absorbed in what one is experiencing.",
+    "exampleSentence": "The children listened with rapt attention to the storyteller.",
+    "synonyms": [
+      "engrossed",
+      "spellbound",
+      "absorbed"
+    ],
+    "antonyms": [
+      "indifferent",
+      "distracted"
+    ],
+    "collocations": [
+      "rapt attention",
+      "rapt audience",
+      "listen rapt"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Latin 'raptus' meaning seized, carried away.",
+    "frequencyRank": 6060,
+    "register": "formal",
+    "domainTags": [
+      "attention",
+      "emotion"
+    ]
+  },
+  {
+    "id": "997edd54-98f1-4f23-984d-ca5736caf9b8",
+    "text": "petulant",
+    "phonetic": "/ˈpetjʊlənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Childishly sulky or bad-tempered over trivial matters.",
+    "exampleSentence": "He gave a petulant shrug when his idea was rejected.",
+    "synonyms": [
+      "peevish",
+      "querulous",
+      "sulky"
+    ],
+    "antonyms": [
+      "good-natured",
+      "amiable"
+    ],
+    "collocations": [
+      "petulant tone",
+      "petulant child",
+      "petulant outburst"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'petulans' meaning impudent, forward.",
+    "frequencyRank": 6070,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "6d4a863b-ad87-406a-a32d-3179b65c6029",
+    "text": "impetuous",
+    "phonetic": "/ɪmˈpetjuəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Acting or done quickly and without thought or care.",
+    "exampleSentence": "Her impetuous decision to quit surprised everyone.",
+    "synonyms": [
+      "impulsive",
+      "rash",
+      "hasty"
+    ],
+    "antonyms": [
+      "cautious",
+      "deliberate"
+    ],
+    "collocations": [
+      "impetuous decision",
+      "impetuous youth",
+      "impetuous nature"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'impetus' meaning assault, force.",
+    "frequencyRank": 6080,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "6a339a86-d8f9-4072-a56c-fff7a4f0d863",
+    "text": "garrulous",
+    "phonetic": "/ˈɡærələs/",
+    "partOfSpeech": "adjective",
+    "definition": "Excessively talkative, especially about trivial matters.",
+    "exampleSentence": "The garrulous host left no room for anyone else to speak.",
+    "synonyms": [
+      "loquacious",
+      "voluble",
+      "chatty"
+    ],
+    "antonyms": [
+      "taciturn",
+      "reticent"
+    ],
+    "collocations": [
+      "garrulous old man",
+      "garrulous neighbor",
+      "grew garrulous"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'garrulus', from 'garrire' meaning to chatter.",
+    "frequencyRank": 6090,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "ad1f9d50-efe7-48aa-9894-c99228e73552",
+    "text": "laconic",
+    "phonetic": "/ləˈkɒnɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Using very few words; concise to the point of seeming brusque.",
+    "exampleSentence": "His laconic reply told us he wanted to be left alone.",
+    "synonyms": [
+      "terse",
+      "succinct",
+      "curt"
+    ],
+    "antonyms": [
+      "verbose",
+      "garrulous"
+    ],
+    "collocations": [
+      "laconic reply",
+      "laconic style",
+      "laconic wit"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Greek 'Lakonikos', referring to the terse Spartans of Laconia.",
+    "frequencyRank": 6100,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "7620023a-7768-4869-99b7-80f9d7aa779d",
+    "text": "pugnacious",
+    "phonetic": "/pʌɡˈneɪʃəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Eager or quick to argue, quarrel, or fight.",
+    "exampleSentence": "The pugnacious debater challenged every point made.",
+    "synonyms": [
+      "combative",
+      "belligerent",
+      "truculent"
+    ],
+    "antonyms": [
+      "peaceable",
+      "conciliatory"
+    ],
+    "collocations": [
+      "pugnacious attitude",
+      "pugnacious tone",
+      "pugnacious stance"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'pugnax', from 'pugnare' meaning to fight.",
+    "frequencyRank": 6110,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "5a292e9b-48ce-48e2-94ce-76f9a3fff256",
+    "text": "diffident",
+    "phonetic": "/ˈdɪfɪdənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Modest or shy because of a lack of self-confidence.",
+    "exampleSentence": "She was too diffident to claim credit for the project.",
+    "synonyms": [
+      "timid",
+      "self-effacing",
+      "bashful"
+    ],
+    "antonyms": [
+      "confident",
+      "assertive"
+    ],
+    "collocations": [
+      "diffident manner",
+      "diffident smile",
+      "remained diffident"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'diffidere' meaning to mistrust.",
+    "frequencyRank": 6120,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "91559213-0900-4f77-820c-d3054fa44d7b",
+    "text": "imperious",
+    "phonetic": "/ɪmˈpɪəriəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Arrogantly domineering or overbearing in manner.",
+    "exampleSentence": "With an imperious wave, she dismissed the waiter.",
+    "synonyms": [
+      "domineering",
+      "overbearing",
+      "high-handed"
+    ],
+    "antonyms": [
+      "meek",
+      "submissive"
+    ],
+    "collocations": [
+      "imperious manner",
+      "imperious tone",
+      "imperious gesture"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'imperiosus', from 'imperium' meaning command.",
+    "frequencyRank": 6130,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "13fed87a-40ad-44d0-88cd-aa447b5e5cb5",
+    "text": "jocular",
+    "phonetic": "/ˈdʒɒkjʊlə/",
+    "partOfSpeech": "adjective",
+    "definition": "Fond of or characterized by joking; humorous and playful.",
+    "exampleSentence": "His jocular remarks lightened the tense meeting.",
+    "synonyms": [
+      "jovial",
+      "waggish",
+      "facetious"
+    ],
+    "antonyms": [
+      "solemn",
+      "earnest"
+    ],
+    "collocations": [
+      "jocular tone",
+      "jocular manner",
+      "jocular remark"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'jocularis', from 'joculus' a little joke.",
+    "frequencyRank": 6140,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "a9dc2cd9-1329-4d66-a02f-c19d54627346",
+    "text": "effusive",
+    "phonetic": "/ɪˈfjuːsɪv/",
+    "partOfSpeech": "adjective",
+    "definition": "Expressing feelings of gratitude, pleasure, or approval in an unrestrained way.",
+    "exampleSentence": "She was effusive in her thanks for the unexpected gift.",
+    "synonyms": [
+      "gushing",
+      "lavish",
+      "demonstrative"
+    ],
+    "antonyms": [
+      "restrained",
+      "reserved"
+    ],
+    "collocations": [
+      "effusive praise",
+      "effusive welcome",
+      "effusive thanks"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'effusus', past participle of 'effundere' to pour out.",
+    "frequencyRank": 6150,
+    "register": "formal",
+    "domainTags": [
+      "temperament",
+      "character"
+    ]
+  },
+  {
+    "id": "2ce78b2d-aa95-476d-9566-798ccb5ecf68",
+    "text": "unscrupulous",
+    "phonetic": "/ʌnˈskruːpjʊləs/",
+    "partOfSpeech": "adjective",
+    "definition": "Having or showing no moral principles; not honest or fair.",
+    "exampleSentence": "An unscrupulous broker hid the fees from his clients.",
+    "synonyms": [
+      "unprincipled",
+      "dishonest",
+      "underhanded"
+    ],
+    "antonyms": [
+      "scrupulous",
+      "ethical"
+    ],
+    "collocations": [
+      "unscrupulous dealer",
+      "unscrupulous tactics",
+      "unscrupulous behavior"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From 'un-' plus 'scrupulous', from Latin 'scrupulus' a small worry.",
+    "frequencyRank": 6160,
+    "register": "neutral",
+    "domainTags": [
+      "morality",
+      "character"
+    ]
+  },
+  {
+    "id": "64dc2e34-847a-48ef-9837-c92b9da2ef73",
+    "text": "banter",
+    "phonetic": "/ˈbæntə/",
+    "partOfSpeech": "noun",
+    "definition": "The playful and friendly exchange of teasing remarks.",
+    "exampleSentence": "The two old friends fell into their usual banter.",
+    "synonyms": [
+      "repartee",
+      "raillery",
+      "badinage"
+    ],
+    "antonyms": [
+      "solemnity",
+      "earnestness"
+    ],
+    "collocations": [
+      "good-natured banter",
+      "playful banter",
+      "exchange banter"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "Late 17th century, of unknown origin.",
+    "frequencyRank": 6170,
+    "register": "informal",
+    "domainTags": [
+      "conversation",
+      "communication"
+    ]
+  },
+  {
+    "id": "6d7acb6e-63f9-4f3b-9b6b-516beac06a8e",
+    "text": "repartee",
+    "phonetic": "/ˌrepɑːˈtiː/",
+    "partOfSpeech": "noun",
+    "definition": "Conversation marked by quick, witty comments and replies.",
+    "exampleSentence": "Their dinner was full of sparkling repartee.",
+    "synonyms": [
+      "banter",
+      "wit",
+      "badinage"
+    ],
+    "antonyms": [
+      "dullness",
+      "monologue"
+    ],
+    "collocations": [
+      "witty repartee",
+      "sparkling repartee",
+      "quick repartee"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From French 'repartie', from 'repartir' to reply promptly.",
+    "frequencyRank": 6180,
+    "register": "formal",
+    "domainTags": [
+      "conversation",
+      "communication"
+    ]
+  },
+  {
+    "id": "52ffb039-f9b5-4321-882f-c6ad6da8f007",
+    "text": "cajole",
+    "phonetic": "/kəˈdʒəʊl/",
+    "partOfSpeech": "verb",
+    "definition": "To persuade someone to do something by sustained coaxing or flattery.",
+    "exampleSentence": "She managed to cajole her brother into helping.",
+    "synonyms": [
+      "coax",
+      "wheedle",
+      "inveigle"
+    ],
+    "antonyms": [
+      "coerce",
+      "bully"
+    ],
+    "collocations": [
+      "cajole into",
+      "cajole someone",
+      "try to cajole"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From French 'cajoler' to chatter like a caged bird, coax.",
+    "frequencyRank": 6190,
+    "register": "neutral",
+    "domainTags": [
+      "persuasion",
+      "communication"
+    ]
+  },
+  {
+    "id": "95d1d45d-6874-4784-9916-a88983861840",
+    "text": "berate",
+    "phonetic": "/bɪˈreɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To scold or criticize someone angrily and at length.",
+    "exampleSentence": "The coach berated the team for their careless play.",
+    "synonyms": [
+      "upbraid",
+      "rebuke",
+      "castigate"
+    ],
+    "antonyms": [
+      "praise",
+      "commend"
+    ],
+    "collocations": [
+      "berate someone",
+      "berate for",
+      "publicly berate"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From 'be-' plus 'rate' meaning to scold.",
+    "frequencyRank": 6200,
+    "register": "neutral",
+    "domainTags": [
+      "criticism",
+      "communication"
+    ]
+  },
+  {
+    "id": "5424fca1-42a8-4db2-8624-c9383e7d7217",
+    "text": "admonish",
+    "phonetic": "/ədˈmɒnɪʃ/",
+    "partOfSpeech": "verb",
+    "definition": "To warn or reprimand someone firmly but gently.",
+    "exampleSentence": "The teacher admonished him for arriving late again.",
+    "synonyms": [
+      "reprove",
+      "caution",
+      "rebuke"
+    ],
+    "antonyms": [
+      "praise",
+      "applaud"
+    ],
+    "collocations": [
+      "admonish for",
+      "gently admonish",
+      "admonish against"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'admonere' meaning to advise, warn.",
+    "frequencyRank": 6210,
+    "register": "formal",
+    "domainTags": [
+      "warning",
+      "communication"
+    ]
+  },
+  {
+    "id": "d69ecc79-9022-4a61-8245-12d66ffd5434",
+    "text": "placate",
+    "phonetic": "/pləˈkeɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To make someone less angry or hostile by conciliation.",
+    "exampleSentence": "He offered a refund to placate the furious customer.",
+    "synonyms": [
+      "appease",
+      "pacify",
+      "mollify"
+    ],
+    "antonyms": [
+      "provoke",
+      "antagonize"
+    ],
+    "collocations": [
+      "placate someone",
+      "placate critics",
+      "try to placate"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'placare' meaning to calm, appease.",
+    "frequencyRank": 6220,
+    "register": "formal",
+    "domainTags": [
+      "persuasion",
+      "communication"
+    ]
+  },
+  {
+    "id": "510b0291-1bcf-475d-bca7-29ae26ba72b9",
+    "text": "chide",
+    "phonetic": "/tʃaɪd/",
+    "partOfSpeech": "verb",
+    "definition": "To scold or rebuke someone mildly.",
+    "exampleSentence": "She chided him for forgetting to call.",
+    "synonyms": [
+      "scold",
+      "reprove",
+      "reproach"
+    ],
+    "antonyms": [
+      "praise",
+      "commend"
+    ],
+    "collocations": [
+      "chide for",
+      "gently chide",
+      "chide someone"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "Old English 'cidan' meaning to quarrel, scold.",
+    "frequencyRank": 6230,
+    "register": "formal",
+    "domainTags": [
+      "criticism",
+      "communication"
+    ]
+  },
+  {
+    "id": "e18bde8b-a3d9-4685-80ab-300bbf708982",
+    "text": "quibble",
+    "phonetic": "/ˈkwɪbl/",
+    "partOfSpeech": "verb",
+    "definition": "To argue or raise objections about a trivial matter.",
+    "exampleSentence": "Let's not quibble over a few cents.",
+    "synonyms": [
+      "nitpick",
+      "cavil",
+      "carp"
+    ],
+    "antonyms": [
+      "agree",
+      "concur"
+    ],
+    "collocations": [
+      "quibble over",
+      "quibble about",
+      "minor quibble"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "Probably from obsolete 'quib' a pun, from Latin 'quibus'.",
+    "frequencyRank": 6240,
+    "register": "neutral",
+    "domainTags": [
+      "argument",
+      "communication"
+    ]
+  },
+  {
+    "id": "3c1f3201-9efb-433d-92e3-d0cafa8ad5e1",
+    "text": "bicker",
+    "phonetic": "/ˈbɪkə/",
+    "partOfSpeech": "verb",
+    "definition": "To argue about petty and trivial matters.",
+    "exampleSentence": "The siblings bickered over who sat in front.",
+    "synonyms": [
+      "squabble",
+      "wrangle",
+      "spat"
+    ],
+    "antonyms": [
+      "agree",
+      "harmonize"
+    ],
+    "collocations": [
+      "bicker over",
+      "bicker about",
+      "constantly bicker"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "Middle English 'bikeren', of uncertain origin.",
+    "frequencyRank": 6250,
+    "register": "informal",
+    "domainTags": [
+      "argument",
+      "communication"
+    ]
+  },
+  {
+    "id": "6786e919-5c01-40bd-b436-1fc45eff67ec",
+    "text": "coterie",
+    "phonetic": "/ˈkəʊtəri/",
+    "partOfSpeech": "noun",
+    "definition": "A small, exclusive group of people with shared interests.",
+    "exampleSentence": "A coterie of loyal advisers surrounded the leader.",
+    "synonyms": [
+      "clique",
+      "circle",
+      "set"
+    ],
+    "antonyms": [
+      "crowd",
+      "public"
+    ],
+    "collocations": [
+      "small coterie",
+      "inner coterie",
+      "coterie of"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From French 'coterie' an association of tenants.",
+    "frequencyRank": 6260,
+    "register": "formal",
+    "domainTags": [
+      "group",
+      "people"
+    ]
+  },
+  {
+    "id": "5b1b3328-6d1e-46b3-ba13-972df6ee9733",
+    "text": "entourage",
+    "phonetic": "/ˈɒntʊrɑːʒ/",
+    "partOfSpeech": "noun",
+    "definition": "A group of attendants or associates accompanying an important person.",
+    "exampleSentence": "The star arrived with a large entourage.",
+    "synonyms": [
+      "retinue",
+      "escort",
+      "following"
+    ],
+    "antonyms": [
+      "loner",
+      "individual"
+    ],
+    "collocations": [
+      "large entourage",
+      "celebrity entourage",
+      "entourage of"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From French 'entourer' meaning to surround.",
+    "frequencyRank": 6270,
+    "register": "neutral",
+    "domainTags": [
+      "group",
+      "people"
+    ]
+  },
+  {
+    "id": "f227c8d1-abd7-4162-af6c-64055d5fd53b",
+    "text": "progeny",
+    "phonetic": "/ˈprɒdʒəni/",
+    "partOfSpeech": "noun",
+    "definition": "A person's offspring or descendants considered collectively.",
+    "exampleSentence": "He hoped his progeny would carry on the family trade.",
+    "synonyms": [
+      "offspring",
+      "descendants",
+      "issue"
+    ],
+    "antonyms": [
+      "ancestors",
+      "forebears"
+    ],
+    "collocations": [
+      "numerous progeny",
+      "his progeny",
+      "progeny of"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Latin 'progenies', from 'progignere' to beget.",
+    "frequencyRank": 6280,
+    "register": "formal",
+    "domainTags": [
+      "family",
+      "people"
+    ]
+  },
+  {
+    "id": "0cbe8e76-a0ae-4fab-82ae-aa3767886404",
+    "text": "forebear",
+    "phonetic": "/ˈfɔːbeə/",
+    "partOfSpeech": "noun",
+    "definition": "An ancestor; a person from whom one is descended.",
+    "exampleSentence": "Her forebears had farmed this valley for centuries.",
+    "synonyms": [
+      "ancestor",
+      "forefather",
+      "predecessor"
+    ],
+    "antonyms": [
+      "descendant",
+      "progeny"
+    ],
+    "collocations": [
+      "distant forebear",
+      "our forebears",
+      "forebears of"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From 'fore-' plus archaic 'beer' one who exists, from 'be'.",
+    "frequencyRank": 6290,
+    "register": "formal",
+    "domainTags": [
+      "family",
+      "people"
+    ]
+  },
+  {
+    "id": "d605ff36-a3f9-497f-99ac-8e5323c7982e",
+    "text": "matriarch",
+    "phonetic": "/ˈmeɪtriɑːk/",
+    "partOfSpeech": "noun",
+    "definition": "A woman who is the head of a family or dominant figure in a group.",
+    "exampleSentence": "The matriarch presided over every family gathering.",
+    "synonyms": [
+      "dowager",
+      "materfamilias",
+      "head"
+    ],
+    "antonyms": [
+      "patriarch"
+    ],
+    "collocations": [
+      "family matriarch",
+      "elderly matriarch",
+      "reigning matriarch"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Latin 'mater' mother plus Greek 'arkhes' ruler.",
+    "frequencyRank": 6300,
+    "register": "neutral",
+    "domainTags": [
+      "family",
+      "people"
+    ]
+  },
+  {
+    "id": "ce4afa53-f246-4b07-a154-220e2e5172fc",
+    "text": "scion",
+    "phonetic": "/ˈsaɪən/",
+    "partOfSpeech": "noun",
+    "definition": "A descendant or young member of a notable family.",
+    "exampleSentence": "He was the scion of a famous publishing dynasty.",
+    "synonyms": [
+      "heir",
+      "descendant",
+      "offspring"
+    ],
+    "antonyms": [
+      "ancestor",
+      "forebear"
+    ],
+    "collocations": [
+      "scion of",
+      "young scion",
+      "wealthy scion"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Old French 'cion' a shoot or twig for grafting.",
+    "frequencyRank": 6310,
+    "register": "formal",
+    "domainTags": [
+      "family",
+      "people"
+    ]
+  },
+  {
+    "id": "0b9b5064-cc47-48b7-b7d9-ec14a80a667e",
+    "text": "supple",
+    "phonetic": "/ˈsʌpl/",
+    "partOfSpeech": "adjective",
+    "definition": "Bending and moving easily; flexible and limber.",
+    "exampleSentence": "Years of dance kept her body supple.",
+    "synonyms": [
+      "limber",
+      "lithe",
+      "pliant"
+    ],
+    "antonyms": [
+      "stiff",
+      "rigid"
+    ],
+    "collocations": [
+      "supple leather",
+      "supple movements",
+      "remain supple"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Latin 'supplex' meaning submissive, bending.",
+    "frequencyRank": 6320,
+    "register": "neutral",
+    "domainTags": [
+      "physique",
+      "body"
+    ]
+  },
+  {
+    "id": "ed136693-6809-4854-a8b5-6ad54c772fb2",
+    "text": "lithe",
+    "phonetic": "/laɪð/",
+    "partOfSpeech": "adjective",
+    "definition": "Thin, supple, and graceful in movement.",
+    "exampleSentence": "The lithe gymnast vaulted over the bar with ease.",
+    "synonyms": [
+      "supple",
+      "lissome",
+      "graceful"
+    ],
+    "antonyms": [
+      "stiff",
+      "clumsy"
+    ],
+    "collocations": [
+      "lithe body",
+      "lithe movements",
+      "lithe figure"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "Old English 'lithe' meaning gentle, soft.",
+    "frequencyRank": 6330,
+    "register": "formal",
+    "domainTags": [
+      "physique",
+      "body"
+    ]
+  },
+  {
+    "id": "f25c4243-1dde-4839-83f9-6a7f8489bac5",
+    "text": "brawny",
+    "phonetic": "/ˈbrɔːni/",
+    "partOfSpeech": "adjective",
+    "definition": "Physically strong; muscular and powerfully built.",
+    "exampleSentence": "The brawny dockworker lifted the crate with ease.",
+    "synonyms": [
+      "muscular",
+      "burly",
+      "strapping"
+    ],
+    "antonyms": [
+      "frail",
+      "puny"
+    ],
+    "collocations": [
+      "brawny arms",
+      "brawny build",
+      "brawny shoulders"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Middle English 'brawn' meaning muscle.",
+    "frequencyRank": 6340,
+    "register": "neutral",
+    "domainTags": [
+      "physique",
+      "body"
+    ]
+  },
+  {
+    "id": "c973eed9-dca4-4cdb-854c-cc96172720b7",
+    "text": "lanky",
+    "phonetic": "/ˈlæŋki/",
+    "partOfSpeech": "adjective",
+    "definition": "Ungracefully tall and thin.",
+    "exampleSentence": "The lanky teenager had outgrown all his clothes.",
+    "synonyms": [
+      "gangly",
+      "rangy",
+      "spindly"
+    ],
+    "antonyms": [
+      "stocky",
+      "squat"
+    ],
+    "collocations": [
+      "lanky frame",
+      "lanky teenager",
+      "tall and lanky"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From 'lank' meaning long and lean, of Germanic origin.",
+    "frequencyRank": 6350,
+    "register": "informal",
+    "domainTags": [
+      "physique",
+      "body"
+    ]
+  },
+  {
+    "id": "47f8d3f5-34c4-4970-ad3f-9d1fb3fe8010",
+    "text": "portly",
+    "phonetic": "/ˈpɔːtli/",
+    "partOfSpeech": "adjective",
+    "definition": "Rather fat, especially in a dignified or stately way.",
+    "exampleSentence": "A portly gentleman in a tweed coat took the seat.",
+    "synonyms": [
+      "stout",
+      "corpulent",
+      "rotund"
+    ],
+    "antonyms": [
+      "slim",
+      "slender"
+    ],
+    "collocations": [
+      "portly figure",
+      "portly gentleman",
+      "rather portly"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From 'port' meaning bearing, demeanor, plus '-ly'.",
+    "frequencyRank": 6360,
+    "register": "formal",
+    "domainTags": [
+      "physique",
+      "body"
+    ]
+  },
+  {
+    "id": "51c9c5f8-1d55-4f08-a68c-9402af4ba645",
+    "text": "svelte",
+    "phonetic": "/svelt/",
+    "partOfSpeech": "adjective",
+    "definition": "Slender and elegant in figure.",
+    "exampleSentence": "She looked svelte in the tailored evening gown.",
+    "synonyms": [
+      "slim",
+      "willowy",
+      "lissome"
+    ],
+    "antonyms": [
+      "stout",
+      "portly"
+    ],
+    "collocations": [
+      "svelte figure",
+      "svelte silhouette",
+      "remain svelte"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From French 'svelte', from Italian 'svelto' slim.",
+    "frequencyRank": 6370,
+    "register": "formal",
+    "domainTags": [
+      "physique",
+      "body"
+    ]
+  },
+  {
+    "id": "361a99ab-3fe4-46ad-97f5-3fbdb87bf33a",
+    "text": "redolent",
+    "phonetic": "/ˈredələnt/",
+    "partOfSpeech": "adjective",
+    "definition": "Strongly smelling of something; evocative of a fragrance.",
+    "exampleSentence": "The kitchen was redolent of cinnamon and cloves.",
+    "synonyms": [
+      "fragrant",
+      "aromatic",
+      "scented"
+    ],
+    "antonyms": [
+      "odorless",
+      "scentless"
+    ],
+    "collocations": [
+      "redolent of",
+      "redolent aroma",
+      "air redolent"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From Latin 'redolere' to emit a scent.",
+    "frequencyRank": 6380,
+    "register": "formal",
+    "domainTags": [
+      "aroma",
+      "food"
+    ]
+  },
+  {
+    "id": "2f0743d9-ea10-45e4-a8a9-752f7f89f2bc",
+    "text": "tangy",
+    "phonetic": "/ˈtæŋi/",
+    "partOfSpeech": "adjective",
+    "definition": "Having a strong, sharp, pleasantly acidic flavor or smell.",
+    "exampleSentence": "The dressing had a tangy hint of lemon.",
+    "synonyms": [
+      "zesty",
+      "sharp",
+      "piquant"
+    ],
+    "antonyms": [
+      "bland",
+      "mild"
+    ],
+    "collocations": [
+      "tangy flavor",
+      "tangy sauce",
+      "tangy aftertaste"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From 'tang' a sharp taste, of Scandinavian origin.",
+    "frequencyRank": 6390,
+    "register": "informal",
+    "domainTags": [
+      "taste",
+      "food"
+    ]
+  },
+  {
+    "id": "46baa663-b7fb-4278-901e-18f514101015",
+    "text": "velvety",
+    "phonetic": "/ˈvelvəti/",
+    "partOfSpeech": "adjective",
+    "definition": "Smooth and soft to the taste or touch, like velvet.",
+    "exampleSentence": "The soup had a rich, velvety texture.",
+    "synonyms": [
+      "smooth",
+      "creamy",
+      "silky"
+    ],
+    "antonyms": [
+      "coarse",
+      "gritty"
+    ],
+    "collocations": [
+      "velvety texture",
+      "velvety smooth",
+      "velvety sauce"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From 'velvet', from Latin 'villus' shaggy hair.",
+    "frequencyRank": 6400,
+    "register": "neutral",
+    "domainTags": [
+      "texture",
+      "food"
+    ]
+  },
+  {
+    "id": "c8d3161d-2874-415a-91f4-a2743e3e8c8e",
+    "text": "briny",
+    "phonetic": "/ˈbraɪni/",
+    "partOfSpeech": "adjective",
+    "definition": "Tasting of or resembling salt water; very salty.",
+    "exampleSentence": "The oysters had a fresh, briny tang of the sea.",
+    "synonyms": [
+      "salty",
+      "saline",
+      "brackish"
+    ],
+    "antonyms": [
+      "fresh",
+      "sweet"
+    ],
+    "collocations": [
+      "briny taste",
+      "briny deep",
+      "briny flavor"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From 'brine' salt water, of Germanic origin.",
+    "frequencyRank": 6410,
+    "register": "neutral",
+    "domainTags": [
+      "taste",
+      "food"
+    ]
+  },
+  {
+    "id": "7ac93508-0547-4323-844f-c33363b86c0f",
+    "text": "zesty",
+    "phonetic": "/ˈzesti/",
+    "partOfSpeech": "adjective",
+    "definition": "Having a strong, pleasant, and somewhat spicy flavor.",
+    "exampleSentence": "A zesty salsa brightened the whole dish.",
+    "synonyms": [
+      "tangy",
+      "piquant",
+      "spicy"
+    ],
+    "antonyms": [
+      "bland",
+      "flat"
+    ],
+    "collocations": [
+      "zesty flavor",
+      "zesty lime",
+      "zesty kick"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From 'zest' the outer peel of citrus, from French 'zeste'.",
+    "frequencyRank": 6420,
+    "register": "informal",
+    "domainTags": [
+      "taste",
+      "food"
+    ]
+  },
+  {
+    "id": "69c2d212-05c9-4111-afa5-91c9c996c999",
+    "text": "cognizant",
+    "phonetic": "/ˈkɒɡnɪzənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Having knowledge or awareness of something.",
+    "exampleSentence": "She was fully cognizant of the risks involved.",
+    "synonyms": [
+      "aware",
+      "conscious",
+      "mindful"
+    ],
+    "antonyms": [
+      "oblivious",
+      "unaware"
+    ],
+    "collocations": [
+      "cognizant of",
+      "fully cognizant",
+      "remain cognizant"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'cognoscere' meaning to get to know.",
+    "frequencyRank": 6430,
+    "register": "formal",
+    "domainTags": [
+      "awareness",
+      "psychology"
+    ]
+  },
+  {
+    "id": "1a6c3e5e-64de-43a0-a43a-fe05796821b7",
+    "text": "repression",
+    "phonetic": "/rɪˈpreʃn/",
+    "partOfSpeech": "noun",
+    "definition": "The unconscious blocking of unpleasant thoughts or impulses from awareness.",
+    "exampleSentence": "Therapists explored the repression behind her anxiety.",
+    "synonyms": [
+      "suppression",
+      "inhibition",
+      "restraint"
+    ],
+    "antonyms": [
+      "expression",
+      "release"
+    ],
+    "collocations": [
+      "emotional repression",
+      "repression of",
+      "unconscious repression"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'reprimere' meaning to press back.",
+    "frequencyRank": 6440,
+    "register": "formal",
+    "domainTags": [
+      "defense-mechanism",
+      "psychology"
+    ]
+  },
+  {
+    "id": "6064cbf3-240e-49c0-ae36-5bbe15eca2ed",
+    "text": "salience",
+    "phonetic": "/ˈseɪliəns/",
+    "partOfSpeech": "noun",
+    "definition": "The quality of being especially noticeable or prominent.",
+    "exampleSentence": "The ad increased the brand's salience among buyers.",
+    "synonyms": [
+      "prominence",
+      "importance",
+      "conspicuousness"
+    ],
+    "antonyms": [
+      "obscurity",
+      "insignificance"
+    ],
+    "collocations": [
+      "high salience",
+      "salience of",
+      "emotional salience"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'salire' meaning to leap.",
+    "frequencyRank": 6450,
+    "register": "formal",
+    "domainTags": [
+      "attention",
+      "psychology"
+    ]
+  },
+  {
+    "id": "0599ac41-6cac-49e0-b618-48526c97c0db",
+    "text": "myriad",
+    "phonetic": "/ˈmɪriəd/",
+    "partOfSpeech": "adjective",
+    "definition": "Countless or extremely great in number.",
+    "exampleSentence": "The city offered myriad ways to spend an evening.",
+    "synonyms": [
+      "countless",
+      "innumerable",
+      "manifold"
+    ],
+    "antonyms": [
+      "few",
+      "limited"
+    ],
+    "collocations": [
+      "myriad ways",
+      "myriad of",
+      "myriad problems"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Greek 'murias' meaning ten thousand.",
+    "frequencyRank": 6460,
+    "register": "formal",
+    "domainTags": [
+      "quantity",
+      "general"
+    ]
+  },
+  {
+    "id": "992d2688-4863-4a6f-a07b-c8c3c2aa1395",
+    "text": "plethora",
+    "phonetic": "/ˈpleθərə/",
+    "partOfSpeech": "noun",
+    "definition": "A large or excessive amount of something.",
+    "exampleSentence": "The menu offered a plethora of vegetarian options.",
+    "synonyms": [
+      "abundance",
+      "excess",
+      "surfeit"
+    ],
+    "antonyms": [
+      "dearth",
+      "scarcity"
+    ],
+    "collocations": [
+      "plethora of",
+      "whole plethora",
+      "vast plethora"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Greek 'plethore' meaning fullness.",
+    "frequencyRank": 6470,
+    "register": "formal",
+    "domainTags": [
+      "quantity",
+      "general"
+    ]
+  },
+  {
+    "id": "31514bb7-814c-410a-8d39-ac387a2f9470",
+    "text": "dearth",
+    "phonetic": "/dɜːθ/",
+    "partOfSpeech": "noun",
+    "definition": "A scarcity or lack of something.",
+    "exampleSentence": "There was a dearth of qualified applicants.",
+    "synonyms": [
+      "scarcity",
+      "shortage",
+      "paucity"
+    ],
+    "antonyms": [
+      "abundance",
+      "surplus"
+    ],
+    "collocations": [
+      "dearth of",
+      "relative dearth",
+      "dearth of evidence"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Middle English 'derthe', from 'dear' meaning costly.",
+    "frequencyRank": 6480,
+    "register": "formal",
+    "domainTags": [
+      "quantity",
+      "general"
+    ]
+  },
+  {
+    "id": "218017f1-ab5a-40ce-b22e-cea7674ab809",
+    "text": "nuance",
+    "phonetic": "/ˈnjuːɑːns/",
+    "partOfSpeech": "noun",
+    "definition": "A subtle difference in meaning, expression, or sound.",
+    "exampleSentence": "She caught every nuance of his changing tone.",
+    "synonyms": [
+      "subtlety",
+      "shade",
+      "gradation"
+    ],
+    "antonyms": [
+      "crudeness",
+      "obviousness"
+    ],
+    "collocations": [
+      "subtle nuance",
+      "nuance of",
+      "every nuance"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From French 'nuance', from 'nuer' to shade.",
+    "frequencyRank": 6490,
+    "register": "neutral",
+    "domainTags": [
+      "distinction",
+      "general"
+    ]
+  },
+  {
+    "id": "da5648c4-093e-436d-bdb1-c09324fd4490",
+    "text": "caveat",
+    "phonetic": "/ˈkæviæt/",
+    "partOfSpeech": "noun",
+    "definition": "A warning or qualification that limits a statement or agreement.",
+    "exampleSentence": "He accepted the offer with one important caveat.",
+    "synonyms": [
+      "warning",
+      "proviso",
+      "stipulation"
+    ],
+    "antonyms": [
+      "guarantee",
+      "assurance"
+    ],
+    "collocations": [
+      "one caveat",
+      "with a caveat",
+      "important caveat"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Latin 'caveat' meaning let him beware.",
+    "frequencyRank": 6500,
+    "register": "formal",
+    "domainTags": [
+      "qualification",
+      "general"
+    ]
+  }
+]
