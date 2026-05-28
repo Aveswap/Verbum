@@ -37,13 +37,16 @@ final class WordDatabase {
     }
 
     /// Copies the bundled 1,000-word database into the writable location on first
-    /// launch, and replaces it when an app update ships a newer bundled version.
+    /// launch, when an app update ships a newer bundled version, or when the
+    /// existing writable copy is empty (recovers from corrupted/aborted seeds).
     /// The writable copy is needed because the app rebuilds FTS and writes translations.
     private func seedFromBundleIfNeeded() {
         let dest = Self.databaseURL
         let exists = FileManager.default.fileExists(atPath: dest.path)
         let installedVersion = UserDefaults.standard.integer(forKey: Self.bundledVersionKey)
-        guard !exists || installedVersion < Self.bundledDBVersion else { return }
+        let isStale = !exists || installedVersion < Self.bundledDBVersion
+        let isEmpty = exists && Self.existingDatabaseIsEmpty(at: dest)
+        guard isStale || isEmpty else { return }
         guard let bundled = Bundle.main.url(forResource: "words_v2", withExtension: "db") else { return }
         do {
             if exists { try FileManager.default.removeItem(at: dest) }
@@ -52,6 +55,16 @@ final class WordDatabase {
         } catch {
             // Leave any existing database in place if the copy fails.
         }
+    }
+
+    /// Returns true when the words table is missing or empty — both indicate an
+    /// unusable copy that should be replaced from the bundle.
+    private static func existingDatabaseIsEmpty(at url: URL) -> Bool {
+        guard let queue = try? DatabaseQueue(path: url.path) else { return true }
+        let count = try? queue.read { db in
+            try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM words")
+        }
+        return (count ?? 0) == 0
     }
 
     // MARK: - Install

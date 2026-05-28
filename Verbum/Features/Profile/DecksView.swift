@@ -62,7 +62,7 @@ struct DecksView: View {
                         HStack(spacing: 12) {
                             Image(systemName: deck.icon)
                                 .frame(width: 32)
-                                .foregroundStyle(.accent)
+                                .foregroundStyle(Color.accentColor)
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(deck.name)
                                     .font(.body.weight(.medium))
