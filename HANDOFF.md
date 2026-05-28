@@ -262,13 +262,17 @@ Words are being authored **by Claude directly in chat** (no Anthropic API key
 needed) as JSON batches in `scripts/word_batches/`, then assembled locally by
 `scripts/import_batches.py` into `scripts/words_v2.db`.
 
-**Current: 948 / 1000 words committed** (all validate, 0 duplicates):
+**Current: 1000 / 1000 words committed — COMPLETE ✅** (all validate, 0 duplicates):
 
 | Level | Have | Target | Remaining |
 |-------|-----:|-------:|----------:|
 | Beginner | 300 | 300 | 0 ✅ |
-| Intermediate | 398 | 450 | 52 |
+| Intermediate | 450 | 450 | 0 ✅ |
 | Expert | 250 | 250 | 0 ✅ |
+
+**The 1000-word catalog is finished.** Next phases: integrate `words_v2.db`
+(CDN upload + `DatabaseDownloadManager.remoteURL`), then UA translations,
+then de/it/fr.
 
 ✅ **Free pool complete** — 50 non-premium words at every level, so
 `WordAccess.freePool(level:)` is fully satisfied.
@@ -295,6 +299,7 @@ Batches committed:
 - `batch_17_expert_expansion.json` (50) — non-premium expert
 - `batch_18_beginner_expansion.json` (50) — 46 beginner (finishes Beginner) + 4 expert
 - `batch_19_intermediate_expansion.json` (60) — 50 intermediate + 10 expert (finishes Expert)
+- `batch_20_intermediate_expansion.json` (52) — intermediate (finishes catalog at 1000)
 
 **Calibration (confirmed by user):** every word must be *interesting* — never
 primitive. The level reflects how often a learner *encounters* the word, not
@@ -315,9 +320,10 @@ raw difficulty:
 6. `cd scripts && python3 import_batches.py --validate` then `python3 import_batches.py`
 7. Commit each batch with a per-batch message
 
-Remaining work: 0 Beginner (done), ~52 Intermediate, 0 Expert (done) — all in the
-8 non-premium categories (Body, Character, Communication, Emotions, Food,
-General, People, Psychology), since premium categories are already covered.
+Remaining work: NONE — all 1000 words are authored, validated, and committed.
+The 8 non-premium categories (Body, Character, Communication, Emotions, Food,
+General, People, Psychology) plus the 4 premium categories are all covered
+across every level.
 
 ### Content strategy — revised 2026-05-28
 
