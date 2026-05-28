@@ -1,0 +1,1433 @@
+[
+  {
+    "id": "b3915489-8cbd-4b90-93e2-28b98c7f4af1",
+    "text": "ambivalent",
+    "phonetic": "/æmˈbɪvələnt/",
+    "partOfSpeech": "adjective",
+    "definition": "Having mixed or contradictory feelings about something.",
+    "exampleSentence": "She felt ambivalent about leaving her hometown for a new job.",
+    "synonyms": [
+      "conflicted",
+      "uncertain",
+      "torn"
+    ],
+    "antonyms": [
+      "decisive",
+      "resolved"
+    ],
+    "collocations": [
+      "ambivalent about",
+      "deeply ambivalent"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "Coined in 1916 from Latin 'ambi-' (both) + 'valens' (strong) — strong feelings on both sides.",
+    "frequencyRank": 4200,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "emotional"
+    ]
+  },
+  {
+    "id": "12dfd0bb-36ca-4b80-b385-1f4cfc87513f",
+    "text": "pensive",
+    "phonetic": "/ˈpensɪv/",
+    "partOfSpeech": "adjective",
+    "definition": "Engaged in deep, often sad or serious thought.",
+    "exampleSentence": "He stared out the window with a pensive expression.",
+    "synonyms": [
+      "thoughtful",
+      "reflective",
+      "meditative"
+    ],
+    "antonyms": [
+      "carefree",
+      "thoughtless"
+    ],
+    "collocations": [
+      "pensive mood",
+      "look pensive"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Old French 'pensif', from 'penser' (to think) — Latin 'pensare' (to weigh).",
+    "frequencyRank": 4800,
+    "register": "formal",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  },
+  {
+    "id": "7024c6b0-8d48-49ab-8328-71143b9ef48c",
+    "text": "despondent",
+    "phonetic": "/dɪˈspɒndənt/",
+    "partOfSpeech": "adjective",
+    "definition": "In low spirits from loss of hope or courage.",
+    "exampleSentence": "After the rejection, he grew despondent for weeks.",
+    "synonyms": [
+      "disheartened",
+      "dejected",
+      "demoralized"
+    ],
+    "antonyms": [
+      "hopeful",
+      "buoyant"
+    ],
+    "collocations": [
+      "grow despondent",
+      "deeply despondent"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Latin 'despondere' meaning to give up or promise away — losing one's spirit.",
+    "frequencyRank": 6800,
+    "register": "formal",
+    "domainTags": [
+      "emotional"
+    ]
+  },
+  {
+    "id": "67aa985b-a4ac-437e-b9a2-89afc8eb4326",
+    "text": "sanguine",
+    "phonetic": "/ˈsæŋɡwɪn/",
+    "partOfSpeech": "adjective",
+    "definition": "Optimistic and confident, especially in a difficult situation.",
+    "exampleSentence": "She remained sanguine about the project's chances despite the delays.",
+    "synonyms": [
+      "optimistic",
+      "confident",
+      "buoyant"
+    ],
+    "antonyms": [
+      "pessimistic",
+      "gloomy"
+    ],
+    "collocations": [
+      "sanguine about",
+      "remain sanguine"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From medieval medicine: one of the four humors — those with abundant blood ('sanguis') were cheerful.",
+    "frequencyRank": 6500,
+    "register": "formal",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  },
+  {
+    "id": "aee0085c-3d4e-4730-9082-02af296438a5",
+    "text": "apprehensive",
+    "phonetic": "/ˌæprɪˈhensɪv/",
+    "partOfSpeech": "adjective",
+    "definition": "Worried about something that might happen.",
+    "exampleSentence": "She was apprehensive about her first day at the new school.",
+    "synonyms": [
+      "anxious",
+      "uneasy",
+      "fearful"
+    ],
+    "antonyms": [
+      "calm",
+      "confident"
+    ],
+    "collocations": [
+      "apprehensive about",
+      "increasingly apprehensive"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Latin 'apprehendere' meaning to grasp — anticipating what may come.",
+    "frequencyRank": 4500,
+    "register": "neutral",
+    "domainTags": [
+      "emotional",
+      "psychology"
+    ]
+  },
+  {
+    "id": "7e916c0c-d4c9-42c0-823c-dea00eb5c727",
+    "text": "indignant",
+    "phonetic": "/ɪnˈdɪɡnənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Angry at something perceived as unfair or wrong.",
+    "exampleSentence": "She was indignant at the accusation of dishonesty.",
+    "synonyms": [
+      "outraged",
+      "resentful",
+      "affronted"
+    ],
+    "antonyms": [
+      "pleased",
+      "content"
+    ],
+    "collocations": [
+      "indignant at",
+      "indignant reply"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Latin 'indignari' meaning to consider unworthy.",
+    "frequencyRank": 5200,
+    "register": "formal",
+    "domainTags": [
+      "emotional"
+    ]
+  },
+  {
+    "id": "855c2a2e-05cf-44f5-aacc-bd18fb197e12",
+    "text": "euphoric",
+    "phonetic": "/juːˈfɒrɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Feeling intense happiness or elation.",
+    "exampleSentence": "The team was euphoric after winning the championship.",
+    "synonyms": [
+      "elated",
+      "ecstatic",
+      "jubilant"
+    ],
+    "antonyms": [
+      "miserable",
+      "dejected"
+    ],
+    "collocations": [
+      "euphoric feeling",
+      "almost euphoric"
+    ],
+    "category": "Emotions",
+    "level": "intermediate",
+    "etymology": "From Greek 'euphoria' — 'eu' (well) + 'pherein' (to bear).",
+    "frequencyRank": 5800,
+    "register": "neutral",
+    "domainTags": [
+      "emotional"
+    ]
+  },
+  {
+    "id": "8a0a2dda-d219-4b43-b758-d6958c72bfd3",
+    "text": "equanimity",
+    "phonetic": "/ˌekwəˈnɪmɪti/",
+    "partOfSpeech": "noun",
+    "definition": "Mental calmness and composure, especially under stress.",
+    "exampleSentence": "He accepted the criticism with quiet equanimity.",
+    "synonyms": [
+      "composure",
+      "poise",
+      "serenity"
+    ],
+    "antonyms": [
+      "agitation",
+      "anxiety"
+    ],
+    "collocations": [
+      "with equanimity",
+      "lose equanimity"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'aequanimitas' — 'aequus' (level) + 'animus' (mind).",
+    "frequencyRank": 6700,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "754bcde1-dfb4-4909-b994-e67c6e20c9bf",
+    "text": "fortitude",
+    "phonetic": "/ˈfɔːrtɪtjuːd/",
+    "partOfSpeech": "noun",
+    "definition": "Courage and strength in the face of pain or adversity.",
+    "exampleSentence": "She endured her illness with remarkable fortitude.",
+    "synonyms": [
+      "resilience",
+      "endurance",
+      "valor"
+    ],
+    "antonyms": [
+      "weakness",
+      "cowardice"
+    ],
+    "collocations": [
+      "mental fortitude",
+      "show fortitude"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'fortitudo' meaning strength — from 'fortis' (strong).",
+    "frequencyRank": 5400,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "character"
+    ]
+  },
+  {
+    "id": "f1254e42-74db-4dcd-b9b7-59f976b150c7",
+    "text": "cognition",
+    "phonetic": "/kɒɡˈnɪʃən/",
+    "partOfSpeech": "noun",
+    "definition": "The mental process of acquiring knowledge and understanding.",
+    "exampleSentence": "Sleep is essential for healthy cognition.",
+    "synonyms": [
+      "thinking",
+      "reasoning",
+      "perception"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "impaired cognition",
+      "human cognition"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'cognitio' meaning a getting to know — from 'cognoscere' (to learn).",
+    "frequencyRank": 4600,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "academic"
+    ]
+  },
+  {
+    "id": "8f633f89-742e-4783-aa8d-242c1b940bbb",
+    "text": "introspection",
+    "phonetic": "/ˌɪntrəˈspekʃən/",
+    "partOfSpeech": "noun",
+    "definition": "The examination of one's own thoughts and feelings.",
+    "exampleSentence": "A long flight home was time for introspection.",
+    "synonyms": [
+      "self-reflection",
+      "self-examination"
+    ],
+    "antonyms": [
+      "extrospection"
+    ],
+    "collocations": [
+      "quiet introspection",
+      "moment of introspection"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'introspicere' — 'intro-' (within) + 'specere' (to look).",
+    "frequencyRank": 6200,
+    "register": "formal",
+    "domainTags": [
+      "psychology"
+    ]
+  },
+  {
+    "id": "658e2990-ee53-479c-995b-f9cb4bc910cb",
+    "text": "sentiment",
+    "phonetic": "/ˈsentɪmənt/",
+    "partOfSpeech": "noun",
+    "definition": "A view or attitude based on feeling rather than reason.",
+    "exampleSentence": "Public sentiment shifted against the proposal.",
+    "synonyms": [
+      "feeling",
+      "attitude",
+      "opinion"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "public sentiment",
+      "shared sentiment"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Old French 'sentement', from Latin 'sentire' (to feel).",
+    "frequencyRank": 3300,
+    "register": "neutral",
+    "domainTags": [
+      "psychology",
+      "social"
+    ]
+  },
+  {
+    "id": "489660c7-e667-4d93-9549-1533b71f496b",
+    "text": "perception",
+    "phonetic": "/pərˈsepʃən/",
+    "partOfSpeech": "noun",
+    "definition": "The way something is understood or interpreted.",
+    "exampleSentence": "His perception of the situation was very different from mine.",
+    "synonyms": [
+      "view",
+      "interpretation",
+      "awareness"
+    ],
+    "antonyms": [
+      "misperception"
+    ],
+    "collocations": [
+      "public perception",
+      "shift perception"
+    ],
+    "category": "Psychology",
+    "level": "intermediate",
+    "etymology": "From Latin 'perceptio' meaning a gathering — from 'percipere' (to seize).",
+    "frequencyRank": 3100,
+    "register": "neutral",
+    "domainTags": [
+      "psychology"
+    ]
+  },
+  {
+    "id": "a16681df-2d49-49aa-8176-7c6fd5c8c15c",
+    "text": "tenacious",
+    "phonetic": "/təˈneɪʃəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Refusing to give up; holding firmly to a purpose.",
+    "exampleSentence": "Her tenacious pursuit of justice paid off.",
+    "synonyms": [
+      "persistent",
+      "dogged",
+      "determined"
+    ],
+    "antonyms": [
+      "yielding",
+      "weak"
+    ],
+    "collocations": [
+      "tenacious grip",
+      "tenacious spirit"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'tenax' meaning holding fast — from 'tenere' (to hold).",
+    "frequencyRank": 4700,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "766f56e9-0131-4d24-8259-d60aaa2c576c",
+    "text": "gregarious",
+    "phonetic": "/ɡrɪˈɡeəriəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Fond of being with other people; sociable.",
+    "exampleSentence": "Sales work suits her gregarious nature.",
+    "synonyms": [
+      "sociable",
+      "outgoing",
+      "convivial"
+    ],
+    "antonyms": [
+      "introverted",
+      "reclusive"
+    ],
+    "collocations": [
+      "gregarious personality",
+      "naturally gregarious"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'gregarius' meaning belonging to a flock — from 'grex' (herd).",
+    "frequencyRank": 6300,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "b6c15384-152d-4629-8594-df3fc0cb2f76",
+    "text": "stoic",
+    "phonetic": "/ˈstoʊɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Enduring hardship without showing emotion or complaint.",
+    "exampleSentence": "He bore the bad news with stoic silence.",
+    "synonyms": [
+      "unemotional",
+      "impassive",
+      "uncomplaining"
+    ],
+    "antonyms": [
+      "expressive",
+      "emotional"
+    ],
+    "collocations": [
+      "stoic silence",
+      "stoic acceptance"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From the Stoic philosophers of ancient Greece who taught control of emotion.",
+    "frequencyRank": 5100,
+    "register": "neutral",
+    "domainTags": [
+      "personality",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "8e53a19e-a9aa-4443-bbe4-edc7e6b2b742",
+    "text": "fastidious",
+    "phonetic": "/fæˈstɪdiəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Paying attention to detail; hard to please.",
+    "exampleSentence": "He's fastidious about keeping his desk perfectly tidy.",
+    "synonyms": [
+      "meticulous",
+      "particular",
+      "punctilious"
+    ],
+    "antonyms": [
+      "careless",
+      "sloppy"
+    ],
+    "collocations": [
+      "fastidious about",
+      "fastidious attention"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'fastidium' meaning loathing or scorn.",
+    "frequencyRank": 6800,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "6024d32a-4b8c-4344-b8d6-c23615abda77",
+    "text": "magnanimous",
+    "phonetic": "/mæɡˈnænɪməs/",
+    "partOfSpeech": "adjective",
+    "definition": "Generous and noble-minded, especially toward a rival or less powerful person.",
+    "exampleSentence": "The champion was magnanimous in victory.",
+    "synonyms": [
+      "generous",
+      "noble",
+      "gracious"
+    ],
+    "antonyms": [
+      "petty",
+      "vindictive"
+    ],
+    "collocations": [
+      "magnanimous gesture",
+      "magnanimous in"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'magnus' (great) + 'animus' (soul) — a great soul.",
+    "frequencyRank": 7000,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "2c5ac05f-d002-4236-91ea-ea6589bd2cb4",
+    "text": "pragmatic",
+    "phonetic": "/præɡˈmætɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Dealing with things sensibly and practically rather than ideally.",
+    "exampleSentence": "We need a pragmatic solution, not a perfect one.",
+    "synonyms": [
+      "practical",
+      "realistic",
+      "level-headed"
+    ],
+    "antonyms": [
+      "idealistic",
+      "impractical"
+    ],
+    "collocations": [
+      "pragmatic approach",
+      "highly pragmatic"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Greek 'pragmatikos' meaning relating to action — from 'pragma' (deed).",
+    "frequencyRank": 3700,
+    "register": "neutral",
+    "domainTags": [
+      "personality",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "d5b8a6d3-0cd2-4544-9bd4-fa36789dd679",
+    "text": "intrepid",
+    "phonetic": "/ɪnˈtrepɪd/",
+    "partOfSpeech": "adjective",
+    "definition": "Fearless and adventurous, especially in difficult situations.",
+    "exampleSentence": "The intrepid explorers crossed the desert alone.",
+    "synonyms": [
+      "fearless",
+      "bold",
+      "valiant"
+    ],
+    "antonyms": [
+      "cowardly",
+      "fearful"
+    ],
+    "collocations": [
+      "intrepid explorer",
+      "intrepid traveler"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'intrepidus' — 'in-' (not) + 'trepidus' (alarmed).",
+    "frequencyRank": 6100,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "cd0a5f14-93ad-4e50-b7ee-2d42a9e3db62",
+    "text": "affable",
+    "phonetic": "/ˈæfəbəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Friendly, good-natured, and easy to talk to.",
+    "exampleSentence": "Their affable host made everyone feel at home.",
+    "synonyms": [
+      "amiable",
+      "genial",
+      "cordial"
+    ],
+    "antonyms": [
+      "unfriendly",
+      "aloof"
+    ],
+    "collocations": [
+      "affable manner",
+      "affable host"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'affabilis' meaning able to be spoken to — 'ad-' (to) + 'fari' (speak).",
+    "frequencyRank": 6400,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "9512ffdb-6fb5-42e5-bcc4-778af6253e2c",
+    "text": "reticent",
+    "phonetic": "/ˈretɪsənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Reluctant to speak freely; reserved.",
+    "exampleSentence": "She was reticent about her private life.",
+    "synonyms": [
+      "reserved",
+      "guarded",
+      "restrained"
+    ],
+    "antonyms": [
+      "talkative",
+      "forthcoming"
+    ],
+    "collocations": [
+      "reticent about",
+      "naturally reticent"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Latin 'reticere' meaning to keep silent — 're-' + 'tacere' (to be silent).",
+    "frequencyRank": 5700,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "d7d0782a-dc0e-46b7-a27b-8d0818673b5d",
+    "text": "sardonic",
+    "phonetic": "/sɑːrˈdɒnɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Grimly mocking or cynical in expression.",
+    "exampleSentence": "He gave a sardonic smile that hinted he wasn't amused.",
+    "synonyms": [
+      "mocking",
+      "cynical",
+      "wry"
+    ],
+    "antonyms": [
+      "earnest",
+      "sincere"
+    ],
+    "collocations": [
+      "sardonic smile",
+      "sardonic humor"
+    ],
+    "category": "Character",
+    "level": "intermediate",
+    "etymology": "From Greek 'sardonios' — supposedly named after a Sardinian plant said to cause facial convulsions resembling laughter.",
+    "frequencyRank": 6900,
+    "register": "formal",
+    "domainTags": [
+      "personality",
+      "expression"
+    ]
+  },
+  {
+    "id": "e8a3da4b-fdb2-4e05-a40d-e42277db8d7d",
+    "text": "adversary",
+    "phonetic": "/ˈædvərsəri/",
+    "partOfSpeech": "noun",
+    "definition": "An opponent in a contest, conflict, or dispute.",
+    "exampleSentence": "She faced her old adversary across the chessboard.",
+    "synonyms": [
+      "opponent",
+      "rival",
+      "foe"
+    ],
+    "antonyms": [
+      "ally",
+      "friend"
+    ],
+    "collocations": [
+      "formidable adversary",
+      "political adversary"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Latin 'adversarius' meaning one turned against — from 'advertere' (to turn toward).",
+    "frequencyRank": 4900,
+    "register": "formal",
+    "domainTags": [
+      "competition",
+      "conflict"
+    ]
+  },
+  {
+    "id": "b67bb443-a102-4725-9e5b-7c000136fb55",
+    "text": "confidant",
+    "phonetic": "/ˈkɒnfɪdænt/",
+    "partOfSpeech": "noun",
+    "definition": "A person you trust with private matters.",
+    "exampleSentence": "Her best friend was her closest confidant.",
+    "synonyms": [
+      "intimate",
+      "trusted friend"
+    ],
+    "antonyms": [
+      "stranger"
+    ],
+    "collocations": [
+      "close confidant",
+      "trusted confidant"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From French 'confident', from Latin 'confidere' (to trust).",
+    "frequencyRank": 5500,
+    "register": "formal",
+    "domainTags": [
+      "relationships"
+    ]
+  },
+  {
+    "id": "0999519b-bff2-4273-b032-c9e2ba0afce8",
+    "text": "protege",
+    "phonetic": "/ˈproʊtəʒeɪ/",
+    "partOfSpeech": "noun",
+    "definition": "A person guided and supported by an older or more experienced one.",
+    "exampleSentence": "She became the senator's protégé during her internship.",
+    "synonyms": [
+      "mentee",
+      "apprentice",
+      "pupil"
+    ],
+    "antonyms": [
+      "mentor"
+    ],
+    "collocations": [
+      "young protégé",
+      "favored protégé"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From French past participle of 'protéger' (to protect), from Latin 'protegere'.",
+    "frequencyRank": 6400,
+    "register": "formal",
+    "domainTags": [
+      "work",
+      "relationships"
+    ]
+  },
+  {
+    "id": "591e30ee-61b7-4fd7-b980-1ae7196062ea",
+    "text": "comrade",
+    "phonetic": "/ˈkɒmreɪd/",
+    "partOfSpeech": "noun",
+    "definition": "A fellow companion sharing a struggle or purpose.",
+    "exampleSentence": "He fought alongside his comrades for months.",
+    "synonyms": [
+      "companion",
+      "ally",
+      "fellow"
+    ],
+    "antonyms": [
+      "enemy"
+    ],
+    "collocations": [
+      "fallen comrade",
+      "old comrade"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Spanish 'camarada' meaning roommate — from Latin 'camera' (chamber).",
+    "frequencyRank": 4400,
+    "register": "neutral",
+    "domainTags": [
+      "military",
+      "relationships"
+    ]
+  },
+  {
+    "id": "00106781-a1a0-45e5-a54b-0b7eb2141fcc",
+    "text": "recluse",
+    "phonetic": "/ˈreklus/",
+    "partOfSpeech": "noun",
+    "definition": "A person who avoids the company of others.",
+    "exampleSentence": "After his wife died he became a recluse on the mountain.",
+    "synonyms": [
+      "hermit",
+      "loner"
+    ],
+    "antonyms": [
+      "socialite",
+      "extrovert"
+    ],
+    "collocations": [
+      "live as a recluse",
+      "famous recluse"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Latin 'reclusus' meaning shut up — 're-' + 'claudere' (to close).",
+    "frequencyRank": 6600,
+    "register": "neutral",
+    "domainTags": [
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "3a569592-6658-4cda-8874-79a0ecff644a",
+    "text": "dignitary",
+    "phonetic": "/ˈdɪɡnɪteri/",
+    "partOfSpeech": "noun",
+    "definition": "A person holding high rank or office.",
+    "exampleSentence": "Foreign dignitaries attended the state dinner.",
+    "synonyms": [
+      "official",
+      "VIP",
+      "luminary"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "visiting dignitary",
+      "foreign dignitary"
+    ],
+    "category": "People",
+    "level": "intermediate",
+    "etymology": "From Latin 'dignitas' meaning worth or rank.",
+    "frequencyRank": 6800,
+    "register": "formal",
+    "domainTags": [
+      "politics",
+      "ceremony"
+    ]
+  },
+  {
+    "id": "177e4478-98cd-4a0b-99be-be2a078b2546",
+    "text": "elucidate",
+    "phonetic": "/ɪˈluːsɪdeɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To make something clear by explanation.",
+    "exampleSentence": "The professor elucidated the difficult concept with an example.",
+    "synonyms": [
+      "clarify",
+      "explain",
+      "illuminate"
+    ],
+    "antonyms": [
+      "obscure",
+      "confuse"
+    ],
+    "collocations": [
+      "elucidate the meaning",
+      "carefully elucidate"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'elucidare' meaning to make light — 'e-' + 'lucidus' (clear, bright).",
+    "frequencyRank": 6700,
+    "register": "formal",
+    "domainTags": [
+      "communication",
+      "academic"
+    ]
+  },
+  {
+    "id": "924a5ed4-d5a6-4d4d-95c4-0e8abf06754a",
+    "text": "allude",
+    "phonetic": "/əˈluːd/",
+    "partOfSpeech": "verb",
+    "definition": "To refer to something indirectly.",
+    "exampleSentence": "She alluded to the scandal without naming anyone.",
+    "synonyms": [
+      "hint",
+      "imply",
+      "reference"
+    ],
+    "antonyms": [
+      "state directly"
+    ],
+    "collocations": [
+      "allude to",
+      "subtly allude"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'alludere' meaning to play with — 'ad-' + 'ludere' (to play).",
+    "frequencyRank": 5300,
+    "register": "formal",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "2c6d2850-c833-4079-95ff-b9fb669d20e1",
+    "text": "retort",
+    "phonetic": "/rɪˈtɔːrt/",
+    "partOfSpeech": "noun",
+    "definition": "A sharp or witty reply, especially in response to a criticism.",
+    "exampleSentence": "She had a clever retort ready for every insult.",
+    "synonyms": [
+      "riposte",
+      "comeback",
+      "rejoinder"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "sharp retort",
+      "witty retort"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'retortus', past participle of 'retorquere' (to twist back).",
+    "frequencyRank": 5600,
+    "register": "neutral",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "fd001d9b-9049-4613-97aa-7d5306bf6616",
+    "text": "quip",
+    "phonetic": "/kwɪp/",
+    "partOfSpeech": "noun",
+    "definition": "A clever, witty remark.",
+    "exampleSentence": "His quip about the weather made everyone laugh.",
+    "synonyms": [
+      "wisecrack",
+      "jest",
+      "witticism"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "clever quip",
+      "deliver a quip"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "Likely from Latin 'quippe' meaning indeed or to be sure.",
+    "frequencyRank": 6200,
+    "register": "neutral",
+    "domainTags": [
+      "communication",
+      "humor"
+    ]
+  },
+  {
+    "id": "7f269d32-5aea-44ec-ab37-d46288cf3e99",
+    "text": "broach",
+    "phonetic": "/broʊtʃ/",
+    "partOfSpeech": "verb",
+    "definition": "To raise a sensitive subject for discussion.",
+    "exampleSentence": "She didn't know how to broach the topic of money with her parents.",
+    "synonyms": [
+      "raise",
+      "introduce",
+      "bring up"
+    ],
+    "antonyms": [
+      "avoid",
+      "evade"
+    ],
+    "collocations": [
+      "broach the subject",
+      "broach the topic"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Old French 'broche' meaning a spit or piercing tool — figuratively 'piercing' a topic.",
+    "frequencyRank": 5800,
+    "register": "neutral",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "8b12c975-04f2-488c-a5e1-95f8d1521fbc",
+    "text": "divulge",
+    "phonetic": "/daɪˈvʌldʒ/",
+    "partOfSpeech": "verb",
+    "definition": "To make known previously private or secret information.",
+    "exampleSentence": "He refused to divulge the source of the leak.",
+    "synonyms": [
+      "disclose",
+      "reveal",
+      "tell"
+    ],
+    "antonyms": [
+      "conceal",
+      "withhold"
+    ],
+    "collocations": [
+      "refuse to divulge",
+      "divulge details"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'divulgare' meaning to make common — 'di-' + 'vulgus' (the public).",
+    "frequencyRank": 5900,
+    "register": "formal",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "6914e589-caf0-4c43-86ac-9c5921a08e38",
+    "text": "expound",
+    "phonetic": "/ɪkˈspaʊnd/",
+    "partOfSpeech": "verb",
+    "definition": "To explain in detail by setting forth.",
+    "exampleSentence": "He loves to expound his theories on economics over dinner.",
+    "synonyms": [
+      "explain",
+      "elaborate",
+      "set forth"
+    ],
+    "antonyms": [
+      "summarize",
+      "abridge"
+    ],
+    "collocations": [
+      "expound on",
+      "expound a theory"
+    ],
+    "category": "Communication",
+    "level": "intermediate",
+    "etymology": "From Latin 'exponere' meaning to put forth — 'ex-' + 'ponere' (to place).",
+    "frequencyRank": 6300,
+    "register": "formal",
+    "domainTags": [
+      "communication",
+      "academic"
+    ]
+  },
+  {
+    "id": "93d85aa1-6ef0-46ba-8b32-b978aacfa8b3",
+    "text": "gait",
+    "phonetic": "/ɡeɪt/",
+    "partOfSpeech": "noun",
+    "definition": "A person's manner of walking.",
+    "exampleSentence": "His confident gait drew attention as he entered the room.",
+    "synonyms": [
+      "walk",
+      "stride",
+      "step"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "unsteady gait",
+      "confident gait"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Old Norse 'gata' meaning a way or path.",
+    "frequencyRank": 5400,
+    "register": "neutral",
+    "domainTags": [
+      "body",
+      "movement"
+    ]
+  },
+  {
+    "id": "ad5fdacd-515e-4d3c-83bf-d56c123f4c14",
+    "text": "demeanor",
+    "phonetic": "/dɪˈmiːnər/",
+    "partOfSpeech": "noun",
+    "definition": "Outward behavior or bearing.",
+    "exampleSentence": "Her calm demeanor reassured the worried patients.",
+    "synonyms": [
+      "manner",
+      "bearing",
+      "conduct"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "calm demeanor",
+      "professional demeanor"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Old French 'demener' meaning to lead or conduct — 'de-' + 'mener' (to lead).",
+    "frequencyRank": 4300,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "behavior"
+    ]
+  },
+  {
+    "id": "ad51d01f-607a-4050-aba1-7c22d0f07319",
+    "text": "countenance",
+    "phonetic": "/ˈkaʊntɪnəns/",
+    "partOfSpeech": "noun",
+    "definition": "A person's face or facial expression.",
+    "exampleSentence": "His countenance darkened at the bad news.",
+    "synonyms": [
+      "face",
+      "expression",
+      "visage"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "serious countenance",
+      "noble countenance"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Old French 'contenance' meaning manner or behavior.",
+    "frequencyRank": 5600,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "literary"
+    ]
+  },
+  {
+    "id": "10f59dab-4ce1-4c79-8a9a-7360874c3d69",
+    "text": "vigor",
+    "phonetic": "/ˈvɪɡər/",
+    "partOfSpeech": "noun",
+    "definition": "Physical strength and active energy.",
+    "exampleSentence": "He attacked the new project with youthful vigor.",
+    "synonyms": [
+      "energy",
+      "vitality",
+      "stamina"
+    ],
+    "antonyms": [
+      "lethargy",
+      "weakness"
+    ],
+    "collocations": [
+      "youthful vigor",
+      "renewed vigor"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Latin 'vigor' meaning liveliness — from 'vigere' (to be lively).",
+    "frequencyRank": 4100,
+    "register": "neutral",
+    "domainTags": [
+      "body",
+      "wellness"
+    ]
+  },
+  {
+    "id": "431df84f-db01-4469-96a8-041e7bf4ee5f",
+    "text": "lassitude",
+    "phonetic": "/ˈlæsɪtjuːd/",
+    "partOfSpeech": "noun",
+    "definition": "A state of physical or mental weariness.",
+    "exampleSentence": "A heavy lassitude descended on the office after lunch.",
+    "synonyms": [
+      "weariness",
+      "fatigue",
+      "languor"
+    ],
+    "antonyms": [
+      "energy",
+      "vigor"
+    ],
+    "collocations": [
+      "sense of lassitude",
+      "summer lassitude"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Latin 'lassitudo' meaning weariness — from 'lassus' (tired).",
+    "frequencyRank": 7200,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "literary"
+    ]
+  },
+  {
+    "id": "5d25d1df-1827-4993-8eba-2f82653103d8",
+    "text": "agility",
+    "phonetic": "/əˈdʒɪlɪti/",
+    "partOfSpeech": "noun",
+    "definition": "The ability to move quickly and easily.",
+    "exampleSentence": "The dancer's agility was breathtaking.",
+    "synonyms": [
+      "nimbleness",
+      "dexterity"
+    ],
+    "antonyms": [
+      "clumsiness"
+    ],
+    "collocations": [
+      "mental agility",
+      "remarkable agility"
+    ],
+    "category": "Body",
+    "level": "intermediate",
+    "etymology": "From Latin 'agilis' meaning easily moved — from 'agere' (to do).",
+    "frequencyRank": 3900,
+    "register": "neutral",
+    "domainTags": [
+      "body",
+      "movement"
+    ]
+  },
+  {
+    "id": "1fa1f614-b994-4002-9bc6-08cf5cf81a94",
+    "text": "palate",
+    "phonetic": "/ˈpælət/",
+    "partOfSpeech": "noun",
+    "definition": "The roof of the mouth; figuratively, one's ability to appreciate flavors.",
+    "exampleSentence": "A glass of wine helps refine the palate.",
+    "synonyms": [
+      "taste",
+      "appetite"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "refined palate",
+      "cleanse the palate"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From Latin 'palatum' meaning the roof of the mouth.",
+    "frequencyRank": 5100,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "c4fb7015-9fc0-42a4-877e-25228a575d46",
+    "text": "umami",
+    "phonetic": "/uːˈmɑːmi/",
+    "partOfSpeech": "noun",
+    "definition": "A category of taste meaning savory or meaty.",
+    "exampleSentence": "Aged parmesan delivers a deep umami flavor.",
+    "synonyms": [
+      "savoriness"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "umami flavor",
+      "rich umami"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From Japanese 'umami' meaning pleasant savory taste — identified as the fifth basic taste in 1908.",
+    "frequencyRank": 6900,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "ddf47036-ad66-4662-861d-0ff50365ef00",
+    "text": "decadent",
+    "phonetic": "/ˈdekədənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Luxuriously self-indulgent; richly excessive.",
+    "exampleSentence": "Chocolate cake with three layers of mousse — decadent and unforgettable.",
+    "synonyms": [
+      "indulgent",
+      "luxurious",
+      "extravagant"
+    ],
+    "antonyms": [
+      "austere",
+      "modest"
+    ],
+    "collocations": [
+      "decadent dessert",
+      "wonderfully decadent"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From Latin 'decadentia' meaning a falling away — originally meaning declining or decaying.",
+    "frequencyRank": 5400,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "980d9221-e095-48d0-9f65-0aee6406dc27",
+    "text": "sumptuous",
+    "phonetic": "/ˈsʌmptʃuəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Splendid and expensive-looking.",
+    "exampleSentence": "We were served a sumptuous feast at the wedding.",
+    "synonyms": [
+      "lavish",
+      "opulent",
+      "luxurious"
+    ],
+    "antonyms": [
+      "plain",
+      "modest"
+    ],
+    "collocations": [
+      "sumptuous meal",
+      "sumptuous interior"
+    ],
+    "category": "Food",
+    "level": "intermediate",
+    "etymology": "From Latin 'sumptuosus' meaning costly — from 'sumptus' (expense).",
+    "frequencyRank": 5800,
+    "register": "formal",
+    "domainTags": [
+      "food",
+      "luxury"
+    ]
+  },
+  {
+    "id": "3900e6f2-ff23-440d-b42d-1a9bfa415f99",
+    "text": "discern",
+    "phonetic": "/dɪˈsɜːrn/",
+    "partOfSpeech": "verb",
+    "definition": "To recognize or distinguish, especially with effort.",
+    "exampleSentence": "It was hard to discern her true motives.",
+    "synonyms": [
+      "perceive",
+      "detect",
+      "distinguish"
+    ],
+    "antonyms": [
+      "overlook",
+      "miss"
+    ],
+    "collocations": [
+      "hard to discern",
+      "discern between"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Latin 'discernere' meaning to separate — 'dis-' + 'cernere' (to sift).",
+    "frequencyRank": 4000,
+    "register": "formal",
+    "domainTags": [
+      "cognitive"
+    ]
+  },
+  {
+    "id": "8707bd09-d9b5-44b2-a476-43e5c1a27c41",
+    "text": "fathom",
+    "phonetic": "/ˈfæðəm/",
+    "partOfSpeech": "verb",
+    "definition": "To understand something deeply after careful thought.",
+    "exampleSentence": "I can't fathom why she'd leave such a good job.",
+    "synonyms": [
+      "comprehend",
+      "grasp",
+      "understand"
+    ],
+    "antonyms": [
+      "misunderstand"
+    ],
+    "collocations": [
+      "hard to fathom",
+      "fathom the meaning"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Old English 'fæthm' meaning the span of outstretched arms — used to 'measure' depth.",
+    "frequencyRank": 5500,
+    "register": "neutral",
+    "domainTags": [
+      "cognitive"
+    ]
+  },
+  {
+    "id": "0f28a59f-0215-4bbb-a0c8-9ffd42a0c3d5",
+    "text": "gravitate",
+    "phonetic": "/ˈɡrævɪteɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To be drawn naturally toward someone or something.",
+    "exampleSentence": "At parties, she always gravitates toward the bookshelves.",
+    "synonyms": [
+      "be drawn",
+      "tend toward",
+      "drift"
+    ],
+    "antonyms": [
+      "repel"
+    ],
+    "collocations": [
+      "gravitate toward",
+      "naturally gravitate"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Latin 'gravitas' meaning weight — pulled by attraction like a heavy object.",
+    "frequencyRank": 5200,
+    "register": "neutral",
+    "domainTags": [
+      "behavior"
+    ]
+  },
+  {
+    "id": "d74770b4-a2f2-480b-898e-f2b3a33809fa",
+    "text": "ruminate",
+    "phonetic": "/ˈruːmɪneɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To think deeply or repeatedly about something.",
+    "exampleSentence": "He ruminated for days over her decision to leave.",
+    "synonyms": [
+      "ponder",
+      "mull",
+      "muse"
+    ],
+    "antonyms": [
+      "ignore"
+    ],
+    "collocations": [
+      "ruminate on",
+      "ruminate over"
+    ],
+    "category": "General",
+    "level": "intermediate",
+    "etymology": "From Latin 'ruminari' meaning to chew over — like cows chewing the cud.",
+    "frequencyRank": 6500,
+    "register": "formal",
+    "domainTags": [
+      "cognitive"
+    ]
+  }
+]

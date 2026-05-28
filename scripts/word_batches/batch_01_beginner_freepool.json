@@ -1,0 +1,1442 @@
+[
+  {
+    "id": "86ade095-daf5-4c7e-8a7c-a8f6a2fa6c5c",
+    "text": "serene",
+    "phonetic": "/səˈriːn/",
+    "partOfSpeech": "adjective",
+    "definition": "Calm, peaceful, and untroubled by inner turmoil.",
+    "exampleSentence": "Her serene expression suggested she had made peace with the decision.",
+    "synonyms": [
+      "tranquil",
+      "placid",
+      "composed"
+    ],
+    "antonyms": [
+      "agitated",
+      "turbulent"
+    ],
+    "collocations": [
+      "serene smile",
+      "serene landscape"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "From Latin 'serenus' meaning clear or fair, originally describing weather.",
+    "frequencyRank": 2400,
+    "register": "neutral",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  },
+  {
+    "id": "5947ebe2-9221-43cd-ade5-fef4dc36f800",
+    "text": "profound",
+    "phonetic": "/prəˈfaʊnd/",
+    "partOfSpeech": "adjective",
+    "definition": "Of great depth or intensity; reaching far beneath the surface.",
+    "exampleSentence": "The book had a profound effect on how I see the world.",
+    "synonyms": [
+      "deep",
+      "intense",
+      "weighty"
+    ],
+    "antonyms": [
+      "shallow",
+      "superficial"
+    ],
+    "collocations": [
+      "profound impact",
+      "profound silence"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "From Latin 'profundus' meaning deep — from 'pro-' (forward) + 'fundus' (bottom).",
+    "frequencyRank": 1900,
+    "register": "formal",
+    "domainTags": [
+      "emotional",
+      "intellectual"
+    ]
+  },
+  {
+    "id": "4acb4df4-93ef-4302-81de-8495e9b96661",
+    "text": "nostalgic",
+    "phonetic": "/nɒˈstældʒɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Feeling sentimental longing for a happier time in the past.",
+    "exampleSentence": "Old photographs always make me nostalgic for childhood summers.",
+    "synonyms": [
+      "wistful",
+      "sentimental",
+      "yearning"
+    ],
+    "antonyms": [
+      "forward-looking"
+    ],
+    "collocations": [
+      "nostalgic about",
+      "nostalgic memory"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "Coined in 1688 from Greek 'nostos' (homecoming) + 'algos' (pain) to describe homesickness.",
+    "frequencyRank": 2700,
+    "register": "neutral",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  },
+  {
+    "id": "ecd1fc70-1287-4196-a221-049f81b3ebb7",
+    "text": "melancholy",
+    "phonetic": "/ˈmelənkəli/",
+    "partOfSpeech": "noun",
+    "definition": "A deep, pensive, and lingering sadness with no obvious cause.",
+    "exampleSentence": "A quiet melancholy settled over her on rainy afternoons.",
+    "synonyms": [
+      "sorrow",
+      "gloom",
+      "wistfulness"
+    ],
+    "antonyms": [
+      "joy",
+      "elation"
+    ],
+    "collocations": [
+      "deep melancholy",
+      "tinged with melancholy"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "From Greek 'melas' (black) + 'kholē' (bile) — medieval medicine blamed sadness on excess black bile.",
+    "frequencyRank": 2950,
+    "register": "formal",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  },
+  {
+    "id": "598e95d4-94ab-4b5c-a8c0-413c230ae806",
+    "text": "exuberant",
+    "phonetic": "/ɪɡˈzuːbərənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Filled with lively, unrestrained energy and high spirits.",
+    "exampleSentence": "The children gave an exuberant welcome to their grandmother.",
+    "synonyms": [
+      "ebullient",
+      "vivacious",
+      "buoyant"
+    ],
+    "antonyms": [
+      "subdued",
+      "lifeless"
+    ],
+    "collocations": [
+      "exuberant celebration",
+      "exuberant personality"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "From Latin 'exuberare' meaning to be abundant — 'ex-' (out) + 'uberare' (be fruitful).",
+    "frequencyRank": 2900,
+    "register": "neutral",
+    "domainTags": [
+      "emotional"
+    ]
+  },
+  {
+    "id": "8bbc2123-0dbb-4c62-9a3f-a4d7c948e469",
+    "text": "fervent",
+    "phonetic": "/ˈfɜːrvənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Having or showing intensely passionate feeling.",
+    "exampleSentence": "She is a fervent supporter of women's rights.",
+    "synonyms": [
+      "passionate",
+      "ardent",
+      "zealous"
+    ],
+    "antonyms": [
+      "apathetic",
+      "indifferent"
+    ],
+    "collocations": [
+      "fervent belief",
+      "fervent prayer"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "From Latin 'fervere' meaning to boil — passion as 'boiling' inside.",
+    "frequencyRank": 2850,
+    "register": "formal",
+    "domainTags": [
+      "emotional"
+    ]
+  },
+  {
+    "id": "57a4374b-574f-4490-b53e-c8ce69095758",
+    "text": "wistful",
+    "phonetic": "/ˈwɪstfəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Showing gentle, regretful longing — often for something lost or unreachable.",
+    "exampleSentence": "He gave the old house a wistful look before driving away.",
+    "synonyms": [
+      "yearning",
+      "pensive",
+      "melancholy"
+    ],
+    "antonyms": [
+      "content"
+    ],
+    "collocations": [
+      "wistful smile",
+      "wistful glance"
+    ],
+    "category": "Emotions",
+    "level": "beginner",
+    "etymology": "Likely from earlier 'wistly' meaning attentively — root may connect to 'whist' (silent).",
+    "frequencyRank": 2950,
+    "register": "formal",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  },
+  {
+    "id": "c166275a-f484-4f73-b424-36750bcf61fd",
+    "text": "intuition",
+    "phonetic": "/ˌɪntjuˈɪʃən/",
+    "partOfSpeech": "noun",
+    "definition": "Immediate understanding of something without conscious reasoning.",
+    "exampleSentence": "Her intuition told her the deal was too good to be true.",
+    "synonyms": [
+      "instinct",
+      "insight",
+      "gut feeling"
+    ],
+    "antonyms": [
+      "reasoning"
+    ],
+    "collocations": [
+      "trust your intuition",
+      "feminine intuition"
+    ],
+    "category": "Psychology",
+    "level": "beginner",
+    "etymology": "From Latin 'intueri' meaning to look upon or contemplate.",
+    "frequencyRank": 2200,
+    "register": "neutral",
+    "domainTags": [
+      "psychology",
+      "cognitive"
+    ]
+  },
+  {
+    "id": "3a97eb0f-da59-4f3b-8540-d5f50bf3b0be",
+    "text": "mindset",
+    "phonetic": "/ˈmaɪndset/",
+    "partOfSpeech": "noun",
+    "definition": "A fixed mental attitude that shapes how someone interprets and responds.",
+    "exampleSentence": "A growth mindset turns failures into learning opportunities.",
+    "synonyms": [
+      "mentality",
+      "outlook",
+      "attitude"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "growth mindset",
+      "shift your mindset"
+    ],
+    "category": "Psychology",
+    "level": "beginner",
+    "etymology": "Compound of 'mind' + 'set' — popularized in mid-20th-century psychology.",
+    "frequencyRank": 2850,
+    "register": "neutral",
+    "domainTags": [
+      "psychology",
+      "modern"
+    ]
+  },
+  {
+    "id": "12c3a11d-6b0d-464b-9ae6-537047ff670d",
+    "text": "willpower",
+    "phonetic": "/ˈwɪlpaʊər/",
+    "partOfSpeech": "noun",
+    "definition": "The mental strength to control one's impulses and stay committed.",
+    "exampleSentence": "It takes real willpower to leave half a slice of cake on the plate.",
+    "synonyms": [
+      "self-control",
+      "resolve",
+      "determination"
+    ],
+    "antonyms": [
+      "weakness",
+      "indulgence"
+    ],
+    "collocations": [
+      "strong willpower",
+      "lack of willpower"
+    ],
+    "category": "Psychology",
+    "level": "beginner",
+    "etymology": "Compound of 'will' (Old English 'willa', desire) + 'power'.",
+    "frequencyRank": 2700,
+    "register": "neutral",
+    "domainTags": [
+      "psychology"
+    ]
+  },
+  {
+    "id": "f58da56b-8cc2-4f05-aabb-9a58a88aee19",
+    "text": "awareness",
+    "phonetic": "/əˈweənəs/",
+    "partOfSpeech": "noun",
+    "definition": "Conscious knowledge or perception of a situation, fact, or oneself.",
+    "exampleSentence": "Yoga helped her develop a deeper awareness of her body.",
+    "synonyms": [
+      "consciousness",
+      "perception",
+      "cognizance"
+    ],
+    "antonyms": [
+      "ignorance",
+      "obliviousness"
+    ],
+    "collocations": [
+      "raise awareness",
+      "self-awareness"
+    ],
+    "category": "Psychology",
+    "level": "beginner",
+    "etymology": "From Old English 'gewær' (watchful, mindful) plus the suffix '-ness'.",
+    "frequencyRank": 1700,
+    "register": "neutral",
+    "domainTags": [
+      "psychology"
+    ]
+  },
+  {
+    "id": "02b3b0b1-21b3-4edb-a44b-dd4a4bcd2640",
+    "text": "instinct",
+    "phonetic": "/ˈɪnstɪŋkt/",
+    "partOfSpeech": "noun",
+    "definition": "An innate, automatic pattern of behavior or response.",
+    "exampleSentence": "Her first instinct was to protect the child.",
+    "synonyms": [
+      "intuition",
+      "impulse",
+      "drive"
+    ],
+    "antonyms": [
+      "reasoning"
+    ],
+    "collocations": [
+      "natural instinct",
+      "follow your instinct"
+    ],
+    "category": "Psychology",
+    "level": "beginner",
+    "etymology": "From Latin 'instinctus' meaning impulse or instigation.",
+    "frequencyRank": 2100,
+    "register": "neutral",
+    "domainTags": [
+      "psychology",
+      "behavior"
+    ]
+  },
+  {
+    "id": "f3f5e82c-3608-4fda-8fa7-749987f43200",
+    "text": "empathy",
+    "phonetic": "/ˈempəθi/",
+    "partOfSpeech": "noun",
+    "definition": "The ability to understand and share another person's feelings.",
+    "exampleSentence": "A good teacher leads with empathy, not authority.",
+    "synonyms": [
+      "compassion",
+      "understanding"
+    ],
+    "antonyms": [
+      "indifference",
+      "callousness"
+    ],
+    "collocations": [
+      "show empathy",
+      "lack of empathy"
+    ],
+    "category": "Psychology",
+    "level": "beginner",
+    "etymology": "Coined in 1908 from Greek 'empatheia' (passion) as a translation of German 'Einfühlung' (feeling into).",
+    "frequencyRank": 2500,
+    "register": "neutral",
+    "domainTags": [
+      "psychology",
+      "social"
+    ]
+  },
+  {
+    "id": "77d7999c-5838-4e55-a3fc-f1c81f3df5d7",
+    "text": "resilient",
+    "phonetic": "/rɪˈzɪliənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Able to recover quickly from difficulties; mentally tough.",
+    "exampleSentence": "Children are surprisingly resilient after setbacks.",
+    "synonyms": [
+      "tough",
+      "adaptable",
+      "hardy"
+    ],
+    "antonyms": [
+      "fragile",
+      "vulnerable"
+    ],
+    "collocations": [
+      "resilient enough",
+      "remarkably resilient"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'resilire' meaning to leap back — 're-' (back) + 'salire' (to jump).",
+    "frequencyRank": 2300,
+    "register": "neutral",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "e37cc62d-2e16-4586-9b61-82087d1bc1f1",
+    "text": "eloquent",
+    "phonetic": "/ˈeləkwənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Fluent and persuasive in speaking or writing.",
+    "exampleSentence": "His eloquent speech moved the entire audience.",
+    "synonyms": [
+      "articulate",
+      "expressive",
+      "fluent"
+    ],
+    "antonyms": [
+      "inarticulate",
+      "tongue-tied"
+    ],
+    "collocations": [
+      "eloquent speech",
+      "eloquent silence"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'eloquens' — 'e-' (out) + 'loqui' (to speak).",
+    "frequencyRank": 2700,
+    "register": "formal",
+    "domainTags": [
+      "personality",
+      "rhetoric"
+    ]
+  },
+  {
+    "id": "9a35c769-b23c-4d0a-9d8d-7994b1860278",
+    "text": "candid",
+    "phonetic": "/ˈkændɪd/",
+    "partOfSpeech": "adjective",
+    "definition": "Truthful and direct, even when it might be uncomfortable.",
+    "exampleSentence": "Can I be candid? I don't think this idea will work.",
+    "synonyms": [
+      "frank",
+      "honest",
+      "blunt"
+    ],
+    "antonyms": [
+      "evasive",
+      "guarded"
+    ],
+    "collocations": [
+      "candid conversation",
+      "remarkably candid"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'candidus' meaning bright white — innocence and purity gave rise to 'frank'.",
+    "frequencyRank": 2600,
+    "register": "neutral",
+    "domainTags": [
+      "personality",
+      "communication"
+    ]
+  },
+  {
+    "id": "b76193bd-6637-48e7-a02a-bfde61c05c1e",
+    "text": "humble",
+    "phonetic": "/ˈhʌmbəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Showing a modest, unpretentious sense of one's own importance.",
+    "exampleSentence": "Despite his fame he remained genuinely humble.",
+    "synonyms": [
+      "modest",
+      "unassuming"
+    ],
+    "antonyms": [
+      "arrogant",
+      "boastful"
+    ],
+    "collocations": [
+      "humble origins",
+      "stay humble"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'humilis' meaning low or close to the ground — from 'humus' (earth).",
+    "frequencyRank": 2100,
+    "register": "neutral",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "2838affc-bb84-4da3-ac8f-ff7307e4f6f8",
+    "text": "sincere",
+    "phonetic": "/sɪnˈsɪər/",
+    "partOfSpeech": "adjective",
+    "definition": "Free from pretense; genuinely felt and expressed.",
+    "exampleSentence": "Please accept my sincere apologies.",
+    "synonyms": [
+      "genuine",
+      "heartfelt",
+      "earnest"
+    ],
+    "antonyms": [
+      "insincere",
+      "fake"
+    ],
+    "collocations": [
+      "sincere apology",
+      "deeply sincere"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'sincerus' meaning clean or pure — folk etymology says 'sine cera' (without wax) referring to honest sculpture.",
+    "frequencyRank": 2450,
+    "register": "neutral",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "784619c6-aace-4efe-95dc-5ace74646edc",
+    "text": "diligent",
+    "phonetic": "/ˈdɪlɪdʒənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Showing careful, persistent effort in work or duties.",
+    "exampleSentence": "She was diligent about checking every detail twice.",
+    "synonyms": [
+      "hardworking",
+      "industrious",
+      "assiduous"
+    ],
+    "antonyms": [
+      "lazy",
+      "careless"
+    ],
+    "collocations": [
+      "diligent worker",
+      "diligent study"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'diligens' meaning attentive — from 'diligere' (to value highly).",
+    "frequencyRank": 2900,
+    "register": "neutral",
+    "domainTags": [
+      "personality",
+      "work"
+    ]
+  },
+  {
+    "id": "3892184a-d4a8-4ad7-990c-637cf72f9980",
+    "text": "generous",
+    "phonetic": "/ˈdʒenərəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Willing to give freely and abundantly to others.",
+    "exampleSentence": "He was generous with both his time and his money.",
+    "synonyms": [
+      "bountiful",
+      "liberal",
+      "openhanded"
+    ],
+    "antonyms": [
+      "stingy",
+      "miserly"
+    ],
+    "collocations": [
+      "generous gift",
+      "generous offer"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'generosus' meaning of noble birth — generosity was once a class marker.",
+    "frequencyRank": 1700,
+    "register": "neutral",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "90196c3e-f1bf-4833-8f78-f80794b11a3d",
+    "text": "ambitious",
+    "phonetic": "/æmˈbɪʃəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Strongly determined to succeed or achieve something difficult.",
+    "exampleSentence": "She's ambitious and won't stop until she's a partner at the firm.",
+    "synonyms": [
+      "driven",
+      "aspiring",
+      "enterprising"
+    ],
+    "antonyms": [
+      "unambitious",
+      "apathetic"
+    ],
+    "collocations": [
+      "ambitious plan",
+      "highly ambitious"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Latin 'ambitiosus' from 'ambire' meaning to go around — originally referring to political canvassing.",
+    "frequencyRank": 2050,
+    "register": "neutral",
+    "domainTags": [
+      "personality",
+      "career"
+    ]
+  },
+  {
+    "id": "8e28b66a-a34f-489e-b072-892dfcf56a1a",
+    "text": "witty",
+    "phonetic": "/ˈwɪti/",
+    "partOfSpeech": "adjective",
+    "definition": "Showing quick clever humor in conversation.",
+    "exampleSentence": "Her witty replies stole the show at dinner.",
+    "synonyms": [
+      "clever",
+      "humorous",
+      "sharp"
+    ],
+    "antonyms": [
+      "dull",
+      "humorless"
+    ],
+    "collocations": [
+      "witty remark",
+      "wickedly witty"
+    ],
+    "category": "Character",
+    "level": "beginner",
+    "etymology": "From Old English 'wit' meaning knowledge or wisdom, plus the adjective suffix '-y'.",
+    "frequencyRank": 2750,
+    "register": "neutral",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "2a361abf-41ef-4366-95f1-4de09fac8213",
+    "text": "mentor",
+    "phonetic": "/ˈmentɔːr/",
+    "partOfSpeech": "noun",
+    "definition": "An experienced person who advises and supports another's development.",
+    "exampleSentence": "Finding a good mentor changed her career trajectory.",
+    "synonyms": [
+      "advisor",
+      "guide",
+      "coach"
+    ],
+    "antonyms": [
+      "mentee",
+      "protégé"
+    ],
+    "collocations": [
+      "trusted mentor",
+      "find a mentor"
+    ],
+    "category": "People",
+    "level": "beginner",
+    "etymology": "From Mentor, the character in Homer's Odyssey who guided young Telemachus.",
+    "frequencyRank": 2300,
+    "register": "neutral",
+    "domainTags": [
+      "work",
+      "education"
+    ]
+  },
+  {
+    "id": "937f044f-5f90-4cf0-a644-6d198831aa74",
+    "text": "ally",
+    "phonetic": "/ˈælaɪ/",
+    "partOfSpeech": "noun",
+    "definition": "A person or group united with another for mutual support.",
+    "exampleSentence": "She turned out to be a powerful ally in the negotiation.",
+    "synonyms": [
+      "partner",
+      "associate",
+      "confederate"
+    ],
+    "antonyms": [
+      "enemy",
+      "adversary"
+    ],
+    "collocations": [
+      "close ally",
+      "key ally"
+    ],
+    "category": "People",
+    "level": "beginner",
+    "etymology": "From Latin 'alligare' meaning to bind together.",
+    "frequencyRank": 2050,
+    "register": "neutral",
+    "domainTags": [
+      "politics",
+      "social"
+    ]
+  },
+  {
+    "id": "094988d2-1fb2-4b0d-8d20-b8aa0f234f18",
+    "text": "rival",
+    "phonetic": "/ˈraɪvəl/",
+    "partOfSpeech": "noun",
+    "definition": "A person competing with another for the same objective.",
+    "exampleSentence": "The two firms have been bitter rivals for decades.",
+    "synonyms": [
+      "competitor",
+      "adversary",
+      "opponent"
+    ],
+    "antonyms": [
+      "ally",
+      "partner"
+    ],
+    "collocations": [
+      "main rival",
+      "fierce rival"
+    ],
+    "category": "People",
+    "level": "beginner",
+    "etymology": "From Latin 'rivalis' meaning users of the same stream — neighbors who shared a 'rivus' (river).",
+    "frequencyRank": 1900,
+    "register": "neutral",
+    "domainTags": [
+      "competition"
+    ]
+  },
+  {
+    "id": "87e9d911-8c9d-4522-9baa-4e05fd64d3c9",
+    "text": "peer",
+    "phonetic": "/pɪər/",
+    "partOfSpeech": "noun",
+    "definition": "A person of the same age, status, or ability as another.",
+    "exampleSentence": "Teenagers care deeply about what their peers think.",
+    "synonyms": [
+      "equal",
+      "contemporary"
+    ],
+    "antonyms": [
+      "superior",
+      "subordinate"
+    ],
+    "collocations": [
+      "peer group",
+      "peer pressure"
+    ],
+    "category": "People",
+    "level": "beginner",
+    "etymology": "From Old French 'per', from Latin 'par' meaning equal.",
+    "frequencyRank": 1750,
+    "register": "neutral",
+    "domainTags": [
+      "social"
+    ]
+  },
+  {
+    "id": "eca1e2e2-3c1b-407b-a8cf-8a433df84c5a",
+    "text": "sibling",
+    "phonetic": "/ˈsɪblɪŋ/",
+    "partOfSpeech": "noun",
+    "definition": "A brother or sister sharing one or both parents.",
+    "exampleSentence": "She is the eldest of five siblings.",
+    "synonyms": [],
+    "antonyms": [],
+    "collocations": [
+      "older sibling",
+      "sibling rivalry"
+    ],
+    "category": "People",
+    "level": "beginner",
+    "etymology": "From Old English 'sibling' meaning a relative — revived in modern usage from the 20th century.",
+    "frequencyRank": 2500,
+    "register": "neutral",
+    "domainTags": [
+      "family"
+    ]
+  },
+  {
+    "id": "28a0fcf5-3285-4994-9b1c-df7316f36a66",
+    "text": "elder",
+    "phonetic": "/ˈeldər/",
+    "partOfSpeech": "noun",
+    "definition": "A person of greater age, or a respected senior figure in a community.",
+    "exampleSentence": "The village elders gathered to settle the dispute.",
+    "synonyms": [
+      "senior",
+      "patriarch"
+    ],
+    "antonyms": [
+      "junior",
+      "youth"
+    ],
+    "collocations": [
+      "village elder",
+      "respect elders"
+    ],
+    "category": "People",
+    "level": "beginner",
+    "etymology": "From Old English 'eldra', comparative form of 'eald' (old).",
+    "frequencyRank": 2400,
+    "register": "neutral",
+    "domainTags": [
+      "family",
+      "social"
+    ]
+  },
+  {
+    "id": "75a727f5-ca65-4fda-abe5-1fdf5b3925a4",
+    "text": "whisper",
+    "phonetic": "/ˈwɪspər/",
+    "partOfSpeech": "verb",
+    "definition": "To speak very softly using one's breath rather than full voice.",
+    "exampleSentence": "She whispered the answer so the others wouldn't hear.",
+    "synonyms": [
+      "murmur",
+      "mutter"
+    ],
+    "antonyms": [
+      "shout",
+      "yell"
+    ],
+    "collocations": [
+      "whisper softly",
+      "barely whisper"
+    ],
+    "category": "Communication",
+    "level": "beginner",
+    "etymology": "From Old English 'hwisprian', of imitative origin like the sound itself.",
+    "frequencyRank": 1900,
+    "register": "neutral",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "cb82e5d0-6ad0-4ae3-bf45-c6f080ba4512",
+    "text": "persuade",
+    "phonetic": "/pərˈsweɪd/",
+    "partOfSpeech": "verb",
+    "definition": "To convince someone to do or believe something through reasoning.",
+    "exampleSentence": "I couldn't persuade him to change his mind.",
+    "synonyms": [
+      "convince",
+      "sway",
+      "induce"
+    ],
+    "antonyms": [
+      "dissuade",
+      "deter"
+    ],
+    "collocations": [
+      "try to persuade",
+      "successfully persuade"
+    ],
+    "category": "Communication",
+    "level": "beginner",
+    "etymology": "From Latin 'persuadere' — 'per-' (thoroughly) + 'suadere' (to advise).",
+    "frequencyRank": 1700,
+    "register": "neutral",
+    "domainTags": [
+      "communication",
+      "rhetoric"
+    ]
+  },
+  {
+    "id": "3d7884eb-fb05-47cc-956c-8a56ba320135",
+    "text": "articulate",
+    "phonetic": "/ɑːrˈtɪkjʊleɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To express thoughts clearly and effectively in words.",
+    "exampleSentence": "She struggled to articulate why she felt uneasy.",
+    "synonyms": [
+      "express",
+      "voice",
+      "communicate"
+    ],
+    "antonyms": [
+      "mumble",
+      "garble"
+    ],
+    "collocations": [
+      "articulate clearly",
+      "articulate a vision"
+    ],
+    "category": "Communication",
+    "level": "beginner",
+    "etymology": "From Latin 'articulare' meaning to divide into joints — speech as 'jointed' sound.",
+    "frequencyRank": 2200,
+    "register": "formal",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "0092c2ef-ae74-4495-ad0b-e2be8957f7e9",
+    "text": "console",
+    "phonetic": "/kənˈsoʊl/",
+    "partOfSpeech": "verb",
+    "definition": "To comfort someone at a time of grief or disappointment.",
+    "exampleSentence": "There was little anyone could say to console her.",
+    "synonyms": [
+      "comfort",
+      "soothe",
+      "reassure"
+    ],
+    "antonyms": [
+      "upset",
+      "distress"
+    ],
+    "collocations": [
+      "console someone",
+      "hard to console"
+    ],
+    "category": "Communication",
+    "level": "beginner",
+    "etymology": "From Latin 'consolari' — 'con-' (with) + 'solari' (to soothe).",
+    "frequencyRank": 2400,
+    "register": "neutral",
+    "domainTags": [
+      "communication",
+      "emotional"
+    ]
+  },
+  {
+    "id": "cc28903f-784d-4f1e-a74d-ababded095c2",
+    "text": "advise",
+    "phonetic": "/ədˈvaɪz/",
+    "partOfSpeech": "verb",
+    "definition": "To offer guidance about the best course of action.",
+    "exampleSentence": "I'd advise you to read the contract carefully first.",
+    "synonyms": [
+      "recommend",
+      "counsel",
+      "guide"
+    ],
+    "antonyms": [
+      "mislead"
+    ],
+    "collocations": [
+      "strongly advise",
+      "advise against"
+    ],
+    "category": "Communication",
+    "level": "beginner",
+    "etymology": "From Old French 'aviser' meaning to consider — from Latin 'visum' (a view).",
+    "frequencyRank": 1450,
+    "register": "neutral",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "fbf30914-c986-4eb8-8df3-49be95eda0a4",
+    "text": "encourage",
+    "phonetic": "/ɪnˈkʌrɪdʒ/",
+    "partOfSpeech": "verb",
+    "definition": "To give someone support, confidence, or hope.",
+    "exampleSentence": "Her parents encouraged her to chase her dreams.",
+    "synonyms": [
+      "support",
+      "motivate",
+      "inspire"
+    ],
+    "antonyms": [
+      "discourage",
+      "deter"
+    ],
+    "collocations": [
+      "encourage to",
+      "warmly encourage"
+    ],
+    "category": "Communication",
+    "level": "beginner",
+    "etymology": "From Old French 'encoragier' — 'en-' (make) + 'corage' (heart).",
+    "frequencyRank": 1100,
+    "register": "neutral",
+    "domainTags": [
+      "communication",
+      "emotional"
+    ]
+  },
+  {
+    "id": "5cd24ad9-5412-4a71-bd1b-c6691fca1559",
+    "text": "posture",
+    "phonetic": "/ˈpɒstʃər/",
+    "partOfSpeech": "noun",
+    "definition": "The position in which someone holds their body when standing or sitting.",
+    "exampleSentence": "Good posture eases lower-back pain.",
+    "synonyms": [
+      "stance",
+      "bearing"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "good posture",
+      "upright posture"
+    ],
+    "category": "Body",
+    "level": "beginner",
+    "etymology": "From Latin 'positura' meaning placement — from 'ponere' (to place).",
+    "frequencyRank": 2600,
+    "register": "neutral",
+    "domainTags": [
+      "anatomy",
+      "wellness"
+    ]
+  },
+  {
+    "id": "e0c51234-6a30-489b-ba5e-7ed9e14c47bb",
+    "text": "gesture",
+    "phonetic": "/ˈdʒestʃər/",
+    "partOfSpeech": "noun",
+    "definition": "A movement of part of the body to express an idea or feeling.",
+    "exampleSentence": "He waved his hand in a friendly gesture.",
+    "synonyms": [
+      "motion",
+      "sign",
+      "signal"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "kind gesture",
+      "hand gesture"
+    ],
+    "category": "Body",
+    "level": "beginner",
+    "etymology": "From Latin 'gestura' meaning manner of carrying — from 'gerere' (to carry).",
+    "frequencyRank": 1850,
+    "register": "neutral",
+    "domainTags": [
+      "body",
+      "communication"
+    ]
+  },
+  {
+    "id": "7c824b51-c529-482c-97b9-628eb943033f",
+    "text": "stride",
+    "phonetic": "/straɪd/",
+    "partOfSpeech": "noun",
+    "definition": "A long, decisive step in walking; figuratively, steady progress.",
+    "exampleSentence": "She crossed the room with a confident stride.",
+    "synonyms": [
+      "pace",
+      "step"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "long stride",
+      "take in stride"
+    ],
+    "category": "Body",
+    "level": "beginner",
+    "etymology": "From Old English 'stride' meaning to mount or step over.",
+    "frequencyRank": 2350,
+    "register": "neutral",
+    "domainTags": [
+      "body",
+      "movement"
+    ]
+  },
+  {
+    "id": "66395223-84cc-4956-b67c-b53a91bcb509",
+    "text": "gaze",
+    "phonetic": "/ɡeɪz/",
+    "partOfSpeech": "noun",
+    "definition": "A steady, prolonged look.",
+    "exampleSentence": "He met her gaze across the crowded room.",
+    "synonyms": [
+      "stare",
+      "look"
+    ],
+    "antonyms": [
+      "glance"
+    ],
+    "collocations": [
+      "steady gaze",
+      "avert one's gaze"
+    ],
+    "category": "Body",
+    "level": "beginner",
+    "etymology": "From Middle English 'gasen' of Scandinavian origin, related to 'gape'.",
+    "frequencyRank": 1750,
+    "register": "neutral",
+    "domainTags": [
+      "body",
+      "perception"
+    ]
+  },
+  {
+    "id": "aa23fb44-8103-49f8-8f9b-7e3bd74cd746",
+    "text": "stamina",
+    "phonetic": "/ˈstæmɪnə/",
+    "partOfSpeech": "noun",
+    "definition": "The ability to sustain prolonged physical or mental effort.",
+    "exampleSentence": "Marathon training builds incredible stamina.",
+    "synonyms": [
+      "endurance",
+      "staying power"
+    ],
+    "antonyms": [
+      "weakness"
+    ],
+    "collocations": [
+      "build stamina",
+      "lacks stamina"
+    ],
+    "category": "Body",
+    "level": "beginner",
+    "etymology": "From Latin 'stamina', plural of 'stamen' (thread) — the threads of life spun by the Fates.",
+    "frequencyRank": 2750,
+    "register": "neutral",
+    "domainTags": [
+      "wellness",
+      "sports"
+    ]
+  },
+  {
+    "id": "254feca1-c334-475f-b0c4-4ccefb509b48",
+    "text": "breath",
+    "phonetic": "/breθ/",
+    "partOfSpeech": "noun",
+    "definition": "Air drawn into or expelled from the lungs.",
+    "exampleSentence": "She paused to catch her breath after the climb.",
+    "synonyms": [
+      "respiration",
+      "inhalation"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "deep breath",
+      "out of breath"
+    ],
+    "category": "Body",
+    "level": "beginner",
+    "etymology": "From Old English 'bræth' originally meaning odor or vapor.",
+    "frequencyRank": 1300,
+    "register": "neutral",
+    "domainTags": [
+      "anatomy"
+    ]
+  },
+  {
+    "id": "6200042e-2bdf-47d3-886e-606956534f5b",
+    "text": "savory",
+    "phonetic": "/ˈseɪvəri/",
+    "partOfSpeech": "adjective",
+    "definition": "Salty or spicy in flavor rather than sweet; pleasantly tasty.",
+    "exampleSentence": "I prefer savory snacks over sweet ones in the evening.",
+    "synonyms": [
+      "salty",
+      "tasty",
+      "flavorful"
+    ],
+    "antonyms": [
+      "sweet",
+      "bland"
+    ],
+    "collocations": [
+      "savory dish",
+      "savory aroma"
+    ],
+    "category": "Food",
+    "level": "beginner",
+    "etymology": "From Old French 'savoré', from Latin 'sapor' (taste).",
+    "frequencyRank": 2750,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "4565f2c8-cfe0-4b84-8519-ba24ae8f1f87",
+    "text": "fragrant",
+    "phonetic": "/ˈfreɪɡrənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Having a pleasant or sweet smell.",
+    "exampleSentence": "The garden was full of fragrant roses.",
+    "synonyms": [
+      "aromatic",
+      "perfumed",
+      "scented"
+    ],
+    "antonyms": [
+      "odorless",
+      "stinking"
+    ],
+    "collocations": [
+      "fragrant flowers",
+      "deeply fragrant"
+    ],
+    "category": "Food",
+    "level": "beginner",
+    "etymology": "From Latin 'fragrare' meaning to smell sweet.",
+    "frequencyRank": 2650,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "3b82eb29-9d92-40f6-85ae-af2bb8e19e95",
+    "text": "succulent",
+    "phonetic": "/ˈsʌkjʊlənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Juicy and tender; full of pleasant moisture (of food).",
+    "exampleSentence": "The roast was succulent and full of flavor.",
+    "synonyms": [
+      "juicy",
+      "moist",
+      "luscious"
+    ],
+    "antonyms": [
+      "dry",
+      "tough"
+    ],
+    "collocations": [
+      "succulent meat",
+      "succulent fruit"
+    ],
+    "category": "Food",
+    "level": "beginner",
+    "etymology": "From Latin 'sucus' meaning juice.",
+    "frequencyRank": 2900,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "16187cd4-5545-47a8-9806-bdf3bae2ad0b",
+    "text": "hearty",
+    "phonetic": "/ˈhɑːrti/",
+    "partOfSpeech": "adjective",
+    "definition": "Warm, generous, and wholehearted; (of food) nourishing and satisfying.",
+    "exampleSentence": "Nothing beats a hearty stew on a cold evening.",
+    "synonyms": [
+      "warm",
+      "robust",
+      "filling"
+    ],
+    "antonyms": [
+      "meager",
+      "halfhearted"
+    ],
+    "collocations": [
+      "hearty meal",
+      "hearty welcome"
+    ],
+    "category": "Food",
+    "level": "beginner",
+    "etymology": "From 'heart' + '-y' — originally meant courageous or wholehearted, later extended to food.",
+    "frequencyRank": 2500,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "aac19a85-7e85-4cb9-b8b0-337cc9a8b5c2",
+    "text": "palatable",
+    "phonetic": "/ˈpælətəbəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Pleasant or acceptable to taste; figuratively, agreeable to consider.",
+    "exampleSentence": "The dish was simple but perfectly palatable.",
+    "synonyms": [
+      "tasty",
+      "agreeable",
+      "acceptable"
+    ],
+    "antonyms": [
+      "unpalatable",
+      "unappetizing"
+    ],
+    "collocations": [
+      "barely palatable",
+      "make palatable"
+    ],
+    "category": "Food",
+    "level": "beginner",
+    "etymology": "From Latin 'palatum' (palate) — from the part of the mouth where taste is felt.",
+    "frequencyRank": 2950,
+    "register": "neutral",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "29d25b50-a100-4c14-9902-9930630d0169",
+    "text": "linger",
+    "phonetic": "/ˈlɪŋɡər/",
+    "partOfSpeech": "verb",
+    "definition": "To stay in a place or state longer than necessary; to be slow to leave.",
+    "exampleSentence": "The smell of coffee lingered in the room all morning.",
+    "synonyms": [
+      "remain",
+      "loiter",
+      "dawdle"
+    ],
+    "antonyms": [
+      "leave",
+      "depart"
+    ],
+    "collocations": [
+      "linger over",
+      "linger on"
+    ],
+    "category": "General",
+    "level": "beginner",
+    "etymology": "From Middle English 'lengen' meaning to dwell or tarry.",
+    "frequencyRank": 2400,
+    "register": "neutral",
+    "domainTags": [
+      "everyday",
+      "literary"
+    ]
+  },
+  {
+    "id": "fcedc079-75ff-415f-8968-b40604b9cf3a",
+    "text": "ponder",
+    "phonetic": "/ˈpɒndər/",
+    "partOfSpeech": "verb",
+    "definition": "To think about something carefully and at length.",
+    "exampleSentence": "She paused to ponder the question before answering.",
+    "synonyms": [
+      "consider",
+      "contemplate",
+      "reflect"
+    ],
+    "antonyms": [
+      "disregard"
+    ],
+    "collocations": [
+      "ponder deeply",
+      "ponder over"
+    ],
+    "category": "General",
+    "level": "beginner",
+    "etymology": "From Latin 'ponderare' meaning to weigh — thinking imagined as weighing options.",
+    "frequencyRank": 2750,
+    "register": "neutral",
+    "domainTags": [
+      "cognitive"
+    ]
+  },
+  {
+    "id": "402d3332-6488-4407-9b59-73ff0333416c",
+    "text": "savor",
+    "phonetic": "/ˈseɪvər/",
+    "partOfSpeech": "verb",
+    "definition": "To enjoy something slowly, paying full attention to the pleasure of it.",
+    "exampleSentence": "She savored every bite of the homemade cake.",
+    "synonyms": [
+      "relish",
+      "enjoy",
+      "appreciate"
+    ],
+    "antonyms": [
+      "rush",
+      "ignore"
+    ],
+    "collocations": [
+      "savor the moment",
+      "savor every"
+    ],
+    "category": "General",
+    "level": "beginner",
+    "etymology": "From Old French 'savorer', from Latin 'sapor' (taste).",
+    "frequencyRank": 2600,
+    "register": "neutral",
+    "domainTags": [
+      "sensory",
+      "everyday"
+    ]
+  },
+  {
+    "id": "19dacb77-0564-478e-8f34-6a485f5092ad",
+    "text": "contemplate",
+    "phonetic": "/ˈkɒntəmpleɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To look at or think about something thoughtfully and at length.",
+    "exampleSentence": "He stood by the window and contemplated his next move.",
+    "synonyms": [
+      "consider",
+      "ponder",
+      "muse"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "contemplate the future",
+      "quietly contemplate"
+    ],
+    "category": "General",
+    "level": "beginner",
+    "etymology": "From Latin 'contemplari' originally meaning to mark out a space for augury — 'com-' + 'templum' (temple).",
+    "frequencyRank": 2350,
+    "register": "formal",
+    "domainTags": [
+      "cognitive",
+      "literary"
+    ]
+  },
+  {
+    "id": "c620da64-4a21-46c7-9c56-8cdf0513d353",
+    "text": "cherish",
+    "phonetic": "/ˈtʃerɪʃ/",
+    "partOfSpeech": "verb",
+    "definition": "To hold something dear; to keep a feeling carefully in one's mind.",
+    "exampleSentence": "I cherish the memories of those summer afternoons.",
+    "synonyms": [
+      "treasure",
+      "prize",
+      "value"
+    ],
+    "antonyms": [
+      "neglect",
+      "discard"
+    ],
+    "collocations": [
+      "cherish memories",
+      "deeply cherish"
+    ],
+    "category": "General",
+    "level": "beginner",
+    "etymology": "From Old French 'cheriss-', stem of 'cherir', from 'cher' (dear).",
+    "frequencyRank": 2500,
+    "register": "neutral",
+    "domainTags": [
+      "emotional",
+      "literary"
+    ]
+  }
+]

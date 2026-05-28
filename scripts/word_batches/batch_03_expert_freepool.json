@@ -1,0 +1,1445 @@
+[
+  {
+    "id": "31cecb93-7c99-4eac-9b08-b51af6bfdfdf",
+    "text": "ineffable",
+    "phonetic": "/ɪnˈefəbəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Too great or extreme to be expressed in words.",
+    "exampleSentence": "Standing at the canyon's edge, she felt an ineffable awe.",
+    "synonyms": [
+      "indescribable",
+      "unspeakable"
+    ],
+    "antonyms": [
+      "expressible",
+      "describable"
+    ],
+    "collocations": [
+      "ineffable beauty",
+      "ineffable sadness"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Latin 'ineffabilis' — 'in-' (not) + 'effari' (to utter).",
+    "frequencyRank": 9200,
+    "register": "formal",
+    "domainTags": [
+      "literary",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "19c4dd84-6dca-4462-98f9-561c550c7023",
+    "text": "lugubrious",
+    "phonetic": "/luːˈɡuːbriəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Excessively mournful or gloomy in expression.",
+    "exampleSentence": "He spoke in a lugubrious tone about the company's decline.",
+    "synonyms": [
+      "mournful",
+      "doleful",
+      "sorrowful"
+    ],
+    "antonyms": [
+      "cheerful",
+      "jovial"
+    ],
+    "collocations": [
+      "lugubrious tone",
+      "lugubrious expression"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Latin 'lugubris' meaning mournful — from 'lugere' (to mourn).",
+    "frequencyRank": 12000,
+    "register": "formal",
+    "domainTags": [
+      "literary"
+    ]
+  },
+  {
+    "id": "95470ee8-e632-4b8c-a2c4-6a3bc5b0cb94",
+    "text": "mawkish",
+    "phonetic": "/ˈmɔːkɪʃ/",
+    "partOfSpeech": "adjective",
+    "definition": "Sentimental in a sickly or feeble way.",
+    "exampleSentence": "The film tipped from heartfelt to mawkish in its closing minutes.",
+    "synonyms": [
+      "maudlin",
+      "saccharine",
+      "cloying"
+    ],
+    "antonyms": [
+      "restrained",
+      "understated"
+    ],
+    "collocations": [
+      "mawkish sentimentality",
+      "mawkish prose"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Middle English 'mawke' (maggot) — originally meaning sickly or nauseating.",
+    "frequencyRank": 14000,
+    "register": "formal",
+    "domainTags": [
+      "literary",
+      "criticism"
+    ]
+  },
+  {
+    "id": "99870137-5e78-4ee2-a9ce-c7f85c19ed4d",
+    "text": "plaintive",
+    "phonetic": "/ˈpleɪntɪv/",
+    "partOfSpeech": "adjective",
+    "definition": "Sounding sad and mournful, often softly so.",
+    "exampleSentence": "The dog gave a plaintive whine at the closed door.",
+    "synonyms": [
+      "mournful",
+      "doleful",
+      "wistful"
+    ],
+    "antonyms": [
+      "cheerful"
+    ],
+    "collocations": [
+      "plaintive cry",
+      "plaintive melody"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Old French 'plaintif' meaning lamenting — same root as 'complain'.",
+    "frequencyRank": 8800,
+    "register": "formal",
+    "domainTags": [
+      "literary"
+    ]
+  },
+  {
+    "id": "3157b080-90dd-421f-afe2-4d4ddead55f7",
+    "text": "querulous",
+    "phonetic": "/ˈkwerələs/",
+    "partOfSpeech": "adjective",
+    "definition": "Complaining in a peevish or petulant way.",
+    "exampleSentence": "The querulous old man complained about every meal.",
+    "synonyms": [
+      "petulant",
+      "fretful",
+      "whining"
+    ],
+    "antonyms": [
+      "uncomplaining",
+      "stoic"
+    ],
+    "collocations": [
+      "querulous tone",
+      "querulous voice"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Latin 'querulus' meaning complaining — from 'queri' (to complain).",
+    "frequencyRank": 11000,
+    "register": "formal",
+    "domainTags": [
+      "literary"
+    ]
+  },
+  {
+    "id": "048a6f9d-755e-4c64-9f2a-4c195f4510db",
+    "text": "beatific",
+    "phonetic": "/ˌbiːəˈtɪfɪk/",
+    "partOfSpeech": "adjective",
+    "definition": "Showing or expressing serene happiness, often almost saintly.",
+    "exampleSentence": "She wore a beatific smile as she held her newborn.",
+    "synonyms": [
+      "blissful",
+      "rapturous",
+      "ecstatic"
+    ],
+    "antonyms": [
+      "agonized",
+      "tormented"
+    ],
+    "collocations": [
+      "beatific smile",
+      "beatific expression"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Latin 'beatificus' meaning making happy — from 'beatus' (blessed) + 'facere' (to make).",
+    "frequencyRank": 10500,
+    "register": "formal",
+    "domainTags": [
+      "literary",
+      "religious"
+    ]
+  },
+  {
+    "id": "d5a07240-9695-4128-af87-dbd74dcc6935",
+    "text": "doleful",
+    "phonetic": "/ˈdoʊlfəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Expressing sorrow; mournful.",
+    "exampleSentence": "He sang in a doleful voice that suited the rainy night.",
+    "synonyms": [
+      "mournful",
+      "sorrowful",
+      "woeful"
+    ],
+    "antonyms": [
+      "joyful",
+      "cheerful"
+    ],
+    "collocations": [
+      "doleful eyes",
+      "doleful song"
+    ],
+    "category": "Emotions",
+    "level": "expert",
+    "etymology": "From Old French 'doel' meaning grief — from Latin 'dolere' (to grieve).",
+    "frequencyRank": 10200,
+    "register": "formal",
+    "domainTags": [
+      "literary"
+    ]
+  },
+  {
+    "id": "3bd0942f-7f63-47fe-be55-c6c17f3adb19",
+    "text": "sangfroid",
+    "phonetic": "/sɒŋˈfrwɑː/",
+    "partOfSpeech": "noun",
+    "definition": "Composure or coolness shown in danger or under trying circumstances.",
+    "exampleSentence": "He took the news with remarkable sangfroid.",
+    "synonyms": [
+      "composure",
+      "poise",
+      "equanimity"
+    ],
+    "antonyms": [
+      "panic",
+      "agitation"
+    ],
+    "collocations": [
+      "complete sangfroid",
+      "with sangfroid"
+    ],
+    "category": "Psychology",
+    "level": "expert",
+    "etymology": "From French 'sang-froid' literally 'cold blood' — first used in English in 1750.",
+    "frequencyRank": 13500,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "loanword"
+    ]
+  },
+  {
+    "id": "9a0c84ca-fe52-47d6-8daf-821d96042b19",
+    "text": "gestalt",
+    "phonetic": "/ɡəˈʃtælt/",
+    "partOfSpeech": "noun",
+    "definition": "An organized whole perceived as more than the sum of its parts.",
+    "exampleSentence": "The painting's gestalt emerged only when she stepped back.",
+    "synonyms": [
+      "whole",
+      "configuration"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "the gestalt of",
+      "perceive the gestalt"
+    ],
+    "category": "Psychology",
+    "level": "expert",
+    "etymology": "From German 'Gestalt' meaning shape or form — central concept of Gestalt psychology since 1890.",
+    "frequencyRank": 11800,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "loanword"
+    ]
+  },
+  {
+    "id": "14f724ce-2170-429e-84b2-10d9186b184d",
+    "text": "zeitgeist",
+    "phonetic": "/ˈzaɪtɡaɪst/",
+    "partOfSpeech": "noun",
+    "definition": "The defining spirit or mood of a particular period.",
+    "exampleSentence": "The film perfectly captured the zeitgeist of the 1990s.",
+    "synonyms": [
+      "spirit of the age",
+      "ethos"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "capture the zeitgeist",
+      "cultural zeitgeist"
+    ],
+    "category": "Psychology",
+    "level": "expert",
+    "etymology": "From German 'Zeit' (time) + 'Geist' (spirit) — coined by 19th-century German philosophers.",
+    "frequencyRank": 9800,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "culture",
+      "loanword"
+    ]
+  },
+  {
+    "id": "8d250fa7-830e-4bfa-a153-e10e9b7b3aee",
+    "text": "ennui",
+    "phonetic": "/ɒnˈwiː/",
+    "partOfSpeech": "noun",
+    "definition": "A feeling of weariness and dissatisfaction arising from idleness or boredom.",
+    "exampleSentence": "An afternoon of ennui descended over the empty office.",
+    "synonyms": [
+      "boredom",
+      "listlessness",
+      "weariness"
+    ],
+    "antonyms": [
+      "enthusiasm",
+      "engagement"
+    ],
+    "collocations": [
+      "sense of ennui",
+      "weekend ennui"
+    ],
+    "category": "Psychology",
+    "level": "expert",
+    "etymology": "From French 'ennui' meaning annoyance — same Latin root as 'annoy'.",
+    "frequencyRank": 9500,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "loanword"
+    ]
+  },
+  {
+    "id": "3def3963-b106-4d4a-afb6-8bbedb4fd33f",
+    "text": "anomie",
+    "phonetic": "/ˈænəmi/",
+    "partOfSpeech": "noun",
+    "definition": "Social or personal instability due to absence of standards or values.",
+    "exampleSentence": "Sociologists warned that long unemployment can lead to anomie.",
+    "synonyms": [
+      "alienation",
+      "rootlessness"
+    ],
+    "antonyms": [
+      "belonging"
+    ],
+    "collocations": [
+      "sense of anomie",
+      "social anomie"
+    ],
+    "category": "Psychology",
+    "level": "expert",
+    "etymology": "From Greek 'anomia' meaning lawlessness — popularized by sociologist Émile Durkheim in 1893.",
+    "frequencyRank": 13200,
+    "register": "formal",
+    "domainTags": [
+      "psychology",
+      "sociology"
+    ]
+  },
+  {
+    "id": "e6cc43cf-f1aa-4bac-a171-68088e65d934",
+    "text": "paragon",
+    "phonetic": "/ˈpærəɡən/",
+    "partOfSpeech": "noun",
+    "definition": "A person or thing regarded as a perfect example of a quality.",
+    "exampleSentence": "She was held up as a paragon of professionalism.",
+    "synonyms": [
+      "model",
+      "exemplar",
+      "ideal"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "paragon of virtue",
+      "paragon of style"
+    ],
+    "category": "Psychology",
+    "level": "expert",
+    "etymology": "From Italian 'paragone' meaning touchstone — a stone used to test the purity of gold.",
+    "frequencyRank": 8700,
+    "register": "formal",
+    "domainTags": [
+      "literary"
+    ]
+  },
+  {
+    "id": "c5fd35c7-95a5-4ea6-91e1-639fd1b7e8d4",
+    "text": "perspicacious",
+    "phonetic": "/ˌpɜːrspɪˈkeɪʃəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Having keen judgment or insight; mentally sharp.",
+    "exampleSentence": "Her perspicacious analysis impressed even the senior partners.",
+    "synonyms": [
+      "astute",
+      "shrewd",
+      "discerning"
+    ],
+    "antonyms": [
+      "obtuse",
+      "dull"
+    ],
+    "collocations": [
+      "perspicacious observer",
+      "perspicacious analysis"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'perspicax' meaning sharp-sighted — from 'perspicere' (to see through).",
+    "frequencyRank": 12500,
+    "register": "formal",
+    "domainTags": [
+      "personality",
+      "intellect"
+    ]
+  },
+  {
+    "id": "f71ce22f-d570-4c98-a67e-449c86139ccd",
+    "text": "mendacious",
+    "phonetic": "/menˈdeɪʃəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Habitually telling lies; untruthful.",
+    "exampleSentence": "His mendacious account of events fooled no one.",
+    "synonyms": [
+      "dishonest",
+      "untruthful",
+      "deceitful"
+    ],
+    "antonyms": [
+      "truthful",
+      "honest"
+    ],
+    "collocations": [
+      "mendacious claim",
+      "mendacious testimony"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'mendax' meaning lying — related to 'mendum' (fault).",
+    "frequencyRank": 11500,
+    "register": "formal",
+    "domainTags": [
+      "personality",
+      "ethics"
+    ]
+  },
+  {
+    "id": "e8a8dda9-362e-4522-8e1e-c3a999e29c52",
+    "text": "obsequious",
+    "phonetic": "/əbˈsiːkwiəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Excessively eager to please or obey, in a fawning way.",
+    "exampleSentence": "His obsequious manner toward the boss embarrassed everyone.",
+    "synonyms": [
+      "servile",
+      "fawning",
+      "sycophantic"
+    ],
+    "antonyms": [
+      "assertive",
+      "independent"
+    ],
+    "collocations": [
+      "obsequious smile",
+      "obsequious flattery"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'obsequiosus' meaning compliant — from 'obsequi' (to follow after).",
+    "frequencyRank": 11700,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "01ac7515-57dc-4df1-b3ab-05964f49b917",
+    "text": "supercilious",
+    "phonetic": "/ˌsuːpərˈsɪliəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Behaving as if superior to others; haughtily disdainful.",
+    "exampleSentence": "The waiter gave them a supercilious glance.",
+    "synonyms": [
+      "haughty",
+      "arrogant",
+      "condescending"
+    ],
+    "antonyms": [
+      "humble",
+      "modest"
+    ],
+    "collocations": [
+      "supercilious smile",
+      "supercilious attitude"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'supercilium' meaning eyebrow — raised in disdain.",
+    "frequencyRank": 12200,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "a42b8785-ddf2-4c60-91b0-0bde8215ba26",
+    "text": "recalcitrant",
+    "phonetic": "/rɪˈkælsɪtrənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Stubbornly resistant to authority or control.",
+    "exampleSentence": "The recalcitrant student refused to follow any rules.",
+    "synonyms": [
+      "defiant",
+      "unruly",
+      "intractable"
+    ],
+    "antonyms": [
+      "compliant",
+      "obedient"
+    ],
+    "collocations": [
+      "recalcitrant child",
+      "recalcitrant attitude"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'recalcitrare' meaning to kick back — literally a stubborn horse kicking out.",
+    "frequencyRank": 11900,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "75b75baf-039c-438f-a22a-4c33fd19bd49",
+    "text": "capricious",
+    "phonetic": "/kəˈprɪʃəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Given to sudden and unaccountable changes of mood or behavior.",
+    "exampleSentence": "The capricious weather ruined our picnic plans.",
+    "synonyms": [
+      "fickle",
+      "mercurial",
+      "unpredictable"
+    ],
+    "antonyms": [
+      "steady",
+      "consistent"
+    ],
+    "collocations": [
+      "capricious nature",
+      "capricious decisions"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Italian 'capriccio' originally meaning a shudder — fanciful changes of mood.",
+    "frequencyRank": 9100,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "d81760a2-2bbb-4d3b-9aed-be37f8b05f28",
+    "text": "erudite",
+    "phonetic": "/ˈeruːdaɪt/",
+    "partOfSpeech": "adjective",
+    "definition": "Having or showing great learning and scholarship.",
+    "exampleSentence": "His erudite commentary delighted the academic audience.",
+    "synonyms": [
+      "learned",
+      "scholarly",
+      "well-read"
+    ],
+    "antonyms": [
+      "ignorant",
+      "uneducated"
+    ],
+    "collocations": [
+      "erudite scholar",
+      "erudite essay"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'eruditus' meaning instructed — 'e-' (out of) + 'rudis' (rough, untrained).",
+    "frequencyRank": 9700,
+    "register": "formal",
+    "domainTags": [
+      "intellect",
+      "personality"
+    ]
+  },
+  {
+    "id": "166c5964-167b-4d49-a5b1-12f81c57446f",
+    "text": "prolix",
+    "phonetic": "/ˈproʊlɪks/",
+    "partOfSpeech": "adjective",
+    "definition": "Using too many words; tediously long.",
+    "exampleSentence": "The editor cut several prolix passages from the manuscript.",
+    "synonyms": [
+      "verbose",
+      "long-winded",
+      "wordy"
+    ],
+    "antonyms": [
+      "concise",
+      "succinct"
+    ],
+    "collocations": [
+      "prolix style",
+      "unnecessarily prolix"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'prolixus' meaning extended or poured forth.",
+    "frequencyRank": 13800,
+    "register": "formal",
+    "domainTags": [
+      "personality",
+      "writing"
+    ]
+  },
+  {
+    "id": "c4e597b3-ce93-4e4b-9438-2caa8d2a9cf3",
+    "text": "mercurial",
+    "phonetic": "/mərˈkjʊəriəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Changing moods quickly and unpredictably; volatile.",
+    "exampleSentence": "His mercurial temper made him difficult to work with.",
+    "synonyms": [
+      "volatile",
+      "capricious",
+      "erratic"
+    ],
+    "antonyms": [
+      "steady",
+      "stable"
+    ],
+    "collocations": [
+      "mercurial temperament",
+      "mercurial mood"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Mercury, the swift Roman messenger god — associated with quickness.",
+    "frequencyRank": 8400,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "da4fa033-d7e3-4c27-b55a-7a321dd2a129",
+    "text": "irascible",
+    "phonetic": "/ɪˈræsəbəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Easily made angry; quick to lose one's temper.",
+    "exampleSentence": "His irascible boss was famous for shouting matches.",
+    "synonyms": [
+      "irritable",
+      "short-tempered",
+      "hot-tempered"
+    ],
+    "antonyms": [
+      "patient",
+      "even-tempered"
+    ],
+    "collocations": [
+      "irascible nature",
+      "irascible old man"
+    ],
+    "category": "Character",
+    "level": "expert",
+    "etymology": "From Latin 'irascibilis' from 'irasci' (to grow angry).",
+    "frequencyRank": 12700,
+    "register": "formal",
+    "domainTags": [
+      "personality"
+    ]
+  },
+  {
+    "id": "c82b12d4-4af6-4ac9-80b4-29f1581adae1",
+    "text": "factotum",
+    "phonetic": "/fækˈtoʊtəm/",
+    "partOfSpeech": "noun",
+    "definition": "A general handyperson who performs many kinds of work.",
+    "exampleSentence": "She acted as factotum for the small theater company.",
+    "synonyms": [
+      "jack-of-all-trades",
+      "right-hand"
+    ],
+    "antonyms": [
+      "specialist"
+    ],
+    "collocations": [
+      "personal factotum",
+      "trusted factotum"
+    ],
+    "category": "People",
+    "level": "expert",
+    "etymology": "From Latin 'fac' (do) + 'totum' (all) — literally 'do everything'.",
+    "frequencyRank": 14500,
+    "register": "formal",
+    "domainTags": [
+      "work"
+    ]
+  },
+  {
+    "id": "3d1557c6-3d51-4ee1-8f7a-efc89eb8009c",
+    "text": "raconteur",
+    "phonetic": "/ˌrækɒnˈtɜːr/",
+    "partOfSpeech": "noun",
+    "definition": "A skilled and entertaining storyteller.",
+    "exampleSentence": "Her uncle was a famous raconteur whose dinners ran late.",
+    "synonyms": [
+      "storyteller",
+      "narrator"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "gifted raconteur",
+      "born raconteur"
+    ],
+    "category": "People",
+    "level": "expert",
+    "etymology": "From French 'raconter' meaning to tell or relate.",
+    "frequencyRank": 12400,
+    "register": "formal",
+    "domainTags": [
+      "social",
+      "loanword"
+    ]
+  },
+  {
+    "id": "b9d21cde-d2fc-4a90-8379-7fd34f1af5ad",
+    "text": "savant",
+    "phonetic": "/sæˈvɒnt/",
+    "partOfSpeech": "noun",
+    "definition": "A learned person, especially a distinguished scientist or scholar.",
+    "exampleSentence": "The young savant could solve equations no professor could.",
+    "synonyms": [
+      "scholar",
+      "expert",
+      "polymath"
+    ],
+    "antonyms": [
+      "amateur"
+    ],
+    "collocations": [
+      "idiot savant",
+      "literary savant"
+    ],
+    "category": "People",
+    "level": "expert",
+    "etymology": "From French 'savant' meaning learned — from 'savoir' (to know).",
+    "frequencyRank": 9300,
+    "register": "formal",
+    "domainTags": [
+      "intellect",
+      "loanword"
+    ]
+  },
+  {
+    "id": "fe615be0-b1ed-4500-a926-cc9bface7435",
+    "text": "polymath",
+    "phonetic": "/ˈpɒlimæθ/",
+    "partOfSpeech": "noun",
+    "definition": "A person of wide-ranging knowledge across many subjects.",
+    "exampleSentence": "Leonardo da Vinci is the archetypal Renaissance polymath.",
+    "synonyms": [
+      "genius",
+      "Renaissance man",
+      "savant"
+    ],
+    "antonyms": [
+      "specialist",
+      "novice"
+    ],
+    "collocations": [
+      "true polymath",
+      "rare polymath"
+    ],
+    "category": "People",
+    "level": "expert",
+    "etymology": "From Greek 'polymathēs' meaning having learned much — 'poly' (many) + 'manthanein' (to learn).",
+    "frequencyRank": 9900,
+    "register": "formal",
+    "domainTags": [
+      "intellect"
+    ]
+  },
+  {
+    "id": "7691786b-a008-488f-a579-7dffa30f4d9b",
+    "text": "dilettante",
+    "phonetic": "/ˌdɪlɪˈtænti/",
+    "partOfSpeech": "noun",
+    "definition": "A person who dabbles in an art or field without deep commitment.",
+    "exampleSentence": "Critics dismissed him as a dilettante rather than a serious artist.",
+    "synonyms": [
+      "amateur",
+      "dabbler"
+    ],
+    "antonyms": [
+      "expert",
+      "professional"
+    ],
+    "collocations": [
+      "mere dilettante",
+      "literary dilettante"
+    ],
+    "category": "People",
+    "level": "expert",
+    "etymology": "From Italian 'dilettante' meaning one who delights — from Latin 'delectare' (to delight).",
+    "frequencyRank": 11600,
+    "register": "formal",
+    "domainTags": [
+      "intellect",
+      "loanword"
+    ]
+  },
+  {
+    "id": "5482dca9-506f-46c0-9ec7-031e955ccd25",
+    "text": "demagogue",
+    "phonetic": "/ˈdeməɡɒɡ/",
+    "partOfSpeech": "noun",
+    "definition": "A political leader who appeals to popular prejudices rather than reason.",
+    "exampleSentence": "Historians call him the most dangerous demagogue of his era.",
+    "synonyms": [
+      "agitator",
+      "rabble-rouser"
+    ],
+    "antonyms": [
+      "statesman"
+    ],
+    "collocations": [
+      "dangerous demagogue",
+      "populist demagogue"
+    ],
+    "category": "People",
+    "level": "expert",
+    "etymology": "From Greek 'dēmagōgos' — 'dēmos' (people) + 'agōgos' (leader).",
+    "frequencyRank": 9600,
+    "register": "formal",
+    "domainTags": [
+      "politics"
+    ]
+  },
+  {
+    "id": "fed25f0c-455c-4cd9-af7e-5b9ac52de0c8",
+    "text": "pontificate",
+    "phonetic": "/pɒnˈtɪfɪkeɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To express opinions in a pompous, dogmatic way.",
+    "exampleSentence": "He loved to pontificate on subjects he barely understood.",
+    "synonyms": [
+      "lecture",
+      "preach",
+      "hold forth"
+    ],
+    "antonyms": [
+      "listen",
+      "defer"
+    ],
+    "collocations": [
+      "pontificate about",
+      "pontificate on"
+    ],
+    "category": "Communication",
+    "level": "expert",
+    "etymology": "From Latin 'pontifex' (high priest) — originally meaning to officiate as pope.",
+    "frequencyRank": 10800,
+    "register": "formal",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "3b143341-8925-42a3-b257-401bb5ed265e",
+    "text": "soliloquy",
+    "phonetic": "/səˈlɪləkwi/",
+    "partOfSpeech": "noun",
+    "definition": "A speech in which a character speaks alone, revealing inner thoughts.",
+    "exampleSentence": "Hamlet's famous soliloquy begins with 'To be, or not to be.'",
+    "synonyms": [
+      "monologue"
+    ],
+    "antonyms": [
+      "dialogue"
+    ],
+    "collocations": [
+      "dramatic soliloquy",
+      "lengthy soliloquy"
+    ],
+    "category": "Communication",
+    "level": "expert",
+    "etymology": "From Late Latin 'soliloquium' — 'solus' (alone) + 'loqui' (to speak).",
+    "frequencyRank": 10100,
+    "register": "formal",
+    "domainTags": [
+      "literature",
+      "theater"
+    ]
+  },
+  {
+    "id": "33c04c68-6bc5-418b-91b2-d0c6d91f276b",
+    "text": "equivocate",
+    "phonetic": "/ɪˈkwɪvəkeɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To use ambiguous language to avoid committing oneself.",
+    "exampleSentence": "Stop equivocating and tell me what you really think.",
+    "synonyms": [
+      "prevaricate",
+      "hedge",
+      "evade"
+    ],
+    "antonyms": [
+      "specify",
+      "commit"
+    ],
+    "collocations": [
+      "refuse to equivocate",
+      "equivocate on"
+    ],
+    "category": "Communication",
+    "level": "expert",
+    "etymology": "From Latin 'aequivocare' — 'aequus' (equal) + 'vocare' (to call) — calling by an equal name.",
+    "frequencyRank": 11200,
+    "register": "formal",
+    "domainTags": [
+      "communication",
+      "rhetoric"
+    ]
+  },
+  {
+    "id": "fcff1dc7-4a07-4844-a06f-8c78448888d5",
+    "text": "prevaricate",
+    "phonetic": "/prɪˈværɪkeɪt/",
+    "partOfSpeech": "verb",
+    "definition": "To speak or act in an evasive way to avoid telling the truth.",
+    "exampleSentence": "The witness prevaricated under cross-examination.",
+    "synonyms": [
+      "evade",
+      "equivocate",
+      "hedge"
+    ],
+    "antonyms": [
+      "confess",
+      "answer directly"
+    ],
+    "collocations": [
+      "refuse to prevaricate",
+      "prevaricate about"
+    ],
+    "category": "Communication",
+    "level": "expert",
+    "etymology": "From Latin 'praevaricari' meaning to walk crookedly — 'prae-' + 'varicare' (to straddle).",
+    "frequencyRank": 12300,
+    "register": "formal",
+    "domainTags": [
+      "communication",
+      "ethics"
+    ]
+  },
+  {
+    "id": "c0f5971f-ba1b-4d56-97ff-fd5b388490a8",
+    "text": "dissemble",
+    "phonetic": "/dɪˈsembəl/",
+    "partOfSpeech": "verb",
+    "definition": "To conceal one's true motives or feelings by pretense.",
+    "exampleSentence": "She tried to dissemble her disappointment with a smile.",
+    "synonyms": [
+      "pretend",
+      "feign",
+      "disguise"
+    ],
+    "antonyms": [
+      "reveal",
+      "expose"
+    ],
+    "collocations": [
+      "dissemble feelings",
+      "no need to dissemble"
+    ],
+    "category": "Communication",
+    "level": "expert",
+    "etymology": "From Old French 'dessembler' meaning to be unlike — same root as 'simulate'.",
+    "frequencyRank": 12800,
+    "register": "formal",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "2f9be36e-4adf-4e49-9143-b29b565c57d0",
+    "text": "harangue",
+    "phonetic": "/həˈræŋ/",
+    "partOfSpeech": "noun",
+    "definition": "A lengthy and aggressive speech.",
+    "exampleSentence": "He subjected the audience to a fifteen-minute harangue.",
+    "synonyms": [
+      "tirade",
+      "diatribe",
+      "rant"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "lengthy harangue",
+      "deliver a harangue"
+    ],
+    "category": "Communication",
+    "level": "expert",
+    "etymology": "From Old Italian 'aringo' meaning a public assembly — Germanic root meaning ring or circle.",
+    "frequencyRank": 11400,
+    "register": "formal",
+    "domainTags": [
+      "communication"
+    ]
+  },
+  {
+    "id": "0c0a046f-8743-48ed-9d85-a81aed01cef4",
+    "text": "cadaverous",
+    "phonetic": "/kəˈdævərəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Resembling a corpse in being very pale, thin, or bony.",
+    "exampleSentence": "Months of illness had left him cadaverous and weak.",
+    "synonyms": [
+      "gaunt",
+      "skeletal",
+      "haggard"
+    ],
+    "antonyms": [
+      "robust",
+      "healthy"
+    ],
+    "collocations": [
+      "cadaverous face",
+      "cadaverous appearance"
+    ],
+    "category": "Body",
+    "level": "expert",
+    "etymology": "From Latin 'cadaver' meaning corpse — from 'cadere' (to fall).",
+    "frequencyRank": 13700,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "literary"
+    ]
+  },
+  {
+    "id": "e60eb124-2872-4f66-b07e-b743c95bc515",
+    "text": "lissome",
+    "phonetic": "/ˈlɪsəm/",
+    "partOfSpeech": "adjective",
+    "definition": "Slim, supple, and graceful in figure or movement.",
+    "exampleSentence": "The lissome dancer drew every eye in the room.",
+    "synonyms": [
+      "graceful",
+      "supple",
+      "lithe"
+    ],
+    "antonyms": [
+      "stiff",
+      "clumsy"
+    ],
+    "collocations": [
+      "lissome figure",
+      "lissome grace"
+    ],
+    "category": "Body",
+    "level": "expert",
+    "etymology": "Alteration of 'lithesome' — from 'lithe' (flexible) + '-some'.",
+    "frequencyRank": 14200,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "literary"
+    ]
+  },
+  {
+    "id": "b30c87db-862f-494a-b20c-eb6972313334",
+    "text": "sinewy",
+    "phonetic": "/ˈsɪnjuːi/",
+    "partOfSpeech": "adjective",
+    "definition": "Lean and muscular; tough and stringy.",
+    "exampleSentence": "The climber's sinewy arms gripped the rock with ease.",
+    "synonyms": [
+      "wiry",
+      "muscular",
+      "tough"
+    ],
+    "antonyms": [
+      "weak",
+      "flabby"
+    ],
+    "collocations": [
+      "sinewy arms",
+      "sinewy build"
+    ],
+    "category": "Body",
+    "level": "expert",
+    "etymology": "From Old English 'sinu' meaning a tendon plus '-y'.",
+    "frequencyRank": 11100,
+    "register": "formal",
+    "domainTags": [
+      "body"
+    ]
+  },
+  {
+    "id": "6df6e056-5a53-4edd-afcd-39611fbcb63a",
+    "text": "statuesque",
+    "phonetic": "/ˌstætʃuˈesk/",
+    "partOfSpeech": "adjective",
+    "definition": "Tall and dignified in appearance, like a statue.",
+    "exampleSentence": "She had a statuesque beauty that turned heads.",
+    "synonyms": [
+      "dignified",
+      "stately",
+      "majestic"
+    ],
+    "antonyms": [
+      "diminutive"
+    ],
+    "collocations": [
+      "statuesque figure",
+      "statuesque beauty"
+    ],
+    "category": "Body",
+    "level": "expert",
+    "etymology": "From 'statue' + '-esque' (in the style of) — coined in 19th-century English.",
+    "frequencyRank": 10300,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "literary"
+    ]
+  },
+  {
+    "id": "146a4e93-e464-46af-850a-077e38e5c75e",
+    "text": "wan",
+    "phonetic": "/wɒn/",
+    "partOfSpeech": "adjective",
+    "definition": "Pale and giving an impression of illness or exhaustion.",
+    "exampleSentence": "She gave a wan smile from her hospital bed.",
+    "synonyms": [
+      "pale",
+      "pallid",
+      "ashen"
+    ],
+    "antonyms": [
+      "ruddy",
+      "rosy"
+    ],
+    "collocations": [
+      "wan smile",
+      "wan face"
+    ],
+    "category": "Body",
+    "level": "expert",
+    "etymology": "From Old English 'wann' originally meaning dark or gloomy.",
+    "frequencyRank": 10700,
+    "register": "formal",
+    "domainTags": [
+      "body",
+      "literary"
+    ]
+  },
+  {
+    "id": "da97c1e3-eae6-47c1-b647-271a7cf72da0",
+    "text": "gaunt",
+    "phonetic": "/ɡɔːnt/",
+    "partOfSpeech": "adjective",
+    "definition": "Lean and haggard, especially from suffering or hunger.",
+    "exampleSentence": "His gaunt face spoke of weeks without proper food.",
+    "synonyms": [
+      "haggard",
+      "thin",
+      "drawn"
+    ],
+    "antonyms": [
+      "plump",
+      "robust"
+    ],
+    "collocations": [
+      "gaunt features",
+      "gaunt and tired"
+    ],
+    "category": "Body",
+    "level": "expert",
+    "etymology": "Of obscure origin, perhaps from Old Norse — first recorded in late 15th century.",
+    "frequencyRank": 8900,
+    "register": "formal",
+    "domainTags": [
+      "body"
+    ]
+  },
+  {
+    "id": "35492971-bc18-4f75-a7ec-91b2f0318b28",
+    "text": "ambrosial",
+    "phonetic": "/æmˈbroʊziəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Exceptionally pleasing to taste or smell; divinely delicious.",
+    "exampleSentence": "The ambrosial scent of fresh bread filled the kitchen.",
+    "synonyms": [
+      "delicious",
+      "heavenly",
+      "exquisite"
+    ],
+    "antonyms": [
+      "foul",
+      "unpleasant"
+    ],
+    "collocations": [
+      "ambrosial aroma",
+      "ambrosial taste"
+    ],
+    "category": "Food",
+    "level": "expert",
+    "etymology": "From 'ambrosia', the food of the Greek gods — meaning immortal-making.",
+    "frequencyRank": 13900,
+    "register": "formal",
+    "domainTags": [
+      "food",
+      "literary"
+    ]
+  },
+  {
+    "id": "d763ca04-38ad-46a8-b8ec-17731ae6ddd2",
+    "text": "piquant",
+    "phonetic": "/ˈpiːkənt/",
+    "partOfSpeech": "adjective",
+    "definition": "Having a pleasantly sharp taste or appetizing flavor.",
+    "exampleSentence": "The sauce had a piquant tang of mustard and capers.",
+    "synonyms": [
+      "pungent",
+      "sharp",
+      "tangy"
+    ],
+    "antonyms": [
+      "bland",
+      "tasteless"
+    ],
+    "collocations": [
+      "piquant sauce",
+      "piquant flavor"
+    ],
+    "category": "Food",
+    "level": "expert",
+    "etymology": "From French 'piquant' meaning pricking or stinging — from 'piquer' (to prick).",
+    "frequencyRank": 9400,
+    "register": "formal",
+    "domainTags": [
+      "food",
+      "sensory"
+    ]
+  },
+  {
+    "id": "e32643ee-5f6d-423f-b276-b8db3eb945e2",
+    "text": "victuals",
+    "phonetic": "/ˈvɪtəlz/",
+    "partOfSpeech": "noun",
+    "definition": "Food or provisions, especially for a journey or community.",
+    "exampleSentence": "They packed enough victuals for a week in the mountains.",
+    "synonyms": [
+      "provisions",
+      "rations",
+      "fare"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "fresh victuals",
+      "store of victuals"
+    ],
+    "category": "Food",
+    "level": "expert",
+    "etymology": "From Latin 'victualia' meaning food — the silent 'c' reflects its later spelling restoration.",
+    "frequencyRank": 13100,
+    "register": "archaic",
+    "domainTags": [
+      "food",
+      "literary"
+    ]
+  },
+  {
+    "id": "5867ea75-4c86-4f6b-8880-d0946ba8d417",
+    "text": "gastronome",
+    "phonetic": "/ˈɡæstrənoʊm/",
+    "partOfSpeech": "noun",
+    "definition": "A lover of and expert in fine food.",
+    "exampleSentence": "As a gastronome, he could describe each dish in poetic detail.",
+    "synonyms": [
+      "epicure",
+      "gourmet",
+      "foodie"
+    ],
+    "antonyms": [],
+    "collocations": [
+      "true gastronome",
+      "discerning gastronome"
+    ],
+    "category": "Food",
+    "level": "expert",
+    "etymology": "From Greek 'gastēr' (stomach) + 'nomos' (law) — one who knows the laws of the stomach.",
+    "frequencyRank": 12600,
+    "register": "formal",
+    "domainTags": [
+      "food",
+      "lifestyle"
+    ]
+  },
+  {
+    "id": "e50f6e69-c470-4db8-aba0-2fd568fa5e00",
+    "text": "ephemeral",
+    "phonetic": "/ɪˈfemərəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Lasting for a very short time.",
+    "exampleSentence": "The beauty of cherry blossoms is famously ephemeral.",
+    "synonyms": [
+      "fleeting",
+      "transient",
+      "short-lived"
+    ],
+    "antonyms": [
+      "enduring",
+      "permanent"
+    ],
+    "collocations": [
+      "ephemeral beauty",
+      "ephemeral pleasure"
+    ],
+    "category": "General",
+    "level": "expert",
+    "etymology": "From Greek 'ephēmeros' meaning lasting only a day — 'epi-' (on) + 'hēmera' (day).",
+    "frequencyRank": 8100,
+    "register": "formal",
+    "domainTags": [
+      "literary",
+      "philosophy"
+    ]
+  },
+  {
+    "id": "a4b3633b-cb4d-4d2f-b805-f1cbf0f6ff5f",
+    "text": "recondite",
+    "phonetic": "/ˈrekəndaɪt/",
+    "partOfSpeech": "adjective",
+    "definition": "Dealing with subjects that few people understand; abstruse.",
+    "exampleSentence": "His lectures were full of recondite references to medieval texts.",
+    "synonyms": [
+      "abstruse",
+      "obscure",
+      "esoteric"
+    ],
+    "antonyms": [
+      "accessible",
+      "obvious"
+    ],
+    "collocations": [
+      "recondite knowledge",
+      "recondite subject"
+    ],
+    "category": "General",
+    "level": "expert",
+    "etymology": "From Latin 'reconditus' meaning hidden or concealed — 're-' + 'condere' (to hide).",
+    "frequencyRank": 13400,
+    "register": "formal",
+    "domainTags": [
+      "literary",
+      "academic"
+    ]
+  },
+  {
+    "id": "d26cb7db-22d5-4203-88fe-03836c01d973",
+    "text": "mellifluous",
+    "phonetic": "/məˈlɪfluəs/",
+    "partOfSpeech": "adjective",
+    "definition": "Pleasingly smooth and flowing, especially of a voice or sound.",
+    "exampleSentence": "Her mellifluous voice made the audiobook a pleasure to listen to.",
+    "synonyms": [
+      "sweet-sounding",
+      "dulcet",
+      "melodious"
+    ],
+    "antonyms": [
+      "harsh",
+      "grating"
+    ],
+    "collocations": [
+      "mellifluous voice",
+      "mellifluous tone"
+    ],
+    "category": "General",
+    "level": "expert",
+    "etymology": "From Latin 'mel' (honey) + 'fluere' (to flow) — literally honey-flowing.",
+    "frequencyRank": 11300,
+    "register": "formal",
+    "domainTags": [
+      "literary",
+      "sensory"
+    ]
+  },
+  {
+    "id": "52e6f9ac-20e7-4e8e-8a73-4978481de468",
+    "text": "abstruse",
+    "phonetic": "/əbˈstruːs/",
+    "partOfSpeech": "adjective",
+    "definition": "Difficult to understand; obscure in meaning.",
+    "exampleSentence": "The paper's abstruse argument lost most of the audience.",
+    "synonyms": [
+      "obscure",
+      "esoteric",
+      "recondite"
+    ],
+    "antonyms": [
+      "clear",
+      "obvious"
+    ],
+    "collocations": [
+      "abstruse theory",
+      "abstruse reasoning"
+    ],
+    "category": "General",
+    "level": "expert",
+    "etymology": "From Latin 'abstrudere' meaning to push away or hide — 'abs-' + 'trudere' (to thrust).",
+    "frequencyRank": 12100,
+    "register": "formal",
+    "domainTags": [
+      "academic",
+      "literary"
+    ]
+  },
+  {
+    "id": "19908140-7860-4d40-aad1-4c9eb99152b7",
+    "text": "inexorable",
+    "phonetic": "/ɪnˈeksərəbəl/",
+    "partOfSpeech": "adjective",
+    "definition": "Impossible to stop or prevent; unyielding.",
+    "exampleSentence": "Time moves in an inexorable march toward the future.",
+    "synonyms": [
+      "relentless",
+      "unstoppable",
+      "implacable"
+    ],
+    "antonyms": [
+      "yielding",
+      "flexible"
+    ],
+    "collocations": [
+      "inexorable march",
+      "inexorable logic"
+    ],
+    "category": "General",
+    "level": "expert",
+    "etymology": "From Latin 'inexorabilis' — 'in-' (not) + 'exorabilis' (able to be moved by entreaty).",
+    "frequencyRank": 10900,
+    "register": "formal",
+    "domainTags": [
+      "literary"
+    ]
+  }
+]
