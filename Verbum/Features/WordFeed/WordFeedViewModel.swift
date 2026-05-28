@@ -23,9 +23,10 @@ class WordFeedViewModel: ObservableObject {
 
     init() {
         SpeechService.configureAudioSession()
-        // Real feed is loaded in restartFeed() once onAppear sets isPro + userLevel.
-        // Empty initial state shows the skeleton card.
-        self.words = []
+        // WordDatabase seeds synchronously from the bundle, so restartFeed() here
+        // populates words before the first render — no skeleton flash.
+        // onAppear will call reloadFromRepository() again once isPro/userLevel are set.
+        restartFeed()
     }
 
     var currentWord: Word? {

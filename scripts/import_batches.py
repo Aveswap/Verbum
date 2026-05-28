@@ -71,15 +71,12 @@ CREATE TABLE IF NOT EXISTS words (
     synonyms        TEXT NOT NULL DEFAULT '[]',
     category        TEXT NOT NULL DEFAULT '',
     level           TEXT NOT NULL,
-    isBookmarked    INTEGER NOT NULL DEFAULT 0,
-    isLiked         INTEGER NOT NULL DEFAULT 0,
-    isNew           INTEGER NOT NULL DEFAULT 0,
     etymology       TEXT,
-    antonyms        TEXT NOT NULL DEFAULT '[]',
-    collocations    TEXT NOT NULL DEFAULT '[]',
+    frequencyRank   INTEGER,
+    antonyms        TEXT,
+    collocations    TEXT,
     register        TEXT,
-    domainTags      TEXT NOT NULL DEFAULT '[]',
-    frequencyRank   INTEGER
+    domainTags      TEXT
 );
 
 CREATE TABLE IF NOT EXISTS translations (

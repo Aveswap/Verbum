@@ -21,7 +21,7 @@ final class WordDatabase {
 
     /// Bump this whenever Resources/words_v2.db is updated so an app update
     /// re-seeds the writable copy with the new content.
-    private static let bundledDBVersion = 1
+    private static let bundledDBVersion = 4
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
@@ -71,10 +71,6 @@ final class WordDatabase {
 
     private static var migrator: DatabaseMigrator {
         var m = DatabaseMigrator()
-        #if DEBUG
-        // WARNING: Any schema change will DELETE the entire local database. Comment out when you need to preserve data during testing.
-        m.eraseDatabaseOnSchemaChange = true
-        #endif
 
         m.registerMigration("v1_createWords") { db in
             try db.create(table: "words", ifNotExists: true) { t in
