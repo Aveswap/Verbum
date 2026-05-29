@@ -4,6 +4,7 @@ import AVFoundation
 
 /// Synthesizes tones via a pre-allocated AVAudioPlayerNode pool.
 /// No audio assets needed. Pool eliminates per-note attach/detach overhead.
+@MainActor
 final class SoundManager {
     static let shared = SoundManager()
 
@@ -42,7 +43,8 @@ final class SoundManager {
             (783.99, 0.24),   // G5
         ]
         for note in notes {
-            DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + note.delay) { [weak self] in
+            Task { @MainActor [weak self] in
+                try? await Task.sleep(nanoseconds: UInt64(note.delay * 1_000_000_000))
                 self?.scheduleNote(frequency: note.freq, duration: 0.30, amplitude: 0.35)
             }
         }

@@ -102,9 +102,10 @@ final class GameCenterService: ObservableObject {
 }
 
 /// Apple's GKGameCenterViewController requires a non-nil delegate for dismissal.
+@MainActor
 private final class GameCenterCloseDelegate: NSObject, GKGameCenterControllerDelegate {
     static let shared = GameCenterCloseDelegate()
-    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        gameCenterViewController.dismiss(animated: true)
+    nonisolated func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        Task { @MainActor in gameCenterViewController.dismiss(animated: true) }
     }
 }

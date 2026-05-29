@@ -44,7 +44,7 @@ struct SearchView: View {
             let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !q.isEmpty else { results = []; return }
             let seen = Set(userProfile.profile.seenWordIds)
-            let found = await Task.detached { WordRepository.shared.words(matching: q) }.value
+            let found = await Task.detached { await WordRepository.shared.words(matching: q) }.value
             if !Task.isCancelled { results = found.filter { seen.contains($0.id) } }
         }
     }

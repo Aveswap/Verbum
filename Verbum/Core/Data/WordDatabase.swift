@@ -5,7 +5,11 @@ import os
 /// Local SQLite store for the full word database (up to 1,000+ words).
 /// Offers both a full fetch (WordRepository materializes it once) and targeted on-demand
 /// queries (by level / category / id / FTS). The bundle JSON is the fallback when DB is absent.
-final class WordDatabase {
+///
+/// `@unchecked Sendable`: GRDB's `DatabaseQueue` is thread-safe; `dbQueue` is only assigned
+/// on the main thread (init, `openIfExists`, the `seedInBackground` completion). All other
+/// access is read-only and goes through the queue.
+final class WordDatabase: @unchecked Sendable {
     static let shared = WordDatabase()
 
     private(set) var dbQueue: DatabaseQueue?
@@ -182,7 +186,7 @@ final class WordDatabase {
 
     // MARK: - Translations
 
-    struct Translation {
+    struct Translation: Sendable {
         let definition: String
         let example: String?
     }

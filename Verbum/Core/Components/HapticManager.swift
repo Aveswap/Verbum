@@ -5,8 +5,10 @@ enum HapticManager {
 
     // MARK: - Engine
 
-    private static var _engine: CHHapticEngine?
-    private static var _engineRunning = false
+    // `nonisolated(unsafe)`: hand-synchronized via `lock` below — the compiler can't prove
+    // it, so we opt out of concurrency checking for these two stored statics.
+    nonisolated(unsafe) private static var _engine: CHHapticEngine?
+    nonisolated(unsafe) private static var _engineRunning = false
     // Recursive lock so reset/stopped handlers (which can fire while we're inside `engine`)
     // don't deadlock when they try to mutate the same state.
     private static let lock = NSRecursiveLock()
@@ -39,6 +41,7 @@ enum HapticManager {
     // MARK: - Public API
 
     /// Smooth wave sensation for word swipes — soft arc, not a blunt tap
+    @MainActor
     static func swipeWave() {
         guard let engine else { UISelectionFeedbackGenerator().selectionChanged(); return }
         let events: [(t: Double, i: Float, s: Float)] = [
@@ -54,6 +57,7 @@ enum HapticManager {
     }
 
     /// Ascending triple-pulse for a correct quiz answer — feels rewarding
+    @MainActor
     static func correctAnswer() {
         guard let engine else { UINotificationFeedbackGenerator().notificationOccurred(.success); return }
         let events: [(t: Double, i: Float, s: Float)] = [
@@ -65,6 +69,7 @@ enum HapticManager {
     }
 
     /// Wrong answer — two sharp taps
+    @MainActor
     static func wrongAnswer() {
         guard let engine else { UINotificationFeedbackGenerator().notificationOccurred(.error); return }
         let events: [(t: Double, i: Float, s: Float)] = [
@@ -76,18 +81,22 @@ enum HapticManager {
 
     // MARK: - Legacy UIKit (kept for compatibility + non-haptic-engine fallback)
 
+    @MainActor
     static func selection() {
         UISelectionFeedbackGenerator().selectionChanged()
     }
 
+    @MainActor
     static func error() {
         wrongAnswer()
     }
 
+    @MainActor
     static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
         UIImpactFeedbackGenerator(style: style).impactOccurred()
     }
 
+    @MainActor
     static func success() {
         correctAnswer()
     }
