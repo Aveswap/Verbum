@@ -3,7 +3,10 @@ import Foundation
 /// Loads `translations.json` from the app bundle into memory.
 /// Used as a fallback by `WordDatabase.translation(wordId:lang:)` when the
 /// downloaded SQLite DB is not yet available.
-final class TranslationStore {
+///
+/// `@unchecked Sendable`: `cache` is written exclusively in `init` and read-only afterwards,
+/// so concurrent reads from multiple threads are safe.
+final class TranslationStore: @unchecked Sendable {
     static let shared = TranslationStore()
 
     private var cache: [String: [String: WordDatabase.Translation]] = [:]
