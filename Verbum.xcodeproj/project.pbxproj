@@ -705,7 +705,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.verbum.app;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -751,7 +751,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.verbum.app;
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
