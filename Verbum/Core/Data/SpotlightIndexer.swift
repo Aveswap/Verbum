@@ -20,7 +20,6 @@ enum SpotlightIndexer {
                 let attributes = CSSearchableItemAttributeSet(contentType: .text)
                 attributes.title = word.text
                 attributes.contentDescription = word.definition
-                attributes.phoneticPronunciation = word.phonetic
                 attributes.keywords = ([word.partOfSpeech, word.category] + word.synonyms)
                     .filter { !$0.isEmpty }
                 return CSSearchableItem(

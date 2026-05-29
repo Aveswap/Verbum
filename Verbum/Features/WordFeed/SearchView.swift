@@ -38,11 +38,14 @@ struct SearchView: View {
         }
         .preferredColorScheme(.dark)
         // Run the FTS read off the main actor; re-runs (and cancels) as the query changes.
+        // Scope results to words the user has actually learned (seen) — same pool the
+        // practice games use — so search never surfaces unseen or locked premium words.
         .task(id: query) {
             let q = query.trimmingCharacters(in: .whitespacesAndNewlines)
             guard !q.isEmpty else { results = []; return }
+            let seen = Set(userProfile.profile.seenWordIds)
             let found = await Task.detached { WordRepository.shared.words(matching: q) }.value
-            if !Task.isCancelled { results = found }
+            if !Task.isCancelled { results = found.filter { seen.contains($0.id) } }
         }
     }
 
@@ -72,9 +75,9 @@ struct SearchView: View {
     private var resultsList: some View {
         let trimmed = query.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
-            placeholder(icon: "magnifyingglass", text: "Search the full dictionary by word, definition, or category.")
+            placeholder(icon: "magnifyingglass", text: "Search the words you've learned by word, definition, or category.")
         } else if results.isEmpty {
-            placeholder(icon: "questionmark.circle", text: "No words found for \"\(trimmed)\".")
+            placeholder(icon: "questionmark.circle", text: "No learned words match \"\(trimmed)\".")
         } else {
             ScrollView {
                 LazyVStack(spacing: AppSpacing.sm) {
