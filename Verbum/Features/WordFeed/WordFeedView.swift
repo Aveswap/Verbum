@@ -7,7 +7,7 @@ struct WordFeedView: View {
     @StateObject private var viewModel = WordFeedViewModel()
 
     private enum ActiveSheet: String, Identifiable {
-        case detail, profile, practice, categories, share, stats, premium, leaderboard
+        case detail, profile, practice, categories, share, stats, premium, leaderboard, search
         var id: RawValue { rawValue }
     }
 
@@ -26,6 +26,7 @@ struct WordFeedView: View {
     @State private var showQuizToast = false
     @State private var showConfetti = false
     @State private var showGoalToast = false
+    @State private var deepLinkWord: Word?
 
     var body: some View {
         ZStack {
@@ -87,6 +88,10 @@ struct WordFeedView: View {
                 PremiumSheet().environmentObject(subscriptions)
             case .leaderboard:
                 LeaderboardView().environmentObject(userProfile)
+            case .search:
+                SearchView()
+                    .environmentObject(userProfile)
+                    .environmentObject(subscriptions)
             }
         }
         .sheet(isPresented: $showBatchQuiz, onDismiss: {
@@ -145,6 +150,17 @@ struct WordFeedView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .wordDatabaseInstalled)) { _ in
             viewModel.reloadFromRepository()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .openWord)) { note in
+            // Deep-link from Spotlight: open the requested word's detail.
+            if let id = note.object as? UUID {
+                deepLinkWord = WordRepository.shared.word(id: id)
+            }
+        }
+        .sheet(item: $deepLinkWord) { word in
+            WordDetailView(word: word)
+                .environmentObject(userProfile)
+                .environmentObject(subscriptions)
         }
     }
 
@@ -291,6 +307,15 @@ struct WordFeedView: View {
         HStack {
             Button { activeSheet = .profile } label: {
                 Image(systemName: "person.fill")
+                    .font(.system(size: 17))
+                    .foregroundColor(AppColors.textPrimary)
+                    .frame(width: 44, height: 44)
+                    .background(AppColors.surface)
+                    .clipShape(Circle())
+            }
+
+            Button { activeSheet = .search } label: {
+                Image(systemName: "magnifyingglass")
                     .font(.system(size: 17))
                     .foregroundColor(AppColors.textPrimary)
                     .frame(width: 44, height: 44)

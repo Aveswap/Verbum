@@ -1,5 +1,6 @@
 import Foundation
 import GRDB
+import os
 
 /// Local SQLite store for the full word database (up to 1,000+ words).
 /// Offers both a full fetch (WordRepository materializes it once) and targeted on-demand
@@ -21,8 +22,8 @@ final class WordDatabase {
     var isAvailable: Bool { dbQueue != nil }
 
     /// Bump this whenever Resources/words_v2.db is updated so an app update
-    /// re-seeds the writable copy with the new content.
-    private static let bundledDBVersion = 4
+    /// re-seeds the writable copy with the new content. Also drives Spotlight re-indexing.
+    static let bundledDBVersion = 4
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
@@ -68,8 +69,12 @@ final class WordDatabase {
     func openIfExists() {
         let path = Self.databaseURL.path
         guard FileManager.default.fileExists(atPath: path) else { return }
-        dbQueue = try? DatabaseQueue(path: path)
-        try? runMigrations()
+        do {
+            dbQueue = try DatabaseQueue(path: path)
+            try runMigrations()
+        } catch {
+            Logger.database.error("open/migrate failed: \(error.localizedDescription, privacy: .public)")
+        }
     }
 
     /// Copies the bundled 1,000-word database into the writable location on first
@@ -90,6 +95,7 @@ final class WordDatabase {
             UserDefaults.standard.set(Self.bundledDBVersion, forKey: Self.bundledVersionKey)
         } catch {
             // Leave any existing database in place if the copy fails.
+            Logger.database.error("bundled DB seed failed: \(error.localizedDescription, privacy: .public)")
         }
     }
 
@@ -142,10 +148,13 @@ final class WordDatabase {
                 t.primaryKey(["word_id", "lang"])
             }
             if try !db.tableExists("words_fts") {
+                // Match the Python generator's tokenizer so diacritics fold (café == cafe)
+                // and search behaves identically whether the DB is bundled or built natively.
                 try db.execute(sql: """
                     CREATE VIRTUAL TABLE words_fts USING fts5(
                         text, definition, category,
-                        content=words, content_rowid=rowid
+                        content=words, content_rowid=rowid,
+                        tokenize='unicode61 remove_diacritics 2'
                     )
                 """)
             }

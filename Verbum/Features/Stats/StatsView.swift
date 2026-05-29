@@ -16,6 +16,7 @@ struct StatsView: View {
                         if dueTodayCount > 0 { reviewQueueCard }
                         wordsProgressCard
                         statsGrid
+                        if hasMasteryData { masteryDistributionCard }
                         weeklyGoalCard
                         profileCard
                     }
@@ -162,6 +163,60 @@ struct StatsView: View {
                 color: .orange
             )
         }
+    }
+
+    // MARK: - Mastery distribution (bar chart 0→5)
+    /// Count of words at each mastery level among those the user has interacted with.
+    private var masteryCounts: [Int] {
+        var counts = Array(repeating: 0, count: 6)  // index = mastery level 0...5
+        for level in userProfile.profile.wordMastery.values where (0...5).contains(level) {
+            counts[level] += 1
+        }
+        return counts
+    }
+
+    private var hasMasteryData: Bool { masteryCounts.contains { $0 > 0 } }
+
+    private var masteryDistributionCard: some View {
+        let counts = masteryCounts
+        let maxCount = max(counts.max() ?? 1, 1)
+        let labels = ["New", "Seen", "Familiar", "Known", "Strong", "Mastered"]
+        return VStack(alignment: .leading, spacing: AppSpacing.sm) {
+            Label("Mastery Distribution", systemImage: "chart.bar.fill")
+                .font(.system(size: 13, weight: .semibold))
+                .foregroundColor(AppColors.textSecondary)
+
+            VStack(spacing: AppSpacing.sm) {
+                ForEach(0..<6, id: \.self) { level in
+                    HStack(spacing: AppSpacing.sm) {
+                        Text(labels[level])
+                            .font(.system(size: 12))
+                            .foregroundColor(AppColors.textSecondary)
+                            .frame(width: 64, alignment: .leading)
+                        GeometryReader { geo in
+                            ZStack(alignment: .leading) {
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(AppColors.surfaceSecondary)
+                                    .frame(height: 14)
+                                RoundedRectangle(cornerRadius: 4)
+                                    .fill(AppColors.accent.opacity(0.4 + 0.12 * Double(level)))
+                                    .frame(width: max(0, geo.size.width * Double(counts[level]) / Double(maxCount)), height: 14)
+                                    .animation(.easeOut(duration: 0.5), value: counts[level])
+                            }
+                        }
+                        .frame(height: 14)
+                        Text("\(counts[level])")
+                            .font(.system(size: 12, weight: .semibold))
+                            .foregroundColor(AppColors.textPrimary)
+                            .frame(width: 32, alignment: .trailing)
+                    }
+                }
+            }
+        }
+        .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
     }
 
     // MARK: - Words discovered progress

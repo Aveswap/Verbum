@@ -17,6 +17,13 @@ final class SubscriptionManager: ObservableObject {
     @Published private(set) var isPro: Bool = false
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var purchaseError: String? = nil
+    /// Set true once when entitlement goes Pro → not-Pro (expiry/revocation), so the UI can
+    /// show a soft "your subscription has ended" banner. UI clears it after presenting.
+    @Published var subscriptionEnded: Bool = false
+
+    /// Persisted across launches so a lapse that happened while the app was closed is also
+    /// surfaced on next open (not just mid-session expiry).
+    private static let wasProKey = "verbum.wasPro"
 
     private var updatesTask: Task<Void, Never>?
     private var initTask: Task<Void, Never>?
@@ -109,6 +116,13 @@ final class SubscriptionManager: ObservableObject {
                 break
             }
         }
+        // Surface a Pro → not-Pro transition exactly once. Compare against the persisted
+        // prior state so a lapse that happened while the app was closed is also caught.
+        let wasPro = UserDefaults.standard.bool(forKey: Self.wasProKey)
+        if wasPro && !active {
+            subscriptionEnded = true
+        }
+        UserDefaults.standard.set(active, forKey: Self.wasProKey)
         isPro = active
     }
 

@@ -1,4 +1,5 @@
 import AVFoundation
+import os
 
 // MARK: - Speech
 
@@ -26,9 +27,7 @@ enum SpeechService {
             )
             try AVAudioSession.sharedInstance().setActive(true, options: .notifyOthersOnDeactivation)
         } catch {
-            #if DEBUG
-            print("[SpeechService] audio session setup failed: \(error)")
-            #endif
+            Logger.speech.error("audio session setup failed: \(error.localizedDescription, privacy: .public)")
         }
     }
 }

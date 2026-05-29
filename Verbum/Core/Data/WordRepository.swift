@@ -35,12 +35,14 @@ final class WordRepository: ObservableObject {
             all = loadBundle()
         }
         WordAccess.invalidate()  // catalog changed — drop memoized free pools
+        SpotlightIndexer.indexIfNeeded(words: all, version: WordDatabase.bundledDBVersion)
     }
 
     func reloadFromDatabase() {
         guard WordDatabase.shared.isAvailable else { return }
         all = WordDatabase.shared.fetchWords(limit: 0)
         WordAccess.invalidate()  // catalog changed — drop memoized free pools
+        SpotlightIndexer.indexIfNeeded(words: all, version: WordDatabase.bundledDBVersion)
     }
 
     // MARK: - Filtered access

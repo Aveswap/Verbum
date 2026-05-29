@@ -21,6 +21,12 @@ class UserProfileStore: ObservableObject {
             self.profile = UserProfile()
         }
         self.seenSet = Set(self.profile.seenWordIds)
+        // Defensive de-dup: an earlier bug could append already-seen IDs. seenWordIds is
+        // bounded by the catalogue size (~1000), so this stays small; collapse any legacy
+        // duplicates so persistence/CloudKit don't carry redundant entries forward.
+        if seenSet.count != profile.seenWordIds.count {
+            profile.seenWordIds = Array(seenSet)
+        }
     }
 
     // MARK: - Persistence

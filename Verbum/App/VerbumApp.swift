@@ -1,4 +1,5 @@
 import SwiftUI
+import CoreSpotlight
 
 @main
 struct VerbumApp: App {
@@ -45,6 +46,12 @@ struct VerbumApp: App {
                 .onReceive(auth.$isSignedIn) { signedIn in
                     guard signedIn else { return }
                     Task { await userProfile.cloudKit.pull(into: userProfile) }
+                }
+                .onContinueUserActivity(CSSearchableItemActionType) { activity in
+                    // User tapped a Spotlight result — deep-link to that word's detail.
+                    if let id = SpotlightIndexer.wordId(from: activity) {
+                        NotificationCenter.default.post(name: .openWord, object: id)
+                    }
                 }
                 .onChange(of: scenePhase) { phase in
                     // Pull on every foreground (not just at sign-in) so edits made on another
