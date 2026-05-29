@@ -149,6 +149,14 @@ struct WordFeedView: View {
             viewModel.userLevel = newLevel
             viewModel.reloadFromRepository()
         }
+        .onChange(of: userProfile.profile.wordLanguage) { _ in
+            // Switching the vocabulary language reloads the catalogue in WordRepository;
+            // rebuild the feed too, otherwise stale words from the old language get checked
+            // against the new language's free pool and all show up "locked".
+            viewModel.dueReviewIds = userProfile.dueReviews()
+            viewModel.reloadFromRepository()
+            seenWordIdsSet = Set(userProfile.profile.seenWordIds)
+        }
         .onReceive(NotificationCenter.default.publisher(for: .wordDatabaseInstalled)) { _ in
             viewModel.reloadFromRepository()
         }
