@@ -10,7 +10,9 @@ final class DatabaseDownloadManager: NSObject, ObservableObject {
     static let shared = DatabaseDownloadManager()
 
     // MARK: - Replace with real CDN URL when database is ready
-    static let remoteURL = URL(string: "https://cdn.verbum.app/words_v1.db")!
+    // Optional on purpose: a malformed literal must not crash at type-load time.
+    // `startIfNeeded()` guards against a nil/invalid URL.
+    static let remoteURL = URL(string: "https://cdn.verbum.app/words_v1.db")
 
     enum State: Equatable {
         case idle
@@ -49,8 +51,12 @@ final class DatabaseDownloadManager: NSObject, ObservableObject {
     func startIfNeeded() {
         // DB is bundled, so this guard returns early in normal operation.
         guard !WordDatabase.shared.isAvailable, state == .idle else { return }
+        guard let url = Self.remoteURL else {
+            state = .failed("Invalid download URL")
+            return
+        }
         state = .downloading(progress: 0)
-        downloadTask = session.downloadTask(with: Self.remoteURL)
+        downloadTask = session.downloadTask(with: url)
         downloadTask?.resume()
     }
 

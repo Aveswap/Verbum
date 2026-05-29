@@ -57,6 +57,17 @@ enum SharedTimelinePublisher {
         }
     }
 
+    /// Updates only the lightweight counts/streak snapshot — NOT the 14-day word timeline.
+    /// Use on hot paths (e.g. the per-swipe daily counter) where the timeline can't have
+    /// changed: the full refresh() does 14 synchronous translation DB reads, which is pure
+    /// waste when only `wordsLearnedToday`/`currentStreak` ticked.
+    static func refreshSnapshotOnly(profile: UserProfile, isPro: Bool) {
+        publishSnapshot(profile: profile, isPro: isPro)
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+    }
+
     private static func publishSnapshot(profile: UserProfile, isPro: Bool) {
         let cal = Calendar.current
         let learnedToday = cal.isDateInToday(profile.wordsLearnedDate) ? profile.wordsLearnedToday : 0

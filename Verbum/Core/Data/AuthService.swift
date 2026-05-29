@@ -20,17 +20,8 @@ final class AuthService: NSObject, ObservableObject {
 
     // MARK: - Sign In
 
-    func signIn() {
-        let provider = ASAuthorizationAppleIDProvider()
-        let request  = provider.createRequest()
-        request.requestedScopes = [.fullName, .email]
-
-        let controller = ASAuthorizationController(authorizationRequests: [request])
-        controller.delegate = self
-        controller.presentationContextProvider = self
-        controller.performRequests()
-    }
-
+    /// Single sign-in entry point. SettingsView's SwiftUI `SignInWithAppleButton` hands its
+    /// `Result` here. (The old delegate/presentation-context path was a duplicate and unused.)
     func handleSignInResult(_ result: Result<ASAuthorization, Error>) {
         switch result {
         case .success(let authorization):
@@ -86,51 +77,5 @@ final class AuthService: NSObject, ObservableObject {
             profileStore?.profile.appleUserID = nil
             profileStore?.saveNow()
         }
-    }
-}
-
-// MARK: - ASAuthorizationControllerDelegate
-
-extension AuthService: ASAuthorizationControllerDelegate {
-    nonisolated func authorizationController(
-        controller: ASAuthorizationController,
-        didCompleteWithAuthorization authorization: ASAuthorization
-    ) {
-        guard let cred = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
-        Task { @MainActor in
-            profileStore?.profile.appleUserID = cred.user
-            if let given = cred.fullName?.givenName, profileStore?.profile.name.isEmpty == true {
-                profileStore?.profile.name = given
-            }
-            if let email = cred.email {
-                KeychainHelper.set(email, for: Self.emailKey)
-            }
-            profileStore?.saveNow()
-            isSignedIn = true
-            error = nil
-        }
-    }
-
-    nonisolated func authorizationController(
-        controller: ASAuthorizationController,
-        didCompleteWithError error: Error
-    ) {
-        Task { @MainActor in
-            let nsErr = error as NSError
-            if nsErr.code != 1001 {
-                self.error = error.localizedDescription
-            }
-        }
-    }
-}
-
-// MARK: - ASAuthorizationControllerPresentationContextProviding
-
-extension AuthService: ASAuthorizationControllerPresentationContextProviding {
-    nonisolated func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first { $0.isKeyWindow } ?? ASPresentationAnchor()
     }
 }

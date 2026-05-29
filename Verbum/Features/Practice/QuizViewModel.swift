@@ -20,6 +20,8 @@ class QuizViewModel: ObservableObject {
 
     private let totalQuestions = 5
     private let pool: [Word]
+    /// Words already asked this session — prevents the same word appearing twice.
+    private var asked = Set<UUID>()
 
     init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
         // Pool = words the user has seen AND still has access to.
@@ -39,7 +41,10 @@ class QuizViewModel: ObservableObject {
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
-        guard let word = pool.randomElement() else { return }
+        // Exclude already-asked words so a word can't repeat within the session.
+        let candidates = pool.filter { !asked.contains($0.id) }
+        guard let word = candidates.randomElement() else { isFinished = true; return }
+        asked.insert(word.id)
         let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
         let options = ([word.definition] + distractors).shuffled()
         currentQuestion = QuizQuestion(word: word, options: options, correct: word.definition)

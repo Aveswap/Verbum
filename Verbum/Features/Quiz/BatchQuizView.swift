@@ -2,6 +2,7 @@ import SwiftUI
 
 // MARK: - ViewModel
 
+@MainActor
 final class BatchQuizViewModel: ObservableObject {
     let words: [Word]
 

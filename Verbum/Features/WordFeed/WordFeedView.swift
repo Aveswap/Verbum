@@ -112,21 +112,25 @@ struct WordFeedView: View {
             viewModel.userLevel = userProfile.profile.level
             viewModel.dueReviewIds = userProfile.dueReviews()
             viewModel.reloadFromRepository()
-            if userProfile.profile.currentStreak > 1 {
-                showStreakBanner = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                    withAnimation(.easeOut) { showStreakBanner = false }
-                }
-            }
-            if !hasSeenSwipeHint {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
-                    withAnimation { showSwipeHint = true }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation { showSwipeHint = false }
-                        hasSeenSwipeHint = true
-                    }
-                }
-            }
+        }
+        // Banner/hint timers live in .task so they're cancelled when the feed disappears —
+        // asyncAfter would still fire and flash stale UI after a dismiss.
+        .task {
+            guard userProfile.profile.currentStreak > 1 else { return }
+            showStreakBanner = true
+            try? await Task.sleep(nanoseconds: 5_000_000_000)
+            guard !Task.isCancelled else { return }
+            withAnimation(.easeOut) { showStreakBanner = false }
+        }
+        .task {
+            guard !hasSeenSwipeHint else { return }
+            try? await Task.sleep(nanoseconds: 1_200_000_000)
+            guard !Task.isCancelled else { return }
+            withAnimation { showSwipeHint = true }
+            try? await Task.sleep(nanoseconds: 3_000_000_000)
+            guard !Task.isCancelled else { return }
+            withAnimation { showSwipeHint = false }
+            hasSeenSwipeHint = true
         }
         .onChange(of: userProfile.profile.seenWordIds) { newValue in
             seenWordIdsSet = Set(newValue)
@@ -435,6 +439,12 @@ struct WordFeedView: View {
                     greenFlashOpacity = 0.07
                     withAnimation(.easeOut(duration: 0.4)) { greenFlashOpacity = 0 }
                     if viewModel.isEndOfBatch {
+                        // Include the card currently in front — nextWord() hasn't appended it
+                        // yet, so without this it's the one word excluded from its own batch.
+                        if let w = viewModel.currentWord,
+                           WordAccess.canAccess(w, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
+                            viewModel.addToBatch(w)
+                        }
                         // Quiz first — even on the last word of the feed
                         pendingNextWord = !viewModel.isAtEnd
                         showBatchQuiz = true
@@ -708,12 +718,13 @@ private struct WordCardView: View {
 
             Spacer()
         }
-        .onAppear {
-            if word.level == .beginner,
-               let lang = userProfile.profile.nativeLanguage?.rawValue,
-               lang != "en" {
-                translatedDef = WordDatabase.shared.translation(wordId: word.id, lang: lang)?.definition
-            }
+        // .task (not .onAppear) so the SQLite read runs off the main actor and is cancelled
+        // if the card disappears before it finishes — this is on the per-swipe path.
+        .task(id: word.id) {
+            guard word.level == .beginner,
+                  let lang = userProfile.profile.nativeLanguage?.rawValue else { return }
+            let def = await Task.detached { WordDatabase.shared.translation(wordId: word.id, lang: lang)?.definition }.value
+            if !Task.isCancelled { translatedDef = def }
         }
     }
 }

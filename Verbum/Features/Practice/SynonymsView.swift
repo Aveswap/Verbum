@@ -21,6 +21,8 @@ class SynonymsViewModel: ObservableObject {
     private let totalQuestions = 5
     private let pool: [Word]
     private let distractorPool: [Word]
+    /// Words already asked — prevents repeats within the session.
+    private var asked = Set<UUID>()
 
     init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
         let seen = WordRepository.shared.all.filter { word in
@@ -39,7 +41,7 @@ class SynonymsViewModel: ObservableObject {
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
-        guard let word = pool.randomElement(),
+        guard let word = pickWord(),
               let correctSynonym = word.synonyms.randomElement() else {
             isFinished = true; return
         }
@@ -56,6 +58,20 @@ class SynonymsViewModel: ObservableObject {
         selectedAnswer = nil
         isCorrect = nil
         questionNumber += 1
+    }
+
+    /// Picks the next word with synonyms, avoiding repeats within a round; reuses gracefully
+    /// if the pool is small, never repeating the current word back-to-back.
+    private func pickWord() -> Word? {
+        var fresh = pool.filter { !asked.contains($0.id) }
+        if fresh.isEmpty {
+            asked.removeAll()
+            fresh = pool.filter { $0.id != currentQuestion?.word.id }
+            if fresh.isEmpty { fresh = pool }
+        }
+        guard let word = fresh.randomElement() else { return nil }
+        asked.insert(word.id)
+        return word
     }
 
     func selectAnswer(_ answer: String) {

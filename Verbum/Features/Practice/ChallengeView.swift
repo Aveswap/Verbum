@@ -55,6 +55,10 @@ final class ChallengeViewModel: ObservableObject {
     var onAnswer: ((UUID, Bool) -> Void)?
 
     private var timer: Timer?
+    /// Words asked in the current round — avoids repeats. Endless modes (rush/perfection)
+    /// can outlast the pool, so on exhaustion we start a fresh round rather than stop,
+    /// just never repeating the current word back-to-back.
+    private var asked = Set<UUID>()
 
     init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
         self.kind = kind
@@ -86,7 +90,7 @@ final class ChallengeViewModel: ObservableObject {
     }
 
     func nextQuestion() {
-        guard !isFinished, let word = pool.randomElement() else { return }
+        guard !isFinished, let word = pickWord() else { return }
         let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
         let options = ([word.definition] + distractors).shuffled()
         current = Question(word: word, options: options, correct: word.definition)
@@ -123,9 +127,8 @@ final class ChallengeViewModel: ObservableObject {
         case .rush:
             nextQuestion()
         case .sprint:
-            if score + (selectedAnswer != nil && selectedAnswer != current?.correct ? 0 : 0) >= 5 {
-                finish()
-            } else if questionCount >= 5 {
+            // Sprint is exactly 5 questions; the question cap is the sole end condition.
+            if questionCount >= 5 {
                 finish()
             } else {
                 questionCount += 1
@@ -135,6 +138,20 @@ final class ChallengeViewModel: ObservableObject {
     }
 
     private var questionCount = 1
+
+    /// Picks the next word, avoiding repeats within a round. On pool exhaustion (endless
+    /// modes), resets the round without repeating the current word back-to-back.
+    private func pickWord() -> Word? {
+        var fresh = pool.filter { !asked.contains($0.id) }
+        if fresh.isEmpty {
+            asked.removeAll()
+            fresh = pool.filter { $0.id != current?.word.id }
+            if fresh.isEmpty { fresh = pool }
+        }
+        guard let word = fresh.randomElement() else { return nil }
+        asked.insert(word.id)
+        return word
+    }
 
     private func startGlobalTimer() {
         timer?.invalidate()

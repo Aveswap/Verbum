@@ -64,6 +64,7 @@
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1B2C3D4E5F600000000DB01 /* words_v2.db in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000DB02 /* words_v2.db */; };
 		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
+		9D07982C7D204C31834772A1 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9E51EB0A0048F19D48BCC5 /* SpeechService.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
 		B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */; };
 		B4F2A4302D6A0D6DFA5FD090 /* VerbumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B124CA958B5492B2AA44C00 /* VerbumWidget.swift */; };
@@ -141,6 +142,7 @@
 		0B2E438E2FC874EC00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		1E9E51EB0A0048F19D48BCC5 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
 		22CF08B79256CCCF0F41560C /* SynonymsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynonymsView.swift; sourceTree = "<group>"; };
 		2968154FE6B16D65BCB011D1 /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				9BFF885EECBBFF36393A0207 /* ProgressBar.swift */,
 				6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */,
 				1B6DEE253BAE83C18158646A /* SoundManager.swift */,
+				1E9E51EB0A0048F19D48BCC5 /* SpeechService.swift */,
 				0B2E436E2FC71F2300F40D8E /* ConfettiView.swift */,
 			);
 			path = Components;
@@ -628,6 +631,7 @@
 				372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */,
 				17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */,
 				A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */,
+				9D07982C7D204C31834772A1 /* SpeechService.swift in Sources */,
 				D35923D0663FCF28916789B7 /* Spacing.swift in Sources */,
 				335DB077660578203921C7B0 /* StatsView.swift in Sources */,
 				952A8DD995A6688243461622 /* SynonymsView.swift in Sources */,

@@ -76,6 +76,14 @@ class WordFeedViewModel: ObservableObject {
         currentIndex -= 1
     }
 
+    /// Appends the card currently in front to the batch. Needed because the quiz triggers
+    /// on the 5th swipe *before* nextWord() runs for that card, so without this the most
+    /// recent word would be excluded and the quiz would only cover the previous 4. Caps at 5.
+    func addToBatch(_ word: Word) {
+        recentBatchWords.append(word)
+        if recentBatchWords.count > 5 { recentBatchWords.removeFirst() }
+    }
+
     func resetBatchCounter() {
         swipesSinceLastQuiz = 0
         recentBatchWords = []

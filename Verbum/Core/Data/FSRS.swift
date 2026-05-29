@@ -102,11 +102,12 @@ enum FSRS {
     }
 
     private static func nextDifficulty(d: Double, rating: FSRSRating) -> Double {
-        // D' = D - w[6] * (rating - 3) — easier rating lowers difficulty
-        var nd = d - w[6] * Double(rating.rawValue - 3)
-        // Mean reversion toward the initial-good difficulty
-        let dDefault = initialDifficulty(.good)
-        nd = w[7] * dDefault + (1 - w[7]) * nd
+        // FSRS-5: delta = -w[6]*(rating-3); apply linear damping delta*(10-D)/9 so high
+        // difficulties move less, then mean-revert toward D0(easy) — i.e. D0(4), not D0(good).
+        let delta = -w[6] * Double(rating.rawValue - 3)
+        let damped = d + delta * (10.0 - d) / 9.0
+        let target = initialDifficulty(.easy)
+        let nd = w[7] * target + (1 - w[7]) * damped
         return clamp(nd, 1.0, 10.0)
     }
 

@@ -5,6 +5,7 @@ struct VerbumApp: App {
     @StateObject private var userProfile: UserProfileStore
     @StateObject private var subscriptions: SubscriptionManager
     @StateObject private var auth: AuthService
+    @Environment(\.scenePhase) private var scenePhase
 
     init() {
         let store = UserProfileStore()
@@ -45,10 +46,23 @@ struct VerbumApp: App {
                     guard signedIn else { return }
                     Task { await userProfile.cloudKit.pull(into: userProfile) }
                 }
+                .onChange(of: scenePhase) { phase in
+                    // Pull on every foreground (not just at sign-in) so edits made on another
+                    // device show up here without re-authenticating. Cheap: networked + LWW merge.
+                    guard phase == .active, userProfile.profile.appleUserID != nil else { return }
+                    Task { await userProfile.cloudKit.pull(into: userProfile) }
+                }
+                // isPro / level change the word pool → rebuild the full 14-day timeline.
                 .onChange(of: subscriptions.isPro) { _ in republishSharedTimeline() }
                 .onChange(of: userProfile.profile.level) { _ in republishSharedTimeline() }
-                .onChange(of: userProfile.profile.currentStreak) { _ in republishSharedTimeline() }
-                .onChange(of: userProfile.profile.wordsLearnedToday) { _ in republishSharedTimeline() }
+                // Streak / daily counter only affect the snapshot — skip the 14 DB reads
+                // a full timeline rebuild would do on every single swipe.
+                .onChange(of: userProfile.profile.currentStreak) { _ in
+                    SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
+                }
+                .onChange(of: userProfile.profile.wordsLearnedToday) { _ in
+                    SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
+                }
         }
     }
 }

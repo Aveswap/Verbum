@@ -63,10 +63,14 @@ final class SubscriptionManager: ObservableObject {
         do {
             switch try await product.purchase() {
             case .success(let verification):
-                if case .verified(let tx) = verification {
+                switch verification {
+                case .verified(let tx):
                     await tx.finish()
                     await refreshEntitlements()
-                } else {
+                case .unverified(let tx, _):
+                    // Don't grant entitlement, but still finish so the unverified
+                    // transaction clears the queue instead of resurfacing repeatedly.
+                    await tx.finish()
                     purchaseError = "Purchase could not be verified."
                 }
             case .userCancelled:
@@ -112,9 +116,13 @@ final class SubscriptionManager: ObservableObject {
 
     private func listenForTransactions() async {
         for await result in Transaction.updates {
-            if case .verified(let tx) = result {
+            switch result {
+            case .verified(let tx):
                 await tx.finish()
                 await refreshEntitlements()
+            case .unverified(let tx, _):
+                // Finish unverified updates too so they don't keep replaying in the queue.
+                await tx.finish()
             }
         }
     }

@@ -4,7 +4,7 @@ import Combine
 @MainActor
 class UserProfileStore: ObservableObject {
     @Published var profile: UserProfile {
-        didSet { scheduleSave() }
+        didSet { handleProfileChange(from: oldValue) }
     }
 
     let cloudKit = CloudKitSyncManager()
@@ -27,15 +27,52 @@ class UserProfileStore: ObservableObject {
 
     private var isTouchingTimestamp = false
 
-    private func scheduleSave() {
-        // Bump the per-profile mtime so CloudKit merge can resolve scalar-field conflicts
-        // by timestamp instead of always letting the remote side win.
-        // Reentrancy guard avoids the didSet→scheduleSave→didSet infinite loop.
-        if !isTouchingTimestamp {
-            isTouchingTimestamp = true
-            profile.profileUpdatedAt = Date()
-            isTouchingTimestamp = false
+    /// Central reaction to any `profile` mutation. Keeps the seen-cache in sync, maintains
+    /// the two recency timestamps, and debounces persistence.
+    ///
+    /// Two distinct timestamps because they answer different questions:
+    ///   - `profileUpdatedAt`  — "when did anything change" (record recency, bumped always).
+    ///   - `settingsUpdatedAt` — "when were user-editable scalars last edited" (bumped only
+    ///     when a scalar actually differs). The CloudKit scalar merge keys on this so a
+    ///     device that merely swipes words can't clobber another device's genuine settings
+    ///     edit just because swiping kept bumping a global mtime.
+    private func handleProfileChange(from oldValue: UserProfile) {
+        // Reentrancy guard: the timestamp bumps below mutate `profile`, re-firing didSet.
+        guard !isTouchingTimestamp else { scheduleSaveWork(); return }
+        isTouchingTimestamp = true
+
+        // Keep the O(1) seen-cache in lockstep with the source of truth (e.g. after a
+        // CloudKit pull replaces `profile` wholesale with remote-only seen IDs).
+        if oldValue.seenWordIds.count != profile.seenWordIds.count {
+            seenSet = Set(profile.seenWordIds)
         }
+        if Self.scalarsDiffer(oldValue, profile) {
+            profile.settingsUpdatedAt = Date()
+        }
+        profile.profileUpdatedAt = Date()
+
+        isTouchingTimestamp = false
+        scheduleSaveWork()
+    }
+
+    /// True if any user-editable scalar (settings the user changes by hand) differs.
+    private static func scalarsDiffer(_ a: UserProfile, _ b: UserProfile) -> Bool {
+        a.name != b.name
+            || a.age != b.age
+            || a.gender != b.gender
+            || a.nativeLanguage != b.nativeLanguage
+            || a.level != b.level
+            || a.wordsPerWeek != b.wordsPerWeek
+            || a.notificationsEnabled != b.notificationsEnabled
+            || a.notificationCount != b.notificationCount
+            || a.notificationStart != b.notificationStart
+            || a.notificationEnd != b.notificationEnd
+            || a.selectedTheme != b.selectedTheme
+            || a.dailyGoal != b.dailyGoal
+            || a.onboardingCompleted != b.onboardingCompleted
+    }
+
+    private func scheduleSaveWork() {
         saveWorkItem?.cancel()
         let item = DispatchWorkItem { [weak self] in
             self?.persistLocally()
@@ -112,10 +149,11 @@ class UserProfileStore: ObservableObject {
             profile.wordsLearnedToday = 0
             profile.wordsLearnedDate = Date()
         }
+        // Crossing detection with >=: using == would never fire again if the user lowered
+        // their daily goal below the already-reached count, or if the count ever jumps by >1.
         let wasBelowGoal = profile.wordsLearnedToday < profile.dailyGoal
         profile.wordsLearnedToday += 1
-        let nowAtGoal = profile.wordsLearnedToday == profile.dailyGoal
-        return wasBelowGoal && nowAtGoal
+        return wasBelowGoal && profile.wordsLearnedToday >= profile.dailyGoal
     }
 
     /// Current count of words learned today (resets at local midnight).
@@ -206,17 +244,13 @@ class UserProfileStore: ObservableObject {
             let diff = cal.dateComponents([.day], from: lastDay, to: today).day ?? 0
             if diff == 1 {
                 profile.currentStreak += 1
-            } else if diff > 1, profile.streakFreezes > 0 {
-                // Burn one freeze per missed day, up to available freezes
+            } else if diff > 1, profile.streakFreezes >= (diff - 1) {
+                // Only spend freezes when they fully cover the gap — a partial burn would
+                // reset the streak AND consume the freezes for zero benefit.
                 let missedDays = diff - 1
-                let useable = min(missedDays, profile.streakFreezes)
-                profile.streakFreezes -= useable
-                for _ in 0..<useable { profile.streakFreezeUsedDates.append(Date()) }
-                if useable == missedDays {
-                    profile.currentStreak += 1  // streak survives, continues
-                } else {
-                    profile.currentStreak = 1   // ran out of freezes
-                }
+                profile.streakFreezes -= missedDays
+                for _ in 0..<missedDays { profile.streakFreezeUsedDates.append(Date()) }
+                profile.currentStreak += 1  // streak survives, continues
             } else {
                 profile.currentStreak = 1
             }

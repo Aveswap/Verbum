@@ -1,8 +1,8 @@
 # Verbum — Project Handoff
 
-**Last updated:** 2026-05-27
+**Last updated:** 2026-05-29
 **Branch:** `main`
-**Latest commit:** `77ccf23` (share-word-card)
+**Latest commit:** `77ccf23` (share-word-card) + code-review remediation (see §4.5)
 
 This document is meant to onboard a fresh contributor (human or agent) cold. Read top-to-bottom. Code references use `Path/To/File.swift:LineNumber` so they're clickable in most editors.
 
@@ -180,6 +180,80 @@ All 22 items fixed.
 - `Verbum.storekit` + [STOREKIT_TESTING.md](scripts/STOREKIT_TESTING.md)
 - `generate_1000_words.py` + [WORDS_DB_PIPELINE.md](scripts/WORDS_DB_PIPELINE.md) (PLAN set to 50/50/50 seed)
 - `HANDOFF.md` (this file)
+
+---
+
+## 4.5 Code-review remediation — 2026-05-29
+
+Worked through the full technical code review (`678verbum_code_review.md`) — all 27
+findings across 6 tiers addressed. Grouped by area:
+
+### Build breakers (Tier 1)
+- **Duplicate types resolved.** `DecksView`, `ShareableWordCard`, `WordShareSheet` each
+  now exist in exactly one file. Canonical: `Features/Profile/DecksView.swift` and
+  `Features/WordList/`. Deleted orphan folders `Features/Decks/`, `Features/Share/`,
+  `Features/Share 3/`. The kept `DecksView` merges the themed UX (AppColors, "Create First
+  Deck" CTA, empty-deck→Categories hop) with the correct `List`-based swipe-to-delete.
+- `DatabaseDownloadManager.remoteURL` made optional + guarded (no force-unwrap landmine).
+
+### Data loss / integrity (Tier 2)
+- **seenSet** rebuilds whenever `profile` is replaced (was stale after a CloudKit pull →
+  re-counted seen words toward the daily goal).
+- **CloudKit scalar merge** now keys on a new `settingsUpdatedAt` (bumped only when a
+  user-editable scalar actually changes), not a global mtime — so a device that only swipes
+  words can no longer clobber another device's settings edit. `onboardingCompleted` moved
+  under this rule so `resetOnboarding()` sticks.
+- **CloudKit now syncs the heavy/high-value fields** it previously dropped: `reviews` (FSRS),
+  `decks`, `wordMastery`, `challengeHighScores`, streak freezes/dates, daily counters,
+  practice gate. Merge: FSRS by latest `lastReview`, mastery/scores by max-per-key, decks
+  union-by-id (fuller deck wins), daily counters by later-date-then-max.
+- **Streak freeze** only spent when it fully covers the gap (was burning freezes AND
+  resetting the streak on a partial cover).
+
+### Logic / UX (Tier 3)
+- Batch quiz now tests the real last **5** words (current card was excluded — off-by-one).
+- **No quiz repeats** within a round across all five practice modes (Quiz, FillGap, Synonyms,
+  GuessWord, Challenge); endless/short pools reuse gracefully without back-to-back repeats.
+- Deleted the dead second paywall gate in `WordRepository` (`feedWords`/`canAccess`).
+- Daily-goal celebration uses `>=` crossing detection (was `==`, misfired if goal lowered).
+- Removed the no-op ternary in Sprint advance.
+- **UUID casing bug** (broader than the review flagged): the bundled DB stores ids lowercase
+  but `UUID.uuidString` is uppercase and the `id` column is case-sensitive — so
+  `fetchWords(ids:)` silently returned nothing (decks/favorites/history). Fixed with
+  `COLLATE NOCASE` on id queries + lowercase normalization in the import path. Translation
+  lookup fixed the same way.
+- FTS search query is now quoted/escaped (was throwing on punctuation and swallowed by
+  `try?` → empty results).
+- CloudKit pulls on every foreground (`scenePhase == .active`), not only at sign-in.
+
+### Performance (Tier 4)
+- `WordAccess.freePool` memoized per level + id-Set for O(1) `canAccess` (was re-filtering +
+  sorting the whole catalog per call, including per-frame during a drag and per bucket×word
+  in Categories). `WordAccess.invalidate()` is called on catalog reload.
+- Per-swipe widget update now refreshes only the snapshot, not the 14-day timeline (was doing
+  14 synchronous translation DB reads on every swipe).
+- Bundled-DB **copy** moved off the main thread on first launch / version bump (fast
+  synchronous open kept for the common every-launch path; feed upgrades via
+  `.wordDatabaseInstalled`).
+- Per-card translation read moved to a cancellable `.task` off the main actor.
+
+### Memory / best practices (Tier 5–6)
+- Feed banner/hint timers moved from uncancelled `asyncAfter` to lifetime-tied `.task`.
+- `BatchQuizViewModel` marked `@MainActor`.
+- Deleted the dead `ASAuthorizationController` delegate sign-in path in `AuthService`
+  (SwiftUI `SignInWithAppleButton` → `handleSignInResult` is the single path).
+- Unverified StoreKit transactions are now `finish()`-ed (purchase + listener) so they don't
+  resurface in the queue.
+- `FSRS.nextDifficulty` aligned to the FSRS-5 reference (linear damping + mean-reversion to
+  `D0(easy)`).
+- `SpeechService` extracted from `SoundManager.swift` into its own file (pbxproj updated).
+
+**Note on `onChange(of:)`:** the single-parameter form flagged by the review is *correct* for
+the iOS 16 deployment target (the two-parameter form is iOS 17+). Left unchanged by design.
+
+**Verification:** `plutil -lint` passes on the pbxproj; static cross-reference sweep clean.
+A full Xcode build was **not** run in this session (the dev box had only Command Line Tools,
+no `xcodebuild`) — build in Xcode to confirm before shipping.
 
 ---
 

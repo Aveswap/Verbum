@@ -2,7 +2,8 @@ import Foundation
 import GRDB
 
 /// Local SQLite store for the full word database (up to 1,000+ words).
-/// Words are queried on-demand; the bundle JSON is the fallback when DB is absent.
+/// Offers both a full fetch (WordRepository materializes it once) and targeted on-demand
+/// queries (by level / category / id / FTS). The bundle JSON is the fallback when DB is absent.
 final class WordDatabase {
     static let shared = WordDatabase()
 
@@ -25,8 +26,43 @@ final class WordDatabase {
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
-        seedFromBundleIfNeeded()
-        openIfExists()
+        // Fast path (every launch after the first): an up-to-date writable copy already
+        // exists, so open it synchronously — the feed then has the full catalog before the
+        // first render, no skeleton flash.
+        if !needsSeeding() {
+            openIfExists()
+            return
+        }
+        // Slow path (first launch / bundled-version bump / corrupted copy): copying the
+        // bundled DB is the only heavy step and would block launch on the main thread. Do it
+        // off-main; until it finishes the app serves the bundled words.json fallback, then
+        // upgrades to the full catalog via the .wordDatabaseInstalled notification.
+        seedInBackground()
+    }
+
+    /// Same staleness test the seed uses — true when the writable copy is missing, older
+    /// than the bundled version, or empty/corrupted.
+    private func needsSeeding() -> Bool {
+        let dest = Self.databaseURL
+        let exists = FileManager.default.fileExists(atPath: dest.path)
+        let installedVersion = UserDefaults.standard.integer(forKey: Self.bundledVersionKey)
+        let isStale = !exists || installedVersion < Self.bundledDBVersion
+        let isEmpty = exists && Self.existingDatabaseIsEmpty(at: dest)
+        return isStale || isEmpty
+    }
+
+    /// Copies the bundled DB on a background queue, then opens it and announces availability
+    /// on the main thread so observers (the feed) can reload from the full catalog.
+    private func seedInBackground() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.seedFromBundleIfNeeded()
+            DispatchQueue.main.async {
+                self.openIfExists()
+                guard self.isAvailable else { return }
+                WordRepository.shared.reloadFromDatabase()
+                NotificationCenter.default.post(name: .wordDatabaseInstalled, object: nil)
+            }
+        }
     }
 
     func openIfExists() {
@@ -145,10 +181,13 @@ final class WordDatabase {
     func translation(wordId: UUID, lang: String) -> Translation? {
         if let dbQueue,
            let result = try? dbQueue.read({ db -> Translation? in
+               // COLLATE NOCASE: stored ids are lowercase (Python-built bundle) while
+               // UUID.uuidString is always uppercase — match case-insensitively so the
+               // lookup can't silently miss and fall through to the JSON fallback.
                guard let row = try Row.fetchOne(db, sql: """
                    SELECT definition, example FROM translations
-                   WHERE word_id = ? AND lang = ?
-               """, arguments: [wordId.uuidString.lowercased(), lang]) else { return nil }
+                   WHERE word_id = ? COLLATE NOCASE AND lang = ?
+               """, arguments: [wordId.uuidString, lang]) else { return nil }
                return Translation(
                    definition: row["definition"] as? String ?? "",
                    example:    row["example"]    as? String
@@ -170,7 +209,7 @@ final class WordDatabase {
                     try db.execute(sql: """
                         INSERT OR REPLACE INTO translations (word_id, lang, definition, example)
                         VALUES (?, ?, ?, ?)
-                    """, arguments: [wordId, lang, def, ex])
+                    """, arguments: [wordId.lowercased(), lang, def, ex])
                 }
             }
         }
@@ -193,7 +232,9 @@ final class WordDatabase {
                      frequencyRank, antonyms, collocations, register, domainTags)
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, arguments: [
-                    word.id.uuidString, word.text, word.phonetic,
+                    // Lowercase to match the bundled DB convention — the primary key is
+                    // case-sensitive, so mixing casings would create duplicate word rows.
+                    word.id.uuidString.lowercased(), word.text, word.phonetic,
                     word.partOfSpeech, word.definition,
                     word.exampleSentence, jsonStr(word.synonyms) ?? "[]",
                     word.category, word.level.rawValue, word.etymology,
@@ -253,14 +294,20 @@ final class WordDatabase {
     }
 
     func search(query: String, limit: Int = 50) -> [Word] {
-        guard let dbQueue, !query.isEmpty else { return [] }
+        guard let dbQueue else { return [] }
+        // Wrap the raw query as a quoted FTS5 string literal + prefix token. Without this,
+        // punctuation/operators (" - : ( ^ *) are parsed as FTS5 syntax and throw, which the
+        // surrounding try? swallows — so "co-op" or "e.g." would return nothing silently.
+        let escaped = query.replacingOccurrences(of: "\"", with: "\"\"")
+        let match = "\"\(escaped)\"*"
+        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return [] }
         return (try? dbQueue.read { db -> [Word] in
             try Row.fetchAll(db, sql: """
                 SELECT w.* FROM words w
                 JOIN words_fts ON words_fts.rowid = w.rowid
                 WHERE words_fts MATCH ?
                 LIMIT ?
-            """, arguments: [query + "*", limit])
+            """, arguments: [match, limit])
             .compactMap(Self.word(from:))
         }) ?? []
     }
@@ -270,8 +317,11 @@ final class WordDatabase {
         let placeholders = ids.map { _ in "?" }.joined(separator: ",")
         let args = ids.map { $0.uuidString } as [DatabaseValueConvertible]
         return (try? dbQueue.read { db in
+            // COLLATE NOCASE: UUID.uuidString is uppercase but the bundled DB stores ids
+            // lowercase. Without this the IN-match finds nothing and decks/favorites/history
+            // word lookups come back empty when the SQLite source is active.
             try Row.fetchAll(db,
-                sql: "SELECT * FROM words WHERE id IN (\(placeholders))",
+                sql: "SELECT * FROM words WHERE id COLLATE NOCASE IN (\(placeholders))",
                 arguments: StatementArguments(args))
             .compactMap(Self.word(from:))
         }) ?? []

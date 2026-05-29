@@ -4,6 +4,13 @@ import Combine
 /// Single source of truth for word data.
 /// Uses local SQLite (WordDatabase) when available; falls back to the bundled words.json.
 /// After the database downloads, call reloadFromDatabase() to switch sources without a restart.
+///
+/// Design note: the whole catalog is deliberately materialized into `all` and kept resident
+/// for the app's lifetime. At ~1000 words this is a small, steady footprint and lets the feed
+/// / WordAccess / categories read synchronously without per-access SQLite round-trips. The
+/// DB's filtered query methods (words(level:), words(category:), search…) are used for the
+/// targeted fetches that shouldn't pull the full catalog. If the catalog grows much larger,
+/// revisit this and query on demand instead.
 @MainActor
 final class WordRepository: ObservableObject {
     static let shared = WordRepository()
@@ -27,23 +34,13 @@ final class WordRepository: ObservableObject {
         } else {
             all = loadBundle()
         }
+        WordAccess.invalidate()  // catalog changed — drop memoized free pools
     }
 
     func reloadFromDatabase() {
         guard WordDatabase.shared.isAvailable else { return }
         all = WordDatabase.shared.fetchWords(limit: 0)
-    }
-
-    // MARK: - Paywall gate
-
-    /// Words available for the swipe feed respecting the subscription state.
-    /// Free users get all Beginner (A1–A2) words. Pro users get everything.
-    func feedWords(isPro: Bool) -> [Word] {
-        isPro ? all : all.filter { $0.level == .beginner }
-    }
-
-    func canAccess(_ word: Word, isPro: Bool) -> Bool {
-        isPro || word.level == .beginner
+        WordAccess.invalidate()  // catalog changed — drop memoized free pools
     }
 
     // MARK: - Filtered access

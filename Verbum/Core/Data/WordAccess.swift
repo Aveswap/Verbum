@@ -21,10 +21,25 @@ enum WordAccess {
         "Technology", "Science", "Literature", "Society"
     ]
 
+    /// Memoized free pool per level + its id-set for O(1) membership. The pool is a pure
+    /// function of the catalog, so it's cached and only recomputed after `invalidate()`
+    /// (called when the catalog reloads). Without this, `freePool` re-filtered and re-sorted
+    /// the whole catalog on every call — including per-frame during a card drag and per
+    /// bucket × word in CategoriesView — which made the feed feel sticky at 1000 words.
+    private static var poolCache: [WordLevel: [Word]] = [:]
+    private static var poolIdCache: [WordLevel: Set<UUID>] = [:]
+
+    /// Drops the memoized pools. Call whenever `WordRepository.all` changes.
+    static func invalidate() {
+        poolCache = [:]
+        poolIdCache = [:]
+    }
+
     /// Top `freeLimit` words at the given level, deterministically ordered by
     /// frequencyRank ASC (with a stable text-based tiebreaker so the same 50 are
     /// chosen across launches even when ranks are nil — e.g. bundled JSON).
     static func freePool(level: WordLevel) -> [Word] {
+        if let cached = poolCache[level] { return cached }
         let candidates = WordRepository.shared.all.filter {
             $0.level == level && !premiumDbCategories.contains($0.category)
         }
@@ -34,7 +49,10 @@ enum WordAccess {
             if ar != br { return ar < br }
             return a.text.lowercased() < b.text.lowercased()
         }
-        return Array(sorted.prefix(freeLimit))
+        let pool = Array(sorted.prefix(freeLimit))
+        poolCache[level] = pool
+        poolIdCache[level] = Set(pool.map(\.id))
+        return pool
     }
 
     /// All words a user can access right now. Pro = entire catalog at their level.
@@ -51,7 +69,8 @@ enum WordAccess {
         if isPro { return true }
         guard word.level == userLevel else { return false }
         if premiumDbCategories.contains(word.category) { return false }
-        return freePool(level: userLevel).contains { $0.id == word.id }
+        _ = freePool(level: userLevel)  // ensure the id-set is populated
+        return poolIdCache[userLevel]?.contains(word.id) ?? false
     }
 
     /// Count of accessible words at `userLevel` the user has NOT yet seen.

@@ -20,7 +20,8 @@ struct UserProfile: Codable {
     var longestStreak: Int = 0
     var lastOpenedDate: Date? = nil
     var streakTimezone: String? = nil  // IANA identifier; locked at first daily open
-    var profileUpdatedAt: Date = .distantPast  // bumped on every scheduleSave; used for LWW merge of scalar fields
+    var profileUpdatedAt: Date = .distantPast  // bumped on every change; used for CloudKit record recency
+    var settingsUpdatedAt: Date = .distantPast // bumped ONLY when a user-editable scalar changes; used for scalar LWW merge
     var streakFreezes: Int = 0         // available freezes; +1 per 7-day streak milestone
     var streakFreezeUsedDates: [Date] = []
     var seenWordIds: [UUID] = []
