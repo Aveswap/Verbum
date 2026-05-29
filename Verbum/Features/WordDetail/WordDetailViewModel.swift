@@ -1,5 +1,6 @@
 import Foundation
 
+@MainActor
 class WordDetailViewModel: ObservableObject {
     let word: Word
     @Published private(set) var translatedDefinition: String? = nil
