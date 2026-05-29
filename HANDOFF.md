@@ -257,6 +257,52 @@ no `xcodebuild`) — build in Xcode to confirm before shipping.
 
 ---
 
+## 4.6 Follow-up remediation — 2026-05-29 (round 2)
+
+Worked through the older full audit (`456verbum_audit_report.md`). Most of its Task 1/2
+items were already fixed; this round closed the remaining in-code items (translations to
+de/it/fr intentionally deferred).
+
+**Shipped:**
+- **Subscription-ended banner** — `SubscriptionManager` detects Pro→not-Pro (mid-session via
+  the `Transaction.updates` listener and across launches via a persisted `wasPro` flag);
+  `AppCoordinator` shows an auto-dismissing soft banner.
+- **Feed search** — `Features/WordFeed/SearchView.swift`, opened from the top-bar magnifier.
+  FTS read off the main actor; results open `WordDetailView` (paywall-gated).
+- **Spotlight** — `Core/Data/SpotlightIndexer.swift` indexes the catalogue into CoreSpotlight
+  (versioned by `bundledDBVersion`, off-main). Tapping a result deep-links via `.openWord`
+  → `VerbumApp.onContinueUserActivity` → `WordFeedView` presents the detail.
+- **Stats mastery chart** — distribution bars (New→Mastered) in `StatsView`.
+- **seenWordIds** — defensive de-dup on load; documented that it's bounded by catalogue size
+  (~1000), so the array form is not a scaling risk at current scale.
+- **os.Logger** — shared categories in `Core/Components/Logger+Verbum.swift`; adopted in
+  `WordDatabase` (seed/open errors no longer swallowed) and `SpeechService`.
+- **FTS tokenizer** — native migration now uses `unicode61 remove_diacritics 2`, matching
+  the Python-built bundle (so café == cafe whether the DB is bundled or built natively).
+- **Friends/invite** — `GameCenterService.showFriends()` presents the native Game Center
+  friends list (GameKit has no API to add friends programmatically); `LeaderboardView` adds
+  an "Invite Friends" `ShareLink`.
+- **App Store ID** — centralised in `Core/AppInfo.swift` (`appStoreID`, `appStoreURL`,
+  `rateURL`); `SettingsView.rateApp()` and the invite link both use it. ⚠️ still a placeholder
+  ID — one-line update once registered.
+- **Content validators** — `scripts/validate_content.py` (stdlib-only) audits IPA format and
+  etymology plausibility in `words_v2.db`; `--online` cross-refs Wiktionary. Current run:
+  0 errors, ~14 etymology review-warnings, IPA clean.
+
+**Still blocked / deferred (need your action or a build-capable session):**
+- **Real App Store ID** (`AppInfo.appStoreID`) — needs App Store Connect registration.
+- **Widget + Apple Watch targets** + **App Group** — must be created in Xcode (code is in the
+  repo; see §6 items 24–29). Cannot be done reliably by editing the project file blindly.
+- **Swift 6 full strict-concurrency migration** and **DI-instead-of-singletons** — large
+  refactors that should only be done with a working compiler (this session had Command Line
+  Tools only, no `xcodebuild`). Recommend a dedicated, build-verified pass.
+- **de/it/fr translations** — intentionally out of scope this round.
+
+⚠️ **Not build-verified:** all round-2 changes were validated by inspection + `plutil -lint`
+on the project file only. Build in Xcode before shipping.
+
+---
+
 ## 5. Outstanding TODOs
 
 Numbered for cross-reference with the audit. Grouped by impact.

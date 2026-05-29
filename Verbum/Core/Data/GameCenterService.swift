@@ -78,6 +78,16 @@ final class GameCenterService: ObservableObject {
         Self.presentOnActiveScene(vc)
     }
 
+    /// Shows Apple's native Game Center friends list, where the user can send/accept friend
+    /// requests (GameKit has no public API to add friends programmatically, so this is the
+    /// supported path). No-op if not authenticated — triggers auth instead.
+    func showFriends() {
+        guard isAuthenticated else { authenticate(); return }
+        let vc = GKGameCenterViewController(state: .localPlayerFriendsList)
+        vc.gameCenterDelegate = GameCenterCloseDelegate.shared
+        Self.presentOnActiveScene(vc)
+    }
+
     // MARK: - Presentation helper
 
     private static func presentOnActiveScene(_ vc: UIViewController) {

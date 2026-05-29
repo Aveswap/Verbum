@@ -65,6 +65,7 @@
 		A0EC5B76925C1059F67B89E0 /* VerbumWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A1B2C3D4E5F600000000DB01 /* words_v2.db in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F600000000DB02 /* words_v2.db */; };
 		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
+		E856670F40494A3CA48A3111 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C4A5AA02FE442C8CFC4D8E /* AppInfo.swift */; };
 		9D07982C7D204C31834772A1 /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9E51EB0A0048F19D48BCC5 /* SpeechService.swift */; };
 		734197DCA2FB4EDABD417057 /* Logger+Verbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B718F44D6A34E45B4024B05 /* Logger+Verbum.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
@@ -146,6 +147,7 @@
 		0B2E438E2FC874EC00F40D8E /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		33C4A5AA02FE442C8CFC4D8E /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		1E9E51EB0A0048F19D48BCC5 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
 		7B718F44D6A34E45B4024B05 /* Logger+Verbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Verbum.swift"; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				C87133722F1D695FF2BDFDE0 /* Data */,
 				4D1145FF47374DCB64B6B337 /* Models */,
 				A80019CBEFDE89AF7DB29EF0 /* Theme */,
+				33C4A5AA02FE442C8CFC4D8E /* AppInfo.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */,
 				17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */,
 				A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */,
+				E856670F40494A3CA48A3111 /* AppInfo.swift in Sources */,
 				9D07982C7D204C31834772A1 /* SpeechService.swift in Sources */,
 				734197DCA2FB4EDABD417057 /* Logger+Verbum.swift in Sources */,
 				D35923D0663FCF28916789B7 /* Spacing.swift in Sources */,

@@ -366,9 +366,8 @@ struct SettingsView: View {
     }
 
     private func rateApp() {
-        if let url = URL(string: "itms-apps://itunes.apple.com/app/id") {
-            UIApplication.shared.open(url)
-        }
+        // Single source of truth for the store ID — see AppInfo (needs the real ID before ship).
+        UIApplication.shared.open(AppInfo.rateURL)
     }
 
     private func openInstagram() {

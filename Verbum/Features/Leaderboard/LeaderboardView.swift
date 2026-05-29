@@ -13,6 +13,7 @@ struct LeaderboardView: View {
                     VStack(spacing: AppSpacing.md) {
                         quarterCard
                         globalLeaderboardCard
+                        friendsCard
                         streakCard
                         progressCard
                         if !userProfile.profile.earnedBadges.isEmpty {
@@ -67,6 +68,68 @@ struct LeaderboardView: View {
             .background(AppColors.surface)
             .cornerRadius(AppSpacing.cornerRadius)
         }
+    }
+
+    // MARK: - Friends & invite
+
+    private var friendsCard: some View {
+        VStack(spacing: AppSpacing.sm) {
+            Button { gameCenter.showFriends() } label: {
+                HStack(spacing: AppSpacing.md) {
+                    Image(systemName: "person.2.fill")
+                        .font(.system(size: 22))
+                        .foregroundColor(AppColors.accent)
+                        .frame(width: 52, height: 52)
+                        .background(AppColors.accent.opacity(0.15))
+                        .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Friends")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(AppColors.textPrimary)
+                        Text("Add friends on Game Center to compare progress")
+                            .font(.system(size: 12))
+                            .foregroundColor(AppColors.textSecondary)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(AppColors.textSecondary)
+                        .font(.system(size: 13))
+                }
+            }
+
+            Divider().overlay(AppColors.background)
+
+            ShareLink(item: inviteMessage) {
+                HStack(spacing: AppSpacing.md) {
+                    Image(systemName: "square.and.arrow.up")
+                        .font(.system(size: 22))
+                        .foregroundColor(AppColors.accent)
+                        .frame(width: 52, height: 52)
+                        .background(AppColors.accent.opacity(0.15))
+                        .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Invite Friends")
+                            .font(.system(size: 16, weight: .bold))
+                            .foregroundColor(AppColors.textPrimary)
+                        Text("Share Verbum and learn together")
+                            .font(.system(size: 12))
+                            .foregroundColor(AppColors.textSecondary)
+                    }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(AppColors.textSecondary)
+                        .font(.system(size: 13))
+                }
+            }
+        }
+        .padding(AppSpacing.md)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(AppColors.surface)
+        .cornerRadius(AppSpacing.cornerRadius)
+    }
+
+    private var inviteMessage: String {
+        "I'm learning new words every day with Verbum — join me! \(AppInfo.appStoreURL.absoluteString)"
     }
 
     // MARK: - Quarter Points + Badge
