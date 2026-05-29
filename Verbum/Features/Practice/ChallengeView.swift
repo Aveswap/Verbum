@@ -54,7 +54,9 @@ final class ChallengeViewModel: ObservableObject {
 
     var onAnswer: ((UUID, Bool) -> Void)?
 
-    private var timer: Timer?
+    // `nonisolated(unsafe)`: Timer.invalidate() is thread-safe per docs, and the deinit hop
+    // is the only off-MainActor access — every other use is on the @MainActor class.
+    nonisolated(unsafe) private var timer: Timer?
     /// Words asked in the current round — avoids repeats. Endless modes (rush/perfection)
     /// can outlast the pool, so on exhaustion we start a fresh round rather than stop,
     /// just never repeating the current word back-to-back.

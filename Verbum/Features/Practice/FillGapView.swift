@@ -244,8 +244,8 @@ struct FillGapView: View {
     private func attributedSentence(_ sentence: String) -> AttributedString {
         var result = AttributedString(sentence)
         if let range = result.range(of: "___") {
-            result[range].foregroundColor = UIColor(AppColors.accent)
-            result[range].font = .boldSystemFont(ofSize: 20)
+            result[range].swiftUI.foregroundColor = AppColors.accent
+            result[range].swiftUI.font = .system(size: 20, weight: .bold)
         }
         return result
     }

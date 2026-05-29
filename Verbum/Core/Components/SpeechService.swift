@@ -4,6 +4,7 @@ import os
 // MARK: - Speech
 
 /// Shared speech synthesizer — one instance for the entire app to avoid audio session conflicts.
+@MainActor
 enum SpeechService {
     private static let synthesizer = AVSpeechSynthesizer()
 
