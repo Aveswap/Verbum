@@ -13,6 +13,10 @@ struct Word: Identifiable, Codable {
     let isNew: Bool  // deprecated: use isNew(for:) — kept for Codable compatibility
     let etymology: String?
 
+    /// Which vocabulary catalogue this word belongs to (BCP-47 base code, e.g. "en", "uk").
+    /// The app teaches one language at a time; catalogues are parallel by concept.
+    let language: String
+
     // Enrichment fields (v2 schema — absent in v1 JSON/DB rows)
     let frequencyRank: Int?
     let antonyms: [String]
@@ -30,7 +34,7 @@ struct Word: Identifiable, Codable {
         category: String, level: WordLevel, isNew: Bool, etymology: String?,
         frequencyRank: Int? = nil, antonyms: [String] = [],
         collocations: [String] = [], register: WordRegister? = nil,
-        domainTags: [String] = []
+        domainTags: [String] = [], language: String = "en"
     ) {
         self.id = id; self.text = text; self.phonetic = phonetic
         self.partOfSpeech = partOfSpeech; self.definition = definition
@@ -39,6 +43,7 @@ struct Word: Identifiable, Codable {
         self.etymology = etymology; self.frequencyRank = frequencyRank
         self.antonyms = antonyms; self.collocations = collocations
         self.register = register; self.domainTags = domainTags
+        self.language = language
     }
 
     // Graceful decode — missing enrichment keys default to empty/nil
@@ -60,6 +65,7 @@ struct Word: Identifiable, Codable {
         collocations    = try c.decodeIfPresent([String].self, forKey: .collocations) ?? []
         register        = try c.decodeIfPresent(WordRegister.self, forKey: .register)
         domainTags      = try c.decodeIfPresent([String].self, forKey: .domainTags) ?? []
+        language        = try c.decodeIfPresent(String.self, forKey: .language) ?? "en"
     }
 }
 

@@ -76,15 +76,10 @@ struct WordDetailView: View {
                 PremiumSheet().environmentObject(subscriptions)
             }
             .sheet(isPresented: $showShare) {
-                WordShareSheet(word: word, translation: viewModel.translatedDefinition)
+                WordShareSheet(word: word, translation: nil)
             }
         }
         .preferredColorScheme(.dark)
-        .onAppear {
-            if !isLocked, let lang = userProfile.profile.nativeLanguage?.rawValue {
-                viewModel.loadTranslation(lang: lang)
-            }
-        }
     }
 
     private var lockedView: some View {
@@ -151,24 +146,6 @@ struct WordDetailView: View {
                             Text(word.definition)
                                 .font(AppTypography.definition)
                                 .foregroundColor(AppColors.textPrimary)
-                            // L1 translation — shown for Beginner words when user has a native language set
-                            if let t = viewModel.translatedDefinition {
-                                Divider()
-                                    .background(AppColors.surfaceSecondary)
-                                Text(t)
-                                    .font(AppTypography.definition)
-                                    .foregroundColor(AppColors.textSecondary)
-                            } else if let lang = userProfile.profile.nativeLanguage, lang != .ukrainian, lang != .other {
-                                Divider()
-                                    .background(AppColors.surfaceSecondary)
-                                HStack(spacing: 6) {
-                                    Image(systemName: "globe")
-                                        .font(.system(size: 11))
-                                    Text("\(lang.displayName) translation coming soon")
-                                        .font(.system(size: 12))
-                                }
-                                .foregroundColor(AppColors.textSecondary.opacity(0.7))
-                            }
                         }
                         .padding(AppSpacing.md)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -184,11 +161,6 @@ struct WordDetailView: View {
                                 Text(example)
                                     .font(.system(size: 16).italic())
                                     .foregroundColor(AppColors.textPrimary)
-                                if let te = viewModel.translatedExample {
-                                    Text(te)
-                                        .font(.system(size: 15).italic())
-                                        .foregroundColor(AppColors.textSecondary)
-                                }
                             }
                             .padding(AppSpacing.md)
                             .frame(maxWidth: .infinity, alignment: .leading)

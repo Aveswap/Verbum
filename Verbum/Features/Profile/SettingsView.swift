@@ -74,8 +74,8 @@ struct SettingsView: View {
                             iconEditRow(icon: "calendar", iconColor: .orange, label: "Age",
                                         value: userProfile.profile.age?.rawValue ?? "Not set") { editingAge = true }
                             cardDivider
-                            iconEditRow(icon: "globe", iconColor: .blue, label: "Native Language",
-                                        value: userProfile.profile.nativeLanguage?.displayName ?? "Not set") { editingLanguage = true }
+                            iconEditRow(icon: "character.book.closed.fill", iconColor: .blue, label: "Word Language",
+                                        value: wordLanguageDisplayName(WordRepository.shared.activeLanguage)) { editingLanguage = true }
                             cardDivider
                             iconEditRow(icon: "chart.bar.fill", iconColor: .green, label: "Level",
                                         value: userProfile.profile.level.displayName) { editingLevel = true }
@@ -267,8 +267,11 @@ struct SettingsView: View {
             LevelTestView().environmentObject(userProfile)
         }
         .sheet(isPresented: $editingLanguage) {
-            LanguagePickerSheet(selected: userProfile.profile.nativeLanguage) { lang in
-                userProfile.profile.nativeLanguage = lang
+            WordLanguagePickerSheet(
+                available: WordRepository.shared.availableLanguages(),
+                selected: WordRepository.shared.activeLanguage
+            ) { lang in
+                userProfile.setWordLanguage(lang)
                 editingLanguage = false
             }
         }
@@ -383,11 +386,24 @@ struct SettingsView: View {
     }
 }
 
-// MARK: - Language Picker Sheet
+// MARK: - Word Language Picker Sheet
 
-private struct LanguagePickerSheet: View {
-    let selected: NativeLanguage?
-    let onSelect: (NativeLanguage) -> Void
+/// Localized display name for a vocabulary language code (BCP-47 base).
+func wordLanguageDisplayName(_ code: String) -> String {
+    switch code {
+    case "en": return "English"
+    case "uk": return "Українська"
+    case "de": return "Deutsch"
+    case "it": return "Italiano"
+    case "fr": return "Français"
+    default:   return Locale.current.localizedString(forLanguageCode: code) ?? code.uppercased()
+    }
+}
+
+private struct WordLanguagePickerSheet: View {
+    let available: [String]
+    let selected: String
+    let onSelect: (String) -> Void
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -395,15 +411,15 @@ private struct LanguagePickerSheet: View {
             ZStack {
                 AppColors.background.ignoresSafeArea()
                 List {
-                    ForEach(NativeLanguage.allCases, id: \.self) { lang in
+                    ForEach(available, id: \.self) { code in
                         Button {
-                            onSelect(lang)
+                            onSelect(code)
                         } label: {
                             HStack {
-                                Text(lang.displayName)
+                                Text(wordLanguageDisplayName(code))
                                     .foregroundColor(AppColors.textPrimary)
                                 Spacer()
-                                if selected == lang {
+                                if selected == code {
                                     Image(systemName: "checkmark")
                                         .foregroundColor(AppColors.accent)
                                 }
@@ -414,7 +430,7 @@ private struct LanguagePickerSheet: View {
                 .scrollContentBackground(.hidden)
                 .background(AppColors.background)
             }
-            .navigationTitle("Native Language")
+            .navigationTitle("Word Language")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

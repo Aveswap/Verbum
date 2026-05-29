@@ -174,6 +174,15 @@ final class WordDatabase: @unchecked Sendable {
             }
         }
 
+        // v3: per-language catalogues. Existing rows are English; new languages add rows.
+        m.registerMigration("v3_language") { db in
+            try db.alter(table: "words") { t in
+                t.add(column: "language", .text).notNull().defaults(to: "en")
+            }
+            try db.create(index: "words_language_idx", on: "words",
+                          columns: ["language"], ifNotExists: true)
+        }
+
         return m
     }
 
@@ -242,8 +251,8 @@ final class WordDatabase: @unchecked Sendable {
                     INSERT OR REPLACE INTO words
                     (id, text, phonetic, partOfSpeech, definition,
                      exampleSentence, synonyms, category, level, etymology,
-                     frequencyRank, antonyms, collocations, register, domainTags)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                     frequencyRank, antonyms, collocations, register, domainTags, language)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, arguments: [
                     // Lowercase to match the bundled DB convention — the primary key is
                     // case-sensitive, so mixing casings would create duplicate word rows.
@@ -255,7 +264,8 @@ final class WordDatabase: @unchecked Sendable {
                     jsonStr(word.antonyms) ?? "[]",
                     jsonStr(word.collocations) ?? "[]",
                     word.register?.rawValue,
-                    jsonStr(word.domainTags) ?? "[]"
+                    jsonStr(word.domainTags) ?? "[]",
+                    word.language
                 ])
             }
             try db.execute(sql: "INSERT INTO words_fts(words_fts) VALUES('rebuild')")
@@ -264,16 +274,16 @@ final class WordDatabase: @unchecked Sendable {
 
     // MARK: - Queries
 
-    /// limit: 0 = no limit (fetch all)
-    func fetchWords(level: WordLevel? = nil, offset: Int = 0, limit: Int = 0) -> [Word] {
+    /// limit: 0 = no limit (fetch all). `language` nil = all languages.
+    func fetchWords(level: WordLevel? = nil, language: String? = nil, offset: Int = 0, limit: Int = 0) -> [Word] {
         guard let dbQueue else { return [] }
         return (try? dbQueue.read { db -> [Word] in
-            var sql = "SELECT * FROM words"
+            var conditions: [String] = []
             var args: [DatabaseValueConvertible] = []
-            if let level {
-                sql += " WHERE level = ?"
-                args.append(level.rawValue)
-            }
+            if let level    { conditions.append("level = ?");    args.append(level.rawValue) }
+            if let language { conditions.append("language = ?"); args.append(language) }
+            var sql = "SELECT * FROM words"
+            if !conditions.isEmpty { sql += " WHERE " + conditions.joined(separator: " AND ") }
             if limit > 0 {
                 sql += " LIMIT ? OFFSET ?"
                 args.append(limit)
@@ -284,11 +294,12 @@ final class WordDatabase: @unchecked Sendable {
         }) ?? []
     }
 
-    func fetchWords(category: String, limit: Int = 0) -> [Word] {
+    func fetchWords(category: String, language: String? = nil, limit: Int = 0) -> [Word] {
         guard let dbQueue else { return [] }
         return (try? dbQueue.read { db -> [Word] in
             var sql = "SELECT * FROM words WHERE category = ?"
             var args: [DatabaseValueConvertible] = [category]
+            if let language { sql += " AND language = ?"; args.append(language) }
             if limit > 0 {
                 sql += " LIMIT ?"
                 args.append(limit)
@@ -298,15 +309,28 @@ final class WordDatabase: @unchecked Sendable {
         }) ?? []
     }
 
-    func allCategories() -> [String] {
+    func allCategories(language: String? = nil) -> [String] {
         guard let dbQueue else { return [] }
         return (try? dbQueue.read { db in
-            let rows = try Row.fetchAll(db, sql: "SELECT DISTINCT category FROM words ORDER BY category")
+            var sql = "SELECT DISTINCT category FROM words"
+            var args: [DatabaseValueConvertible] = []
+            if let language { sql += " WHERE language = ?"; args.append(language) }
+            sql += " ORDER BY category"
+            let rows = try Row.fetchAll(db, sql: sql, arguments: StatementArguments(args))
             return rows.compactMap { $0["category"] as? String }.filter { !$0.isEmpty }
         }) ?? []
     }
 
-    func search(query: String, limit: Int = 50) -> [Word] {
+    /// Distinct language codes that have at least one word. Drives the in-app language switcher.
+    func availableLanguages() -> [String] {
+        guard let dbQueue else { return [] }
+        return (try? dbQueue.read { db in
+            try Row.fetchAll(db, sql: "SELECT DISTINCT language FROM words ORDER BY language")
+                .compactMap { $0["language"] as? String }
+        }) ?? []
+    }
+
+    func search(query: String, language: String? = nil, limit: Int = 50) -> [Word] {
         guard let dbQueue else { return [] }
         // Wrap the raw query as a quoted FTS5 string literal + prefix token. Without this,
         // punctuation/operators (" - : ( ^ *) are parsed as FTS5 syntax and throw, which the
@@ -315,13 +339,17 @@ final class WordDatabase: @unchecked Sendable {
         let match = "\"\(escaped)\"*"
         guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return [] }
         return (try? dbQueue.read { db -> [Word] in
-            try Row.fetchAll(db, sql: """
+            var sql = """
                 SELECT w.* FROM words w
                 JOIN words_fts ON words_fts.rowid = w.rowid
                 WHERE words_fts MATCH ?
-                LIMIT ?
-            """, arguments: [match, limit])
-            .compactMap(Self.word(from:))
+            """
+            var args: [DatabaseValueConvertible] = [match]
+            if let language { sql += " AND w.language = ?"; args.append(language) }
+            sql += " LIMIT ?"
+            args.append(limit)
+            return try Row.fetchAll(db, sql: sql, arguments: StatementArguments(args))
+                .compactMap(Self.word(from:))
         }) ?? []
     }
 
@@ -389,7 +417,8 @@ final class WordDatabase: @unchecked Sendable {
             antonyms:        jsonArray("antonyms"),
             collocations:    jsonArray("collocations"),
             register:        (row["register"] as? String).flatMap(WordRegister.init),
-            domainTags:      jsonArray("domainTags")
+            domainTags:      jsonArray("domainTags"),
+            language:        row["language"] as? String ?? "en"
         )
     }
 }

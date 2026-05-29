@@ -12,7 +12,7 @@ enum SharedTimelinePublisher {
     static let horizonDays = 14
 
     /// Build + publish the timeline + snapshot, then nudge WidgetKit to reload.
-    static func refresh(profile: UserProfile, isPro: Bool, translationLang: String?) {
+    static func refresh(profile: UserProfile, isPro: Bool) {
         let pool: [Word] = isPro
             ? WordRepository.shared.all.filter { $0.level == profile.level }
             : WordAccess.freePool(level: profile.level)
@@ -32,11 +32,6 @@ enum SharedTimelinePublisher {
             guard let date = cal.date(byAdding: .day, value: offset, to: today) else { continue }
             let index = (yearDay - 1 + offset) % pool.count
             let word = pool[index]
-            let translation: String? = {
-                guard let lang = translationLang else { return nil }
-                return WordDatabase.shared.translation(wordId: word.id, lang: lang)?.definition
-                    ?? TranslationStore.shared.translation(wordId: word.id, lang: lang)?.definition
-            }()
             timeline.append(.init(
                 date: date,
                 id: word.id,
@@ -44,7 +39,7 @@ enum SharedTimelinePublisher {
                 phonetic: word.phonetic,
                 partOfSpeech: word.partOfSpeech,
                 definition: word.definition,
-                translation: translation,
+                translation: nil,
                 level: word.level.rawValue
             ))
         }

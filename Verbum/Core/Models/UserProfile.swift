@@ -4,7 +4,11 @@ struct UserProfile: Codable {
     var name: String = ""
     var age: AgeRange? = nil
     var gender: Gender? = nil
-    var nativeLanguage: NativeLanguage? = nil
+    var nativeLanguage: NativeLanguage? = nil  // deprecated: translations removed; kept for Codable back-compat
+    /// Active vocabulary language (BCP-47 base code, e.g. "en", "uk"). Empty = not yet resolved
+    /// (defaults to the device language on first launch). Local-only — intentionally NOT synced
+    /// via CloudKit, since the right default can differ per device (OS language).
+    var wordLanguage: String = ""
     var level: WordLevel = .beginner
     var appleUserID: String? = nil  // stable Sign in with Apple identifier
     var wordsPerWeek: Int = 30

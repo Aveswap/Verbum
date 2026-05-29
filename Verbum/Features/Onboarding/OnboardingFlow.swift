@@ -1,7 +1,9 @@
 import SwiftUI
 
 enum OnboardingStep: Int, CaseIterable {
-    case welcome, name, nativeLanguage, level, wordCheck, commitment, notifications
+    // No language pick: vocabulary language defaults to the device language and is
+    // switchable in Settings. The app teaches words in the user's own language.
+    case welcome, name, level, wordCheck, commitment, notifications
 }
 
 struct OnboardingFlow: View {
@@ -52,10 +54,6 @@ struct OnboardingFlow: View {
             NameInputView { name in
                 userProfile.profile.name = name; advance()
             }
-        case .nativeLanguage:
-            NativeLanguageView(onSkip: { advance() }, onSelect: { lang in
-                userProfile.profile.nativeLanguage = lang; advance()
-            })
         case .level:
             LevelSelectionView { level in
                 userProfile.profile.level = level; advance()

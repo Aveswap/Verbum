@@ -15,11 +15,26 @@ import Combine
 final class WordRepository: ObservableObject {
     static let shared = WordRepository()
 
+    /// Words of the currently-active language only. The app teaches one language at a time.
     @Published private(set) var all: [Word] = []
 
-    /// Total word count across the active source (DB or bundle).
+    /// Active vocabulary language (BCP-47 base code). Drives every read below. Set from the
+    /// user's profile at launch (which defaults to the device language) — see setLanguage(_:).
+    private(set) var activeLanguage: String = "en"
+
+    /// Total word count in the active language.
     var totalWordCount: Int {
-        WordDatabase.shared.isAvailable ? WordDatabase.shared.totalCount() : all.count
+        WordDatabase.shared.isAvailable
+            ? WordDatabase.shared.fetchWords(language: activeLanguage).count
+            : all.count
+    }
+
+    /// Language codes that have a catalogue (≥1 word). Drives the in-app switcher.
+    func availableLanguages() -> [String] {
+        let langs = WordDatabase.shared.isAvailable
+            ? WordDatabase.shared.availableLanguages()
+            : Array(Set(all.map(\.language)))
+        return langs.isEmpty ? ["en"] : langs
     }
 
     private init() {
@@ -28,11 +43,18 @@ final class WordRepository: ObservableObject {
 
     // MARK: - Source switching
 
+    /// Switches the active vocabulary language and reloads the catalogue. No-op if unchanged.
+    func setLanguage(_ language: String) {
+        guard language != activeLanguage else { return }
+        activeLanguage = language
+        load()
+    }
+
     private func load() {
         if WordDatabase.shared.isAvailable {
-            all = WordDatabase.shared.fetchWords(limit: 0)
+            all = WordDatabase.shared.fetchWords(language: activeLanguage)
         } else {
-            all = loadBundle()
+            all = loadBundle().filter { $0.language == activeLanguage }
         }
         WordAccess.invalidate()  // catalog changed — drop memoized free pools
         SpotlightIndexer.indexIfNeeded(words: all, version: WordDatabase.bundledDBVersion)
@@ -40,37 +62,35 @@ final class WordRepository: ObservableObject {
 
     func reloadFromDatabase() {
         guard WordDatabase.shared.isAvailable else { return }
-        all = WordDatabase.shared.fetchWords(limit: 0)
-        WordAccess.invalidate()  // catalog changed — drop memoized free pools
-        SpotlightIndexer.indexIfNeeded(words: all, version: WordDatabase.bundledDBVersion)
+        load()
     }
 
-    // MARK: - Filtered access
+    // MARK: - Filtered access (scoped to the active language)
 
     func words(level: WordLevel) -> [Word] {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.fetchWords(level: level)
+            return WordDatabase.shared.fetchWords(level: level, language: activeLanguage)
         }
         return all.filter { $0.level == level }
     }
 
     func words(category: String) -> [Word] {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.fetchWords(category: category)
+            return WordDatabase.shared.fetchWords(category: category, language: activeLanguage)
         }
         return all.filter { $0.category == category }
     }
 
     func allCategories() -> [String] {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.allCategories()
+            return WordDatabase.shared.allCategories(language: activeLanguage)
         }
         return Array(Set(all.map(\.category))).sorted().filter { !$0.isEmpty }
     }
 
     func words(matching query: String) -> [Word] {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.search(query: query)
+            return WordDatabase.shared.search(query: query, language: activeLanguage)
         }
         let q = query.lowercased()
         return all.filter {

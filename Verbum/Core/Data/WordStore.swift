@@ -120,6 +120,34 @@ class UserProfileStore: ObservableObject {
         }
     }
 
+    // MARK: - Word language (vocabulary catalogue)
+
+    /// Resolves the active vocabulary language and applies it to WordRepository. Called at
+    /// launch. Falls back to the device language, then English, among catalogues that exist.
+    func applyWordLanguage() {
+        let available = WordRepository.shared.availableLanguages()
+        let resolved = Self.resolveWordLanguage(stored: profile.wordLanguage, available: available)
+        if profile.wordLanguage != resolved { profile.wordLanguage = resolved }  // persists locally
+        WordRepository.shared.setLanguage(resolved)
+    }
+
+    /// Switches the active vocabulary language (from the in-app picker) and reloads.
+    func setWordLanguage(_ language: String) {
+        guard !language.isEmpty else { return }
+        profile.wordLanguage = language
+        WordRepository.shared.setLanguage(language)
+    }
+
+    static func resolveWordLanguage(stored: String, available: [String]) -> String {
+        if !stored.isEmpty, available.contains(stored) { return stored }
+        let device = Locale.preferredLanguages.first
+            .flatMap { Locale(identifier: $0).language.languageCode?.identifier }
+            ?? Locale.current.language.languageCode?.identifier
+            ?? "en"
+        if available.contains(device) { return device }
+        return available.contains("en") ? "en" : (available.first ?? "en")
+    }
+
     // MARK: - Word interactions
 
     func bookmarkWord(_ id: UUID) {

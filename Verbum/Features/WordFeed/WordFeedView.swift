@@ -112,6 +112,7 @@ struct WordFeedView: View {
             .environmentObject(userProfile)
         }
         .onAppear {
+            userProfile.applyWordLanguage()   // resolves device/stored language before the feed loads
             seenWordIdsSet = Set(userProfile.profile.seenWordIds)
             viewModel.isPro = subscriptions.isPro
             viewModel.userLevel = userProfile.profile.level
@@ -615,7 +616,6 @@ private struct WordCardView: View {
     let seenSet: Set<UUID>
     @EnvironmentObject var userProfile: UserProfileStore
     @EnvironmentObject var subscriptions: SubscriptionManager
-    @State private var translatedDef: String? = nil
 
     private var isLocked: Bool {
         !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level)
@@ -709,15 +709,6 @@ private struct WordCardView: View {
                 .padding(.horizontal, AppSpacing.xl)
                 .lineLimit(3)
 
-            if let t = translatedDef, word.level == .beginner {
-                Text(t)
-                    .font(AppTypography.definition)
-                    .foregroundColor(AppColors.textSecondary.opacity(0.7))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, AppSpacing.xl)
-                    .lineLimit(2)
-            }
-
             if let example = word.exampleSentence {
                 Text("\u{201C}\(example)\u{201D}")
                     .font(.system(size: 13).italic())
@@ -742,14 +733,6 @@ private struct WordCardView: View {
             }
 
             Spacer()
-        }
-        // .task (not .onAppear) so the SQLite read runs off the main actor and is cancelled
-        // if the card disappears before it finishes — this is on the per-swipe path.
-        .task(id: word.id) {
-            guard word.level == .beginner,
-                  let lang = userProfile.profile.nativeLanguage?.rawValue else { return }
-            let def = await Task.detached { WordDatabase.shared.translation(wordId: word.id, lang: lang)?.definition }.value
-            if !Task.isCancelled { translatedDef = def }
         }
     }
 }

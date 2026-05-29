@@ -20,8 +20,7 @@ struct VerbumApp: App {
     private func republishSharedTimeline() {
         SharedTimelinePublisher.refresh(
             profile: userProfile.profile,
-            isPro: subscriptions.isPro,
-            translationLang: userProfile.profile.nativeLanguage?.rawValue
+            isPro: subscriptions.isPro
         )
     }
 
@@ -39,8 +38,7 @@ struct VerbumApp: App {
                     // Publish a fresh 14-day timeline for widget + watch on every launch.
                     SharedTimelinePublisher.refresh(
                         profile: userProfile.profile,
-                        isPro: subscriptions.isPro,
-                        translationLang: userProfile.profile.nativeLanguage?.rawValue
+                        isPro: subscriptions.isPro
                     )
                 }
                 .onReceive(auth.$isSignedIn) { signedIn in
