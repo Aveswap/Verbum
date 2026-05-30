@@ -31,7 +31,8 @@ final class WordDatabase: @unchecked Sendable {
     /// v6: added the German beginner free-pool catalogue (see scripts/build_de_catalog.py).
     /// v7: German free pool complete — 50 beginner + 50 intermediate + 50 expert.
     /// v8: German beginner expansion → 100 beginner (de now 200 total).
-    static let bundledDBVersion = 8
+    /// v9: German intermediate expansion → 100 intermediate (de now 250 total).
+    static let bundledDBVersion = 9
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
