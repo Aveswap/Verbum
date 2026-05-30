@@ -28,7 +28,8 @@ final class WordDatabase: @unchecked Sendable {
     /// Bump this whenever Resources/words_v2.db is updated so an app update
     /// re-seeds the writable copy with the new content. Also drives Spotlight re-indexing.
     /// v5: added the Ukrainian catalogue + `language` column (see scripts/build_uk_catalog.py).
-    static let bundledDBVersion = 5
+    /// v6: added the German beginner free-pool catalogue (see scripts/build_de_catalog.py).
+    static let bundledDBVersion = 6
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
