@@ -30,7 +30,8 @@ final class WordDatabase: @unchecked Sendable {
     /// v5: added the Ukrainian catalogue + `language` column (see scripts/build_uk_catalog.py).
     /// v6: added the German beginner free-pool catalogue (see scripts/build_de_catalog.py).
     /// v7: German free pool complete — 50 beginner + 50 intermediate + 50 expert.
-    static let bundledDBVersion = 7
+    /// v8: German beginner expansion → 100 beginner (de now 200 total).
+    static let bundledDBVersion = 8
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
