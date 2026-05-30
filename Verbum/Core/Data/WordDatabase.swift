@@ -37,7 +37,8 @@ final class WordDatabase: @unchecked Sendable {
     /// v12: German intermediate expansion → 150 intermediate (de now 400 total).
     /// v13: German expert expansion → 150 each level (de now 450 total).
     /// v14: German beginner expansion → 200 beginner (de now 500 total — halfway).
-    static let bundledDBVersion = 14
+    /// v15: German intermediate expansion → 200 intermediate (de now 550 total).
+    static let bundledDBVersion = 15
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
