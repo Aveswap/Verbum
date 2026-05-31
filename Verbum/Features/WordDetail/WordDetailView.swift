@@ -41,6 +41,7 @@ struct WordDetailView: View {
                                 Image(systemName: "square.and.arrow.up")
                                     .foregroundColor(AppColors.textSecondary)
                             }
+                            .accessibilityLabel("Share word")
                             if !userProfile.profile.decks.isEmpty {
                                 Menu {
                                     ForEach(userProfile.profile.decks) { deck in
@@ -59,15 +60,18 @@ struct WordDetailView: View {
                                     Image(systemName: "rectangle.stack.badge.plus")
                                         .foregroundColor(AppColors.textSecondary)
                                 }
+                                .accessibilityLabel("Add to deck")
                             }
                             Button { userProfile.likeWord(word.id) } label: {
                                 Image(systemName: userProfile.profile.likedWordIds.contains(word.id) ? "heart.fill" : "heart")
                                     .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)
                             }
+                            .accessibilityLabel(userProfile.profile.likedWordIds.contains(word.id) ? "Unlike word" : "Like word")
                             Button { userProfile.bookmarkWord(word.id) } label: {
                                 Image(systemName: userProfile.profile.bookmarkedWordIds.contains(word.id) ? "bookmark.fill" : "bookmark")
                                     .foregroundColor(AppColors.accent)
                             }
+                            .accessibilityLabel(userProfile.profile.bookmarkedWordIds.contains(word.id) ? "Remove bookmark" : "Bookmark word")
                         }
                     }
                 }
@@ -120,19 +124,24 @@ struct WordDetailView: View {
                                 .frame(maxWidth: .infinity)
 
                             HStack {
-                                Text(word.phonetic)
-                                    .font(AppTypography.phonetic)
-                                    .foregroundColor(AppColors.textSecondary)
-                                    .padding(.horizontal, AppSpacing.sm)
-                                    .padding(.vertical, 4)
-                                    .background(AppColors.surface)
-                                    .cornerRadius(20)
+                                // Phonetic is optional — languages without an IPA transcription
+                                // (e.g. Ukrainian) leave it blank; omit the empty pill entirely.
+                                if !word.phonetic.isEmpty {
+                                    Text(word.phonetic)
+                                        .font(AppTypography.phonetic)
+                                        .foregroundColor(AppColors.textSecondary)
+                                        .padding(.horizontal, AppSpacing.sm)
+                                        .padding(.vertical, 4)
+                                        .background(AppColors.surface)
+                                        .cornerRadius(20)
+                                }
 
                                 Button { viewModel.speakWord() } label: {
                                     Image(systemName: "speaker.wave.2.fill")
                                         .foregroundColor(AppColors.accent)
                                         .font(.system(size: 18))
                                 }
+                                .accessibilityLabel("Pronounce \(word.text)")
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -280,6 +289,9 @@ struct WordDetailView: View {
                     }
                     .padding(AppSpacing.md)
                 }
+                // The word title uses a large fixed design font; cap Dynamic Type so the largest
+                // accessibility sizes scale up readably without shattering the card layouts.
+                .dynamicTypeSize(...DynamicTypeSize.accessibility2)
     }
 }
 

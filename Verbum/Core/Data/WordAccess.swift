@@ -21,6 +21,11 @@ enum WordAccess {
         "Technology", "Science", "Literature", "Society"
     ]
 
+    /// Source of the full catalog. Defaults to the live repository; overridable in tests so the
+    /// paywall rules can be exercised against a fixture catalog without booting the database.
+    /// Assign a new provider then call `invalidate()` to drop any memoized pools.
+    static var catalogProvider: () -> [Word] = { WordRepository.shared.all }
+
     /// Memoized free pool per level + its id-set for O(1) membership. The pool is a pure
     /// function of the catalog, so it's cached and only recomputed after `invalidate()`
     /// (called when the catalog reloads). Without this, `freePool` re-filtered and re-sorted
@@ -40,7 +45,7 @@ enum WordAccess {
     /// chosen across launches even when ranks are nil — e.g. bundled JSON).
     static func freePool(level: WordLevel) -> [Word] {
         if let cached = poolCache[level] { return cached }
-        let candidates = WordRepository.shared.all.filter {
+        let candidates = catalogProvider().filter {
             $0.level == level && !premiumDbCategories.contains($0.category)
         }
         let sorted = candidates.sorted { a, b in
@@ -59,7 +64,7 @@ enum WordAccess {
     /// Free = the level's freePool only.
     static func accessibleWords(isPro: Bool, level: WordLevel) -> [Word] {
         if isPro {
-            return WordRepository.shared.all.filter { $0.level == level }
+            return catalogProvider().filter { $0.level == level }
         }
         return freePool(level: level)
     }
@@ -82,7 +87,7 @@ enum WordAccess {
     /// Total words at `userLevel` that are NOT in the free pool. Used for tease text:
     /// "Unlock N more {level} words".
     static func lockedAtLevelCount(userLevel: WordLevel) -> Int {
-        let total = WordRepository.shared.all.filter { $0.level == userLevel }.count
+        let total = catalogProvider().filter { $0.level == userLevel }.count
         return max(0, total - freeLimit)
     }
 }

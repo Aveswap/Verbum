@@ -326,6 +326,7 @@ struct WordFeedView: View {
                     .background(AppColors.surface)
                     .clipShape(Circle())
             }
+            .accessibilityLabel("Profile")
 
             Button { activeSheet = .search } label: {
                 Image(systemName: "magnifyingglass")
@@ -335,6 +336,7 @@ struct WordFeedView: View {
                     .background(AppColors.surface)
                     .clipShape(Circle())
             }
+            .accessibilityLabel("Search learned words")
 
             Spacer()
 
@@ -565,6 +567,7 @@ struct WordFeedView: View {
                     Image(systemName: "info.circle")
                         .actionIcon()
                 }
+                .accessibilityLabel("Word details")
                 Button {
                     // Free users can only share words they actually have access to —
                     // otherwise the "shareable card" would expose locked premium content.
@@ -577,6 +580,7 @@ struct WordFeedView: View {
                     Image(systemName: "square.and.arrow.up")
                         .actionIcon()
                 }
+                .accessibilityLabel("Share word")
                 Button {
                     HapticManager.impact(.soft)
                     userProfile.likeWord(word.id)
@@ -588,6 +592,7 @@ struct WordFeedView: View {
                         .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)
                         .scaleEffect(likeScale)
                 }
+                .accessibilityLabel(userProfile.profile.likedWordIds.contains(word.id) ? "Unlike word" : "Like word")
                 Button {
                     HapticManager.impact(.medium)
                     userProfile.bookmarkWord(word.id)
@@ -599,6 +604,7 @@ struct WordFeedView: View {
                         .foregroundColor(userProfile.profile.bookmarkedWordIds.contains(word.id) ? AppColors.accent : AppColors.textSecondary)
                         .scaleEffect(bookmarkScale)
                 }
+                .accessibilityLabel(userProfile.profile.bookmarkedWordIds.contains(word.id) ? "Remove bookmark" : "Bookmark word")
             }
             .padding(.vertical, AppSpacing.md)
         }
@@ -700,18 +706,22 @@ private struct WordCardView: View {
                 .foregroundColor(AppColors.textPrimary)
 
             HStack(spacing: AppSpacing.sm) {
-                Text(word.phonetic)
-                    .font(AppTypography.phonetic)
-                    .foregroundColor(AppColors.textSecondary)
-                    .padding(.horizontal, AppSpacing.sm)
-                    .padding(.vertical, 4)
-                    .background(AppColors.surface)
-                    .cornerRadius(20)
+                // Phonetic is optional (e.g. Ukrainian has no IPA) — omit the empty pill.
+                if !word.phonetic.isEmpty {
+                    Text(word.phonetic)
+                        .font(AppTypography.phonetic)
+                        .foregroundColor(AppColors.textSecondary)
+                        .padding(.horizontal, AppSpacing.sm)
+                        .padding(.vertical, 4)
+                        .background(AppColors.surface)
+                        .cornerRadius(20)
+                }
 
                 Button { viewModel.speakWord(word.text) } label: {
                     Image(systemName: "speaker.wave.2")
                         .foregroundColor(AppColors.textSecondary)
                 }
+                .accessibilityLabel("Pronounce \(word.text)")
             }
 
             Text("\(word.partOfSpeech)  \(word.definition)")

@@ -10,6 +10,11 @@ struct CommitmentView: View {
     private var projection30: Int { dailyGoal * 30 }
     private var projection7: Int { dailyGoal * 7 }
 
+    /// True when the 30-day pace would carry the user past the free per-level allowance, so we
+    /// can disclose up-front that the full projection needs Pro instead of letting them hit a
+    /// surprise paywall a few days in.
+    private var exceedsFreeAllowance: Bool { projection30 > WordAccess.freeLimit }
+
     var body: some View {
         VStack(spacing: AppSpacing.lg) {
             Spacer()
@@ -59,6 +64,17 @@ struct CommitmentView: View {
                     .foregroundColor(AppColors.textSecondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, AppSpacing.xl)
+
+                if exceedsFreeAllowance {
+                    // Honest up-front disclosure: the free plan covers the first 50 words at
+                    // each level; the full 30-day projection assumes Verbum Pro.
+                    Text("Your free plan includes \(WordAccess.freeLimit) words per level — unlock the full journey with Pro.")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, AppSpacing.xl)
+                        .padding(.top, 2)
+                }
             }
             .padding(.top, AppSpacing.sm)
 
