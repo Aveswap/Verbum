@@ -1,8 +1,8 @@
 # Verbum — Project Handoff
 
-**Last updated:** 2026-05-29
+**Last updated:** 2026-05-31
 **Branch:** `main`
-**Latest commit:** `77ccf23` (share-word-card) + code-review remediation (see §4.5)
+**Latest commit:** 789 pre-release audit remediation (see §11) — Swift 6, IAP/privacy/widget cleanup, uk dedup, first unit tests
 
 This document is meant to onboard a fresh contributor (human or agent) cold. Read top-to-bottom. Code references use `Path/To/File.swift:LineNumber` so they're clickable in most editors.
 
@@ -26,7 +26,7 @@ This document is meant to onboard a fresh contributor (human or agent) cold. Rea
 | Speech | `AVSpeechSynthesizer` (`SpeechService` shared instance) |
 | Haptics | `CoreHaptics` (`HapticManager`) with NSRecursiveLock |
 | Social | GameKit (`GameCenterService`) |
-| Spaced repetition | FSRS-5 algorithm in pure Swift (`FSRS.swift`) |
+| Spaced repetition | FSRS-4.5 algorithm (17-weight model) in pure Swift (`FSRS.swift`) |
 
 ### Codebase layout (Swift)
 
@@ -578,6 +578,114 @@ fbeca99 feat: FSRS-5 spaced repetition scheduler
 dde3305 feat: gamification polish — decks, mastery surfacing, real word notifications
 d8af8ab feat: deep audit fixes (Phase A bugs + Phase B gamification)
 ```
+
+---
+
+## 11. 789 Pre-Release Audit — remediation (2026-05-31)
+
+Worked the full `789Verbum_PreRelease_Audit.md` end-to-end. **Nothing was skipped.** Committed
+in logical phases (each commit message names the audit item numbers). Build NOT verified — this
+machine has Command Line Tools only (no `xcodebuild`); everything below is static-reviewed and,
+where possible, validated with `plutil -lint`, `sqlite3`, and the Python validator.
+
+### What changed, by area
+
+**Correctness / data-loss (§1)**
+- CloudKit push is gated behind the first successful pull (`UserProfileStore.hasCompletedInitialPull`)
+  so a fresh install can't blind-overwrite the server before merging it in (1.1).
+- `push()` now merges into the existing server record and retries once on `serverRecordChanged`;
+  `pull()` marks initial-pull-complete on both the merged and `.unknownItem` paths; zone creation
+  is cached (1.2, 1.11).
+- `seenSet` rebuild is a membership check, not identity (1.5). `streakFreezes` merge follows the
+  most-recently-updated profile, clamped to the cap (1.11).
+- `todaysWord(language:)` is language-scoped with a stable `ORDER BY frequencyRank, id` instead of
+  a raw physical-row offset (1.3). `fetchWords(ids:language:)` + `WordRepository.words(ids:)` scope
+  saved lists to the active language (1.6). Daily-word notifications sample the language-correct
+  free pool and re-schedule on language change; badge cleared on launch (1.7).
+- `WordDatabase.dbQueue` is guarded by `OSAllocatedUnfairLock` (the old "main-thread-only" comment
+  was violated by the seeding background queue) (1.4).
+- `runMigrations()` logs schema drift — expected-but-unapplied / applied-but-unknown (5.3).
+- `checkQuarterlyReset()` advances the anchor one exact quarter at a time (no drift, no skipped
+  boundaries) and awards the first closed quarter's badge even after a long absence (1.10).
+- Pro feed orders unseen words first (then seen), so returning Pro users get new vocabulary before
+  the catalogue recycles (1.8). `WordFeedViewModel.seenWordIds` is fed from the view like `dueReviewIds`.
+- FSRS relabelled **FSRS-4.5** (17-weight) everywhere — it deliberately omits FSRS-5's short-term
+  weights; the app surfaces a word at most once/day so they don't matter (1.9).
+
+**App Store readiness (§2, §3.5)**
+- `PremiumSheet` shows only live StoreKit products with localized `displayPrice`; the yearly
+  "/mo · Save X%" note is computed from real prices. No products → honest "couldn't load · Retry"
+  state (driven by `SubscriptionManager.loadFailed`), no fake `$`-rows, no dead buy button.
+- Lapse banner only shows after a trustworthy entitlement check (`hasCheckedEntitlements`,
+  gated again in `AppCoordinator`) — no false "subscription ended" flash on cold launch (3.5).
+- `Info.plist`: `ITSAppUsesNonExemptEncryption=false` (set via `project.yml` so regen keeps it).
+- Entitlements: removed unused `aps-environment` (no push, only local notifications).
+- `PrivacyInfo.xcprivacy`: dropped the false Analytics purpose; **added a widget manifest**
+  (`VerbumWidget/PrivacyInfo.xcprivacy`, UserDefaults reason CA92.1).
+- **Widget rework:** home-screen widgets now come solely from `WordOfDayWidget` (real,
+  language/level-aware App-Group timeline). Removed the duplicate `words.json`-backed English-only
+  small/medium widgets; rebuilt the lock-screen widgets on the same `SharedWordStore` source.
+  `words.json` is no longer bundled into the widget (still bundled in the app as a fallback).
+  **Also wired the widget's App-Group entitlement, which was missing in the project** — the widget
+  literally could not read shared data before.
+
+**Project source-of-truth (§5)**
+- `project.yml` is now faithful (entitlements, app icon, device family, **Swift 6 + strict
+  concurrency `complete` for app, widget, and tests**, shared scheme, `ITSAppUsesNonExemptEncryption`)
+  and `.xcodeproj` was **regenerated from it with `xcodegen`** — resolving the project.yml↔pbxproj
+  Swift-version drift the audit flagged. ⚠️ **Regenerate via `xcodegen generate` from now on**;
+  hand-edits to the pbxproj will be lost (schemes are defined in `project.yml`).
+
+**UX / content (§3, §4)**
+- `CommitmentView` discloses the 50-word/level free cap whenever the 30-day projection exceeds it (3.2).
+- Accessibility (3.4): VoiceOver labels on the feed top bar, card action row (state-aware) and
+  pronounce buttons, and the detail toolbar; Dynamic Type ceiling on the detail screen.
+- Graceful empty fields (4.1): phonetic pill omitted when a word has no IPA (e.g. Ukrainian), on
+  both card and detail. Etymology/synonyms were already gated.
+- `WordAccess` gained an overridable `@MainActor catalogProvider` for testability (5.1).
+- `validate_content.py` (4.4): language-aware (IPA/etymology only audited for `en`), IPA charset
+  gained U+032F, new structural checks (text/definition/level) and catalogue invariants (distinct
+  lemmas per language; ≥50 non-premium words per language×level). Full run is **errors=0** across
+  all 2,592 words.
+- First unit tests (5.4): `VerbumTests` target — WordAccess, FSRS, and CloudKit-merge coverage.
+  `CloudKitSyncManager.merge` + helpers were made `static`/internal to test without a CK container.
+
+### ⚠️ DEVIATION from the audit — Ukrainian catalogue (4.1)
+
+The audit recommended **hiding/gating Ukrainian from v1.0** (it lacks IPA/etymology/register/
+synonyms and had duplicate lemmas). I did **not** hide it. Instead I:
+1. **De-duplicated** the uk catalogue in `build_uk_catalog.py` — 1000 → **892 distinct** lemmas
+   (kept the most-frequent variant per lemma). Rebuilt `words_v2.db`, bumped `bundledDBVersion` 18→19.
+2. Made the UI **gracefully omit** the empty fields (no empty IPA pill; etymology/synonyms already
+   hidden when absent).
+
+**Rationale:** Ukrainian *speakers* (the target — this is a native-speaker app, not a translation
+overlay) don't need IPA or English-style etymology, so graceful omission makes uk *acceptable*
+rather than *broken*, and preserves the invested content. **If you disagree, hiding uk is a one-line
+change** in the language picker (filter `availableLanguages()`); the data still validates clean.
+
+### Manual gates that CANNOT be done in code (must be done in Xcode / App Store Connect)
+
+These are **required before submission** and are outside what this environment can touch:
+- **Real App Store ID / `DEVELOPMENT_TEAM`** — `project.yml` has `DEVELOPMENT_TEAM: ""`; set your team
+  and signing in Xcode (or via the yml) for all three targets.
+- **App Store Connect IAP products** — create `pro_monthly`, `pro_yearly`, `pro_lifetime` (IDs in
+  `SubscriptionManager`) with prices/localizations, or the paywall stays in its (correct) "couldn't
+  load · Retry" state. Test with a StoreKit config file or a sandbox account.
+- **App Group capability** — `group.com.verbum.app` must be enabled on both the app and widget
+  App IDs in the developer portal (entitlements files + project wiring are now correct).
+- **iCloud/CloudKit + Sign in with Apple capabilities** — confirm enabled for `iCloud.com.verbum.app`.
+- **Live Privacy Policy / Terms pages** — `PremiumSheet` links to `https://verbum.app/privacy`
+  (Terms points at Apple's standard EULA). The privacy page must actually exist before review.
+- **Build + run the unit tests** — couldn't be verified here (no full Xcode). Open in Xcode, build
+  all three targets under Swift 6 strict concurrency, and run `VerbumTests` (⌘U).
+- The Watch code referenced in earlier handoffs is **not** a target in `project.yml`/pbxproj; if Watch
+  support is wanted it must be added as a new target.
+
+### Security reminder (unchanged, still open)
+
+The repo lives in Dropbox with a **GitHub PAT embedded in the git remote URL in plaintext**. Recommend
+revoking that token and switching to SSH or a credential helper. Not actioned yet.
 
 ---
 
