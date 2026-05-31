@@ -144,9 +144,19 @@ class UserProfileStore: ObservableObject {
 
     /// Switches the active vocabulary language (from the in-app picker) and reloads.
     func setWordLanguage(_ language: String) {
-        guard !language.isEmpty else { return }
+        guard !language.isEmpty, language != profile.wordLanguage else { return }
         profile.wordLanguage = language
         WordRepository.shared.setLanguage(language)
+        // Refresh the daily word notifications so they sample from the new language's pool;
+        // the existing repeating triggers would otherwise keep firing the old language.
+        if profile.notificationsEnabled {
+            NotificationManager.reschedule(
+                count: profile.notificationCount,
+                level: profile.level,
+                startHour: NotificationManager.hoursFrom(profile.notificationStart),
+                endHour: NotificationManager.hoursFrom(profile.notificationEnd)
+            )
+        }
     }
 
     static func resolveWordLanguage(stored: String, available: [String]) -> String {

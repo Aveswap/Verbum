@@ -57,6 +57,12 @@ enum NotificationManager {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
 
+    /// Clears the app icon badge. Each scheduled word sets badge = 1; without this it never
+    /// resets. Call on launch.
+    static func clearBadge() {
+        UNUserNotificationCenter.current().setBadgeCount(0)
+    }
+
     /// Schedules a once-off streak-at-risk notification at 20:00 today if the user
     /// hasn't opened the app today. Call this before recordDailyOpen() so lastOpened
     /// still reflects the previous session.

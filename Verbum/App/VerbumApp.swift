@@ -10,6 +10,10 @@ struct VerbumApp: App {
 
     init() {
         let store = UserProfileStore()
+        // Resolve the vocabulary language BEFORE any UI builds, so onboarding (word-check),
+        // notifications, and the feed all use the device/stored language from the first frame
+        // — not English-until-the-feed-appears.
+        store.applyWordLanguage()
         _userProfile = StateObject(wrappedValue: store)
         _subscriptions = StateObject(wrappedValue: SubscriptionManager())
         _auth = StateObject(wrappedValue: AuthService(profileStore: store))
@@ -33,9 +37,9 @@ struct VerbumApp: App {
                 .environmentObject(GameCenterService.shared)
                 .preferredColorScheme(.dark)
                 .onAppear {
-                    // Kick off Game Center auth — system shows sign-in sheet on first launch.
-                    GameCenterService.shared.authenticate()
                     // Publish a fresh 14-day timeline for widget + watch on every launch.
+                    // (Game Center auth is deferred to the feed so its sheet can't interrupt
+                    // onboarding — see AppCoordinator.)
                     SharedTimelinePublisher.refresh(
                         profile: userProfile.profile,
                         isPro: subscriptions.isPro

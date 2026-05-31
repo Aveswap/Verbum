@@ -367,18 +367,20 @@ final class WordDatabase: @unchecked Sendable {
         }) ?? []
     }
 
-    func fetchWords(ids: [UUID]) -> [Word] {
+    func fetchWords(ids: [UUID], language: String? = nil) -> [Word] {
         guard let dbQueue, !ids.isEmpty else { return [] }
         let placeholders = ids.map { _ in "?" }.joined(separator: ",")
-        let args = ids.map { $0.uuidString } as [DatabaseValueConvertible]
+        var args = ids.map { $0.uuidString } as [DatabaseValueConvertible]
+        var sql = "SELECT * FROM words WHERE id COLLATE NOCASE IN (\(placeholders))"
+        if let language { sql += " AND language = ?"; args.append(language) }
         return (try? dbQueue.read { db in
             // COLLATE NOCASE: UUID.uuidString is uppercase but the bundled DB stores ids
             // lowercase. Without this the IN-match finds nothing and decks/favorites/history
             // word lookups come back empty when the SQLite source is active.
-            try Row.fetchAll(db,
-                sql: "SELECT * FROM words WHERE id COLLATE NOCASE IN (\(placeholders))",
-                arguments: StatementArguments(args))
-            .compactMap(Self.word(from:))
+            // `language` scopes saved lists (decks/favorites/history) to the active catalogue,
+            // so switching language doesn't show the previous language's words.
+            try Row.fetchAll(db, sql: sql, arguments: StatementArguments(args))
+                .compactMap(Self.word(from:))
         }) ?? []
     }
 
@@ -389,13 +391,23 @@ final class WordDatabase: @unchecked Sendable {
         }) ?? 0
     }
 
-    func todaysWord() -> Word? {
+    /// Word of the day for a single language, deterministic across rebuilds.
+    func todaysWord(language: String) -> Word? {
         guard let dbQueue else { return nil }
-        let count = totalCount()
-        guard count > 0 else { return nil }
-        let dayIndex = (Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1) - 1
-        let offset = dayIndex % count
-        return fetchWords(offset: offset, limit: 1).first
+        return try? dbQueue.read { db -> Word? in
+            let total = try Int.fetchOne(db,
+                sql: "SELECT COUNT(*) FROM words WHERE language = ?", arguments: [language]) ?? 0
+            guard total > 0 else { return nil }
+            let dayIndex = (Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1) - 1
+            let offset = dayIndex % total
+            // Stable order: physical row order is not guaranteed and shifts on every rebuild.
+            let row = try Row.fetchOne(db, sql: """
+                SELECT * FROM words WHERE language = ?
+                ORDER BY frequencyRank IS NULL, frequencyRank, id
+                LIMIT 1 OFFSET ?
+            """, arguments: [language, offset])
+            return row.flatMap(Self.word(from:))
+        }
     }
 
     // MARK: - Row → Word

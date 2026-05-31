@@ -25,12 +25,16 @@ struct AppCoordinator: View {
         if userProfile.profile.onboardingCompleted {
             WordFeedView()
                 .onAppear {
+                    NotificationManager.clearBadge()
                     NotificationManager.scheduleStreakReminder(
                         currentStreak: userProfile.profile.currentStreak,
                         lastOpened: userProfile.profile.lastOpenedDate
                     )
                     userProfile.recordDailyOpen()
                     Task { await auth.refreshCredentialState() }
+                    // Game Center auth is triggered here (the feed), not at the app root, so its
+                    // sign-in sheet can't interrupt onboarding's first run.
+                    GameCenterService.shared.authenticate()
                 }
         } else {
             OnboardingFlow()

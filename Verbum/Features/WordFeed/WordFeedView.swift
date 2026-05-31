@@ -112,7 +112,7 @@ struct WordFeedView: View {
             .environmentObject(userProfile)
         }
         .onAppear {
-            userProfile.applyWordLanguage()   // resolves device/stored language before the feed loads
+            // Language is resolved at launch (VerbumApp.init); the feed just reads it.
             seenWordIdsSet = Set(userProfile.profile.seenWordIds)
             viewModel.isPro = subscriptions.isPro
             viewModel.userLevel = userProfile.profile.level

@@ -110,7 +110,9 @@ final class WordRepository: ObservableObject {
         guard !ids.isEmpty else { return [] }
         let fetched: [Word]
         if WordDatabase.shared.isAvailable {
-            fetched = WordDatabase.shared.fetchWords(ids: ids)
+            // Scope to the active language so saved lists (decks/favorites/history) show only
+            // the current catalogue's words after a language switch.
+            fetched = WordDatabase.shared.fetchWords(ids: ids, language: activeLanguage)
         } else {
             let dict = Dictionary(uniqueKeysWithValues: all.map { ($0.id, $0) })
             fetched = ids.compactMap { dict[$0] }
@@ -122,7 +124,7 @@ final class WordRepository: ObservableObject {
 
     func todaysWord() -> Word? {
         if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.todaysWord()
+            return WordDatabase.shared.todaysWord(language: activeLanguage)
         }
         guard !all.isEmpty else { return nil }
         let dayIndex = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
