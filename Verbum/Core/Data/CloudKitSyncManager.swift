@@ -42,7 +42,7 @@ final class CloudKitSyncManager {
             var base = profile
             if let existing = try? await db.record(for: recordID) {
                 record = existing
-                base = merge(local: profile, remote: decode(from: existing))
+                base = Self.merge(local: profile, remote: decode(from: existing))
             } else {
                 record = CKRecord(recordType: Self.recordType, recordID: recordID)
             }
@@ -52,7 +52,7 @@ final class CloudKitSyncManager {
             } catch let e as CKError where e.code == .serverRecordChanged {
                 // Someone wrote between our fetch and save — re-fetch, re-merge, retry once.
                 let fresh = try await db.record(for: recordID)
-                let remerged = merge(local: base, remote: decode(from: fresh))
+                let remerged = Self.merge(local: base, remote: decode(from: fresh))
                 encode(remerged, into: fresh)
                 try await db.save(fresh)
             }
@@ -70,7 +70,7 @@ final class CloudKitSyncManager {
             let recordID = CKRecord.ID(recordName: userID, zoneID: Self.zoneID)
             let record = try await db.record(for: recordID)
             let remote = decode(from: record)
-            store.profile = merge(local: store.profile, remote: remote)
+            store.profile = Self.merge(local: store.profile, remote: remote)
             store.markInitialPullComplete()   // allow pushes now that the server state is merged in
             store.saveNow()
         } catch let ckErr as CKError where ckErr.code == .unknownItem {
@@ -199,7 +199,9 @@ final class CloudKitSyncManager {
 
     // MARK: - Merge
 
-    private func merge(local: UserProfile, remote: UserProfile) -> UserProfile {
+    // Static + internal so the (pure) LWW merge rules can be unit-tested directly without
+    // instantiating the CloudKit container.
+    static func merge(local: UserProfile, remote: UserProfile) -> UserProfile {
         var merged = local
 
         // User-editable scalar fields: pick the side whose settingsUpdatedAt is newer
@@ -249,10 +251,10 @@ final class CloudKitSyncManager {
         }
 
         // Daily counters: the side with the later date is authoritative; same day takes max.
-        (merged.wordsLearnedToday, merged.wordsLearnedDate) = mergeDailyCounter(
+        (merged.wordsLearnedToday, merged.wordsLearnedDate) = Self.mergeDailyCounter(
             (local.wordsLearnedToday, local.wordsLearnedDate),
             (remote.wordsLearnedToday, remote.wordsLearnedDate))
-        (merged.practiceGamesPlayedToday, merged.practiceGamesDate) = mergeDailyCounter(
+        (merged.practiceGamesPlayedToday, merged.practiceGamesDate) = Self.mergeDailyCounter(
             (local.practiceGamesPlayedToday, local.practiceGamesDate),
             (remote.practiceGamesPlayedToday, remote.practiceGamesDate))
 
@@ -280,8 +282,8 @@ final class CloudKitSyncManager {
         merged.reviews = mergedReviews
 
         // Mastery / high scores: max per key (never regress a hard-won value across devices).
-        merged.wordMastery = mergeMaxByKey(local.wordMastery, remote.wordMastery)
-        merged.challengeHighScores = mergeMaxByKey(local.challengeHighScores, remote.challengeHighScores)
+        merged.wordMastery = Self.mergeMaxByKey(local.wordMastery, remote.wordMastery)
+        merged.challengeHighScores = Self.mergeMaxByKey(local.challengeHighScores, remote.challengeHighScores)
 
         // Decks: union by id; on the rare id collision keep the fuller deck (minimize loss).
         var decksById: [UUID: WordDeck] = [:]
@@ -299,14 +301,14 @@ final class CloudKitSyncManager {
     }
 
     /// Merge a "resets at local midnight" counter: later date wins; same calendar day takes max.
-    private func mergeDailyCounter(_ a: (Int, Date), _ b: (Int, Date)) -> (Int, Date) {
+    private static func mergeDailyCounter(_ a: (Int, Date), _ b: (Int, Date)) -> (Int, Date) {
         if Calendar.current.isDate(a.1, inSameDayAs: b.1) {
             return (max(a.0, b.0), max(a.1, b.1))
         }
         return a.1 > b.1 ? a : b
     }
 
-    private func mergeMaxByKey(_ a: [String: Int], _ b: [String: Int]) -> [String: Int] {
+    private static func mergeMaxByKey(_ a: [String: Int], _ b: [String: Int]) -> [String: Int] {
         var out = a
         for (k, v) in b { out[k] = max(out[k] ?? Int.min, v) }
         return out

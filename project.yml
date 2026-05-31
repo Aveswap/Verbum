@@ -79,6 +79,23 @@ targets:
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
 
+  VerbumTests:
+    type: bundle.unit-test
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: VerbumTests
+    dependencies:
+      - target: Verbum
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.verbum.app.tests
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        GENERATE_INFOPLIST_FILE: "YES"
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+
 # Shared schemes — defined here so `xcodegen generate` reproduces them (Xcode-authored
 # shared schemes would otherwise be wiped on every regeneration).
 schemes:
@@ -91,6 +108,8 @@ schemes:
       config: Debug
     test:
       config: Debug
+      targets:
+        - VerbumTests
     profile:
       config: Release
     analyze:

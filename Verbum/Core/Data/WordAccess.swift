@@ -24,7 +24,7 @@ enum WordAccess {
     /// Source of the full catalog. Defaults to the live repository; overridable in tests so the
     /// paywall rules can be exercised against a fixture catalog without booting the database.
     /// Assign a new provider then call `invalidate()` to drop any memoized pools.
-    static var catalogProvider: () -> [Word] = { WordRepository.shared.all }
+    static var catalogProvider: @MainActor () -> [Word] = { WordRepository.shared.all }
 
     /// Memoized free pool per level + its id-set for O(1) membership. The pool is a pure
     /// function of the catalog, so it's cached and only recomputed after `invalidate()`

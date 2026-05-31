@@ -12,6 +12,7 @@
 		043DF0EEE7D9F8A442869F87 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFF885EECBBFF36393A0207 /* ProgressBar.swift */; };
 		063129C2C1514E30206994BB /* NotificationsSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693E65753117638048641719 /* NotificationsSetupView.swift */; };
 		07428379FB74A3E81541F286 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBBDCED3924638D2D69CDCC /* ConfettiView.swift */; };
+		07F0EFC7F5A9CDF2CD0E5DC7 /* WordAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A89258AF193132750B6539E /* WordAccessTests.swift */; };
 		0CF55C7C657B7F92E1DC5B4A /* SharedWordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4CC1EEAE1531CA32DC551 /* SharedWordStore.swift */; };
 		133E064D4F1227A2C6394B89 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6491D5127E47854DC497F5 /* ChallengeView.swift */; };
 		143A669B556D1A55EA103214 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 74131837D5B93D5692FB2461 /* PrivacyInfo.xcprivacy */; };
@@ -64,7 +65,9 @@
 		A55E3759F27DA11CCA839DE7 /* words_v2.db-wal in Resources */ = {isa = PBXBuildFile; fileRef = F5ECCE11B667DEFBC02108E9 /* words_v2.db-wal */; };
 		A62629D678157BD464C84EA0 /* WordOfDayEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6162D35C4679049EC2E53A37 /* WordOfDayEntryView.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
+		B0CC5FC274154F9F7F31DAC5 /* FSRSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5C8FB3E44D1DEB2BB3CBF /* FSRSTests.swift */; };
 		B2B60BF1A7D0856710563679 /* SharedTimelinePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE4107291D875D5092A74B /* SharedTimelinePublisher.swift */; };
+		B33E6587464D1EEEF0AE1E32 /* CloudKitMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */; };
 		B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */; };
 		B4F2A4302D6A0D6DFA5FD090 /* VerbumWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B124CA958B5492B2AA44C00 /* VerbumWidget.swift */; };
 		B806DA207D1DA018919C445A /* WordOfDayWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D483A3E77F3AE18BAD146B /* WordOfDayWidget.swift */; };
@@ -104,6 +107,13 @@
 			remoteGlobalIDString = D2002E6BF18631A010AE57A0;
 			remoteInfo = VerbumWidgetExtension;
 		};
+		EC984B028032396C98609082 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40DBA824FA9D1DF3B3B10DA7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB43FC632639A9698064B413;
+			remoteInfo = Verbum;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,6 +134,7 @@
 		0506F780D4C3F3F5705BCD8C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		07924EA2E5FE7E90339327FB /* WordShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordShareSheet.swift; sourceTree = "<group>"; };
+		0A89258AF193132750B6539E /* WordAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccessTests.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A702C3CDDC0F977DBCCF854 /* FSRS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRS.swift; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
@@ -154,7 +165,9 @@
 		693E65753117638048641719 /* NotificationsSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupView.swift; sourceTree = "<group>"; };
 		6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionRow.swift; sourceTree = "<group>"; };
 		6BF39C6A2496F507062F7F84 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitMergeTests.swift; sourceTree = "<group>"; };
 		6DFFC1788A87089728F16A36 /* GuessWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWordView.swift; sourceTree = "<group>"; };
+		6EC13E4500753104AE3E6E0C /* VerbumTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = VerbumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7065EA90832D7B55B091ECF2 /* words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
 		74131837D5B93D5692FB2461 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		742443643794F04CF16B025C /* CommitmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentView.swift; sourceTree = "<group>"; };
@@ -200,6 +213,7 @@
 		E8AE4107291D875D5092A74B /* SharedTimelinePublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTimelinePublisher.swift; sourceTree = "<group>"; };
 		E91F595CD7ECE71866F10ABD /* Verbum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Verbum.entitlements; sourceTree = "<group>"; };
 		EACC7F5F28B7CA69B1A0BDFD /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		EAE5C8FB3E44D1DEB2BB3CBF /* FSRSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRSTests.swift; sourceTree = "<group>"; };
 		EEBBDCED3924638D2D69CDCC /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		EECE110E8ADA8FA5F54C7A95 /* words_v2.db */ = {isa = PBXFileReference; path = words_v2.db; sourceTree = "<group>"; };
 		EFCA694741309C6D900CD665 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -239,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				C21B3590E4FD7FF17ACFAA57 /* Verbum.app */,
+				6EC13E4500753104AE3E6E0C /* VerbumTests.xctest */,
 				3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */,
 			);
 			name = Products;
@@ -339,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				6AD9078077C2ECF8F7E17DA4 /* Verbum */,
+				9145E8954293FA182C468F29 /* VerbumTests */,
 				D5088D1E77AE4A06A23D3156 /* VerbumWidget */,
 				2C23C9E482462D5AC7C9DE39 /* Products */,
 			);
@@ -356,6 +372,16 @@
 				7065EA90832D7B55B091ECF2 /* words.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9145E8954293FA182C468F29 /* VerbumTests */ = {
+			isa = PBXGroup;
+			children = (
+				6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */,
+				EAE5C8FB3E44D1DEB2BB3CBF /* FSRSTests.swift */,
+				0A89258AF193132750B6539E /* WordAccessTests.swift */,
+			);
+			path = VerbumTests;
 			sourceTree = "<group>";
 		};
 		A80019CBEFDE89AF7DB29EF0 /* Theme */ = {
@@ -494,6 +520,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8795B4431C20CB93D07704ED /* VerbumTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1DF50D18BBCB81E55943B93 /* Build configuration list for PBXNativeTarget "VerbumTests" */;
+			buildPhases = (
+				73BF1F720953C8C1EA1964CC /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5173E7E08D372379BAECBEF1 /* PBXTargetDependency */,
+			);
+			name = VerbumTests;
+			packageProductDependencies = (
+			);
+			productName = VerbumTests;
+			productReference = 6EC13E4500753104AE3E6E0C /* VerbumTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		BB43FC632639A9698064B413 /* Verbum */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CB7951C870A0D123D12603A8 /* Build configuration list for PBXNativeTarget "Verbum" */;
@@ -543,6 +587,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					8795B4431C20CB93D07704ED = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
 					BB43FC632639A9698064B413 = {
 						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
@@ -571,6 +619,7 @@
 			projectRoot = "";
 			targets = (
 				BB43FC632639A9698064B413 /* Verbum */,
+				8795B4431C20CB93D07704ED /* VerbumTests */,
 				D2002E6BF18631A010AE57A0 /* VerbumWidgetExtension */,
 			);
 		};
@@ -693,9 +742,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73BF1F720953C8C1EA1964CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B33E6587464D1EEEF0AE1E32 /* CloudKitMergeTests.swift in Sources */,
+				B0CC5FC274154F9F7F31DAC5 /* FSRSTests.swift in Sources */,
+				07F0EFC7F5A9CDF2CD0E5DC7 /* WordAccessTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		5173E7E08D372379BAECBEF1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB43FC632639A9698064B413 /* Verbum */;
+			targetProxy = EC984B028032396C98609082 /* PBXContainerItemProxy */;
+		};
 		B7634E8BC6D515618971146E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D2002E6BF18631A010AE57A0 /* VerbumWidgetExtension */;
@@ -752,6 +816,28 @@
 			};
 			name = Release;
 		};
+		3E8D11B13A6753CCFCCE3E1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.verbum.app.tests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Verbum.app/Verbum";
+			};
+			name = Debug;
+		};
 		68563C32E9264977C1726B65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -773,6 +859,28 @@
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7603621B6048F5CC8CC0FF8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.verbum.app.tests;
+				SDKROOT = iphoneos;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Verbum.app/Verbum";
 			};
 			name = Release;
 		};
@@ -945,6 +1053,15 @@
 			buildConfigurations = (
 				03543AC628DCB6C2730C084C /* Debug */,
 				68563C32E9264977C1726B65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D1DF50D18BBCB81E55943B93 /* Build configuration list for PBXNativeTarget "VerbumTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E8D11B13A6753CCFCCE3E1D /* Debug */,
+				7603621B6048F5CC8CC0FF8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
