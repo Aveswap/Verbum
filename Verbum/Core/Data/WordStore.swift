@@ -13,6 +13,15 @@ class UserProfileStore: ObservableObject {
     private var cloudKitWorkItem: DispatchWorkItem?
     private var seenSet: Set<UUID> = []
 
+    /// Pushes are suppressed until the first CloudKit pull has completed. Without this, the
+    /// fresh local profile created right after sign-in/reinstall races (and can overwrite) the
+    /// server's history before the pull merges it back — the classic "lost my data" bug.
+    private var hasCompletedInitialPull = false
+
+    /// Called by CloudKitSyncManager.pull once a merge (or first-push of a new record) finishes,
+    /// so subsequent local mutations are allowed to push.
+    func markInitialPullComplete() { hasCompletedInitialPull = true }
+
     init() {
         if let data = UserDefaults.standard.data(forKey: key),
            let saved = try? JSONDecoder().decode(UserProfile.self, from: data) {
@@ -48,8 +57,10 @@ class UserProfileStore: ObservableObject {
         isTouchingTimestamp = true
 
         // Keep the O(1) seen-cache in lockstep with the source of truth (e.g. after a
-        // CloudKit pull replaces `profile` wholesale with remote-only seen IDs).
-        if oldValue.seenWordIds.count != profile.seenWordIds.count {
+        // CloudKit pull replaces `profile` wholesale). Rebuild by membership, not by count:
+        // a count check silently desyncs the moment the seen-set ever becomes non-monotonic
+        // (a future "forget word" / per-language reset). The set is bounded by catalogue size.
+        if seenSet.count != profile.seenWordIds.count || !seenSet.isSuperset(of: profile.seenWordIds) {
             seenSet = Set(profile.seenWordIds)
         }
         if Self.scalarsDiffer(oldValue, profile) {
@@ -89,7 +100,7 @@ class UserProfileStore: ObservableObject {
     }
 
     private func scheduleCloudKitPush() {
-        guard profile.appleUserID != nil else { return }
+        guard profile.appleUserID != nil, hasCompletedInitialPull else { return }
         cloudKitWorkItem?.cancel()
         let item = DispatchWorkItem { [weak self] in
             guard let self else { return }
@@ -114,7 +125,7 @@ class UserProfileStore: ObservableObject {
 
     private func persist() {
         persistLocally()
-        if profile.appleUserID != nil {
+        if profile.appleUserID != nil, hasCompletedInitialPull {
             let snapshot = profile
             Task { await cloudKit.push(snapshot) }
         }

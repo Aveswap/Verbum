@@ -26,21 +26,36 @@ final class CloudKitSyncManager {
     private static let recordType = "UserProfile"
     private static let zoneID = CKRecordZone.ID(zoneName: "VerbumZone", ownerName: CKCurrentUserDefaultName)
 
+    private var zoneCreated = false
+
     // MARK: - Push
 
+    /// Pushes the profile by MERGING into the existing server record (never a blind overwrite),
+    /// so two simultaneously-active devices can't clobber each other. Retries once on
+    /// `serverRecordChanged` (a write landed between our fetch and save).
     func push(_ profile: UserProfile) async {
         guard let userID = profile.appleUserID else { return }
         do {
             try await ensureZoneExists()
             let recordID = CKRecord.ID(recordName: userID, zoneID: Self.zoneID)
             let record: CKRecord
-            do {
-                record = try await db.record(for: recordID)
-            } catch {
+            var base = profile
+            if let existing = try? await db.record(for: recordID) {
+                record = existing
+                base = merge(local: profile, remote: decode(from: existing))
+            } else {
                 record = CKRecord(recordType: Self.recordType, recordID: recordID)
             }
-            encode(profile, into: record)
-            try await db.save(record)
+            encode(base, into: record)
+            do {
+                try await db.save(record)
+            } catch let e as CKError where e.code == .serverRecordChanged {
+                // Someone wrote between our fetch and save — re-fetch, re-merge, retry once.
+                let fresh = try await db.record(for: recordID)
+                let remerged = merge(local: base, remote: decode(from: fresh))
+                encode(remerged, into: fresh)
+                try await db.save(fresh)
+            }
         } catch {
             logger.error("[CloudKit] push failed: \(error, privacy: .public)")
         }
@@ -56,8 +71,11 @@ final class CloudKitSyncManager {
             let record = try await db.record(for: recordID)
             let remote = decode(from: record)
             store.profile = merge(local: store.profile, remote: remote)
+            store.markInitialPullComplete()   // allow pushes now that the server state is merged in
             store.saveNow()
         } catch let ckErr as CKError where ckErr.code == .unknownItem {
+            // No server record yet — this device's profile becomes the seed. Allow the push.
+            store.markInitialPullComplete()
             await push(store.profile)
         } catch {
             logger.error("[CloudKit] pull failed: \(error, privacy: .public)")
@@ -67,8 +85,10 @@ final class CloudKitSyncManager {
     // MARK: - Zone
 
     private func ensureZoneExists() async throws {
+        guard !zoneCreated else { return }
         let zone = CKRecordZone(zoneID: Self.zoneID)
         _ = try await db.modifyRecordZones(saving: [zone], deleting: [])
+        zoneCreated = true
     }
 
     // MARK: - Delete zone (called on account deletion)
@@ -212,9 +232,12 @@ final class CloudKitSyncManager {
         merged.longestStreak   = max(local.longestStreak, remote.longestStreak)
         merged.totalPoints     = max(local.totalPoints, remote.totalPoints)
         merged.quarterlyPoints = max(local.quarterlyPoints, remote.quarterlyPoints)
-        // Earned consumable: max so a freeze earned on one device isn't destroyed by a
-        // stale sync from another (matches the "counters take max" convention).
-        merged.streakFreezes   = max(local.streakFreezes, remote.streakFreezes)
+        // Consumable balance: take the side that acted most recently as authoritative, rather
+        // than max(). Freezes only change inside recordDailyOpen (which bumps profileUpdatedAt),
+        // so the newer profile has the true balance — max() would "refund" a freeze that the
+        // other device already spent. Clamp to the earn cap (3) defensively.
+        merged.streakFreezes = min(3, (remote.profileUpdatedAt > local.profileUpdatedAt)
+            ? remote.streakFreezes : local.streakFreezes)
         // Locked-once timezone: keep whichever side set it (prefer local).
         merged.streakTimezone  = local.streakTimezone ?? remote.streakTimezone
         merged.quarterlyResetDate = max(local.quarterlyResetDate, remote.quarterlyResetDate)
