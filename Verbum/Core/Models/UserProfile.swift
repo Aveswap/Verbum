@@ -53,7 +53,7 @@ struct UserProfile: Codable {
     // Custom decks created by the user (e.g. "Travel words", "SAT prep")
     var decks: [WordDeck] = []
 
-    // FSRS-5 review state keyed by word UUID string
+    // FSRS-4.5 review state keyed by word UUID string
     var reviews: [String: WordReview] = [:]
 
     // Challenge high scores keyed by ChallengeKind rawValue
@@ -62,7 +62,7 @@ struct UserProfile: Codable {
     static let freePracticeLimit = 3
 }
 
-/// Per-word FSRS-5 spaced-repetition state.
+/// Per-word FSRS-4.5 spaced-repetition state.
 /// Updated on every quiz answer; controls when the word resurfaces in the feed.
 struct WordReview: Codable, Hashable {
     var stability: Double          // S — interval in days where retention drops to 90%

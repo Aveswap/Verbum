@@ -117,6 +117,7 @@ struct WordFeedView: View {
             viewModel.isPro = subscriptions.isPro
             viewModel.userLevel = userProfile.profile.level
             viewModel.dueReviewIds = userProfile.dueReviews()
+            viewModel.seenWordIds = seenWordIdsSet
             viewModel.reloadFromRepository()
         }
         // Banner/hint timers live in .task so they're cancelled when the feed disappears —
@@ -140,13 +141,16 @@ struct WordFeedView: View {
         }
         .onChange(of: userProfile.profile.seenWordIds) { newValue in
             seenWordIdsSet = Set(newValue)
+            viewModel.seenWordIds = seenWordIdsSet
         }
         .onChange(of: subscriptions.isPro) { newValue in
             viewModel.isPro = newValue
+            viewModel.seenWordIds = seenWordIdsSet
             viewModel.reloadFromRepository()
         }
         .onChange(of: userProfile.profile.level) { newLevel in
             viewModel.userLevel = newLevel
+            viewModel.seenWordIds = seenWordIdsSet
             viewModel.reloadFromRepository()
         }
         .onChange(of: userProfile.profile.wordLanguage) { _ in

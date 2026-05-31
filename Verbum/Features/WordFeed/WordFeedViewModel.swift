@@ -20,6 +20,10 @@ class WordFeedViewModel: ObservableObject {
     /// IDs of words FSRS says are due for review. Set from outside (WordFeedView.onAppear)
     /// because the VM has no access to UserProfileStore.
     var dueReviewIds: [UUID] = []
+    /// IDs the user has already swiped. Set from outside (like dueReviewIds) so the Pro feed
+    /// can surface unseen words first instead of reshuffling the whole catalog every restart
+    /// (which made a returning Pro user re-see old words before new ones).
+    var seenWordIds: Set<UUID> = []
 
     init() {
         SpeechService.configureAudioSession()
@@ -102,9 +106,10 @@ class WordFeedViewModel: ObservableObject {
             let pool = WordRepository.shared.all.filter { $0.category == ct }
             words = prependDueReviews(pool.shuffled())
         } else if isPro {
-            // Pro, no filter: full catalog at the user's selected level
+            // Pro, no filter: full catalog at the user's selected level, unseen words first
+            // (each group shuffled for variety) so returning users get new content, not repeats.
             let pool = WordRepository.shared.all.filter { $0.level == userLevel }
-            words = prependDueReviews(pool.shuffled())
+            words = prependDueReviews(unseenFirst(pool))
         } else {
             // Free, no filter: the locked 50 of this level in freq-rank order
             words = WordAccess.freePool(level: userLevel)
@@ -125,6 +130,16 @@ class WordFeedViewModel: ObservableObject {
     /// The view layer shows a paywall card on the final swipe.
     func isFreePoolExhausted(seenIds: Set<UUID>) -> Bool {
         !isPro && remainingFreeCount(seenIds: seenIds) == 0 && !words.isEmpty
+    }
+
+    /// Orders a pool so words the user hasn't swiped yet come first (shuffled), followed by
+    /// already-seen words (shuffled) — so a returning Pro user keeps getting new vocabulary
+    /// before the app starts recycling familiar words.
+    private func unseenFirst(_ pool: [Word]) -> [Word] {
+        guard !seenWordIds.isEmpty else { return pool.shuffled() }
+        let unseen = pool.filter { !seenWordIds.contains($0.id) }.shuffled()
+        let seen   = pool.filter {  seenWordIds.contains($0.id) }.shuffled()
+        return unseen + seen
     }
 
     /// Front-loads up to 10 FSRS-due reviews ahead of the rest of the feed.

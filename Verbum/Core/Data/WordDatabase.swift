@@ -6,13 +6,18 @@ import os
 /// Offers both a full fetch (WordRepository materializes it once) and targeted on-demand
 /// queries (by level / category / id / FTS). The bundle JSON is the fallback when DB is absent.
 ///
-/// `@unchecked Sendable`: GRDB's `DatabaseQueue` is thread-safe; `dbQueue` is only assigned
-/// on the main thread (init, `openIfExists`, the `seedInBackground` completion). All other
-/// access is read-only and goes through the queue.
+/// `@unchecked Sendable`: GRDB's `DatabaseQueue` is itself thread-safe, and the optional
+/// reference to it is guarded by `queueLock` (an `OSAllocatedUnfairLock`). The reference is
+/// written from the seeding background queue and the main thread, and read from any queue,
+/// so the lock — not a "main-thread-only" convention — is what makes the access well-defined.
 final class WordDatabase: @unchecked Sendable {
     static let shared = WordDatabase()
 
-    private(set) var dbQueue: DatabaseQueue?
+    /// The live connection. Reads take the lock and copy out the reference; the `DatabaseQueue`
+    /// it returns is internally synchronized, so callers can use it without holding the lock.
+    private let queueLock = OSAllocatedUnfairLock<DatabaseQueue?>(initialState: nil)
+    var dbQueue: DatabaseQueue? { queueLock.withLock { $0 } }
+    private func setQueue(_ queue: DatabaseQueue?) { queueLock.withLock { $0 = queue } }
 
     static var databaseURL: URL {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory,
@@ -88,7 +93,7 @@ final class WordDatabase: @unchecked Sendable {
         let path = Self.databaseURL.path
         guard FileManager.default.fileExists(atPath: path) else { return }
         do {
-            dbQueue = try DatabaseQueue(path: path)
+            setQueue(try DatabaseQueue(path: path))
             try runMigrations()
         } catch {
             Logger.database.error("open/migrate failed: \(error.localizedDescription, privacy: .public)")
@@ -136,7 +141,7 @@ final class WordDatabase: @unchecked Sendable {
             try FileManager.default.removeItem(at: dest)
         }
         try FileManager.default.moveItem(at: tempURL, to: dest)
-        dbQueue = try DatabaseQueue(path: dest.path)
+        setQueue(try DatabaseQueue(path: dest.path))
         try runMigrations()
     }
 
@@ -203,6 +208,20 @@ final class WordDatabase: @unchecked Sendable {
     func runMigrations() throws {
         guard let dbQueue else { return }
         try Self.migrator.migrate(dbQueue)
+        // Surface schema drift: if the code expects migrations the DB doesn't have applied
+        // (e.g. a forward-rolled bundled DB opened by an older build, or a half-applied
+        // migration), log it rather than failing silently with mysterious query errors.
+        if let applied = try? dbQueue.read({ try Self.migrator.appliedIdentifiers($0) }) {
+            let expected = Set(Self.migrator.migrations)
+            let missing = expected.subtracting(applied)
+            let unknown = applied.subtracting(expected)
+            if !missing.isEmpty {
+                Logger.database.error("migration drift: expected-but-not-applied \(missing.sorted().joined(separator: ", "), privacy: .public)")
+            }
+            if !unknown.isEmpty {
+                Logger.database.error("migration drift: applied-but-unknown \(unknown.sorted().joined(separator: ", "), privacy: .public)")
+            }
+        }
     }
 
     func createSchema() throws { try runMigrations() }

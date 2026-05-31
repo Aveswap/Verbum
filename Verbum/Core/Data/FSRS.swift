@@ -1,13 +1,16 @@
 import Foundation
 
-/// FSRS-5 spaced repetition scheduler.
-/// Reference: https://github.com/open-spaced-repetition/fsrs.js (algorithm v5).
-/// We adapted it to be ratings 1...4 (again / hard / good / easy) and a desired
-/// retention of 0.9 (the user resurfaces a word when its recall probability ≈ 90 %).
+/// FSRS-4.5-equivalent spaced repetition scheduler.
+/// Reference: https://github.com/open-spaced-repetition (the 17-weight model). This is the
+/// FSRS-4.5 weight vector and update rules — it deliberately omits FSRS-5's two extra
+/// short-term-memory weights (w[17], w[18]) and same-day stability step, which only matter
+/// for multiple reviews within one day; Verbum surfaces a word at most once per day.
+/// Ratings are 1...4 (again / hard / good / easy) and the desired retention is 0.9
+/// (the user resurfaces a word when its recall probability ≈ 90 %).
 enum FSRSRating: Int { case again = 1, hard = 2, good = 3, easy = 4 }
 
 enum FSRS {
-    /// FSRS-5 default weights, published in the official repo.
+    /// FSRS-4.5 default weights (17-element), published in the official repo.
     /// 17-element vector. Do not reorder — index positions are load-bearing.
     static let w: [Double] = [
         0.4072, 1.1829, 3.1262, 15.4722,
@@ -48,7 +51,7 @@ enum FSRS {
                 r.state = .review
             }
         } else {
-            // Subsequent reviews — apply FSRS-5 update rules.
+            // Subsequent reviews — apply FSRS-4.5 update rules.
             let retrievability = recallProbability(stability: r.stability, elapsedDays: elapsed)
             if rating == .again {
                 r.stability = nextLapseStability(d: r.difficulty,
@@ -102,7 +105,7 @@ enum FSRS {
     }
 
     private static func nextDifficulty(d: Double, rating: FSRSRating) -> Double {
-        // FSRS-5: delta = -w[6]*(rating-3); apply linear damping delta*(10-D)/9 so high
+        // FSRS-4.5: delta = -w[6]*(rating-3); apply linear damping delta*(10-D)/9 so high
         // difficulties move less, then mean-revert toward D0(easy) — i.e. D0(4), not D0(good).
         let delta = -w[6] * Double(rating.rawValue - 3)
         let damped = d + delta * (10.0 - d) / 9.0

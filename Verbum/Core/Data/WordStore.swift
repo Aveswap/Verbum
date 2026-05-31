@@ -388,19 +388,28 @@ class UserProfileStore: ObservableObject {
     }
 
     private func checkQuarterlyReset() {
-        let threeMonthsLater = Calendar.current.date(byAdding: .month, value: 3, to: profile.quarterlyResetDate) ?? Date()
-        guard Date() >= threeMonthsLater else { return }
-        if let tier = Self.badgeTier(for: profile.quarterlyPoints) {
-            let badge = EarnedBadge(
-                tier: tier,
-                period: quarterLabel(for: profile.quarterlyResetDate),
-                points: profile.quarterlyPoints,
-                date: Date()
-            )
-            profile.earnedBadges.append(badge)
+        let cal = Calendar.current
+        let now = Date()
+        // Advance one exact quarter at a time until the reset date is in the future. This keeps
+        // quarter boundaries from drifting (we never snap the anchor to "now") and awards the
+        // badge for the FIRST closed quarter even if the user was away for several quarters —
+        // subsequent skipped quarters had no activity (0 points), so they earn no badge.
+        var didReset = false
+        while let nextBoundary = cal.date(byAdding: .month, value: 3, to: profile.quarterlyResetDate),
+              now >= nextBoundary {
+            if !didReset, let tier = Self.badgeTier(for: profile.quarterlyPoints) {
+                let badge = EarnedBadge(
+                    tier: tier,
+                    period: quarterLabel(for: profile.quarterlyResetDate),
+                    points: profile.quarterlyPoints,
+                    date: nextBoundary
+                )
+                profile.earnedBadges.append(badge)
+            }
+            profile.quarterlyResetDate = nextBoundary
+            didReset = true
         }
-        profile.quarterlyPoints = 0
-        profile.quarterlyResetDate = Date()
+        if didReset { profile.quarterlyPoints = 0 }
     }
 
     private func quarterLabel(for date: Date) -> String {
