@@ -46,7 +46,8 @@ final class WordDatabase: @unchecked Sendable {
     /// v16: German expert expansion → 200 each level (de now 600 total).
     /// v17: German beginner expansion incl. premium categories → 250 beginner (de now 650).
     /// v18: German beginner COMPLETE → 300 beginner (de now 700 total).
-    static let bundledDBVersion = 18
+    /// v19: Ukrainian de-duplicated by lemma — 1000 → 892 distinct words (scripts/build_uk_catalog.py).
+    static let bundledDBVersion = 19
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {

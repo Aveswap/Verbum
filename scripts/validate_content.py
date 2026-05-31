@@ -37,11 +37,22 @@ BATCH_GLOB = os.path.join(HERE, "word_batches", "*.json")
 # A pragmatic IPA character class: slashes wrap the transcription, and the body should be
 # IPA letters / diacritics / stress + length marks — not ASCII spelling leaking through.
 IPA_BODY = re.compile(
-    r"^[a-zɑæɐəɛɜɪɨʊʌɔɒθðʃʒŋɡɹɾʁχʔʰʲˠˤbdfhjklmnprstvwzˈˌːˑ.̩̟̃͡ ()|-]+$",
+    r"^[a-zɑæɐəɛɜɪɨʊʌɔɒθðʃʒŋɡɹɾʁχʔʰʲˠˤbdfhjklmnprstvwzˈˌːˑ.̩̟̯̃͡ ()|-]+$",
     re.IGNORECASE,
 )
 
 PLACEHOLDER_ETY = {"", "origin unknown", "unknown", "n/a", "tbd", "—", "-"}
+
+VALID_LEVELS = {"beginner", "intermediate", "expert"}
+
+# Languages that ship an IPA transcription + English-style etymology. Other languages (e.g.
+# Ukrainian) legitimately leave phonetic/etymology blank, so those fields aren't audited there.
+IPA_LANGUAGES = {"en"}
+ETYMOLOGY_LANGUAGES = {"en"}
+
+# Must mirror WordAccess.swift — the soft paywall hides these categories from the free pool.
+PREMIUM_CATEGORIES = {"Technology", "Science", "Literature", "Society"}
+FREE_LIMIT = 50  # WordAccess.freeLimit
 
 
 def load_from_db(path):
@@ -49,9 +60,12 @@ def load_from_db(path):
         sys.exit(f"DB not found: {path}. Build it first (python import_batches.py).")
     con = sqlite3.connect(path)
     con.row_factory = sqlite3.Row
-    rows = con.execute(
-        "SELECT text, phonetic, etymology FROM words ORDER BY text"
-    ).fetchall()
+    cols = [r[1] for r in con.execute("PRAGMA table_info(words)")]
+    has_lang = "language" in cols
+    select = "SELECT text, phonetic, etymology, definition, partOfSpeech, category, level"
+    select += ", language" if has_lang else ", 'en' AS language"
+    select += ", frequencyRank FROM words ORDER BY language, text"
+    rows = con.execute(select).fetchall()
     con.close()
     return [dict(r) for r in rows]
 
@@ -66,9 +80,32 @@ def load_from_batches():
     return words
 
 
+def lang_of(word):
+    return (word.get("language") or "en").strip().lower() or "en"
+
+
+def check_structural(word):
+    """Hard structural invariants every row must satisfy, in any language."""
+    issues = []
+    if not (word.get("text") or "").strip():
+        issues.append(("error", "empty text"))
+    if not (word.get("definition") or "").strip():
+        issues.append(("error", "empty definition"))
+    level = (word.get("level") or "").strip()
+    if level and level not in VALID_LEVELS:
+        issues.append(("error", f"invalid level {level!r}"))
+    elif not level:
+        issues.append(("error", "missing level"))
+    return issues
+
+
 def check_ipa(word):
     """Returns a list of (severity, message). severity in {'error','warn'}."""
     issues = []
+    # Only languages that actually carry an IPA transcription are audited; others (uk) leave
+    # phonetic blank by design, so a missing value there is correct, not a warning.
+    if lang_of(word) not in IPA_LANGUAGES:
+        return issues
     p = (word.get("phonetic") or "").strip()
     if not p:
         return [("warn", "missing phonetic")]
@@ -87,6 +124,9 @@ def check_ipa(word):
 
 def check_etymology(word):
     issues = []
+    # Etymology is only authored for the English catalogue; skip other languages.
+    if lang_of(word) not in ETYMOLOGY_LANGUAGES:
+        return issues
     e = (word.get("etymology") or "").strip()
     if e.lower() in PLACEHOLDER_ETY:
         issues.append(("warn", "placeholder/empty etymology"))
@@ -138,8 +178,11 @@ def main():
 
     errors = warns = 0
     online_checked = 0
+    run_structural = not (args.ipa or args.etymology)
     for w in words:
         msgs = []
+        if run_structural:
+            msgs += check_structural(w)
         if do_ipa:
             msgs += check_ipa(w)
         if do_ety:
@@ -161,6 +204,41 @@ def main():
                 if not shared:
                     warns += 1
                     print(f"  [WARN] {w.get('text')}: etymology not corroborated by Wiktionary")
+
+    # Aggregate, catalogue-wide invariants (only when running the full default check).
+    if run_structural:
+        by_lang = {}
+        for w in words:
+            by_lang.setdefault(lang_of(w), []).append(w)
+
+        for lang in sorted(by_lang):
+            group = by_lang[lang]
+            # 1) Distinct lemmas per language — duplicates waste the catalogue and let the same
+            #    word resurface, which felt broken in the feed (see uk dedup, build_uk_catalog).
+            seen = {}
+            for w in group:
+                key = (w.get("text") or "").strip().lower()
+                if not key:
+                    continue
+                seen[key] = seen.get(key, 0) + 1
+            dupes = {k: c for k, c in seen.items() if c > 1}
+            if dupes:
+                errors += 1
+                sample = ", ".join(sorted(dupes)[:5])
+                print(f"  [ERROR] {lang}: {len(dupes)} duplicate lemma(s) (e.g. {sample})")
+
+            # 2) Free-pool invariant — every level must have at least FREE_LIMIT words OUTSIDE
+            #    the premium categories, or a free user at that level runs dry before the cap.
+            for level in sorted(VALID_LEVELS):
+                free = [
+                    w for w in group
+                    if (w.get("level") or "").strip() == level
+                    and (w.get("category") or "") not in PREMIUM_CATEGORIES
+                ]
+                if 0 < len(free) < FREE_LIMIT:
+                    errors += 1
+                    print(f"  [ERROR] {lang}/{level}: only {len(free)} free-pool words "
+                          f"(need ≥ {FREE_LIMIT})")
 
     print(f"\nDone. errors={errors} warnings={warns}", end="")
     if args.online:

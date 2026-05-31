@@ -61,11 +61,24 @@ def build(con):
         WHERE w.language='en'
     """).fetchall()
 
+    # Different English concepts can translate to the SAME Ukrainian lemma (e.g. "happy" and
+    # "glad" → "щасливий"), which produced ~108 duplicate-lemma rows. Process the most-common
+    # words first (lowest frequencyRank) and keep only the first row per lowercased lemma, so
+    # the catalogue is one distinct headword each and the kept variant is the most frequent.
+    rows = sorted(rows, key=lambda r: (r[4] is None, r[4] if r[4] is not None else 0))
+    seen_lemmas = set()
+
     inserted = 0
+    skipped_dupes = 0
     for en_id, pos, category, level, freq, uk_def, uk_ex in rows:
         head, definition = split_uk(uk_def or "")
         if not head:
             continue
+        lemma = head.lower()
+        if lemma in seen_lemmas:
+            skipped_dupes += 1
+            continue
+        seen_lemmas.add(lemma)
         # Stable id derived from the English word's id, so uk progress survives rebuilds.
         uk_id = str(uuid.uuid5(UK_NAMESPACE, f"{en_id.lower()}:uk"))
         con.execute("""
@@ -84,6 +97,8 @@ def build(con):
     # External-content FTS index must be rebuilt after row changes.
     con.execute("INSERT INTO words_fts(words_fts) VALUES('rebuild')")
     con.commit()
+    if skipped_dupes:
+        print(f"  (skipped {skipped_dupes} duplicate-lemma rows)")
     return inserted
 
 
