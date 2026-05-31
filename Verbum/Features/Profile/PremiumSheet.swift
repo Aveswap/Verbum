@@ -146,53 +146,81 @@ struct PremiumSheet: View {
 
     @State private var selectedProductID: String = SubscriptionManager.yearlyID
 
+    @ViewBuilder
     private var productRows: some View {
-        VStack(spacing: AppSpacing.xs) {
-            if let monthly = subscriptions.monthlyProduct {
-                ProductRow(
-                    product: monthly,
-                    isSelected: selectedProductID == monthly.id,
-                    badge: nil,
-                    note: "$4.99/mo"
-                ) { selectedProductID = monthly.id }
-            } else {
-                ProductRow(id: SubscriptionManager.monthlyID, price: "$4.99", period: "Monthly",
-                           isSelected: selectedProductID == SubscriptionManager.monthlyID,
-                           badge: nil, note: "$4.99/mo") {
-                    selectedProductID = SubscriptionManager.monthlyID
+        if subscriptions.products.isEmpty {
+            // Never show hardcoded prices or a non-functional "buy" row — Apple rejects both.
+            // Show an honest unavailable state with a retry instead.
+            productsUnavailable
+        } else {
+            VStack(spacing: AppSpacing.xs) {
+                if let monthly = subscriptions.monthlyProduct {
+                    ProductRow(
+                        product: monthly,
+                        isSelected: selectedProductID == monthly.id,
+                        badge: nil,
+                        note: nil
+                    ) { selectedProductID = monthly.id }
                 }
-            }
 
-            if let yearly = subscriptions.yearlyProduct {
-                ProductRow(
-                    product: yearly,
-                    isSelected: selectedProductID == yearly.id,
-                    badge: "Best Value",
-                    note: "$2.08/mo · Save 58%"
-                ) { selectedProductID = yearly.id }
-            } else {
-                ProductRow(id: SubscriptionManager.yearlyID, price: "$24.99", period: "Yearly",
-                           isSelected: selectedProductID == SubscriptionManager.yearlyID,
-                           badge: "Best Value", note: "$2.08/mo · Save 58%") {
-                    selectedProductID = SubscriptionManager.yearlyID
+                if let yearly = subscriptions.yearlyProduct {
+                    ProductRow(
+                        product: yearly,
+                        isSelected: selectedProductID == yearly.id,
+                        badge: "Best Value",
+                        note: yearlyNote(yearly)
+                    ) { selectedProductID = yearly.id }
                 }
-            }
 
-            if let lifetime = subscriptions.lifetimeProduct {
-                ProductRow(
-                    product: lifetime,
-                    isSelected: selectedProductID == lifetime.id,
-                    badge: nil,
-                    note: "One-time purchase"
-                ) { selectedProductID = lifetime.id }
-            } else {
-                ProductRow(id: SubscriptionManager.lifetimeID, price: "$59.99", period: "Lifetime",
-                           isSelected: selectedProductID == SubscriptionManager.lifetimeID,
-                           badge: nil, note: "One-time purchase") {
-                    selectedProductID = SubscriptionManager.lifetimeID
+                if let lifetime = subscriptions.lifetimeProduct {
+                    ProductRow(
+                        product: lifetime,
+                        isSelected: selectedProductID == lifetime.id,
+                        badge: nil,
+                        note: "One-time purchase"
+                    ) { selectedProductID = lifetime.id }
                 }
             }
         }
+    }
+
+    /// Localized "per-month · save X%" subtitle for the yearly plan, derived from the live
+    /// StoreKit prices (never hardcoded — they vary by storefront/currency).
+    private func yearlyNote(_ yearly: Product) -> String {
+        let perMonth = (yearly.price / 12).formatted(yearly.priceFormatStyle)
+        guard let monthly = subscriptions.monthlyProduct, monthly.price > 0 else {
+            return "\(perMonth)/mo"
+        }
+        let perMonthValue = (yearly.price as NSDecimalNumber).doubleValue / 12.0
+        let monthlyValue  = (monthly.price as NSDecimalNumber).doubleValue
+        let pct = Int((1 - perMonthValue / monthlyValue) * 100)
+        return pct > 0 ? "\(perMonth)/mo · Save \(pct)%" : "\(perMonth)/mo"
+    }
+
+    private var productsUnavailable: some View {
+        VStack(spacing: AppSpacing.sm) {
+            Text("Plans couldn’t be loaded")
+                .font(.system(size: 15, weight: .semibold))
+                .foregroundColor(AppColors.textPrimary)
+            Text("Check your connection and try again.")
+                .font(.system(size: 13))
+                .foregroundColor(AppColors.textSecondary)
+                .multilineTextAlignment(.center)
+            Button {
+                HapticManager.impact(.light)
+                Task { await subscriptions.loadProducts() }
+            } label: {
+                Text("Retry")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .padding(.horizontal, AppSpacing.lg)
+                    .padding(.vertical, AppSpacing.sm)
+                    .background(AppColors.accent)
+                    .cornerRadius(AppSpacing.cornerRadius)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, AppSpacing.lg)
     }
 
     // MARK: - Purchase button
@@ -211,7 +239,12 @@ struct PremiumSheet: View {
         return hasFreeTrial ? "Start Free Trial" : "Subscribe Now"
     }
 
+    @ViewBuilder
     private var purchaseButton: some View {
+        // No products → no purchase CTA (the unavailable/retry state stands in for it).
+        if subscriptions.products.isEmpty {
+            EmptyView()
+        } else {
         VStack(spacing: AppSpacing.xs) {
             Button {
                 HapticManager.impact(.medium)
@@ -230,6 +263,8 @@ struct PremiumSheet: View {
                     .background(AppColors.accentButton)
                     .clipShape(Capsule())
             }
+            .disabled(selectedProduct == nil)
+            .opacity(selectedProduct == nil ? 0.5 : 1)
             .padding(.top, AppSpacing.sm)
 
             if selectedProductID != SubscriptionManager.lifetimeID {
@@ -241,6 +276,7 @@ struct PremiumSheet: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, AppSpacing.md)
             }
+        }
         }
     }
 
@@ -280,15 +316,6 @@ private struct ProductRow: View {
     init(product: Product, isSelected: Bool, badge: String?, note: String?, onTap: @escaping () -> Void) {
         self.period = product.displayName
         self.price = product.displayPrice
-        self.isSelected = isSelected
-        self.badge = badge
-        self.note = note
-        self.onTap = onTap
-    }
-
-    init(id: String, price: String, period: String, isSelected: Bool, badge: String?, note: String?, onTap: @escaping () -> Void) {
-        self.period = period
-        self.price = price
         self.isSelected = isSelected
         self.badge = badge
         self.note = note

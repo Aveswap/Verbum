@@ -16,3 +16,7 @@ DerivedData/
 .build/
 Pods/
 .swiftpm/
+
+# SQLite WAL/SHM sidecars — never commit (transient, machine-specific)
+*.db-shm
+*.db-wal

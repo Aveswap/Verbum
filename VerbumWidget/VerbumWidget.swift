@@ -1,186 +1,71 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Shared Word Model (duplicated for widget bundle isolation)
+// Home-screen Word-of-the-Day widgets (small / medium / large) live in WordOfDayWidget.swift
+// and read the real, language- and level-aware timeline the app writes to the shared App Group
+// (SharedWordStore). This file now only hosts the lock-screen widgets, fed by the same source —
+// the previous words.json-backed implementation was a stale, English-only duplicate.
 
-struct WidgetWord: Codable {
-    let text: String
-    let phonetic: String
-    let partOfSpeech: String
-    let definition: String
-    let level: String
-}
+// MARK: - Lock-screen entry / provider
 
-// MARK: - Timeline Entry
-
-struct WordOfDayEntry: TimelineEntry {
+struct LockScreenEntry: TimelineEntry {
     let date: Date
-    let word: WidgetWord
+    let word: SharedWordStore.DailyWord?
 }
 
-// MARK: - Provider
-
-struct WordProvider: TimelineProvider {
-    func placeholder(in context: Context) -> WordOfDayEntry {
-        WordOfDayEntry(date: Date(), word: WidgetWord(
-            text: "ephemeral",
-            phonetic: "/ɪˈfem.ər.əl/",
-            partOfSpeech: "adj.",
-            definition: "Lasting for a very short time",
-            level: "intermediate"
-        ))
+struct LockScreenProvider: TimelineProvider {
+    private var placeholderWord: SharedWordStore.DailyWord {
+        SharedWordStore.DailyWord(
+            date: Date(), id: UUID(),
+            text: "ephemeral", phonetic: "/ɪˈfem.ər.əl/", partOfSpeech: "adj.",
+            definition: "Lasting for a very short time", translation: nil, level: "intermediate"
+        )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (WordOfDayEntry) -> Void) {
-        completion(WordOfDayEntry(date: Date(), word: todaysWord()))
+    func placeholder(in context: Context) -> LockScreenEntry {
+        LockScreenEntry(date: Date(), word: placeholderWord)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<WordOfDayEntry>) -> Void) {
-        let entry = WordOfDayEntry(date: Date(), word: todaysWord())
-        // Refresh at next 00:01
-        let nextMidnight = Calendar.current.nextDate(
-            after: Date(),
-            matching: DateComponents(hour: 0, minute: 1),
-            matchingPolicy: .nextTime
+    func getSnapshot(in context: Context, completion: @escaping (LockScreenEntry) -> Void) {
+        completion(currentEntry())
+    }
+
+    func getTimeline(in context: Context, completion: @escaping (Timeline<LockScreenEntry>) -> Void) {
+        // One entry per day from the shared timeline; refresh after the last one.
+        let timeline = SharedWordStore.readTimeline().sorted { $0.date < $1.date }
+        let entries: [LockScreenEntry] = timeline.isEmpty
+            ? [currentEntry()]
+            : timeline.map { LockScreenEntry(date: $0.date, word: $0) }
+        let refresh = Calendar.current.nextDate(
+            after: Date(), matching: DateComponents(hour: 0, minute: 1), matchingPolicy: .nextTime
         ) ?? Date().addingTimeInterval(86400)
-        let timeline = Timeline(entries: [entry], policy: .after(nextMidnight))
-        completion(timeline)
+        completion(Timeline(entries: entries, policy: .after(refresh)))
     }
 
-    private func todaysWord() -> WidgetWord {
-        guard let url = Bundle.main.url(forResource: "words", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let words = try? JSONDecoder().decode([WidgetWord].self, from: data),
-              !words.isEmpty
-        else {
-            return WidgetWord(
-                text: "ephemeral",
-                phonetic: "/ɪˈfem.ər.əl/",
-                partOfSpeech: "adj.",
-                definition: "Lasting for a very short time",
-                level: "intermediate"
-            )
-        }
-        let dayIndex = Calendar.current.ordinality(of: .day, in: .year, for: Date()) ?? 1
-        return words[(dayIndex - 1) % words.count]
+    private func currentEntry() -> LockScreenEntry {
+        let today = SharedWordStore.readTimeline()
+            .filter { $0.date <= Date() }
+            .max { $0.date < $1.date }
+        return LockScreenEntry(date: Date(), word: today ?? placeholderWord)
     }
 }
 
-// MARK: - Widget Views
-
-struct VerbumWidgetSmallView: View {
-    let entry: WordOfDayEntry
-
-    var body: some View {
-        ZStack {
-            Color(red: 0.11, green: 0.11, blue: 0.118) // #1C1C1E
-            VStack(alignment: .leading, spacing: 6) {
-                HStack {
-                    Text("VERBUM")
-                        .font(.system(size: 9, weight: .bold))
-                        .foregroundColor(Color(red: 0.494, green: 0.784, blue: 0.784))
-                    Spacer()
-                    Image(systemName: "book.fill")
-                        .font(.system(size: 10))
-                        .foregroundColor(Color(red: 0.494, green: 0.784, blue: 0.784))
-                }
-
-                Spacer()
-
-                Text(entry.word.text)
-                    .font(.system(size: 20, weight: .bold, design: .serif))
-                    .foregroundColor(.white)
-                    .lineLimit(2)
-                    .minimumScaleFactor(0.7)
-
-                Text(entry.word.phonetic)
-                    .font(.system(size: 10, design: .monospaced))
-                    .foregroundColor(Color(red: 0.557, green: 0.557, blue: 0.576))
-
-                Text(entry.word.definition)
-                    .font(.system(size: 11))
-                    .foregroundColor(Color(red: 0.557, green: 0.557, blue: 0.576))
-                    .lineLimit(2)
-            }
-            .padding(14)
-        }
-    }
-}
-
-struct VerbumWidgetMediumView: View {
-    let entry: WordOfDayEntry
-
-    var body: some View {
-        ZStack {
-            Color(red: 0.11, green: 0.11, blue: 0.118)
-            HStack(spacing: 16) {
-                // Left side
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("WORD OF THE DAY")
-                        .font(.system(size: 9, weight: .bold))
-                        .foregroundColor(Color(red: 0.494, green: 0.784, blue: 0.784))
-
-                    Text(entry.word.text)
-                        .font(.system(size: 26, weight: .bold, design: .serif))
-                        .foregroundColor(.white)
-
-                    Text(entry.word.phonetic)
-                        .font(.system(size: 11, design: .monospaced))
-                        .foregroundColor(Color(red: 0.557, green: 0.557, blue: 0.576))
-
-                    HStack(spacing: 4) {
-                        Text(entry.word.partOfSpeech)
-                            .font(.system(size: 11, weight: .semibold))
-                            .foregroundColor(Color(red: 0.494, green: 0.784, blue: 0.784))
-                        Text(entry.word.level)
-                            .font(.system(size: 10))
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 2)
-                            .background(Color(red: 0.494, green: 0.784, blue: 0.784).opacity(0.3))
-                            .cornerRadius(8)
-                    }
-
-                    Spacer()
-                }
-
-                // Divider
-                Rectangle()
-                    .fill(Color(red: 0.173, green: 0.173, blue: 0.18))
-                    .frame(width: 1)
-
-                // Right side - definition
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Definition")
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundColor(Color(red: 0.557, green: 0.557, blue: 0.576))
-
-                    Text(entry.word.definition)
-                        .font(.system(size: 13))
-                        .foregroundColor(.white)
-                        .lineLimit(4)
-
-                    Spacer()
-                }
-            }
-            .padding(16)
-        }
-    }
-}
-
-// MARK: - Lock Screen Views
+// MARK: - Lock-screen views
 
 struct VerbumWidgetRectangularView: View {
-    let entry: WordOfDayEntry
+    let entry: LockScreenEntry
     var body: some View {
+        let word = entry.word
         VStack(alignment: .leading, spacing: 2) {
-            Text(entry.word.text)
+            Text(word?.text ?? "Verbum")
                 .font(.system(size: 15, weight: .bold, design: .serif))
                 .foregroundColor(.white)
-            Text(entry.word.phonetic)
-                .font(.system(size: 10, design: .monospaced))
-                .foregroundColor(.white.opacity(0.7))
-            Text(entry.word.definition)
+            if let phonetic = word?.phonetic, !phonetic.isEmpty {
+                Text(phonetic)
+                    .font(.system(size: 10, design: .monospaced))
+                    .foregroundColor(.white.opacity(0.7))
+            }
+            Text(word?.definition ?? "Open Verbum for today's word")
                 .font(.system(size: 11))
                 .foregroundColor(.white.opacity(0.85))
                 .lineLimit(2)
@@ -190,57 +75,24 @@ struct VerbumWidgetRectangularView: View {
 }
 
 struct VerbumWidgetInlineView: View {
-    let entry: WordOfDayEntry
+    let entry: LockScreenEntry
     var body: some View {
-        Text("\(entry.word.text) — \(entry.word.definition)")
-            .lineLimit(1)
-    }
-}
-
-// MARK: - Widget Configuration
-
-struct VerbumWidget: Widget {
-    let kind = "VerbumWidget"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: WordProvider()) { entry in
-            if #available(iOS 17.0, *) {
-                VerbumWidgetSmallView(entry: entry)
-                    .containerBackground(.black, for: .widget)
-            } else {
-                VerbumWidgetSmallView(entry: entry)
-            }
+        if let word = entry.word {
+            Text("\(word.text) — \(word.definition)").lineLimit(1)
+        } else {
+            Text("Verbum · Word of the Day").lineLimit(1)
         }
-        .configurationDisplayName("Word of the Day")
-        .description("Learn a new word every day from your home screen.")
-        .supportedFamilies([.systemSmall])
     }
 }
 
-struct VerbumWidgetMedium: Widget {
-    let kind = "VerbumWidgetMedium"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: WordProvider()) { entry in
-            if #available(iOS 17.0, *) {
-                VerbumWidgetMediumView(entry: entry)
-                    .containerBackground(.black, for: .widget)
-            } else {
-                VerbumWidgetMediumView(entry: entry)
-            }
-        }
-        .configurationDisplayName("Word of the Day")
-        .description("Learn a new word every day from your home screen.")
-        .supportedFamilies([.systemMedium])
-    }
-}
+// MARK: - Lock-screen widget configuration
 
 struct VerbumLockScreenWidget: Widget {
     let kind = "VerbumLockScreen"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: WordProvider()) { entry in
-            VerbumWidgetRectangularView(entry: entry)
+        StaticConfiguration(kind: kind, provider: LockScreenProvider()) { entry in
+            LockScreenRouter(entry: entry)
         }
         .configurationDisplayName("Word of the Day")
         .description("See today's word on your lock screen.")
@@ -248,4 +100,14 @@ struct VerbumLockScreenWidget: Widget {
     }
 }
 
-
+/// Picks the right lock-screen layout for the requested family.
+private struct LockScreenRouter: View {
+    @Environment(\.widgetFamily) private var family
+    let entry: LockScreenEntry
+    var body: some View {
+        switch family {
+        case .accessoryInline: VerbumWidgetInlineView(entry: entry)
+        default:               VerbumWidgetRectangularView(entry: entry)
+        }
+    }
+}

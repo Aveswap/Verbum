@@ -17,6 +17,13 @@ final class SubscriptionManager: ObservableObject {
     @Published private(set) var isPro: Bool = false
     @Published private(set) var isLoading: Bool = false
     @Published private(set) var purchaseError: String? = nil
+    /// True when the last loadProducts() returned no products (network/StoreKit/ASC config
+    /// problem). The paywall shows a retry affordance instead of fake hardcoded-price rows.
+    @Published private(set) var loadFailed: Bool = false
+    /// Flips true once the first entitlement check has actually completed. Until then the UI
+    /// must not show the "subscription ended" banner — on a cold launch / reinstall
+    /// `Transaction.currentEntitlements` can momentarily read empty for a still-active sub.
+    @Published private(set) var hasCheckedEntitlements: Bool = false
     /// Set true once when entitlement goes Pro → not-Pro (expiry/revocation), so the UI can
     /// show a soft "your subscription has ended" banner. UI clears it after presenting.
     @Published var subscriptionEnded: Bool = false
@@ -46,8 +53,9 @@ final class SubscriptionManager: ObservableObject {
     func loadProducts() async {
         isLoading = true
         defer { isLoading = false }
-        products = (try? await Product.products(for: Self.allIDs)) ?? []
-        products.sort { productOrder($0) < productOrder($1) }
+        let fetched = (try? await Product.products(for: Self.allIDs)) ?? []
+        products = fetched.sorted { productOrder($0) < productOrder($1) }
+        loadFailed = products.isEmpty
     }
 
     private func productOrder(_ p: Product) -> Int {
@@ -119,11 +127,21 @@ final class SubscriptionManager: ObservableObject {
         // Surface a Pro → not-Pro transition exactly once. Compare against the persisted
         // prior state so a lapse that happened while the app was closed is also caught.
         let wasPro = UserDefaults.standard.bool(forKey: Self.wasProKey)
-        if wasPro && !active {
+        // Surface a Pro → not-Pro transition once — but only when StoreKit was actually
+        // reachable (products loaded). On a cold launch with no connectivity, an empty
+        // currentEntitlements read is meaningless and must not flash a false "ended" banner;
+        // when products DID load, an empty read genuinely means the sub lapsed (incl. while
+        // the app was closed). loadProducts() runs before this in init, so loadFailed is set.
+        if wasPro && !active && !loadFailed {
             subscriptionEnded = true
         }
-        UserDefaults.standard.set(active, forKey: Self.wasProKey)
+        // Persist the lapse only once we trust the read, so a flaky-network launch doesn't
+        // wipe the "was Pro" flag and then miss the real lapse on the next good launch.
+        if active || !loadFailed {
+            UserDefaults.standard.set(active, forKey: Self.wasProKey)
+        }
         isPro = active
+        hasCheckedEntitlements = true
     }
 
     // MARK: - Transaction listener

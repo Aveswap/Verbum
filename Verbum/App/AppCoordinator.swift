@@ -9,7 +9,7 @@ struct AppCoordinator: View {
         ZStack(alignment: .top) {
             content
 
-            if subscriptions.subscriptionEnded {
+            if subscriptions.subscriptionEnded, subscriptions.hasCheckedEntitlements {
                 SubscriptionEndedBanner { subscriptions.subscriptionEnded = false }
                     .padding(.horizontal, AppSpacing.md)
                     .padding(.top, AppSpacing.sm)
