@@ -1,0 +1,627 @@
+[
+  {
+    "en_id": "52cfb3b3-17fe-45c2-be24-c7ae09f22bd0",
+    "text": "herrisch",
+    "phonetic": "/ˈhɛʁɪʃ/",
+    "definition": "darauf bedacht, anderen auf anmaßende Weise den eigenen Willen aufzuzwingen.",
+    "example": "Mit herrischer Stimme befahl er allen zu schweigen.",
+    "etymology": "von „Herr“ (Gebieter).",
+    "synonyms": [
+      "herrschsüchtig",
+      "gebieterisch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "00106781-a1a0-45e5-a54b-0b7eb2141fcc",
+    "text": "Einsiedler",
+    "phonetic": "/ˈaɪ̯nˌziːdlɐ/",
+    "definition": "jemand, der die Gesellschaft anderer Menschen meidet.",
+    "example": "Als Einsiedler lebte er allein in einer Hütte im Wald.",
+    "etymology": "von „ein“ und „siedeln“ (sich absondern).",
+    "synonyms": [
+      "Eremit",
+      "Sonderling"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b5000011-0000-4000-8000-000000000511",
+    "text": "Osmose",
+    "phonetic": "/ɔsˈmoːzə/",
+    "definition": "die Wanderung eines Lösungsmittels durch eine Membran; allmähliche Aufnahme.",
+    "example": "Durch Osmose nehmen die Wurzeln Wasser aus dem Boden auf.",
+    "etymology": "aus dem Griechischen „ōsmós“ (Stoß, Drang).",
+    "synonyms": [],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c7000013-0000-4000-8000-000000000713",
+    "text": "schamlos",
+    "phonetic": "/ˈʃaːmloːs/",
+    "definition": "dreist und ohne jedes Schamgefühl.",
+    "example": "Er log schamlos, obwohl alle die Wahrheit kannten.",
+    "etymology": "von „Scham“ und „-los“.",
+    "synonyms": [
+      "dreist",
+      "unverfroren"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c7000020-0000-4000-8000-000000000720",
+    "text": "abirren",
+    "phonetic": "/ˈapˌʔɪʁən/",
+    "definition": "in Rede oder Schrift vom eigentlichen Thema abweichen.",
+    "example": "Im Vortrag irrte er mehrfach vom Thema ab.",
+    "etymology": "von „irren“ (in die Irre gehen).",
+    "synonyms": [
+      "abweichen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ca000005-0000-4000-8000-000000001005",
+    "text": "trostlos",
+    "phonetic": "/ˈtʁoːstloːs/",
+    "definition": "kläglich traurig, einsam und verlassen.",
+    "example": "Nach dem Umzug wirkte die leere Wohnung trostlos.",
+    "etymology": "von „Trost“ und „-los“.",
+    "synonyms": [
+      "einsam",
+      "verlassen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ca000021-0000-4000-8000-000000001021",
+    "text": "einwerfen",
+    "phonetic": "/ˈaɪ̯nˌvɛʁfn̩/",
+    "definition": "etwas abrupt sagen und damit ein Gespräch unterbrechen.",
+    "example": "„Das stimmt nicht“, warf sie plötzlich ein.",
+    "etymology": "von „ein“ und „werfen“.",
+    "synonyms": [
+      "einwenden"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ca00002c-0000-4000-8000-00000000102c",
+    "text": "lauwarm",
+    "phonetic": "/ˈlaʊ̯ˌvaʁm/",
+    "definition": "nur mäßig warm; ohne rechte Begeisterung.",
+    "example": "Der Kaffee war nur noch lauwarm.",
+    "etymology": "von „lau“ und „warm“.",
+    "synonyms": [
+      "mäßig warm"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb000019-0000-4000-8000-000000001119",
+    "text": "Schiedsrichter",
+    "phonetic": "/ˈʃiːt͡sˌʁɪçtɐ/",
+    "definition": "jemand mit der Befugnis, einen Streit zu schlichten oder zu urteilen.",
+    "example": "Der Schiedsrichter entschied den strittigen Fall.",
+    "etymology": "von „Schied“ (Entscheidung) und „Richter“.",
+    "synonyms": [
+      "Schlichter"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb000029-0000-4000-8000-000000001129",
+    "text": "stapfen",
+    "phonetic": "/ˈʃtap͡fn̩/",
+    "definition": "langsam und mühsam gehen, meist vor Müdigkeit.",
+    "example": "Erschöpft stapften wir durch den tiefen Schnee.",
+    "etymology": "lautmalerisch, verwandt mit „Stampf“.",
+    "synonyms": [
+      "trotten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "5b7e38c5-8251-42ec-8b90-a9ef524ee086",
+    "text": "doppelzüngig",
+    "phonetic": "/ˈdɔpl̩ˌt͡sʏŋɪç/",
+    "definition": "betrügerisch; in zwei widersprüchlichen Weisen redend.",
+    "example": "Sein doppelzüngiges Gerede konnte niemand mehr glauben.",
+    "etymology": "von „doppel“ und „Zunge“.",
+    "synonyms": [
+      "hinterlistig",
+      "falsch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "bb7adc84-5a83-40de-9793-98f2bbdd467f",
+    "text": "eigensinnig",
+    "phonetic": "/ˈaɪ̯ɡn̩ˌzɪnɪç/",
+    "definition": "entschlossen, den eigenen Willen trotz Rat oder Widerstand durchzusetzen.",
+    "example": "Eigensinnig blieb das Kind bei seiner Entscheidung.",
+    "etymology": "von „eigen“ und „Sinn“.",
+    "synonyms": [
+      "starrköpfig",
+      "stur"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ef9b10df-55a3-4266-81d7-81c927ce6039",
+    "text": "ungerührt",
+    "phonetic": "/ˈʊnɡəˌʁyːɐ̯t/",
+    "definition": "kein Gefühl zeigend; ausdruckslos und gleichgültig.",
+    "example": "Ungerührt hörte er sich die Vorwürfe an.",
+    "etymology": "von „rühren“ und „un-“.",
+    "synonyms": [
+      "regungslos",
+      "gleichgültig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "907f91e8-92e5-4668-9832-0c47520d1cb8",
+    "text": "unnachgiebig",
+    "phonetic": "/ˈʊnnaːxˌɡiːbɪç/",
+    "definition": "nicht bereit, die eigene Meinung zu ändern oder nachzugeben.",
+    "example": "In dieser Frage blieb sie unnachgiebig.",
+    "etymology": "von „nachgeben“ und „un-“.",
+    "synonyms": [
+      "starrsinnig",
+      "kompromisslos"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b25b92dc-d7eb-41ff-9ee5-1c3d2f54fc70",
+    "text": "wunderlich",
+    "phonetic": "/ˈvʊndɐlɪç/",
+    "definition": "verspielt eigenwillig oder fantasievoll, oft auf reizvolle Weise.",
+    "example": "Der alte Mann hatte viele wunderliche Angewohnheiten.",
+    "etymology": "von „Wunder“.",
+    "synonyms": [
+      "verschroben",
+      "launig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "8d73cf10-f997-47c3-8036-c4ee4fcee13c",
+    "text": "missbilligen",
+    "phonetic": "/ˈmɪsbɪlɪɡn̩/",
+    "definition": "jemanden oder etwas förmlich und scharf missbilligen.",
+    "example": "Der Vorstand missbilligte das eigenmächtige Vorgehen.",
+    "etymology": "von „billigen“ (gutheißen) und „miss-“.",
+    "synonyms": [
+      "tadeln",
+      "beanstanden"
+    ],
+    "register": "formal"
+  },
+  {
+    "en_id": "582e57e1-0244-4251-b4b0-9eacc9b13f65",
+    "text": "erhärten",
+    "phonetic": "/ɛɐ̯ˈhɛʁtn̩/",
+    "definition": "eine Aussage oder Theorie bestätigen und stützen.",
+    "example": "Neue Funde erhärteten seinen Verdacht.",
+    "etymology": "von „hart“.",
+    "synonyms": [
+      "bekräftigen",
+      "untermauern"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "fec7aa77-13b2-4b52-bab0-19b68775cd9d",
+    "text": "herabwürdigen",
+    "phonetic": "/hɛˈʁapˌvʏʁdɪɡn̩/",
+    "definition": "unfair kritisieren; jemanden herabsetzen oder schlechtmachen.",
+    "example": "Niemand darf seine Mitmenschen so herabwürdigen.",
+    "etymology": "von „herab“ und „Würde“.",
+    "synonyms": [
+      "verunglimpfen",
+      "abwerten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "7960f4ea-1280-43b5-8b23-ed376892ffb4",
+    "text": "geringschätzen",
+    "phonetic": "/ɡəˈʁɪŋˌʃɛt͡sn̩/",
+    "definition": "als wenig wertvoll ansehen oder darstellen.",
+    "example": "Man sollte ehrliche Arbeit nicht geringschätzen.",
+    "etymology": "von „gering“ und „schätzen“.",
+    "synonyms": [
+      "abwerten",
+      "missachten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "e95d2b54-489d-4d0b-a2a5-0cf2fa6e114b",
+    "text": "lobpreisen",
+    "phonetic": "/ˈloːpˌpʁaɪ̯zn̩/",
+    "definition": "begeistert und überschwänglich loben.",
+    "example": "Die Kritiker lobpriesen das neue Werk.",
+    "etymology": "von „loben“ und „preisen“.",
+    "synonyms": [
+      "rühmen",
+      "preisen"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "8a0a2dda-d219-4b43-b758-d6958c72bfd3",
+    "text": "Gleichmut",
+    "phonetic": "/ˈɡlaɪ̯çˌmuːt/",
+    "definition": "seelische Ruhe und Gelassenheit, besonders unter Belastung.",
+    "example": "Mit erstaunlichem Gleichmut nahm sie die Nachricht auf.",
+    "etymology": "von „gleich“ und „Mut“ (Gemütszustand).",
+    "synonyms": [
+      "Gelassenheit",
+      "Fassung"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "177e4478-98cd-4a0b-99be-be2a078b2546",
+    "text": "verdeutlichen",
+    "phonetic": "/fɛɐ̯ˈdɔɪ̯tlɪçn̩/",
+    "definition": "etwas durch Erklärung verständlich machen.",
+    "example": "Eine Skizze verdeutlichte den Zusammenhang.",
+    "etymology": "von „deutlich“.",
+    "synonyms": [
+      "erklären",
+      "veranschaulichen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b5000008-0000-4000-8000-000000000508",
+    "text": "Rekursion",
+    "phonetic": "/ʁekʊʁˈzi̯oːn/",
+    "definition": "ein Vorgang, bei dem sich eine Funktion selbst aufruft, um ein Problem zu lösen.",
+    "example": "Die Fakultät lässt sich elegant durch Rekursion berechnen.",
+    "etymology": "aus dem Lateinischen „recurrere“ (zurücklaufen).",
+    "synonyms": [],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "b5000012-0000-4000-8000-000000000512",
+    "text": "Brechung",
+    "phonetic": "/ˈbʁɛçʊŋ/",
+    "definition": "das Ablenken von Licht oder Schall beim Übergang zwischen zwei Stoffen.",
+    "example": "Die Brechung des Lichts erzeugt den Regenbogen.",
+    "etymology": "von „brechen“.",
+    "synonyms": [
+      "Lichtbrechung"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b5000021-0000-4000-8000-000000000521",
+    "text": "Pathos",
+    "phonetic": "/ˈpaːtɔs/",
+    "definition": "eine Eigenschaft, die Mitleid oder tiefe Ergriffenheit hervorruft.",
+    "example": "Die Rede war voller Pathos und rührte viele zu Tränen.",
+    "etymology": "aus dem Griechischen „páthos“ (Leiden, Leidenschaft).",
+    "synonyms": [
+      "Ergriffenheit"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "c7000006-0000-4000-8000-000000000706",
+    "text": "Unheilsahnung",
+    "phonetic": "/ˈʊnhaɪ̯lsˌʔaːnʊŋ/",
+    "definition": "das Gefühl, dass etwas Schlimmes bevorsteht.",
+    "example": "Eine düstere Unheilsahnung lag über dem Dorf.",
+    "etymology": "von „Unheil“ und „Ahnung“.",
+    "synonyms": [
+      "böses Vorgefühl"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c7000015-0000-4000-8000-000000000715",
+    "text": "akribisch",
+    "phonetic": "/aˈkʁiːbɪʃ/",
+    "definition": "sorgfältig und gründlich, mit genauer Beachtung des Richtigen.",
+    "example": "Sie arbeitete akribisch jedes Detail aus.",
+    "etymology": "aus dem Griechischen „akríbeia“ (Genauigkeit).",
+    "synonyms": [
+      "sorgfältig",
+      "peinlich genau"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c700002c-0000-4000-8000-00000000072c",
+    "text": "garnieren",
+    "phonetic": "/ɡaʁˈniːʁən/",
+    "definition": "Speisen mit kleinen Zutaten verzieren.",
+    "example": "Er garnierte den Teller mit frischen Kräutern.",
+    "etymology": "aus dem Französischen „garnir“ (ausstatten).",
+    "synonyms": [
+      "verzieren",
+      "schmücken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ca000015-0000-4000-8000-000000001015",
+    "text": "unbekümmert",
+    "phonetic": "/ˈʊnbəˌkʏmɐt/",
+    "definition": "ruhig und beiläufig unbesorgt wirkend.",
+    "example": "Unbekümmert pfiff er ein Lied vor sich hin.",
+    "etymology": "von „bekümmern“ und „un-“.",
+    "synonyms": [
+      "sorglos",
+      "gelassen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb00000e-0000-4000-8000-00000000110e",
+    "text": "taktlos",
+    "phonetic": "/ˈtaktloːs/",
+    "definition": "ohne Feingefühl im Umgang mit anderen Menschen.",
+    "example": "Es war taktlos, ihn nach seinem Gehalt zu fragen.",
+    "etymology": "von „Takt“ (Feingefühl) und „-los“.",
+    "synonyms": [
+      "unfeinfühlig",
+      "grob"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb00002b-0000-4000-8000-00000000112b",
+    "text": "kneten",
+    "phonetic": "/ˈkneːtn̩/",
+    "definition": "Teig oder Ton durch Drücken und Falten mit den Händen bearbeiten.",
+    "example": "Den Teig zehn Minuten kräftig kneten.",
+    "etymology": "von althochdeutsch „knetan“.",
+    "synonyms": [
+      "durchwalken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "97ba5386-20e3-4bc5-b377-77dc52541339",
+    "text": "entkräften",
+    "phonetic": "/ɛntˈkʁɛftn̩/",
+    "definition": "eine Aussage oder Person als falsch erweisen.",
+    "example": "Mit Fakten entkräftete sie jeden Einwand.",
+    "etymology": "von „Kraft“ und „ent-“.",
+    "synonyms": [
+      "widerlegen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "58080528-b96c-4ef6-8cfa-b0fb97dfe27c",
+    "text": "vorwerfen",
+    "phonetic": "/ˈfoːɐ̯ˌvɛʁfn̩/",
+    "definition": "jemandem Missbilligung oder Enttäuschung zum Ausdruck bringen.",
+    "example": "Sie warf ihm vor, sie vergessen zu haben.",
+    "etymology": "von „vor“ und „werfen“.",
+    "synonyms": [
+      "tadeln",
+      "anlasten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b6a74a68-9b59-445e-813b-107e8e3e3f5d",
+    "text": "Anhänger",
+    "phonetic": "/ˈanˌhɛŋɐ/",
+    "definition": "jemand, der eine Partei, Person oder Idee unterstützt.",
+    "example": "Die Anhänger des Vereins jubelten lautstark.",
+    "etymology": "von „anhängen“.",
+    "synonyms": [
+      "Befürworter",
+      "Gefolgsmann"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "fca59d08-d2da-46a9-93cf-c630105544b0",
+    "text": "Kenner",
+    "phonetic": "/ˈkɛnɐ/",
+    "definition": "ein sachkundiger Beurteiler in Geschmacksfragen, besonders der schönen Künste.",
+    "example": "Als Kenner erkannte er sofort den Jahrgang des Weins.",
+    "etymology": "von „kennen“.",
+    "synonyms": [
+      "Fachmann",
+      "Feinschmecker"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "dbfe3876-5bc8-4909-beac-6dc8442dc830",
+    "text": "Jünger",
+    "phonetic": "/ˈjʏŋɐ/",
+    "definition": "ein Anhänger oder Schüler eines Lehrers, Führers oder einer Lehre.",
+    "example": "Die Jünger folgten ihrem Meister überallhin.",
+    "etymology": "von „jung“ (der Jüngere, Schüler).",
+    "synonyms": [
+      "Schüler",
+      "Anhänger"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "01080b44-7326-4838-8243-698ef8948094",
+    "text": "Andersdenkender",
+    "phonetic": "/ˈandɐsˌdɛŋkn̩dɐ/",
+    "definition": "jemand, der offen gegen die offizielle Linie oder ein bestehendes System auftritt.",
+    "example": "Andersdenkende wurden in dem Regime verfolgt.",
+    "etymology": "von „anders“ und „denken“.",
+    "synonyms": [
+      "Regimekritiker",
+      "Dissident"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "2c2eb617-84f6-46a8-94e2-712d58363339",
+    "text": "Amtsinhaber",
+    "phonetic": "/ˈamt͡sʔɪnˌhaːbɐ/",
+    "definition": "der derzeitige Inhaber eines Amtes oder einer Stellung.",
+    "example": "Der Amtsinhaber tritt zur Wiederwahl an.",
+    "etymology": "von „Amt“ und „Inhaber“.",
+    "synonyms": [
+      "Amtsträger"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "9af4685f-7fb2-487b-b458-17c517f63540",
+    "text": "Wunderkind",
+    "phonetic": "/ˈvʊndɐˌkɪnt/",
+    "definition": "ein junger Mensch mit außergewöhnlichen Begabungen.",
+    "example": "Schon mit sechs galt sie als musikalisches Wunderkind.",
+    "etymology": "von „Wunder“ und „Kind“.",
+    "synonyms": [
+      "Hochbegabter"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "02ccacdd-c918-46f5-8c21-9d3a9cd333d3",
+    "text": "Eiferer",
+    "phonetic": "/ˈaɪ̯fəʁɐ/",
+    "definition": "jemand, der fanatisch einer Sache oder Überzeugung ergeben ist.",
+    "example": "Als religiöser Eiferer duldete er keinen Widerspruch.",
+    "etymology": "von „Eifer“.",
+    "synonyms": [
+      "Fanatiker",
+      "Zelot"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "a3c31e9b-70a9-4af3-9586-3c4a7c140c03",
+    "text": "verzerren",
+    "phonetic": "/fɛɐ̯ˈt͡sɛʁən/",
+    "definition": "aus der normalen Form verdrehen oder verbiegen, besonders Körper oder Gesicht.",
+    "example": "Der Schmerz verzerrte sein Gesicht.",
+    "etymology": "von „zerren“.",
+    "synonyms": [
+      "verdrehen",
+      "entstellen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "7024c6b0-8d48-49ab-8328-71143b9ef48c",
+    "text": "verzagt",
+    "phonetic": "/fɛɐ̯ˈt͡saːkt/",
+    "definition": "mutlos durch Verlust von Hoffnung oder Mut.",
+    "example": "Verzagt blickte er in die ungewisse Zukunft.",
+    "etymology": "von „zagen“ (zögern, sich fürchten).",
+    "synonyms": [
+      "mutlos",
+      "kleinmütig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "8e53a19e-a9aa-4443-bbe4-edc7e6b2b742",
+    "text": "wählerisch",
+    "phonetic": "/ˈvɛːləʁɪʃ/",
+    "definition": "übertrieben auf Details bedacht; schwer zufriedenzustellen.",
+    "example": "Beim Essen ist das Kind sehr wählerisch.",
+    "etymology": "von „wählen“.",
+    "synonyms": [
+      "anspruchsvoll",
+      "heikel"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "3a569592-6658-4cda-8874-79a0ecff644a",
+    "text": "Würdenträger",
+    "phonetic": "/ˈvʏʁdn̩ˌtʁɛːɡɐ/",
+    "definition": "eine Person von hohem Rang oder Amt.",
+    "example": "Zahlreiche Würdenträger wohnten der Zeremonie bei.",
+    "etymology": "von „Würde“ und „tragen“.",
+    "synonyms": [
+      "Honoratior"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "b5000004-0000-4000-8000-000000000504",
+    "text": "Vermittlungssoftware",
+    "phonetic": "/fɛɐ̯ˈmɪtlʊŋsˌzɔftvɛːɐ̯/",
+    "definition": "Software, die verschiedene Anwendungen oder Dienste miteinander verbindet.",
+    "example": "Die Vermittlungssoftware koppelt das alte System an die neue Datenbank.",
+    "etymology": "von „vermitteln“ und „Software“.",
+    "synonyms": [],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "b5000016-0000-4000-8000-000000000516",
+    "text": "Schwingung",
+    "phonetic": "/ˈʃvɪŋʊŋ/",
+    "definition": "wiederholte Hin-und-Her-Bewegung um einen Mittelpunkt.",
+    "example": "Die Schwingung des Pendels wird allmählich schwächer.",
+    "etymology": "von „schwingen“.",
+    "synonyms": [
+      "Oszillation"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b5000024-0000-4000-8000-000000000524",
+    "text": "Vignette",
+    "phonetic": "/vɪnˈjɛtə/",
+    "definition": "eine kurze, lebendige Szene oder Beschreibung.",
+    "example": "Der Roman besteht aus vielen kleinen Vignetten.",
+    "etymology": "aus dem Französischen „vigne“ (Weinranke).",
+    "synonyms": [
+      "Miniatur"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "c7000008-0000-4000-8000-000000000708",
+    "text": "Katharsis",
+    "phonetic": "/kaˈtaʁzɪs/",
+    "definition": "die Entladung starker Gefühle, die Erleichterung und Reinigung bringt.",
+    "example": "Das Stück löst beim Zuschauer eine Katharsis aus.",
+    "etymology": "aus dem Griechischen „kátharsis“ (Reinigung).",
+    "synonyms": [
+      "Läuterung"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "c7000023-0000-4000-8000-000000000723",
+    "text": "züchtigen",
+    "phonetic": "/ˈt͡sʏçtɪɡn̩/",
+    "definition": "jemanden scharf zurechtweisen oder körperlich bestrafen.",
+    "example": "Früher durften Lehrer ihre Schüler züchtigen.",
+    "etymology": "von „Zucht“.",
+    "synonyms": [
+      "maßregeln",
+      "strafen"
+    ],
+    "register": "formal"
+  },
+  {
+    "en_id": "ca00000c-0000-4000-8000-00000000100c",
+    "text": "Erbitterung",
+    "phonetic": "/ɛɐ̯ˈbɪtəʁʊŋ/",
+    "definition": "bitterer, lang anhaltender Unwille gegen jemanden.",
+    "example": "Der lange Streit hinterließ tiefe Erbitterung.",
+    "etymology": "von „bitter“ und „er-“.",
+    "synonyms": [
+      "Groll",
+      "Verbitterung"
+    ],
+    "register": "gehoben"
+  }
+]

@@ -1,0 +1,635 @@
+[
+  {
+    "en_id": "ca00002a-0000-4000-8000-00000000102a",
+    "text": "ranzig",
+    "phonetic": "/ˈʁant͡sɪç/",
+    "definition": "alt geworden und dadurch unangenehm riechend oder schmeckend (von Fett oder Öl).",
+    "example": "Die alte Butter roch bereits ranzig.",
+    "etymology": "von „ranzen“ (gären).",
+    "synonyms": [
+      "verdorben"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb000014-0000-4000-8000-000000001114",
+    "text": "sittsam",
+    "phonetic": "/ˈzɪtzaːm/",
+    "definition": "zurückhaltend, bescheiden und schüchtern.",
+    "example": "Mit sittsam gesenktem Blick stand sie da.",
+    "etymology": "von „Sitte“.",
+    "synonyms": [
+      "zurückhaltend",
+      "züchtig"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "cb00001e-0000-4000-8000-00000000111e",
+    "text": "artikulieren",
+    "phonetic": "/aʁtikuˈliːʁən/",
+    "definition": "Wörter deutlich aussprechen; etwas genau ausdrücken.",
+    "example": "Sie artikulierte jedes Wort sorgfältig.",
+    "etymology": "aus dem Lateinischen „articulare“ (gliedern).",
+    "synonyms": [
+      "aussprechen",
+      "ausdrücken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb000027-0000-4000-8000-000000001127",
+    "text": "schwitzen",
+    "phonetic": "/ˈʃvɪt͡sn̩/",
+    "definition": "Schweiß absondern.",
+    "example": "In der Hitze begannen alle zu schwitzen.",
+    "etymology": "von althochdeutsch „swizzen“.",
+    "synonyms": [
+      "transpirieren"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "0ce8854d-ed6c-45d6-ac84-8b5e44b44f32",
+    "text": "krampfen",
+    "phonetic": "/ˈkʁamp͡fn̩/",
+    "definition": "sich heftig und unkontrolliert zusammenziehen.",
+    "example": "Vor Kälte begannen seine Muskeln zu krampfen.",
+    "etymology": "von „Krampf“.",
+    "synonyms": [
+      "zucken",
+      "verkrampfen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "bf2c07d9-fbc0-4a3a-9449-9889bd752ed0",
+    "text": "fuchteln",
+    "phonetic": "/ˈfʊxtl̩n/",
+    "definition": "wild mit den Armen oder Beinen herumschwingen.",
+    "example": "Aufgeregt fuchtelte er mit den Händen.",
+    "etymology": "von „Fuchtel“ (Degen).",
+    "synonyms": [
+      "schlenkern"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "f4d641ea-bdd3-434b-adf8-254d61b84d29",
+    "text": "ringen",
+    "phonetic": "/ˈʁɪŋən/",
+    "definition": "jemanden packen und im Nahkampf mit ihm kämpfen.",
+    "example": "Die beiden rangen verbissen am Boden.",
+    "etymology": "von althochdeutsch „ringan“.",
+    "synonyms": [
+      "kämpfen",
+      "raufen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cf43b107-3237-4ad8-88ac-ddae418bb05f",
+    "text": "flitzen",
+    "phonetic": "/ˈflɪt͡sn̩/",
+    "definition": "mit kurzen, leichten Schritten schnell laufen, oft verspielt.",
+    "example": "Die Kinder flitzten über den Hof.",
+    "etymology": "lautmalerisch.",
+    "synonyms": [
+      "huschen",
+      "sausen"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "97fccf74-967b-48d6-b12d-22919f5a9da5",
+    "text": "stolzieren",
+    "phonetic": "/ʃtɔlˈt͡siːʁən/",
+    "definition": "selbstbewusst und überheblich einherschreiten.",
+    "example": "Er stolzierte wie ein Pfau durch den Saal.",
+    "etymology": "von „stolz“.",
+    "synonyms": [
+      "paradieren"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "e99b0fdc-849d-4261-b022-fd52da469b8e",
+    "text": "handhaben",
+    "phonetic": "/ˈhantˌhaːbn̩/",
+    "definition": "eine Waffe oder ein Werkzeug halten und gebrauchen; Macht ausüben.",
+    "example": "Er handhabte das Schwert mit großem Geschick.",
+    "etymology": "von „Hand“ und „haben“.",
+    "synonyms": [
+      "führen",
+      "ausüben"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "1e154b3f-33c6-49dd-bbb6-43e69da36e47",
+    "text": "winden",
+    "phonetic": "/ˈvɪndn̩/",
+    "definition": "sich vor Schmerz oder Unbehagen krümmen und drehen.",
+    "example": "Er wand sich vor Schmerzen am Boden.",
+    "etymology": "von althochdeutsch „wintan“.",
+    "synonyms": [
+      "krümmen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "7458b1f3-3d17-454c-a093-7470303ec5bf",
+    "text": "aromatisch",
+    "phonetic": "/aʁoˈmaːtɪʃ/",
+    "definition": "einen angenehmen, kräftigen Duft habend.",
+    "example": "Der Kaffee verströmte einen aromatischen Duft.",
+    "etymology": "aus dem Griechischen „árōma“ (Gewürz).",
+    "synonyms": [
+      "duftend",
+      "würzig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "9e1f5eff-8814-429a-9a0b-795b718288af",
+    "text": "süßlich",
+    "phonetic": "/ˈzyːslɪç/",
+    "definition": "unangenehm süß oder gehaltvoll bis zur Widerlichkeit.",
+    "example": "Der Likör schmeckte penetrant süßlich.",
+    "etymology": "von „süß“.",
+    "synonyms": [
+      "penetrant"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "17ae7956-66be-45c8-ae40-ac5fa8e511e9",
+    "text": "geschmacklos",
+    "phonetic": "/ɡəˈʃmakloːs/",
+    "definition": "ohne Geschmack oder Reiz; schwach und langweilig.",
+    "example": "Das Gericht war völlig geschmacklos.",
+    "etymology": "von „Geschmack“ und „-los“.",
+    "synonyms": [
+      "fade",
+      "schal"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "d7d0782a-dc0e-46b7-a27b-8d0818673b5d",
+    "text": "höhnisch",
+    "phonetic": "/ˈhøːnɪʃ/",
+    "definition": "grimmig spöttisch oder zynisch im Ausdruck.",
+    "example": "Mit höhnischem Grinsen sah er sie an.",
+    "etymology": "von „Hohn“.",
+    "synonyms": [
+      "spöttisch",
+      "zynisch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c4fb7015-9fc0-42a4-877e-25228a575d46",
+    "text": "umami",
+    "phonetic": "/uˈmami/",
+    "definition": "eine Geschmacksrichtung, die herzhaft oder fleischig bedeutet.",
+    "example": "Reife Tomaten haben einen intensiven umami-Geschmack.",
+    "etymology": "aus dem Japanischen „umami“ (Wohlgeschmack).",
+    "synonyms": [
+      "herzhaft"
+    ],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "b5000015-0000-4000-8000-000000000515",
+    "text": "Zähflüssigkeit",
+    "phonetic": "/ˈt͡sɛːflʏsɪçkaɪ̯t/",
+    "definition": "der Widerstand einer Flüssigkeit gegen das Fließen; ihre Dickflüssigkeit.",
+    "example": "Honig hat eine hohe Zähflüssigkeit.",
+    "etymology": "von „zäh“ und „flüssig“.",
+    "synonyms": [
+      "Viskosität"
+    ],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "b500001f-0000-4000-8000-00000000051f",
+    "text": "Alliteration",
+    "phonetic": "/aliteʁaˈt͡si̯oːn/",
+    "definition": "die Wiederholung gleicher Anfangslaute in benachbarten Wörtern.",
+    "example": "„Milch macht müde Männer munter“ ist eine Alliteration.",
+    "etymology": "aus dem Lateinischen „ad litteram“ (zum Buchstaben).",
+    "synonyms": [
+      "Stabreim"
+    ],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "c7000009-0000-4000-8000-000000000709",
+    "text": "Entschlusskraft",
+    "phonetic": "/ɛntˈʃlʊsˌkʁaft/",
+    "definition": "die Fähigkeit, eigene Entscheidungen und Entschlüsse zu treffen.",
+    "example": "Es fehlte ihm an Entschlusskraft.",
+    "etymology": "von „Entschluss“ und „Kraft“.",
+    "synonyms": [
+      "Willensstärke",
+      "Tatkraft"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c700001c-0000-4000-8000-00000000071c",
+    "text": "Sendbote",
+    "phonetic": "/ˈzɛntˌboːtə/",
+    "definition": "eine Person, die als Vertreter auf eine besondere Mission geschickt wird.",
+    "example": "Ein Sendbote überbrachte die Nachricht des Fürsten.",
+    "etymology": "von „senden“ und „Bote“.",
+    "synonyms": [
+      "Bote",
+      "Gesandter"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "ca000003-0000-4000-8000-000000001003",
+    "text": "geknickt",
+    "phonetic": "/ɡəˈknɪkt/",
+    "definition": "traurig und enttäuscht nach einem Misserfolg.",
+    "example": "Nach der Niederlage war die Mannschaft sichtlich geknickt.",
+    "etymology": "von „knicken“.",
+    "synonyms": [
+      "bedrückt",
+      "entmutigt"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "cb000010-0000-4000-8000-000000001110",
+    "text": "gewandt",
+    "phonetic": "/ɡəˈvant/",
+    "definition": "charmant, selbstsicher und elegant, mitunter oberflächlich.",
+    "example": "Mit gewandten Worten überzeugte er das Publikum.",
+    "etymology": "von „wenden“.",
+    "synonyms": [
+      "weltgewandt",
+      "geschliffen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "cb000017-0000-4000-8000-000000001117",
+    "text": "schnippisch",
+    "phonetic": "/ˈʃnɪpɪʃ/",
+    "definition": "ohne ernsthafte oder respektvolle Haltung.",
+    "example": "„Na und?“, antwortete sie schnippisch.",
+    "etymology": "von „schnippen“.",
+    "synonyms": [
+      "vorlaut",
+      "respektlos"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "cb00001b-0000-4000-8000-00000000111b",
+    "text": "Galionsfigur",
+    "phonetic": "/ɡaliˈoːnsfiˌɡuːɐ̯/",
+    "definition": "eine Führungsperson nur dem Namen nach, ohne wirkliche Macht.",
+    "example": "Der Vorsitzende war nur eine Galionsfigur des Konzerns.",
+    "etymology": "von „Galion“ (Schiffsschnabel) und „Figur“.",
+    "synonyms": [
+      "Aushängeschild"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "06599763-fc0d-48b0-9e48-cffcddde508d",
+    "text": "opulent",
+    "phonetic": "/opuˈlɛnt/",
+    "definition": "von reichem, süßem Geschmack oder Duft; üppig genussvoll.",
+    "example": "Ein opulentes Festmahl wurde aufgetragen.",
+    "etymology": "aus dem Lateinischen „opulentus“ (reich).",
+    "synonyms": [
+      "üppig",
+      "schwelgerisch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "57d4b04e-0dad-45cf-8a5f-3f572cf7d06e",
+    "text": "verlockend",
+    "phonetic": "/fɛɐ̯ˈlɔkn̩t/",
+    "definition": "quälend reizvoll; ein Verlangen weckend, das vielleicht unerfüllt bleibt.",
+    "example": "Der Duft frischer Brötchen war verlockend.",
+    "etymology": "von „locken“.",
+    "synonyms": [
+      "verführerisch",
+      "reizvoll"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "67785dea-d672-4372-9550-63fa1f6c5677",
+    "text": "Abneigung",
+    "phonetic": "/ˈapˌnaɪ̯ɡʊŋ/",
+    "definition": "ein starkes Gefühl der Ablehnung oder des Widerwillens gegen etwas.",
+    "example": "Sie hatte eine tiefe Abneigung gegen Lügen.",
+    "etymology": "von „abneigen“.",
+    "synonyms": [
+      "Widerwille",
+      "Abscheu"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "0667ef7f-7453-4cde-ba61-8a7c12998844",
+    "text": "Selbstgefälligkeit",
+    "phonetic": "/ˈzɛlpstɡəˌfɛlɪçkaɪ̯t/",
+    "definition": "ein selbstzufriedenes Gefühl, das mögliche Gefahren übersieht.",
+    "example": "Ihre Selbstgefälligkeit ließ sie die Warnzeichen übersehen.",
+    "etymology": "von „selbst“ und „gefällig“.",
+    "synonyms": [
+      "Selbstzufriedenheit"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "97d095a8-b9a9-4d03-a5c1-ddf3e73a0a89",
+    "text": "Anpassung",
+    "phonetic": "/ˈanˌpasʊŋ/",
+    "definition": "Verhalten, das anerkannten Maßstäben oder Erwartungen entspricht.",
+    "example": "Sozialer Druck führt oft zu blinder Anpassung.",
+    "etymology": "von „anpassen“.",
+    "synonyms": [
+      "Konformität"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "59bc15ba-7b72-41af-bb0a-08efa16278b8",
+    "text": "Missklang",
+    "phonetic": "/ˈmɪsˌklaŋ/",
+    "definition": "ein Mangel an Harmonie; inneres Unbehagen aus widersprüchlichen Überzeugungen.",
+    "example": "Zwischen seinen Worten und Taten herrschte ein Missklang.",
+    "etymology": "von „miss-“ und „Klang“.",
+    "synonyms": [
+      "Dissonanz",
+      "Zwiespalt"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "7184b98f-9acb-4a23-af23-40557a03ed34",
+    "text": "Veranlagung",
+    "phonetic": "/fɛɐ̯ˈʔanˌlaːɡʊŋ/",
+    "definition": "eine Neigung, sich auf bestimmte Weise zu verhalten oder beeinflusst zu werden.",
+    "example": "Eine erbliche Veranlagung erhöht das Risiko.",
+    "etymology": "von „veranlagen“.",
+    "synonyms": [
+      "Neigung",
+      "Disposition"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "dd00c1c6-14a8-44d8-9e10-53c3faa90a08",
+    "text": "Mehrdeutigkeit",
+    "phonetic": "/ˈmeːɐ̯ˌdɔɪ̯tɪçkaɪ̯t/",
+    "definition": "die Eigenschaft, mehr als eine Deutung zuzulassen.",
+    "example": "Die Mehrdeutigkeit des Satzes sorgte für Verwirrung.",
+    "etymology": "von „mehr“ und „deuten“.",
+    "synonyms": [
+      "Doppeldeutigkeit"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "7538d851-f89b-40b0-afa1-8ce6ba313470",
+    "text": "Anomalie",
+    "phonetic": "/anomaˈliː/",
+    "definition": "etwas, das vom Üblichen oder Erwarteten abweicht.",
+    "example": "Die Messung zeigte eine deutliche Anomalie.",
+    "etymology": "aus dem Griechischen „anōmalía“ (Unregelmäßigkeit).",
+    "synonyms": [
+      "Unregelmäßigkeit",
+      "Abweichung"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "45d645d5-bf9c-45ca-b77b-c461a2c6262e",
+    "text": "Rätsel",
+    "phonetic": "/ˈʁɛːt͡sl̩/",
+    "definition": "ein verwirrendes und schwieriges Problem oder eine schwierige Frage.",
+    "example": "Sein Verschwinden gibt der Polizei ein Rätsel auf.",
+    "etymology": "von althochdeutsch „rātisli“ (Vermutung).",
+    "synonyms": [
+      "Knobelaufgabe"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "6024d32a-4b8c-4344-b8d6-c23615abda77",
+    "text": "großmütig",
+    "phonetic": "/ˈɡʁoːsˌmyːtɪç/",
+    "definition": "großzügig und edelmütig, besonders gegenüber einem Rivalen oder Schwächeren.",
+    "example": "Großmütig verzieh er seinem Gegner.",
+    "etymology": "von „groß“ und „Mut“.",
+    "synonyms": [
+      "edelmütig",
+      "hochherzig"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "b5000013-0000-4000-8000-000000000513",
+    "text": "Isotop",
+    "phonetic": "/izoˈtoːp/",
+    "definition": "eine Form eines Elements mit einer anderen Anzahl von Neutronen.",
+    "example": "Dieses Isotop wird zur Altersbestimmung genutzt.",
+    "etymology": "aus dem Griechischen „ísos“ (gleich) und „tópos“ (Ort).",
+    "synonyms": [],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "c7000011-0000-4000-8000-000000000711",
+    "text": "träge",
+    "phonetic": "/ˈtʁɛːɡə/",
+    "definition": "bestrebt, Tätigkeit oder Mühe zu vermeiden; faul.",
+    "example": "Nach dem Essen wurde er müde und träge.",
+    "etymology": "von althochdeutsch „trāgi“.",
+    "synonyms": [
+      "faul",
+      "lethargisch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c7000032-0000-4000-8000-000000000732",
+    "text": "aufblühen",
+    "phonetic": "/ˈaʊ̯fˌblyːən/",
+    "definition": "rasch wachsen oder sich entfalten.",
+    "example": "Unter ihrer Leitung blühte das Geschäft auf.",
+    "etymology": "von „auf“ und „blühen“.",
+    "synonyms": [
+      "gedeihen",
+      "sprießen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ca000016-0000-4000-8000-000000001016",
+    "text": "naseweis",
+    "phonetic": "/ˈnaːzəvaɪ̯s/",
+    "definition": "dazu neigend, sich in fremde Angelegenheiten einzumischen.",
+    "example": "Das naseweise Kind stellte unentwegt Fragen.",
+    "etymology": "von „Nase“ und „weise“.",
+    "synonyms": [
+      "neugierig",
+      "vorwitzig"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "cb000011-0000-4000-8000-000000001111",
+    "text": "ruppig",
+    "phonetic": "/ˈʁʊpɪç/",
+    "definition": "schroff oder kurz angebunden im Auftreten oder in der Rede.",
+    "example": "Sein ruppiger Ton verschreckte die Kunden.",
+    "etymology": "von „Ruppe“ (struppig).",
+    "synonyms": [
+      "barsch",
+      "grob"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "9ecfe303-ce9a-4714-b92a-c7be9498b05c",
+    "text": "Unstimmigkeit",
+    "phonetic": "/ˈʊnʃtɪmɪçkaɪ̯t/",
+    "definition": "ein Unterschied oder Widerspruch zwischen zwei Dingen, die übereinstimmen sollten.",
+    "example": "In der Abrechnung gab es mehrere Unstimmigkeiten.",
+    "etymology": "von „stimmen“ und „un-“.",
+    "synonyms": [
+      "Widerspruch",
+      "Diskrepanz"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "fd082e66-66da-4c4a-928c-cfc85723b1f7",
+    "text": "Unmut",
+    "phonetic": "/ˈʊnˌmuːt/",
+    "definition": "der Zustand, verärgert, frustriert oder besorgt zu sein.",
+    "example": "Die Verspätung löste großen Unmut aus.",
+    "etymology": "von „un-“ und „Mut“ (Gemüt).",
+    "synonyms": [
+      "Ärger",
+      "Verdruss"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "962f60cd-9b22-4c77-9239-9d5768d4a75f",
+    "text": "Zerknirschung",
+    "phonetic": "/t͡sɛɐ̯ˈknɪʁʃʊŋ/",
+    "definition": "aufrichtiges Bedauern oder Buße für ein Vergehen.",
+    "example": "Voller Zerknirschung bat er um Verzeihung.",
+    "etymology": "von „zerknirschen“.",
+    "synonyms": [
+      "Reue",
+      "Buße"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "08d48203-e414-4923-85e7-7071322d7ff0",
+    "text": "Jubel",
+    "phonetic": "/ˈjuːbl̩/",
+    "definition": "ein Gefühl großer Freude und des Triumphs.",
+    "example": "Nach dem Sieg brach lauter Jubel aus.",
+    "etymology": "aus dem Lateinischen „iubilare“ (jauchzen).",
+    "synonyms": [
+      "Frohlocken",
+      "Begeisterung"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "5807f2a9-5869-4162-acf4-6601b164be4c",
+    "text": "Mutlosigkeit",
+    "phonetic": "/ˈmuːtloːzɪçkaɪ̯t/",
+    "definition": "ein Zustand gedrückter Stimmung durch Verlust von Hoffnung oder Mut.",
+    "example": "Tiefe Mutlosigkeit hatte ihn ergriffen.",
+    "etymology": "von „mutlos“.",
+    "synonyms": [
+      "Verzagtheit",
+      "Niedergeschlagenheit"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "075e1a92-ff57-4a67-9a54-6be08e4277ed",
+    "text": "Verliebtheit",
+    "phonetic": "/fɛɐ̯ˈliːpthaɪ̯t/",
+    "definition": "eine heftige, aber kurzlebige Leidenschaft oder Schwärmerei für jemanden.",
+    "example": "Die erste Verliebtheit verflog rasch.",
+    "etymology": "von „verlieben“.",
+    "synonyms": [
+      "Schwärmerei",
+      "Vernarrtheit"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "0051beb9-3615-484c-be6f-17cb6350a1e0",
+    "text": "Euphorie",
+    "phonetic": "/ɔɪ̯foˈʁiː/",
+    "definition": "ein Gefühl höchster Erregung und Glückseligkeit.",
+    "example": "Nach dem Sieg herrschte reine Euphorie.",
+    "etymology": "aus dem Griechischen „euphoría“ (Wohlbefinden).",
+    "synonyms": [
+      "Hochstimmung",
+      "Glücksrausch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "4417e1a1-b175-42af-b577-9bddeac899a0",
+    "text": "huldvoll",
+    "phonetic": "/ˈhʊltfɔl/",
+    "definition": "höflich, freundlich und zuvorkommend, besonders gegenüber Untergebenen.",
+    "example": "Huldvoll nahm die Königin die Geschenke entgegen.",
+    "etymology": "von „Huld“ (Gunst).",
+    "synonyms": [
+      "gnädig",
+      "wohlwollend"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "baab0fe9-aa88-4b8c-8615-49d1402cd1e4",
+    "text": "wohlwollend",
+    "phonetic": "/ˈvoːlˌvɔlənt/",
+    "definition": "gutmeinend und freundlich; mildtätig.",
+    "example": "Sie betrachtete seine Bemühungen wohlwollend.",
+    "etymology": "von „wohl“ und „wollen“.",
+    "synonyms": [
+      "gütig",
+      "wohlmeinend"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "f8c3ec01-3ae4-4629-9f0c-dfabbadf20cf",
+    "text": "boshaft",
+    "phonetic": "/ˈboːshaft/",
+    "definition": "darauf aus, Schaden zuzufügen; gehässig.",
+    "example": "Mit boshaftem Lächeln streute sie das Gerücht.",
+    "etymology": "von „böse“.",
+    "synonyms": [
+      "bösartig",
+      "hämisch"
+    ],
+    "register": "neutral"
+  }
+]

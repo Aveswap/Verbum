@@ -1,0 +1,651 @@
+[
+  {
+    "en_id": "0c5964da-f1c7-4bc0-978d-33c04dc770cc",
+    "text": "brummig",
+    "phonetic": "/ˈbʁʊmɪç/",
+    "definition": "abrupt und kurz angebunden im Auftreten; rau und tief in der Stimme.",
+    "example": "Am Morgen war der Alte stets brummig.",
+    "etymology": "von „brummen“.",
+    "synonyms": [
+      "mürrisch",
+      "rau"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "170300a1-929f-4ac1-a5a0-99eb577f4acd",
+    "text": "glattzüngig",
+    "phonetic": "/ˈɡlatˌt͡sʏŋɪç/",
+    "definition": "redegewandt, aber unaufrichtig und oberflächlich.",
+    "example": "Der glattzüngige Verkäufer versprach das Blaue vom Himmel.",
+    "etymology": "von „glatt“ und „Zunge“.",
+    "synonyms": [
+      "aalglatt",
+      "oberflächlich"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "8c72622f-f251-4fb1-bb4b-e6f1fff84bdb",
+    "text": "drollig",
+    "phonetic": "/ˈdʁɔlɪç/",
+    "definition": "auf eigentümliche oder schrullige Weise erheiternd.",
+    "example": "Der kleine Hund machte drollige Sprünge.",
+    "etymology": "aus dem Französischen „drôle“ (spaßig).",
+    "synonyms": [
+      "putzig",
+      "spaßig"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "cb3825f2-068d-4811-8127-02ce138a1054",
+    "text": "süffisant",
+    "phonetic": "/zʏfiˈzant/",
+    "definition": "trockenen, spöttischen Humor ausdrückend.",
+    "example": "Mit süffisantem Lächeln kommentierte er die Panne.",
+    "etymology": "aus dem Französischen „suffisant“ (selbstgefällig).",
+    "synonyms": [
+      "spöttisch",
+      "ironisch"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "4d7d82d1-0595-421b-8ea2-8bba53586c5f",
+    "text": "dunkelhäutig",
+    "phonetic": "/ˈdʊŋkl̩ˌhɔɪ̯tɪç/",
+    "definition": "von dunkler Hautfarbe.",
+    "example": "Der dunkelhäutige Fremde erregte Aufsehen.",
+    "etymology": "von „dunkel“ und „Haut“.",
+    "synonyms": [
+      "dunkel",
+      "braun"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "94343007-5a7e-42bd-8a5d-cbd703048740",
+    "text": "kränklich",
+    "phonetic": "/ˈkʁɛŋklɪç/",
+    "definition": "von ungesund gelblicher oder blasser Gesichtsfarbe.",
+    "example": "Sein kränkliches, fahles Gesicht machte Sorgen.",
+    "etymology": "von „krank“.",
+    "synonyms": [
+      "blass",
+      "gelblich"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "ef683623-b5d1-458a-bf6c-3667c46477be",
+    "text": "bullig",
+    "phonetic": "/ˈbʊlɪç/",
+    "definition": "groß und kräftig; massig gebaut.",
+    "example": "Der bullige Türsteher versperrte den Eingang.",
+    "etymology": "von „Bulle“.",
+    "synonyms": [
+      "stämmig",
+      "kräftig"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "dca72c2f-2d95-44a5-8817-c05adf2eb587",
+    "text": "untersetzt",
+    "phonetic": "/ˈʊntɐˌzɛt͡st/",
+    "definition": "breit und kräftig gebaut; kurz und gedrungen.",
+    "example": "Ein untersetzter Mann mit breiten Schultern trat ein.",
+    "etymology": "von „untersetzen“.",
+    "synonyms": [
+      "gedrungen",
+      "kompakt"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "8551a905-d723-4598-a0a9-4f7dab0f8bc9",
+    "text": "drahtig",
+    "phonetic": "/ˈdʁaːtɪç/",
+    "definition": "hager, zäh und sehnig gebaut.",
+    "example": "Der drahtige Läufer überholte alle am Berg.",
+    "etymology": "von „Draht“.",
+    "synonyms": [
+      "sehnig",
+      "zäh"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "d0a9d4a2-9979-4c9c-b34b-2cd5d2c61684",
+    "text": "grazil",
+    "phonetic": "/ɡʁaˈt͡siːl/",
+    "definition": "hochgewachsen, schlank und anmutig.",
+    "example": "Die grazile Tänzerin schwebte über die Bühne.",
+    "etymology": "aus dem Lateinischen „gracilis“ (schlank).",
+    "synonyms": [
+      "schlank",
+      "anmutig"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "68eed8ec-74e8-4aa5-892a-e7a1fd555f01",
+    "text": "ungepflegt",
+    "phonetic": "/ˈʊnɡəˌp͡fleːkt/",
+    "definition": "unordentlich oder verwahrlost im Aussehen.",
+    "example": "Sein ungepflegter Bart fiel sofort auf.",
+    "etymology": "von „pflegen“ und „un-“.",
+    "synonyms": [
+      "verwahrlost",
+      "zerzaust"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "58cd1dab-324d-44a7-89c2-bd17e158d870",
+    "text": "zerzaust",
+    "phonetic": "/t͡sɛɐ̯ˈt͡saʊ̯st/",
+    "definition": "unordentlich; mit Haaren oder Kleidung in Unordnung.",
+    "example": "Vom Wind zerzaust kam sie zur Tür herein.",
+    "etymology": "von „zausen“.",
+    "synonyms": [
+      "strubbelig",
+      "ungekämmt"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "f1443c7b-d630-4313-a5a7-026deba5b731",
+    "text": "dürr",
+    "phonetic": "/dʏʁ/",
+    "definition": "unschön mager und knochig.",
+    "example": "Die dürren Äste knackten unter dem Schnee.",
+    "etymology": "von althochdeutsch „durri“.",
+    "synonyms": [
+      "hager",
+      "spindeldürr"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ed7758db-19b0-41a0-bad4-93c9c0a941f5",
+    "text": "spindeldürr",
+    "phonetic": "/ˈʃpɪndl̩ˌdʏʁ/",
+    "definition": "lang oder hochgewachsen und dünn, wirkt schwach.",
+    "example": "Seine spindeldürren Beine trugen ihn kaum.",
+    "etymology": "von „Spindel“ und „dürr“.",
+    "synonyms": [
+      "dünn",
+      "schmächtig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "bf030ed6-9989-43bd-850d-b220bcfb6d30",
+    "text": "schnoddrig",
+    "phonetic": "/ˈʃnɔdʁɪç/",
+    "definition": "unhöflich kurz angebunden in Rede oder Art.",
+    "example": "Seine schnoddrige Antwort verärgerte den Lehrer.",
+    "etymology": "aus dem Niederdeutschen.",
+    "synonyms": [
+      "barsch",
+      "forsch"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "9aae0517-d95d-4f18-a060-6fcad1a1a6fd",
+    "text": "lakonisch",
+    "phonetic": "/laˈkoːnɪʃ/",
+    "definition": "sparsam mit Worten; knapp und treffend.",
+    "example": "Mit einem lakonischen „Nein“ beendete er das Gespräch.",
+    "etymology": "aus dem Griechischen „lakōnikós“ (nach Art der Spartaner).",
+    "synonyms": [
+      "wortkarg",
+      "bündig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "da4a90c6-456d-42c6-8647-f861bc070748",
+    "text": "Widerlegung",
+    "phonetic": "/ˈviːdɐˌleːɡʊŋ/",
+    "definition": "eine Aussage, die ein Argument widerlegt oder ihm widerspricht.",
+    "example": "Seine Widerlegung der These war überzeugend.",
+    "etymology": "von „widerlegen“.",
+    "synonyms": [
+      "Entgegnung",
+      "Gegenrede"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "f84a4107-466f-4e61-beb0-d6d143d8e5e0",
+    "text": "Retourkutsche",
+    "phonetic": "/ʁeˈtuːɐ̯ˌkʊt͡ʃə/",
+    "definition": "eine schnelle, scharfe Erwiderung auf einen Angriff oder eine Kritik.",
+    "example": "Seine Retourkutsche kam prompt und traf ins Schwarze.",
+    "etymology": "von französisch „retour“ (zurück) und „Kutsche“.",
+    "synonyms": [
+      "Konter",
+      "Gegenschlag"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "37c1fdda-fa19-4a43-9c95-c8bb80cf6a70",
+    "text": "Erwiderung",
+    "phonetic": "/ɛɐ̯ˈviːdəʁʊŋ/",
+    "definition": "eine Antwort, besonders eine scharfe oder geistreiche.",
+    "example": "Auf seinen Spott folgte eine treffende Erwiderung.",
+    "etymology": "von „erwidern“.",
+    "synonyms": [
+      "Entgegnung",
+      "Replik"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "4cac51af-3341-4cd5-b7b9-c16368fc7e1b",
+    "text": "Aphorismus",
+    "phonetic": "/afoˈʁɪsmʊs/",
+    "definition": "ein kurzer, prägnanter Sinnspruch, der eine allgemeine Wahrheit ausdrückt.",
+    "example": "Das Buch ist eine Sammlung geistreicher Aphorismen.",
+    "etymology": "aus dem Griechischen „aphorismós“ (Abgrenzung).",
+    "synonyms": [
+      "Sinnspruch",
+      "Sentenz"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "f13c2811-17bd-4020-84a3-975520332e17",
+    "text": "Sprichwort",
+    "phonetic": "/ˈʃpʁɪçvɔʁt/",
+    "definition": "ein Sprichwort oder kurzer Satz, der eine allgemeine Wahrheit ausdrückt.",
+    "example": "„Morgenstund hat Gold im Mund“ ist ein altes Sprichwort.",
+    "etymology": "von „sprechen“ und „Wort“.",
+    "synonyms": [
+      "Sinnspruch",
+      "Spruch"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ce6c7bb3-e9b0-4602-9779-7fd21647256d",
+    "text": "Maxime",
+    "phonetic": "/maˈksiːmə/",
+    "definition": "ein kurzer Satz über eine allgemeine Regel des Verhaltens.",
+    "example": "Ehrlichkeit war seine oberste Maxime.",
+    "etymology": "aus dem Lateinischen „maxima“ (oberster Grundsatz).",
+    "synonyms": [
+      "Leitsatz",
+      "Grundsatz"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "c30122c1-a0ac-4d9d-a914-5b771ba03045",
+    "text": "Epigramm",
+    "phonetic": "/epiˈɡʁam/",
+    "definition": "ein knapper, geistreicher und oft paradoxer Spruch.",
+    "example": "Seine Epigramme spießten die Eitelkeit des Hofes auf.",
+    "etymology": "aus dem Griechischen „epígramma“ (Aufschrift).",
+    "synonyms": [
+      "Sinngedicht",
+      "Spottvers"
+    ],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "ad610671-36ea-4beb-8f84-90cb876f493f",
+    "text": "Diktum",
+    "phonetic": "/ˈdɪktʊm/",
+    "definition": "ein förmlicher oder maßgeblicher Ausspruch.",
+    "example": "Das Diktum des Gelehrten galt als unumstößlich.",
+    "etymology": "aus dem Lateinischen „dictum“ (das Gesagte).",
+    "synonyms": [
+      "Ausspruch",
+      "Lehrsatz"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "4113dc0c-8e66-4267-aa45-527a811cd8e8",
+    "text": "Vermittler",
+    "phonetic": "/fɛɐ̯ˈmɪtlɐ/",
+    "definition": "jemand, der versucht, einen Streit zwischen anderen zu schlichten.",
+    "example": "Als neutraler Vermittler schlichtete er den Konflikt.",
+    "etymology": "von „vermitteln“.",
+    "synonyms": [
+      "Schlichter",
+      "Friedensstifter"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "90ca60e4-36f1-4f50-b1e1-8866b5e8e855",
+    "text": "Gesandter",
+    "phonetic": "/ɡəˈzantɐ/",
+    "definition": "ein Bote oder Vertreter, besonders auf einer diplomatischen Mission.",
+    "example": "Der Gesandte überbrachte die Note der Regierung.",
+    "etymology": "von „senden“.",
+    "synonyms": [
+      "Botschafter",
+      "Abgesandter"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "ad67620a-4086-42f5-a70c-99a31d639d9f",
+    "text": "Stellvertreter",
+    "phonetic": "/ˈʃtɛlfɛɐ̯ˌtʁeːtɐ/",
+    "definition": "eine Person, die ernannt wird, für eine andere zu handeln oder ihr zu helfen.",
+    "example": "In seiner Abwesenheit übernahm der Stellvertreter.",
+    "etymology": "von „Stelle“ und „vertreten“.",
+    "synonyms": [
+      "Vertreter",
+      "Statthalter"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "1ec862a2-1994-4828-bcec-483ceddc7e5f",
+    "text": "Bevollmächtigter",
+    "phonetic": "/bəˈfɔlmɛçtɪçtɐ/",
+    "definition": "eine Person, die befugt ist, im Namen einer anderen zu handeln.",
+    "example": "Der Bevollmächtigte unterzeichnete den Vertrag.",
+    "etymology": "von „Vollmacht“.",
+    "synonyms": [
+      "Sachwalter",
+      "Beauftragter"
+    ],
+    "register": "formal"
+  },
+  {
+    "en_id": "54b48b8f-ae4a-40a4-9ead-9754b8846bde",
+    "text": "Surrogat",
+    "phonetic": "/zuʁoˈɡaːt/",
+    "definition": "ein Ersatz, besonders jemand, der die Rolle einer anderen Person ausfüllt.",
+    "example": "Der Mentor wurde zum Surrogat des verlorenen Vaters.",
+    "etymology": "aus dem Lateinischen „surrogatum“ (Ersatz).",
+    "synonyms": [
+      "Ersatz",
+      "Stellvertretung"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "0d672740-9656-40bc-9d73-8419a1c065be",
+    "text": "Komplize",
+    "phonetic": "/kɔmˈpliːt͡sə/",
+    "definition": "ein Verbündeter oder Komplize, besonders bei einem geheimen Vorhaben.",
+    "example": "Ohne seinen Komplizen wäre der Coup misslungen.",
+    "etymology": "aus dem Lateinischen „complex“ (verbunden).",
+    "synonyms": [
+      "Mitstreiter",
+      "Spießgeselle"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "2425264f-6a55-4fae-8dc3-cf51d33ee35a",
+    "text": "Handlanger",
+    "phonetic": "/ˈhantˌlaŋɐ/",
+    "definition": "ein treuer Gefolgsmann, der oft unmoralische Befehle ausführt.",
+    "example": "Die Handlanger des Bosses schüchterten die Zeugen ein.",
+    "etymology": "von „Hand“ und „langen“.",
+    "synonyms": [
+      "Komplize",
+      "Scherge"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "d76a8c79-b76f-44a6-a4ce-34a87ee5a375",
+    "text": "Unterstellter",
+    "phonetic": "/ˈʊntɐˌʃtɛltɐ/",
+    "definition": "eine Person unter der Weisung oder Kontrolle einer anderen.",
+    "example": "Er trug Verantwortung für zehn Unterstellte.",
+    "etymology": "von „unterstellen“.",
+    "synonyms": [
+      "Untergebener",
+      "Mitarbeiter"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "9a498f3f-72e7-4a2f-99e0-0f55a2322ac4",
+    "text": "Ausblick",
+    "phonetic": "/ˈaʊ̯sˌblɪk/",
+    "definition": "ein reizvoller Blick, besonders durch eine lange, schmale Öffnung.",
+    "example": "Vom Turm bot sich ein herrlicher Ausblick.",
+    "etymology": "von „ausblicken“.",
+    "synonyms": [
+      "Aussicht",
+      "Fernsicht"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "7228f5bc-f6bd-4965-a15b-85ce7435521c",
+    "text": "Rundblick",
+    "phonetic": "/ˈʁʊntˌblɪk/",
+    "definition": "ein ungehinderter Blick über eine weite Umgebung.",
+    "example": "Der Gipfel bot einen grandiosen Rundblick.",
+    "etymology": "von „rund“ und „Blick“.",
+    "synonyms": [
+      "Panorama",
+      "Rundsicht"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "8b97bfe8-1654-40cf-b794-19424ed274d8",
+    "text": "Schauspiel",
+    "phonetic": "/ˈʃaʊ̯ˌʃpiːl/",
+    "definition": "eine optisch eindrucksvolle Darbietung oder Vorführung.",
+    "example": "Der Sonnenuntergang war ein prächtiges Schauspiel.",
+    "etymology": "von „schauen“ und „Spiel“.",
+    "synonyms": [
+      "Spektakel",
+      "Schaustück"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "9ec010e4-fa11-45d4-b7f5-99f3b0559a44",
+    "text": "Umfeld",
+    "phonetic": "/ˈʊmˌfɛlt/",
+    "definition": "das soziale oder kulturelle Umfeld eines Menschen.",
+    "example": "Er stammte aus einem bürgerlichen Umfeld.",
+    "etymology": "von „um“ und „Feld“.",
+    "synonyms": [
+      "Milieu",
+      "Umgebung"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "e451d2ae-4dc3-4437-a6e4-8e8bd7eb88e8",
+    "text": "Ausstrahlung",
+    "phonetic": "/ˈaʊ̯sˌʃtʁaːlʊŋ/",
+    "definition": "eine eigentümliche Atmosphäre oder Wirkung, die jemanden oder etwas umgibt.",
+    "example": "Sie besaß eine warme, gewinnende Ausstrahlung.",
+    "etymology": "von „ausstrahlen“.",
+    "synonyms": [
+      "Aura",
+      "Charisma"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "a971d420-92c2-4bdc-bf44-2f259b9f590a",
+    "text": "Würde",
+    "phonetic": "/ˈvʏʁdə/",
+    "definition": "Würde, Ernst oder Feierlichkeit im Auftreten.",
+    "example": "Mit großer Würde nahm sie den Preis entgegen.",
+    "etymology": "von althochdeutsch „wirdī“.",
+    "synonyms": [
+      "Ernst",
+      "Gewichtigkeit"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "ccb45f45-934d-4679-be87-02901bc2b272",
+    "text": "Charisma",
+    "phonetic": "/kaˈʁɪsma/",
+    "definition": "bezwingender Charme, der bei anderen Hingabe weckt.",
+    "example": "Sein Charisma riss die ganze Menge mit.",
+    "etymology": "aus dem Griechischen „chárisma“ (Gnadengabe).",
+    "synonyms": [
+      "Ausstrahlung",
+      "Anziehungskraft"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "208bfa3f-d6e1-4a20-9f1e-f9d38cb0e964",
+    "text": "Bravour",
+    "phonetic": "/bʁaˈvuːɐ̯/",
+    "definition": "schwungvolle, selbstbewusste Eleganz im Stil oder Auftreten.",
+    "example": "Mit Bravour meisterte sie die schwierige Aufgabe.",
+    "etymology": "aus dem Französischen „bravoure“ (Tapferkeit).",
+    "synonyms": [
+      "Verve",
+      "Elan"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "0aa33536-eef9-4d80-87d6-59424d24099b",
+    "text": "Haltung",
+    "phonetic": "/ˈhaltʊŋ/",
+    "definition": "anmutige und würdevolle Gelassenheit im Auftreten.",
+    "example": "Selbst im Unglück bewahrte sie Haltung.",
+    "etymology": "von „halten“.",
+    "synonyms": [
+      "Fassung",
+      "Gelassenheit"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "865e37ff-4ac8-47b2-ba87-32b753aa69fd",
+    "text": "Scharfsinn",
+    "phonetic": "/ˈʃaʁfˌzɪn/",
+    "definition": "die Fähigkeit, gut zu urteilen und rasch zu entscheiden.",
+    "example": "Mit großem Scharfsinn löste sie den Fall.",
+    "etymology": "von „scharf“ und „Sinn“.",
+    "synonyms": [
+      "Spürsinn",
+      "Klugheit"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c9c9fa64-8f98-4699-ae72-5e3157d0bccc",
+    "text": "Weitblick",
+    "phonetic": "/ˈvaɪ̯tˌblɪk/",
+    "definition": "die Fähigkeit, künftige Bedürfnisse vorauszusehen und sich darauf vorzubereiten.",
+    "example": "Mit Weitblick legte sie früh Rücklagen an.",
+    "etymology": "von „weit“ und „Blick“.",
+    "synonyms": [
+      "Voraussicht",
+      "Umsicht"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "1d64551f-f19b-4e72-8c45-9a4fc33a7b1c",
+    "text": "Fassung",
+    "phonetic": "/ˈfasʊŋ/",
+    "definition": "der Zustand, ruhig und selbstbeherrscht zu sein.",
+    "example": "Sie verlor selbst in der Krise nie die Fassung.",
+    "etymology": "von „fassen“.",
+    "synonyms": [
+      "Gelassenheit",
+      "Beherrschung"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "60856af9-ba98-4bdf-8da1-b6f22f22fc96",
+    "text": "Wachsamkeit",
+    "phonetic": "/ˈvaxzaːmkaɪ̯t/",
+    "definition": "das aufmerksame Achten auf mögliche Gefahren.",
+    "example": "Erhöhte Wachsamkeit war an der Grenze geboten.",
+    "etymology": "von „wachsam“.",
+    "synonyms": [
+      "Aufmerksamkeit",
+      "Umsicht"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "9c27d96c-98f2-4b4b-b3dc-a19e70c3913d",
+    "text": "Besonnenheit",
+    "phonetic": "/bəˈzɔnənhaɪ̯t/",
+    "definition": "die Eigenschaft, in Wort und Tat umsichtig und taktvoll zu sein.",
+    "example": "Ihre Besonnenheit verhinderte eine Panik.",
+    "etymology": "von „besinnen“.",
+    "synonyms": [
+      "Umsicht",
+      "Zurückhaltung"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "431df84f-db01-4469-96a8-041e7bf4ee5f",
+    "text": "Abgeschlagenheit",
+    "phonetic": "/ˈapɡəˌʃlaːɡn̩haɪ̯t/",
+    "definition": "ein Zustand körperlicher oder geistiger Erschöpfung.",
+    "example": "Eine bleierne Abgeschlagenheit lähmte ihn.",
+    "etymology": "von „abgeschlagen“.",
+    "synonyms": [
+      "Trägheit",
+      "Erschöpfung"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "b5000022-0000-4000-8000-000000000522",
+    "text": "Auflösung",
+    "phonetic": "/ˈaʊ̯fˌløːzʊŋ/",
+    "definition": "die abschließende Auflösung der Handlung einer Geschichte.",
+    "example": "Die überraschende Auflösung des Krimis verblüffte alle.",
+    "etymology": "von „auflösen“.",
+    "synonyms": [
+      "Schluss",
+      "Ausgang"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b500001a-0000-4000-8000-00000000051a",
+    "text": "Wertigkeit",
+    "phonetic": "/ˈveːɐ̯tɪçkaɪ̯t/",
+    "definition": "die Bindungsfähigkeit eines Atoms; in der Psychologie die Gefühlsladung.",
+    "example": "Sauerstoff hat in Wasser die Wertigkeit zwei.",
+    "etymology": "von „Wert“.",
+    "synonyms": [
+      "Valenz"
+    ],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "b500000e-0000-4000-8000-00000000050e",
+    "text": "kompatibel",
+    "phonetic": "/kɔmpaˈtiːbl̩/",
+    "definition": "fähig, mit anderen Systemen oder Produkten zusammenzuarbeiten.",
+    "example": "Das neue Gerät ist mit dem alten Zubehör kompatibel.",
+    "etymology": "aus dem Lateinischen „compatibilis“ (verträglich).",
+    "synonyms": [
+      "verträglich",
+      "anschlussfähig"
+    ],
+    "register": "fachsprachlich"
+  }
+]

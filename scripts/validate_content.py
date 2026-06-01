@@ -37,7 +37,7 @@ BATCH_GLOB = os.path.join(HERE, "word_batches", "*.json")
 # A pragmatic IPA character class: slashes wrap the transcription, and the body should be
 # IPA letters / diacritics / stress + length marks — not ASCII spelling leaking through.
 IPA_BODY = re.compile(
-    r"^[a-zɑæɐəɛɜɪɨʊʌɔɒθðʃʒŋɡɹɾʁχʔʰʲˠˤbdfhjklmnprstvwzˈˌːˑ.̩̟̯̃͡ ()|-]+$",
+    r"^[a-zɑæɐəɛɜɪɨʊʌɔɒθðʃʒŋɡɹɾʁçøœʏχʔʰʲˠˤbdfhjklmnprstvwzˈˌːˑ.̩̟̯̃͡ ()|-]+$",
     re.IGNORECASE,
 )
 
@@ -47,7 +47,7 @@ VALID_LEVELS = {"beginner", "intermediate", "expert"}
 
 # Languages that ship an IPA transcription + English-style etymology. Other languages (e.g.
 # Ukrainian) legitimately leave phonetic/etymology blank, so those fields aren't audited there.
-IPA_LANGUAGES = {"en"}
+IPA_LANGUAGES = {"en", "de"}
 ETYMOLOGY_LANGUAGES = {"en"}
 
 # Must mirror WordAccess.swift — the soft paywall hides these categories from the free pool.

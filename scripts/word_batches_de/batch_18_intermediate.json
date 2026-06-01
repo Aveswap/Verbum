@@ -1,0 +1,645 @@
+[
+  {
+    "en_id": "21231d4f-b3c9-4f49-8ead-4947a4c187dc",
+    "text": "selbstzufrieden",
+    "phonetic": "/ˈzɛlpstt͡suˌfʁiːdn̩/",
+    "definition": "selbstzufrieden und blind für mögliche Gefahren.",
+    "example": "Selbstzufrieden lehnte er sich zurück.",
+    "etymology": "von „selbst“ und „zufrieden“.",
+    "synonyms": [
+      "überheblich",
+      "saturiert"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "29cacfad-4265-419c-b494-af4bdcc63db3",
+    "text": "hinterhältig",
+    "phonetic": "/ˈhɪntɐˌhɛltɪç/",
+    "definition": "geschickt darin, Ziele mit unlauteren Mitteln zu erreichen.",
+    "example": "Auf hinterhältige Weise brachte er den Rivalen zu Fall.",
+    "etymology": "von „hinter“ und „Halt“.",
+    "synonyms": [
+      "durchtrieben",
+      "verschlagen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "1f833f85-b732-413f-8da2-6cf443fcb898",
+    "text": "aufgeblasen",
+    "phonetic": "/ˈaʊ̯fɡəˌblaːzn̩/",
+    "definition": "gekünstelt großtuerisch, feierlich oder selbstwichtig.",
+    "example": "Sein aufgeblasenes Gehabe stieß alle ab.",
+    "etymology": "von „aufblasen“.",
+    "synonyms": [
+      "wichtigtuerisch",
+      "hochtrabend"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "90c1f11d-0958-448b-886f-e31aac6eebd1",
+    "text": "scheinheilig",
+    "phonetic": "/ˈʃaɪ̯nˌhaɪ̯lɪç/",
+    "definition": "vorgeblich moralisch überlegen; heuchlerisch fromm.",
+    "example": "Mit scheinheiliger Miene gab er sich besorgt.",
+    "etymology": "von „Schein“ und „heilig“.",
+    "synonyms": [
+      "heuchlerisch",
+      "frömmelnd"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "6130595c-649b-4355-a8ee-ed51cf7dd7ff",
+    "text": "wankelmütig",
+    "phonetic": "/ˈvaŋkl̩ˌmyːtɪç/",
+    "definition": "häufig wechselnd, besonders in Treue oder Zuneigung.",
+    "example": "Sein wankelmütiges Wesen machte ihn unzuverlässig.",
+    "etymology": "von „wanken“ und „Mut“.",
+    "synonyms": [
+      "unbeständig",
+      "launisch"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "be8b7e28-ee31-4285-8063-b1eb967c5a15",
+    "text": "übereinstimmen",
+    "phonetic": "/ˈyːbɐʔaɪ̯nˌʃtɪmən/",
+    "definition": "mit jemandem einer Meinung sein oder dasselbe meinen.",
+    "example": "In diesem Punkt stimmen wir völlig überein.",
+    "etymology": "von „über“, „ein“ und „stimmen“.",
+    "synonyms": [
+      "zustimmen",
+      "beipflichten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "6e1f7838-89ff-411f-8f6a-cdbe598445ff",
+    "text": "ausführen",
+    "phonetic": "/ˈaʊ̯sˌfyːʁən/",
+    "definition": "etwas bereits Gesagtes mit mehr Einzelheiten erläutern.",
+    "example": "Könnten Sie diesen Gedanken näher ausführen?",
+    "etymology": "von „aus“ und „führen“.",
+    "synonyms": [
+      "darlegen",
+      "vertiefen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b0f69b2b-6657-4e9f-a1c6-1ed53f3239c5",
+    "text": "ausrufen",
+    "phonetic": "/ˈaʊ̯sˌʁuːfn̩/",
+    "definition": "etwas amtlich oder öffentlich bekanntgeben.",
+    "example": "Die Republik wurde feierlich ausgerufen.",
+    "etymology": "von „aus“ und „rufen“.",
+    "synonyms": [
+      "verlautbaren",
+      "bekanntgeben"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "751706d1-9be6-47d7-95c0-e548501343d3",
+    "text": "mutmaßen",
+    "phonetic": "/ˈmuːtˌmaːsn̩/",
+    "definition": "vermuten, dass etwas wahr ist, ohne sichere Beweise.",
+    "example": "Man kann nur mutmaßen, was geschehen ist.",
+    "etymology": "von „Mut“ und „maßen“.",
+    "synonyms": [
+      "vermuten",
+      "annehmen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "0b2055f9-2386-4491-a3a9-0a54f5702850",
+    "text": "anflehen",
+    "phonetic": "/ˈanˌfleːən/",
+    "definition": "jemanden eindringlich und inständig um etwas bitten.",
+    "example": "Sie flehte ihn an, zu bleiben.",
+    "etymology": "von „flehen“.",
+    "synonyms": [
+      "beschwören",
+      "bitten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ade239b2-5971-445d-aebc-f56919f955a0",
+    "text": "verhöhnen",
+    "phonetic": "/fɛɐ̯ˈhøːnən/",
+    "definition": "Verachtung ausdrücken; jemanden lächerlich machen.",
+    "example": "Die Menge verhöhnte den Verlierer.",
+    "etymology": "von „Hohn“.",
+    "synonyms": [
+      "auslachen",
+      "verspotten"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c5440872-c15b-4615-aa3d-51683dae3a41",
+    "text": "maßregeln",
+    "phonetic": "/ˈmaːsˌʁeːɡl̩n/",
+    "definition": "jemanden förmlich und scharf zurechtweisen.",
+    "example": "Der Vorgesetzte maßregelte ihn vor allen Kollegen.",
+    "etymology": "von „Maß“ und „Regel“.",
+    "synonyms": [
+      "rügen",
+      "tadeln"
+    ],
+    "register": "formal"
+  },
+  {
+    "en_id": "29e4de85-9452-457d-8cc4-84ab22713e38",
+    "text": "Gefolgsmann",
+    "phonetic": "/ɡəˈfɔlksˌman/",
+    "definition": "ein Gehilfe oder ergebener Anhänger.",
+    "example": "Seine treuen Gefolgsmänner standen ihm bei.",
+    "etymology": "von „Gefolge“ und „Mann“.",
+    "synonyms": [
+      "Anhänger",
+      "Getreuer"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "54d16636-8e3b-4f3c-b2f3-b486ce31238e",
+    "text": "Adliger",
+    "phonetic": "/ˈaːtlɪɡɐ/",
+    "definition": "ein Angehöriger der höchsten Gesellschaftsschicht; ein Edelmann.",
+    "example": "Der Adlige besaß ausgedehnte Ländereien.",
+    "etymology": "von „Adel“.",
+    "synonyms": [
+      "Edelmann",
+      "Aristokrat"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "3aa852e9-cb82-4961-8e8e-b0bc43586ca8",
+    "text": "Verschwörer",
+    "phonetic": "/fɛɐ̯ˈʃvøːʁɐ/",
+    "definition": "jemand, der an einem geheimen, schädlichen Plan teilnimmt.",
+    "example": "Die Verschwörer trafen sich bei Nacht.",
+    "etymology": "von „verschwören“.",
+    "synonyms": [
+      "Komplize",
+      "Mitverschworener"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "989bcc74-cfd9-40f5-9969-cfa22487e8ab",
+    "text": "Gewaltherrscher",
+    "phonetic": "/ɡəˈvaltˌhɛʁʃɐ/",
+    "definition": "ein Herrscher mit absoluter, oft grausamer Macht.",
+    "example": "Das Volk litt unter dem Gewaltherrscher.",
+    "etymology": "von „Gewalt“ und „Herrscher“.",
+    "synonyms": [
+      "Despot",
+      "Tyrann"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "e43d879f-8f3b-4728-af18-01ce34dc8529",
+    "text": "Heuchler",
+    "phonetic": "/ˈhɔɪ̯çlɐ/",
+    "definition": "jemand, der Tugenden oder Überzeugungen vortäuscht, die er nicht hat.",
+    "example": "Als Heuchler predigte er Wasser und trank Wein.",
+    "etymology": "von „heucheln“.",
+    "synonyms": [
+      "Scheinheiliger",
+      "Pharisäer"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "095f4ef2-9b2d-49cd-b310-9b0720ab6518",
+    "text": "Sündenbock",
+    "phonetic": "/ˈzʏndn̩ˌbɔk/",
+    "definition": "jemand, dem die Verfehlungen oder Fehler anderer angelastet werden.",
+    "example": "Er musste als Sündenbock für das Versagen herhalten.",
+    "etymology": "von „Sünde“ und „Bock“.",
+    "synonyms": [
+      "Prügelknabe"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "91277746-a1b9-4a34-a1dd-003a2f0e5728",
+    "text": "Tyrann",
+    "phonetic": "/tyˈʁan/",
+    "definition": "ein grausamer und unterdrückerischer Herrscher.",
+    "example": "Der Tyrann ließ jeden Widerspruch ersticken.",
+    "etymology": "aus dem Griechischen „týrannos“ (Alleinherrscher).",
+    "synonyms": [
+      "Despot",
+      "Gewaltherrscher"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "710658d0-c319-43f5-ac7c-eaebbcefbf93",
+    "text": "Außenseiter",
+    "phonetic": "/ˈaʊ̯sn̩ˌzaɪ̯tɐ/",
+    "definition": "ein Wettstreiter, dem kaum Siegchancen zugetraut werden.",
+    "example": "Als Außenseiter gewann er überraschend das Rennen.",
+    "etymology": "von „außen“.",
+    "synonyms": [
+      "Benachteiligter"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "709ab935-4989-450c-a575-3c5acfe7ce6d",
+    "text": "kraxeln",
+    "phonetic": "/ˈkʁaksl̩n/",
+    "definition": "ungeschickt mit Händen und Füßen hinaufsteigen.",
+    "example": "Wir kraxelten über die Felsen zum Gipfel.",
+    "etymology": "aus dem Bairischen.",
+    "synonyms": [
+      "klettern"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "de52ec23-5367-457d-959f-765a820fd0aa",
+    "text": "ducken",
+    "phonetic": "/ˈdʊkn̩/",
+    "definition": "sich aus Angst klein zusammengezogen hinhocken.",
+    "example": "Bei dem Knall duckte sie sich erschrocken.",
+    "etymology": "von mittelhochdeutsch „tucken“.",
+    "synonyms": [
+      "kauern",
+      "wegducken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "badd40e4-5aea-40dc-8234-eba96fc22508",
+    "text": "katzbuckeln",
+    "phonetic": "/ˈkat͡sˌbʊkl̩n/",
+    "definition": "sich unterwürfig verhalten, um Gunst oder Vergebung zu erlangen.",
+    "example": "Vor dem Chef katzbuckelte er ständig.",
+    "etymology": "von „Katze“ und „Buckel“.",
+    "synonyms": [
+      "kriechen",
+      "sich erniedrigen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "baedeaf8-f286-4dca-b02b-4dc6daee052b",
+    "text": "abstürzen",
+    "phonetic": "/ˈapˌʃtʏʁt͡sn̩/",
+    "definition": "mit hoher Geschwindigkeit senkrecht herabfallen.",
+    "example": "Der Drachen stürzte plötzlich ab.",
+    "etymology": "von „Sturz“.",
+    "synonyms": [
+      "herabstürzen",
+      "sacken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "31a5f00f-ea6b-4464-83fe-e637b0a3120e",
+    "text": "wanken",
+    "phonetic": "/ˈvaŋkn̩/",
+    "definition": "sich unsicher bewegen, als wolle man gleich fallen.",
+    "example": "Erschöpft wankte er zur Tür.",
+    "etymology": "von mittelhochdeutsch „wanken“.",
+    "synonyms": [
+      "taumeln",
+      "schwanken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "4b22e780-08d2-48b8-9be0-93a4f4874548",
+    "text": "schleichen",
+    "phonetic": "/ˈʃlaɪ̯çn̩/",
+    "definition": "sich leise, oft auf den Zehenspitzen, fortbewegen.",
+    "example": "Leise schlich sie aus dem Zimmer.",
+    "etymology": "von althochdeutsch „slīchan“.",
+    "synonyms": [
+      "tippeln",
+      "schweben"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "a5f585a0-ba07-407c-9919-54e3d30d9dfe",
+    "text": "vorstoßen",
+    "phonetic": "/ˈfoːɐ̯ˌʃtoːsn̩/",
+    "definition": "einen plötzlichen Vorstoß mit dem Körper nach vorn machen.",
+    "example": "Der Fechter stieß blitzschnell vor.",
+    "etymology": "von „vor“ und „stoßen“.",
+    "synonyms": [
+      "zustoßen",
+      "vorpreschen"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "43a533f6-d800-43a0-9af1-59f0f851e722",
+    "text": "schwanken",
+    "phonetic": "/ˈʃvaŋkn̩/",
+    "definition": "sich langsam hin und her oder von Seite zu Seite bewegen.",
+    "example": "Die Bäume schwankten im Sturm.",
+    "etymology": "von „schwingen“.",
+    "synonyms": [
+      "wiegen",
+      "pendeln"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "a9ea4ef0-1b14-40cc-a127-b8ba42ea8a76",
+    "text": "beißend",
+    "phonetic": "/ˈbaɪ̯sn̩t/",
+    "definition": "scharf, bitter und unangenehm im Geschmack oder Geruch.",
+    "example": "Beißender Rauch erfüllte den Raum.",
+    "etymology": "von „beißen“.",
+    "synonyms": [
+      "stechend",
+      "scharf"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "85d6db1c-6eee-4a58-947a-14a437303320",
+    "text": "nussig",
+    "phonetic": "/ˈnʊsɪç/",
+    "definition": "nach Nüssen schmeckend oder Nüsse enthaltend.",
+    "example": "Der Käse hatte einen angenehm nussigen Geschmack.",
+    "etymology": "von „Nuss“.",
+    "synonyms": [],
+    "register": "neutral"
+  },
+  {
+    "en_id": "c747699f-77bd-4d78-9f00-8c17e351d760",
+    "text": "pfeffrig",
+    "phonetic": "/ˈp͡fɛfʁɪç/",
+    "definition": "stark nach Pfeffer schmeckend; scharf und feurig.",
+    "example": "Die Soße war angenehm pfeffrig.",
+    "etymology": "von „Pfeffer“.",
+    "synonyms": [
+      "scharf",
+      "würzig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "618cb6d8-0105-4ac2-96a4-99e1e0130e7c",
+    "text": "herb",
+    "phonetic": "/hɛʁp/",
+    "definition": "scharf oder sauer im Geschmack.",
+    "example": "Der Wein schmeckte trocken und herb.",
+    "etymology": "von althochdeutsch „herwi“.",
+    "synonyms": [
+      "säuerlich",
+      "trocken"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "045b65f3-b233-4e90-a66d-267e6f781c13",
+    "text": "sirupartig",
+    "phonetic": "/ˈziːʁʊpˌʔaːɐ̯tɪç/",
+    "definition": "dick und süß wie Sirup.",
+    "example": "Die Flüssigkeit war sirupartig und klebrig.",
+    "etymology": "von „Sirup“ und „Art“.",
+    "synonyms": [
+      "zähflüssig",
+      "klebrig"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ff3f8ce9-b60b-486f-a61f-38bb6b84e42d",
+    "text": "Teilnahmslosigkeit",
+    "phonetic": "/ˈtaɪ̯lnaːmsˌloːzɪçkaɪ̯t/",
+    "definition": "Mangel an Interesse, Begeisterung oder Anteilnahme.",
+    "example": "Seine Teilnahmslosigkeit beunruhigte die Familie.",
+    "etymology": "von „teilnehmen“ und „-los“.",
+    "synonyms": [
+      "Gleichgültigkeit",
+      "Apathie"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "0b3146a1-4323-4d33-9a23-0e9f63c57718",
+    "text": "Wahnvorstellung",
+    "phonetic": "/ˈvaːnfoːɐ̯ˌʃtɛlʊŋ/",
+    "definition": "eine falsche Überzeugung, die trotz gegenteiliger Beweise festgehalten wird.",
+    "example": "Er litt unter der Wahnvorstellung, verfolgt zu werden.",
+    "etymology": "von „Wahn“ und „Vorstellung“.",
+    "synonyms": [
+      "Wahn",
+      "Trugbild"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "ad39c681-ddf3-4f44-9952-edfa038f0bb5",
+    "text": "Aufschieberei",
+    "phonetic": "/ˈaʊ̯fʃiːbəˌʁaɪ̯/",
+    "definition": "das ständige Aufschieben oder Hinauszögern von Aufgaben.",
+    "example": "Seine Aufschieberei brachte ihn in Zeitnot.",
+    "etymology": "von „aufschieben“.",
+    "synonyms": [
+      "Verzögerung",
+      "Trödelei"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "96e19b6a-c998-41cc-811e-8be47a1839bf",
+    "text": "Widerstandskraft",
+    "phonetic": "/ˈviːdɐʃtant͡sˌkʁaft/",
+    "definition": "die Fähigkeit, sich rasch von Schwierigkeiten zu erholen.",
+    "example": "Ihre innere Widerstandskraft half ihr durch die Krise.",
+    "etymology": "von „Widerstand“ und „Kraft“.",
+    "synonyms": [
+      "Belastbarkeit",
+      "Resilienz"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "d0857c7b-f414-458e-b50b-0df6db43c3b1",
+    "text": "Konsens",
+    "phonetic": "/kɔnˈzɛns/",
+    "definition": "allgemeine Übereinstimmung innerhalb einer Gruppe.",
+    "example": "Man erzielte einen breiten Konsens.",
+    "etymology": "aus dem Lateinischen „consensus“ (Übereinstimmung).",
+    "synonyms": [
+      "Übereinstimmung",
+      "Einigkeit"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "de271734-bf61-4fc5-8299-bad60aa1d336",
+    "text": "Zweiteilung",
+    "phonetic": "/ˈt͡svaɪ̯ˌtaɪ̯lʊŋ/",
+    "definition": "eine Trennung zwischen zwei scharf gegensätzlichen Dingen.",
+    "example": "Die Zweiteilung in Gut und Böse greift zu kurz.",
+    "etymology": "von „zwei“ und „Teil“.",
+    "synonyms": [
+      "Gegensatz",
+      "Dichotomie"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "397c035c-e443-4b8e-ae83-791fe7a008e2",
+    "text": "Musterbeispiel",
+    "phonetic": "/ˈmʊstɐbaɪ̯ˌʃpiːl/",
+    "definition": "ein vollkommenes Beispiel einer bestimmten Eigenschaft oder Art.",
+    "example": "Der Bau gilt als Musterbeispiel der Gotik.",
+    "etymology": "von „Muster“ und „Beispiel“.",
+    "synonyms": [
+      "Inbegriff",
+      "Verkörperung"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "eb7c03d6-ae26-4909-a9aa-07471754d7e9",
+    "text": "Meilenstein",
+    "phonetic": "/ˈmaɪ̯lənˌʃtaɪ̯n/",
+    "definition": "ein bedeutender Abschnitt oder ein wichtiges Ereignis in einer Entwicklung.",
+    "example": "Die Erfindung war ein Meilenstein der Technik.",
+    "etymology": "von „Meile“ und „Stein“.",
+    "synonyms": [
+      "Wendepunkt",
+      "Markstein"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "b500000a-0000-4000-8000-00000000050a",
+    "text": "Fernmessung",
+    "phonetic": "/ˈfɛʁnˌmɛsʊŋ/",
+    "definition": "die automatische Messung und Übertragung von Daten aus der Ferne.",
+    "example": "Die Sonde sendet ihre Werte per Fernmessung zur Erde.",
+    "etymology": "von „fern“ und „messen“.",
+    "synonyms": [
+      "Telemetrie"
+    ],
+    "register": "fachsprachlich"
+  },
+  {
+    "en_id": "c7000029-0000-4000-8000-000000000729",
+    "text": "genesen",
+    "phonetic": "/ɡəˈneːzn̩/",
+    "definition": "nach einer Krankheit allmählich wieder gesund werden.",
+    "example": "Nach Wochen genas er von der schweren Grippe.",
+    "etymology": "von althochdeutsch „ginesan“.",
+    "synonyms": [
+      "gesunden",
+      "sich erholen"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "cb00001c-0000-4000-8000-00000000111c",
+    "text": "Untergebener",
+    "phonetic": "/ˈʊntɐɡəˌbeːnɐ/",
+    "definition": "eine Person von niedrigerem Rang oder Stand.",
+    "example": "Er behandelte seine Untergebenen mit Respekt.",
+    "etymology": "von „untergeben“.",
+    "synonyms": [
+      "Handlanger",
+      "Gehilfe"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "3324030e-feb2-406d-8422-3fbbebf6fe87",
+    "text": "zimperlich",
+    "phonetic": "/ˈt͡sɪmpɐlɪç/",
+    "definition": "leicht angewidert oder empfindlich; schnell unwohl.",
+    "example": "Beim Anblick von Blut ist er sehr zimperlich.",
+    "etymology": "lautmalerisch.",
+    "synonyms": [
+      "empfindlich",
+      "wehleidig"
+    ],
+    "register": "umgangssprachlich"
+  },
+  {
+    "en_id": "15fe76c8-8adc-4cff-b928-b45c81977be3",
+    "text": "prüde",
+    "phonetic": "/ˈpʁyːdə/",
+    "definition": "übertrieben auf Anstand und Sittsamkeit bedacht.",
+    "example": "Sie reagierte prüde auf den harmlosen Scherz.",
+    "etymology": "aus dem Französischen „prude“.",
+    "synonyms": [
+      "sittenstreng",
+      "schamhaft"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "05628d15-3885-47f7-95c1-1ec80e055a30",
+    "text": "vornehm",
+    "phonetic": "/ˈfoːɐ̯neːm/",
+    "definition": "höflich und verfeinert, oft mit gekünstelter Vornehmheit.",
+    "example": "Man speiste in einem vornehmen Restaurant.",
+    "etymology": "von „vorne“ (an vorderster Stelle).",
+    "synonyms": [
+      "distinguiert",
+      "fein"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "8a23bbf1-1e38-4f83-8249-871672393acf",
+    "text": "adrett",
+    "phonetic": "/aˈdʁɛt/",
+    "definition": "ordentlich und gepflegt in Kleidung und Erscheinung, besonders von einem Mann.",
+    "example": "Adrett gekleidet betrat er das Büro.",
+    "etymology": "aus dem Französischen „adroit“ (gewandt).",
+    "synonyms": [
+      "gepflegt",
+      "schmuck"
+    ],
+    "register": "neutral"
+  },
+  {
+    "en_id": "58f71b4b-9525-4af9-8e4f-2750a68433d2",
+    "text": "schneidig",
+    "phonetic": "/ˈʃnaɪ̯dɪç/",
+    "definition": "selbstsicher, stilvoll und charmant, besonders von einem Mann.",
+    "example": "In Uniform wirkte er ausgesprochen schneidig.",
+    "etymology": "von „schneiden“.",
+    "synonyms": [
+      "flott",
+      "elegant"
+    ],
+    "register": "gehoben"
+  },
+  {
+    "en_id": "ca00b5eb-a8bc-456b-b03c-67aeb0c059f2",
+    "text": "forsch",
+    "phonetic": "/fɔʁʃ/",
+    "definition": "lebhaft, fröhlich und selbstbewusst im Auftreten.",
+    "example": "Mit forschem Schritt ging sie voran.",
+    "etymology": "von „forsch“ (kräftig).",
+    "synonyms": [
+      "schwungvoll",
+      "keck"
+    ],
+    "register": "neutral"
+  }
+]
