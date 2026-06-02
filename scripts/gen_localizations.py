@@ -127,6 +127,9 @@ T = {
  "You're building a strong foundation.\nKeep exploring new words every day!": ("Du baust ein starkes Fundament auf.\nEntdecke jeden Tag neue Wörter!", "Ти закладаєш міцну основу.\nВідкривай нові слова щодня!"),
  "Great command of vocabulary!\nYou're making excellent progress.": ("Großartige Wortschatzbeherrschung!\nDu machst ausgezeichnete Fortschritte.", "Чудове володіння словником!\nТи робиш відмінний поступ."),
  "Outstanding performance!\nYou have an exceptional vocabulary.": ("Herausragende Leistung!\nDu hast einen außergewöhnlichen Wortschatz.", "Видатний результат!\nУ тебе винятковий словниковий запас."),
+ # Name-input validation messages.
+ "Please enter your name": ("Bitte gib deinen Namen ein", "Будь ласка, введи своє ім’я"),
+ "Please choose a different name": ("Bitte wähle einen anderen Namen", "Будь ласка, обери інше ім’я"),
  "/ 7 days opened": ("/ 7 Tage geöffnet", "/ 7 днів відкрито"),
  "About You": ("Über dich", "Про тебе"),
  "Account": ("Konto", "Обліковий запис"),

@@ -58,9 +58,9 @@ struct NameInputView: View {
     private var trimmed: String { name.trimmingCharacters(in: .whitespaces) }
 
     private func validate() -> String? {
-        if trimmed.isEmpty { return "Please enter your name" }
+        if trimmed.isEmpty { return NSLocalizedString("Please enter your name", comment: "name validation") }
         let lower = trimmed.lowercased()
-        if blockedWords.contains(where: { lower.contains($0) }) { return "Please choose a different name" }
+        if blockedWords.contains(where: { lower.contains($0) }) { return NSLocalizedString("Please choose a different name", comment: "name validation") }
         return nil
     }
 

@@ -247,6 +247,8 @@
 "You're building a strong foundation.\nKeep exploring new words every day!" = "Du baust ein starkes Fundament auf.\nEntdecke jeden Tag neue Wörter!";
 "Great command of vocabulary!\nYou're making excellent progress." = "Großartige Wortschatzbeherrschung!\nDu machst ausgezeichnete Fortschritte.";
 "Outstanding performance!\nYou have an exceptional vocabulary." = "Herausragende Leistung!\nDu hast einen außergewöhnlichen Wortschatz.";
+"Please enter your name" = "Bitte gib deinen Namen ein";
+"Please choose a different name" = "Bitte wähle einen anderen Namen";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld Wörter";

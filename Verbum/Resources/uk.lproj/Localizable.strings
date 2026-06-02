@@ -247,6 +247,8 @@
 "You're building a strong foundation.\nKeep exploring new words every day!" = "Ти закладаєш міцну основу.\nВідкривай нові слова щодня!";
 "Great command of vocabulary!\nYou're making excellent progress." = "Чудове володіння словником!\nТи робиш відмінний поступ.";
 "Outstanding performance!\nYou have an exceptional vocabulary." = "Видатний результат!\nУ тебе винятковий словниковий запас.";
+"Please enter your name" = "Будь ласка, введи своє ім’я";
+"Please choose a different name" = "Будь ласка, обери інше ім’я";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld слів";

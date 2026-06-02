@@ -254,6 +254,8 @@
 "You're building a strong foundation.\nKeep exploring new words every day!" = "You're building a strong foundation.\nKeep exploring new words every day!";
 "Great command of vocabulary!\nYou're making excellent progress." = "Great command of vocabulary!\nYou're making excellent progress.";
 "Outstanding performance!\nYou have an exceptional vocabulary." = "Outstanding performance!\nYou have an exceptional vocabulary.";
+"Please enter your name" = "Please enter your name";
+"Please choose a different name" = "Please choose a different name";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld words";
