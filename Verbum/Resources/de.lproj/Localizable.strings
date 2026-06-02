@@ -188,6 +188,32 @@
 "1 minute a day keeps ignorance away 💡" = "1 Minute am Tag hält die Unwissenheit fern 💡";
 "Today's word: %@" = "Wort des Tages: %@";
 "Your %lld-day streak is at risk! 🔥 Open Verbum for 30 seconds." = "Deine %lld-tägige Serie ist in Gefahr! 🔥 Öffne Verbum für 30 Sekunden.";
+"Male" = "Männlich";
+"Female" = "Weiblich";
+"Prefer not to say" = "Keine Angabe";
+"Not set" = "Nicht festgelegt";
+"Name" = "Name";
+"Age" = "Alter";
+"Gender" = "Geschlecht";
+"Next" = "Weiter";
+"See Results" = "Ergebnisse ansehen";
+"Back to Feed" = "Zurück zum Feed";
+"Start Swiping" = "Loswischen";
+"Browse Categories" = "Kategorien durchsuchen";
+"Create First Deck" = "Ersten Stapel erstellen";
+"Get Started" = "Loslegen";
+"I'm in" = "Ich bin dabei";
+"Allow & Save" = "Erlauben & Speichern";
+"Complete the sentence" = "Vervollständige den Satz";
+"Match similar words" = "Ähnliche Wörter zuordnen";
+"From definition to word" = "Von der Definition zum Wort";
+"Random Practice" = "Zufallsübung";
+"Surprise me with a game" = "Überrasch mich mit einem Spiel";
+"Bookmark words while reading\nto see them here" = "Setze beim Lesen Lesezeichen,\num sie hier zu sehen";
+"Like words while reading\nto see them here" = "Markiere Wörter beim Lesen mit „Gefällt mir“,\num sie hier zu sehen";
+"Words you've swiped through\nwill appear here" = "Wörter, die du durchgewischt hast,\nerscheinen hier";
+"No words to show here yet. Keep swiping the feed to unlock more." = "Hier gibt es noch keine Wörter. Wische weiter durch den Feed, um mehr freizuschalten.";
+"This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "Dieser Stapel ist leer. Durchsuche Kategorien, um Wörter zu finden, und tippe auf das Stapel-Symbol eines Wortes, um es hier hinzuzufügen.";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld Wörter";

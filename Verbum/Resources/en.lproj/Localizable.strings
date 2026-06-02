@@ -195,6 +195,32 @@
 "1 minute a day keeps ignorance away 💡" = "1 minute a day keeps ignorance away 💡";
 "Today's word: %@" = "Today's word: %@";
 "Your %lld-day streak is at risk! 🔥 Open Verbum for 30 seconds." = "Your %lld-day streak is at risk! 🔥 Open Verbum for 30 seconds.";
+"Male" = "Male";
+"Female" = "Female";
+"Prefer not to say" = "Prefer not to say";
+"Not set" = "Not set";
+"Name" = "Name";
+"Age" = "Age";
+"Gender" = "Gender";
+"Next" = "Next";
+"See Results" = "See Results";
+"Back to Feed" = "Back to Feed";
+"Start Swiping" = "Start Swiping";
+"Browse Categories" = "Browse Categories";
+"Create First Deck" = "Create First Deck";
+"Get Started" = "Get Started";
+"I'm in" = "I'm in";
+"Allow & Save" = "Allow & Save";
+"Complete the sentence" = "Complete the sentence";
+"Match similar words" = "Match similar words";
+"From definition to word" = "From definition to word";
+"Random Practice" = "Random Practice";
+"Surprise me with a game" = "Surprise me with a game";
+"Bookmark words while reading\nto see them here" = "Bookmark words while reading\nto see them here";
+"Like words while reading\nto see them here" = "Like words while reading\nto see them here";
+"Words you've swiped through\nwill appear here" = "Words you've swiped through\nwill appear here";
+"No words to show here yet. Keep swiping the feed to unlock more." = "No words to show here yet. Keep swiping the feed to unlock more.";
+"This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here.";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld words";

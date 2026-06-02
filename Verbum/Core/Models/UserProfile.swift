@@ -110,6 +110,9 @@ enum Gender: String, Codable, CaseIterable {
     case male          = "Male"
     case female        = "Female"
     case preferNotToSay = "Prefer not to say"
+
+    /// Localized label (the rawValue is the canonical English key in Localizable.strings).
+    var displayName: String { NSLocalizedString(rawValue, comment: "gender") }
 }
 
 enum AppTheme: String, Codable, CaseIterable {

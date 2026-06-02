@@ -14,8 +14,6 @@ struct SettingsView: View {
 
     @State private var editingName = false
     @State private var nameInput = ""
-    @State private var editingGender = false
-    @State private var editingAge = false
     @State private var editingLanguage = false
     @State private var editingLevel = false
     @State private var editingWordsPerWeek = false
@@ -67,12 +65,6 @@ struct SettingsView: View {
                         settingsCard {
                             iconEditRow(icon: "person.fill", iconColor: .purple, label: "Name",
                                         value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name) { editingName = true }
-                            cardDivider
-                            iconEditRow(icon: "person.2.fill", iconColor: .indigo, label: "Gender",
-                                        value: userProfile.profile.gender?.rawValue ?? "Not set") { editingGender = true }
-                            cardDivider
-                            iconEditRow(icon: "calendar", iconColor: .orange, label: "Age",
-                                        value: userProfile.profile.age?.rawValue ?? "Not set") { editingAge = true }
                             cardDivider
                             iconEditRow(icon: "character.book.closed.fill", iconColor: .blue, label: "Word Language",
                                         value: wordLanguageDisplayName(WordRepository.shared.activeLanguage)) { editingLanguage = true }
@@ -244,18 +236,6 @@ struct SettingsView: View {
         } message: {
             Text("How many words do you want to learn per week?")
         }
-        .confirmationDialog("Select Gender", isPresented: $editingGender, titleVisibility: .visible) {
-            ForEach(Gender.allCases, id: \.self) { g in
-                Button(g.rawValue) { userProfile.profile.gender = g }
-            }
-            Button("Cancel", role: .cancel) {}
-        }
-        .confirmationDialog("Select Age Range", isPresented: $editingAge, titleVisibility: .visible) {
-            ForEach(AgeRange.allCases, id: \.self) { a in
-                Button(a.rawValue) { userProfile.profile.age = a }
-            }
-            Button("Cancel", role: .cancel) {}
-        }
         .confirmationDialog("Select Level", isPresented: $editingLevel, titleVisibility: .visible) {
             ForEach(WordLevel.allCases, id: \.self) { l in
                 Button(l.displayName) { userProfile.profile.level = l }
@@ -347,11 +327,11 @@ struct SettingsView: View {
                     .font(.system(size: 16))
                     .foregroundColor(iconColor)
                     .frame(width: 28)
-                Text(label)
+                Text(LocalizedStringKey(label))
                     .font(.system(size: 16))
                     .foregroundColor(AppColors.textPrimary)
                 Spacer()
-                Text(value)
+                Text(LocalizedStringKey(value))
                     .font(.system(size: 15))
                     .foregroundColor(AppColors.textSecondary)
                 Image(systemName: "chevron.right")

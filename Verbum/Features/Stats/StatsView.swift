@@ -358,7 +358,6 @@ struct StatsView: View {
             VStack(spacing: 1) {
                 ProfileRow(label: "Name", value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name)
                 ProfileRow(label: "Level", value: userProfile.profile.level.displayName)
-                ProfileRow(label: "Age", value: userProfile.profile.age?.rawValue ?? "Not set")
                 ProfileRow(label: "Notifications", value: userProfile.profile.notificationsEnabled ? "On" : "Off")
             }
             .cornerRadius(AppSpacing.cornerRadius)

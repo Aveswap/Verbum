@@ -20,7 +20,7 @@ struct RadioSelectionView: View {
             }
             .padding(.top, AppSpacing.md)
 
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(AppTypography.heroTitle)
                 .foregroundColor(AppColors.textPrimary)
                 .multilineTextAlignment(.center)
@@ -38,132 +38,6 @@ struct RadioSelectionView: View {
             .padding(.horizontal, AppSpacing.lg)
 
             Spacer()
-        }
-    }
-}
-
-// MARK: - Promo Slide
-struct PromoSlideView: View {
-    let title: String
-    let subtitle: String
-    let icon: String
-    let buttonTitle: String
-    let action: () -> Void
-
-    var body: some View {
-        VStack(spacing: AppSpacing.lg) {
-            Spacer()
-            Image(systemName: icon)
-                .font(.system(size: 80))
-                .foregroundColor(AppColors.accent)
-            Text(title)
-                .font(AppTypography.heroTitle)
-                .foregroundColor(AppColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, AppSpacing.lg)
-            Text(subtitle)
-                .font(.system(size: 16))
-                .foregroundColor(AppColors.textSecondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, AppSpacing.xl)
-            Spacer()
-            PillButton(title: buttonTitle, action: action)
-                .padding(.horizontal, AppSpacing.lg)
-                .padding(.bottom, AppSpacing.xl)
-        }
-    }
-}
-
-// MARK: - Native Language
-struct NativeLanguageView: View {
-    let onSkip: () -> Void
-    let onSelect: (NativeLanguage) -> Void
-    @State private var selected: NativeLanguage?
-
-    var body: some View {
-        VStack(spacing: AppSpacing.lg) {
-            HStack {
-                Spacer()
-                Button("Skip", action: onSkip)
-                    .foregroundColor(AppColors.textSecondary)
-                    .padding(.trailing, AppSpacing.md)
-            }
-            .padding(.top, AppSpacing.md)
-
-            Text("What's your\nnative language?")
-                .font(AppTypography.heroTitle)
-                .foregroundColor(AppColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, AppSpacing.lg)
-
-            Text("We'll use this to personalise your learning")
-                .font(.system(size: 15))
-                .foregroundColor(AppColors.textSecondary)
-                .multilineTextAlignment(.center)
-
-            Spacer()
-
-            ScrollView {
-                VStack(spacing: AppSpacing.sm) {
-                    ForEach(NativeLanguage.allCases, id: \.self) { lang in
-                        RadioOptionRow(title: lang.displayName, isSelected: selected == lang) {
-                            selected = lang
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect(lang) }
-                        }
-                    }
-                }
-                .padding(.horizontal, AppSpacing.lg)
-            }
-
-            Spacer()
-        }
-    }
-}
-
-// MARK: - Referral Source
-struct ReferralSourceView: View {
-    let onSkip: () -> Void
-    let onSelect: (String) -> Void
-    @State private var selected: String?
-
-    private let options = ["TikTok", "Facebook", "App Store", "Friend/Family", "Web Search", "Instagram", "Other"]
-
-    var body: some View {
-        RadioSelectionView(title: "How did you hear\nabout us?", options: options, selected: selected, onSkip: onSkip) { opt in
-            selected = opt
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect(opt) }
-        }
-    }
-}
-
-// MARK: - Age
-struct AgeSelectionView: View {
-    let onSkip: () -> Void
-    let onSelect: (AgeRange) -> Void
-    @State private var selected: AgeRange?
-
-    var body: some View {
-        RadioSelectionView(title: "How old are you?", options: AgeRange.allCases.map(\.rawValue), selected: selected?.rawValue, onSkip: onSkip) { val in
-            if let age = AgeRange(rawValue: val) {
-                selected = age
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect(age) }
-            }
-        }
-    }
-}
-
-// MARK: - Gender
-struct GenderSelectionView: View {
-    let onSkip: () -> Void
-    let onSelect: (Gender) -> Void
-    @State private var selected: Gender?
-
-    var body: some View {
-        RadioSelectionView(title: "What's your gender?", options: Gender.allCases.map(\.rawValue), selected: selected?.rawValue, onSkip: onSkip) { val in
-            if let gender = Gender(rawValue: val) {
-                selected = gender
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect(gender) }
-            }
         }
     }
 }
@@ -234,38 +108,6 @@ struct NameInputView: View {
     }
 }
 
-// MARK: - Words Per Week
-struct WordsPerWeekView: View {
-    let onSelect: (Int) -> Void
-    @State private var selected: Int?
-
-    var body: some View {
-        VStack(spacing: AppSpacing.lg) {
-            Text("How many words\nper week?")
-                .font(AppTypography.heroTitle)
-                .foregroundColor(AppColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.top, AppSpacing.xl * 2)
-                .padding(.horizontal, AppSpacing.lg)
-
-            Spacer()
-
-            VStack(spacing: AppSpacing.sm) {
-                ForEach([10, 30, 50], id: \.self) { count in
-                    RadioOptionRow(title: "\(count) words per week", isSelected: selected == count) {
-                        selected = count
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { onSelect(count) }
-                    }
-                }
-            }
-            .padding(.horizontal, AppSpacing.lg)
-
-            Spacer()
-        }
-    }
-}
-
-// MARK: - Level
 struct LevelSelectionView: View {
     let onSelect: (WordLevel) -> Void
     @State private var selected: WordLevel?

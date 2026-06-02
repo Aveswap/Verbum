@@ -43,7 +43,7 @@ struct WordListView: View {
                     .searchable(text: $searchText, prompt: "Search words…")
                 }
             }
-            .navigationTitle(title)
+            .navigationTitle(LocalizedStringKey(title))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -74,13 +74,13 @@ struct WordListView: View {
             Image(systemName: emptyIcon)
                 .font(.system(size: 60))
                 .foregroundColor(AppColors.textSecondary.opacity(0.4))
-            Text(emptyMessage)
+            Text(LocalizedStringKey(emptyMessage))
                 .font(.system(size: 16))
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
             Button { onEmptyCTA?() ?? dismiss() } label: {
-                Text(emptyCTALabel)
+                Text(LocalizedStringKey(emptyCTALabel))
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(AppColors.textOnAccent)
                     .padding(.horizontal, AppSpacing.xl)

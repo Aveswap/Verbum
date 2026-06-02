@@ -7,7 +7,9 @@ struct PillButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(title)
+            // LocalizedStringKey so literal titles ("Done", "Next", …) localize; a non-key
+            // string just falls back to itself.
+            Text(LocalizedStringKey(title))
                 .font(.system(size: 17, weight: .semibold))
                 .foregroundColor(AppColors.textOnAccent)
                 .frame(maxWidth: isFullWidth ? .infinity : nil)

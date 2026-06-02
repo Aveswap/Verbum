@@ -188,6 +188,32 @@
 "1 minute a day keeps ignorance away 💡" = "1 хвилина на день — і неуцтво не страшне 💡";
 "Today's word: %@" = "Слово дня: %@";
 "Your %lld-day streak is at risk! 🔥 Open Verbum for 30 seconds." = "Твоя серія з %lld днів під загрозою! 🔥 Відкрий Verbum на 30 секунд.";
+"Male" = "Чоловіча";
+"Female" = "Жіноча";
+"Prefer not to say" = "Не вказувати";
+"Not set" = "Не вказано";
+"Name" = "Ім’я";
+"Age" = "Вік";
+"Gender" = "Стать";
+"Next" = "Далі";
+"See Results" = "Переглянути результати";
+"Back to Feed" = "Назад до стрічки";
+"Start Swiping" = "Почати гортати";
+"Browse Categories" = "Огляд категорій";
+"Create First Deck" = "Створити першу колоду";
+"Get Started" = "Почати";
+"I'm in" = "Я в грі";
+"Allow & Save" = "Дозволити й зберегти";
+"Complete the sentence" = "Доповни речення";
+"Match similar words" = "Зіставляй схожі слова";
+"From definition to word" = "Від визначення до слова";
+"Random Practice" = "Випадкова практика";
+"Surprise me with a game" = "Здивуй мене грою";
+"Bookmark words while reading\nto see them here" = "Додавай закладки під час читання,\nщоб бачити їх тут";
+"Like words while reading\nto see them here" = "Вподобай слова під час читання,\nщоб бачити їх тут";
+"Words you've swiped through\nwill appear here" = "Слова, які ти пролистав,\nз’являтимуться тут";
+"No words to show here yet. Keep swiping the feed to unlock more." = "Тут поки немає слів. Гортай стрічку, щоб відкрити більше.";
+"This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "Ця колода порожня. Перегляньте категорії, знайдіть слова й торкніться значка стопки на слові, щоб додати його сюди.";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld слів";

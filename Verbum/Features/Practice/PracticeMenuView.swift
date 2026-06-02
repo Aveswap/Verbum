@@ -234,10 +234,10 @@ private struct PracticeRow: View {
                     .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.accent)
                     .frame(width: 36)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
+                    Text(LocalizedStringKey(title))
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.textPrimary)
-                    Text(subtitle)
+                    Text(LocalizedStringKey(subtitle))
                         .font(.system(size: 13))
                         .foregroundColor(AppColors.textSecondary)
                 }
