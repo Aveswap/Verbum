@@ -716,8 +716,17 @@ is switchable in Settings), so the whole app is in one language. Mechanism:
   `knownRegions: [en, de, uk]`, `developmentLanguage: en`, and `CFBundleLocalizations`.
 
 **Coverage / limits (READ THIS):**
-- ~140 **static** UI strings translated (buttons, titles, tab bar, paywall, onboarding,
-  settings, profile, practice). Brand/emoji-only strings stay English by design.
+- **247 keys** translated for de & uk — static UI, interpolated format strings, plurals
+  (`.stringsdict`, uk one/few/many), **data-driven labels** (part of speech, category, level,
+  register — stored canonically English, localized at display via `Word.localizedPartOfSpeech`
+  / `localizedCategory` and the enum `displayName`s), notifications, paywall (feature bullets,
+  CTAs, legal copy), challenges, and quiz/level-test result messages. Brand/emoji-only strings
+  stay English by design.
+- **Pronunciation:** `SpeechService` selects the voice for the active word language (de-DE /
+  uk-UA / en-US, English fallback if the language pack isn't installed on the device).
+- **Demographic onboarding removed:** the age / gender / native-language / "how did you hear" /
+  words-per-week screens (not in the current design) were deleted; Settings/Stats no longer show
+  gender/age. `UserProfile` keeps those fields for CloudKit/Codable back-compat (just unused).
 - **Interpolated** strings are translated too — 28 SwiftUI format keys (`"Best: %lld"`,
   `"Unlock %lld more %@ words"`, the free-pool paywall lines, etc.) in `gen_localizations.py`'s
   `INTERP` map (`%lld` for Int, `%@` for String). If a specifier doesn't match what SwiftUI
