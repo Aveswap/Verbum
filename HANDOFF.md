@@ -716,16 +716,21 @@ is switchable in Settings), so the whole app is in one language. Mechanism:
   `knownRegions: [en, de, uk]`, `developmentLanguage: en`, and `CFBundleLocalizations`.
 
 **Coverage / limits (READ THIS):**
-- ~140 **static** UI strings are translated (buttons, titles, tab bar, paywall, onboarding,
+- ~140 **static** UI strings translated (buttons, titles, tab bar, paywall, onboarding,
   settings, profile, practice). Brand/emoji-only strings stay English by design.
-- **Interpolated** strings (`Text("Best: \(x)")`, `"\(n) left"`, etc. — ~40 of them) are NOT yet
-  in the catalog. SwiftUI turns them into format keys like `"Best: %lld"`; those need a build to
-  confirm the exact specifier before translating, so they currently render in English. Add them
-  to `gen_localizations.py` once verified in Xcode.
+- **Interpolated** strings are translated too — 28 SwiftUI format keys (`"Best: %lld"`,
+  `"Unlock %lld more %@ words"`, the free-pool paywall lines, etc.) in `gen_localizations.py`'s
+  `INTERP` map (`%lld` for Int, `%@` for String). If a specifier doesn't match what SwiftUI
+  generates at runtime, that one string just falls back to English — no regression.
+- **Still English (deliberately):** ternary-plural strings like
+  `"\(remaining) free word\(remaining == 1 ? "" : "s")"`. Proper plurals need a `.stringsdict`
+  (Ukrainian has one/few/many forms); doing it wrong is worse than the English fallback, so it
+  was left as a follow-up. Pure-number strings (`"%lld"`, `"+%lld"`, `"W%lld"`) need no translation.
 - **Unverified — no build here (CLT only).** Must be built & run in Xcode: confirm the live
   switch works, that `.lproj` resources are bundled (they're globbed via `sources: Verbum`), and
-  fill in the interpolated keys. To add a language: drop a new `.lproj`, extend `LanguageManager.supported`
-  + `knownRegions`, and add the column/catalogue on the content side.
+  spot-check the `%lld`/`%@` specifiers against any string that still shows English. To add a
+  language: drop a new `.lproj`, extend `LanguageManager.supported` + `knownRegions`, and add the
+  catalogue on the content side.
 
 ---
 
