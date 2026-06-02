@@ -214,6 +214,32 @@
 "Words you've swiped through\nwill appear here" = "Wörter, die du durchgewischt hast,\nerscheinen hier";
 "No words to show here yet. Keep swiping the feed to unlock more." = "Hier gibt es noch keine Wörter. Wische weiter durch den Feed, um mehr freizuschalten.";
 "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "Dieser Stapel ist leer. Durchsuche Kategorien, um Wörter zu finden, und tippe auf das Stapel-Symbol eines Wortes, um es hier hinzuzufügen.";
+"Master 1,000 Words" = "Meistere 1.000 Wörter";
+"Curated by linguists to maximize retention" = "Von Linguisten kuratiert für maximale Merkfähigkeit";
+"Practice Until You're Fluent" = "Übe, bis du es fließend kannst";
+"No daily caps — play as much as you want" = "Keine Tageslimits — spiele, so viel du willst";
+"Every Domain, Explored" = "Jeder Bereich erkundet";
+"From Law to Art to Medicine and beyond" = "Von Recht über Kunst bis Medizin und mehr";
+"Smart Reminders" = "Clevere Erinnerungen";
+"Personalized schedule that keeps you on track" = "Personalisierter Zeitplan, der dich am Ball hält";
+"Deep Progress Insights" = "Tiefe Fortschritts-Einblicke";
+"See exactly how your vocabulary is growing" = "Sieh genau, wie dein Wortschatz wächst";
+"Get Lifetime Access" = "Lebenslangen Zugang holen";
+"Start Free Trial" = "Kostenlos testen";
+"Subscribe Now" = "Jetzt abonnieren";
+"Best Value" = "Bester Wert";
+"One-time purchase" = "Einmaliger Kauf";
+"Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal." = "Kostenlose Testphase, danach automatische Verlängerung. Jederzeit in den Apple-ID-Einstellungen mindestens 24 Stunden vor der Verlängerung kündbar.";
+"Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal." = "Verlängert sich automatisch. Jederzeit in den Apple-ID-Einstellungen mindestens 24 Stunden vor der Verlängerung kündbar.";
+"Perfection" = "Perfektion";
+"Rush" = "Ansturm";
+"Sprint" = "Sprint";
+"10 in a row, one wrong ends it" = "10 in Folge, ein Fehler beendet es";
+"How many in 60 seconds?" = "Wie viele in 60 Sekunden?";
+"5 words · 5 seconds each" = "5 Wörter · je 5 Sekunden";
+"correct in a row" = "richtig in Folge";
+"words in 60 seconds" = "Wörter in 60 Sekunden";
+"of 5 correct" = "von 5 richtig";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld Wörter";

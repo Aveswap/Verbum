@@ -221,6 +221,32 @@
 "Words you've swiped through\nwill appear here" = "Words you've swiped through\nwill appear here";
 "No words to show here yet. Keep swiping the feed to unlock more." = "No words to show here yet. Keep swiping the feed to unlock more.";
 "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here.";
+"Master 1,000 Words" = "Master 1,000 Words";
+"Curated by linguists to maximize retention" = "Curated by linguists to maximize retention";
+"Practice Until You're Fluent" = "Practice Until You're Fluent";
+"No daily caps — play as much as you want" = "No daily caps — play as much as you want";
+"Every Domain, Explored" = "Every Domain, Explored";
+"From Law to Art to Medicine and beyond" = "From Law to Art to Medicine and beyond";
+"Smart Reminders" = "Smart Reminders";
+"Personalized schedule that keeps you on track" = "Personalized schedule that keeps you on track";
+"Deep Progress Insights" = "Deep Progress Insights";
+"See exactly how your vocabulary is growing" = "See exactly how your vocabulary is growing";
+"Get Lifetime Access" = "Get Lifetime Access";
+"Start Free Trial" = "Start Free Trial";
+"Subscribe Now" = "Subscribe Now";
+"Best Value" = "Best Value";
+"One-time purchase" = "One-time purchase";
+"Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal." = "Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal.";
+"Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal." = "Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal.";
+"Perfection" = "Perfection";
+"Rush" = "Rush";
+"Sprint" = "Sprint";
+"10 in a row, one wrong ends it" = "10 in a row, one wrong ends it";
+"How many in 60 seconds?" = "How many in 60 seconds?";
+"5 words · 5 seconds each" = "5 words · 5 seconds each";
+"correct in a row" = "correct in a row";
+"words in 60 seconds" = "words in 60 seconds";
+"of 5 correct" = "of 5 correct";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld words";

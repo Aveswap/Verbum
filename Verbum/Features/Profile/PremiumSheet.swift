@@ -82,11 +82,11 @@ struct PremiumSheet: View {
                         .foregroundColor(AppColors.accent)
                         .frame(width: 24)
                     VStack(alignment: .leading, spacing: 1) {
-                        Text(feature.title)
+                        Text(LocalizedStringKey(feature.title))
                             .font(.system(size: 14, weight: .semibold))
                             .foregroundColor(AppColors.textPrimary)
                             .lineLimit(1)
-                        Text(feature.subtitle)
+                        Text(LocalizedStringKey(feature.subtitle))
                             .font(.system(size: 12))
                             .foregroundColor(AppColors.textSecondary)
                             .lineLimit(1)
@@ -235,8 +235,8 @@ struct PremiumSheet: View {
     }
 
     private var ctaTitle: String {
-        if selectedProductID == SubscriptionManager.lifetimeID { return "Get Lifetime Access" }
-        return hasFreeTrial ? "Start Free Trial" : "Subscribe Now"
+        if selectedProductID == SubscriptionManager.lifetimeID { return NSLocalizedString("Get Lifetime Access", comment: "paywall CTA") }
+        return hasFreeTrial ? NSLocalizedString("Start Free Trial", comment: "paywall CTA") : NSLocalizedString("Subscribe Now", comment: "paywall CTA")
     }
 
     @ViewBuilder
@@ -268,9 +268,9 @@ struct PremiumSheet: View {
             .padding(.top, AppSpacing.sm)
 
             if selectedProductID != SubscriptionManager.lifetimeID {
-                Text(hasFreeTrial
+                Text(LocalizedStringKey(hasFreeTrial
                      ? "Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal."
-                     : "Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal.")
+                     : "Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal."))
                     .font(.system(size: 10))
                     .foregroundColor(AppColors.textSecondary)
                     .multilineTextAlignment(.center)
@@ -333,7 +333,7 @@ private struct ProductRow: View {
                     .foregroundColor(AppColors.textPrimary)
 
                 if let badge {
-                    Text(badge)
+                    Text(LocalizedStringKey(badge))
                         .font(.system(size: 10, weight: .bold))
                         .foregroundColor(AppColors.textOnAccent)
                         .padding(.horizontal, 6).padding(.vertical, 2)
@@ -348,7 +348,7 @@ private struct ProductRow: View {
                         .font(.system(size: 15, weight: .semibold))
                         .foregroundColor(AppColors.textPrimary)
                     if let note {
-                        Text(note)
+                        Text(LocalizedStringKey(note))
                             .font(.system(size: 11))
                             .foregroundColor(AppColors.textSecondary)
                     }

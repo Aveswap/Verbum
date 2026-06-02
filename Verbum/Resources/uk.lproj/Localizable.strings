@@ -214,6 +214,32 @@
 "Words you've swiped through\nwill appear here" = "Слова, які ти пролистав,\nз’являтимуться тут";
 "No words to show here yet. Keep swiping the feed to unlock more." = "Тут поки немає слів. Гортай стрічку, щоб відкрити більше.";
 "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "Ця колода порожня. Перегляньте категорії, знайдіть слова й торкніться значка стопки на слові, щоб додати його сюди.";
+"Master 1,000 Words" = "Опануй 1 000 слів";
+"Curated by linguists to maximize retention" = "Дібрано лінгвістами для кращого запам’ятовування";
+"Practice Until You're Fluent" = "Практикуйся до вільного володіння";
+"No daily caps — play as much as you want" = "Без денних лімітів — грай скільки завгодно";
+"Every Domain, Explored" = "Кожна сфера — досліджена";
+"From Law to Art to Medicine and beyond" = "Від права до мистецтва й медицини та далі";
+"Smart Reminders" = "Розумні нагадування";
+"Personalized schedule that keeps you on track" = "Персональний графік, що тримає тебе в темпі";
+"Deep Progress Insights" = "Глибока аналітика прогресу";
+"See exactly how your vocabulary is growing" = "Дивись точно, як росте твій словник";
+"Get Lifetime Access" = "Отримати довічний доступ";
+"Start Free Trial" = "Почати безкоштовний період";
+"Subscribe Now" = "Підписатися зараз";
+"Best Value" = "Найвигідніше";
+"One-time purchase" = "Одноразова покупка";
+"Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal." = "Безкоштовний період, потім автоподовження. Скасувати можна будь-коли в налаштуваннях Apple ID щонайменше за 24 години до поновлення.";
+"Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal." = "Автоматично поновлюється. Скасувати можна будь-коли в налаштуваннях Apple ID щонайменше за 24 години до поновлення.";
+"Perfection" = "Досконалість";
+"Rush" = "Натиск";
+"Sprint" = "Спринт";
+"10 in a row, one wrong ends it" = "10 поспіль, одна помилка — кінець";
+"How many in 60 seconds?" = "Скільки за 60 секунд?";
+"5 words · 5 seconds each" = "5 слів · по 5 секунд";
+"correct in a row" = "правильних поспіль";
+"words in 60 seconds" = "слів за 60 секунд";
+"of 5 correct" = "з 5 правильних";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld слів";

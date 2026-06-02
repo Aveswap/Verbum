@@ -11,17 +11,17 @@ enum ChallengeKind: String, CaseIterable, Identifiable {
 
     var title: String {
         switch self {
-        case .perfection: return "Perfection"
-        case .rush:       return "Rush"
-        case .sprint:     return "Sprint"
+        case .perfection: return NSLocalizedString("Perfection", comment: "challenge")
+        case .rush:       return NSLocalizedString("Rush", comment: "challenge")
+        case .sprint:     return NSLocalizedString("Sprint", comment: "challenge")
         }
     }
 
     var subtitle: String {
         switch self {
-        case .perfection: return "10 in a row, one wrong ends it"
-        case .rush:       return "How many in 60 seconds?"
-        case .sprint:     return "5 words · 5 seconds each"
+        case .perfection: return NSLocalizedString("10 in a row, one wrong ends it", comment: "challenge")
+        case .rush:       return NSLocalizedString("How many in 60 seconds?", comment: "challenge")
+        case .sprint:     return NSLocalizedString("5 words · 5 seconds each", comment: "challenge")
         }
     }
 
@@ -268,9 +268,9 @@ struct ChallengeView: View {
 
     private var scoreLabel: String {
         switch kind {
-        case .perfection: return "correct in a row"
-        case .rush:       return "words in 60 seconds"
-        case .sprint:     return "of 5 correct"
+        case .perfection: return NSLocalizedString("correct in a row", comment: "challenge score")
+        case .rush:       return NSLocalizedString("words in 60 seconds", comment: "challenge score")
+        case .sprint:     return NSLocalizedString("of 5 correct", comment: "challenge score")
         }
     }
 
