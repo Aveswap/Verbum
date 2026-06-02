@@ -352,7 +352,7 @@ struct WordFeedView: View {
                         Image(systemName: "lock.open.fill")
                             .font(.system(size: 9))
                             .foregroundColor(.orange)
-                        Text("\(remaining) free word\(remaining == 1 ? "" : "s") left")
+                        Text(String(format: NSLocalizedString("%lld free words left", comment: "free words remaining"), remaining))
                             .font(.system(size: 10, weight: .semibold))
                             .foregroundColor(.orange)
                     } else {

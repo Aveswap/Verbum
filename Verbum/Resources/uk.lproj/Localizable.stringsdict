@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>%lld free words left</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@count@</string>
+        <key>count</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>lld</string>
+            <key>one</key>
+            <string>Лишилось %lld безкоштовне слово</string>
+            <key>few</key>
+            <string>Лишилось %lld безкоштовні слова</string>
+            <key>many</key>
+            <string>Лишилось %lld безкоштовних слів</string>
+            <key>other</key>
+            <string>Лишилось %lld безкоштовних слів</string>
+        </dict>
+    </dict>
+    <key>%lld words to review</key>
+    <dict>
+        <key>NSStringLocalizedFormatKey</key>
+        <string>%#@count@</string>
+        <key>count</key>
+        <dict>
+            <key>NSStringFormatSpecTypeKey</key>
+            <string>NSStringPluralRuleType</string>
+            <key>NSStringFormatValueTypeKey</key>
+            <string>lld</string>
+            <key>one</key>
+            <string>%lld слово до повторення</string>
+            <key>few</key>
+            <string>%lld слова до повторення</string>
+            <key>many</key>
+            <string>%lld слів до повторення</string>
+            <key>other</key>
+            <string>%lld слів до повторення</string>
+        </dict>
+    </dict>
+</dict>
+</plist>

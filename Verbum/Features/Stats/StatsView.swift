@@ -108,7 +108,7 @@ struct StatsView: View {
                 .background(AppColors.accent.opacity(0.15))
                 .clipShape(Circle())
             VStack(alignment: .leading, spacing: 2) {
-                Text("\(dueTodayCount) word\(dueTodayCount == 1 ? "" : "s") to review")
+                Text(String(format: NSLocalizedString("%lld words to review", comment: "words due to review"), dueTodayCount))
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(AppColors.textPrimary)
                 Text("Spaced repetition keeps memory fresh — open the feed to review.")

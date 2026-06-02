@@ -54,6 +54,7 @@
 		879172BE91D0F16A4AA5B44B /* WordFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28C193C7BC73D85820163A1 /* WordFeedView.swift */; };
 		8A6B0B71ACEEF8FD5D937D3E /* OnboardingFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837A7A327A614F779F75B887 /* OnboardingFlow.swift */; };
 		8BD9683CC097F78400A883A2 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C20A9DD30AFD69BB3317B6 /* KeychainHelper.swift */; };
+		8D94CD0878CC08D588682794 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = EE8A05857B65D02102FD18E8 /* Localizable.stringsdict */; };
 		930B261EDA1014D495490311 /* InsufficientWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA119E24D505711D1EF90B /* InsufficientWordsView.swift */; };
 		952A8DD995A6688243461622 /* SynonymsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF08B79256CCCF0F41560C /* SynonymsView.swift */; };
 		963AE7507F748C374F47FB23 /* BatchQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30774A2D9419603F01BD410 /* BatchQuizView.swift */; };
@@ -133,11 +134,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04450A540F57298D54F54890 /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = uk; path = uk.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		0506F780D4C3F3F5705BCD8C /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		07924EA2E5FE7E90339327FB /* WordShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordShareSheet.swift; sourceTree = "<group>"; };
 		0A89258AF193132750B6539E /* WordAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccessTests.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		11C3C036C43A585DFA6405C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		1A702C3CDDC0F977DBCCF854 /* FSRS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRS.swift; sourceTree = "<group>"; };
 		1B6DEE253BAE83C18158646A /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetupViews.swift; sourceTree = "<group>"; };
@@ -158,6 +161,7 @@
 		405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewModel.swift; sourceTree = "<group>"; };
 		407BFE1DC6BC631FE00C1392 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		4365E89823DC62143EFAB7BC /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
+		4890BA067A085C87BA00DAB4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4940C88040FD8E5FC518EE9F /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		4A371834A2FF448E0B35FC50 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		551CA09F41CBB9A77AA52313 /* translations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = translations.json; sourceTree = "<group>"; };
@@ -378,6 +382,7 @@
 				F5ECCE11B667DEFBC02108E9 /* words_v2.db-wal */,
 				7065EA90832D7B55B091ECF2 /* words.json */,
 				897722CFD692ACFC89C03E08 /* Localizable.strings */,
+				EE8A05857B65D02102FD18E8 /* Localizable.stringsdict */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 			files = (
 				4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */,
 				3D309F4778BCD76EA8525F37 /* Localizable.strings in Resources */,
+				8D94CD0878CC08D588682794 /* Localizable.stringsdict in Resources */,
 				679B7435A65EE128E3BDFD9D /* PrivacyInfo.xcprivacy in Resources */,
 				0215DEE999CC566D632C1BE2 /* Verbum.storekit in Resources */,
 				3638E2784BCD24A1EC73A154 /* translations.json in Resources */,
@@ -788,6 +794,16 @@
 				3C46B7674D3561FCD9ADE63D /* uk */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		EE8A05857B65D02102FD18E8 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4890BA067A085C87BA00DAB4 /* de */,
+				11C3C036C43A585DFA6405C3 /* en */,
+				04450A540F57298D54F54890 /* uk */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
