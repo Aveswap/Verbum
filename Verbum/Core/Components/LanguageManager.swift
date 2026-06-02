@@ -42,7 +42,9 @@ final class LanguageManager: ObservableObject {
 
 // MARK: - Bundle language override
 
-private var kBundleLanguageKey: UInt8 = 0
+// `nonisolated(unsafe)`: only the address of this byte is used as an objc-associated-object key;
+// the value itself is never read or written. Accessed exclusively via LanguageManager (@MainActor).
+nonisolated(unsafe) private var kBundleLanguageKey: UInt8 = 0
 
 /// A bundle that resolves localized strings from a specific `.lproj`, regardless of the system
 /// language. Swapped onto `Bundle.main` the first time `setLanguage` runs (object_setClass).
@@ -57,7 +59,8 @@ private final class LanguageBundle: Bundle, @unchecked Sendable {
 }
 
 extension Bundle {
-    private static var didSwizzle = false
+    // `nonisolated(unsafe)`: one-shot swizzle guard, only touched from LanguageManager (@MainActor).
+    nonisolated(unsafe) private static var didSwizzle = false
 
     /// Repoints `Bundle.main` at the given language's `.lproj`. Safe to call repeatedly.
     static func setLanguage(_ code: String) {
