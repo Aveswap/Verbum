@@ -1,13 +1,16 @@
 import UserNotifications
 
 enum NotificationManager {
-    private static let messages = [
-        "Your word of the day is ready! 📖",
-        "Time to expand your vocabulary! ✨",
-        "A new word is waiting for you 🎯",
-        "Keep your streak alive! 🔥",
-        "1 minute a day keeps ignorance away 💡"
-    ]
+    // Localized at fire time via the swizzled main bundle (matches the UI/word language).
+    private static var messages: [String] {
+        [
+            NSLocalizedString("Your word of the day is ready! 📖", comment: "notification"),
+            NSLocalizedString("Time to expand your vocabulary! ✨", comment: "notification"),
+            NSLocalizedString("A new word is waiting for you 🎯", comment: "notification"),
+            NSLocalizedString("Keep your streak alive! 🔥", comment: "notification"),
+            NSLocalizedString("1 minute a day keeps ignorance away 💡", comment: "notification"),
+        ]
+    }
 
     static func requestAndSchedule(count: Int, level: WordLevel = .beginner, startHour: Int = 9, endHour: Int = 22) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
@@ -34,7 +37,7 @@ enum NotificationManager {
             for i in 0..<count {
                 let content = UNMutableNotificationContent()
                 if let word = sampledWords[safe: i] {
-                    content.title = "Today's word: \(word.text)"
+                    content.title = String(format: NSLocalizedString("Today's word: %@", comment: "notification title"), word.text)
                     content.body = word.definition
                 } else {
                     content.title = "Verbum"
@@ -84,7 +87,7 @@ enum NotificationManager {
                 .removePendingNotificationRequests(withIdentifiers: ["verbum_streak_risk"])
             let content = UNMutableNotificationContent()
             content.title = "Verbum"
-            content.body  = "Your \(currentStreak)-day streak is at risk! 🔥 Open Verbum for 30 seconds."
+            content.body  = String(format: NSLocalizedString("Your %lld-day streak is at risk! 🔥 Open Verbum for 30 seconds.", comment: "streak reminder"), currentStreak)
             content.sound = .default
             var comps = DateComponents()
             comps.hour   = 20

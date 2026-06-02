@@ -47,7 +47,7 @@ class GuessWordViewModel: ObservableObject {
         currentWordId = word.id
         currentQuestion = GuessQuestion(
             definition: word.definition,
-            partOfSpeech: word.partOfSpeech,
+            partOfSpeech: word.localizedPartOfSpeech,
             options: options,
             correct: word.text
         )

@@ -98,7 +98,7 @@ struct SearchView: View {
                     Text(word.text)
                         .font(.system(size: 17, weight: .semibold, design: .serif))
                         .foregroundColor(AppColors.textPrimary)
-                    Text(word.partOfSpeech)
+                    Text(word.localizedPartOfSpeech)
                         .font(.system(size: 11, weight: .semibold))
                         .foregroundColor(AppColors.accent)
                 }

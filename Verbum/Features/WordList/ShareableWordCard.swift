@@ -50,7 +50,7 @@ struct ShareableWordCard: View {
                     .font(.system(size: 32, weight: .light, design: .monospaced))
                     .foregroundColor(.white.opacity(0.6))
 
-                Text(word.partOfSpeech.lowercased())
+                Text(word.localizedPartOfSpeech.lowercased())
                     .font(.system(size: 22, weight: .semibold))
                     .foregroundColor(AppColors.textOnAccent)
                     .padding(.horizontal, 22)

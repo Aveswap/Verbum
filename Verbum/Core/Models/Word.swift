@@ -28,6 +28,21 @@ struct Word: Identifiable, Codable {
         !seenIds.contains(id)
     }
 
+    /// `partOfSpeech` is stored canonically in English ("noun"/"verb"/"adjective"/"adverb") for
+    /// every catalogue, so the label is localized at display time (e.g. uk → "іменник",
+    /// de → "Substantiv"). Falls back to the raw value for any unmapped value.
+    var localizedPartOfSpeech: String {
+        let key = partOfSpeech.lowercased()
+        guard ["noun", "verb", "adjective", "adverb"].contains(key) else { return partOfSpeech }
+        return NSLocalizedString(key, comment: "part of speech")
+    }
+
+    /// `category` is stored canonically in English ("Science", "Emotions", …) for every catalogue;
+    /// localized at display. Unknown categories fall back to the raw value.
+    var localizedCategory: String {
+        category.isEmpty ? category : NSLocalizedString(category, comment: "word category")
+    }
+
     init(
         id: UUID, text: String, phonetic: String, partOfSpeech: String,
         definition: String, exampleSentence: String?, synonyms: [String],
@@ -74,11 +89,11 @@ enum WordRegister: String, Codable, CaseIterable {
 
     var displayName: String {
         switch self {
-        case .formal:   return "Formal"
-        case .informal: return "Informal"
-        case .neutral:  return "Neutral"
-        case .slang:    return "Slang"
-        case .archaic:  return "Archaic"
+        case .formal:   return NSLocalizedString("Formal", comment: "register")
+        case .informal: return NSLocalizedString("Informal", comment: "register")
+        case .neutral:  return NSLocalizedString("Neutral", comment: "register")
+        case .slang:    return NSLocalizedString("Slang", comment: "register")
+        case .archaic:  return NSLocalizedString("Archaic", comment: "register")
         }
     }
 }
@@ -88,9 +103,9 @@ enum WordLevel: String, Codable, CaseIterable {
 
     var displayName: String {
         switch self {
-        case .beginner:     return "Beginner"
-        case .intermediate: return "Intermediate"
-        case .expert:       return "Expert"
+        case .beginner:     return NSLocalizedString("Beginner", comment: "level")
+        case .intermediate: return NSLocalizedString("Intermediate", comment: "level")
+        case .expert:       return NSLocalizedString("Expert", comment: "level")
         }
     }
 }

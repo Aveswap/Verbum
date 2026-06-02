@@ -149,7 +149,7 @@ struct WordDetailView: View {
 
                         // Definition card
                         VStack(alignment: .leading, spacing: AppSpacing.sm) {
-                            Text(word.partOfSpeech)
+                            Text(word.localizedPartOfSpeech)
                                 .font(.system(size: 13, weight: .semibold))
                                 .foregroundColor(AppColors.accent)
                             Text(word.definition)
@@ -248,7 +248,7 @@ struct WordDetailView: View {
 
                         // Category / level / meta row
                         HStack(spacing: AppSpacing.sm) {
-                            Label(word.category, systemImage: "folder")
+                            Label(word.localizedCategory, systemImage: "folder")
                                 .font(.system(size: 13))
                                 .foregroundColor(AppColors.textSecondary)
                             Spacer()

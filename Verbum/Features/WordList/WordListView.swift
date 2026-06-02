@@ -104,7 +104,7 @@ struct WordRow: View {
                     Text(word.text)
                         .font(.system(size: 18, weight: .bold, design: .serif))
                         .foregroundColor(AppColors.textPrimary)
-                    Text(word.partOfSpeech)
+                    Text(word.localizedPartOfSpeech)
                         .font(.system(size: 12, weight: .semibold))
                         .foregroundColor(AppColors.accent)
                         .padding(.horizontal, 6)

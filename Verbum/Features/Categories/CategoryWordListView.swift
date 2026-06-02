@@ -11,10 +11,14 @@ struct CategoryWordListView: View {
 
         var title: String {
             switch self {
-            case .category(let c):              return c
+            case .category(let c):              return NSLocalizedString(c, comment: "word category")
             case .categoryGroup(let n, _):      return n
             case .level(let l):                 return l.displayName
-            case .partOfSpeech(let p):          return p.capitalized
+            case .partOfSpeech(let p):
+                let key = p.lowercased()
+                return ["noun", "verb", "adjective", "adverb"].contains(key)
+                    ? NSLocalizedString(key, comment: "part of speech")
+                    : p.capitalized
             case .search(let q):                return "\"\(q)\""
             }
         }

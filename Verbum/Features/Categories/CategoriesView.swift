@@ -176,7 +176,7 @@ private struct CategorySection<Content: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: AppSpacing.sm) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundColor(AppColors.textSecondary)
             content
@@ -192,7 +192,7 @@ private struct QuickCard: View {
         Button(action: { action?() }) {
             HStack {
                 Image(systemName: icon).foregroundColor(AppColors.accent)
-                Text(title).font(.system(size: 14, weight: .medium)).foregroundColor(AppColors.textPrimary)
+                Text(LocalizedStringKey(title)).font(.system(size: 14, weight: .medium)).foregroundColor(AppColors.textPrimary)
                 Spacer()
                 Image(systemName: "chevron.right").font(.system(size: 11)).foregroundColor(AppColors.textSecondary)
             }
@@ -217,7 +217,7 @@ private struct CategoryBucketCard: View {
                         .font(.system(size: 22))
                         .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.accent)
                     Spacer()
-                    Text(bucket.name)
+                    Text(LocalizedStringKey(bucket.name))
                         .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(isLocked ? AppColors.textSecondary : AppColors.textPrimary)
                         .lineLimit(2)
@@ -248,7 +248,7 @@ private struct SmallCard: View {
     var action: (() -> Void)? = nil
     var body: some View {
         Button(action: { action?() }) {
-            Text(title)
+            Text(LocalizedStringKey(title))
                 .font(.system(size: 13, weight: .medium))
                 .foregroundColor(AppColors.textPrimary)
                 .frame(maxWidth: .infinity)

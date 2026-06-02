@@ -724,7 +724,7 @@ private struct WordCardView: View {
                 .accessibilityLabel("Pronounce \(word.text)")
             }
 
-            Text("\(word.partOfSpeech)  \(word.definition)")
+            Text("\(word.localizedPartOfSpeech)  \(word.definition)")
                 .font(AppTypography.definition)
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)

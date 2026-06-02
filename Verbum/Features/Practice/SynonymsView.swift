@@ -165,7 +165,7 @@ struct SynonymsView: View {
                 .font(AppTypography.wordTitle)
                 .foregroundColor(AppColors.textPrimary)
 
-            Text(q.word.partOfSpeech + " · " + q.word.definition)
+            Text(q.word.localizedPartOfSpeech + " · " + q.word.definition)
                 .font(.system(size: 14))
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)

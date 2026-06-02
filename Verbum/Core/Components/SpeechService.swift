@@ -8,15 +8,33 @@ import os
 enum SpeechService {
     private static let synthesizer = AVSpeechSynthesizer()
 
-    static func speak(_ text: String, rate: Float = 0.42) {
+    /// Speaks `text` in the given vocabulary language's voice. Defaults to the active word
+    /// language (the feed/detail words are in that language), so German words sound German and
+    /// Ukrainian words Ukrainian — not read aloud with an English voice.
+    static func speak(_ text: String, language: String? = nil, rate: Float = 0.42) {
         synthesizer.stopSpeaking(at: .immediate)
+        let lang = language ?? LanguageManager.shared.language
         let utterance = AVSpeechUtterance(string: text)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-            ?? AVSpeechSynthesisVoice(language: "en-GB")
+        utterance.voice = voice(for: lang)
         utterance.rate = rate
         utterance.pitchMultiplier = 1.05
         utterance.volume = 1.0
         synthesizer.speak(utterance)
+    }
+
+    /// Best available voice for a base language code, with regional defaults and an English
+    /// fallback if the requested language pack isn't installed on the device.
+    private static func voice(for code: String) -> AVSpeechSynthesisVoice? {
+        let bcp: String
+        switch code {
+        case "de": bcp = "de-DE"
+        case "uk": bcp = "uk-UA"
+        default:   bcp = "en-US"
+        }
+        return AVSpeechSynthesisVoice(language: bcp)
+            ?? AVSpeechSynthesisVoice(language: code)
+            ?? AVSpeechSynthesisVoice(language: "en-US")
+            ?? AVSpeechSynthesisVoice(language: "en-GB")
     }
 
     static func configureAudioSession() {
