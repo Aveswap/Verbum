@@ -240,6 +240,13 @@
 "correct in a row" = "правильних поспіль";
 "words in 60 seconds" = "слів за 60 секунд";
 "of 5 correct" = "з 5 правильних";
+"Perfect!" = "Ідеально!";
+"Great job!" = "Чудова робота!";
+"Good work!" = "Гарна робота!";
+"Keep learning!" = "Продовжуй вчитися!";
+"You're building a strong foundation.\nKeep exploring new words every day!" = "Ти закладаєш міцну основу.\nВідкривай нові слова щодня!";
+"Great command of vocabulary!\nYou're making excellent progress." = "Чудове володіння словником!\nТи робиш відмінний поступ.";
+"Outstanding performance!\nYou have an exceptional vocabulary." = "Видатний результат!\nУ тебе винятковий словниковий запас.";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld слів";

@@ -280,10 +280,10 @@ struct BatchQuizView: View {
 
     private var resultTitle: String {
         switch vm.correctCount {
-        case words.count: return "Perfect!"
-        case (words.count - 1)...: return "Great job!"
-        case 3...: return "Good work!"
-        default: return "Keep learning!"
+        case words.count: return NSLocalizedString("Perfect!", comment: "quiz result")
+        case (words.count - 1)...: return NSLocalizedString("Great job!", comment: "quiz result")
+        case 3...: return NSLocalizedString("Good work!", comment: "quiz result")
+        default: return NSLocalizedString("Keep learning!", comment: "quiz result")
         }
     }
 }

@@ -247,6 +247,13 @@
 "correct in a row" = "correct in a row";
 "words in 60 seconds" = "words in 60 seconds";
 "of 5 correct" = "of 5 correct";
+"Perfect!" = "Perfect!";
+"Great job!" = "Great job!";
+"Good work!" = "Good work!";
+"Keep learning!" = "Keep learning!";
+"You're building a strong foundation.\nKeep exploring new words every day!" = "You're building a strong foundation.\nKeep exploring new words every day!";
+"Great command of vocabulary!\nYou're making excellent progress." = "Great command of vocabulary!\nYou're making excellent progress.";
+"Outstanding performance!\nYou have an exceptional vocabulary." = "Outstanding performance!\nYou have an exceptional vocabulary.";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld words";

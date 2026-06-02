@@ -240,6 +240,13 @@
 "correct in a row" = "richtig in Folge";
 "words in 60 seconds" = "Wörter in 60 Sekunden";
 "of 5 correct" = "von 5 richtig";
+"Perfect!" = "Perfekt!";
+"Great job!" = "Großartig!";
+"Good work!" = "Gut gemacht!";
+"Keep learning!" = "Lerne weiter!";
+"You're building a strong foundation.\nKeep exploring new words every day!" = "Du baust ein starkes Fundament auf.\nEntdecke jeden Tag neue Wörter!";
+"Great command of vocabulary!\nYou're making excellent progress." = "Großartige Wortschatzbeherrschung!\nDu machst ausgezeichnete Fortschritte.";
+"Outstanding performance!\nYou have an exceptional vocabulary." = "Herausragende Leistung!\nDu hast einen außergewöhnlichen Wortschatz.";
 
 /* interpolated format strings */
 "/ %lld words" = "/ %lld Wörter";

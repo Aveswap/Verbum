@@ -198,9 +198,9 @@ struct LevelTestView: View {
 
     private var resultMessage: String {
         switch vm.score {
-        case 0...3: return "You're building a strong foundation.\nKeep exploring new words every day!"
-        case 4...7: return "Great command of vocabulary!\nYou're making excellent progress."
-        default: return "Outstanding performance!\nYou have an exceptional vocabulary."
+        case 0...3: return NSLocalizedString("You're building a strong foundation.\nKeep exploring new words every day!", comment: "level test result")
+        case 4...7: return NSLocalizedString("Great command of vocabulary!\nYou're making excellent progress.", comment: "level test result")
+        default: return NSLocalizedString("Outstanding performance!\nYou have an exceptional vocabulary.", comment: "level test result")
         }
     }
 }
