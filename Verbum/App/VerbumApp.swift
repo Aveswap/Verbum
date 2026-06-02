@@ -6,13 +6,15 @@ struct VerbumApp: App {
     @StateObject private var userProfile: UserProfileStore
     @StateObject private var subscriptions: SubscriptionManager
     @StateObject private var auth: AuthService
+    @StateObject private var language = LanguageManager.shared
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
         let store = UserProfileStore()
         // Resolve the vocabulary language BEFORE any UI builds, so onboarding (word-check),
         // notifications, and the feed all use the device/stored language from the first frame
-        // — not English-until-the-feed-appears.
+        // — not English-until-the-feed-appears. applyWordLanguage() also bootstraps the UI
+        // language (LanguageManager) to the same value.
         store.applyWordLanguage()
         _userProfile = StateObject(wrappedValue: store)
         _subscriptions = StateObject(wrappedValue: SubscriptionManager())
@@ -35,6 +37,11 @@ struct VerbumApp: App {
                 .environmentObject(subscriptions)
                 .environmentObject(auth)
                 .environmentObject(GameCenterService.shared)
+                .environmentObject(language)
+                // Format numbers/dates in the UI language, and rebuild the whole tree when it
+                // changes so every Text re-resolves against the new .lproj (live switch).
+                .environment(\.locale, language.locale)
+                .id(language.language)
                 .preferredColorScheme(.dark)
                 .onAppear {
                     // Publish a fresh 14-day timeline for widget + watch on every launch.

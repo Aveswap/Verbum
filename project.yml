@@ -5,6 +5,10 @@ options:
     iOS: "16.0"
   createIntermediateGroups: true
   xcodeVersion: "15"
+  developmentLanguage: en
+# UI is localized into English (base), German and Ukrainian; the active language follows the
+# in-app vocabulary-language switch at runtime (see LanguageManager).
+knownRegions: [en, de, uk]
 
 packages:
   GRDB:
@@ -42,6 +46,8 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         ITSAppUsesNonExemptEncryption: false
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations: [en, de, uk]
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
         UIUserInterfaceStyle: Dark

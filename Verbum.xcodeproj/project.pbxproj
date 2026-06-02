@@ -30,6 +30,7 @@
 		372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */; };
 		3956E00B7EA24231E5ADC4B3 /* FSRS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A702C3CDDC0F977DBCCF854 /* FSRS.swift */; };
 		3B36F4C2BFF0624DD1C89DF7 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 08855E15BC1D1540CB22C18F /* GRDB */; };
+		3D309F4778BCD76EA8525F37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 897722CFD692ACFC89C03E08 /* Localizable.strings */; };
 		41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */; };
 		415BBCB7DFABF2CC1FAC62B3 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF790BB6AB4C75379219B4AC /* Typography.swift */; };
 		4197BE7D6A97E97B4E1D3B1A /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9043274A62A43B65329A2950 /* CloudKitSyncManager.swift */; };
@@ -66,6 +67,7 @@
 		A62629D678157BD464C84EA0 /* WordOfDayEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6162D35C4679049EC2E53A37 /* WordOfDayEntryView.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
 		B0CC5FC274154F9F7F31DAC5 /* FSRSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5C8FB3E44D1DEB2BB3CBF /* FSRSTests.swift */; };
+		B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A371834A2FF448E0B35FC50 /* LanguageManager.swift */; };
 		B2B60BF1A7D0856710563679 /* SharedTimelinePublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE4107291D875D5092A74B /* SharedTimelinePublisher.swift */; };
 		B33E6587464D1EEEF0AE1E32 /* CloudKitMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */; };
 		B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */; };
@@ -150,15 +152,18 @@
 		3A0D8D8BF95F826798C83F6C /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		3A94394A4ED7AC0100475478 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		3B124CA958B5492B2AA44C00 /* VerbumWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbumWidget.swift; sourceTree = "<group>"; };
+		3C46B7674D3561FCD9ADE63D /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E6491D5127E47854DC497F5 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		3E852055DFAE15E4F9712719 /* VerbumWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = VerbumWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewModel.swift; sourceTree = "<group>"; };
 		407BFE1DC6BC631FE00C1392 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		4365E89823DC62143EFAB7BC /* DecksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecksView.swift; sourceTree = "<group>"; };
 		4940C88040FD8E5FC518EE9F /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
+		4A371834A2FF448E0B35FC50 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		551CA09F41CBB9A77AA52313 /* translations.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = translations.json; sourceTree = "<group>"; };
 		58662E08BA73B725EB7F57A5 /* Logger+Verbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+Verbum.swift"; sourceTree = "<group>"; };
 		607522EE27B78887DD40B1E5 /* WordOfDayProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayProvider.swift; sourceTree = "<group>"; };
+		6158CF6C10EA678F83FA3870 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6162D35C4679049EC2E53A37 /* WordOfDayEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordOfDayEntryView.swift; sourceTree = "<group>"; };
 		626B6BE3FF009B4C26107D5A /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		668CE3026DC6F136C89050F6 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -199,6 +204,7 @@
 		B7D72F92771EB30EBB1959B1 /* GameCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterService.swift; sourceTree = "<group>"; };
 		B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		BA8E9091A467ADE090DC3610 /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
+		BDB995E5C7ACF204C7AF058B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C21B3590E4FD7FF17ACFAA57 /* Verbum.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Verbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28C193C7BC73D85820163A1 /* WordFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedView.swift; sourceTree = "<group>"; };
 		C7CD9166BA32297E2C16426C /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
@@ -303,6 +309,7 @@
 				EEBBDCED3924638D2D69CDCC /* ConfettiView.swift */,
 				AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */,
 				0506F780D4C3F3F5705BCD8C /* HapticManager.swift */,
+				4A371834A2FF448E0B35FC50 /* LanguageManager.swift */,
 				58662E08BA73B725EB7F57A5 /* Logger+Verbum.swift */,
 				CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */,
 				7E579B213FF7BFC07CA00913 /* PillButton.swift */,
@@ -370,6 +377,7 @@
 				80DDA9C91D590420692C93F7 /* words_v2.db-shm */,
 				F5ECCE11B667DEFBC02108E9 /* words_v2.db-wal */,
 				7065EA90832D7B55B091ECF2 /* words.json */,
+				897722CFD692ACFC89C03E08 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -606,7 +614,9 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				de,
 				en,
+				uk,
 			);
 			mainGroup = 7C7FB6E41802C5F3524D7DEF;
 			minimizedProjectReferenceProxies = 1;
@@ -639,6 +649,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */,
+				3D309F4778BCD76EA8525F37 /* Localizable.strings in Resources */,
 				679B7435A65EE128E3BDFD9D /* PrivacyInfo.xcprivacy in Resources */,
 				0215DEE999CC566D632C1BE2 /* Verbum.storekit in Resources */,
 				3638E2784BCD24A1EC73A154 /* translations.json in Resources */,
@@ -693,6 +704,7 @@
 				5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */,
 				930B261EDA1014D495490311 /* InsufficientWordsView.swift in Sources */,
 				8BD9683CC097F78400A883A2 /* KeychainHelper.swift in Sources */,
+				B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */,
 				C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */,
 				999398853EDED46DF2113702 /* LevelTestView.swift in Sources */,
 				514DF89DA836245BF4E3F79C /* LevelTestViewModel.swift in Sources */,
@@ -766,6 +778,19 @@
 			targetProxy = 8CE3C8B0A5C334908F72476F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		897722CFD692ACFC89C03E08 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6158CF6C10EA678F83FA3870 /* de */,
+				BDB995E5C7ACF204C7AF058B /* en */,
+				3C46B7674D3561FCD9ADE63D /* uk */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		03543AC628DCB6C2730C084C /* Debug */ = {

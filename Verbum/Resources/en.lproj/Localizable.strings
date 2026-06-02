@@ -1,0 +1,3 @@
+/* Verbum UI — en (base). Keys are the English source strings used directly in the views, so a
+   missing translation in de/uk falls back to the key text. This file is intentionally minimal;
+   NSLocalizedString returns the key itself when absent, which is already correct English. */
