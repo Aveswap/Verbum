@@ -50,7 +50,8 @@ final class WordDatabase: @unchecked Sendable {
     /// v20: German COMPLETE — 300/450/250 = 1000 words, at parity with English (batches 16–20).
     /// v21: curated "wow-tier" gems (deep research) — +70 standalone words (en 1016 / de 1023 / uk 923),
     ///      33 seeded into the free pool (scripts/import_gems.py + word_batches_gems/).
-    static let bundledDBVersion = 21
+    /// v22: pruned 740 boring/over-common words (deep-research audit) — en 767 / de 793 / uk 662; gems + free-pool floors preserved.
+    static let bundledDBVersion = 22
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {

@@ -1,0 +1,3702 @@
+[
+ {
+  "language": "en",
+  "text": "encourage",
+  "reason": "flat synonym of \"urge\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "seek",
+  "reason": "flat synonym of \"pursue\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "breath",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "en",
+  "text": "advise",
+  "reason": "flat synonym of \"counsel\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "declare",
+  "reason": "flat synonym of \"announce\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "host",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "en",
+  "text": "remark",
+  "reason": "flat synonym of \"observe/comment\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "stretch",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "en",
+  "text": "household",
+  "reason": "flat synonym of \"family\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "persuade",
+  "reason": "flat synonym of \"convince\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "peer",
+  "reason": "flat synonym of \"equal\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "gesture",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "en",
+  "text": "generous",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "gentle",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "rival",
+  "reason": "flat synonym of \"opponent\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "concept",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "belief",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "colleague",
+  "reason": "flat synonym of \"coworker\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "greet",
+  "reason": "flat synonym of \"welcome\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "cousin",
+  "reason": "flat synonym of \"kinsman\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "emerge",
+  "reason": "flat synonym of \"appear\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "reason",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "awareness",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "articulate",
+  "reason": "flat synonym of \"express\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "companion",
+  "reason": "flat synonym of \"comrade\" already in set; redundant"
+ },
+ {
+  "language": "en",
+  "text": "urge",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "sour",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "persist",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "vanish",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "mock",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "frown",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "sibling",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "thrive",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "plead",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "cease",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "ally",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "en",
+  "text": "subtle",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "spouse",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "ripe",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "blink",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "fragrant",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "scarce",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "abundant",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "bold",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "assert",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "accumulate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "agility",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "instinct",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "mood",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "polite",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "mentor",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "heir",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "shiver",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "widow",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "hail",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "unfold",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "stride",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "contemplate",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "shy",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "insight",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "cheerful",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "pity",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "elder",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "console",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "serene",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "motive",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "stubborn",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "grief",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "hearty",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "boast",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "sincere",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "posture",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "savor",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "discern",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "feasible",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "prevail",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "vigor",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "advocate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "ambitious",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "objurgate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "foster",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "vociferate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "demeanor",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "escalate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "maunder",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "perception",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "vibrant",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "envy",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "fantasy",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "animadversion",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "bias",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "philippic",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "comrade",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "intricate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "hinder",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "relief",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "fulminate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "adumbrate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "spectator",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "allege",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "interlocutor",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "resolve",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "tentative",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "dwell",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "sybarite",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "intuition",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "modest",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "logic",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "philistine",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "stamina",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "savory",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "poltroon",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "rubicund",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "adversary",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "denounce",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "pulchritude",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "desiccated",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "resilient",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "adipose",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "novice",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "eloquent",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "restless",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "ego",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "thrill",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "cunning",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "jolly",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "sturdy",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "comestible",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "prandial",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "witty",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "esculent",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "collation",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "gravitate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "allude",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "culminate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "apprentice",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "devour",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "quiddity",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "nadir",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "gait",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "decadent",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "empathy",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "awe",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "robust",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "dudgeon",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "confidant",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "fathom",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "lament",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "bystander",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "clench",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "delegate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "grandiloquent",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "captious",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "countenance",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "benefactor",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "mumble",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "jejune",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "candid",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "vain",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "sentiment",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "mandate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "bumptious",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "concede",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "jeremiad",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "wary",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "asseverate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "rebuke",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "dwindle",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "stipulate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "scold",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "wrinkle",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "mingle",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "bachelor",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "soothe",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "sprint",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "salty",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "bloviate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "contumacious",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "pragmatic",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "successor",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "expatiate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "otiose",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "decisive",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "denial",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "ideology",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "amanuensis",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "gainsay",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "ingenue",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "doctrine",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "obsession",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "martinet",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "patron",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "spokesperson",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "epicure",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "broach",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "sumptuous",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "dexterity",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "relinquish",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "reiterate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "nimble",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "kin",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "coalition",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "malingerer",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "apprehensive",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "reprobate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "dissent",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "petty",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "reaffirm",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "ferment",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "nostalgic",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "willpower",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "democracy",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "blunt",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "en",
+  "text": "horripilation",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "tenacious",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "referendum",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "smug",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "sternutation",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "palate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "slumber",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "permeate",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "nibble",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "pensive",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "sovereignty",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "disposition",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "callipygian",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "paradox",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "digestif",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "degustation",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "esurient",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "succulent",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "tenant",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "narrate",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "offspring",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "clasp",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "mellow",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "meticulous",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "impulsive",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "prudent",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "postprandial",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "sapid",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "accomplice",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "remorse",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "aptitude",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "persona",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "panacea",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "lacuna",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "en",
+  "text": "recoil",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "en",
+  "text": "grimace",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "ermutigen",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "erstreben",
+  "reason": "flat synonym of \"anstreben\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "Atem",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "raten",
+  "reason": "flat synonym of \"empfehlen\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "verkünden",
+  "reason": "flat synonym of \"ankündigen\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "Ebenbürtige",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "Gastgeber",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "Haushalt",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "bemerken",
+  "reason": "flat synonym of \"anmerken\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "überzeugen",
+  "reason": "flat synonym of \"überreden\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "Gebärde",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "großzügig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Nebenbuhler",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "strecken",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "Begriff",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Glaube",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Vetter",
+  "reason": "flat synonym of \"Cousin\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "auftauchen",
+  "reason": "flat synonym of \"erscheinen\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "begrüßen",
+  "reason": "flat synonym of \"willkommen heißen\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "Vernunft",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Bewusstsein",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "darlegen",
+  "reason": "flat synonym of \"erklären\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "drängen",
+  "reason": "flat synonym of \"bedrängen\" already in set; redundant"
+ },
+ {
+  "language": "de",
+  "text": "verweilen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "verspotten",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "verschwinden",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "einstellen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "herzhaft",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "flehen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "gedeihen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Mitarbeiter",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "feinsinnig",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Verbündeter",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "de",
+  "text": "knapp",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "üppig",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "blinzeln",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Ehegatte",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "behaupten",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "wohlriechend",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "anhäufen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Gewandtheit",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "kühn",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Gefährte",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "gestehen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "sauer",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "ungestüm",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "bescheiden",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Stimmung",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "höflich",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Ratgeber",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "beharren",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "hausen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "bejubeln",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Erbe",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "frösteln",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "geloben",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Witwe",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Schritt",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "zurückhaltend",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "schüchtern",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "erwägen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "deftig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "fröhlich",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Mitleid",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "trösten",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Älteste",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "runzeln",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "prahlen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "hegen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Geschwister",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Beweggrund",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "gelassen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "aufrichtig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "ausmachen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "machbar",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "obsiegen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Tatkraft",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Körperhaltung",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "reif",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "auskosten",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Fürsprecher",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "fördern",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "schelten",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Auftreten",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "zuspitzen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "zetern",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Wahrnehmung",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "faseln",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "ehrgeizig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Rüge",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Mitstreiter",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "einräumen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "hemmen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "verschlungen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Schmährede",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "freimütig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Neid",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "lebhaft",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Klagelied",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "sachlich",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "wettern",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "unterstellen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "andeuten",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Trieb",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Erleichterung",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Entschlossenheit",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "zaghaft",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Backfisch",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Wortführer",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "entfalten",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Widersacher",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "anprangern",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Hasenfuß",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Gespür",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Folgerichtigkeit",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Ausdauer",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "rotwangig",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Wohlgestalt",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "feist",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Einsicht",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "unverwüstlich",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "unverblümt",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "beredt",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "vergnügt",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "rastlos",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "stämmig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Nervenkitzel",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Speise",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Mahl",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "genießbar",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Imbiss",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "geistreich",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Helfershelfer",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "anspielen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "gipfeln",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "verschlingen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Wesenskern",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Gram",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "starrköpfig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Tiefpunkt",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "schwelgerisch",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Gangart",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "widerstandsfähig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "ballen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "wehklagen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Abgesandter",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Groll",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Ehrfurcht",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Einfühlungsvermögen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Gekränktheit",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "kleinmütig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Antlitz",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "nuscheln",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "tadelsüchtig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "ruhmredig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Empfindung",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Vollmacht",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "seicht",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Voreingenommenheit",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "haltlos",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "zurechtweisen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Hirngespinst",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "eitel",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "gehässig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "beteuern",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Zuschauer",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Nachfolger",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "zwiespältig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "entschieden",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "aufsässig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Weltanschauung",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "schwadronieren",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "müßig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Junggeselle",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "verkehren",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "salzig",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "ausschimpfen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "besänftigen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Falte",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Schreibgehilfe",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Gesprächspartner",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "bestreiten",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Zuchtmeister",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Gönner",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "anschneiden",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Sippe",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "flink",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "bekräftigen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "prunkvoll",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Lebemann",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "gewähren",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Bündnis",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Feinschmecker",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Spießbürger",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "besorgt",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "kleinlich",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "preisgeben",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Neuling",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "ausgedörrt",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Schurke",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "selbstgefällig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "hartnäckig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Gänsehaut",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Gaumen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "gerissen",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Selbstgefühl",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "wehmütig",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Willenskraft",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "Volksherrschaft",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "de",
+  "text": "greiffähig",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "knabbern",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "durchdringen",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Schlummer",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Wesensart",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "wohlgeformt",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "hinneigen",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Verdauungstrunk",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "rücklings",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "vorschnell",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "umsichtig",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "gefräßig",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "umklammern",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "kauern",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Lehrling",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Begabung",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Schauseite",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "schmackhaft",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "Allheilmittel",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "de",
+  "text": "Fratze",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "de",
+  "text": "zurückschrecken",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "підбадьорювати",
+  "reason": "flat synonym of \"надихати\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "шукати",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "дихання",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "радити",
+  "reason": "flat synonym of \"рекомендувати\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "переконувати",
+  "reason": "flat synonym of \"умовляти\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "оголошувати",
+  "reason": "flat synonym of \"повідомляти\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "однолітки",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "господар",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "жест",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "суперник",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "зауважувати",
+  "reason": "flat synonym of \"помічати\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "розтягуватися",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "домогосподарство",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "розум",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "усвідомлення",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "щедрий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "концепція",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "переконання",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "колега",
+  "reason": "flat synonym of \"співробітник\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "вітати",
+  "reason": "flat synonym of \"зустрічати\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "двоюрідний брат / сестра",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "з'являтися",
+  "reason": "flat synonym of \"виникати\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "союзник",
+  "reason": "too common - every adult native speaker knows it; emotionally inert"
+ },
+ {
+  "language": "uk",
+  "text": "висловлювати",
+  "reason": "flat synonym of \"виражати\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "супутник",
+  "reason": "flat synonym of \"товариш\" already in set; redundant"
+ },
+ {
+  "language": "uk",
+  "text": "зізнаватися",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "спонукати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "кислий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "наставник",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "наполягати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "крок",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "розмірковувати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "старший",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "розраджувати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "затримуватися",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "зникати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "глузувати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "брат або сестра",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "сердечний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "хвалитися",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "процвітати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "благати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "припиняти",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "тонкий",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "рідкісний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "рясний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "захисник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "стверджувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "постава",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "смакувати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "чоловік / дружина",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "моргати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "накопичувати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "запашний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "спритність",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "виховувати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "сміливий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "амбітний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "інстинкт",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "скромний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "настрій",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "ввічливий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "полегшення",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "лютий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "спадкоємець",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "мешкати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "вдова",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "розгортатися",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "інтуїція",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "сором'язливий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "логіка",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "пікантний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "обмірковувати",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "стійкий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "осяяння",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "веселий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "жалість",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "хмуритися",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "безтурботний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "мотив",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "впертий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "щирий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "розрізняти",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "здійсненний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "перемагати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "бадьорість",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "делегат",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "суворо докоряти",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "емпатія",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "благоговіння",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "стиглий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "кричати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "балакати безцільно",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "сприйняття",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "критичне зауваження",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "філіппіка",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "почуття",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "поведінка",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "загострюватися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "упередженість",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "єремія",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "громити",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "товариш",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "поступатися",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "складний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "заважати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "нарисувати в загальних рисах",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "прагматичний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "відвертий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "яскравий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "марнославний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "заздрість",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "фантазія",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "секретар-помічник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "ідеологія",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "співрозмовник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "наступник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "глядач",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "наївна дівчина",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "рішучість",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "невпевнений",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "епікуреєць",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "клястися",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "філістер",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "покровитель",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "речник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "боягуз",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "рум'яний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "витривалість",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "краса",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "супротивник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "засуджувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "висохлий",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "жировий",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "гоч пімпл",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "новачок",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "їстівний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "ностальгійний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "сила волі",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "красномовний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "демократія",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "неспокійний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "его",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "прямолінійний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "захват",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "хитрий",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "міцний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "що стосується їжі, особливо вечері",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "легкий перекус",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "піднебіння",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "дигестив",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "дотепний",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "тяжіти",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "суть",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "панацея",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "горе",
+  "reason": "over-common, low-surprise everyday word; reads like a dictionary entry"
+ },
+ {
+  "language": "uk",
+  "text": "натякати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "спільник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "досягати кульмінації",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "учень",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "поглинати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "надир",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "лакуна",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "світова скорбота",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "саудаде",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "хода",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "декадентський",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "зв'язок",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "боягузливий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "помпезний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "хвалькуватий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "довірена особа",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "збагнути",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "сумувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "перехожий",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "наївний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "безвольний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "самовпевнений",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "мандат",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "відповідати різко",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "обличчя",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "благодійник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "неслухняний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "марний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "обережний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "урочисто стверджувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "сварити",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "зморшка",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "спілкуватися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "холостяк",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "заспокоювати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "бігти на повну",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "солоний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "амбівалентний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "автономія",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "рішучий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "заперечення",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "базікати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "докір",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "зменшуватися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "обумовлювати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "здригатися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "розписувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "педант",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "виступати проти",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "доктрина",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "зневага",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "одержимість",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "сибарит",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "затуманювати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "зволити",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "коаліція",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "порушувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "розкішний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "охоронець",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "відмовлятися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "повторювати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "спритний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "родичі",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "тривожний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "юрисдикція",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "симулянт",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "пізнання",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "незгода",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "дріб'язковий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "негідник",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "віртуоз",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "преклоняти коліно",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "наполегливий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "референдум",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "самовдоволений",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "розголошувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "підтверджувати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "бродити",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "теревенити",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "нудитися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "здатний чіплятися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "чхання",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "задумливий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "суверенітет",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "характер",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "виголошувати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "каліпігійний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "дрімати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "просочуватися",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "гризти",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "лежачий на спині",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "соковитий",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "орендар",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "розповідати",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "позіхати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "нащадок",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "стискати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "присідати",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "дегустація",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "розгортання",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "педантичний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "імпульсивний",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "розсудливий",
+  "reason": "low-surprise filler; common and emotionally flat for a native speaker"
+ },
+ {
+  "language": "uk",
+  "text": "голодний або жадібний",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ },
+ {
+  "language": "uk",
+  "text": "фрикасе",
+  "reason": "dull, generic gloss; no surprise, sound, or story"
+ }
+]
