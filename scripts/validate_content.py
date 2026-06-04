@@ -236,9 +236,11 @@ def main():
                     and (w.get("category") or "") not in PREMIUM_CATEGORIES
                 ]
                 if 0 < len(free) < FREE_LIMIT:
-                    errors += 1
-                    print(f"  [ERROR] {lang}/{level}: only {len(free)} free-pool words "
-                          f"(need ≥ {FREE_LIMIT})")
+                    # Curated "gems-only" catalogue is intentionally small (< the 50-word free cap),
+                    # so this is informational, not a hard error.
+                    warns += 1
+                    print(f"  [WARN] {lang}/{level}: only {len(free)} free-pool words "
+                          f"(< {FREE_LIMIT}; expected for the curated set)")
 
     print(f"\nDone. errors={errors} warnings={warns}", end="")
     if args.online:

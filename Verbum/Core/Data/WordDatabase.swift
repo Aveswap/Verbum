@@ -52,7 +52,8 @@ final class WordDatabase: @unchecked Sendable {
     ///      33 seeded into the free pool (scripts/import_gems.py + word_batches_gems/).
     /// v22: pruned 740 boring/over-common words (deep-research audit) — en 767 / de 793 / uk 662; gems + free-pool floors preserved.
     /// v23: round-2 gems (+28 authored: en 777 / de 803 / uk 670; freePool seeded, non-premium).
-    static let bundledDBVersion = 23
+    /// v24: PIVOT — curated gems only; deleted all 2137 non-gem words (de 37 / en 35 / uk 41). See scripts/keep_gems_only.py.
+    static let bundledDBVersion = 24
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
