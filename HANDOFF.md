@@ -743,4 +743,24 @@ is switchable in Settings), so the whole app is in one language. Mechanism:
 
 ---
 
+## 13. Content pivot — curated gems only (2026-06)
+
+The 1000-per-language generated catalogue was dropped in favour of a small hand-curated set of
+"gem" words (deep-research + authored). Pipeline: `scripts/word_batches_gems/*.json` →
+`import_gems.py` → `keep_gems_only.py` (deletes everything not a gem) → `validate_content.py`.
+Current size: **de 37 / en 35 / uk 41 = 113** (bundledDBVersion 24).
+
+**Known deficit — backfill later (intentionally deferred):**
+- **en/beginner = 0** → empty feed for an English beginner. Highest priority to fill.
+- uk/expert thin (≈5, only ~1 non-premium); de/beginner = 6.
+- The "50 free words per level" paywall pool is now just the whole small per-level set
+  (`validate_content.py`'s ≥50 free-pool check is relaxed to a warning). Monetization needs
+  rethinking for a curated set (e.g. N free gems then Pro, or Pro = extra languages/features).
+
+To backfill: add entries to `scripts/word_batches_gems/` (or generate via
+`Verbum_DeepResearch_MORE_WORDS.md`), `python3 import_gems.py`, then bump `bundledDBVersion`.
+The pre-pivot full catalogue is recoverable from git (`Resources/words_v2.db` at v23).
+
+---
+
 *End of handoff. Good luck.*
