@@ -37,7 +37,6 @@
 		4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5189B465BCE9B4F0634218B /* Assets.xcassets */; };
 		4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E15B1BDA53EAD060209F /* CategoriesView.swift */; };
 		506F22E3AD9EDD8BF8C0D97B /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC7F5F28B7CA69B1A0BDFD /* Badge.swift */; };
-		514DF89DA836245BF4E3F79C /* LevelTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */; };
 		5B35626FDD7263A94F82072C /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE77BC5E1F3C579B4403031 /* HistoryView.swift */; };
 		5B867A4ED94322BBB09B35C8 /* WordAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA2BBCF7427AC019012D6D /* WordAccess.swift */; };
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
@@ -58,7 +57,6 @@
 		930B261EDA1014D495490311 /* InsufficientWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9BA119E24D505711D1EF90B /* InsufficientWordsView.swift */; };
 		952A8DD995A6688243461622 /* SynonymsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22CF08B79256CCCF0F41560C /* SynonymsView.swift */; };
 		963AE7507F748C374F47FB23 /* BatchQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30774A2D9419603F01BD410 /* BatchQuizView.swift */; };
-		999398853EDED46DF2113702 /* LevelTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */; };
 		9B7B30E93778BDA7A8B477D2 /* DatabaseStatusBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */; };
 		9BAB5DC37B7C07F4940E9DDB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3053BE7C87BD9C151B730374 /* SearchView.swift */; };
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
@@ -201,8 +199,6 @@
 		AC25FD89F7F2004B76095CA6 /* TranslationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationStore.swift; sourceTree = "<group>"; };
 		B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDownloadManager.swift; sourceTree = "<group>"; };
 		B0A60EE41CA03C91B64D6107 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestViewModel.swift; sourceTree = "<group>"; };
-		B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTestView.swift; sourceTree = "<group>"; };
 		B30774A2D9419603F01BD410 /* BatchQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchQuizView.swift; sourceTree = "<group>"; };
 		B40971FC207D1701A44859D9 /* PremiumSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSheet.swift; sourceTree = "<group>"; };
 		B7D72F92771EB30EBB1959B1 /* GameCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterService.swift; sourceTree = "<group>"; };
@@ -520,8 +516,6 @@
 				F9771B8BC82C082859F3C175 /* FillGapView.swift */,
 				6DFFC1788A87089728F16A36 /* GuessWordView.swift */,
 				A9BA119E24D505711D1EF90B /* InsufficientWordsView.swift */,
-				B2D8A0187A66B0FDD2F98DF7 /* LevelTestView.swift */,
-				B0AB903A5468A0F05B222D8F /* LevelTestViewModel.swift */,
 				357806ACCB3D66F2867A3E80 /* PracticeMenuView.swift */,
 				2968154FE6B16D65BCB011D1 /* QuizView.swift */,
 				A00F070C603FE504217EDA4A /* QuizViewModel.swift */,
@@ -712,8 +706,6 @@
 				8BD9683CC097F78400A883A2 /* KeychainHelper.swift in Sources */,
 				B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */,
 				C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */,
-				999398853EDED46DF2113702 /* LevelTestView.swift in Sources */,
-				514DF89DA836245BF4E3F79C /* LevelTestViewModel.swift in Sources */,
 				9C07D77964AD69422176D390 /* LikedView.swift in Sources */,
 				77C3E860E20CA6C0C9C099AF /* Logger+Verbum.swift in Sources */,
 				6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */,

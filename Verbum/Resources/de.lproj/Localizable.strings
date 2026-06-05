@@ -268,7 +268,7 @@
 "You learned all %lld free %@ words 🎉" = "Du hast alle %lld kostenlosen %@ Wörter gelernt 🎉";
 "You've seen all %lld words.\nReady for another round?" = "Du hast alle %lld Wörter gesehen.\nBereit für eine neue Runde?";
 "Your %lld words remain free to practice, review, and add to decks — forever." = "Deine %lld Wörter bleiben für immer frei zum Üben, Wiederholen und Hinzufügen zu Stapeln.";
-"Your free plan includes %lld words per level — unlock the full journey with Pro." = "Dein kostenloser Tarif umfasst %lld Wörter pro Niveau — schalte mit Pro alles frei.";
+"Your free plan includes %lld free words — unlock the rest with Pro." = "Dein kostenloser Tarif umfasst %lld Wörter — schalte den Rest mit Pro frei.";
 "%lld pts" = "%lld Pkt.";
 "%lld words a day" = "%lld Wörter pro Tag";
 "%lld words" = "%lld Wörter";

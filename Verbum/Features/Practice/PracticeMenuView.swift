@@ -8,7 +8,6 @@ struct PracticeMenuView: View {
     @State private var showFillGap = false
     @State private var showSynonyms = false
     @State private var showGuessWord = false
-    @State private var showLevelTest = false
     @State private var showPremium = false
     @State private var activeChallenge: ChallengeKind?
 
@@ -27,26 +26,6 @@ struct PracticeMenuView: View {
                 AppColors.background.ignoresSafeArea()
                 ScrollView {
                     VStack(alignment: .leading, spacing: AppSpacing.lg) {
-                        // Level test card
-                        Button { showLevelTest = true } label: {
-                            HStack {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text("What's your level?")
-                                        .font(.system(size: 16, weight: .semibold))
-                                        .foregroundColor(AppColors.textPrimary)
-                                    Text("Current: \(userProfile.profile.level.displayName) · Take the free test")
-                                        .font(.system(size: 13))
-                                        .foregroundColor(AppColors.accent)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(AppColors.textSecondary)
-                            }
-                            .padding(AppSpacing.md)
-                            .background(AppColors.surface)
-                            .cornerRadius(AppSpacing.cornerRadius)
-                        }
-
                         // Challenges
                         sectionHeader("CHALLENGES")
                         ScrollView(.horizontal, showsIndicators: false) {
@@ -159,7 +138,6 @@ struct PracticeMenuView: View {
                           isPro: subscriptions.isPro,
                           userLevel: userProfile.profile.level)
         }
-        .sheet(isPresented: $showLevelTest) { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
         .sheet(item: $activeChallenge) { kind in
             ChallengeView(kind: kind,

@@ -275,7 +275,7 @@
 "You learned all %lld free %@ words 🎉" = "You learned all %lld free %@ words 🎉";
 "You've seen all %lld words.\nReady for another round?" = "You've seen all %lld words.\nReady for another round?";
 "Your %lld words remain free to practice, review, and add to decks — forever." = "Your %lld words remain free to practice, review, and add to decks — forever.";
-"Your free plan includes %lld words per level — unlock the full journey with Pro." = "Your free plan includes %lld words per level — unlock the full journey with Pro.";
+"Your free plan includes %lld free words — unlock the rest with Pro." = "Your free plan includes %lld free words — unlock the rest with Pro.";
 "%lld pts" = "%lld pts";
 "%lld words a day" = "%lld words a day";
 "%lld words" = "%lld words";

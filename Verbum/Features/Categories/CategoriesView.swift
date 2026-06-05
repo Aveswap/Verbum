@@ -87,18 +87,6 @@ struct CategoriesView: View {
                             }
                         }
 
-                        // By Level filters
-                        CategorySection(title: "BY LEVEL") {
-                            HStack(spacing: AppSpacing.sm) {
-                                ForEach(WordLevel.allCases, id: \.self) { level in
-                                    SmallCard(title: level.displayName) {
-                                        activeFilter = .level(level)
-                                        showWordList = true
-                                    }
-                                }
-                            }
-                        }
-
                         // By Part of Speech
                         CategorySection(title: "BY PART OF SPEECH") {
                             let poses: [(String, String)] = [("Verbs","verb"),("Nouns","noun"),("Adjectives","adjective"),("Adverbs","adverb")]

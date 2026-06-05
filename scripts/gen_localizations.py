@@ -300,7 +300,7 @@ INTERP = {
  "You learned all %lld free %@ words 🎉": ("Du hast alle %lld kostenlosen %@ Wörter gelernt 🎉", "Ти вивчив усі %lld безкоштовних %@ слів 🎉"),
  "You've seen all %lld words.\nReady for another round?": ("Du hast alle %lld Wörter gesehen.\nBereit für eine neue Runde?", "Ти переглянув усі %lld слів.\nГотовий до нового кола?"),
  "Your %lld words remain free to practice, review, and add to decks — forever.": ("Deine %lld Wörter bleiben für immer frei zum Üben, Wiederholen und Hinzufügen zu Stapeln.", "Твої %lld слів назавжди лишаються безкоштовними для практики, повторення та додавання в колоди."),
- "Your free plan includes %lld words per level — unlock the full journey with Pro.": ("Dein kostenloser Tarif umfasst %lld Wörter pro Niveau — schalte mit Pro alles frei.", "Безкоштовний тариф містить %lld слів на рівень — відкрий усе з Pro."),
+ "Your free plan includes %lld free words — unlock the rest with Pro.": ("Dein kostenloser Tarif umfasst %lld Wörter — schalte den Rest mit Pro frei.", "Безкоштовний тариф містить %lld слів — відкрий решту з Pro."),
  "%lld pts": ("%lld Pkt.", "%lld оч."),
  "%lld words a day": ("%lld Wörter pro Tag", "%lld слів на день"),
  "%lld words": ("%lld Wörter", "%lld слів"),

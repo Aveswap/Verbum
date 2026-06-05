@@ -15,12 +15,10 @@ struct SettingsView: View {
     @State private var editingName = false
     @State private var nameInput = ""
     @State private var editingLanguage = false
-    @State private var editingLevel = false
     @State private var editingWordsPerWeek = false
     @State private var wordsInput = ""
     @State private var editingDailyGoal = false
     @State private var dailyGoalInput: Double = 5
-    @State private var showLevelTest = false
 
     var body: some View {
         NavigationView {
@@ -68,9 +66,6 @@ struct SettingsView: View {
                             cardDivider
                             iconEditRow(icon: "character.book.closed.fill", iconColor: .blue, label: "Word Language",
                                         value: wordLanguageDisplayName(WordRepository.shared.activeLanguage)) { editingLanguage = true }
-                            cardDivider
-                            iconEditRow(icon: "chart.bar.fill", iconColor: .green, label: "Level",
-                                        value: userProfile.profile.level.displayName) { editingLevel = true }
                             cardDivider
                             iconEditRow(icon: "target", iconColor: .orange, label: "Daily goal",
                                         value: "\(userProfile.profile.dailyGoal) words") {
@@ -235,16 +230,6 @@ struct SettingsView: View {
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("How many words do you want to learn per week?")
-        }
-        .confirmationDialog("Select Level", isPresented: $editingLevel, titleVisibility: .visible) {
-            ForEach(WordLevel.allCases, id: \.self) { l in
-                Button(l.displayName) { userProfile.profile.level = l }
-            }
-            Button("Take Level Test") { showLevelTest = true }
-            Button("Cancel", role: .cancel) {}
-        }
-        .sheet(isPresented: $showLevelTest) {
-            LevelTestView().environmentObject(userProfile)
         }
         .sheet(isPresented: $editingLanguage) {
             WordLanguagePickerSheet(

@@ -94,25 +94,19 @@ class WordFeedViewModel: ObservableObject {
     }
 
     func restartFeed() {
-        // Feed = the words this user is allowed to see at their selected level.
-        // Free users get WordAccess.freePool(level:) in deterministic freq-rank order;
-        // pro users get the full catalog at that level (shuffled for variety).
-        // Level/category filters (set externally, e.g. by category drill-down) override.
-        if let lv = levelFilter {
-            var pool = WordRepository.shared.all.filter { $0.level == lv }
-            if let ct = categoryFilter { pool = pool.filter { $0.category == ct } }
-            words = prependDueReviews(pool.shuffled())
-        } else if let ct = categoryFilter {
+        // No difficulty levels: the feed is the whole active-language catalogue.
+        // Free users get WordAccess.freePool() (top 50 by freq-rank); Pro gets everything,
+        // unseen-first. A category filter (category drill-down) narrows it.
+        if let ct = categoryFilter {
             let pool = WordRepository.shared.all.filter { $0.category == ct }
             words = prependDueReviews(pool.shuffled())
         } else if isPro {
-            // Pro, no filter: full catalog at the user's selected level, unseen words first
-            // (each group shuffled for variety) so returning users get new content, not repeats.
-            let pool = WordRepository.shared.all.filter { $0.level == userLevel }
-            words = prependDueReviews(unseenFirst(pool))
+            // Pro, no filter: full catalogue, unseen words first (each group shuffled) so
+            // returning users get new content, not repeats.
+            words = prependDueReviews(unseenFirst(WordRepository.shared.all))
         } else {
-            // Free, no filter: the locked 50 of this level in freq-rank order
-            words = WordAccess.freePool(level: userLevel)
+            // Free, no filter: the free 50 in freq-rank order.
+            words = WordAccess.freePool()
         }
         goingBack = false
         currentIndex = 0

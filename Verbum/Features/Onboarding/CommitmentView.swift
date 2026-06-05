@@ -1,17 +1,16 @@
 import SwiftUI
 
-/// Commitment device shown after level + word-check. Projects how many words the user will
-/// know in 30 days at their daily pace — anchors them to a measurable, motivating goal.
+/// Commitment device shown in onboarding. Projects how many words the user will know in 30 days
+/// at their daily pace — anchors them to a measurable, motivating goal.
 struct CommitmentView: View {
-    let level: WordLevel
     let dailyGoal: Int
     let onContinue: () -> Void
 
     private var projection30: Int { dailyGoal * 30 }
     private var projection7: Int { dailyGoal * 7 }
 
-    /// True when the 30-day pace would carry the user past the free per-level allowance, so we
-    /// can disclose up-front that the full projection needs Pro instead of letting them hit a
+    /// True when the 30-day pace would carry the user past the free word allowance, so we can
+    /// disclose up-front that the full projection needs Pro instead of letting them hit a
     /// surprise paywall a few days in.
     private var exceedsFreeAllowance: Bool { projection30 > WordAccess.freeLimit }
 
@@ -66,9 +65,9 @@ struct CommitmentView: View {
                     .padding(.horizontal, AppSpacing.xl)
 
                 if exceedsFreeAllowance {
-                    // Honest up-front disclosure: the free plan covers the first 50 words at
-                    // each level; the full 30-day projection assumes Verbum Pro.
-                    Text("Your free plan includes \(WordAccess.freeLimit) words per level — unlock the full journey with Pro.")
+                    // Honest up-front disclosure: the free plan covers the first 50 words; the
+                    // full 30-day projection assumes Verbum Pro.
+                    Text("Your free plan includes \(WordAccess.freeLimit) free words — unlock the rest with Pro.")
                         .font(.system(size: 12))
                         .foregroundColor(AppColors.textSecondary)
                         .multilineTextAlignment(.center)

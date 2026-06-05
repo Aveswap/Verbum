@@ -12,7 +12,6 @@ struct ProfileView: View {
     @State private var showCategories = false
     @State private var showPremium = false
     @State private var showLiked = false
-    @State private var showLevelTest = false
     @State private var showReminders = false
     @State private var showLeaderboard = false
 
@@ -28,7 +27,6 @@ struct ProfileView: View {
                             premiumCard
                         }
                         streakCard
-                        levelTestCard
                         pointsCard
                         customizeSection
                         vocabularySection
@@ -62,7 +60,6 @@ struct ProfileView: View {
         .sheet(isPresented: $showDecks)      { DecksView().environmentObject(userProfile).environmentObject(subscriptions) }
         .sheet(isPresented: $showCategories) { CategoriesView().environmentObject(userProfile).environmentObject(subscriptions) }
         .sheet(isPresented: $showPremium)    { PremiumSheet().environmentObject(subscriptions) }
-        .sheet(isPresented: $showLevelTest)  { LevelTestView().environmentObject(userProfile) }
         .sheet(isPresented: $showReminders) {
             NavigationView { NotificationSettingsView().environmentObject(userProfile) }
                 .preferredColorScheme(.dark)
@@ -121,27 +118,6 @@ struct ProfileView: View {
     }
 
     // MARK: - Level Test Card
-    private var levelTestCard: some View {
-        Button { showLevelTest = true } label: {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Take the test to find your level")
-                        .font(.system(size: 15, weight: .medium))
-                        .foregroundColor(AppColors.textPrimary)
-                    Text("Current: \(userProfile.profile.level.displayName)")
-                        .font(.system(size: 13))
-                        .foregroundColor(AppColors.textSecondary)
-                }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .foregroundColor(AppColors.textSecondary)
-            }
-            .padding(AppSpacing.md)
-            .background(AppColors.surface)
-            .cornerRadius(AppSpacing.cornerRadius)
-        }
-    }
-
     // MARK: - Points Card
 
     // MARK: - Streak Card (with freeze count)

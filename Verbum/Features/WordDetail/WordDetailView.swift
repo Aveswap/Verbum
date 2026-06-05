@@ -178,7 +178,7 @@ struct WordDetailView: View {
                         }
 
                         // Synonyms (Intermediate+)
-                        if !word.synonyms.isEmpty && word.level != .beginner {
+                        if !word.synonyms.isEmpty {
                             WordDetailSection(title: "Synonyms") {
                                 FlowLayout(items: Array(word.synonyms.prefix(4))) { synonym in
                                     Text(synonym)
@@ -193,7 +193,7 @@ struct WordDetailView: View {
                         }
 
                         // Collocations (Intermediate+)
-                        if !word.collocations.isEmpty && word.level != .beginner {
+                        if !word.collocations.isEmpty {
                             WordDetailSection(title: "Common Phrases") {
                                 VStack(alignment: .leading, spacing: 4) {
                                     ForEach(word.collocations, id: \.self) { col in
@@ -206,7 +206,7 @@ struct WordDetailView: View {
                         }
 
                         // Antonyms (Expert only)
-                        if !word.antonyms.isEmpty && word.level == .expert {
+                        if !word.antonyms.isEmpty {
                             WordDetailSection(title: "Antonyms") {
                                 FlowLayout(items: word.antonyms) { ant in
                                     Text(ant)
@@ -221,7 +221,7 @@ struct WordDetailView: View {
                         }
 
                         // Etymology (Expert only)
-                        if let etymology = word.etymology, word.level == .expert {
+                        if let etymology = word.etymology {
                             VStack(alignment: .leading, spacing: AppSpacing.sm) {
                                 HStack(spacing: 6) {
                                     Image(systemName: "book.closed.fill")
@@ -274,7 +274,7 @@ struct WordDetailView: View {
                         .cornerRadius(AppSpacing.cornerRadius)
 
                         // Domain tags (Expert only)
-                        if !word.domainTags.isEmpty && word.level == .expert {
+                        if !word.domainTags.isEmpty {
                             FlowLayout(items: word.domainTags) { tag in
                                 Text(tag)
                                     .font(.system(size: 11, weight: .medium))

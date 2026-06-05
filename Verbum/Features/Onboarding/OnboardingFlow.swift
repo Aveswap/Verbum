@@ -1,9 +1,9 @@
 import SwiftUI
 
 enum OnboardingStep: Int, CaseIterable {
-    // No language pick: vocabulary language defaults to the device language and is
-    // switchable in Settings. The app teaches words in the user's own language.
-    case welcome, name, level, wordCheck, commitment, notifications
+    // No language pick (defaults to device language, switchable in Settings) and no difficulty
+    // levels — every word is just an interesting word.
+    case welcome, name, commitment, notifications
 }
 
 struct OnboardingFlow: View {
@@ -54,32 +54,8 @@ struct OnboardingFlow: View {
             NameInputView { name in
                 userProfile.profile.name = name; advance()
             }
-        case .level:
-            LevelSelectionView { level in
-                userProfile.profile.level = level; advance()
-            }
-        case .wordCheck:
-            WordCheckView { knownCount in
-                // Never downgrade the user's own self-assessment — only upgrade if the
-                // recognition score is clearly higher than what they picked.
-                let suggested: WordLevel = {
-                    if knownCount >= 10 { return .expert }
-                    if knownCount >= 5  { return .intermediate }
-                    return .beginner
-                }()
-                let picked = userProfile.profile.level
-                let pickedRank = WordLevel.allCases.firstIndex(of: picked) ?? 0
-                let suggestedRank = WordLevel.allCases.firstIndex(of: suggested) ?? 0
-                if suggestedRank > pickedRank {
-                    userProfile.profile.level = suggested
-                }
-                advance()
-            }
         case .commitment:
-            CommitmentView(
-                level: userProfile.profile.level,
-                dailyGoal: userProfile.profile.dailyGoal
-            ) { advance() }
+            CommitmentView(dailyGoal: userProfile.profile.dailyGoal) { advance() }
         case .notifications:
             NotificationsSetupView { advance() }
         }

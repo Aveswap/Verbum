@@ -740,7 +740,7 @@ private struct WordCardView: View {
                     .lineLimit(2)
             }
 
-            if word.level != .beginner, let etymology = word.etymology {
+            if let etymology = word.etymology {
                 HStack(spacing: 4) {
                     Image(systemName: "book.closed")
                         .font(.system(size: 10))
