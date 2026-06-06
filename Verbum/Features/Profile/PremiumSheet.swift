@@ -6,7 +6,7 @@ struct PremiumSheet: View {
     @Environment(\.dismiss) private var dismiss
 
     private let features: [(icon: String, title: String, subtitle: String)] = [
-        ("infinity",          "Master 1,000 Words",         "Curated by linguists to maximize retention"),
+        ("infinity",          "Unlock Every Word",          "The full collection of rare, beautiful words"),
         ("gamecontroller.fill","Practice Until You're Fluent","No daily caps — play as much as you want"),
         ("rectangle.grid.2x2","Every Domain, Explored",     "From Law to Art to Medicine and beyond"),
         ("bell.badge.fill",   "Smart Reminders",            "Personalized schedule that keeps you on track"),

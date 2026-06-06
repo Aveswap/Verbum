@@ -112,6 +112,9 @@ schemes:
         VerbumWidgetExtension: all
     run:
       config: Debug
+      # Enables StoreKit Testing in the simulator/dev runs, so the paywall can load the
+      # pro_monthly / pro_yearly / pro_lifetime products without App Store Connect.
+      storeKitConfiguration: Verbum/Verbum.storekit
     test:
       config: Debug
       targets:

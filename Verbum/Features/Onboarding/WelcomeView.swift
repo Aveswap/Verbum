@@ -32,7 +32,7 @@ struct WelcomeView: View {
             Spacer()
 
             HStack(spacing: 0) {
-                StatColumn(value: "1,000+", label: "Words")
+                StatColumn(value: "Rare", label: "Words")
                 Rectangle().fill(AppColors.surface).frame(width: 1, height: 40)
                 StatColumn(value: "100%", label: "Offline")
                 Rectangle().fill(AppColors.surface).frame(width: 1, height: 40)

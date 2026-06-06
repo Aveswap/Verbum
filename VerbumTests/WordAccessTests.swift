@@ -3,24 +3,26 @@ import XCTest
 
 /// Exercises the soft-paywall rules against a fixture catalogue injected via
 /// `WordAccess.catalogProvider`, so no database/repository boot is needed.
+///
+/// There are no difficulty levels — access is purely free-pool (top `freeLimit`
+/// non-premium words by frequency) vs. Pro (the whole catalogue).
 @MainActor
 final class WordAccessTests: XCTestCase {
 
-    private func word(_ text: String, level: WordLevel, rank: Int?, category: String = "General") -> Word {
+    private func word(_ text: String, rank: Int?, category: String = "General") -> Word {
         Word(
             id: UUID(), text: text, phonetic: "", partOfSpeech: "noun",
             definition: "def of \(text)", exampleSentence: nil, synonyms: [],
-            category: category, level: level, isNew: true, etymology: nil,
+            category: category, isNew: true, etymology: nil,
             frequencyRank: rank
         )
     }
 
-    /// 60 beginner words (ranks 1...60) + 5 premium-category beginner words + 10 intermediate.
+    /// 60 non-premium words (ranks 1...60) + 5 premium-category words ⇒ 65 total.
     private func makeCatalogue() -> [Word] {
         var words: [Word] = []
-        for i in 1...60 { words.append(word("b\(i)", level: .beginner, rank: i)) }
-        for i in 1...5  { words.append(word("prem\(i)", level: .beginner, rank: 100 + i, category: "Science")) }
-        for i in 1...10 { words.append(word("i\(i)", level: .intermediate, rank: i)) }
+        for i in 1...60 { words.append(word("w\(i)", rank: i)) }
+        for i in 1...5  { words.append(word("prem\(i)", rank: 100 + i, category: "Science")) }
         return words
     }
 
@@ -37,50 +39,45 @@ final class WordAccessTests: XCTestCase {
     }
 
     func testFreePoolIsCappedAtFreeLimit() {
-        XCTAssertEqual(WordAccess.freePool(level: .beginner).count, WordAccess.freeLimit)
+        XCTAssertEqual(WordAccess.freePool().count, WordAccess.freeLimit)
     }
 
     func testFreePoolExcludesPremiumCategories() {
-        let pool = WordAccess.freePool(level: .beginner)
+        let pool = WordAccess.freePool()
         XCTAssertFalse(pool.contains { WordAccess.premiumDbCategories.contains($0.category) })
     }
 
     func testFreePoolOrderedByFrequencyRankAscending() {
-        let ranks = WordAccess.freePool(level: .beginner).compactMap(\.frequencyRank)
+        let ranks = WordAccess.freePool().compactMap(\.frequencyRank)
         XCTAssertEqual(ranks, ranks.sorted())
-        XCTAssertEqual(ranks.first, 1)            // most common word first
+        XCTAssertEqual(ranks.first, 1)                   // most common word first
         XCTAssertEqual(ranks.last, WordAccess.freeLimit) // 50th by rank, premium excluded
     }
 
-    func testProSeesFullLevelCatalogue() {
-        // 60 plain + 5 premium beginner words are all visible to Pro.
-        let all = WordAccess.accessibleWords(isPro: true, level: .beginner)
-        XCTAssertEqual(all.count, 65)
-    }
-
     func testCanAccessFreeVsLockedWord() {
-        let pool = WordAccess.freePool(level: .beginner)
+        let pool = WordAccess.freePool()
         let inPool = pool[0]
-        let locked = word("zzz", level: .beginner, rank: 9999) // not in the catalogue at all
-        XCTAssertTrue(WordAccess.canAccess(inPool, isPro: false, userLevel: .beginner))
-        XCTAssertFalse(WordAccess.canAccess(locked, isPro: false, userLevel: .beginner))
-        XCTAssertTrue(WordAccess.canAccess(locked, isPro: true, userLevel: .beginner))
+        let locked = word("zzz", rank: 9999) // not in the catalogue at all
+        XCTAssertTrue(WordAccess.canAccess(inPool, isPro: false))
+        XCTAssertFalse(WordAccess.canAccess(locked, isPro: false))
+        XCTAssertTrue(WordAccess.canAccess(locked, isPro: true))
     }
 
-    func testWrongLevelNeverAccessibleToFreeUser() {
-        let intermediate = WordAccess.accessibleWords(isPro: true, level: .intermediate)[0]
-        XCTAssertFalse(WordAccess.canAccess(intermediate, isPro: false, userLevel: .beginner))
+    func testPremiumCategoryNeverAccessibleToFreeUser() {
+        let premium = makeCatalogue().first { $0.category == "Science" }!
+        XCTAssertFalse(WordAccess.canAccess(premium, isPro: false))
+        XCTAssertTrue(WordAccess.canAccess(premium, isPro: true))
     }
 
     func testRemainingFreeCountDecrementsWithSeen() {
-        let pool = WordAccess.freePool(level: .beginner)
+        let pool = WordAccess.freePool()
         let seen = Set(pool.prefix(10).map(\.id))
-        XCTAssertEqual(WordAccess.remainingFreeCount(seenIds: seen, userLevel: .beginner),
+        XCTAssertEqual(WordAccess.remainingFreeCount(seenIds: seen),
                        WordAccess.freeLimit - 10)
     }
 
-    func testLockedAtLevelCount() {
-        // 65 beginner words total (60 plain + 5 premium); 50 are free ⇒ 15 locked behind the cap.
-        XCTAssertEqual(WordAccess.lockedAtLevelCount(userLevel: .beginner), 65 - WordAccess.freeLimit)
+    func testLockedCount() {
+        // 65 words total; 50 are free ⇒ 15 locked behind the cap.
+        XCTAssertEqual(WordAccess.lockedCount(), 65 - WordAccess.freeLimit)
     }
 }

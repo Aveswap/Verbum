@@ -418,12 +418,15 @@ struct WordFeedView: View {
 
     private var paywallCard: some View {
         let lockedCount = WordAccess.lockedCount()
+        // Actual free-pool size, not the freeLimit cap — the curated catalogue can be
+        // smaller than the 50-word cap, so "all 50" would be a lie.
+        let freeCount = WordAccess.freePool().count
         return VStack(spacing: AppSpacing.lg) {
             Image(systemName: "crown.fill")
                 .font(.system(size: 56))
                 .foregroundColor(AppColors.accent)
 
-            Text("You learned all \(WordAccess.freeLimit) free words 🎉")
+            Text("You learned all \(freeCount) free words 🎉")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(AppColors.textPrimary)
                 .multilineTextAlignment(.center)

@@ -99,7 +99,7 @@ struct WordDetailView: View {
             Text("Premium word")
                 .font(.system(size: 18, weight: .semibold))
                 .foregroundColor(AppColors.textPrimary)
-            Text("Unlock 1,000+ words across all difficulty levels.")
+            Text("Unlock the full collection of rare, beautiful words.")
                 .font(.system(size: 15))
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
@@ -177,7 +177,7 @@ struct WordDetailView: View {
                             .cornerRadius(AppSpacing.cornerRadius)
                         }
 
-                        // Synonyms (Intermediate+)
+                        // Synonyms (shown when present)
                         if !word.synonyms.isEmpty {
                             WordDetailSection(title: "Synonyms") {
                                 FlowLayout(items: Array(word.synonyms.prefix(4))) { synonym in
@@ -192,7 +192,7 @@ struct WordDetailView: View {
                             }
                         }
 
-                        // Collocations (Intermediate+)
+                        // Collocations (shown when present)
                         if !word.collocations.isEmpty {
                             WordDetailSection(title: "Common Phrases") {
                                 VStack(alignment: .leading, spacing: 4) {
@@ -205,7 +205,7 @@ struct WordDetailView: View {
                             }
                         }
 
-                        // Antonyms (Expert only)
+                        // Antonyms (shown when present)
                         if !word.antonyms.isEmpty {
                             WordDetailSection(title: "Antonyms") {
                                 FlowLayout(items: word.antonyms) { ant in
@@ -220,7 +220,7 @@ struct WordDetailView: View {
                             }
                         }
 
-                        // Etymology (Expert only)
+                        // Etymology (shown when present)
                         if let etymology = word.etymology {
                             VStack(alignment: .leading, spacing: AppSpacing.sm) {
                                 HStack(spacing: 6) {
@@ -266,7 +266,7 @@ struct WordDetailView: View {
                         .background(AppColors.surface)
                         .cornerRadius(AppSpacing.cornerRadius)
 
-                        // Domain tags (Expert only)
+                        // Domain tags (shown when present)
                         if !word.domainTags.isEmpty {
                             FlowLayout(items: word.domainTags) { tag in
                                 Text(tag)
