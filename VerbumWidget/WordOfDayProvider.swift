@@ -18,8 +18,7 @@ struct WordOfDayProvider: TimelineProvider {
                 phonetic: "/ˌserənˈdɪpəti/",
                 partOfSpeech: "noun",
                 definition: "The chance occurrence of pleasant discoveries.",
-                translation: nil,
-                level: "intermediate"
+                translation: nil
             ),
             snapshot: nil
         )

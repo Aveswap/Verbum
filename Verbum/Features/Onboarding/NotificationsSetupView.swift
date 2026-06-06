@@ -83,6 +83,6 @@ struct NotificationsSetupView: View {
     }
 
     private func scheduleNotifications(count: Int) {
-        NotificationManager.requestAndSchedule(count: count, level: userProfile.profile.level)
+        NotificationManager.requestAndSchedule(count: count)
     }
 }

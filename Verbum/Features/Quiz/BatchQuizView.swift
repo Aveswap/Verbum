@@ -21,13 +21,11 @@ final class BatchQuizViewModel: ObservableObject {
         self.words = words
         var opts: [[String]] = []
         var correct: [Int] = []
-        // Distractor pool must stay inside the same access bucket as the quiz words,
-        // otherwise a beginner free user would see Intermediate/Expert definitions
-        // mixed in as wrong-answer choices.
-        let bucketLevels = Set(words.map(\.level))
+        // Distractor pool stays inside the same categories as the quiz words, so the
+        // wrong-answer definitions feel related rather than random.
         let bucketCategories = Set(words.map(\.category))
         let distractorPool = allWords.filter { w in
-            bucketLevels.contains(w.level) && bucketCategories.contains(w.category)
+            bucketCategories.contains(w.category)
         }
         for word in words {
             let rightDef = word.definition
@@ -75,13 +73,7 @@ final class BatchQuizViewModel: ObservableObject {
         }
     }
 
-    private func points(for word: Word) -> Int {
-        switch word.level {
-        case .beginner:     return 10
-        case .intermediate: return 20
-        case .expert:       return 35
-        }
-    }
+    private func points(for word: Word) -> Int { 20 }
 }
 
 // MARK: - Quiz View

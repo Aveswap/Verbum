@@ -78,7 +78,6 @@ class UserProfileStore: ObservableObject {
             || a.age != b.age
             || a.gender != b.gender
             || a.nativeLanguage != b.nativeLanguage
-            || a.level != b.level
             || a.wordsPerWeek != b.wordsPerWeek
             || a.notificationsEnabled != b.notificationsEnabled
             || a.notificationCount != b.notificationCount
@@ -156,7 +155,6 @@ class UserProfileStore: ObservableObject {
         if profile.notificationsEnabled {
             NotificationManager.reschedule(
                 count: profile.notificationCount,
-                level: profile.level,
                 startHour: NotificationManager.hoursFrom(profile.notificationStart),
                 endHour: NotificationManager.hoursFrom(profile.notificationEnd)
             )

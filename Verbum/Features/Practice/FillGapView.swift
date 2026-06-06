@@ -27,10 +27,10 @@ class FillGapViewModel: ObservableObject {
     /// exhaustion we reuse rather than end early, never repeating the current word back-to-back.
     private var asked = Set<UUID>()
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         let seen = WordRepository.shared.all.filter { word in
             seenIds.contains(word.id) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }
         self.distractorPool = seen
         // FillGap requires words with example sentences containing the word as a whole token
@@ -129,10 +129,9 @@ struct FillGapView: View {
     @StateObject private var viewModel: FillGapViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         _viewModel = StateObject(wrappedValue: FillGapViewModel(
-            seenIds: seenIds, isPro: isPro, userLevel: userLevel
-        ))
+            seenIds: seenIds, isPro: isPro))
     }
 
     var body: some View {

@@ -24,10 +24,10 @@ class SynonymsViewModel: ObservableObject {
     /// Words already asked — prevents repeats within the session.
     private var asked = Set<UUID>()
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         let seen = WordRepository.shared.all.filter { word in
             seenIds.contains(word.id) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }
         self.distractorPool = seen
         self.pool = seen.filter { !$0.synonyms.isEmpty }
@@ -90,10 +90,9 @@ struct SynonymsView: View {
     @StateObject private var viewModel: SynonymsViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         _viewModel = StateObject(wrappedValue: SynonymsViewModel(
-            seenIds: seenIds, isPro: isPro, userLevel: userLevel
-        ))
+            seenIds: seenIds, isPro: isPro))
     }
 
     var body: some View {

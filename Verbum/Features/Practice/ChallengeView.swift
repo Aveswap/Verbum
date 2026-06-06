@@ -62,11 +62,11 @@ final class ChallengeViewModel: ObservableObject {
     /// just never repeating the current word back-to-back.
     private var asked = Set<UUID>()
 
-    init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool) {
         self.kind = kind
         self.pool = WordRepository.shared.all.filter { word in
             seenIds.contains(word.id) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }
         if pool.count < 4 {
             insufficientWords = true
@@ -195,11 +195,10 @@ struct ChallengeView: View {
     @StateObject private var vm: ChallengeViewModel
     let kind: ChallengeKind
 
-    init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool) {
         self.kind = kind
         _vm = StateObject(wrappedValue: ChallengeViewModel(
-            kind: kind, seenIds: seenIds, isPro: isPro, userLevel: userLevel
-        ))
+            kind: kind, seenIds: seenIds, isPro: isPro))
     }
 
     var body: some View {

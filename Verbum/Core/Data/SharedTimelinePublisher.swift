@@ -13,9 +13,7 @@ enum SharedTimelinePublisher {
 
     /// Build + publish the timeline + snapshot, then nudge WidgetKit to reload.
     static func refresh(profile: UserProfile, isPro: Bool) {
-        let pool: [Word] = isPro
-            ? WordRepository.shared.all.filter { $0.level == profile.level }
-            : WordAccess.freePool(level: profile.level)
+        let pool: [Word] = isPro ? WordRepository.shared.all : WordAccess.freePool()
 
         guard !pool.isEmpty else {
             SharedWordStore.writeTimeline([])
@@ -39,8 +37,7 @@ enum SharedTimelinePublisher {
                 phonetic: word.phonetic,
                 partOfSpeech: word.partOfSpeech,
                 definition: word.definition,
-                translation: nil,
-                level: word.level.rawValue
+                translation: nil
             ))
         }
         SharedWordStore.writeTimeline(timeline)
@@ -67,9 +64,7 @@ enum SharedTimelinePublisher {
         let cal = Calendar.current
         let learnedToday = cal.isDateInToday(profile.wordsLearnedDate) ? profile.wordsLearnedToday : 0
         let free = isPro ? nil : WordAccess.remainingFreeCount(
-            seenIds: Set(profile.seenWordIds),
-            userLevel: profile.level
-        )
+            seenIds: Set(profile.seenWordIds))
         SharedWordStore.writeSnapshot(.init(
             currentStreak: profile.currentStreak,
             longestStreak: profile.longestStreak,

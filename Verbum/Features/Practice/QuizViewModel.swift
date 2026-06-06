@@ -23,13 +23,13 @@ class QuizViewModel: ObservableObject {
     /// Words already asked this session — prevents the same word appearing twice.
     private var asked = Set<UUID>()
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         // Pool = words the user has seen AND still has access to.
         // After the locked-as-seen bug fix, the two sets already line up — the
         // extra canAccess check is defensive in case of stale persisted data.
         self.pool = WordRepository.shared.all.filter { word in
             seenIds.contains(word.id) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }
         if pool.count < 4 {
             insufficientWords = true

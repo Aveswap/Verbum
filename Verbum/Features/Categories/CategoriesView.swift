@@ -9,7 +9,7 @@ struct CategoriesView: View {
     @State private var showHistory = false
     @State private var showPremium = false
     @State private var showWordList = false
-    @State private var activeFilter: CategoryWordListView.FilterKind = .level(.beginner)
+    @State private var activeFilter: CategoryWordListView.FilterKind = .search("")
 
     struct CategoryBucket: Identifiable {
         let id = UUID()
@@ -41,11 +41,10 @@ struct CategoriesView: View {
         if bucket.premium {
             return allWords.filter { bucket.dbCategories.contains($0.category) }.count
         }
-        let userLevel = userProfile.profile.level
         let isPro = subscriptions.isPro
         return allWords.filter { word in
             bucket.dbCategories.contains(word.category) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }.count
     }
 

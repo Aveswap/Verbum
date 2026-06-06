@@ -5,7 +5,6 @@ struct CategoryWordListView: View {
     enum FilterKind {
         case category(String)
         case categoryGroup(name: String, dbCategories: [String])
-        case level(WordLevel)
         case partOfSpeech(String)
         case search(String)
 
@@ -13,7 +12,6 @@ struct CategoryWordListView: View {
             switch self {
             case .category(let c):              return NSLocalizedString(c, comment: "word category")
             case .categoryGroup(let n, _):      return n
-            case .level(let l):                 return l.displayName
             case .partOfSpeech(let p):
                 let key = p.lowercased()
                 return ["noun", "verb", "adjective", "adverb"].contains(key)
@@ -29,8 +27,6 @@ struct CategoryWordListView: View {
                 return word.category == c
             case .categoryGroup(_, let cats):
                 return cats.contains(word.category)
-            case .level(let l):
-                return word.level == l
             case .partOfSpeech(let p):
                 return word.partOfSpeech.localizedCaseInsensitiveContains(p)
             case .search(let q):
@@ -50,10 +46,9 @@ struct CategoryWordListView: View {
     /// into the list. Premium subscribers see everything at their level.
     private var filtered: [Word] {
         let isPro = subscriptions.isPro
-        let userLevel = userProfile.profile.level
         return allWords.filter { word in
             filter.matches(word) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }
     }
 

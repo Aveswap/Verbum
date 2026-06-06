@@ -25,10 +25,10 @@ class GuessWordViewModel: ObservableObject {
     /// Words already asked — prevents repeats within the session.
     private var asked = Set<UUID>()
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         self.pool = WordRepository.shared.all.filter { word in
             seenIds.contains(word.id) &&
-            WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel)
+            WordAccess.canAccess(word, isPro: isPro)
         }
         if pool.count < 4 {
             insufficientWords = true
@@ -86,10 +86,9 @@ struct GuessWordView: View {
     @StateObject private var viewModel: GuessWordViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(seenIds: Set<UUID>, isPro: Bool, userLevel: WordLevel) {
+    init(seenIds: Set<UUID>, isPro: Bool) {
         _viewModel = StateObject(wrappedValue: GuessWordViewModel(
-            seenIds: seenIds, isPro: isPro, userLevel: userLevel
-        ))
+            seenIds: seenIds, isPro: isPro))
     }
 
     var body: some View {

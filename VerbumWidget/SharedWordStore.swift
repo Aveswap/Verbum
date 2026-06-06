@@ -23,7 +23,6 @@ enum SharedWordStore {
         let partOfSpeech: String
         let definition: String
         let translation: String?
-        let level: String
     }
 
     struct Snapshot: Codable, Equatable {

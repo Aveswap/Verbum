@@ -120,30 +120,25 @@ struct PracticeMenuView: View {
         .preferredColorScheme(.dark)
         .sheet(isPresented: $showQuiz) {
             QuizView(seenIds: Set(userProfile.profile.seenWordIds),
-                     isPro: subscriptions.isPro,
-                     userLevel: userProfile.profile.level)
+                     isPro: subscriptions.isPro)
         }
         .sheet(isPresented: $showFillGap) {
             FillGapView(seenIds: Set(userProfile.profile.seenWordIds),
-                        isPro: subscriptions.isPro,
-                        userLevel: userProfile.profile.level)
+                        isPro: subscriptions.isPro)
         }
         .sheet(isPresented: $showSynonyms) {
             SynonymsView(seenIds: Set(userProfile.profile.seenWordIds),
-                         isPro: subscriptions.isPro,
-                         userLevel: userProfile.profile.level)
+                         isPro: subscriptions.isPro)
         }
         .sheet(isPresented: $showGuessWord) {
             GuessWordView(seenIds: Set(userProfile.profile.seenWordIds),
-                          isPro: subscriptions.isPro,
-                          userLevel: userProfile.profile.level)
+                          isPro: subscriptions.isPro)
         }
         .sheet(isPresented: $showPremium) { PremiumSheet().environmentObject(subscriptions) }
         .sheet(item: $activeChallenge) { kind in
             ChallengeView(kind: kind,
                           seenIds: Set(userProfile.profile.seenWordIds),
-                          isPro: subscriptions.isPro,
-                          userLevel: userProfile.profile.level)
+                          isPro: subscriptions.isPro)
                 .environmentObject(userProfile)
         }
     }

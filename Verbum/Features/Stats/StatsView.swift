@@ -151,12 +151,6 @@ struct StatsView: View {
                 color: .red
             )
             StatCard(
-                value: userProfile.profile.level.displayName,
-                label: "Level",
-                icon: "chart.bar.fill",
-                color: .purple
-            )
-            StatCard(
                 value: "\(userProfile.profile.dailyGoal)",
                 label: "Daily Goal",
                 icon: "target",

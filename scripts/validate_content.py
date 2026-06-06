@@ -43,7 +43,6 @@ IPA_BODY = re.compile(
 
 PLACEHOLDER_ETY = {"", "origin unknown", "unknown", "n/a", "tbd", "—", "-"}
 
-VALID_LEVELS = {"beginner", "intermediate", "expert"}
 
 # Languages that ship an IPA transcription + English-style etymology. Other languages (e.g.
 # Ukrainian) legitimately leave phonetic/etymology blank, so those fields aren't audited there.
@@ -62,7 +61,7 @@ def load_from_db(path):
     con.row_factory = sqlite3.Row
     cols = [r[1] for r in con.execute("PRAGMA table_info(words)")]
     has_lang = "language" in cols
-    select = "SELECT text, phonetic, etymology, definition, partOfSpeech, category, level"
+    select = "SELECT text, phonetic, etymology, definition, partOfSpeech, category"
     select += ", language" if has_lang else ", 'en' AS language"
     select += ", frequencyRank FROM words ORDER BY language, text"
     rows = con.execute(select).fetchall()
@@ -91,11 +90,6 @@ def check_structural(word):
         issues.append(("error", "empty text"))
     if not (word.get("definition") or "").strip():
         issues.append(("error", "empty definition"))
-    level = (word.get("level") or "").strip()
-    if level and level not in VALID_LEVELS:
-        issues.append(("error", f"invalid level {level!r}"))
-    elif not level:
-        issues.append(("error", "missing level"))
     return issues
 
 
@@ -227,20 +221,13 @@ def main():
                 sample = ", ".join(sorted(dupes)[:5])
                 print(f"  [ERROR] {lang}: {len(dupes)} duplicate lemma(s) (e.g. {sample})")
 
-            # 2) Free-pool invariant — every level must have at least FREE_LIMIT words OUTSIDE
-            #    the premium categories, or a free user at that level runs dry before the cap.
-            for level in sorted(VALID_LEVELS):
-                free = [
-                    w for w in group
-                    if (w.get("level") or "").strip() == level
-                    and (w.get("category") or "") not in PREMIUM_CATEGORIES
-                ]
-                if 0 < len(free) < FREE_LIMIT:
-                    # Curated "gems-only" catalogue is intentionally small (< the 50-word free cap),
-                    # so this is informational, not a hard error.
-                    warns += 1
-                    print(f"  [WARN] {lang}/{level}: only {len(free)} free-pool words "
-                          f"(< {FREE_LIMIT}; expected for the curated set)")
+            # 2) Free-pool size (per language) — the free tier draws FREE_LIMIT non-premium words.
+            #    For the curated set this is intentionally small, so it's informational only.
+            free = [w for w in group if (w.get("category") or "") not in PREMIUM_CATEGORIES]
+            if 0 < len(free) < FREE_LIMIT:
+                warns += 1
+                print(f"  [WARN] {lang}: only {len(free)} free-pool words "
+                      f"(< {FREE_LIMIT}; expected for the curated set)")
 
     print(f"\nDone. errors={errors} warnings={warns}", end="")
     if args.online:

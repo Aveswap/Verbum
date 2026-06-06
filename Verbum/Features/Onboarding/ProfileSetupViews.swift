@@ -1,47 +1,5 @@
 import SwiftUI
 
-// MARK: - Shared Radio Selection Screen
-struct RadioSelectionView: View {
-    let title: String
-    let options: [String]
-    let selected: String?
-    var onSkip: (() -> Void)?
-    let onSelect: (String) -> Void
-
-    var body: some View {
-        VStack(spacing: AppSpacing.lg) {
-            HStack {
-                Spacer()
-                if let onSkip {
-                    Button("Skip", action: onSkip)
-                        .foregroundColor(AppColors.textSecondary)
-                        .padding(.trailing, AppSpacing.md)
-                }
-            }
-            .padding(.top, AppSpacing.md)
-
-            Text(LocalizedStringKey(title))
-                .font(AppTypography.heroTitle)
-                .foregroundColor(AppColors.textPrimary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, AppSpacing.lg)
-
-            Spacer()
-
-            VStack(spacing: AppSpacing.sm) {
-                ForEach(options, id: \.self) { option in
-                    RadioOptionRow(title: option, isSelected: selected == option) {
-                        onSelect(option)
-                    }
-                }
-            }
-            .padding(.horizontal, AppSpacing.lg)
-
-            Spacer()
-        }
-    }
-}
-
 // MARK: - Name
 struct NameInputView: View {
     let onNext: (String) -> Void

@@ -39,7 +39,6 @@ BATCH_GLOB = os.path.join(HERE, "word_batches_gems", "*.json")
 GEMS_NAMESPACE = uuid.UUID("a1b2c3d4-0000-4000-8000-000000000003")
 
 LANG = {"english": "en", "german": "de", "ukrainian": "uk", "en": "en", "de": "de", "uk": "uk"}
-VALID_LEVELS = {"beginner", "intermediate", "expert"}
 # Free-pool seeds get ranks below the existing 50th word; paid-depth gems sit high so they
 # don't disturb the free pool. (Existing catalogue ranks run into the thousands.)
 FREE_BASE, PAID_BASE = 1, 9000
@@ -98,16 +97,14 @@ def existing_lemmas(con):
 
 def normalize(entries, con):
     existing = existing_lemmas(con)
-    counters = {}            # (lang, level, pool) -> running rank
+    counters = {}            # (lang, pool) -> running rank
     prepared, errors, skipped = [], [], []
     for i, e in enumerate(entries):
         lang = LANG.get(str(e.get("language", "")).strip().lower())
         text = (e.get("text") or "").strip()
         definition = (e.get("definition") or "").strip()
-        level = (e.get("level") or "").strip().lower()
         if not lang:        errors.append(f"[{i}] unknown language {e.get('language')!r}"); continue
         if not text or not definition: errors.append(f"[{i}] missing text/definition ({text!r})"); continue
-        if level not in VALID_LEVELS:  errors.append(f"[{i}] bad level {level!r} for {text!r}"); continue
         gem_id = str(uuid.uuid5(GEMS_NAMESPACE, f"{lang}:{text.lower()}"))
         clash = existing.get(lang, {}).get(text.lower())
         if (clash and clash != gem_id) or text.lower() in {p['text'].lower() for p in prepared if p['language'] == lang}:
@@ -117,12 +114,12 @@ def normalize(entries, con):
             rank = int(e["frequencyRank"])
         else:
             pool = "free" if e.get("freePool") else "paid"
-            key = (lang, level, pool)
+            key = (lang, pool)
             counters[key] = counters.get(key, (FREE_BASE if pool == "free" else PAID_BASE)) + 1
             rank = counters[key]
 
         prepared.append({
-            "id": str(uuid.uuid5(GEMS_NAMESPACE, f"{lang}:{text.lower()}")),
+            "id": gem_id,
             "text": text,
             "phonetic": clean_phonetic(e.get("phonetic"), lang),
             "partOfSpeech": pos_canonical(e.get("partOfSpeech")),
@@ -130,7 +127,6 @@ def normalize(entries, con):
             "exampleSentence": (e.get("exampleSentence") or "").strip() or None,
             "synonyms": json.dumps(syn_list(e.get("synonyms")), ensure_ascii=False),
             "category": (e.get("category") or "General").strip(),
-            "level": level,
             "etymology": (e.get("etymology") or "").strip() or None,
             "frequencyRank": rank,
             "register": (e.get("register") or "").strip() or None,
@@ -144,10 +140,10 @@ def write(con, prepared):
         con.execute("""
             INSERT OR REPLACE INTO words
             (id, text, phonetic, partOfSpeech, definition, exampleSentence, synonyms,
-             category, level, etymology, frequencyRank, antonyms, collocations,
+             category, etymology, frequencyRank, antonyms, collocations,
              register, domainTags, language)
             VALUES (:id,:text,:phonetic,:partOfSpeech,:definition,:exampleSentence,:synonyms,
-                    :category,:level,:etymology,:frequencyRank,'[]','[]',:register,'[]',:language)
+                    :category,:etymology,:frequencyRank,'[]','[]',:register,'[]',:language)
         """, p)
     con.execute("INSERT INTO words_fts(words_fts) VALUES('rebuild')")
     con.commit()

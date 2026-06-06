@@ -53,7 +53,9 @@ final class WordDatabase: @unchecked Sendable {
     /// v22: pruned 740 boring/over-common words (deep-research audit) — en 767 / de 793 / uk 662; gems + free-pool floors preserved.
     /// v23: round-2 gems (+28 authored: en 777 / de 803 / uk 670; freePool seeded, non-premium).
     /// v24: PIVOT — curated gems only; deleted all 2137 non-gem words (de 37 / en 35 / uk 41). See scripts/keep_gems_only.py.
-    static let bundledDBVersion = 24
+    /// v25: removed difficulty levels entirely (WordLevel enum + `level` column dropped); English-only base
+    ///      (de/uk rows deleted, recoverable via word_batches; en 35). Every word is now just "an interesting word".
+    static let bundledDBVersion = 25
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
@@ -167,7 +169,6 @@ final class WordDatabase: @unchecked Sendable {
                 t.column("exampleSentence", .text)
                 t.column("synonyms",        .text).notNull().defaults(to: "[]")
                 t.column("category",        .text).notNull().defaults(to: "").indexed()
-                t.column("level",           .text).notNull().indexed()
                 t.column("etymology",       .text)
             }
             try db.create(table: "translations", ifNotExists: true) { t in
@@ -290,16 +291,16 @@ final class WordDatabase: @unchecked Sendable {
                 try db.execute(sql: """
                     INSERT OR REPLACE INTO words
                     (id, text, phonetic, partOfSpeech, definition,
-                     exampleSentence, synonyms, category, level, etymology,
+                     exampleSentence, synonyms, category, etymology,
                      frequencyRank, antonyms, collocations, register, domainTags, language)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, arguments: [
                     // Lowercase to match the bundled DB convention — the primary key is
                     // case-sensitive, so mixing casings would create duplicate word rows.
                     word.id.uuidString.lowercased(), word.text, word.phonetic,
                     word.partOfSpeech, word.definition,
                     word.exampleSentence, jsonStr(word.synonyms) ?? "[]",
-                    word.category, word.level.rawValue, word.etymology,
+                    word.category, word.etymology,
                     word.frequencyRank,
                     jsonStr(word.antonyms) ?? "[]",
                     jsonStr(word.collocations) ?? "[]",
@@ -315,12 +316,11 @@ final class WordDatabase: @unchecked Sendable {
     // MARK: - Queries
 
     /// limit: 0 = no limit (fetch all). `language` nil = all languages.
-    func fetchWords(level: WordLevel? = nil, language: String? = nil, offset: Int = 0, limit: Int = 0) -> [Word] {
+    func fetchWords(language: String? = nil, offset: Int = 0, limit: Int = 0) -> [Word] {
         guard let dbQueue else { return [] }
         return (try? dbQueue.read { db -> [Word] in
             var conditions: [String] = []
             var args: [DatabaseValueConvertible] = []
-            if let level    { conditions.append("level = ?");    args.append(level.rawValue) }
             if let language { conditions.append("language = ?"); args.append(language) }
             var sql = "SELECT * FROM words"
             if !conditions.isEmpty { sql += " WHERE " + conditions.joined(separator: " AND ") }
@@ -442,8 +442,6 @@ final class WordDatabase: @unchecked Sendable {
         guard let idStr    = row["id"] as? String,
               let id       = UUID(uuidString: idStr),
               let text     = row["text"] as? String,
-              let levelStr = row["level"] as? String,
-              let level    = WordLevel(rawValue: levelStr),
               let def      = row["definition"] as? String
         else { return nil }
 
@@ -462,7 +460,6 @@ final class WordDatabase: @unchecked Sendable {
             exampleSentence: row["exampleSentence"] as? String,
             synonyms:        jsonArray("synonyms"),
             category:        row["category"] as? String ?? "",
-            level:           level,
             isNew:           false,
             etymology:       row["etymology"] as? String,
             frequencyRank:   row["frequencyRank"] as? Int,

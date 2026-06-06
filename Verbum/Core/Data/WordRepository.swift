@@ -8,7 +8,7 @@ import Combine
 /// Design note: the whole catalog is deliberately materialized into `all` and kept resident
 /// for the app's lifetime. At ~1000 words this is a small, steady footprint and lets the feed
 /// / WordAccess / categories read synchronously without per-access SQLite round-trips. The
-/// DB's filtered query methods (words(level:), words(category:), search…) are used for the
+/// DB's filtered query methods (words(category:), search…) are used for the
 /// targeted fetches that shouldn't pull the full catalog. If the catalog grows much larger,
 /// revisit this and query on demand instead.
 @MainActor
@@ -66,13 +66,6 @@ final class WordRepository: ObservableObject {
     }
 
     // MARK: - Filtered access (scoped to the active language)
-
-    func words(level: WordLevel) -> [Word] {
-        if WordDatabase.shared.isAvailable {
-            return WordDatabase.shared.fetchWords(level: level, language: activeLanguage)
-        }
-        return all.filter { $0.level == level }
-    }
 
     func words(category: String) -> [Word] {
         if WordDatabase.shared.isAvailable {

@@ -130,7 +130,6 @@ struct WordRow: View {
                         HapticManager.impact(.soft)
                         userProfile.bookmarkWord(word.id)
                     }
-                LevelBadge(level: word.level)
             }
         }
         .padding(AppSpacing.md)
@@ -149,25 +148,5 @@ private struct MasteryDots: View {
                     .frame(width: 5, height: 5)
             }
         }
-    }
-}
-
-private struct LevelBadge: View {
-    let level: WordLevel
-    private var color: Color {
-        switch level {
-        case .beginner:     return .green
-        case .intermediate: return .orange
-        case .expert:       return .red
-        }
-    }
-    var body: some View {
-        Text(level.displayName.prefix(3).uppercased())
-            .font(.system(size: 9, weight: .bold))
-            .foregroundColor(color)
-            .padding(.horizontal, 5)
-            .padding(.vertical, 2)
-            .background(color.opacity(0.15))
-            .cornerRadius(6)
     }
 }

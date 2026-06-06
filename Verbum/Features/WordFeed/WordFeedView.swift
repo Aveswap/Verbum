@@ -115,7 +115,6 @@ struct WordFeedView: View {
             // Language is resolved at launch (VerbumApp.init); the feed just reads it.
             seenWordIdsSet = Set(userProfile.profile.seenWordIds)
             viewModel.isPro = subscriptions.isPro
-            viewModel.userLevel = userProfile.profile.level
             viewModel.dueReviewIds = userProfile.dueReviews()
             viewModel.seenWordIds = seenWordIdsSet
             viewModel.reloadFromRepository()
@@ -145,11 +144,6 @@ struct WordFeedView: View {
         }
         .onChange(of: subscriptions.isPro) { newValue in
             viewModel.isPro = newValue
-            viewModel.seenWordIds = seenWordIdsSet
-            viewModel.reloadFromRepository()
-        }
-        .onChange(of: userProfile.profile.level) { newLevel in
-            viewModel.userLevel = newLevel
             viewModel.seenWordIds = seenWordIdsSet
             viewModel.reloadFromRepository()
         }
@@ -403,7 +397,7 @@ struct WordFeedView: View {
                     .animation(.interactiveSpring(), value: dragOffset)
                     .gesture(swipeGesture)
                     .onTapGesture {
-                        if !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
+                        if !WordAccess.canAccess(word, isPro: subscriptions.isPro) {
                             activeSheet = .premium
                         } else {
                             activeSheet = .detail
@@ -423,20 +417,19 @@ struct WordFeedView: View {
     // MARK: - Paywall card (shown when free pool is exhausted)
 
     private var paywallCard: some View {
-        let levelName = userProfile.profile.level.displayName
-        let lockedCount = WordAccess.lockedAtLevelCount(userLevel: userProfile.profile.level)
+        let lockedCount = WordAccess.lockedCount()
         return VStack(spacing: AppSpacing.lg) {
             Image(systemName: "crown.fill")
                 .font(.system(size: 56))
                 .foregroundColor(AppColors.accent)
 
-            Text("You learned all \(WordAccess.freeLimit) free \(levelName) words 🎉")
+            Text("You learned all \(WordAccess.freeLimit) free words 🎉")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(AppColors.textPrimary)
                 .multilineTextAlignment(.center)
 
             if lockedCount > 0 {
-                Text("Unlock \(lockedCount) more \(levelName) words")
+                Text("Unlock \(lockedCount) more words")
                     .font(.system(size: 16))
                     .foregroundColor(AppColors.textSecondary)
                     .multilineTextAlignment(.center)
@@ -470,7 +463,7 @@ struct WordFeedView: View {
                     HapticManager.swipeWave()
                     if let word = viewModel.currentWord {
                         // Only access-granted words count toward seen / daily goal / batch.
-                        if WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
+                        if WordAccess.canAccess(word, isPro: subscriptions.isPro) {
                             let goalJustHit = userProfile.markWordSeen(word.id)
                             if goalJustHit { triggerGoalCelebration() }
                         }
@@ -482,7 +475,7 @@ struct WordFeedView: View {
                         // Include the card currently in front — nextWord() hasn't appended it
                         // yet, so without this it's the one word excluded from its own batch.
                         if let w = viewModel.currentWord,
-                           WordAccess.canAccess(w, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
+                           WordAccess.canAccess(w, isPro: subscriptions.isPro) {
                             viewModel.addToBatch(w)
                         }
                         // Quiz first — even on the last word of the feed
@@ -571,7 +564,7 @@ struct WordFeedView: View {
                 Button {
                     // Free users can only share words they actually have access to —
                     // otherwise the "shareable card" would expose locked premium content.
-                    if WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level) {
+                    if WordAccess.canAccess(word, isPro: subscriptions.isPro) {
                         activeSheet = .share
                     } else {
                         activeSheet = .premium
@@ -636,7 +629,7 @@ private struct WordCardView: View {
     @EnvironmentObject var subscriptions: SubscriptionManager
 
     private var isLocked: Bool {
-        !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level)
+        !WordAccess.canAccess(word, isPro: subscriptions.isPro)
     }
 
     var body: some View {
@@ -646,8 +639,7 @@ private struct WordCardView: View {
                 .allowsHitTesting(!isLocked)
 
             if isLocked {
-                let levelName = userProfile.profile.level.displayName
-                let lockedCount = WordAccess.lockedAtLevelCount(userLevel: userProfile.profile.level)
+                let lockedCount = WordAccess.lockedCount()
                 VStack(spacing: AppSpacing.sm) {
                     Text(String(word.text.prefix(3)) + "…")
                         .font(.system(size: 34, weight: .bold))
@@ -657,7 +649,7 @@ private struct WordCardView: View {
                         .foregroundColor(AppColors.textPrimary)
                         .multilineTextAlignment(.center)
                     Text(lockedCount > 0
-                         ? "Tap to unlock \(lockedCount) more \(levelName) words →"
+                         ? "Tap to unlock \(lockedCount) more words →"
                          : "Tap to unlock Premium →")
                         .font(.system(size: 12))
                         .foregroundColor(AppColors.accent)

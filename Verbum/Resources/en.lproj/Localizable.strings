@@ -157,9 +157,6 @@
 "verb" = "verb";
 "adjective" = "adjective";
 "adverb" = "adverb";
-"Beginner" = "Beginner";
-"Intermediate" = "Intermediate";
-"Expert" = "Expert";
 "Formal" = "Formal";
 "Informal" = "Informal";
 "Neutral" = "Neutral";
@@ -183,7 +180,6 @@
 "Tech & Science" = "Tech & Science";
 "Arts & Ideas" = "Arts & Ideas";
 "CATEGORIES" = "CATEGORIES";
-"BY LEVEL" = "BY LEVEL";
 "BY PART OF SPEECH" = "BY PART OF SPEECH";
 "Verbs" = "Verbs";
 "Nouns" = "Nouns";
@@ -263,8 +259,6 @@
 "Best: %lld days" = "Best: %lld days";
 "Best: %lld · learn today to keep it" = "Best: %lld · learn today to keep it";
 "Correct: %lld" = "Correct: %lld";
-"Current: %@" = "Current: %@";
-"Current: %@ · Take the free test" = "Current: %@ · Take the free test";
 "Next: %@ %@ at %lld pts" = "Next: %@ %@ at %lld pts";
 "Pronounce %@" = "Pronounce %@";
 "Score: %lld / 5" = "Score: %lld / 5";

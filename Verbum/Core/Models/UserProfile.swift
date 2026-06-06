@@ -9,7 +9,6 @@ struct UserProfile: Codable {
     /// (defaults to the device language on first launch). Local-only — intentionally NOT synced
     /// via CloudKit, since the right default can differ per device (OS language).
     var wordLanguage: String = ""
-    var level: WordLevel = .beginner
     var appleUserID: String? = nil  // stable Sign in with Apple identifier
     var wordsPerWeek: Int = 30
     var notificationsEnabled: Bool = false

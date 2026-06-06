@@ -15,7 +15,7 @@ struct WordDetailView: View {
     }
 
     private var isLocked: Bool {
-        !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level)
+        !WordAccess.canAccess(word, isPro: subscriptions.isPro)
     }
 
     var body: some View {
@@ -261,13 +261,6 @@ struct WordDetailView: View {
                                     .background(AppColors.surfaceSecondary)
                                     .cornerRadius(12)
                             }
-                            Text(word.level.displayName)
-                                .font(.system(size: 12, weight: .semibold))
-                                .foregroundColor(AppColors.textOnAccent)
-                                .padding(.horizontal, AppSpacing.sm)
-                                .padding(.vertical, 4)
-                                .background(AppColors.accent)
-                                .cornerRadius(20)
                         }
                         .padding(AppSpacing.md)
                         .background(AppColors.surface)

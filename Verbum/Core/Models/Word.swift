@@ -9,7 +9,6 @@ struct Word: Identifiable, Codable {
     let exampleSentence: String?
     let synonyms: [String]
     let category: String
-    let level: WordLevel
     let isNew: Bool  // deprecated: use isNew(for:) — kept for Codable compatibility
     let etymology: String?
 
@@ -46,7 +45,7 @@ struct Word: Identifiable, Codable {
     init(
         id: UUID, text: String, phonetic: String, partOfSpeech: String,
         definition: String, exampleSentence: String?, synonyms: [String],
-        category: String, level: WordLevel, isNew: Bool, etymology: String?,
+        category: String, isNew: Bool, etymology: String?,
         frequencyRank: Int? = nil, antonyms: [String] = [],
         collocations: [String] = [], register: WordRegister? = nil,
         domainTags: [String] = [], language: String = "en"
@@ -54,7 +53,7 @@ struct Word: Identifiable, Codable {
         self.id = id; self.text = text; self.phonetic = phonetic
         self.partOfSpeech = partOfSpeech; self.definition = definition
         self.exampleSentence = exampleSentence; self.synonyms = synonyms
-        self.category = category; self.level = level; self.isNew = isNew
+        self.category = category; self.isNew = isNew
         self.etymology = etymology; self.frequencyRank = frequencyRank
         self.antonyms = antonyms; self.collocations = collocations
         self.register = register; self.domainTags = domainTags
@@ -72,7 +71,6 @@ struct Word: Identifiable, Codable {
         exampleSentence = try c.decodeIfPresent(String.self, forKey: .exampleSentence)
         synonyms        = try c.decodeIfPresent([String].self, forKey: .synonyms) ?? []
         category        = try c.decodeIfPresent(String.self, forKey: .category) ?? ""
-        level           = try c.decodeIfPresent(WordLevel.self, forKey: .level) ?? .beginner
         isNew           = try c.decodeIfPresent(Bool.self, forKey: .isNew) ?? false
         etymology       = try c.decodeIfPresent(String.self, forKey: .etymology)
         frequencyRank   = try c.decodeIfPresent(Int.self, forKey: .frequencyRank)
@@ -98,14 +96,3 @@ enum WordRegister: String, Codable, CaseIterable {
     }
 }
 
-enum WordLevel: String, Codable, CaseIterable {
-    case beginner, intermediate, expert
-
-    var displayName: String {
-        switch self {
-        case .beginner:     return NSLocalizedString("Beginner", comment: "level")
-        case .intermediate: return NSLocalizedString("Intermediate", comment: "level")
-        case .expert:       return NSLocalizedString("Expert", comment: "level")
-        }
-    }
-}

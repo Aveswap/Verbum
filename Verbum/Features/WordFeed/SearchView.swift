@@ -91,7 +91,7 @@ struct SearchView: View {
     }
 
     private func resultRow(_ word: Word) -> some View {
-        let locked = !WordAccess.canAccess(word, isPro: subscriptions.isPro, userLevel: userProfile.profile.level)
+        let locked = !WordAccess.canAccess(word, isPro: subscriptions.isPro)
         return HStack(spacing: AppSpacing.md) {
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: AppSpacing.sm) {

@@ -70,7 +70,6 @@ struct VerbumApp: App {
                 }
                 // isPro / level change the word pool → rebuild the full 14-day timeline.
                 .onChange(of: subscriptions.isPro) { _ in republishSharedTimeline() }
-                .onChange(of: userProfile.profile.level) { _ in republishSharedTimeline() }
                 // Streak / daily counter only affect the snapshot — skip the 14 DB reads
                 // a full timeline rebuild would do on every single swipe.
                 .onChange(of: userProfile.profile.currentStreak) { _ in

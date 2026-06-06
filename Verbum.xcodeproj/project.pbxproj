@@ -27,7 +27,6 @@
 		335DB077660578203921C7B0 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */; };
 		3638E2784BCD24A1EC73A154 /* translations.json in Resources */ = {isa = PBXBuildFile; fileRef = 551CA09F41CBB9A77AA52313 /* translations.json */; };
 		369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF54206A121475D1DB43775 /* Word.swift */; };
-		372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */; };
 		3956E00B7EA24231E5ADC4B3 /* FSRS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A702C3CDDC0F977DBCCF854 /* FSRS.swift */; };
 		3B36F4C2BFF0624DD1C89DF7 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = 08855E15BC1D1540CB22C18F /* GRDB */; };
 		3D309F4778BCD76EA8525F37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 897722CFD692ACFC89C03E08 /* Localizable.strings */; };
@@ -170,7 +169,6 @@
 		626B6BE3FF009B4C26107D5A /* NotificationSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsView.swift; sourceTree = "<group>"; };
 		668CE3026DC6F136C89050F6 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		693E65753117638048641719 /* NotificationsSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupView.swift; sourceTree = "<group>"; };
-		6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioOptionRow.swift; sourceTree = "<group>"; };
 		6BF39C6A2496F507062F7F84 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitMergeTests.swift; sourceTree = "<group>"; };
 		6DFFC1788A87089728F16A36 /* GuessWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWordView.swift; sourceTree = "<group>"; };
@@ -314,7 +312,6 @@
 				CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */,
 				7E579B213FF7BFC07CA00913 /* PillButton.swift */,
 				9BFF885EECBBFF36393A0207 /* ProgressBar.swift */,
-				6ADB3CA22DE2D334C62EE81F /* RadioOptionRow.swift */,
 				1B6DEE253BAE83C18158646A /* SoundManager.swift */,
 				A7F09EE31DA00E08C4A28E84 /* SpeechService.swift */,
 			);
@@ -720,7 +717,6 @@
 				043DF0EEE7D9F8A442869F87 /* ProgressBar.swift in Sources */,
 				DD9EE0D1A601D7F6A5EBC12A /* QuizView.swift in Sources */,
 				DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */,
-				372D640A51EA5E6723077E69 /* RadioOptionRow.swift in Sources */,
 				9BAB5DC37B7C07F4940E9DDB /* SearchView.swift in Sources */,
 				17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */,
 				F9BFA19E4D92D4D6E2DE0353 /* ShareableWordCard.swift in Sources */,

@@ -108,7 +108,6 @@ final class CloudKitSyncManager {
         r["age"]                   = p.age?.rawValue as? CKRecordValue
         r["gender"]                = p.gender?.rawValue as? CKRecordValue
         r["nativeLanguage"]        = p.nativeLanguage?.rawValue as? CKRecordValue
-        r["level"]                 = p.level.rawValue as CKRecordValue
         r["wordsPerWeek"]          = p.wordsPerWeek as CKRecordValue
         r["notificationsEnabled"]  = (p.notificationsEnabled ? 1 : 0) as CKRecordValue
         r["notificationCount"]     = p.notificationCount as CKRecordValue
@@ -161,7 +160,6 @@ final class CloudKitSyncManager {
         p.age                  = (r["age"] as? String).flatMap(AgeRange.init)
         p.gender               = (r["gender"] as? String).flatMap(Gender.init)
         p.nativeLanguage       = (r["nativeLanguage"] as? String).flatMap(NativeLanguage.init)
-        p.level                = (r["level"] as? String).flatMap(WordLevel.init) ?? .beginner
         p.wordsPerWeek         = r["wordsPerWeek"] as? Int ?? 30
         p.notificationsEnabled = (r["notificationsEnabled"] as? Int ?? 0) == 1
         p.notificationCount    = r["notificationCount"] as? Int ?? 3
@@ -216,7 +214,6 @@ final class CloudKitSyncManager {
             if remote.age != nil            { merged.age = remote.age }
             if remote.gender != nil         { merged.gender = remote.gender }
             if remote.nativeLanguage != nil { merged.nativeLanguage = remote.nativeLanguage }
-            merged.level                = remote.level
             merged.wordsPerWeek         = remote.wordsPerWeek
             merged.notificationsEnabled = remote.notificationsEnabled
             merged.notificationCount    = remote.notificationCount

@@ -37,7 +37,6 @@ enum SharedWordStore {
         let partOfSpeech: String
         let definition: String
         let translation: String?  // L1 — may be nil for languages w/o a bundle
-        let level: String         // raw value
     }
 
     /// User progress glanced at by the widget and watch — cheap stuff only.

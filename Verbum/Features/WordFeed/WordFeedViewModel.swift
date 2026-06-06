@@ -11,12 +11,9 @@ class WordFeedViewModel: ObservableObject {
     /// The last 5 swiped words for the batch quiz.
     private var recentBatchWords: [Word] = []
 
-    // Current active filters — preserved across restartFeed()
-    var levelFilter: WordLevel? = nil
+    // Current active filter — preserved across restartFeed()
     var categoryFilter: String? = nil
     var isPro: Bool = false
-    /// User's currently-selected level. Drives the soft-paywall free pool.
-    var userLevel: WordLevel = .beginner
     /// IDs of words FSRS says are due for review. Set from outside (WordFeedView.onAppear)
     /// because the VM has no access to UserProfileStore.
     var dueReviewIds: [UUID] = []
@@ -29,7 +26,7 @@ class WordFeedViewModel: ObservableObject {
         SpeechService.configureAudioSession()
         // WordDatabase seeds synchronously from the bundle, so restartFeed() here
         // populates words before the first render — no skeleton flash.
-        // onAppear will call reloadFromRepository() again once isPro/userLevel are set.
+        // onAppear will call reloadFromRepository() again once isPro is set.
         restartFeed()
     }
 
@@ -63,7 +60,7 @@ class WordFeedViewModel: ObservableObject {
         goingBack = false
         if let word = currentWord {
             // Locked cards (premium tease + paywall card) don't count for batch progress.
-            if WordAccess.canAccess(word, isPro: isPro, userLevel: userLevel) {
+            if WordAccess.canAccess(word, isPro: isPro) {
                 recentBatchWords.append(word)
                 if recentBatchWords.count > 5 { recentBatchWords.removeFirst() }
                 swipesSinceLastQuiz += 1
@@ -117,7 +114,7 @@ class WordFeedViewModel: ObservableObject {
     /// Drives the "5 left" badge in the feed top bar (only meaningful for free users).
     func remainingFreeCount(seenIds: Set<UUID>) -> Int {
         guard !isPro else { return 0 }
-        return WordAccess.remainingFreeCount(seenIds: seenIds, userLevel: userLevel)
+        return WordAccess.remainingFreeCount(seenIds: seenIds)
     }
 
     /// True when a free user has consumed every word in their level's free pool.

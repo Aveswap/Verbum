@@ -1,8 +1,8 @@
 # Verbum — Project Handoff
 
-**Last updated:** 2026-05-31
+**Last updated:** 2026-06-06
 **Branch:** `main`
-**Latest commit:** 789 pre-release audit remediation (see §11) — Swift 6, IAP/privacy/widget cleanup, uk dedup, first unit tests
+**Latest commit:** Level removal + English-only base — `WordLevel` enum & `level` column deleted (DB v25), curated-gems-only catalogue (en 35), de/uk parked (recoverable via `word_batches`). Foundation cleaned for a fresh import of curated "interesting words".
 
 This document is meant to onboard a fresh contributor (human or agent) cold. Read top-to-bottom. Code references use `Path/To/File.swift:LineNumber` so they're clickable in most editors.
 
@@ -12,7 +12,7 @@ This document is meant to onboard a fresh contributor (human or agent) cold. Rea
 
 **Verbum** is an iOS vocabulary learning app — swipe-feed of curated English words, soft paywall, gamified retention. Native SwiftUI, dark mode only, iOS 16+.
 
-**One-line pitch:** Master 1,000+ words by swiping one a day; pay to unlock past your level's first 50.
+**One-line pitch:** Discover rare, beautiful words by swiping one a day; pay to unlock past the free first 50.
 
 ### Stack
 
@@ -59,7 +59,7 @@ Verbum/
 │   ├── WordDetail/               ← word zoom screen
 │   ├── WordList/                 ← reusable list (Favorites, Liked, History, Deck contents)
 │   ├── Categories/               ← bucket grid, FilterKind drill-down
-│   ├── Practice/                 ← Quiz / FillGap / Synonyms / GuessWord / LevelTest / Challenges
+│   ├── Practice/                 ← Quiz / FillGap / Synonyms / GuessWord / Challenges
 │   ├── Quiz/                     ← BatchQuiz (mid-feed quiz of last 5 swipes)
 │   ├── Decks/                    ← custom word collections
 │   ├── Stats/                    ← streak hero, mastery counts, weekly opens
@@ -83,26 +83,25 @@ scripts/
 **This is the central business decision** and threads through every screen. Implemented in [Core/Data/WordAccess.swift](Verbum/Core/Data/WordAccess.swift).
 
 ```
-Free user, level = Beginner   → 50 words, sorted by frequencyRank ASC,
-                                from non-premium categories only.
-                                Same 50 every launch (deterministic).
-Free user, level = Intermediate → 50 different words at Intermediate level
-Free user, level = Expert       → 50 different words at Expert level
-Premium user                    → all words at their current level
+Free user    → top 50 words of the active language by frequencyRank ASC,
+               from non-premium categories only. Same 50 every launch
+               (deterministic). No difficulty levels.
+Premium user → the entire active-language catalogue.
 ```
+
+> **There are no difficulty levels.** `WordLevel` and the `level` column were removed
+> (DB v25). Every word is just "an interesting word"; access is purely free-pool vs. Pro.
 
 ### Rules
 
-- **Free limit:** `WordAccess.freeLimit = 50` per level
+- **Free limit:** `WordAccess.freeLimit = 50` (per active language)
 - **Premium DB-categories** (`WordAccess.premiumDbCategories`): `Technology`, `Science`, `Literature`, `Society`
-- **Free pool selection:** sort by `frequencyRank` ASC, then by `text` lowercased as tiebreaker (stable for bundled JSON without ranks)
+- **Free pool selection:** sort by `frequencyRank` ASC, then by `text` lowercased as tiebreaker (stable for bundled rows without ranks)
 - **Locked words DON'T count** as seen / for daily goal / for batch quiz progress / for FSRS
-- **WordCheck onboarding test** can only UPGRADE level, never downgrade
-- **Level change in Settings** → no explicit reset; state derives from `seenWordIds` ∩ `level` so a fresh 50 naturally appears
-- **Practice games + Challenges** filter pool through `WordAccess.canAccess(_:isPro:userLevel:)`
+- **Practice games + Challenges** filter pool through `WordAccess.canAccess(_:isPro:)`
 - **End of free pool:** `WordFeedViewModel.isFreePoolExhausted(seenIds:)` triggers a paywall card replacing the next WordCardView
-- **Last-5 counter:** orange "N free words left" badge in feed top bar
-- **Notifications** sample only from `WordAccess.freePool(level:)` — never leak words above user's level
+- **Last-N counter:** orange "N free words left" badge in feed top bar
+- **Notifications** sample only from `WordAccess.freePool()` — never leak premium/locked words
 - **Share gate:** free user can't share locked words (tap → premium sheet)
 
 ### Pricing
@@ -124,7 +123,7 @@ StoreKit Configuration file at [Verbum/Verbum.storekit](Verbum/Verbum.storekit) 
 Codable struct persisted to UserDefaults + CloudKit. Mutated through `UserProfileStore` (@MainActor class).
 
 Important fields:
-- `name`, `age`, `gender`, `nativeLanguage`, `level`, `appleUserID`
+- `name`, `age`, `gender`, `nativeLanguage`, `appleUserID`
 - `currentStreak`, `longestStreak`, `lastOpenedDate`, **`streakTimezone`** (locked at first daily open), **`streakFreezes`**, `streakFreezeUsedDates`
 - `seenWordIds: [UUID]` — array form, but `UserProfileStore` keeps `seenSet: Set<UUID>` for O(1) `markWordSeen`
 - `totalPoints`, `quarterlyPoints`, `quarterlyResetDate`, `earnedBadges`
@@ -140,8 +139,8 @@ Important fields:
 
 ```
 id, text, phonetic, partOfSpeech, definition, exampleSentence,
-synonyms, antonyms, collocations, category, level, etymology,
-frequencyRank, register, domainTags
+synonyms, antonyms, collocations, category, etymology,
+frequencyRank, register, domainTags, language
 ```
 
 `isNew: Bool` is deprecated — kept only for Codable backward compatibility. UI uses `word.isNew(for: seenSet)` extension instead.
@@ -173,7 +172,7 @@ All 22 items fixed.
 - **CloudKit** timestamp-based LWW merge (`profileUpdatedAt` field)
 - **Decks** — create / delete / add-from-WordDetail menu
 - **50-word soft paywall** (the central model — see §2)
-- **Real-word notifications** filtered by user level
+- **Real-word notifications** drawn from the free pool (no locked/premium words)
 - **Shareable word card** — 1080×1080 ImageRenderer + ShareLink
 
 ### Polish / docs
@@ -227,7 +226,7 @@ findings across 6 tiers addressed. Grouped by area:
 - CloudKit pulls on every foreground (`scenePhase == .active`), not only at sign-in.
 
 ### Performance (Tier 4)
-- `WordAccess.freePool` memoized per level + id-Set for O(1) `canAccess` (was re-filtering +
+- `WordAccess.freePool` memoized + id-Set for O(1) `canAccess` (was re-filtering +
   sorting the whole catalog per call, including per-frame during a drag and per bucket×word
   in Categories). `WordAccess.invalidate()` is called on catalog reload.
 - Per-swipe widget update now refreshes only the snapshot, not the 14-day timeline (was doing
@@ -376,99 +375,45 @@ write side until extensions are listening.
 4. **Default Apple Sign-In flow** — works in code; needs the App ID to have the Sign in with Apple capability provisioned. Verify before submission.
 5. **Russian language** — explicitly removed from `NativeLanguage` enum. Decision is final; don't re-add.
 
-### Word generation progress — 2026-05-28
+### Content state — 2026-06-06 (curated gems, English-only, no levels)
 
-Words are being authored **by Claude directly in chat** (no Anthropic API key
-needed) as JSON batches in `scripts/word_batches/`, then assembled locally by
-`scripts/import_batches.py` into `scripts/words_v2.db`.
+The earlier plan (a 1000-word catalogue split across Beginner/Intermediate/Expert,
+mirrored into de/uk) **has been discarded**. The product is now a small, curated set
+of rare, beautiful words — every word is interesting, no difficulty tiers.
 
-**Current: 1000 / 1000 words committed — COMPLETE ✅** (all validate, 0 duplicates):
+**Current catalogue:** `scripts/words_v2.db` (mirrored to `Verbum/Resources/words_v2.db`),
+**English only, 35 curated "gem" words**, bundled DB version **25**. The schema has **no
+`level` column**; `WordLevel` is gone from the Swift model too.
 
-| Level | Have | Target | Remaining |
-|-------|-----:|-------:|----------:|
-| Beginner | 300 | 300 | 0 ✅ |
-| Intermediate | 450 | 450 | 0 ✅ |
-| Expert | 250 | 250 | 0 ✅ |
+**Languages:** the multi-language plumbing is intact (`language` column, per-language
+free pool, runtime UI localization), but **German and Ukrainian rows are deleted for now**.
+They are recoverable later from `scripts/word_batches*` + `scripts/build_de_catalog.py` /
+`build_uk_catalog.py` (parked, not part of the current build).
 
-**The 1000-word catalog is finished.** Next phases: integrate `words_v2.db`
-(CDN upload + `DatabaseDownloadManager.remoteURL`), then UA translations,
-then de/it/fr.
+**The active content pipeline (`scripts/`):**
+- `import_gems.py` — imports curated words from `scripts/word_batches_gems/*.json`
+  (the deep-research field format). Idempotent (stable id per `language:text`), ignores any
+  legacy `level` field, seeds `freePool: true` entries into the free 50.
+  Run `python3 import_gems.py --validate` to dry-run, `import_gems.py` to write + copy to Resources.
+- `validate_content.py` — audits IPA + etymology + per-language free-pool/duplication invariants.
+- `gen_localizations.py` — regenerates `{de,uk,en}.lproj/Localizable.strings` from `_ui_strings.json`.
 
-✅ **Free pool complete** — 50 non-premium words at every level, so
-`WordAccess.freePool(level:)` is fully satisfied.
-✅ **Premium complete at all levels** — Technology / Science / Literature /
-Society each have Beginner + Intermediate + Expert content.
+**To add the user's curated words:**
+1. Drop a clean-UTF-8 JSON array under `scripts/word_batches_gems/` (fields:
+   `text, phonetic, partOfSpeech, definition, exampleSentence, synonyms, category,
+   etymology, register, language: "English"`; optional `freePool: true`, `frequencyRank`).
+2. `cd scripts && python3 import_gems.py --validate` → fix any errors → `python3 import_gems.py`.
+3. `python3 validate_content.py` (expect errors=0).
+4. Bump `WordDatabase.bundledDBVersion` so existing installs re-seed.
 
-Batches committed:
-- `batch_01_beginner_freepool.json` (50) — B2-C1 recognizable
-- `batch_02_intermediate_freepool.json` (50) — C1-C2 less common
-- `batch_03_expert_freepool.json` (50) — C2 rare/interesting
-- `batch_04_premium_beginner.json` (54) — Tech/Science/Literature/Society
-- `batch_05_premium_intermediate.json` (50)
-- `batch_06_premium_expert.json` (36)
-- `batch_07_intermediate_expansion.json` (50) — non-premium intermediate
-- `batch_08_beginner_expansion.json` (50) — non-premium beginner
-- `batch_09_expert_expansion.json` (50) — non-premium expert
-- `batch_10_intermediate_expansion.json` (50) — non-premium intermediate
-- `batch_11_intermediate_expansion.json` (50) — non-premium intermediate
-- `batch_12_beginner_expansion.json` (50) — non-premium beginner
-- `batch_13_intermediate_expansion.json` (50) — non-premium intermediate
-- `batch_14_expert_expansion.json` (50) — non-premium expert
-- `batch_15_beginner_expansion.json` (50) — non-premium beginner
-- `batch_16_intermediate_expansion.json` (50) — non-premium intermediate
-- `batch_17_expert_expansion.json` (50) — non-premium expert
-- `batch_18_beginner_expansion.json` (50) — 46 beginner (finishes Beginner) + 4 expert
-- `batch_19_intermediate_expansion.json` (60) — 50 intermediate + 10 expert (finishes Expert)
-- `batch_20_intermediate_expansion.json` (52) — intermediate (finishes catalog at 1000)
+**Delivery:** bundled in-app (DB is tiny). `Verbum/Resources/words_v2.db` ships in the
+**Verbum** target; `WordDatabase.seedFromBundleIfNeeded()` copies it into Application Support
+on first launch and re-seeds whenever `bundledDBVersion` is bumped. `DatabaseDownloadManager`
+is a dormant future-OTA hook.
 
-**Calibration (confirmed by user):** every word must be *interesting* — never
-primitive. The level reflects how often a learner *encounters* the word, not
-raw difficulty:
-- **Beginner** = B2-C1, interesting but likely already heard (serene, eloquent)
-- **Intermediate** = C1-C2, encountered occasionally (ambivalent, sardonic)
-- **Expert** = C2, rarely or never met (ineffable, perspicacious, sangfroid)
-
-**To resume generation next session:**
-1. Read this table + the existing batch files to see which words are already used
-2. Author new `batch_NN_*.json` files in `scripts/word_batches/` avoiding ALL
-   existing words (importer rejects duplicates by text + id)
-3. Use valid UUID v4 ids (the importer enforces the variant rule — if unsure,
-   run `python3 -c "import json,glob,uuid; ..."` to reassign)
-4. Register must be one of: formal, informal, neutral, slang, archaic
-   (NOT "literary" — use "formal" and put "literary" in domainTags instead)
-5. Category must be exactly one of the 12 DB-categories
-6. `cd scripts && python3 import_batches.py --validate` then `python3 import_batches.py`
-7. Commit each batch with a per-batch message
-
-Remaining work: NONE — all 1000 words are authored, validated, and committed.
-The 8 non-premium categories (Body, Character, Communication, Emotions, Food,
-General, People, Psychology) plus the 4 premium categories are all covered
-across every level.
-
-### Content strategy — revised 2026-05-28
-
-The original audit listed 13 native languages. **Scope reduced to 4**: Ukrainian (uk), German (de), Italian (it), French (fr) + "Other". Translation rollout is staged:
-
-1. **Phase 1 — Complete the catalog ✅ DONE + integrated (bundled)**
-   - 1000 words authored as JSON batches, assembled by `import_batches.py` into
-     `scripts/words_v2.db` (300/450/250, 0 dups).
-   - **Delivery decision: bundle in app (not CDN).** The DB is only 647 KB.
-     `Verbum/Resources/words_v2.db` is committed and added to the **Verbum** app
-     target (pbxproj). `WordDatabase.seedFromBundleIfNeeded()` copies it into the
-     writable Application Support dir on first launch (and re-seeds when
-     `bundledDBVersion` is bumped on an app update). `DatabaseDownloadManager` is
-     now dormant (kept as a future OTA hook).
-   - **To update words later:** rebuild `scripts/words_v2.db`, copy it to
-     `Verbum/Resources/words_v2.db`, and bump `WordDatabase.bundledDBVersion`.
-2. **Phase 2 — Ukrainian translations only**
-   - Write `generate_translations.py` script (TBD)
-   - Populate `translations` table for `lang='uk'`
-   - Ship — UA users get full L1 support, other free users see "translation coming soon" indicator (already implemented)
-3. **Phase 3 — German + Italian + French**
-   - Re-run translation script with `--langs de,it,fr`
-   - Push updated `words_v2.db` to CDN, bump version
-
-The reduced NativeLanguage enum is already shipped. Existing user profiles holding any of the removed locales (es/pt/pl/zh/ja/ko/ar/tr/hi) decode to `nil` via `flatMap(NativeLanguage.init)` and are treated as having no L1 selected — no crash, just no translation surfaced.
+The reduced NativeLanguage enum is already shipped. Existing user profiles holding any
+removed locale decode to `nil` via `flatMap(NativeLanguage.init)` and are treated as having
+no L1 selected — no crash, just no translation surfaced.
 
 ---
 
@@ -478,33 +423,32 @@ These are non-negotiable choices from prior sessions:
 
 - **Dark mode only** — `AppTheme` enum has only `.dark`; don't add light theme controls.
 - **iOS 16+ minimum.** SwiftUI features chosen accordingly (no iOS 17-only APIs like `MainActor.assumeIsolated`).
-- **Free pool size = 50 per level**, not 30, not 300. Decision made 2026-05-27.
+- **No difficulty levels.** `WordLevel`/`level` are removed. Every word is just "an interesting word"; the only axis is free-pool vs. Pro. Don't reintroduce levels.
+- **Free pool size = 50** (per active language), not 30, not 300. Decision made 2026-05-27.
 - **Premium DB-categories stay completely locked for free users** (no "browse + locked words inside" — the bucket itself is the gate). User said: *"юзер не може заходити туди, ці категорії і слова відкриються після оплати"*.
-- **WordCheck onboarding test never downgrades** the user-picked level. User-picked level is the floor.
-- **50 free words remain forever-playable** — practice/decks/review keep working after the user hits the paywall; only NEW word exposure requires premium.
+- **The free 50 remain forever-playable** — practice/decks/review keep working after the user hits the paywall; only NEW word exposure requires premium.
 - **Locked words do not count** toward seen / daily goal / batch quiz / FSRS reviews (was a bug, fixed).
-- **Frequency-rank ordering** for free pool selection (not random, not curated, not by user id) — "найкорисніші слова перші".
-- **Notifications must match user's level** — never push a locked word to a free user's lock screen.
+- **Frequency-rank ordering** for free pool selection (not random, not by user id) — "найкорисніші слова перші".
+- **Notifications never leak locked/premium words** to a free user's lock screen.
 - **Russian is permanently removed** from native language picker.
 - **No light mode toggle** in Settings.
-- **All future word generation skips Technology / Science / Literature / Society** for free seed; those categories belong to premium content phase 2.
+- **Curated words only** — every word must be rare/interesting; nothing primitive. Premium categories (Technology / Science / Literature / Society) never go into the free seed.
 
 ---
 
 ## 8. Key decisions made today
 
-The session that produced the current `main` state nailed down the paywall model. Quote-form record so the next agent doesn't re-litigate:
+The paywall model was nailed down across sessions. Quote-form record so the next agent doesn't re-litigate. **Note:** the level-based clauses below are superseded — levels were later removed entirely (see §2 / §7); the free-pool, premium-bucket, and post-exhaustion UX decisions still stand.
 
-1. **Pool size:** 50 per level. *"давай так, у нас буде 30 слів всього безкоштовно … окей давай збільшимо пул слів до 50"*
+1. **Pool size:** 50 (free). *"давай так, у нас буде 30 слів всього безкоштовно … окей давай збільшимо пул слів до 50"*
 2. **Selection method:** frequencyRank ASC, excluding premium categories. *"(a) За frequencyRank ASC — найкорисніші слова перші (рекомендую), але слово не з Premium категорії"*
 3. **Post-exhaustion UX:** hybrid wall — counter on last 5, paywall card after; the 50 stay free forever for practice. *"(c) Hybrid — counter '5 left, 4 left...' на останніх 5 free, потім paywall. але і юзер буде мати можливість тренуватися з тими 50 словами які були безкоштовними"*
 4. **Premium categories:** stay locked entirely; free pool just excludes their words. *"Категорії — премʼюм-бакети ламаються? не ломаються, бо ми не будемо давати в тих 50 слів слова з преміум категорій"*
-5. **Initial DB:** 50/50/50 = 150 seed; premium content generated later. *"загально буде спочатку 50 слів для beginner, 50 для intermediate і 50 для expert. далі до кожного рівня будуть ще слова, ми це реалізуємо пізніше"*
-6. **Locked tease copy:** *"Unlock N more Beginner/Intermediate/Expert words"*, N = unseen count at user's level
+5. **Levels removed (later decision):** the original 50/50/50 beginner/intermediate/expert seed was scrapped — no difficulty tiers, curated interesting words only. *"прибираєм логіку beginner intermediate expert / просто будуть дуже круті і цікаві слова"*
+6. **Locked tease copy:** *"Unlock N more words"* / *"Tap to unlock N more words"*, N = locked count.
 7. **Practice after exhaustion:** free user keeps practicing on their 50; premium needed for new words. *"Variant: After 50 — Practice показує paywall теж"* combined with #3
-8. **Level change in Settings:** fresh 50 from new level. *"Скидаємо free counter? (новий пул 50 слів)"* — implemented by deriving state from `seenWordIds`, no explicit reset code needed
-9. **Voice card** removed from Customize section (was a placeholder, user chose to hide entirely)
-10. **Categories card** unlocked from `customizeSection` — opens `CategoriesView`
+8. **Voice card** removed from Customize section (was a placeholder, user chose to hide entirely)
+9. **Categories card** unlocked from `customizeSection` — opens `CategoriesView`
 
 ---
 
@@ -515,8 +459,8 @@ If you (or another agent) pick this up cold:
 1. **Read** [Core/Data/WordAccess.swift](Verbum/Core/Data/WordAccess.swift) first. It's the heart of the paywall model.
 2. **Skim** [Core/Models/UserProfile.swift](Verbum/Core/Models/UserProfile.swift) for the data shape.
 3. **Build + run** in Xcode with the simulator. Wire up `Verbum.storekit` per [STOREKIT_TESTING.md](scripts/STOREKIT_TESTING.md) so the paywall is testable.
-4. **Verify in-app:** free user only sees 50 words at their level; locked previews show "Unlock N more Beginner/Intermediate/Expert words"; paywall card appears after the 50th swipe; practice games filter through `WordAccess.canAccess`.
-5. **Pick** an item from §5. Recommended next: **#3 (translations 13 languages)** for impact, or **#4 + #5 (search + Spotlight)** as a sub-day combined ship.
+4. **Verify in-app:** free user only sees the top 50 non-premium words; locked previews show "Unlock N more words"; paywall card appears after the 50th swipe; practice games filter through `WordAccess.canAccess`.
+5. **Import the curated words** (see §6 "Content state") — drop the JSON under `scripts/word_batches_gems/`, run `import_gems.py`, bump `bundledDBVersion`.
 
 ### Common gotchas
 
@@ -539,24 +483,21 @@ git status --short
 find Verbum -name '*.swift' | wc -l
 find Verbum -name '*.swift' -exec wc -l {} + | tail -1
 
-# verify bundled JSON word counts per level
-python3 -c "
-import json
-from collections import Counter
-words = json.load(open('Verbum/Resources/words.json'))
-print(Counter(w['level'] for w in words))
-"
+# inspect the bundled DB (counts per language)
+cd scripts && python3 import_gems.py --stats
 
-# check free pool would be valid
+# validate content (IPA / etymology / free-pool invariants)
+python3 validate_content.py
+
+# check the free pool would be valid (per language, non-premium)
 python3 -c "
-import json
+import sqlite3
 from collections import Counter
-words = json.load(open('Verbum/Resources/words.json'))
+con = sqlite3.connect('scripts/words_v2.db')
 premium = {'Technology','Science','Literature','Society'}
-free_pool = [w for w in words if w['category'] not in premium]
-print('Free pool size:', len(free_pool))
-print('By level:', Counter(w['level'] for w in free_pool))
-# Should show ≥50 per level for the model to work
+rows = con.execute('SELECT language, category FROM words').fetchall()
+free = [l for l, c in rows if c not in premium]
+print('Free pool by language:', Counter(free))
 "
 ```
 
@@ -746,20 +687,21 @@ is switchable in Settings), so the whole app is in one language. Mechanism:
 ## 13. Content pivot — curated gems only (2026-06)
 
 The 1000-per-language generated catalogue was dropped in favour of a small hand-curated set of
-"gem" words (deep-research + authored). Pipeline: `scripts/word_batches_gems/*.json` →
-`import_gems.py` → `keep_gems_only.py` (deletes everything not a gem) → `validate_content.py`.
-Current size: **de 37 / en 35 / uk 41 = 113** (bundledDBVersion 24).
+"gem" words, then levels and de/uk were removed too. Pipeline: `scripts/word_batches_gems/*.json`
+→ `import_gems.py` → `validate_content.py`. Current size: **en 35 (English only)**, no `level`
+column, bundledDBVersion **25**.
 
-**Known deficit — backfill later (intentionally deferred):**
-- **en/beginner = 0** → empty feed for an English beginner. Highest priority to fill.
-- uk/expert thin (≈5, only ~1 non-premium); de/beginner = 6.
-- The "50 free words per level" paywall pool is now just the whole small per-level set
-  (`validate_content.py`'s ≥50 free-pool check is relaxed to a warning). Monetization needs
-  rethinking for a curated set (e.g. N free gems then Pro, or Pro = extra languages/features).
+**Known deficit — backfill is the next step (the user is importing curated words):**
+- The catalogue is intentionally tiny (35) right now — it's a clean base awaiting the user's
+  curated "interesting words" import. The free pool is just the whole small set
+  (`validate_content.py`'s ≥50 free-pool check is relaxed to a warning).
+- German + Ukrainian are parked (rows deleted). Recoverable later via `scripts/build_de_catalog.py`
+  / `build_uk_catalog.py` + `word_batches*`, or from git history (pre-pivot `Resources/words_v2.db`).
+- Monetization for a curated set may need rethinking (e.g. N free gems then Pro, or
+  Pro = extra languages/features) — deferred until the catalogue is fuller.
 
 To backfill: add entries to `scripts/word_batches_gems/` (or generate via
 `Verbum_DeepResearch_MORE_WORDS.md`), `python3 import_gems.py`, then bump `bundledDBVersion`.
-The pre-pivot full catalogue is recoverable from git (`Resources/words_v2.db` at v23).
 
 ---
 

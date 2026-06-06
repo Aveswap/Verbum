@@ -57,7 +57,6 @@
 "Learn one word a day" = "Вивчай одне слово на день";
 "Learn without limits" = "Навчайся без обмежень";
 "Less than 2 minutes a day. You can change this anytime in Settings." = "Менше ніж 2 хвилини на день. Це можна змінити будь-коли в налаштуваннях.";
-"Level Test" = "Тест рівня";
 "Liked" = "Уподобані";
 "MILESTONES" = "ВІХИ";
 "Mastery Distribution" = "Розподіл засвоєння";
@@ -93,7 +92,6 @@
 "Select Gender" = "Обери стать";
 "Select Level" = "Обери рівень";
 "Serious" = "Серйозний";
-"Set as My Level" = "Зробити моїм рівнем";
 "Set up notifications" = "Налаштувати сповіщення";
 "Settings" = "Налаштування";
 "Share" = "Поділитися";
@@ -109,8 +107,6 @@
 "Spread between 9 AM and 10 PM" = "Розподілено між 9:00 та 22:00";
 "Statistics" = "Статистика";
 "Swipe up for the next word" = "Гортай угору для наступного слова";
-"Take Level Test" = "Пройти тест рівня";
-"Take the test to find your level" = "Пройди тест, щоб визначити свій рівень";
 "Tap all the words you recognise" = "Торкнися всіх слів, які впізнаєш";
 "This Week" = "Цей тиждень";
 "This permanently deletes all your progress, streaks, and settings. This cannot be undone." = "Це назавжди видалить весь твій прогрес, серії та налаштування. Скасувати неможливо.";
@@ -125,7 +121,6 @@
 "We'll use this to personalise your learning" = "Ми використаємо це, щоб персоналізувати твоє навчання";
 "Well done!" = "Молодець!";
 "What does this word mean?" = "Що означає це слово?";
-"What's your level?" = "Який твій рівень?";
 "What's your name?" = "Як тебе звати?";
 "Which word matches this definition?" = "Яке слово відповідає цьому визначенню?";
 "Word History" = "Історія слова";
@@ -150,9 +145,6 @@
 "verb" = "дієслово";
 "adjective" = "прикметник";
 "adverb" = "прислівник";
-"Beginner" = "Початковий";
-"Intermediate" = "Середній";
-"Expert" = "Просунутий";
 "Formal" = "Формальний";
 "Informal" = "Неформальний";
 "Neutral" = "Нейтральний";
@@ -176,7 +168,6 @@
 "Tech & Science" = "Техніка і наука";
 "Arts & Ideas" = "Мистецтво та ідеї";
 "CATEGORIES" = "КАТЕГОРІЇ";
-"BY LEVEL" = "ЗА РІВНЕМ";
 "BY PART OF SPEECH" = "ЗА ЧАСТИНОЮ МОВИ";
 "Verbs" = "Дієслова";
 "Nouns" = "Іменники";
@@ -256,8 +247,6 @@
 "Best: %lld days" = "Найкраще: %lld днів";
 "Best: %lld · learn today to keep it" = "Найкраще: %lld · вчися сьогодні, щоб не втратити";
 "Correct: %lld" = "Правильно: %lld";
-"Current: %@" = "Поточний: %@";
-"Current: %@ · Take the free test" = "Поточний: %@ · Пройди безкоштовний тест";
 "Next: %@ %@ at %lld pts" = "Наступна: %@ %@ за %lld оч.";
 "Pronounce %@" = "Вимовити %@";
 "Score: %lld / 5" = "Очки: %lld / 5";
