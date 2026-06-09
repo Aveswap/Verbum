@@ -2,7 +2,9 @@
 
 **Last updated:** 2026-06-06
 **Branch:** `main`
-**Latest commit:** Level removal + English-only base — `WordLevel` enum & `level` column deleted (DB v25), curated-gems-only catalogue (en 35), de/uk parked (recoverable via `word_batches`). Foundation cleaned for a fresh import of curated "interesting words".
+**Latest commit:** Paywall fix + post-level cleanup — `Verbum.storekit` now wired into the run scheme via `project.yml` (`storeKitConfiguration`), so the paywall loads products in dev (was stuck on "Plans couldn't be loaded"); paywall card shows the real free-pool size; `WordAccessTests` rewritten for the level-free API; stale "1,000 words"/"difficulty levels" copy removed.
+
+**Prior commit:** Level removal + English-only base — `WordLevel` enum & `level` column deleted (DB v25), curated-gems-only catalogue (en 35), de/uk parked (recoverable via `word_batches`). Foundation cleaned for a fresh import of curated "interesting words".
 
 This document is meant to onboard a fresh contributor (human or agent) cold. Read top-to-bottom. Code references use `Path/To/File.swift:LineNumber` so they're clickable in most editors.
 
@@ -112,7 +114,7 @@ Premium user → the entire active-language catalogue.
 | `pro_yearly` | Auto-renew | $24.99 / yr | 1-week free |
 | `pro_lifetime` | Non-consumable | $59.99 once | n/a |
 
-StoreKit Configuration file at [Verbum/Verbum.storekit](Verbum/Verbum.storekit) ready to wire into the Scheme (see [scripts/STOREKIT_TESTING.md](scripts/STOREKIT_TESTING.md)).
+StoreKit Configuration file at [Verbum/Verbum.storekit](Verbum/Verbum.storekit) is **already wired into the run scheme** via `project.yml` (`schemes.Verbum.run.storeKitConfiguration`), so the paywall loads products in the simulator/dev with no manual Xcode step. `xcodegen generate` reproduces this. (Release/archive builds ignore it and use real App Store Connect products.) See [scripts/STOREKIT_TESTING.md](scripts/STOREKIT_TESTING.md) for test scenarios.
 
 ---
 
@@ -341,8 +343,8 @@ Numbered for cross-reference with the audit. Grouped by impact.
 | 19 | Run `generate_1000_words.py` → upload `words_v2.db` to CDN | Needs `ANTHROPIC_API_KEY` + CDN account (Cloudflare R2 recommended) | ❌ not done |
 | 20 | Replace `itms-apps://itunes.apple.com/app/id` in [SettingsView.swift](Verbum/Features/Profile/SettingsView.swift) `rateApp()` with real App Store ID | App Store Connect registration | ❌ not done |
 | 21 | Enable Game Center capability in Xcode + create leaderboards `com.verbum.app.quarterly_points` and `com.verbum.app.all_time_points` | App Store Connect | ❌ not done |
-| 22 | Wire `Verbum.storekit` into Scheme → Run → Options → StoreKit Configuration | Manual one-time in Xcode | ❌ not done |
-| 23 | Add `Verbum.storekit` to the project file (right-click `Verbum` group → Add Files) | Manual | ❌ not done |
+| 22 | Wire `Verbum.storekit` into Scheme → Run → StoreKit Configuration | Now automatic via `project.yml` (`storeKitConfiguration`) | ✅ done |
+| 23 | Add `Verbum.storekit` to the project file | Now automatic via xcodegen (in pbxproj) | ✅ done |
 
 #### Widget + Apple Watch — Xcode wiring (code is in repo, targets are not)
 
@@ -458,8 +460,8 @@ If you (or another agent) pick this up cold:
 
 1. **Read** [Core/Data/WordAccess.swift](Verbum/Core/Data/WordAccess.swift) first. It's the heart of the paywall model.
 2. **Skim** [Core/Models/UserProfile.swift](Verbum/Core/Models/UserProfile.swift) for the data shape.
-3. **Build + run** in Xcode with the simulator. Wire up `Verbum.storekit` per [STOREKIT_TESTING.md](scripts/STOREKIT_TESTING.md) so the paywall is testable.
-4. **Verify in-app:** free user only sees the top 50 non-premium words; locked previews show "Unlock N more words"; paywall card appears after the 50th swipe; practice games filter through `WordAccess.canAccess`.
+3. **Build + run** in Xcode with the simulator. The paywall is testable out of the box — `Verbum.storekit` is already wired into the run scheme (no manual setup); see [STOREKIT_TESTING.md](scripts/STOREKIT_TESTING.md) for scenarios.
+4. **Verify in-app:** free user only sees the top 50 non-premium words (fewer if the catalogue is smaller); locked previews show "Unlock N more words"; the paywall card appears after the last free word and reports the real free-pool size; practice games filter through `WordAccess.canAccess`.
 5. **Import the curated words** (see §6 "Content state") — drop the JSON under `scripts/word_batches_gems/`, run `import_gems.py`, bump `bundledDBVersion`.
 
 ### Common gotchas
