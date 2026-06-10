@@ -1,10 +1,18 @@
 # Verbum — Project Handoff
 
-**Last updated:** 2026-06-06
+**Last updated:** 2026-06-09
 **Branch:** `main`
-**Latest commit:** Paywall fix + post-level cleanup — `Verbum.storekit` now wired into the run scheme via `project.yml` (`storeKitConfiguration`), so the paywall loads products in dev (was stuck on "Plans couldn't be loaded"); paywall card shows the real free-pool size; `WordAccessTests` rewritten for the level-free API; stale "1,000 words"/"difficulty levels" copy removed.
+**Latest commit:** Security & code-quality audit remediation — addressed all 33 findings from an external review across 6 commits (see §12). Highlights: Spotlight no longer leaks paid definitions; StoreKit stops finishing `.unverified` transactions; CloudKit merge no longer self-revives via `didSet` (new `applyMerged`) + deck-deletion tombstones; OTA install hardened (integrity + atomic replace); Game Center entitlement added; account deletion awaits the server delete; keychain hardened; unified `dayCalendar`; locked-word definitions gated in lists/search.
 
-**Prior commit:** Level removal + English-only base — `WordLevel` enum & `level` column deleted (DB v25), curated-gems-only catalogue (en 35), de/uk parked (recoverable via `word_batches`). Foundation cleaned for a fresh import of curated "interesting words".
+**Prior commits:** Paywall/StoreKit fix (`storeKitConfiguration` in scheme) · Level removal + English-only base (DB v25, en 35).
+
+> **§12 — Audit deferrals (intentional / needs-build):**
+> - **Likes/bookmarks deletion sync (#6):** only deck deletions got tombstones; converting `likedWordIds`/`bookmarkedWordIds` to per-id LWW is a larger model+CloudKit change — defer until it can be built & unit-tested.
+> - **appleUserID storage (#8):** still in `UserProfile`/UserDefaults (pseudonymous, not synced); moving it to Keychain touches every `appleUserID` read — deferred.
+> - **Watch target (#23):** `VerbumWatch Watch App/` exists as code but is NOT in `project.yml` (not built). Either wire it up or remove the folder.
+> - **Name-clear sync (#24):** the `if !remote.name.isEmpty` guard intentionally blocks an empty record from wiping a good name; clearing a name doesn't propagate — accepted tradeoff.
+> - **Launch double DB-open (#26):** minor; `needsSeeding`→`existingDatabaseIsEmpty` opens the queue, then `openIfExists` again — left as-is (restructure needs a build to verify).
+> - **App Store TODOs (cannot do in code):** set real `AppInfo.appStoreID`; create Game Center leaderboards `com.verbum.app.quarterly_points` / `…all_time_points` in ASC; ensure `verbum.app/privacy` is live. A real OTA pipeline must verify a SHA-256 from a signed manifest before `WordDatabase.install`.
 
 This document is meant to onboard a fresh contributor (human or agent) cold. Read top-to-bottom. Code references use `Path/To/File.swift:LineNumber` so they're clickable in most editors.
 
