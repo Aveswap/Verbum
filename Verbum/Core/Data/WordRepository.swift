@@ -56,12 +56,18 @@ final class WordRepository: ObservableObject {
         WordAccess.invalidate()  // catalog changed — drop memoized free pools
         // Index the conservative free-user view (locked words carry no definition). VerbumApp
         // re-indexes with full descriptions when the user is/becomes Pro.
-        SpotlightIndexer.indexIfNeeded(
-            words: all,
-            freeIds: Set(WordAccess.freePool().map(\.id)),
-            isPro: false,
-            version: WordDatabase.bundledDBVersion
-        )
+        // Deferred to the next runloop tick because `WordAccess.freePool()` reads
+        // `WordRepository.shared.all` — calling it inline during the singleton's first-time
+        // init re-enters the same `dispatch_once`, which traps as a recursive init deadlock.
+        let snapshot = all
+        DispatchQueue.main.async {
+            SpotlightIndexer.indexIfNeeded(
+                words: snapshot,
+                freeIds: Set(WordAccess.freePool().map(\.id)),
+                isPro: false,
+                version: WordDatabase.bundledDBVersion
+            )
+        }
     }
 
     func reloadFromDatabase() {
