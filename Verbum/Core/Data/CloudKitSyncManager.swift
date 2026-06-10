@@ -258,7 +258,16 @@ final class CloudKitSyncManager {
         merged.likedWordIds      = Array(Set(local.likedWordIds).union(remote.likedWordIds))
         merged.seenWordIds       = Array(Set(local.seenWordIds).union(remote.seenWordIds))
         merged.streakFreezeUsedDates = Array(Set(local.streakFreezeUsedDates).union(remote.streakFreezeUsedDates))
-        merged.dailyOpens        = Array(Set(local.dailyOpens).union(remote.dailyOpens)).sorted()
+        // dailyOpens: union, then trim to the last 7 days (matching recordDailyOpen) so a merge
+        // doesn't carry stale opens forward until the next launch trims them.
+        let unionOpens = Set(local.dailyOpens).union(remote.dailyOpens)
+        if let newest = unionOpens.max() {
+            let cal = Calendar.current
+            let cutoff = cal.date(byAdding: .day, value: -6, to: cal.startOfDay(for: newest)) ?? .distantPast
+            merged.dailyOpens = unionOpens.filter { $0 >= cutoff }.sorted()
+        } else {
+            merged.dailyOpens = []
+        }
 
         var seenKeys = Set<String>()
         merged.earnedBadges = (local.earnedBadges + remote.earnedBadges).filter { b in

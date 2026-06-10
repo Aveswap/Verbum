@@ -50,7 +50,9 @@ enum NotificationManager {
                 content.badge = 1
                 var comps = DateComponents()
                 comps.hour = min(startHour + i * step, endHour)
-                comps.minute = 0
+                // Offset the minute by index so notifications that clamp to the same hour
+                // (count > available hours) don't all fire at the exact same :00 instant.
+                comps.minute = (i * 17) % 60
                 let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
                 UNUserNotificationCenter.current().add(
                     UNNotificationRequest(identifier: "verbum_\(i)", content: content, trigger: trigger)

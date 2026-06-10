@@ -88,6 +88,9 @@ T = {
  "No words to show here yet. Keep swiping the feed to unlock more.": ("Hier gibt es noch keine Wörter. Wische weiter durch den Feed, um mehr freizuschalten.", "Тут поки немає слів. Гортай стрічку, щоб відкрити більше."),
  "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here.": ("Dieser Stapel ist leer. Durchsuche Kategorien, um Wörter zu finden, und tippe auf das Stapel-Symbol eines Wortes, um es hier hinzuzufügen.", "Ця колода порожня. Перегляньте категорії, знайдіть слова й торкніться значка стопки на слові, щоб додати його сюди."),
  # Paywall (PremiumSheet) feature bullets, CTAs, badge/note, legal disclaimers.
+ "Unlock with Verbum Premium": ("Mit Verbum Premium freischalten", "Відкрити з Verbum Premium"),
+ "These words are Premium 🔒": ("Diese Wörter sind Premium 🔒", "Ці слова — Premium 🔒"),
+ "Couldn’t delete account": ("Konto konnte nicht gelöscht werden", "Не вдалося видалити акаунт"),
  "Unlock Every Word": ("Jedes Wort freischalten", "Відкрий кожне слово"),
  "The full collection of rare, beautiful words": ("Die ganze Sammlung seltener, schöner Wörter", "Уся колекція рідкісних, красивих слів"),
  "Unlock the full collection of rare, beautiful words.": ("Schalte die ganze Sammlung seltener, schöner Wörter frei.", "Відкрий усю колекцію рідкісних, красивих слів."),

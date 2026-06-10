@@ -20,7 +20,7 @@ struct WordOfDayWidget: Widget {
             }
         }
         .configurationDisplayName("Word of the Day")
-        .description("A new English word every morning at your level.")
+        .description("A new English word to learn every morning.")
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }

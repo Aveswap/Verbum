@@ -300,7 +300,9 @@ struct StatsView: View {
         let daysFromMon = (weekday + 5) % 7  // Mon=0, Sun=6
         let monday = cal.date(byAdding: .day, value: -daysFromMon, to: today)!
         let weekDays = (0..<7).compactMap { cal.date(byAdding: .day, value: $0, to: monday) }
-        let labels = ["M", "T", "W", "T", "F", "S", "S"]
+        // Localized one-letter weekday symbols (index by the date's weekday) instead of a
+        // hardcoded English "M T W…", which was wrong for de/uk and other locales.
+        let shortSymbols = cal.veryShortWeekdaySymbols
         let openedCount = weekDays.filter { openedDays.contains($0) }.count
 
         return VStack(alignment: .leading, spacing: AppSpacing.sm) {
@@ -319,7 +321,8 @@ struct StatsView: View {
             }
 
             HStack(spacing: 6) {
-                ForEach(Array(zip(labels, weekDays)), id: \.1) { label, day in
+                ForEach(weekDays, id: \.self) { day in
+                    let label = shortSymbols[cal.component(.weekday, from: day) - 1]
                     let isOpened = openedDays.contains(day)
                     let isToday = cal.isDate(day, inSameDayAs: today)
                     VStack(spacing: 4) {

@@ -15,6 +15,7 @@
 "Close" = "Close";
 "Community" = "Community";
 "Continue" = "Continue";
+"Couldn't delete account" = "Couldn't delete account";
 "Create" = "Create";
 "Current Streak" = "Current Streak";
 "Daily Goal" = "Daily Goal";
@@ -57,7 +58,6 @@
 "Learn one word a day" = "Learn one word a day";
 "Learn without limits" = "Learn without limits";
 "Less than 2 minutes a day. You can change this anytime in Settings." = "Less than 2 minutes a day. You can change this anytime in Settings.";
-"Level Test" = "Level Test";
 "Liked" = "Liked";
 "MILESTONES" = "MILESTONES";
 "Mastery Distribution" = "Mastery Distribution";
@@ -93,7 +93,6 @@
 "Select Gender" = "Select Gender";
 "Select Level" = "Select Level";
 "Serious" = "Serious";
-"Set as My Level" = "Set as My Level";
 "Set up notifications" = "Set up notifications";
 "Settings" = "Settings";
 "Share" = "Share";
@@ -109,9 +108,9 @@
 "Spread between 9 AM and 10 PM" = "Spread between 9 AM and 10 PM";
 "Statistics" = "Statistics";
 "Swipe up for the next word" = "Swipe up for the next word";
-"Take Level Test" = "Take Level Test";
 "Take the test to find your level" = "Take the test to find your level";
 "Tap all the words you recognise" = "Tap all the words you recognise";
+"These words are Premium 🔒" = "These words are Premium 🔒";
 "This Week" = "This Week";
 "This permanently deletes all your progress, streaks, and settings. This cannot be undone." = "This permanently deletes all your progress, streaks, and settings. This cannot be undone.";
 "This quarter" = "This quarter";
@@ -120,6 +119,7 @@
 "Unlock 1,000+ words across all difficulty levels." = "Unlock 1,000+ words across all difficulty levels.";
 "Unlock All" = "Unlock All";
 "Unlock all words & practice modes" = "Unlock all words & practice modes";
+"Unlock with Verbum Premium" = "Unlock with Verbum Premium";
 "VERBUM" = "VERBUM";
 "Verbum" = "Verbum";
 "Verbum Premium" = "Verbum Premium";
@@ -128,7 +128,6 @@
 "We'll use this to personalise your learning" = "We'll use this to personalise your learning";
 "Well done!" = "Well done!";
 "What does this word mean?" = "What does this word mean?";
-"What's your level?" = "What's your level?";
 "What's your name?" = "What's your name?";
 "Which word matches this definition?" = "Which word matches this definition?";
 "Word History" = "Word History";
@@ -217,6 +216,7 @@
 "Words you've swiped through\nwill appear here" = "Words you've swiped through\nwill appear here";
 "No words to show here yet. Keep swiping the feed to unlock more." = "No words to show here yet. Keep swiping the feed to unlock more.";
 "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here." = "This deck is empty. Browse categories to find words, then tap the stack icon on any word to add it here.";
+"Couldn’t delete account" = "Couldn’t delete account";
 "Unlock Every Word" = "Unlock Every Word";
 "The full collection of rare, beautiful words" = "The full collection of rare, beautiful words";
 "Unlock the full collection of rare, beautiful words." = "Unlock the full collection of rare, beautiful words.";

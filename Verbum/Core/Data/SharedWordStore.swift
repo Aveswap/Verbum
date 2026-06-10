@@ -46,7 +46,7 @@ enum SharedWordStore {
         let wordsLearnedToday: Int
         let dailyGoal: Int
         let isPro: Bool
-        /// Free pool size remaining at user's level — for the "N free words left" pill.
+        /// Free pool size remaining — for the "N free words left" pill.
         /// nil for pro users.
         let freeRemaining: Int?
     }

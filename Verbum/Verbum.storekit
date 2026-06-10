@@ -8,7 +8,7 @@
       "internalID" : "pro_lifetime",
       "localizations" : [
         {
-          "description" : "One-time purchase. All 1,000+ words, all practice modes, all categories — forever.",
+          "description" : "One-time purchase. Every word, all practice modes, all categories — forever.",
           "displayName" : "Verbum Premium (Lifetime)",
           "locale" : "en_US"
         }
@@ -58,7 +58,7 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "All 1,000+ words and practice modes, billed monthly.",
+              "description" : "Every word and all practice modes, billed monthly.",
               "displayName" : "Verbum Premium (Monthly)",
               "locale" : "en_US"
             }
@@ -83,7 +83,7 @@
           },
           "localizations" : [
             {
-              "description" : "All 1,000+ words and practice modes. 1-week free trial, then $24.99 / year.",
+              "description" : "Every word and all practice modes. 1-week free trial, then $24.99 / year.",
               "displayName" : "Verbum Premium (Yearly)",
               "locale" : "en_US"
             }
