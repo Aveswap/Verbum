@@ -29,15 +29,19 @@ final class BatchQuizViewModel: ObservableObject {
         }
         for word in words {
             let rightDef = word.definition
+            // Drop distractors whose definition is textually identical to the answer, so the
+            // correct index is unambiguous, then track correctness by a tag rather than by
+            // string search (firstIndex(of:) would point at the wrong slot on a duplicate).
             let wrongs = distractorPool
-                .filter { $0.id != word.id }
+                .filter { $0.id != word.id && $0.definition != rightDef }
                 .shuffled()
                 .prefix(3)
                 .map { $0.definition }
-            var choices = ([rightDef] + wrongs).shuffled()
-            let ci = choices.firstIndex(of: rightDef) ?? 0
-            opts.append(choices)
-            correct.append(ci)
+            var tagged: [(def: String, isCorrect: Bool)] =
+                [(rightDef, true)] + wrongs.map { ($0, false) }
+            tagged.shuffle()
+            opts.append(tagged.map(\.def))
+            correct.append(tagged.firstIndex(where: \.isCorrect) ?? 0)
         }
         self.options = opts
         self.correctIndices = correct

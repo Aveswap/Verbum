@@ -102,7 +102,9 @@ struct SearchView: View {
                         .font(.system(size: 11, weight: .semibold))
                         .foregroundColor(AppColors.accent)
                 }
-                Text(word.definition)
+                Text(locked
+                     ? NSLocalizedString("Unlock with Verbum Premium", comment: "locked-word row")
+                     : word.definition)
                     .font(.system(size: 13))
                     .foregroundColor(AppColors.textSecondary)
                     .lineLimit(2)

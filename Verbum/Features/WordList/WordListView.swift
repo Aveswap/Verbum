@@ -96,6 +96,7 @@ struct WordListView: View {
 struct WordRow: View {
     let word: Word
     @EnvironmentObject var userProfile: UserProfileStore
+    @EnvironmentObject var subscriptions: SubscriptionManager
 
     var body: some View {
         HStack(spacing: AppSpacing.md) {
@@ -115,7 +116,11 @@ struct WordRow: View {
                 Text(word.phonetic)
                     .font(AppTypography.phonetic)
                     .foregroundColor(AppColors.textSecondary)
-                Text(word.definition)
+                // Don't reveal the definition of a word the user can't currently access (e.g. a
+                // premium word bookmarked while Pro, still in Favorites after the sub lapsed).
+                Text(WordAccess.canAccess(word, isPro: subscriptions.isPro)
+                     ? word.definition
+                     : NSLocalizedString("Unlock with Verbum Premium", comment: "locked-word row"))
                     .font(.system(size: 13))
                     .foregroundColor(AppColors.textSecondary)
                     .lineLimit(2)

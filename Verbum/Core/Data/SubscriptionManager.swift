@@ -128,17 +128,19 @@ final class SubscriptionManager: ObservableObject {
         // Surface a Pro → not-Pro transition exactly once. Compare against the persisted
         // prior state so a lapse that happened while the app was closed is also caught.
         let wasPro = UserDefaults.standard.bool(forKey: Self.wasProKey)
-        // Surface a Pro → not-Pro transition once — but only when StoreKit was actually
-        // reachable (products loaded). On a cold launch with no connectivity, an empty
-        // currentEntitlements read is meaningless and must not flash a false "ended" banner;
-        // when products DID load, an empty read genuinely means the sub lapsed (incl. while
-        // the app was closed). loadProducts() runs before this in init, so loadFailed is set.
-        if wasPro && !active && !loadFailed {
+        // Surface a Pro → not-Pro transition once — but ONLY when we have actually loaded real
+        // products (so StoreKit was reachable). Keying on `!products.isEmpty` instead of
+        // `!loadFailed` closes a race: the transaction listener can call this before the initial
+        // loadProducts() finishes, when loadFailed is still its initial `false` — an empty
+        // currentEntitlements read there is meaningless and must not flash a false "ended" banner.
+        // Once products are loaded, an empty read genuinely means the sub lapsed (incl. while closed).
+        let productsKnown = !products.isEmpty
+        if wasPro && !active && productsKnown {
             subscriptionEnded = true
         }
         // Persist the lapse only once we trust the read, so a flaky-network launch doesn't
         // wipe the "was Pro" flag and then miss the real lapse on the next good launch.
-        if active || !loadFailed {
+        if active || productsKnown {
             UserDefaults.standard.set(active, forKey: Self.wasProKey)
         }
         isPro = active

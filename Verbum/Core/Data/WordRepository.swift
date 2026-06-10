@@ -22,12 +22,9 @@ final class WordRepository: ObservableObject {
     /// user's profile at launch (which defaults to the device language) — see setLanguage(_:).
     private(set) var activeLanguage: String = "en"
 
-    /// Total word count in the active language.
-    var totalWordCount: Int {
-        WordDatabase.shared.isAvailable
-            ? WordDatabase.shared.fetchWords(language: activeLanguage).count
-            : all.count
-    }
+    /// Total word count in the active language. `all` is already the fully materialized
+    /// active-language catalogue, so this is O(1) — no need to re-fetch every row from SQLite.
+    var totalWordCount: Int { all.count }
 
     /// Language codes that have a catalogue (≥1 word). Drives the in-app switcher.
     func availableLanguages() -> [String] {

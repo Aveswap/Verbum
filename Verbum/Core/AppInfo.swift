@@ -10,6 +10,11 @@ enum AppInfo {
     /// until this is the real numeric Apple ID (e.g. "1234567890").
     static let appStoreID = "0000000000"
 
+    /// False while `appStoreID` is still the placeholder. Store-facing buttons (Rate / Share /
+    /// Invite) hide themselves until a real ID is set, so they can't lead reviewers/users to a
+    /// dead App Store page (App Review "broken functionality").
+    static var isStoreIDConfigured: Bool { appStoreID != "0000000000" }
+
     /// App Store product page. Used for the friends invite/share link.
     static var appStoreURL: URL {
         // Force-unwrap is safe: the string is built from a digit constant, always a valid URL.

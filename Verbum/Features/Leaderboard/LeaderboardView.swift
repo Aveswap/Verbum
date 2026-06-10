@@ -97,6 +97,7 @@ struct LeaderboardView: View {
                 }
             }
 
+            if AppInfo.isStoreIDConfigured {
             Divider().overlay(AppColors.background)
 
             ShareLink(item: inviteMessage) {
@@ -120,6 +121,7 @@ struct LeaderboardView: View {
                         .foregroundColor(AppColors.textSecondary)
                         .font(.system(size: 13))
                 }
+            }
             }
         }
         .padding(AppSpacing.md)

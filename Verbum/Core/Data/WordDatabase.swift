@@ -106,6 +106,10 @@ final class WordDatabase: @unchecked Sendable {
             try runMigrations()
         } catch {
             Logger.database.error("open/migrate failed: \(error.localizedDescription, privacy: .public)")
+            // Don't expose a half-migrated / unopenable DB as "available" — drop the queue so
+            // isAvailable becomes false and callers fall back to the bundle / a fresh re-seed,
+            // instead of silently returning [] from every query against a broken schema.
+            setQueue(nil)
         }
     }
 

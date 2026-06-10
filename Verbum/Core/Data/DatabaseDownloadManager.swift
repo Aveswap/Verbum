@@ -36,11 +36,12 @@ final class DatabaseDownloadManager: NSObject, ObservableObject {
 
     private override init() {
         super.init()
-        let config = URLSessionConfiguration.background(
-            withIdentifier: "com.verbum.app.dbdownload"
-        )
-        config.isDiscretionary = true
-        config.sessionSendsLaunchEvents = true
+        // A default (foreground) session: this is a one-shot, user-initiated download from
+        // Settings. A *background* session needs the app to implement
+        // `handleEventsForBackgroundURLSession` (there's no AppDelegate here), without which the
+        // completion would never be delivered and the state would hang in `.downloading`.
+        let config = URLSessionConfiguration.default
+        config.waitsForConnectivity = true
         session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
 
         if WordDatabase.shared.isAvailable { state = .done }

@@ -164,10 +164,14 @@ struct SettingsView: View {
                         // SOCIAL
                         sectionLabel("Community")
                         settingsCard {
-                            iconRow(icon: "square.and.arrow.up", iconColor: AppColors.accent, label: "Share App") { shareApp() }
-                            cardDivider
-                            iconRow(icon: "star.fill", iconColor: .yellow, label: "Rate App") { rateApp() }
-                            cardDivider
+                            // Share / Rate derive their URLs from the App Store ID — hide them
+                            // until it's real so they never open a dead store page.
+                            if AppInfo.isStoreIDConfigured {
+                                iconRow(icon: "square.and.arrow.up", iconColor: AppColors.accent, label: "Share App") { shareApp() }
+                                cardDivider
+                                iconRow(icon: "star.fill", iconColor: .yellow, label: "Rate App") { rateApp() }
+                                cardDivider
+                            }
                             iconRow(icon: "camera.fill", iconColor: .pink, label: "Follow us on Instagram") { openInstagram() }
                         }
 
