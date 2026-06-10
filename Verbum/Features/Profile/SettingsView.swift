@@ -254,12 +254,18 @@ struct SettingsView: View {
             titleVisibility: .visible
         ) {
             Button("Delete All Data", role: .destructive) {
-                auth.deleteAccount()
-                dismiss()
+                auth.deleteAccount { success in
+                    if success { dismiss() }   // stay on screen + show the error if iCloud delete failed
+                }
             }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("This permanently deletes all your progress, streaks, and settings. This cannot be undone.")
+        }
+        .alert("Couldn’t delete account", isPresented: .constant(auth.error != nil)) {
+            Button("OK") { auth.clearError() }
+        } message: {
+            Text(auth.error ?? "")
         }
     }
 

@@ -117,10 +117,17 @@ class WordFeedViewModel: ObservableObject {
         return WordAccess.remainingFreeCount(seenIds: seenIds)
     }
 
-    /// True when a free user has consumed every word in their level's free pool.
+    /// True when a free user has consumed every word in their free pool.
     /// The view layer shows a paywall card on the final swipe.
     func isFreePoolExhausted(seenIds: Set<UUID>) -> Bool {
         !isPro && remainingFreeCount(seenIds: seenIds) == 0 && !words.isEmpty
+    }
+
+    /// True when a free user has NO free words at all (the whole loaded catalogue is premium-
+    /// locked) — distinct from "exhausted". Gated on a non-empty catalogue so the initial DB
+    /// seed (catalogue momentarily empty) still shows the skeleton, not a premature paywall.
+    func freePoolIsEmpty() -> Bool {
+        !isPro && words.isEmpty && !WordRepository.shared.all.isEmpty && WordAccess.freePool().isEmpty
     }
 
     /// Orders a pool so words the user hasn't swiped yet come first (shuffled), followed by

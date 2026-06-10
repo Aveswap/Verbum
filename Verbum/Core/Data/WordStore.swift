@@ -288,6 +288,11 @@ class UserProfileStore: ObservableObject {
 
     func deleteDeck(_ id: UUID) {
         profile.decks.removeAll { $0.id == id }
+        // Tombstone the id so a stale copy on another device doesn't resurrect it on the next
+        // CloudKit merge (the merge unions decks but subtracts tombstones).
+        if !profile.deletedDeckIds.contains(id) {
+            profile.deletedDeckIds.append(id)
+        }
     }
 
     func toggleWord(_ wordId: UUID, in deckId: UUID) {

@@ -385,7 +385,7 @@ struct WordFeedView: View {
     // MARK: - Word Area
     private var wordArea: some View {
         Group {
-            if viewModel.isFreePoolExhausted(seenIds: seenWordIdsSet) {
+            if viewModel.isFreePoolExhausted(seenIds: seenWordIdsSet) || viewModel.freePoolIsEmpty() {
                 paywallCard
                     .gesture(TapGesture().onEnded { activeSheet = .premium })
             } else if let word = viewModel.currentWord {
@@ -426,7 +426,9 @@ struct WordFeedView: View {
                 .font(.system(size: 56))
                 .foregroundColor(AppColors.accent)
 
-            Text("You learned all \(freeCount) free words 🎉")
+            Text(freeCount > 0
+                 ? "You learned all \(freeCount) free words 🎉"
+                 : "These words are Premium 🔒")
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(AppColors.textPrimary)
                 .multilineTextAlignment(.center)
@@ -443,11 +445,13 @@ struct WordFeedView: View {
                     .multilineTextAlignment(.center)
             }
 
-            Text("Your \(WordAccess.freeLimit) words remain free to practice, review, and add to decks — forever.")
-                .font(.system(size: 13))
-                .foregroundColor(AppColors.textSecondary.opacity(0.85))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, AppSpacing.lg)
+            if freeCount > 0 {
+                Text("Your \(freeCount) words remain free to practice, review, and add to decks — forever.")
+                    .font(.system(size: 13))
+                    .foregroundColor(AppColors.textSecondary.opacity(0.85))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, AppSpacing.lg)
+            }
 
             PillButton(title: "Get Premium") { activeSheet = .premium }
                 .padding(.horizontal, AppSpacing.lg)

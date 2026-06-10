@@ -51,6 +51,9 @@ struct UserProfile: Codable {
 
     // Custom decks created by the user (e.g. "Travel words", "SAT prep")
     var decks: [WordDeck] = []
+    // Tombstones for decks the user deleted, so a stale copy on another device can't resurrect
+    // them through the union merge. (Append-only; decks are few, so this stays tiny.)
+    var deletedDeckIds: [UUID] = []
 
     // FSRS-4.5 review state keyed by word UUID string
     var reviews: [String: WordReview] = [:]

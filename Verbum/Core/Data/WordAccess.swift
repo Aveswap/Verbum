@@ -62,8 +62,10 @@ enum WordAccess {
         freePool().filter { !seenIds.contains($0.id) }.count
     }
 
-    /// Total active-language words that are NOT in the free pool. Used for "Unlock N more words".
+    /// Active-language words that are NOT in the free pool — i.e. everything a Pro unlock adds.
+    /// Counts both premium-category words and any words beyond the free cap, so it's correct even
+    /// when the catalogue is smaller than `freeLimit` (then it's just the premium-locked words).
     static func lockedCount() -> Int {
-        max(0, catalogProvider().count - freeLimit)
+        max(0, catalogProvider().count - freePool().count)
     }
 }

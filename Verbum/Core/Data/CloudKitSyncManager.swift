@@ -93,12 +93,8 @@ final class CloudKitSyncManager {
 
     // MARK: - Delete zone (called on account deletion)
 
-    func deleteZone() async {
-        do {
-            _ = try await db.modifyRecordZones(saving: [], deleting: [Self.zoneID])
-        } catch {
-            logger.error("[CloudKit] zone deletion failed: \(error, privacy: .public)")
-        }
+    func deleteZone() async throws {
+        _ = try await db.modifyRecordZones(saving: [], deleting: [Self.zoneID])
     }
 
     // MARK: - Encode / Decode
@@ -133,6 +129,7 @@ final class CloudKitSyncManager {
         r["bookmarkedWordIds"]     = p.bookmarkedWordIds.map(\.uuidString) as CKRecordValue
         r["likedWordIds"]          = p.likedWordIds.map(\.uuidString) as CKRecordValue
         r["seenWordIds"]           = p.seenWordIds.map(\.uuidString) as CKRecordValue
+        r["deletedDeckIds"]        = p.deletedDeckIds.map(\.uuidString) as CKRecordValue
         // Heavy / high-value collections as JSON blobs. These are the highest-value user
         // data in a spaced-repetition app — losing them on reinstall is a real complaint.
         r["earnedBadges"]          = jsonBlob(p.earnedBadges)
@@ -185,6 +182,7 @@ final class CloudKitSyncManager {
         p.bookmarkedWordIds    = (r["bookmarkedWordIds"] as? [String] ?? []).compactMap(UUID.init)
         p.likedWordIds         = (r["likedWordIds"] as? [String] ?? []).compactMap(UUID.init)
         p.seenWordIds          = (r["seenWordIds"] as? [String] ?? []).compactMap(UUID.init)
+        p.deletedDeckIds       = (r["deletedDeckIds"] as? [String] ?? []).compactMap(UUID.init)
         p.earnedBadges         = decodeBlob(r["earnedBadges"], as: [EarnedBadge].self, default: [])
         p.reviews              = decodeBlob(r["reviews"], as: [String: WordReview].self, default: [:])
         p.decks                = decodeBlob(r["decks"], as: [WordDeck].self, default: [])
@@ -282,10 +280,15 @@ final class CloudKitSyncManager {
         merged.wordMastery = Self.mergeMaxByKey(local.wordMastery, remote.wordMastery)
         merged.challengeHighScores = Self.mergeMaxByKey(local.challengeHighScores, remote.challengeHighScores)
 
+        // Deck tombstones: union, so a delete on either device sticks across the sync.
+        let deletedIds = Set(local.deletedDeckIds).union(remote.deletedDeckIds)
+        merged.deletedDeckIds = Array(deletedIds)
+
         // Decks: union by id; on the rare id collision keep the fuller deck (minimize loss).
+        // Tombstoned ids are excluded so a stale copy can't resurrect a deleted deck.
         var decksById: [UUID: WordDeck] = [:]
-        for d in local.decks { decksById[d.id] = d }
-        for d in remote.decks {
+        for d in local.decks where !deletedIds.contains(d.id) { decksById[d.id] = d }
+        for d in remote.decks where !deletedIds.contains(d.id) {
             if let existing = decksById[d.id] {
                 if d.wordIds.count > existing.wordIds.count { decksById[d.id] = d }
             } else {

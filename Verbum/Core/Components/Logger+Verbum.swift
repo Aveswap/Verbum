@@ -5,6 +5,7 @@ import os
 extension Logger {
     private static let subsystem = "com.verbum.app"
 
+    static let auth          = Logger(subsystem: subsystem, category: "Auth")
     static let database      = Logger(subsystem: subsystem, category: "Database")
     static let subscriptions = Logger(subsystem: subsystem, category: "Subscriptions")
     static let speech        = Logger(subsystem: subsystem, category: "Speech")

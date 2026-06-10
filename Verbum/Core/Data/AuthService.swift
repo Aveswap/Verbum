@@ -9,6 +9,8 @@ final class AuthService: NSObject, ObservableObject {
     @Published private(set) var isSignedIn: Bool = false
     @Published private(set) var error: String? = nil
 
+    func clearError() { error = nil }
+
     private static let emailKey = "appleEmail"
     private weak var profileStore: UserProfileStore?
 
@@ -48,18 +50,29 @@ final class AuthService: NSObject, ObservableObject {
 
     func signOut() {
         profileStore?.profile.appleUserID = nil
+        KeychainHelper.delete(Self.emailKey)   // don't leave the cached email behind after sign-out
         profileStore?.saveNow()
         isSignedIn = false
     }
 
     // MARK: - Delete Account
 
-    func deleteAccount() {
+    /// Deletes the user's CloudKit data first, and only wipes local data + signs out if that
+    /// succeeded — otherwise the server copy would survive while the UI claims "all deleted",
+    /// which both misleads the user and fails App Review 5.1.1(v). `completion(success)` runs on
+    /// the main actor so the caller can gate navigation (dismiss only on success).
+    func deleteAccount(completion: @escaping (Bool) -> Void = { _ in }) {
         Task {
-            await profileStore?.cloudKit.deleteZone()
-            profileStore?.deleteAllLocalData()
-            isSignedIn = false
-            error = nil
+            do {
+                try await profileStore?.cloudKit.deleteZone()
+                profileStore?.deleteAllLocalData()
+                isSignedIn = false
+                error = nil
+                completion(true)
+            } catch {
+                self.error = "Couldn’t delete your data from iCloud. Check your connection and try again."
+                completion(false)
+            }
         }
     }
 
