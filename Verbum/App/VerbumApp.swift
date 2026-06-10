@@ -68,8 +68,17 @@ struct VerbumApp: App {
                     guard phase == .active, userProfile.profile.appleUserID != nil else { return }
                     Task { await userProfile.cloudKit.pull(into: userProfile) }
                 }
-                // isPro / level change the word pool → rebuild the full 14-day timeline.
-                .onChange(of: subscriptions.isPro) { _ in republishSharedTimeline() }
+                // isPro changes the word pool → rebuild the full 14-day timeline, and re-index
+                // Spotlight so paid definitions appear (Pro) or are re-locked (lapse).
+                .onChange(of: subscriptions.isPro) { isPro in
+                    republishSharedTimeline()
+                    SpotlightIndexer.indexIfNeeded(
+                        words: WordRepository.shared.all,
+                        freeIds: Set(WordAccess.freePool().map(\.id)),
+                        isPro: isPro,
+                        version: WordDatabase.bundledDBVersion
+                    )
+                }
                 // Streak / daily counter only affect the snapshot — skip the 14 DB reads
                 // a full timeline rebuild would do on every single swipe.
                 .onChange(of: userProfile.profile.currentStreak) { _ in

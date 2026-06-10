@@ -7,21 +7,32 @@ import Foundation
 /// (handled in VerbumApp) and deep-links to the word's detail.
 enum SpotlightIndexer {
     static let domain = "com.verbum.app.words"
-    private static let indexedVersionKey = "verbum.spotlightVersion"
+    private static let indexedTokenKey = "verbum.spotlightToken"
 
-    /// Indexes the catalogue once per content version. Cheap no-op on every launch after the
-    /// first because the indexed version is persisted. Runs off the main thread.
-    static func indexIfNeeded(words: [Word], version: Int) {
+    /// Indexes the catalogue into Spotlight, re-indexing only when the content version OR the
+    /// Pro state changes (so it's a cheap no-op on most launches). Runs off the main thread.
+    ///
+    /// **Paywall-aware:** locked words (premium-category / beyond the free pool, for a non-Pro
+    /// user) are indexed with their title only — never the definition or synonyms — so the
+    /// system search can surface "this word lives in Verbum" without leaking paid content.
+    /// When the user goes Pro the full descriptions are re-indexed; when Pro lapses they're
+    /// re-locked (`indexSearchableItems` overwrites items by their stable id).
+    static func indexIfNeeded(words: [Word], freeIds: Set<UUID>, isPro: Bool, version: Int) {
         guard !words.isEmpty else { return }
-        guard UserDefaults.standard.integer(forKey: indexedVersionKey) < version else { return }
+        let token = "\(version)-\(isPro)"
+        guard UserDefaults.standard.string(forKey: indexedTokenKey) != token else { return }
 
         DispatchQueue.global(qos: .utility).async {
+            let lockedDescription = NSLocalizedString("Unlock with Verbum Premium",
+                                                      comment: "spotlight locked-word description")
             let items = words.map { word -> CSSearchableItem in
+                let unlocked = isPro || freeIds.contains(word.id)
                 let attributes = CSSearchableItemAttributeSet(contentType: .text)
                 attributes.title = word.text
-                attributes.contentDescription = word.definition
-                attributes.keywords = ([word.partOfSpeech, word.category] + word.synonyms)
-                    .filter { !$0.isEmpty }
+                attributes.contentDescription = unlocked ? word.definition : lockedDescription
+                attributes.keywords = unlocked
+                    ? ([word.partOfSpeech, word.category] + word.synonyms).filter { !$0.isEmpty }
+                    : [word.partOfSpeech].filter { !$0.isEmpty }
                 return CSSearchableItem(
                     uniqueIdentifier: word.id.uuidString,
                     domainIdentifier: domain,
@@ -30,7 +41,7 @@ enum SpotlightIndexer {
             }
             CSSearchableIndex.default().indexSearchableItems(items) { error in
                 if error == nil {
-                    UserDefaults.standard.set(version, forKey: indexedVersionKey)
+                    UserDefaults.standard.set(token, forKey: indexedTokenKey)
                 }
             }
         }

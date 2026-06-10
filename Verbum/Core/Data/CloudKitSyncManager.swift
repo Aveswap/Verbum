@@ -70,7 +70,7 @@ final class CloudKitSyncManager {
             let recordID = CKRecord.ID(recordName: userID, zoneID: Self.zoneID)
             let record = try await db.record(for: recordID)
             let remote = decode(from: record)
-            store.profile = Self.merge(local: store.profile, remote: remote)
+            store.applyMerged(Self.merge(local: store.profile, remote: remote))
             store.markInitialPullComplete()   // allow pushes now that the server state is merged in
             store.saveNow()
         } catch let ckErr as CKError where ckErr.code == .unknownItem {

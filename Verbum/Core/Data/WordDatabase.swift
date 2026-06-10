@@ -143,15 +143,37 @@ final class WordDatabase: @unchecked Sendable {
 
     // MARK: - Install
 
-    /// Moves the downloaded file into place and opens the queue.
+    enum InstallError: Error { case downloadedDatabaseInvalid }
+
+    /// Validates a downloaded DB, then atomically swaps it into place and opens it.
+    ///
+    /// SECURITY: a production OTA pipeline MUST verify a SHA-256 (or signature) from a *signed
+    /// manifest* before calling this — the sanity check below authenticates the file's *shape*,
+    /// not its *source*, so it does not by itself defend against a compromised CDN / MITM. See
+    /// `DatabaseDownloadManager`. Until that exists, the OTA path stays dormant (DB is bundled).
     func install(from tempURL: URL) throws {
-        let dest = Self.databaseURL
-        if FileManager.default.fileExists(atPath: dest.path) {
-            try FileManager.default.removeItem(at: dest)
+        // 1) Integrity sanity check BEFORE touching the live DB: it must open as SQLite and hold
+        //    words. Rejects truncated / corrupt / empty payloads. Scoped so the probe handle is
+        //    released before the swap.
+        do {
+            let probe = try DatabaseQueue(path: tempURL.path)
+            let count = (try? probe.read { try Int.fetchOne($0, sql: "SELECT COUNT(*) FROM words") }) ?? 0
+            guard count > 0 else { throw InstallError.downloadedDatabaseInvalid }
         }
-        try FileManager.default.moveItem(at: tempURL, to: dest)
+
+        // 2) Atomic replace — a crash mid-swap must never leave the user with no database.
+        let dest = Self.databaseURL
+        setQueue(nil)  // release our open handle so the live file can be replaced
+        if FileManager.default.fileExists(atPath: dest.path) {
+            _ = try FileManager.default.replaceItemAt(dest, withItemAt: tempURL)
+        } else {
+            try FileManager.default.moveItem(at: tempURL, to: dest)
+        }
         setQueue(try DatabaseQueue(path: dest.path))
         try runMigrations()
+
+        // 3) Mark installed so the next launch's seed doesn't clobber this copy with the bundle.
+        UserDefaults.standard.set(Self.bundledDBVersion, forKey: Self.bundledVersionKey)
     }
 
     // MARK: - Migrations

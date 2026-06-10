@@ -41,6 +41,17 @@ class UserProfileStore: ObservableObject {
     // MARK: - Persistence
 
     private var isTouchingTimestamp = false
+    private var isApplyingRemoteMerge = false
+
+    /// Applies a CloudKit-merged profile WITHOUT bumping the recency timestamps. The merged
+    /// value already carries the authoritative `max(local, remote)` timestamps; bumping them on
+    /// assignment would defeat last-write-wins (a pure pull would "win" over a genuine edit on
+    /// another device) and cause an endless pull→push churn across devices on every foreground.
+    func applyMerged(_ merged: UserProfile) {
+        isApplyingRemoteMerge = true
+        profile = merged          // fires didSet synchronously; the flag suppresses the bumps
+        isApplyingRemoteMerge = false
+    }
 
     /// Central reaction to any `profile` mutation. Keeps the seen-cache in sync, maintains
     /// the two recency timestamps, and debounces persistence.
@@ -63,10 +74,14 @@ class UserProfileStore: ObservableObject {
         if seenSet.count != profile.seenWordIds.count || !seenSet.isSuperset(of: profile.seenWordIds) {
             seenSet = Set(profile.seenWordIds)
         }
-        if Self.scalarsDiffer(oldValue, profile) {
-            profile.settingsUpdatedAt = Date()
+        // Bump recency timestamps only for genuine LOCAL edits — never when applying a remote
+        // merge (see applyMerged): the merged profile already holds the authoritative timestamps.
+        if !isApplyingRemoteMerge {
+            if Self.scalarsDiffer(oldValue, profile) {
+                profile.settingsUpdatedAt = Date()
+            }
+            profile.profileUpdatedAt = Date()
         }
-        profile.profileUpdatedAt = Date()
 
         isTouchingTimestamp = false
         scheduleSaveWork()

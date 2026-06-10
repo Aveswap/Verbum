@@ -57,7 +57,14 @@ final class WordRepository: ObservableObject {
             all = loadBundle().filter { $0.language == activeLanguage }
         }
         WordAccess.invalidate()  // catalog changed — drop memoized free pools
-        SpotlightIndexer.indexIfNeeded(words: all, version: WordDatabase.bundledDBVersion)
+        // Index the conservative free-user view (locked words carry no definition). VerbumApp
+        // re-indexes with full descriptions when the user is/becomes Pro.
+        SpotlightIndexer.indexIfNeeded(
+            words: all,
+            freeIds: Set(WordAccess.freePool().map(\.id)),
+            isPro: false,
+            version: WordDatabase.bundledDBVersion
+        )
     }
 
     func reloadFromDatabase() {

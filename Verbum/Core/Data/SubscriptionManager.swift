@@ -82,11 +82,12 @@ final class SubscriptionManager: ObservableObject {
                 case .verified(let tx):
                     await tx.finish()
                     await refreshEntitlements()
-                case .unverified(let tx, _):
-                    // Don't grant entitlement, but still finish so the unverified
-                    // transaction clears the queue instead of resurfacing repeatedly.
-                    await tx.finish()
-                    purchaseError = "Purchase could not be verified."
+                case .unverified(_, let error):
+                    // Do NOT grant entitlement AND do NOT finish: a transient verification
+                    // failure (device clock skew, JWS hiccup) must be allowed to re-deliver via
+                    // Transaction.updates once it verifies — finishing here would permanently
+                    // strip a paying user of access. (Apple: only finish verified transactions.)
+                    purchaseError = "Purchase could not be verified — it will retry automatically. (\(error.localizedDescription))"
                 }
             case .userCancelled:
                 break
@@ -152,9 +153,10 @@ final class SubscriptionManager: ObservableObject {
             case .verified(let tx):
                 await tx.finish()
                 await refreshEntitlements()
-            case .unverified(let tx, _):
-                // Finish unverified updates too so they don't keep replaying in the queue.
-                await tx.finish()
+            case .unverified:
+                // Leave unverified transactions in the queue so StoreKit re-delivers them once
+                // verification succeeds. Finishing here would drop a genuine purchase.
+                break
             }
         }
     }
