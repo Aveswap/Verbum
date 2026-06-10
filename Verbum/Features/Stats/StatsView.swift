@@ -290,7 +290,9 @@ struct StatsView: View {
 
     // MARK: - Weekly goal card
     private var weeklyGoalCard: some View {
-        let cal = Calendar.current
+        // Use the same locked-timezone calendar the streak / daily counter use, so the weekly
+        // dots agree with "today" instead of drifting after travel / DST.
+        let cal = userProfile.dayCalendar
         let today = cal.startOfDay(for: Date())
         let openedDays = Set(userProfile.profile.dailyOpens.map { cal.startOfDay(for: $0) })
         // Generate Mon–Sun of the current week

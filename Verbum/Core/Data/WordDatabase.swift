@@ -109,10 +109,16 @@ final class WordDatabase: @unchecked Sendable {
         }
     }
 
-    /// Copies the bundled 1,000-word database into the writable location on first
-    /// launch, when an app update ships a newer bundled version, or when the
-    /// existing writable copy is empty (recovers from corrupted/aborted seeds).
-    /// The writable copy is needed because the app rebuilds FTS and writes translations.
+    /// Copies the bundled database into the writable location on first launch, when an app
+    /// update ships a newer bundled version, or when the existing writable copy is empty
+    /// (recovers from corrupted/aborted seeds).
+    ///
+    /// INVARIANT: `words.db` is a **disposable content cache** — re-seeding wipes it wholesale.
+    /// All user-generated state (progress, streaks, decks, reviews, settings) lives in
+    /// `UserProfile` (UserDefaults + CloudKit), NOT here, so a re-seed loses nothing the user
+    /// created. Any FUTURE writable content in this DB (OTA word packs, downloaded translations)
+    /// MUST either live in a separate file or be re-applied after a re-seed — do not assume rows
+    /// written here survive a `bundledDBVersion` bump.
     private func seedFromBundleIfNeeded() {
         let dest = Self.databaseURL
         let exists = FileManager.default.fileExists(atPath: dest.path)

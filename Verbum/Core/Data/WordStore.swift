@@ -145,6 +145,17 @@ class UserProfileStore: ObservableObject {
         }
     }
 
+    /// The calendar that defines a "user day" for streaks, the daily goal, and the practice gate.
+    /// Anchored to the streak's locked timezone (or the device timezone until it's locked at the
+    /// first daily open) so every day-boundary calculation agrees even across travel / DST —
+    /// previously the streak used the locked TZ while the daily counter used `Calendar.current`,
+    /// so they could disagree on what "today" is.
+    var dayCalendar: Calendar {
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = TimeZone(identifier: profile.streakTimezone ?? "") ?? .current
+        return cal
+    }
+
     // MARK: - Word language (vocabulary catalogue)
 
     /// Resolves the active vocabulary language and applies it to WordRepository. Called at
@@ -216,7 +227,7 @@ class UserProfileStore: ObservableObject {
     /// Returns true if this swipe completed the daily goal (caller may trigger celebration).
     @discardableResult
     func recordWordLearned() -> Bool {
-        let cal = Calendar.current
+        let cal = dayCalendar
         if !cal.isDateInToday(profile.wordsLearnedDate) {
             profile.wordsLearnedToday = 0
             profile.wordsLearnedDate = Date()
@@ -230,7 +241,7 @@ class UserProfileStore: ObservableObject {
 
     /// Current count of words learned today (resets at local midnight).
     var wordsLearnedToday: Int {
-        let cal = Calendar.current
+        let cal = dayCalendar
         if !cal.isDateInToday(profile.wordsLearnedDate) { return 0 }
         return profile.wordsLearnedToday
     }
@@ -312,8 +323,7 @@ class UserProfileStore: ObservableObject {
         if profile.streakTimezone == nil {
             profile.streakTimezone = TimeZone.current.identifier
         }
-        var cal = Calendar(identifier: .gregorian)
-        cal.timeZone = TimeZone(identifier: profile.streakTimezone ?? "UTC") ?? .current
+        let cal = dayCalendar   // now anchored to the just-locked timezone
         let today = cal.startOfDay(for: Date())
         if let last = profile.lastOpenedDate {
             let lastDay = cal.startOfDay(for: last)
@@ -370,7 +380,7 @@ class UserProfileStore: ObservableObject {
     }
 
     private func resetPracticeIfNewDay() {
-        guard !Calendar.current.isDateInToday(profile.practiceGamesDate) else { return }
+        guard !dayCalendar.isDateInToday(profile.practiceGamesDate) else { return }
         profile.practiceGamesPlayedToday = 0
         profile.practiceGamesDate = Date()
     }

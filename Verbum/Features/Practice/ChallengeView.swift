@@ -184,8 +184,16 @@ final class ChallengeViewModel: ObservableObject {
     }
 
     func finish() {
-        timer?.invalidate()
+        stopTimer()
         isFinished = true
+    }
+
+    /// Invalidates the run-loop timer on the main actor. Called from `onDisappear` so the timer
+    /// is always torn down deterministically on the thread that scheduled it — `deinit` (which
+    /// can run off-main) is then only a defensive backstop, not the primary teardown path.
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
 
@@ -229,6 +237,7 @@ struct ChallengeView: View {
                 userProfile.recordReview(id, rating: correct ? .good : .again)
             }
         }
+        .onDisappear { vm.stopTimer() }   // deterministic main-thread timer teardown
     }
 
     private var finishedView: some View {

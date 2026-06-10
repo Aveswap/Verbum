@@ -1,2952 +1,822 @@
 [
-  {
-    "id": "00000000-0000-0000-0000-000000000001",
-    "text": "ephemeral",
-    "phonetic": "/ɪˈfem.ər.əl/",
-    "partOfSpeech": "adj.",
-    "definition": "Lasting for a very short time",
-    "exampleSentence": "The ephemeral beauty of cherry blossoms makes them all the more special.",
-    "synonyms": [
-      "transient",
-      "fleeting",
-      "momentary",
-      "short-lived"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000002",
-    "text": "ubiquitous",
-    "phonetic": "/juːˈbɪk.wɪ.təs/",
-    "partOfSpeech": "adj.",
-    "definition": "Present, appearing, or found everywhere",
-    "exampleSentence": "Smartphones have become ubiquitous in modern society.",
-    "synonyms": [
-      "omnipresent",
-      "pervasive",
-      "universal"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Latin 'ubique' (everywhere), from 'ubi' (where). Related to the same root as 'alibi' — both are about location."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000003",
-    "text": "serendipity",
-    "phonetic": "/ˌser.ənˈdɪp.ɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "The occurrence of fortunate events by chance",
-    "exampleSentence": "Meeting my best friend on that train was pure serendipity.",
-    "synonyms": [
-      "luck",
-      "chance",
-      "fortune",
-      "kismet"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000004",
-    "text": "melancholy",
-    "phonetic": "/ˈmel.ənˌkɒl.i/",
-    "partOfSpeech": "n.",
-    "definition": "A feeling of pensive sadness, typically with no obvious cause",
-    "exampleSentence": "A sense of melancholy settled over him as autumn arrived.",
-    "synonyms": [
-      "sadness",
-      "sorrow",
-      "gloom",
-      "despondency"
-    ],
-    "category": "Emotions",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000005",
-    "text": "resilient",
-    "phonetic": "/rɪˈzɪl.i.ənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Able to recover quickly from difficulties; tough",
-    "exampleSentence": "Children are often more resilient than adults give them credit for.",
-    "synonyms": [
-      "tough",
-      "strong",
-      "adaptable",
-      "hardy"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000006",
-    "text": "eloquent",
-    "phonetic": "/ˈel.ə.kwənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Fluent or persuasive in speaking or writing",
-    "exampleSentence": "She delivered an eloquent speech that moved the entire audience.",
-    "synonyms": [
-      "articulate",
-      "fluent",
-      "expressive",
-      "persuasive"
-    ],
-    "category": "Communication",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000007",
-    "text": "pragmatic",
-    "phonetic": "/præɡˈmæt.ɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Dealing with things sensibly and realistically based on practical considerations",
-    "exampleSentence": "We need a pragmatic approach to solve this problem.",
-    "synonyms": [
-      "practical",
-      "realistic",
-      "sensible",
-      "rational"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000008",
-    "text": "ambiguous",
-    "phonetic": "/æmˈbɪɡ.ju.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Open to more than one interpretation; having a double meaning",
-    "exampleSentence": "The politician's statement was deliberately ambiguous.",
-    "synonyms": [
-      "unclear",
-      "vague",
-      "equivocal",
-      "uncertain"
-    ],
-    "category": "Communication",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000009",
-    "text": "tenacious",
-    "phonetic": "/tɪˈneɪ.ʃəs/",
-    "partOfSpeech": "adj.",
-    "definition": "Not readily giving up; keeping a firm hold",
-    "exampleSentence": "Her tenacious spirit helped her overcome every obstacle.",
-    "synonyms": [
-      "persistent",
-      "determined",
-      "resolute",
-      "stubborn"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000010",
-    "text": "lucid",
-    "phonetic": "/ˈluː.sɪd/",
-    "partOfSpeech": "adj.",
-    "definition": "Expressed clearly; easy to understand",
-    "exampleSentence": "Despite being 90, she remained lucid and sharp-minded.",
-    "synonyms": [
-      "clear",
-      "coherent",
-      "intelligible",
-      "transparent"
-    ],
-    "category": "Communication",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000011",
-    "text": "verbose",
-    "phonetic": "/vɜːˈbəʊs/",
-    "partOfSpeech": "adj.",
-    "definition": "Using more words than needed; long-winded",
-    "exampleSentence": "His verbose email could have been summarized in two sentences.",
-    "synonyms": [
-      "wordy",
-      "long-winded",
-      "prolix",
-      "garrulous"
-    ],
-    "category": "Communication",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'verbosus' (full of words), from 'verbum' (word). The same root gives us 'verb' and 'proverb.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000012",
-    "text": "candid",
-    "phonetic": "/ˈkæn.dɪd/",
-    "partOfSpeech": "adj.",
-    "definition": "Truthful and straightforward; frank",
-    "exampleSentence": "She was candid about the challenges ahead.",
-    "synonyms": [
-      "frank",
-      "honest",
-      "open",
-      "forthright"
-    ],
-    "category": "Character",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000013",
-    "text": "astute",
-    "phonetic": "/əˈstjuːt/",
-    "partOfSpeech": "adj.",
-    "definition": "Having an ability to accurately assess situations; shrewd",
-    "exampleSentence": "The astute investor spotted the opportunity before anyone else.",
-    "synonyms": [
-      "shrewd",
-      "clever",
-      "sharp",
-      "perceptive"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000014",
-    "text": "benevolent",
-    "phonetic": "/bɪˈnev.ə.lənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Well-meaning and kindly; generous and charitable",
-    "exampleSentence": "The benevolent donor gave millions to local charities.",
-    "synonyms": [
-      "kind",
-      "generous",
-      "charitable",
-      "philanthropic"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000015",
-    "text": "discern",
-    "phonetic": "/dɪˈsɜːn/",
-    "partOfSpeech": "v.",
-    "definition": "To perceive or recognize something with difficulty",
-    "exampleSentence": "It's hard to discern the truth from fiction in this case.",
-    "synonyms": [
-      "perceive",
-      "detect",
-      "distinguish",
-      "recognize"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000016",
-    "text": "altruistic",
-    "phonetic": "/ˌæl.truˈɪs.tɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Showing selfless concern for the wellbeing of others",
-    "exampleSentence": "Her altruistic behavior inspired everyone around her.",
-    "synonyms": [
-      "selfless",
-      "generous",
-      "unselfish",
-      "philanthropic"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "Coined by philosopher Auguste Comte from Italian 'altrui' (of others) and Latin 'alter' (other). The deliberate opposite of 'egoistic.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000017",
-    "text": "cacophony",
-    "phonetic": "/kəˈkɒf.ə.ni/",
-    "partOfSpeech": "n.",
-    "definition": "A harsh, discordant mixture of sounds",
-    "exampleSentence": "The construction site was a cacophony of drills and hammers.",
-    "synonyms": [
-      "noise",
-      "din",
-      "discord",
-      "racket"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Greek 'kakophōnia,' combining 'kakos' (bad) + 'phōnē' (sound). The 'phōnē' root also lives in 'telephone' and 'symphony.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000018",
-    "text": "diligent",
-    "phonetic": "/ˈdɪl.ɪ.dʒənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Having or showing care and effort in work or duties",
-    "exampleSentence": "She was a diligent student who always completed her assignments.",
-    "synonyms": [
-      "hardworking",
-      "assiduous",
-      "industrious",
-      "thorough"
-    ],
-    "category": "Character",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000019",
-    "text": "enigmatic",
-    "phonetic": "/ˌen.ɪɡˈmæt.ɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Difficult to interpret or understand; mysterious",
-    "exampleSentence": "The Mona Lisa's enigmatic smile has puzzled art lovers for centuries.",
-    "synonyms": [
-      "mysterious",
-      "puzzling",
-      "cryptic",
-      "inscrutable"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000020",
-    "text": "fortuitous",
-    "phonetic": "/fɔːˈtjuː.ɪ.təs/",
-    "partOfSpeech": "adj.",
-    "definition": "Happening by chance rather than intention; lucky",
-    "exampleSentence": "Their meeting at the conference was entirely fortuitous.",
-    "synonyms": [
-      "lucky",
-      "accidental",
-      "chance",
-      "coincidental"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'fortuitus' (by chance), from 'fors' (luck). Originally it meant purely accidental — not necessarily positive."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000021",
-    "text": "gregarious",
-    "phonetic": "/ɡrɪˈɡeə.ri.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Fond of company; sociable",
-    "exampleSentence": "He was a gregarious host who made everyone feel welcome.",
-    "synonyms": [
-      "sociable",
-      "outgoing",
-      "friendly",
-      "convivial"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000022",
-    "text": "hubris",
-    "phonetic": "/ˈhjuː.brɪs/",
-    "partOfSpeech": "n.",
-    "definition": "Excessive pride or self-confidence, often leading to downfall",
-    "exampleSentence": "His hubris led him to underestimate his competition.",
-    "synonyms": [
-      "arrogance",
-      "pride",
-      "conceit",
-      "overconfidence"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "Directly from Greek 'hybris,' meaning violent arrogance against the gods. In Greek tragedy it was always the fatal flaw that led to downfall."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000023",
-    "text": "impetuous",
-    "phonetic": "/ɪmˈpet.ju.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Acting or done quickly without thought or care",
-    "exampleSentence": "His impetuous decision to quit cost him dearly.",
-    "synonyms": [
-      "impulsive",
-      "rash",
-      "hasty",
-      "reckless"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000024",
-    "text": "juxtapose",
-    "phonetic": "/ˌdʒʌk.stəˈpəʊz/",
-    "partOfSpeech": "v.",
-    "definition": "Place or deal with close together for contrasting effect",
-    "exampleSentence": "The artist juxtaposed dark and light colors to create tension.",
-    "synonyms": [
-      "contrast",
-      "compare",
-      "set against",
-      "place side by side"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'juxta' (beside) + French 'poser' (to place). Literally: to set things side by side so their differences become visible."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000025",
-    "text": "kinetic",
-    "phonetic": "/kɪˈnet.ɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Relating to or resulting from motion; full of energy",
-    "exampleSentence": "The performance had a kinetic energy that kept the audience on edge.",
-    "synonyms": [
-      "dynamic",
-      "energetic",
-      "active",
-      "moving"
-    ],
-    "category": "Science",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000026",
-    "text": "loquacious",
-    "phonetic": "/ləˈkweɪ.ʃəs/",
-    "partOfSpeech": "adj.",
-    "definition": "Tending to talk a great deal; talkative",
-    "exampleSentence": "The loquacious professor rarely finished a lecture on time.",
-    "synonyms": [
-      "talkative",
-      "garrulous",
-      "verbose",
-      "chatty"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'loquax' (talkative), from 'loqui' (to speak). The same root gives us 'eloquent,' 'colloquial,' and 'soliloquy.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000027",
-    "text": "mitigate",
-    "phonetic": "/ˈmɪt.ɪ.ɡeɪt/",
-    "partOfSpeech": "v.",
-    "definition": "Make less severe, serious, or painful",
-    "exampleSentence": "Wearing sunscreen can mitigate the risk of skin damage.",
-    "synonyms": [
-      "reduce",
-      "lessen",
-      "alleviate",
-      "diminish"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000028",
-    "text": "nonchalant",
-    "phonetic": "/ˈnɒn.ʃə.lənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Feeling or appearing casually calm and relaxed",
-    "exampleSentence": "She seemed nonchalant about failing the exam.",
-    "synonyms": [
-      "casual",
-      "unconcerned",
-      "indifferent",
-      "laid-back"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000029",
-    "text": "obsolete",
-    "phonetic": "/ˌɒb.səˈliːt/",
-    "partOfSpeech": "adj.",
-    "definition": "No longer produced or used; out of date",
-    "exampleSentence": "Fax machines are becoming obsolete in the digital age.",
-    "synonyms": [
-      "outdated",
-      "outmoded",
-      "antiquated",
-      "defunct"
-    ],
-    "category": "General",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000030",
-    "text": "paradox",
-    "phonetic": "/ˈpær.ə.dɒks/",
-    "partOfSpeech": "n.",
-    "definition": "A seemingly absurd statement that when investigated proves to be true",
-    "exampleSentence": "The paradox of choice suggests that more options can lead to less satisfaction.",
-    "synonyms": [
-      "contradiction",
-      "anomaly",
-      "puzzle",
-      "inconsistency"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000031",
-    "text": "querulous",
-    "phonetic": "/ˈkwer.ə.ləs/",
-    "partOfSpeech": "adj.",
-    "definition": "Complaining in a rather petulant or whining manner",
-    "exampleSentence": "The querulous customer complained about every tiny detail.",
-    "synonyms": [
-      "complaining",
-      "whining",
-      "grumbling",
-      "peevish"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'querulus' (complaining), from 'queri' (to complain). Related to 'quarrel' and 'query' — all from a root about expressing discontent."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000032",
-    "text": "recalcitrant",
-    "phonetic": "/rɪˈkæl.sɪ.trənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Having an obstinately uncooperative attitude",
-    "exampleSentence": "The recalcitrant employee refused to follow any instructions.",
-    "synonyms": [
-      "uncooperative",
-      "defiant",
-      "obstinate",
-      "rebellious"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'recalcitrare' (to kick back), from 'calx' (heel). It originally described a mule or horse that literally kicks backward against control."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000033",
-    "text": "stoic",
-    "phonetic": "/ˈstəʊ.ɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Enduring pain or hardship without showing feelings or complaining",
-    "exampleSentence": "She remained stoic throughout the difficult medical procedure.",
-    "synonyms": [
-      "impassive",
-      "unemotional",
-      "resigned",
-      "indifferent"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000034",
-    "text": "tangential",
-    "phonetic": "/tænˈdʒen.ʃəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Diverging from a topic; only marginally relevant",
-    "exampleSentence": "His tangential comments derailed the entire meeting.",
-    "synonyms": [
-      "peripheral",
-      "irrelevant",
-      "digressive",
-      "beside the point"
-    ],
-    "category": "Communication",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'tangere' (to touch). A geometric tangent line merely 'touches' a curve without crossing — barely relevant, just touching the edge."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000035",
-    "text": "unprecedented",
-    "phonetic": "/ʌnˈpres.ɪ.den.tɪd/",
-    "partOfSpeech": "adj.",
-    "definition": "Never done or known before; novel",
-    "exampleSentence": "The pandemic caused unprecedented disruption to global economies.",
-    "synonyms": [
-      "unparalleled",
-      "novel",
-      "unique",
-      "unheard-of"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000036",
-    "text": "vacuous",
-    "phonetic": "/ˈvæk.ju.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Having or showing a lack of thought or intelligence; mindless",
-    "exampleSentence": "The interviewer was frustrated by his vacuous answers.",
-    "synonyms": [
-      "empty",
-      "vapid",
-      "inane",
-      "mindless"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'vacuus' (empty), from 'vacare' (to be empty). Related to 'vacuum,' 'vacant,' and 'vacation' — all share the idea of emptiness."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000037",
-    "text": "wistful",
-    "phonetic": "/ˈwɪst.fəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Having a feeling of vague longing or regret",
-    "exampleSentence": "She looked at old photographs with a wistful smile.",
-    "synonyms": [
-      "nostalgic",
-      "longing",
-      "yearning",
-      "pensive"
-    ],
-    "category": "Emotions",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000038",
-    "text": "xenophobia",
-    "phonetic": "/ˌzen.əˈfəʊ.bi.ə/",
-    "partOfSpeech": "n.",
-    "definition": "Dislike or prejudice against people from other countries",
-    "exampleSentence": "The rise of xenophobia is a concerning global trend.",
-    "synonyms": [
-      "bigotry",
-      "intolerance",
-      "prejudice",
-      "racism"
-    ],
-    "category": "Society",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000039",
-    "text": "zealous",
-    "phonetic": "/ˈzel.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Having or showing great energy or enthusiasm in pursuit of a cause",
-    "exampleSentence": "The zealous volunteer worked tirelessly for the community.",
-    "synonyms": [
-      "enthusiastic",
-      "passionate",
-      "fervent",
-      "ardent"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000040",
-    "text": "aberrant",
-    "phonetic": "/æˈber.ənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Departing from an accepted standard; abnormal",
-    "exampleSentence": "The scientist noted several aberrant results in the experiment.",
-    "synonyms": [
-      "abnormal",
-      "atypical",
-      "deviant",
-      "irregular"
-    ],
-    "category": "Science",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'aberrare' (to wander away), from 'ab-' (away) + 'errare' (to wander). Related to 'error' — both suggest straying from the right path."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000041",
-    "text": "banal",
-    "phonetic": "/bəˈnɑːl/",
-    "partOfSpeech": "adj.",
-    "definition": "So lacking in originality as to be obvious and boring",
-    "exampleSentence": "The film's banal plot failed to engage audiences.",
-    "synonyms": [
-      "trite",
-      "hackneyed",
-      "clichéd",
-      "mundane"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Old French 'banal' (belonging to a lord's public mill), meaning forced communal use. What everyone shared became synonymous with the ordinary."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000042",
-    "text": "clandestine",
-    "phonetic": "/klænˈdes.tɪn/",
-    "partOfSpeech": "adj.",
-    "definition": "Kept secret or done secretively",
-    "exampleSentence": "The spies held a clandestine meeting in the abandoned warehouse.",
-    "synonyms": [
-      "secret",
-      "covert",
-      "undercover",
-      "concealed"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'clandestinus' (hidden), from 'clam' (secretly). Shares a root with 'occult' — both describe things concealed from the public eye."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000043",
-    "text": "dearth",
-    "phonetic": "/dɜːθ/",
-    "partOfSpeech": "n.",
-    "definition": "A scarcity or lack of something",
-    "exampleSentence": "There is a dearth of affordable housing in major cities.",
-    "synonyms": [
-      "lack",
-      "scarcity",
-      "shortage",
-      "paucity"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Old English 'deorþe' (dearness, costliness). What was once 'dear' (expensive) came to mean scarce — rare things always cost more."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000044",
-    "text": "erudite",
-    "phonetic": "/ˈer.ʊ.daɪt/",
-    "partOfSpeech": "adj.",
-    "definition": "Having or showing great knowledge or learning",
-    "exampleSentence": "The erudite professor could discuss any topic with authority.",
-    "synonyms": [
-      "learned",
-      "scholarly",
-      "knowledgeable",
-      "intellectual"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'eruditus' (polished, instructed), from 'e-' (out) + 'rudis' (rough). Education was seen as removing roughness — literally 'to de-rough.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000045",
-    "text": "fallacy",
-    "phonetic": "/ˈfæl.ə.si/",
-    "partOfSpeech": "n.",
-    "definition": "A mistaken belief, especially one based on unsound arguments",
-    "exampleSentence": "The idea that multitasking improves productivity is a common fallacy.",
-    "synonyms": [
-      "misconception",
-      "delusion",
-      "error",
-      "myth"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000046",
-    "text": "garrulous",
-    "phonetic": "/ˈɡær.ʊ.ləs/",
-    "partOfSpeech": "adj.",
-    "definition": "Excessively talkative, especially on trivial matters",
-    "exampleSentence": "The garrulous taxi driver didn't stop talking the entire journey.",
-    "synonyms": [
-      "talkative",
-      "loquacious",
-      "verbose",
-      "chatty"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Latin 'garrulus' (chattering), from 'garrire' (to chatter). The root may be onomatopoeic — imitating the sound of unceasing birdsong or babbling."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000047",
-    "text": "harrowing",
-    "phonetic": "/ˈhær.əʊ.ɪŋ/",
-    "partOfSpeech": "adj.",
-    "definition": "Intensely distressing; acutely painful",
-    "exampleSentence": "The survivors told harrowing tales of the disaster.",
-    "synonyms": [
-      "distressing",
-      "traumatic",
-      "agonizing",
-      "devastating"
-    ],
-    "category": "Emotions",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000048",
-    "text": "incessant",
-    "phonetic": "/ɪnˈses.ənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Never ending or always occurring; constant",
-    "exampleSentence": "The incessant rain made the outdoor event miserable.",
-    "synonyms": [
-      "continuous",
-      "constant",
-      "relentless",
-      "unceasing"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000049",
-    "text": "jeopardize",
-    "phonetic": "/ˈdʒep.ə.daɪz/",
-    "partOfSpeech": "v.",
-    "definition": "Put something into a situation in which it could be harmed or lost",
-    "exampleSentence": "His reckless behavior could jeopardize the entire project.",
-    "synonyms": [
-      "endanger",
-      "risk",
-      "threaten",
-      "imperil"
-    ],
-    "category": "General",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000050",
-    "text": "languish",
-    "phonetic": "/ˈlæŋ.ɡwɪʃ/",
-    "partOfSpeech": "v.",
-    "definition": "Lose or lack vitality; grow weak",
-    "exampleSentence": "The project languished for years without proper funding.",
-    "synonyms": [
-      "wither",
-      "decline",
-      "weaken",
-      "deteriorate"
-    ],
-    "category": "General",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": false,
-    "etymology": "From Old French 'languiss-,' from Latin 'languere' (to be faint). Related to 'languid' and 'languor' — all evoke slow, drooping exhaustion."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000051",
-    "text": "affable",
-    "phonetic": "/ˈæf.ə.bəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Friendly, good-natured, and easy to talk to",
-    "exampleSentence": "The affable host made every guest feel immediately at ease.",
-    "synonyms": [
-      "friendly",
-      "genial",
-      "amiable",
-      "approachable"
-    ],
-    "category": "People",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000052",
-    "text": "taciturn",
-    "phonetic": "/ˈtæs.ɪ.tɜːn/",
-    "partOfSpeech": "adj.",
-    "definition": "Reserved and saying little; not fond of talking",
-    "exampleSentence": "The taciturn detective observed everything but said very little.",
-    "synonyms": [
-      "reserved",
-      "quiet",
-      "reticent",
-      "uncommunicative"
-    ],
-    "category": "People",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Latin 'taciturnus' (silent), from 'tacere' (to be silent). The same root gives us 'tacit' — things understood without being spoken."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000053",
-    "text": "reticent",
-    "phonetic": "/ˈret.ɪ.sənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Not revealing one's thoughts or feelings readily",
-    "exampleSentence": "She was reticent about her personal life even with close friends.",
-    "synonyms": [
-      "reserved",
-      "secretive",
-      "tight-lipped",
-      "uncommunicative"
-    ],
-    "category": "People",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000054",
-    "text": "sycophant",
-    "phonetic": "/ˈsɪk.ə.fænt/",
-    "partOfSpeech": "n.",
-    "definition": "A person who acts obsequiously to gain favour; a flatterer",
-    "exampleSentence": "The CEO was surrounded by sycophants who never questioned his decisions.",
-    "synonyms": [
-      "flatterer",
-      "toady",
-      "yes-man",
-      "fawner"
-    ],
-    "category": "People",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Greek 'sykophantēs,' from 'sykon' (fig) + 'phainein' (to show). The exact origin is disputed — one theory involves a contemptuous fig gesture."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000055",
-    "text": "empathy",
-    "phonetic": "/ˈem.pə.θi/",
-    "partOfSpeech": "n.",
-    "definition": "The ability to understand and share the feelings of another",
-    "exampleSentence": "Good leaders show empathy towards their team members.",
-    "synonyms": [
-      "compassion",
-      "understanding",
-      "sensitivity",
-      "sympathy"
-    ],
-    "category": "People",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000056",
-    "text": "lethargic",
-    "phonetic": "/ləˈθɑː.dʒɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Affected by lethargy; sluggish and apathetic",
-    "exampleSentence": "After the heavy meal, everyone felt lethargic and drowsy.",
-    "synonyms": [
-      "sluggish",
-      "listless",
-      "torpid",
-      "languid"
-    ],
-    "category": "Body",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000057",
-    "text": "dexterous",
-    "phonetic": "/ˈdek.stər.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Showing or having skill, especially with the hands",
-    "exampleSentence": "The surgeon's dexterous fingers worked with remarkable precision.",
-    "synonyms": [
-      "skillful",
-      "nimble",
-      "agile",
-      "adroit"
-    ],
-    "category": "Body",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000058",
-    "text": "sedentary",
-    "phonetic": "/ˈsed.ən.tər.i/",
-    "partOfSpeech": "adj.",
-    "definition": "Tending to spend much time seated; involving little exercise",
-    "exampleSentence": "A sedentary lifestyle can lead to various health problems.",
-    "synonyms": [
-      "inactive",
-      "stationary",
-      "desk-bound",
-      "motionless"
-    ],
-    "category": "Body",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000059",
-    "text": "vigorous",
-    "phonetic": "/ˈvɪɡ.ər.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Strong, healthy, and full of energy",
-    "exampleSentence": "She took a vigorous walk every morning to start her day.",
-    "synonyms": [
-      "energetic",
-      "robust",
-      "strong",
-      "dynamic"
-    ],
-    "category": "Body",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000060",
-    "text": "hypothesis",
-    "phonetic": "/haɪˈpɒθ.ɪ.sɪs/",
-    "partOfSpeech": "n.",
-    "definition": "A proposed explanation made on the basis of limited evidence",
-    "exampleSentence": "The scientist formulated a hypothesis before conducting experiments.",
-    "synonyms": [
-      "theory",
-      "conjecture",
-      "assumption",
-      "premise"
-    ],
-    "category": "Science",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000061",
-    "text": "empirical",
-    "phonetic": "/ɪmˈpɪr.ɪ.kəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Based on observation or experiment rather than theory",
-    "exampleSentence": "The empirical evidence strongly supported their conclusion.",
-    "synonyms": [
-      "observed",
-      "experimental",
-      "factual",
-      "evidence-based"
-    ],
-    "category": "Science",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Greek 'empeirikos' (experienced), from 'en-' (in) + 'peira' (trial). Knowledge built from direct experiment, not inherited from authority."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000062",
-    "text": "catalyst",
-    "phonetic": "/ˈkæt.ə.lɪst/",
-    "partOfSpeech": "n.",
-    "definition": "A substance or person that causes or accelerates change",
-    "exampleSentence": "The invention of the internet was a catalyst for global communication.",
-    "synonyms": [
-      "stimulus",
-      "trigger",
-      "spark",
-      "impetus"
-    ],
-    "category": "Science",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000063",
-    "text": "paradigm",
-    "phonetic": "/ˈpær.ə.daɪm/",
-    "partOfSpeech": "n.",
-    "definition": "A typical example or pattern; a model or framework",
-    "exampleSentence": "The discovery caused a paradigm shift in how we understand the universe.",
-    "synonyms": [
-      "model",
-      "framework",
-      "pattern",
-      "archetype"
-    ],
-    "category": "Science",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Greek 'paradeigma' (pattern, example), from 'para-' (beside) + 'deiknynai' (to show). Thomas Kuhn gave it its modern scientific meaning in 1962."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000064",
-    "text": "synthesis",
-    "phonetic": "/ˈsɪn.θɪ.sɪs/",
-    "partOfSpeech": "n.",
-    "definition": "The combination of elements to form a connected whole",
-    "exampleSentence": "The essay was a synthesis of ideas from multiple disciplines.",
-    "synonyms": [
-      "combination",
-      "integration",
-      "fusion",
-      "blend"
-    ],
-    "category": "Science",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000065",
-    "text": "allegory",
-    "phonetic": "/ˈæl.ɪ.ɡər.i/",
-    "partOfSpeech": "n.",
-    "definition": "A story or poem in which characters represent abstract ideas",
-    "exampleSentence": "Animal Farm is a famous allegory about political corruption.",
-    "synonyms": [
-      "parable",
-      "fable",
-      "metaphor",
-      "symbol"
-    ],
-    "category": "Literature",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000066",
-    "text": "irony",
-    "phonetic": "/ˈaɪ.rə.ni/",
-    "partOfSpeech": "n.",
-    "definition": "The expression of meaning using language that normally signifies the opposite",
-    "exampleSentence": "It was ironic that the fire station burned down.",
-    "synonyms": [
-      "sarcasm",
-      "paradox",
-      "contradiction",
-      "incongruity"
-    ],
-    "category": "Literature",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000067",
-    "text": "rhetoric",
-    "phonetic": "/ˈret.ər.ɪk/",
-    "partOfSpeech": "n.",
-    "definition": "The art of effective or persuasive speaking or writing",
-    "exampleSentence": "His speech was full of powerful rhetoric that inspired the crowd.",
-    "synonyms": [
-      "eloquence",
-      "oratory",
-      "persuasion",
-      "discourse"
-    ],
-    "category": "Literature",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000068",
-    "text": "narrative",
-    "phonetic": "/ˈnær.ə.tɪv/",
-    "partOfSpeech": "n.",
-    "definition": "A spoken or written account of connected events; a story",
-    "exampleSentence": "The film's narrative kept audiences guessing until the final scene.",
-    "synonyms": [
-      "story",
-      "account",
-      "tale",
-      "chronicle"
-    ],
-    "category": "Literature",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000069",
-    "text": "delectable",
-    "phonetic": "/dɪˈlek.tə.bəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Highly pleasing to the taste; delicious",
-    "exampleSentence": "The chef prepared a delectable array of desserts.",
-    "synonyms": [
-      "delicious",
-      "exquisite",
-      "scrumptious",
-      "luscious"
-    ],
-    "category": "Food",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000070",
-    "text": "piquant",
-    "phonetic": "/ˈpiː.kənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Having a pleasantly sharp taste or appetizing flavour",
-    "exampleSentence": "The piquant sauce added a delightful kick to the dish.",
-    "synonyms": [
-      "spicy",
-      "tangy",
-      "zesty",
-      "sharp"
-    ],
-    "category": "Food",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From French 'piquant' (stinging), from 'piquer' (to prick). Related to 'pike' and 'peak' — all from a root about sharpness or a pointed end."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000071",
-    "text": "savory",
-    "phonetic": "/ˈseɪ.vər.i/",
-    "partOfSpeech": "adj.",
-    "definition": "Pleasantly salty or spicy, not sweet; appetizing",
-    "exampleSentence": "She preferred savory snacks over sweet ones.",
-    "synonyms": [
-      "flavorful",
-      "tasty",
-      "appetizing",
-      "palatable"
-    ],
-    "category": "Food",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000072",
-    "text": "egalitarian",
-    "phonetic": "/ɪˌɡæl.ɪˈteər.i.ən/",
-    "partOfSpeech": "adj.",
-    "definition": "Believing in or based on the principle of equality for all people",
-    "exampleSentence": "The egalitarian society ensured equal opportunities for everyone.",
-    "synonyms": [
-      "equal",
-      "fair",
-      "democratic",
-      "impartial"
-    ],
-    "category": "Society",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From French 'égalitaire,' from Latin 'aequalis' (equal). The French Revolution's 'Liberté, égalité, fraternité' brought this concept into politics."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000073",
-    "text": "disparity",
-    "phonetic": "/dɪˈspær.ɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "A great difference or inequality between things",
-    "exampleSentence": "The disparity in income between rich and poor continues to grow.",
-    "synonyms": [
-      "inequality",
-      "gap",
-      "difference",
-      "imbalance"
-    ],
-    "category": "Society",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000074",
-    "text": "cohesion",
-    "phonetic": "/kəʊˈhiː.ʒən/",
-    "partOfSpeech": "n.",
-    "definition": "The action of forming a unified whole; togetherness",
-    "exampleSentence": "Team cohesion is essential for achieving shared goals.",
-    "synonyms": [
-      "unity",
-      "solidarity",
-      "togetherness",
-      "harmony"
-    ],
-    "category": "Society",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000075",
-    "text": "bureaucracy",
-    "phonetic": "/bjʊˈrɒk.rə.si/",
-    "partOfSpeech": "n.",
-    "definition": "A system of government marked by excessive red tape and routine",
-    "exampleSentence": "The startup moved fast to avoid becoming bogged down in bureaucracy.",
-    "synonyms": [
-      "red tape",
-      "officialdom",
-      "administration",
-      "protocol"
-    ],
-    "category": "Society",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000076",
-    "text": "apprehensive",
-    "phonetic": "/ˌæp.rɪˈhen.sɪv/",
-    "partOfSpeech": "adj.",
-    "definition": "Anxious or fearful that something bad will happen",
-    "exampleSentence": "She felt apprehensive before her first public speech.",
-    "synonyms": [
-      "anxious",
-      "worried",
-      "nervous",
-      "uneasy"
-    ],
-    "category": "Emotions",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000077",
-    "text": "euphoric",
-    "phonetic": "/juːˈfɒr.ɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Characterized by a feeling of intense happiness and excitement",
-    "exampleSentence": "The team was euphoric after winning the championship.",
-    "synonyms": [
-      "elated",
-      "ecstatic",
-      "overjoyed",
-      "exhilarated"
-    ],
-    "category": "Emotions",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000078",
-    "text": "indignant",
-    "phonetic": "/ɪnˈdɪɡ.nənt/",
-    "partOfSpeech": "adj.",
-    "definition": "Feeling or showing anger at what is perceived as unjust",
-    "exampleSentence": "She was indignant at being accused of something she didn't do.",
-    "synonyms": [
-      "angry",
-      "outraged",
-      "affronted",
-      "resentful"
-    ],
-    "category": "Emotions",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000079",
-    "text": "nostalgia",
-    "phonetic": "/nɒˈstæl.dʒə/",
-    "partOfSpeech": "n.",
-    "definition": "A sentimental longing for the past, typically for a period or place with happy associations",
-    "exampleSentence": "The old photos filled her with nostalgia for her childhood summers.",
-    "synonyms": [
-      "yearning",
-      "longing",
-      "sentimentality",
-      "reminiscence"
-    ],
-    "category": "Emotions",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000080",
-    "text": "alacrity",
-    "phonetic": "/əˈlæk.rɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "Brisk and cheerful readiness to do something",
-    "exampleSentence": "She accepted the challenge with great alacrity.",
-    "synonyms": [
-      "eagerness",
-      "enthusiasm",
-      "willingness",
-      "promptness"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Latin 'alacritas' (liveliness, eagerness), from 'alacer' (brisk). The root suggests energetic quickness — the opposite of sluggishness."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000081",
-    "text": "algorithm",
-    "phonetic": "/ˈæl.ɡə.rɪ.ðəm/",
-    "partOfSpeech": "n.",
-    "definition": "A step-by-step procedure for solving a problem or accomplishing a task",
-    "exampleSentence": "The algorithm sorted thousands of results in milliseconds.",
-    "synonyms": [
-      "procedure",
-      "method",
-      "process",
-      "formula"
-    ],
-    "category": "Technology",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000082",
-    "text": "iterate",
-    "phonetic": "/ˈɪt.ə.reɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To repeat a process, making incremental improvements each time",
-    "exampleSentence": "The team iterated on the design until it felt intuitive.",
-    "synonyms": [
-      "repeat",
-      "cycle",
-      "refine",
-      "revisit"
-    ],
-    "category": "Technology",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000083",
-    "text": "prototype",
-    "phonetic": "/ˈprəʊ.tə.taɪp/",
-    "partOfSpeech": "n.",
-    "definition": "An early model of a product used to test a concept before full development",
-    "exampleSentence": "They built a prototype in two weeks to test user reactions.",
-    "synonyms": [
-      "model",
-      "mock-up",
-      "sample",
-      "draft"
-    ],
-    "category": "Technology",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000084",
-    "text": "latency",
-    "phonetic": "/ˈleɪ.tən.si/",
-    "partOfSpeech": "n.",
-    "definition": "The delay between a request and the system's response",
-    "exampleSentence": "High latency made the video call choppy and frustrating.",
-    "synonyms": [
-      "delay",
-      "lag",
-      "response time",
-      "slowdown"
-    ],
-    "category": "Technology",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Latin 'latens' (lying hidden), from 'latere' (to lie hidden). Related to 'latent' — something that exists but hasn't yet revealed itself."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000085",
-    "text": "encrypt",
-    "phonetic": "/ɪnˈkrɪpt/",
-    "partOfSpeech": "v.",
-    "definition": "To convert data into a coded form to prevent unauthorized access",
-    "exampleSentence": "All messages are encrypted end-to-end for privacy.",
-    "synonyms": [
-      "encode",
-      "scramble",
-      "cipher",
-      "protect"
-    ],
-    "category": "Technology",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000086",
-    "text": "cognitive",
-    "phonetic": "/ˈkɒɡ.nɪ.tɪv/",
-    "partOfSpeech": "adj.",
-    "definition": "Relating to mental processes such as thinking, knowing, and reasoning",
-    "exampleSentence": "Regular reading improves cognitive function and memory.",
-    "synonyms": [
-      "mental",
-      "intellectual",
-      "cerebral",
-      "rational"
-    ],
-    "category": "Psychology",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000087",
-    "text": "intrinsic",
-    "phonetic": "/ɪnˈtrɪn.zɪk/",
-    "partOfSpeech": "adj.",
-    "definition": "Belonging naturally; arising from internal motivation rather than external reward",
-    "exampleSentence": "Her intrinsic love of learning drove her to study every day.",
-    "synonyms": [
-      "inherent",
-      "innate",
-      "natural",
-      "built-in"
-    ],
-    "category": "Psychology",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Medieval Latin 'intrinsecus' (inward), from 'intra' (within). Describes a quality belonging to something by its very nature, not added from outside."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000088",
-    "text": "bias",
-    "phonetic": "/ˈbaɪ.əs/",
-    "partOfSpeech": "n.",
-    "definition": "A systematic inclination or prejudice that affects judgments unfairly",
-    "exampleSentence": "Confirmation bias makes us seek information that supports existing beliefs.",
-    "synonyms": [
-      "prejudice",
-      "partiality",
-      "slant",
-      "tendency"
-    ],
-    "category": "Psychology",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000089",
-    "text": "stimulus",
-    "phonetic": "/ˈstɪm.jʊ.ləs/",
-    "partOfSpeech": "n.",
-    "definition": "Something that causes a specific response or provokes action",
-    "exampleSentence": "Light is a key stimulus that regulates our sleep cycle.",
-    "synonyms": [
-      "trigger",
-      "prompt",
-      "incentive",
-      "catalyst"
-    ],
-    "category": "Psychology",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000090",
-    "text": "perception",
-    "phonetic": "/pəˈsep.ʃən/",
-    "partOfSpeech": "n.",
-    "definition": "The way in which something is interpreted and understood by the mind",
-    "exampleSentence": "Our perception of time slows down in dangerous situations.",
-    "synonyms": [
-      "interpretation",
-      "impression",
-      "awareness",
-      "understanding"
-    ],
-    "category": "Psychology",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000091",
-    "text": "tenacity",
-    "phonetic": "/tɪˈnæs.ɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "The quality of being determined and not giving up despite difficulty",
-    "exampleSentence": "Her tenacity in the face of failure inspired the whole team.",
-    "synonyms": [
-      "persistence",
-      "determination",
-      "resolve",
-      "grit"
-    ],
-    "category": "Character",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000092",
-    "text": "procrastinate",
-    "phonetic": "/prəˈkræs.tɪ.neɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To delay or postpone tasks, often unnecessarily",
-    "exampleSentence": "Many students procrastinate on assignments until the night before they're due.",
-    "category": "Character",
-    "level": "beginner",
-    "isNew": false,
-    "synonyms": [
-      "delay",
-      "postpone",
-      "defer"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000093",
-    "text": "resonate",
-    "phonetic": "/ˈrez.ə.neɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To have a strong effect on someone; to feel meaningful or relevant",
-    "exampleSentence": "The author's words resonated deeply with everyone who had experienced loss.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": false,
-    "synonyms": [
-      "echo",
-      "reverberate",
-      "strike a chord"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000094",
-    "text": "contemplate",
-    "phonetic": "/ˈkɒn.tem.pleɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To think carefully and at length about something",
-    "exampleSentence": "She sat by the window to contemplate her next move in life.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": false,
-    "synonyms": [
-      "ponder",
-      "reflect",
-      "mull over"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000095",
-    "text": "integrity",
-    "phonetic": "/ɪnˈteɡ.rɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "The quality of being honest and having strong moral principles",
-    "exampleSentence": "She refused the bribe, protecting her integrity at any cost.",
-    "synonyms": [
-      "honesty",
-      "honour",
-      "virtue",
-      "righteousness"
-    ],
-    "category": "Character",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000096",
-    "text": "frugal",
-    "phonetic": "/ˈfruː.ɡəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Sparing in use of resources; economical and avoiding waste",
-    "exampleSentence": "His frugal lifestyle allowed him to retire at forty.",
-    "synonyms": [
-      "thrifty",
-      "economical",
-      "sparing",
-      "prudent"
-    ],
-    "category": "Character",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000097",
-    "text": "magnanimous",
-    "phonetic": "/mæɡˈnæn.ɪ.məs/",
-    "partOfSpeech": "adj.",
-    "definition": "Generous in forgiving; showing a lofty and generous spirit",
-    "exampleSentence": "The champion was magnanimous in victory, praising his opponent.",
-    "synonyms": [
-      "generous",
-      "noble",
-      "big-hearted",
-      "benevolent"
-    ],
-    "category": "Character",
-    "level": "expert",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": "From Latin 'magnanimus' (great-souled), from 'magnus' (great) + 'animus' (soul). The 'magnus' root also gives us 'magnificent' and 'magnitude.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000098",
-    "text": "scrutinize",
-    "phonetic": "/ˈskruː.tɪ.naɪz/",
-    "partOfSpeech": "v.",
-    "definition": "To examine or inspect closely and thoroughly",
-    "exampleSentence": "The detective scrutinized every detail of the crime scene.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": false,
-    "synonyms": [
-      "examine",
-      "inspect",
-      "analyze"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000099",
-    "text": "collaborate",
-    "phonetic": "/kəˈlæb.ə.reɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To work jointly with others on a shared project or goal",
-    "exampleSentence": "The two companies decided to collaborate on developing a groundbreaking product.",
-    "category": "Society",
-    "level": "beginner",
-    "isNew": false,
-    "synonyms": [
-      "cooperate",
-      "partner",
-      "team up"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000100",
-    "text": "perseverance",
-    "phonetic": "/ˌpɜː.sɪˈvɪər.əns/",
-    "partOfSpeech": "n.",
-    "definition": "Continued effort and determination despite difficulty or delay",
-    "exampleSentence": "Perseverance through ten rejections finally earned him the role.",
-    "synonyms": [
-      "persistence",
-      "endurance",
-      "tenacity",
-      "dedication"
-    ],
-    "category": "Character",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000101",
-    "text": "empathize",
-    "phonetic": "/ˈem.pə.θaɪz/",
-    "partOfSpeech": "v.",
-    "definition": "To understand and share the feelings of another person",
-    "exampleSentence": "A good therapist can empathize with clients without losing objectivity.",
-    "category": "Emotions",
-    "level": "beginner",
-    "isNew": false,
-    "synonyms": [
-      "sympathize",
-      "relate",
-      "understand"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000102",
-    "text": "serene",
-    "phonetic": "/sɪˈriːn/",
-    "partOfSpeech": "adj.",
-    "definition": "Calm, peaceful, and untroubled; tranquil",
-    "exampleSentence": "The lake at dawn was completely serene, without a ripple.",
-    "synonyms": [
-      "tranquil",
-      "peaceful",
-      "calm",
-      "placid"
-    ],
-    "category": "Emotions",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000103",
-    "text": "elated",
-    "phonetic": "/ɪˈleɪ.tɪd/",
-    "partOfSpeech": "adj.",
-    "definition": "Extremely happy and excited, often as a result of a success",
-    "exampleSentence": "She was elated when she saw her name on the acceptance list.",
-    "synonyms": [
-      "overjoyed",
-      "ecstatic",
-      "jubilant",
-      "thrilled"
-    ],
-    "category": "Emotions",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000104",
-    "text": "yearn",
-    "phonetic": "/jɜːrn/",
-    "partOfSpeech": "v.",
-    "definition": "To have an intense longing or desire for something",
-    "exampleSentence": "After years abroad, she yearned to return to her hometown.",
-    "category": "Emotions",
-    "level": "intermediate",
-    "isNew": false,
-    "synonyms": [
-      "long",
-      "crave",
-      "pine"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000105",
-    "text": "persevere",
-    "phonetic": "/ˌpɜːr.sɪˈvɪər/",
-    "partOfSpeech": "v.",
-    "definition": "To continue working toward a goal despite difficulty or setbacks",
-    "exampleSentence": "Despite multiple rejections, she persevered and finally got published.",
-    "category": "Character",
-    "level": "beginner",
-    "isNew": false,
-    "synonyms": [
-      "persist",
-      "endure",
-      "continue"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000106",
-    "text": "solidarity",
-    "phonetic": "/ˌsɒl.ɪˈdær.ɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "Unity and support among members of a group with common interests",
-    "exampleSentence": "The workers showed solidarity by refusing to cross the picket line.",
-    "synonyms": [
-      "unity",
-      "cohesion",
-      "togetherness",
-      "fellowship"
-    ],
-    "category": "Society",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000107",
-    "text": "inclusive",
-    "phonetic": "/ɪnˈkluː.sɪv/",
-    "partOfSpeech": "adj.",
-    "definition": "Not excluding any group of people; welcoming diversity",
-    "exampleSentence": "An inclusive workplace benefits from a wider range of perspectives.",
-    "synonyms": [
-      "open",
-      "welcoming",
-      "diverse",
-      "broad"
-    ],
-    "category": "Society",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000108",
-    "text": "philanthropy",
-    "phonetic": "/fɪˈlæn.θrə.pi/",
-    "partOfSpeech": "n.",
-    "definition": "The desire to promote the welfare of others through generous donations of time or money",
-    "exampleSentence": "His philanthropy funded hospitals and schools across the region.",
-    "synonyms": [
-      "charity",
-      "generosity",
-      "altruism",
-      "benevolence"
-    ],
-    "category": "Society",
-    "level": "intermediate",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000109",
-    "text": "vitality",
-    "phonetic": "/vaɪˈtæl.ɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "The state of being strong, active, and full of energy",
-    "exampleSentence": "Daily exercise restored her vitality after months of fatigue.",
-    "synonyms": [
-      "energy",
-      "vigour",
-      "liveliness",
-      "zest"
-    ],
-    "category": "Body",
-    "level": "beginner",
-    "isBookmarked": false,
-    "isLiked": false,
-    "isNew": true,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000110",
-    "text": "articulate",
-    "phonetic": "/ɑːrˈtɪk.jʊ.leɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To express thoughts or feelings clearly and effectively in words",
-    "exampleSentence": "He struggled to articulate exactly why the film had moved him so deeply.",
-    "category": "Communication",
-    "level": "intermediate",
-    "isNew": false,
-    "synonyms": [
-      "express",
-      "communicate",
-      "convey"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000111",
-    "text": "alleviate",
-    "phonetic": "/əˈliː.vi.eɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To make suffering, pain, or a problem less severe",
-    "exampleSentence": "The medication helped alleviate her chronic back pain significantly.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "ease",
-      "relieve",
-      "lessen"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000112",
-    "text": "meander",
-    "phonetic": "/miˈæn.dər/",
-    "partOfSpeech": "v.",
-    "definition": "To wander slowly without a fixed route or purpose",
-    "exampleSentence": "The river meandered lazily through the valley before reaching the sea.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "wander",
-      "drift",
-      "roam"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000113",
-    "text": "cultivate",
-    "phonetic": "/ˈkʌl.tɪ.veɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To develop or nurture a skill, relationship, or quality over time",
-    "exampleSentence": "She spent years cultivating a network of trusted mentors in her industry.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "nurture",
-      "develop",
-      "foster"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000114",
-    "text": "deteriorate",
-    "phonetic": "/dɪˈtɪər.i.ə.reɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To become progressively worse in quality or condition",
-    "exampleSentence": "The patient's health began to deteriorate rapidly in the final weeks.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "worsen",
-      "decline",
-      "degrade"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000115",
-    "text": "transcend",
-    "phonetic": "/trænsˈsend/",
-    "partOfSpeech": "v.",
-    "definition": "To go beyond ordinary limits; to surpass or rise above",
-    "exampleSentence": "True art transcends cultural boundaries and speaks to all of humanity.",
-    "category": "General",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "surpass",
-      "exceed",
-      "overcome"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Latin 'transcendere' (to climb over), from 'trans-' (across) + 'scandere' (to climb). 'Scandere' also gives us 'ascend,' 'descend,' and 'scandal.'"
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000116",
-    "text": "ponder",
-    "phonetic": "/ˈpɒn.dər/",
-    "partOfSpeech": "v.",
-    "definition": "To think about something carefully and at length",
-    "exampleSentence": "She pondered the question for a long time before giving her answer.",
-    "category": "General",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "contemplate",
-      "muse",
-      "reflect"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000117",
-    "text": "provoke",
-    "phonetic": "/prəˈvoʊk/",
-    "partOfSpeech": "v.",
-    "definition": "To stimulate or give rise to a reaction or feeling",
-    "exampleSentence": "The controversial painting provoked heated debate among art critics.",
-    "category": "General",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "stimulate",
-      "trigger",
-      "incite"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000118",
-    "text": "relinquish",
-    "phonetic": "/rɪˈlɪŋ.kwɪʃ/",
-    "partOfSpeech": "v.",
-    "definition": "To voluntarily give up or surrender something",
-    "exampleSentence": "The CEO reluctantly relinquished control of the company after the scandal.",
-    "category": "General",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "surrender",
-      "give up",
-      "yield"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Latin 'relinquere' (to leave behind), from 're-' + 'linquere' (to leave). Related to 'relic' — objects left behind — and 'delinquent' — one who abandons duty."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000119",
-    "text": "innovate",
-    "phonetic": "/ˈɪn.ə.veɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To introduce new methods, ideas, or products",
-    "exampleSentence": "Companies that fail to innovate risk being overtaken by their competitors.",
-    "category": "Technology",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "invent",
-      "create",
-      "pioneer"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000120",
-    "text": "fluctuate",
-    "phonetic": "/ˈflʌk.tʃu.eɪt/",
-    "partOfSpeech": "v.",
-    "definition": "To rise and fall irregularly; to vary unpredictably",
-    "exampleSentence": "The stock prices fluctuated wildly throughout the trading day.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "vary",
-      "oscillate",
-      "waver"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000121",
-    "text": "meticulously",
-    "phonetic": "/mɪˈtɪk.jʊ.ləs.li/",
-    "partOfSpeech": "adv.",
-    "definition": "With great care and attention to every detail",
-    "exampleSentence": "The surgeon meticulously followed every step of the procedure.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "carefully",
-      "precisely",
-      "thoroughly"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000122",
-    "text": "fervently",
-    "phonetic": "/ˈfɜːr.vənt.li/",
-    "partOfSpeech": "adv.",
-    "definition": "With passionate intensity and deep feeling",
-    "exampleSentence": "She fervently believed that education was the key to changing the world.",
-    "category": "Emotions",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "passionately",
-      "ardently",
-      "zealously"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000123",
-    "text": "inadvertently",
-    "phonetic": "/ˌɪn.ədˈvɜːr.tənt.li/",
-    "partOfSpeech": "adv.",
-    "definition": "Without intention; accidentally",
-    "exampleSentence": "He inadvertently revealed the surprise party when he mentioned the restaurant.",
-    "category": "General",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "accidentally",
-      "unintentionally",
-      "by mistake"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Medieval Latin 'inadvertens,' from 'in-' (not) + 'advertere' (to turn toward). Related to 'advertise' — not turning attention toward something."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000124",
-    "text": "resolutely",
-    "phonetic": "/ˈrez.ə.luːt.li/",
-    "partOfSpeech": "adv.",
-    "definition": "With firm determination and unwavering purpose",
-    "exampleSentence": "She resolutely refused to compromise on her core values.",
-    "category": "Character",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "firmly",
-      "determinedly",
-      "steadfastly"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000125",
-    "text": "tentatively",
-    "phonetic": "/ˈten.tə.tɪv.li/",
-    "partOfSpeech": "adv.",
-    "definition": "With hesitation or uncertainty; not definitively",
-    "exampleSentence": "She tentatively raised her hand, unsure if her answer was correct.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "hesitantly",
-      "cautiously",
-      "uncertainly"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000126",
-    "text": "profoundly",
-    "phonetic": "/prəˈfaʊnd.li/",
-    "partOfSpeech": "adv.",
-    "definition": "To a great or intense degree; deeply",
-    "exampleSentence": "The documentary profoundly changed how he thought about climate change.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "deeply",
-      "greatly",
-      "intensely"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000127",
-    "text": "relentlessly",
-    "phonetic": "/rɪˈlent.ləs.li/",
-    "partOfSpeech": "adv.",
-    "definition": "Without stopping or yielding; persistently and without mercy",
-    "exampleSentence": "The reporter relentlessly pursued the story despite numerous setbacks.",
-    "category": "Character",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "persistently",
-      "tirelessly",
-      "unremittingly"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000128",
-    "text": "wholeheartedly",
-    "phonetic": "/ˌhoʊlˈhɑːr.tɪd.li/",
-    "partOfSpeech": "adv.",
-    "definition": "With complete sincerity, enthusiasm, and commitment",
-    "exampleSentence": "He wholeheartedly supported his partner's decision to change careers.",
-    "category": "Emotions",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "sincerely",
-      "enthusiastically",
-      "completely"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000129",
-    "text": "insidious",
-    "phonetic": "/ɪnˈsɪd.i.əs/",
-    "partOfSpeech": "adj.",
-    "definition": "Proceeding in a subtle and harmful way that is not easily noticed",
-    "exampleSentence": "Misinformation spreads in an insidious way, slowly distorting public perception.",
-    "category": "General",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "subtle",
-      "treacherous",
-      "cunning"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Latin 'insidiosus' (cunning), from 'insidiae' (ambush), from 'insidere' (to sit in). Literally: danger lurking in ambush beneath an innocent surface."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000130",
-    "text": "amiable",
-    "phonetic": "/ˈeɪ.mi.ə.bəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Having a friendly, pleasant, and good-natured manner",
-    "exampleSentence": "The new neighbor was amiable and quickly became friends with everyone on the block.",
-    "category": "People",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "friendly",
-      "pleasant",
-      "affable"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000131",
-    "text": "ostentatious",
-    "phonetic": "/ˌɒs.tenˈteɪ.ʃəs/",
-    "partOfSpeech": "adj.",
-    "definition": "Designed to impress or attract notice; showy or pretentious",
-    "exampleSentence": "His ostentatious mansion made the humble neighbors feel uncomfortable.",
-    "category": "Character",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "showy",
-      "flamboyant",
-      "pretentious"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Latin 'ostentare' (to show off), from 'ostendere' (to display). The root 'tendere' means to stretch — as if stretching something in front of others."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000132",
-    "text": "pensive",
-    "phonetic": "/ˈpen.sɪv/",
-    "partOfSpeech": "adj.",
-    "definition": "Engaged in deep or serious thought, often with a hint of sadness",
-    "exampleSentence": "She sat in a pensive mood, staring out at the rain-soaked street.",
-    "category": "Emotions",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "thoughtful",
-      "reflective",
-      "contemplative"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000133",
-    "text": "volatile",
-    "phonetic": "/ˈvɒl.ə.taɪl/",
-    "partOfSpeech": "adj.",
-    "definition": "Likely to change rapidly and unpredictably; easily aroused",
-    "exampleSentence": "The volatile market made investors nervous about their portfolios.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "unstable",
-      "erratic",
-      "unpredictable"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000134",
-    "text": "lucrative",
-    "phonetic": "/ˈluː.krə.tɪv/",
-    "partOfSpeech": "adj.",
-    "definition": "Producing a great deal of profit or financial gain",
-    "exampleSentence": "Software engineering proved to be a highly lucrative career choice.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "profitable",
-      "rewarding",
-      "gainful"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000135",
-    "text": "amicable",
-    "phonetic": "/ˈæm.ɪ.kə.bəl/",
-    "partOfSpeech": "adj.",
-    "definition": "Characterized by friendly goodwill and mutual agreement",
-    "exampleSentence": "The former partners reached an amicable agreement and parted on good terms.",
-    "category": "People",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "friendly",
-      "cordial",
-      "harmonious"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000136",
-    "text": "inquisitive",
-    "phonetic": "/ɪnˈkwɪz.ɪ.tɪv/",
-    "partOfSpeech": "adj.",
-    "definition": "Curious and eager to learn or know about things",
-    "exampleSentence": "Children are naturally inquisitive, always asking questions about the world.",
-    "category": "Character",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "curious",
-      "nosy",
-      "inquiring"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000137",
-    "text": "dilemma",
-    "phonetic": "/dɪˈlem.ə/",
-    "partOfSpeech": "n.",
-    "definition": "A situation requiring a choice between two equally difficult options",
-    "exampleSentence": "She faced a dilemma between pursuing her dream or staying close to family.",
-    "category": "General",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "predicament",
-      "quandary",
-      "conundrum"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000138",
-    "text": "epiphany",
-    "phonetic": "/ɪˈpɪf.ə.ni/",
-    "partOfSpeech": "n.",
-    "definition": "A sudden, profound moment of realization or understanding",
-    "exampleSentence": "While washing dishes, he had an epiphany that changed his entire career path.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "revelation",
-      "insight",
-      "realization"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000139",
-    "text": "momentum",
-    "phonetic": "/məˈmen.təm/",
-    "partOfSpeech": "n.",
-    "definition": "The force or speed of movement; growing strength of a trend or effort",
-    "exampleSentence": "The campaign gained momentum after a celebrity shared the cause online.",
-    "category": "General",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "impetus",
-      "drive",
-      "force"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000140",
-    "text": "adversity",
-    "phonetic": "/ədˈvɜːr.sɪ.ti/",
-    "partOfSpeech": "n.",
-    "definition": "Difficult or challenging circumstances that test one's strength",
-    "exampleSentence": "Great leaders are often defined by how they respond to adversity.",
-    "category": "Character",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "hardship",
-      "difficulty",
-      "misfortune"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000141",
-    "text": "equilibrium",
-    "phonetic": "/ˌiː.kwɪˈlɪb.ri.əm/",
-    "partOfSpeech": "n.",
-    "definition": "A state of balance between opposing forces or elements",
-    "exampleSentence": "After the disruption, the ecosystem gradually returned to equilibrium.",
-    "category": "Science",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "balance",
-      "stability",
-      "poise"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Latin 'aequilibrium,' from 'aequus' (equal) + 'libra' (scales). 'Libra' is also the zodiac sign and the origin of the pound (lb) as a unit of weight."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000142",
-    "text": "solitude",
-    "phonetic": "/ˈsɒl.ɪ.tjuːd/",
-    "partOfSpeech": "n.",
-    "definition": "The state of being alone, often peacefully and by choice",
-    "exampleSentence": "The writer valued solitude and retreated to a mountain cabin to finish his novel.",
-    "category": "Emotions",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "seclusion",
-      "isolation",
-      "aloneness"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000143",
-    "text": "gratitude",
-    "phonetic": "/ˈɡræt.ɪ.tjuːd/",
-    "partOfSpeech": "n.",
-    "definition": "The quality of being thankful and appreciative",
-    "exampleSentence": "She expressed her gratitude by writing each person a heartfelt thank-you note.",
-    "category": "Emotions",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "thankfulness",
-      "appreciation",
-      "acknowledgment"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000144",
-    "text": "euphemism",
-    "phonetic": "/ˈjuː.fə.mɪz.əm/",
-    "partOfSpeech": "n.",
-    "definition": "A mild or indirect expression used in place of an unpleasant one",
-    "exampleSentence": "'Letting go' is a common euphemism for firing an employee.",
-    "category": "Communication",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "circumlocution",
-      "understatement",
-      "softening"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "From Greek 'euphēmismos,' from 'eu-' (good) + 'phēmē' (speech). Literally 'good speaking' — using pleasant words to avoid unpleasant ones."
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000145",
-    "text": "phenomenon",
-    "phonetic": "/fɪˈnɒm.ɪ.nən/",
-    "partOfSpeech": "n.",
-    "definition": "A remarkable or observable fact, event, or circumstance",
-    "exampleSentence": "The northern lights are a breathtaking natural phenomenon.",
-    "category": "Science",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "occurrence",
-      "event",
-      "spectacle"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000146",
-    "text": "stereotype",
-    "phonetic": "/ˈster.i.ə.taɪp/",
-    "partOfSpeech": "n.",
-    "definition": "A widely held but fixed and oversimplified image or idea of a group",
-    "exampleSentence": "The film challenged the stereotype that scientists lack social skills.",
-    "category": "Society",
-    "level": "beginner",
-    "isNew": true,
-    "synonyms": [
-      "cliché",
-      "generalization",
-      "assumption"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000147",
-    "text": "charisma",
-    "phonetic": "/kəˈrɪz.mə/",
-    "partOfSpeech": "n.",
-    "definition": "A compelling personal magnetism that inspires devotion or enthusiasm",
-    "exampleSentence": "The young politician's charisma drew massive crowds wherever she spoke.",
-    "category": "People",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "magnetism",
-      "charm",
-      "appeal"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000148",
-    "text": "resilience",
-    "phonetic": "/rɪˈzɪl.i.əns/",
-    "partOfSpeech": "n.",
-    "definition": "The ability to recover quickly from difficulties or bounce back",
-    "exampleSentence": "The community showed remarkable resilience in rebuilding after the flood.",
-    "category": "Character",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "toughness",
-      "adaptability",
-      "fortitude"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000149",
-    "text": "autonomy",
-    "phonetic": "/ɔːˈtɒn.ə.mi/",
-    "partOfSpeech": "n.",
-    "definition": "The right to self-governance or freedom to make one's own decisions",
-    "exampleSentence": "Remote workers often cite autonomy as the biggest advantage of their work style.",
-    "category": "Society",
-    "level": "intermediate",
-    "isNew": true,
-    "synonyms": [
-      "independence",
-      "self-governance",
-      "freedom"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": null
-  },
-  {
-    "id": "00000000-0000-0000-0000-000000000150",
-    "text": "ambivalence",
-    "phonetic": "/æmˈbɪv.ə.ləns/",
-    "partOfSpeech": "n.",
-    "definition": "The state of having mixed or contradictory feelings about something",
-    "exampleSentence": "She felt ambivalence about moving abroad — excited by opportunity but sad to leave friends.",
-    "category": "Emotions",
-    "level": "expert",
-    "isNew": true,
-    "synonyms": [
-      "uncertainty",
-      "indecision",
-      "conflict"
-    ],
-    "isBookmarked": false,
-    "isLiked": false,
-    "etymology": "Coined by psychiatrist Eugen Bleuler (~1910) from Latin 'ambi-' (both) + 'valentia' (strength). Originally a clinical term for holding two contradictory feelings at once."
-  }
+ {
+  "id": "1A9D5DDF-63CC-5C45-A76B-5501F9F6DD07",
+  "text": "petrichor",
+  "phonetic": "/ˈpɛtrɪkɔːr/",
+  "partOfSpeech": "noun",
+  "definition": "The earthy, pleasant scent produced when rain falls on dry soil after a warm, dry spell.",
+  "exampleSentence": "The first fat drops hit the parched garden and that smell rose up - petrichor, the whole street suddenly breathing again.",
+  "synonyms": [
+   "earthiness",
+   "rain-smell"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "Coined by CSIRO scientists Isabel Joy Bear and Richard Thomas in 'Nature of Argillaceous Odour' (Nature, 7 March 1964) as an 'ichor' or 'tenuous essence derived from rock or stone,' from Greek 'petra' (stone) + 'ichor' (the fluid in the veins of the gods).",
+  "frequencyRank": 2,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "D35C03D2-CEE8-56B2-B47E-B69201DDE20E",
+  "text": "apricity",
+  "phonetic": "/əˈprɪsɪti/",
+  "partOfSpeech": "noun",
+  "definition": "The warmth of the sun in winter.",
+  "exampleSentence": "She dragged the kitchen chair onto the icy balcony just to sit in the apricity for ten borrowed minutes.",
+  "synonyms": [
+   "sun-warmth"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Latin 'apricitas' (warmed by the sun); first recorded in Henry Cockeram's 'English Dictionarie' (1623) as 'the warmenes of the Sunne in winter,' and now obsolete - the same root gave us 'apricot.'",
+  "frequencyRank": 2,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "archaic"
+ },
+ {
+  "id": "13A91BB2-4367-52B0-B93E-96B5C8AF7B41",
+  "text": "serendipity",
+  "phonetic": "/ˌsɛrənˈdɪpɪti/",
+  "partOfSpeech": "noun",
+  "definition": "The occurrence of happy or beneficial discoveries by accident, plus the wit to notice them.",
+  "exampleSentence": "She went to the library for a tax form and left with the novel that changed her life - pure serendipity.",
+  "synonyms": [
+   "chance",
+   "fluke",
+   "providence"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "Coined by Horace Walpole in a letter to Horace Mann dated 28 January 1754 - 'a very expressive word' - from the Persian tale 'The Three Princes of Serendip,' whose heroes kept making lucky discoveries.",
+  "frequencyRank": 3,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "neutral"
+ },
+ {
+  "id": "6A3C569A-3F60-53E2-B426-0C131E832FCF",
+  "text": "brontide",
+  "phonetic": "/ˈbrɒntaɪd/",
+  "partOfSpeech": "noun",
+  "definition": "The low, distant rumble of thunder.",
+  "exampleSentence": "All afternoon a brontide rolled along the horizon, but the rain never came.",
+  "synonyms": [
+   "rumble"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Greek brontē 'thunder'.",
+  "frequencyRank": 3,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "7F43275F-1597-53A5-817E-C9DE214EC004",
+  "text": "gloaming",
+  "phonetic": "/ˈɡloʊmɪŋ/",
+  "partOfSpeech": "noun",
+  "definition": "Twilight; the dusk of the evening.",
+  "exampleSentence": "In the gloaming the hills went violet and the first window lights came on one by one.",
+  "synonyms": [
+   "twilight",
+   "dusk"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Old English 'glōmung,' related to 'glōm' (twilight) and to 'glow' - the soft glow that lingers after sunset.",
+  "frequencyRank": 4,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "773B0C58-8ADD-558E-A6E9-DA3977C5B7D2",
+  "text": "nyctophilia",
+  "phonetic": "/ˌnɪktəˈfɪliə/",
+  "partOfSpeech": "noun",
+  "definition": "A love of night and darkness; finding peace after dark.",
+  "exampleSentence": "Her nyctophilia kept her up till three, happiest when the house went quiet and black.",
+  "synonyms": [],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Emotions",
+  "etymology": "From Greek nyx 'night' + philia 'love'.",
+  "frequencyRank": 4,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "8CE40CD6-3BD8-55A9-ABD5-BD5C5F2F61B6",
+  "text": "halcyon",
+  "phonetic": "/ˈhælsiən/",
+  "partOfSpeech": "adjective",
+  "definition": "Denoting a past period of idyllic peace and happiness.",
+  "exampleSentence": "They talked all night about the halcyon summers before everyone scattered across the map.",
+  "synonyms": [
+   "idyllic",
+   "golden",
+   "serene"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Greek 'halkyon' (kingfisher), a bird the ancients believed calmed the sea while nesting on it at the winter solstice - the 'halcyon days.'",
+  "frequencyRank": 5,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "6B1B736D-2048-5082-A317-A64F97E49CAD",
+  "text": "vespertine",
+  "phonetic": "/ˈvɛspərtaɪn/",
+  "partOfSpeech": "adjective",
+  "definition": "Of or occurring in the evening.",
+  "exampleSentence": "The garden kept vespertine hours — its white flowers opened only at dusk.",
+  "synonyms": [
+   "evening",
+   "twilight"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Latin vesper 'evening'.",
+  "frequencyRank": 5,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "B1CE7E48-3E8F-56D7-9DA5-07FA17102836",
+  "text": "psithurism",
+  "phonetic": "/ˈsɪθjʊrɪzəm/",
+  "partOfSpeech": "noun",
+  "definition": "The soft sound of wind whispering through trees.",
+  "exampleSentence": "They stopped talking just to hear the psithurism move across the poplars.",
+  "synonyms": [
+   "rustling",
+   "susurration"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Greek psithuros 'whispering, slanderous' — onomatopoeic, the word breathes like the sound.",
+  "frequencyRank": 6,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "6B73CE4C-A326-5A3F-B447-DCD6513DD75C",
+  "text": "wabi-sabi",
+  "phonetic": "/ˌwɑːbi ˈsɑːbi/",
+  "partOfSpeech": "noun",
+  "definition": "The beauty found in imperfection, impermanence, and the worn.",
+  "exampleSentence": "The cracked, mended bowl was lovelier for the flaw — pure wabi-sabi.",
+  "synonyms": [],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Character",
+  "etymology": "Japanese wabi 'rustic simplicity' + sabi 'the beauty of age and wear'.",
+  "frequencyRank": 6,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "361A99AB-3FE4-46AD-97F5-3FBDB87BF33A",
+  "text": "redolent",
+  "phonetic": "/ˈredələnt/",
+  "partOfSpeech": "adjective",
+  "definition": "Strongly smelling of something; evocative of a fragrance.",
+  "exampleSentence": "The kitchen was redolent of cinnamon and cloves.",
+  "synonyms": [
+   "fragrant",
+   "aromatic",
+   "scented"
+  ],
+  "antonyms": [
+   "odorless",
+   "scentless"
+  ],
+  "collocations": [
+   "redolent of",
+   "redolent aroma",
+   "air redolent"
+  ],
+  "category": "Food",
+  "etymology": "From Latin 'redolere' to emit a scent.",
+  "frequencyRank": 6380,
+  "domainTags": [
+   "aroma",
+   "food"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "4C2714BC-7591-4EEE-8B5C-7729C2BEFDA0",
+  "text": "limerence",
+  "phonetic": "/ˈlɪmərəns/",
+  "partOfSpeech": "noun",
+  "definition": "The state of being infatuated and obsessively preoccupied with another person.",
+  "exampleSentence": "His limerence faded once the relationship became routine.",
+  "synonyms": [
+   "infatuation",
+   "obsession",
+   "fixation"
+  ],
+  "antonyms": [
+   "indifference",
+   "detachment"
+  ],
+  "collocations": [
+   "state of limerence",
+   "intense limerence",
+   "limerence for"
+  ],
+  "category": "Psychology",
+  "etymology": "Coined in the 1970s by psychologist Dorothy Tennov.",
+  "frequencyRank": 7460,
+  "domainTags": [
+   "attachment",
+   "psychology"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "5C1DA929-5A42-4A12-8F15-2336E03DB4DC",
+  "text": "acedia",
+  "phonetic": "/əˈsiːdiə/",
+  "partOfSpeech": "noun",
+  "definition": "A state of listlessness and spiritual apathy; torpor of the soul.",
+  "exampleSentence": "A profound acedia kept him from any meaningful work.",
+  "synonyms": [
+   "apathy",
+   "torpor",
+   "listlessness"
+  ],
+  "antonyms": [
+   "zeal",
+   "fervor"
+  ],
+  "collocations": [
+   "spiritual acedia",
+   "sense of acedia",
+   "sink into acedia"
+  ],
+  "category": "Emotions",
+  "etymology": "From Greek 'akedia' meaning lack of care.",
+  "frequencyRank": 7510,
+  "domainTags": [
+   "apathy",
+   "emotion"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "CAA1985B-A27B-4898-8886-332863A1C01D",
+  "text": "ataraxia",
+  "phonetic": "/ˌætəˈræksiə/",
+  "partOfSpeech": "noun",
+  "definition": "A state of serene calmness and freedom from emotional disturbance.",
+  "exampleSentence": "The philosopher sought ataraxia through detachment.",
+  "synonyms": [
+   "serenity",
+   "equanimity",
+   "tranquility"
+  ],
+  "antonyms": [
+   "anxiety",
+   "turmoil"
+  ],
+  "collocations": [
+   "achieve ataraxia",
+   "state of ataraxia",
+   "inner ataraxia"
+  ],
+  "category": "Emotions",
+  "etymology": "From Greek 'ataraxia' meaning impassiveness, calm.",
+  "frequencyRank": 7540,
+  "domainTags": [
+   "calm",
+   "emotion"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "5698E4F1-1109-4A64-A42D-5094D0117FC9",
+  "text": "susurrus",
+  "phonetic": "/sjuːˈsʌrəs/",
+  "partOfSpeech": "noun",
+  "definition": "A soft murmuring or rustling sound; a whisper.",
+  "exampleSentence": "A susurrus of leaves filled the quiet wood.",
+  "synonyms": [
+   "murmur",
+   "rustle",
+   "whisper"
+  ],
+  "antonyms": [
+   "roar",
+   "din"
+  ],
+  "collocations": [
+   "a susurrus of",
+   "soft susurrus",
+   "gentle susurrus"
+  ],
+  "category": "Communication",
+  "etymology": "From Latin 'susurrus' meaning a humming, whisper.",
+  "frequencyRank": 8010,
+  "domainTags": [
+   "sound",
+   "communication"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "CC21AD26-335E-4E6C-B8E3-5D0196C10FB3",
+  "text": "quietus",
+  "phonetic": "/kwaɪˈiːtəs/",
+  "partOfSpeech": "noun",
+  "definition": "Something that brings a final end or release; a settling.",
+  "exampleSentence": "The scandal put the quietus on his political career.",
+  "synonyms": [
+   "end",
+   "death blow",
+   "release"
+  ],
+  "antonyms": [
+   "beginning",
+   "revival"
+  ],
+  "collocations": [
+   "put the quietus on",
+   "a final quietus",
+   "deliver the quietus"
+  ],
+  "category": "General",
+  "etymology": "From Latin 'quietus est' meaning he is quit, discharged.",
+  "frequencyRank": 8130,
+  "domainTags": [
+   "abstraction",
+   "general"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "7879CA92-10B8-5C9C-9B0B-D1611D437FB7",
+  "text": "defenestration",
+  "phonetic": "/diːˌfɛnɪˈstreɪʃən/",
+  "partOfSpeech": "noun",
+  "definition": "The act of throwing someone or something out of a window; by extension, a swift removal from power.",
+  "exampleSentence": "The board meeting ended in a quiet defenestration: by Friday the founder's name was already gone from the door.",
+  "synonyms": [
+   "ejection",
+   "ousting"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Society",
+  "etymology": "From Latin 'de-' (down from) + 'fenestra' (window); coined around the Second Defenestration of Prague (23 May 1618), when Protestant nobles threw two regents ~70 feet from a castle window, sparking the Thirty Years' War.",
+  "frequencyRank": 9001,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "08AC249D-66E6-5561-A39B-0DA0C18A0565",
+  "text": "mondegreen",
+  "phonetic": "/ˈmɒndɪɡriːn/",
+  "partOfSpeech": "noun",
+  "definition": "A misheard word or phrase, especially in a song, that yields a new meaning.",
+  "exampleSentence": "For years he belted 'wrapped up like a douche' into his hairbrush - a mondegreen he refused to give up even after learning the real line.",
+  "synonyms": [
+   "mishearing"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Communication",
+  "etymology": "Coined by Sylvia Wright in 'The Death of Lady Mondegreen' (Harper's, November 1954), after she misheard the ballad line 'laid him on the green' as 'Lady Mondegreen.'",
+  "frequencyRank": 9001,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "neutral"
+ },
+ {
+  "id": "5F14478D-F789-597D-93B1-DFAC8CE4EAA5",
+  "text": "sonder",
+  "phonetic": "/ˈsɒndər/",
+  "partOfSpeech": "noun",
+  "definition": "The realization that each random passer-by is living a life as vivid and complex as your own.",
+  "exampleSentence": "Stuck in traffic, watching a hundred lit windows, she felt that vertigo of sonder - every one of them a whole novel.",
+  "synonyms": [],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Psychology",
+  "etymology": "Coined by John Koenig in 'The Dictionary of Obscure Sorrows' (2012), adapted from French 'sonder' (to probe) and German 'sonder' (special).",
+  "frequencyRank": 9002,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "neutral"
+ },
+ {
+  "id": "83E293A8-832E-588F-A524-4206CC65E0EC",
+  "text": "eucatastrophe",
+  "phonetic": "/ˌjuːkəˈtæstrəfi/",
+  "partOfSpeech": "noun",
+  "definition": "A sudden, joyous turn for the good at the darkest point of a story.",
+  "exampleSentence": "Right when the city seemed lost, the horns sounded on the hill - a perfect eucatastrophe.",
+  "synonyms": [
+   "happy ending",
+   "deliverance"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Literature",
+  "etymology": "Coined by J. R. R. Tolkien (from a 1939 St Andrews lecture, published 1947 in 'Essays Presented to Charles Williams'): 'Since we do not appear to possess a word... I will call it Eucatastrophe,' from Greek 'eu-' (good) + 'catastrophe' (sudden turn).",
+  "frequencyRank": 9002,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "2C4BC245-DE90-521A-9799-B9824291FB45",
+  "text": "sillage",
+  "phonetic": "/siˈjɑːʒ/",
+  "partOfSpeech": "noun",
+  "definition": "The scented trail left lingering in the air after a perfumed person passes.",
+  "exampleSentence": "She had already turned the corner, but her sillage hung in the stairwell like a signature.",
+  "synonyms": [
+   "scent-trail",
+   "wake"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From French 'sillage' (the wake of a ship), from 'sillon' (furrow), ultimately from Latin 'secare' (to cut).",
+  "frequencyRank": 9003,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "57947EAE-D00E-5DBE-A098-3698AA9B0494",
+  "text": "liminal",
+  "phonetic": "/ˈlɪmɪnəl/",
+  "partOfSpeech": "adjective",
+  "definition": "Occupying a threshold; in between two states or stages.",
+  "exampleSentence": "Airports at 3 a.m. have a liminal feel — nowhere, between everywhere.",
+  "synonyms": [
+   "transitional",
+   "in-between"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Psychology",
+  "etymology": "From Latin limen 'threshold'.",
+  "frequencyRank": 9003,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "5EFAD280-92F4-57AA-B68F-C560DA2A33A5",
+  "text": "clinquant",
+  "phonetic": "/ˈklɪŋkənt/",
+  "partOfSpeech": "adjective",
+  "definition": "Glittering with gold or tinsel; showily brilliant.",
+  "exampleSentence": "The ballroom was clinquant with chandeliers, every surface throwing back light.",
+  "synonyms": [
+   "glittering",
+   "gilded"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Literature",
+  "etymology": "From French 'clinquant,' present participle of the obsolete 'clinquer' (to clink, glitter), of imitative origin.",
+  "frequencyRank": 9004,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "2FDDE576-E38B-59D9-9682-610658141F31",
+  "text": "hiraeth",
+  "phonetic": "/ˈhɪraɪθ/",
+  "partOfSpeech": "noun",
+  "definition": "A deep, wistful longing for a home or past that may never have existed; bittersweet homesickness for the irrecoverable.",
+  "exampleSentence": "Hearing the old language on the train platform filled her with hiraeth for a village she had never actually lived in.",
+  "synonyms": [
+   "longing",
+   "yearning"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Emotions",
+  "etymology": "A Welsh word with no exact English equivalent, blending grief and longing for the lost or the never-was.",
+  "frequencyRank": 9005,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "83AE4BB6-358D-5388-93B4-A370E15879AF",
+  "text": "velleity",
+  "phonetic": "/vɛˈliːɪti/",
+  "partOfSpeech": "noun",
+  "definition": "A wish or inclination so slight it prompts no action whatsoever.",
+  "exampleSentence": "He had a velleity to learn the cello - enough to admire one in a shop window, never enough to buy it.",
+  "synonyms": [
+   "whim",
+   "faint wish"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Psychology",
+  "etymology": "From Medieval Latin 'velleitas,' from Latin 'velle' (to wish, to will).",
+  "frequencyRank": 9006,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "6CCEBBBD-0723-5AC4-8E79-4EC3BD0F3060",
+  "text": "crepuscular",
+  "phonetic": "/krɪˈpʌskjʊlər/",
+  "partOfSpeech": "adjective",
+  "definition": "Of or resembling twilight; (of animals) active mainly at dawn and dusk.",
+  "exampleSentence": "Deer are crepuscular, so the meadow filled with them only as the light began to fail.",
+  "synonyms": [
+   "twilight",
+   "dusky"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Science",
+  "etymology": "From Latin 'crepusculum' (twilight), from 'creper' (dusky, obscure).",
+  "frequencyRank": 9007,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "86F7360E-B506-574C-A66B-E07823C1A662",
+  "text": "numinous",
+  "phonetic": "/ˈnjuːmɪnəs/",
+  "partOfSpeech": "adjective",
+  "definition": "Feeling the presence of something holy, awe-inspiring and beyond comprehension.",
+  "exampleSentence": "Standing alone in the vast empty cathedral, she felt something numinous she had no church for.",
+  "synonyms": [
+   "spiritual",
+   "awe-filled",
+   "transcendent"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Psychology",
+  "etymology": "From Latin 'numen' (divine will, the nod of a god); given its modern sense by theologian Rudolf Otto in 1917.",
+  "frequencyRank": 9008,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "F5E58088-4B76-59A0-83F6-1C45F14340AF",
+  "text": "anemoia",
+  "phonetic": "/ˌænɪˈmɔɪə/",
+  "partOfSpeech": "noun",
+  "definition": "A wistful nostalgia for a time you never experienced yourself.",
+  "exampleSentence": "Flipping through the stranger's 1970s photo album, he was ambushed by anemoia for a decade he never lived.",
+  "synonyms": [
+   "nostalgia",
+   "longing"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Emotions",
+  "etymology": "Coined by John Koenig in 'The Dictionary of Obscure Sorrows,' from Greek 'anemos' (wind) + 'nous' (mind).",
+  "frequencyRank": 9009,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "neutral"
+ },
+ {
+  "id": "25A975C3-7D89-557E-8D17-09269E2C711F",
+  "text": "tintinnabulation",
+  "phonetic": "/ˌtɪntɪˌnæbjʊˈleɪʃən/",
+  "partOfSpeech": "noun",
+  "definition": "The lingering ringing or jingling of bells.",
+  "exampleSentence": "The whole valley filled with the tintinnabulation of the morning bells.",
+  "synonyms": [
+   "ringing",
+   "chiming"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Communication",
+  "etymology": "From Latin tintinnabulum 'bell'; popularized by Edgar Allan Poe's poem 'The Bells' (1849).",
+  "frequencyRank": 9010,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "553D9F60-5F0B-554A-B110-6FD28A1994BD",
+  "text": "eudaimonia",
+  "phonetic": "/ˌjuːdɪˈmoʊniə/",
+  "partOfSpeech": "noun",
+  "definition": "Deep human flourishing; happiness as a whole life lived well.",
+  "exampleSentence": "For Aristotle, pleasure was fleeting but eudaimonia was the point of a life.",
+  "synonyms": [
+   "flourishing",
+   "well-being"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "Psychology",
+  "etymology": "From Greek eu 'good' + daimōn 'guiding spirit'; Aristotle's name for the highest human good.",
+  "frequencyRank": 9011,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "DA3F8AE0-4D8A-5669-8633-6DD37B0A777E",
+  "text": "selcouth",
+  "phonetic": "/ˈsɛlkuːθ/",
+  "partOfSpeech": "adjective",
+  "definition": "Unfamiliar and strange, yet marvellous.",
+  "exampleSentence": "The first snow felt selcouth to the desert child — alien and wonderful at once.",
+  "synonyms": [
+   "strange",
+   "wondrous"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "From Old English seldcūth, from seldan 'seldom' + cūth 'known'.",
+  "frequencyRank": 9012,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "archaic"
+ },
+ {
+  "id": "6EC8B2C8-D94B-56D0-861C-47D1AC00FFEE",
+  "text": "duende",
+  "phonetic": "/duˈɛndeɪ/",
+  "partOfSpeech": "noun",
+  "definition": "A surge of soul, passion, and authenticity in art or performance.",
+  "exampleSentence": "Her voice cracked on the last note, and that was the duende — raw and alive.",
+  "synonyms": [
+   "soul",
+   "fire"
+  ],
+  "antonyms": [],
+  "collocations": [],
+  "category": "General",
+  "etymology": "Spanish duende 'goblin, spirit'; elevated by Federico García Lorca in a 1933 lecture to mean art's dark, vital magic.",
+  "frequencyRank": 9013,
+  "domainTags": [],
+  "language": "en",
+  "isNew": false,
+  "register": "literary"
+ },
+ {
+  "id": "31CECB93-7C99-4EAC-9B08-B51AF6BFDFDF",
+  "text": "ineffable",
+  "phonetic": "/ɪnˈefəbəl/",
+  "partOfSpeech": "adjective",
+  "definition": "Too great or extreme to be expressed in words.",
+  "exampleSentence": "Standing at the canyon's edge, she felt an ineffable awe.",
+  "synonyms": [
+   "indescribable",
+   "unspeakable"
+  ],
+  "antonyms": [
+   "expressible",
+   "describable"
+  ],
+  "collocations": [
+   "ineffable beauty",
+   "ineffable sadness"
+  ],
+  "category": "Emotions",
+  "etymology": "From Latin 'ineffabilis' — 'in-' (not) + 'effari' (to utter).",
+  "frequencyRank": 9200,
+  "domainTags": [
+   "literary",
+   "philosophy"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "C900000B-0000-4000-8000-00000000090B",
+  "text": "reverie",
+  "phonetic": "/ˈrevəri/",
+  "partOfSpeech": "noun",
+  "definition": "A state of pleasant dreamy thought.",
+  "exampleSentence": "The knock at the door broke her reverie.",
+  "synonyms": [
+   "daydream",
+   "trance",
+   "musing"
+  ],
+  "antonyms": [
+   "alertness"
+  ],
+  "collocations": [
+   "lost in reverie",
+   "deep reverie"
+  ],
+  "category": "Psychology",
+  "etymology": "From French 'rêverie' meaning a delirium or dreaming.",
+  "frequencyRank": 10900,
+  "domainTags": [
+   "psychology",
+   "literary"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ },
+ {
+  "id": "D26CB7DB-22D5-4203-88FE-03836C01D973",
+  "text": "mellifluous",
+  "phonetic": "/məˈlɪfluəs/",
+  "partOfSpeech": "adjective",
+  "definition": "Pleasingly smooth and flowing, especially of a voice or sound.",
+  "exampleSentence": "Her mellifluous voice made the audiobook a pleasure to listen to.",
+  "synonyms": [
+   "sweet-sounding",
+   "dulcet",
+   "melodious"
+  ],
+  "antonyms": [
+   "harsh",
+   "grating"
+  ],
+  "collocations": [
+   "mellifluous voice",
+   "mellifluous tone"
+  ],
+  "category": "General",
+  "etymology": "From Latin 'mel' (honey) + 'fluere' (to flow) — literally honey-flowing.",
+  "frequencyRank": 11300,
+  "domainTags": [
+   "literary",
+   "sensory"
+  ],
+  "language": "en",
+  "isNew": false,
+  "register": "formal"
+ }
 ]

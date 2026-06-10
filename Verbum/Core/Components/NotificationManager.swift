@@ -30,7 +30,11 @@ enum NotificationManager {
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            // Remove ONLY the daily word slots (verbum_0…23), never the separately-scheduled
+            // "verbum_streak_risk" reminder — wiping all pending requests here used to silently
+            // cancel a streak-save notification whenever the user touched notification settings.
+            let dailyIds = (0..<24).map { "verbum_\($0)" }
+            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: dailyIds)
             let span = max(endHour - startHour, 1)
             let step = max(span / max(count, 1), 1)
             for i in 0..<count {
