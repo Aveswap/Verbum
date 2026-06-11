@@ -159,7 +159,7 @@ struct WordFeedView: View {
             viewModel.reloadFromRepository()
         }
         .onReceive(NotificationCenter.default.publisher(for: .openWord)) { note in
-            // Deep-link from Spotlight: open the requested word's detail.
+            // Deep-link from Spotlight or the widget: open the requested word's detail.
             if let id = note.object as? UUID {
                 deepLinkWord = WordRepository.shared.word(id: id)
             }

@@ -182,7 +182,8 @@ class UserProfileStore: ObservableObject {
             NotificationManager.reschedule(
                 count: profile.notificationCount,
                 startHour: NotificationManager.hoursFrom(profile.notificationStart),
-                endHour: NotificationManager.hoursFrom(profile.notificationEnd)
+                endHour: NotificationManager.hoursFrom(profile.notificationEnd),
+                seenIds: seenSet
             )
         }
     }

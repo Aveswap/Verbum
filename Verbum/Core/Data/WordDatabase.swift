@@ -55,7 +55,9 @@ final class WordDatabase: @unchecked Sendable {
     /// v24: PIVOT — curated gems only; deleted all 2137 non-gem words (de 37 / en 35 / uk 41). See scripts/keep_gems_only.py.
     /// v25: removed difficulty levels entirely (WordLevel enum + `level` column dropped); English-only base
     ///      (de/uk rows deleted, recoverable via word_batches; en 35). Every word is now just "an interesting word".
-    static let bundledDBVersion = 25
+    /// v26: +50 curated "wow-tier" words (deep-research round 3 → en 85); 27 freePool-seeded
+    ///      (scripts/word_batches_gems/gems_round3.json). scurryfunge recategorized Society→General.
+    static let bundledDBVersion = 26
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {

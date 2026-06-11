@@ -62,13 +62,24 @@ struct VerbumApp: App {
                         NotificationCenter.default.post(name: .openWord, object: id)
                     }
                 }
+                .onOpenURL { url in
+                    // Widget tap: verbum://word/<uuid> → open that word's detail.
+                    guard url.scheme == "verbum", url.host == "word",
+                          let id = UUID(uuidString: url.lastPathComponent) else { return }
+                    NotificationCenter.default.post(name: .openWord, object: id)
+                }
                 .onChange(of: scenePhase) { phase in
+                    guard phase == .active else { return }
+                    // Re-anchor the widget's rotating timeline to "now" + current seen state on
+                    // every foreground, so words keep rotating even if the app isn't opened daily.
+                    republishSharedTimeline()
                     // Pull on every foreground (not just at sign-in) so edits made on another
                     // device show up here without re-authenticating. Cheap: networked + LWW merge.
-                    guard phase == .active, userProfile.profile.appleUserID != nil else { return }
-                    Task { await userProfile.cloudKit.pull(into: userProfile) }
+                    if userProfile.profile.appleUserID != nil {
+                        Task { await userProfile.cloudKit.pull(into: userProfile) }
+                    }
                 }
-                // isPro changes the word pool → rebuild the full 14-day timeline, and re-index
+                // isPro changes the word pool → rebuild the rotating timeline, and re-index
                 // Spotlight so paid definitions appear (Pro) or are re-locked (lapse).
                 .onChange(of: subscriptions.isPro) { isPro in
                     republishSharedTimeline()
@@ -79,14 +90,17 @@ struct VerbumApp: App {
                         version: WordDatabase.bundledDBVersion
                     )
                 }
-                // Streak / daily counter only affect the snapshot — skip the 14 DB reads
-                // a full timeline rebuild would do on every single swipe.
+                // Streak / daily counter only affect the snapshot — skip rebuilding the whole
+                // rotating word timeline on every single swipe.
                 .onChange(of: userProfile.profile.currentStreak) { _ in
                     SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
                 }
                 .onChange(of: userProfile.profile.wordsLearnedToday) { _ in
                     SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
                 }
+                // Daily-goal change alters how many words/day the widget rotates through →
+                // rebuild the full slot timeline, not just the snapshot.
+                .onChange(of: userProfile.profile.dailyGoal) { _ in republishSharedTimeline() }
         }
     }
 }

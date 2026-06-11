@@ -12,21 +12,25 @@ enum NotificationManager {
         ]
     }
 
-    static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22) {
+    static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22, seenIds: Set<UUID> = []) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             guard granted else { return }
             Task { @MainActor in
-                reschedule(count: count, startHour: startHour, endHour: endHour)
+                reschedule(count: count, startHour: startHour, endHour: endHour, seenIds: seenIds)
             }
         }
     }
 
     @MainActor
-    static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22) {
+    static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22, seenIds: Set<UUID> = []) {
         // Sample real words from the user's own free pool so notifications never leak paywalled
         // words (and a free user can immediately tap-open anything the notification mentions).
-        let all = WordAccess.freePool()
-        let sampledWords = Array(all.shuffled().prefix(count))
+        // Prefer words the user hasn't seen yet, so each notification surfaces a genuinely NEW
+        // word; fall back to the whole pool once everything's been seen.
+        let pool = WordAccess.freePool()
+        let unseen = pool.filter { !seenIds.contains($0.id) }
+        let source = unseen.isEmpty ? pool : unseen
+        let sampledWords = Array(source.shuffled().prefix(count))
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }

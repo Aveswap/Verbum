@@ -15,6 +15,8 @@ struct WordOfDayEntryView: View {
             }
         }
         .foregroundStyle(.white)
+        // Tapping the widget opens the app straight to this word's detail (handled in VerbumApp).
+        .widgetURL(entry.word.flatMap { URL(string: "verbum://word/\($0.id.uuidString)") })
     }
 
     private var smallView: some View {

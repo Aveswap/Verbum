@@ -22,6 +22,17 @@
 	<string>Verbum</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.verbum.app.deeplink</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>verbum</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
