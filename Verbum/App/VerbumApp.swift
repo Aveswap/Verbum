@@ -44,13 +44,24 @@ struct VerbumApp: App {
                 .id(language.language)
                 .preferredColorScheme(.dark)
                 .onAppear {
-                    // Publish a fresh 14-day timeline for widget + watch on every launch.
+                    // Publish a fresh rotating word timeline for widget + watch on every launch.
                     // (Game Center auth is deferred to the feed so its sheet can't interrupt
                     // onboarding — see AppCoordinator.)
                     SharedTimelinePublisher.refresh(
                         profile: userProfile.profile,
                         isPro: subscriptions.isPro
                     )
+                    // Re-issue the daily word notifications so they reflect the current catalogue
+                    // and language — this also clears stale notifications scheduled by an older
+                    // build (e.g. German words left over from before the English-only catalogue).
+                    if userProfile.profile.notificationsEnabled {
+                        NotificationManager.reschedule(
+                            count: userProfile.profile.notificationCount,
+                            startHour: NotificationManager.hoursFrom(userProfile.profile.notificationStart),
+                            endHour: NotificationManager.hoursFrom(userProfile.profile.notificationEnd),
+                            seenIds: Set(userProfile.profile.seenWordIds)
+                        )
+                    }
                 }
                 .onReceive(auth.$isSignedIn) { signedIn in
                     guard signedIn else { return }
