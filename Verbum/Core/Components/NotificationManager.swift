@@ -44,8 +44,11 @@ enum NotificationManager {
             for i in 0..<count {
                 let content = UNMutableNotificationContent()
                 if let word = sampledWords[safe: i] {
-                    content.title = String(format: NSLocalizedString("Today's word: %@", comment: "notification title"), word.text)
-                    content.body = word.definition
+                    // The word itself is the bold headline; the body leads with the part-of-speech
+                    // abbreviation then the definition — e.g. "ammil" / "(n.) The thin film of ice…".
+                    content.title = word.text
+                    let pos = posAbbreviation(word.partOfSpeech)
+                    content.body = pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)"
                 } else {
                     content.title = "Verbum"
                     content.body = messages[i % messages.count]
@@ -110,6 +113,17 @@ enum NotificationManager {
 
     static func hoursFrom(_ timeString: String) -> Int {
         Int(timeString.prefix(2)) ?? 9
+    }
+
+    /// Short part-of-speech tag for the notification body (English for now), e.g. noun → "n.".
+    private static func posAbbreviation(_ pos: String) -> String {
+        switch pos.lowercased() {
+        case "noun":      return "n."
+        case "verb":      return "v."
+        case "adjective": return "adj."
+        case "adverb":    return "adv."
+        default:          return ""
+        }
     }
 }
 
