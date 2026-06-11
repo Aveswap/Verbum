@@ -57,7 +57,8 @@ final class WordDatabase: @unchecked Sendable {
     ///      (de/uk rows deleted, recoverable via word_batches; en 35). Every word is now just "an interesting word".
     /// v26: +50 curated "wow-tier" words (deep-research round 3 → en 85); 27 freePool-seeded
     ///      (scripts/word_batches_gems/gems_round3.json). scurryfunge recategorized Society→General.
-    static let bundledDBVersion = 26
+    /// v27: +50 more curated words (deep-research round 4 → en 135; gems_round4.json), 19 freePool.
+    static let bundledDBVersion = 27
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
