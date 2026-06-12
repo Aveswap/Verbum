@@ -62,7 +62,9 @@ final class WordDatabase: @unchecked Sendable {
     ///      (the shorthand half of that batch) have no exampleSentence yet — backfill later.
     /// v29: removed those 48 weaker, example-less words → en 183. Every word now has an example
     ///      sentence; the catalogue is uniformly the higher-quality curated set.
-    static let bundledDBVersion = 29
+    /// v30: +60 genuine "wow" concept-words (deep-research round 6 → en 243; gems_round6.json),
+    ///      all with example sentences; 29 freePool. komorebi, treppenwitz, mokita, sisu, kilig…
+    static let bundledDBVersion = 30
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
