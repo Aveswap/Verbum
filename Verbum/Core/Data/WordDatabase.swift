@@ -60,7 +60,9 @@ final class WordDatabase: @unchecked Sendable {
     /// v27: +50 more curated words (deep-research round 4 → en 135; gems_round4.json), 19 freePool.
     /// v28: +96 curated words (deep-research round 5 → en 231; gems_round5.json). NOTE: 48 of these
     ///      (the shorthand half of that batch) have no exampleSentence yet — backfill later.
-    static let bundledDBVersion = 28
+    /// v29: removed those 48 weaker, example-less words → en 183. Every word now has an example
+    ///      sentence; the catalogue is uniformly the higher-quality curated set.
+    static let bundledDBVersion = 29
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
