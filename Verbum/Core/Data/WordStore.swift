@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import WidgetKit
 
 @MainActor
 class UserProfileStore: ObservableObject {
@@ -391,6 +392,14 @@ class UserProfileStore: ObservableObject {
     func deleteAllLocalData() {
         UserDefaults.standard.removeObject(forKey: key)
         KeychainHelper.delete("appleEmail")
+        // Tear down everything that outlives the app process, so a deleted account leaves no
+        // trace (App Review 5.1.1(v)): pending daily notifications would keep firing, the widget
+        // would keep showing the old words/streak, and Spotlight would keep surfacing them.
+        NotificationManager.cancelAll()
+        NotificationManager.clearBadge()
+        SpotlightIndexer.deleteAll()
+        SharedWordStore.clear()
+        if #available(iOS 14.0, *) { WidgetCenter.shared.reloadAllTimelines() }
         profile = UserProfile()
         seenSet = []
     }

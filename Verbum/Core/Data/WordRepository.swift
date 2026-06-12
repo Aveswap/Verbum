@@ -60,11 +60,16 @@ final class WordRepository: ObservableObject {
         // `WordRepository.shared.all` — calling it inline during the singleton's first-time
         // init re-enters the same `dispatch_once`, which traps as a recursive init deadlock.
         let snapshot = all
+        let lang = activeLanguage
         DispatchQueue.main.async {
+            // Use the last verified Pro state (not a hardcoded false) so a returning Pro user
+            // indexes full descriptions immediately — no per-launch downgrade-then-re-upgrade
+            // flip with VerbumApp's isPro observer.
             SpotlightIndexer.indexIfNeeded(
                 words: snapshot,
                 freeIds: Set(WordAccess.freePool().map(\.id)),
-                isPro: false,
+                isPro: SubscriptionManager.lastKnownPro,
+                language: lang,
                 version: WordDatabase.bundledDBVersion
             )
         }

@@ -64,6 +64,15 @@ enum SharedWordStore {
         store.set(data, forKey: Keys.snapshot)
     }
 
+    /// Wipes everything the widget reads — used on account deletion so the widget stops
+    /// showing words/streak from a deleted account.
+    static func clear() {
+        guard let store else { return }
+        store.removeObject(forKey: Keys.timeline)
+        store.removeObject(forKey: Keys.snapshot)
+        store.removeObject(forKey: Keys.writtenAt)
+    }
+
     // MARK: - Read (widget / watch side)
 
     static func readTimeline() -> [DailyWord] {

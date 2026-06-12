@@ -17,12 +17,21 @@ enum SpotlightIndexer {
     /// system search can surface "this word lives in Verbum" without leaking paid content.
     /// When the user goes Pro the full descriptions are re-indexed; when Pro lapses they're
     /// re-locked (`indexSearchableItems` overwrites items by their stable id).
-    static func indexIfNeeded(words: [Word], freeIds: Set<UUID>, isPro: Bool, version: Int) {
+    static func indexIfNeeded(words: [Word], freeIds: Set<UUID>, isPro: Bool, language: String, version: Int) {
         guard !words.isEmpty else { return }
-        let token = "\(version)-\(isPro)"
-        guard UserDefaults.standard.string(forKey: indexedTokenKey) != token else { return }
+        let token = "\(version)|\(language)|\(isPro)"
+        let stored = UserDefaults.standard.string(forKey: indexedTokenKey)
+        guard stored != token else { return }
+        // If the active language changed, purge the previous language's items first — they carry
+        // different ids and would otherwise linger in system search forever (re-indexing only
+        // overwrites items with matching ids).
+        let storedLang = stored?.split(separator: "|").dropFirst().first.map(String.init)
+        let purgeFirst = storedLang != nil && storedLang != language
 
         DispatchQueue.global(qos: .utility).async {
+            if purgeFirst {
+                CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [domain]) { _ in }
+            }
             let lockedDescription = NSLocalizedString("Unlock with Verbum Premium",
                                                       comment: "spotlight locked-word description")
             let items = words.map { word -> CSSearchableItem in
@@ -45,6 +54,13 @@ enum SpotlightIndexer {
                 }
             }
         }
+    }
+
+    /// Removes every indexed word from Spotlight (used on account deletion) and resets the
+    /// memoized token so a fresh sign-in re-indexes from scratch.
+    static func deleteAll() {
+        UserDefaults.standard.removeObject(forKey: indexedTokenKey)
+        CSSearchableIndex.default().deleteSearchableItems(withDomainIdentifiers: [domain]) { _ in }
     }
 
     /// Pulls the word UUID out of a Spotlight continuation activity, if present.

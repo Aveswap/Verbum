@@ -98,6 +98,7 @@ struct VerbumApp: App {
                         words: WordRepository.shared.all,
                         freeIds: Set(WordAccess.freePool().map(\.id)),
                         isPro: isPro,
+                        language: WordRepository.shared.activeLanguage,
                         version: WordDatabase.bundledDBVersion
                     )
                 }
