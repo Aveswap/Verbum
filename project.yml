@@ -12,15 +12,20 @@ knownRegions: [en, de, uk]
 
 # Single source of truth for the bundle-id base. The widget + test bundle ids derive from it
 # below, so they STAY prefixed with the app id (Apple requires an embedded extension's id to be
-# `<app id>.<suffix>`). Change this ONE line to re-sign under a different id — do NOT edit the
-# bundle id only in Xcode, or the widget id drifts and the build fails with
+# `<app id>.<suffix>`). It's configuration-scoped so the switch is AUTOMATIC — no hand-editing
+# before archiving:
+#   • Release/archive → `com.verbum.app` (the production App ID that owns the iCloud container
+#     `iCloud.com.verbum.app`, App Group `group.com.verbum.app`, Keychain service and Game
+#     Center IDs — all of which are hard-wired in the entitlements).
+#   • Debug → `com.verbumtest.app` (free/dev signing).
+# Never edit the bundle id only in Xcode, or the widget id drifts and the build fails with
 # "Embedded binary's bundle identifier is not prefixed with the parent app's bundle identifier".
-# NOTE: this is the current dev-signing id; switch back to com.verbum.app for the App Store build.
-# (CloudKit container `iCloud.com.verbum.app` and App Group `group.com.verbum.app` are independent
-# of this and stay as-is.)
 settings:
   base:
-    APP_BUNDLE_ID: com.verbumtest.app
+    APP_BUNDLE_ID: com.verbum.app
+  configs:
+    Debug:
+      APP_BUNDLE_ID: com.verbumtest.app
 
 packages:
   GRDB:

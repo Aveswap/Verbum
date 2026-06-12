@@ -147,6 +147,12 @@ def write(con, prepared):
         """, p)
     con.execute("INSERT INTO words_fts(words_fts) VALUES('rebuild')")
     con.commit()
+    # Keep the bundled DB a single self-contained file: the app's seedFromBundleIfNeeded() copies
+    # ONLY words_v2.db, and the project must not ship -wal/-shm sidecars (they're gitignored, which
+    # would leave broken pbxproj refs on a clean clone). Fold any WAL back in and use a rollback
+    # journal so there are no sidecars.
+    con.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+    con.execute("PRAGMA journal_mode=DELETE")
 
 
 def stats(con):
