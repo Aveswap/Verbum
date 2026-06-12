@@ -58,7 +58,9 @@ final class WordDatabase: @unchecked Sendable {
     /// v26: +50 curated "wow-tier" words (deep-research round 3 → en 85); 27 freePool-seeded
     ///      (scripts/word_batches_gems/gems_round3.json). scurryfunge recategorized Society→General.
     /// v27: +50 more curated words (deep-research round 4 → en 135; gems_round4.json), 19 freePool.
-    static let bundledDBVersion = 27
+    /// v28: +96 curated words (deep-research round 5 → en 231; gems_round5.json). NOTE: 48 of these
+    ///      (the shorthand half of that batch) have no exampleSentence yet — backfill later.
+    static let bundledDBVersion = 28
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
