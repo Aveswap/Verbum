@@ -12,8 +12,12 @@ struct LeaderboardView: View {
                 ScrollView {
                     VStack(spacing: AppSpacing.md) {
                         quarterCard
-                        globalLeaderboardCard
-                        friendsCard
+                        // Game Center cards hidden until the ASC leaderboards exist (see
+                        // AppInfo.isGameCenterConfigured) — avoids a broken/empty Game Center screen.
+                        if AppInfo.isGameCenterConfigured {
+                            globalLeaderboardCard
+                            friendsCard
+                        }
                         streakCard
                         progressCard
                         if !userProfile.profile.earnedBadges.isEmpty {

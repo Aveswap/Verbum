@@ -15,6 +15,13 @@ enum AppInfo {
     /// dead App Store page (App Review "broken functionality").
     static var isStoreIDConfigured: Bool { appStoreID != "0000000000" }
 
+    /// Flip to `true` ONLY after the Game Center leaderboards
+    /// (`com.verbum.app.quarterly_points`, `com.verbum.app.all_time_points`) actually exist in
+    /// App Store Connect. While false, the Game Center / Global Leaderboard UI is hidden so a
+    /// reviewer can't open an empty/broken Game Center screen (App Review 2.1 "broken
+    /// functionality") — mirrors `isStoreIDConfigured`.
+    static let isGameCenterConfigured = false
+
     /// App Store product page. Used for the friends invite/share link.
     static var appStoreURL: URL {
         // Force-unwrap is safe: the string is built from a digit constant, always a valid URL.

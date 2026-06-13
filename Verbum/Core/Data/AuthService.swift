@@ -62,15 +62,18 @@ final class AuthService: NSObject, ObservableObject {
     /// which both misleads the user and fails App Review 5.1.1(v). `completion(success)` runs on
     /// the main actor so the caller can gate navigation (dismiss only on success).
     func deleteAccount(completion: @escaping (Bool) -> Void = { _ in }) {
+        // Without the store there's nothing to delete — report failure rather than letting the
+        // optional-chain no-op report a false "success".
+        guard let store = profileStore else { completion(false); return }
         Task {
             do {
-                try await profileStore?.cloudKit.deleteZone()
-                profileStore?.deleteAllLocalData()
+                try await store.cloudKit.deleteZone()
+                store.deleteAllLocalData()
                 isSignedIn = false
                 error = nil
                 completion(true)
             } catch {
-                self.error = "Couldn’t delete your data from iCloud. Check your connection and try again."
+                self.error = NSLocalizedString("Couldn’t delete your data from iCloud. Check your connection and try again.", comment: "account deletion error")
                 completion(false)
             }
         }

@@ -15,6 +15,7 @@
 "Close" = "Закрити";
 "Community" = "Спільнота";
 "Continue" = "Продовжити";
+"Couldn’t delete your data from iCloud. Check your connection and try again." = "Не вдалося видалити дані з iCloud. Перевір з’єднання і спробуй ще раз.";
 "Create" = "Створити";
 "Current Streak" = "Поточна серія";
 "Daily Goal" = "Денна ціль";
@@ -75,6 +76,7 @@
 "Premium" = "Premium";
 "Premium word" = "Premium-слово";
 "Profile" = "Профіль";
+"Purchase could not be verified — it will retry automatically. (%@)" = "Покупку не вдалося підтвердити — повтор автоматичний. (%@)";
 "Quiz Complete!" = "Вікторину завершено!";
 "Quiz after next word! 🧠" = "Вікторина після наступного слова! 🧠";
 "Renew anytime to unlock every word again." = "Поновлюй будь-коли, щоб знову відкрити всі слова.";

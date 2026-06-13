@@ -45,7 +45,10 @@ class QuizViewModel: ObservableObject {
         let candidates = pool.filter { !asked.contains($0.id) }
         guard let word = candidates.randomElement() else { isFinished = true; return }
         asked.insert(word.id)
-        let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
+        // Exclude distractors whose definition matches the answer, so the correct option is
+        // unambiguous when two words share a definition string.
+        let distractors = pool.filter { $0.id != word.id && $0.definition != word.definition }
+            .shuffled().prefix(3).map(\.definition)
         let options = ([word.definition] + distractors).shuffled()
         currentQuestion = QuizQuestion(word: word, options: options, correct: word.definition)
         selectedAnswer = nil

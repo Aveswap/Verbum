@@ -92,7 +92,7 @@ final class SubscriptionManager: ObservableObject {
                     // failure (device clock skew, JWS hiccup) must be allowed to re-deliver via
                     // Transaction.updates once it verifies — finishing here would permanently
                     // strip a paying user of access. (Apple: only finish verified transactions.)
-                    purchaseError = "Purchase could not be verified — it will retry automatically. (\(error.localizedDescription))"
+                    purchaseError = String(format: NSLocalizedString("Purchase could not be verified — it will retry automatically. (%@)", comment: "purchase verification error"), error.localizedDescription)
                 }
             case .userCancelled:
                 break

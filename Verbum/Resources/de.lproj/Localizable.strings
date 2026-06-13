@@ -15,6 +15,7 @@
 "Close" = "Schließen";
 "Community" = "Gemeinschaft";
 "Continue" = "Weiter";
+"Couldn’t delete your data from iCloud. Check your connection and try again." = "Konnte deine Daten nicht aus iCloud löschen. Prüfe deine Verbindung und versuche es erneut.";
 "Create" = "Erstellen";
 "Current Streak" = "Aktuelle Serie";
 "Daily Goal" = "Tagesziel";
@@ -75,6 +76,7 @@
 "Premium" = "Premium";
 "Premium word" = "Premium-Wort";
 "Profile" = "Profil";
+"Purchase could not be verified — it will retry automatically. (%@)" = "Kauf konnte nicht verifiziert werden — wird automatisch erneut versucht. (%@)";
 "Quiz Complete!" = "Quiz abgeschlossen!";
 "Quiz after next word! 🧠" = "Quiz nach dem nächsten Wort! 🧠";
 "Renew anytime to unlock every word again." = "Verlängere jederzeit, um wieder alle Wörter freizuschalten.";

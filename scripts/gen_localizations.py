@@ -91,6 +91,8 @@ T = {
  "Unlock with Verbum Premium": ("Mit Verbum Premium freischalten", "Відкрити з Verbum Premium"),
  "These words are Premium 🔒": ("Diese Wörter sind Premium 🔒", "Ці слова — Premium 🔒"),
  "Couldn’t delete account": ("Konto konnte nicht gelöscht werden", "Не вдалося видалити акаунт"),
+ "Couldn’t delete your data from iCloud. Check your connection and try again.": ("Konnte deine Daten nicht aus iCloud löschen. Prüfe deine Verbindung und versuche es erneut.", "Не вдалося видалити дані з iCloud. Перевір з’єднання і спробуй ще раз."),
+ "Purchase could not be verified — it will retry automatically. (%@)": ("Kauf konnte nicht verifiziert werden — wird automatisch erneut versucht. (%@)", "Покупку не вдалося підтвердити — повтор автоматичний. (%@)"),
  "Unlock Every Word": ("Jedes Wort freischalten", "Відкрий кожне слово"),
  "The full collection of rare, beautiful words": ("Die ganze Sammlung seltener, schöner Wörter", "Уся колекція рідкісних, красивих слів"),
  "Unlock the full collection of rare, beautiful words.": ("Schalte die ganze Sammlung seltener, schöner Wörter frei.", "Відкрий усю колекцію рідкісних, красивих слів."),

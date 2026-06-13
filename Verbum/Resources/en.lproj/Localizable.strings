@@ -16,6 +16,7 @@
 "Community" = "Community";
 "Continue" = "Continue";
 "Couldn't delete account" = "Couldn't delete account";
+"Couldn’t delete your data from iCloud. Check your connection and try again." = "Couldn’t delete your data from iCloud. Check your connection and try again.";
 "Create" = "Create";
 "Current Streak" = "Current Streak";
 "Daily Goal" = "Daily Goal";
@@ -76,6 +77,7 @@
 "Premium" = "Premium";
 "Premium word" = "Premium word";
 "Profile" = "Profile";
+"Purchase could not be verified — it will retry automatically. (%@)" = "Purchase could not be verified — it will retry automatically. (%@)";
 "Quiz Complete!" = "Quiz Complete!";
 "Quiz after next word! 🧠" = "Quiz after next word! 🧠";
 "Renew anytime to unlock every word again." = "Renew anytime to unlock every word again.";
@@ -108,7 +110,6 @@
 "Spread between 9 AM and 10 PM" = "Spread between 9 AM and 10 PM";
 "Statistics" = "Statistics";
 "Swipe up for the next word" = "Swipe up for the next word";
-"Take the test to find your level" = "Take the test to find your level";
 "Tap all the words you recognise" = "Tap all the words you recognise";
 "These words are Premium 🔒" = "These words are Premium 🔒";
 "This Week" = "This Week";

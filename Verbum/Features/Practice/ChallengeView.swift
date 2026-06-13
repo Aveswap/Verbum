@@ -93,7 +93,10 @@ final class ChallengeViewModel: ObservableObject {
 
     func nextQuestion() {
         guard !isFinished, let word = pickWord() else { return }
-        let distractors = pool.filter { $0.id != word.id }.shuffled().prefix(3).map(\.definition)
+        // Exclude distractors whose definition matches the answer, so the correct option is
+        // unambiguous when two words share a definition string.
+        let distractors = pool.filter { $0.id != word.id && $0.definition != word.definition }
+            .shuffled().prefix(3).map(\.definition)
         let options = ([word.definition] + distractors).shuffled()
         current = Question(word: word, options: options, correct: word.definition)
         selectedAnswer = nil
