@@ -91,7 +91,10 @@ final class GameCenterService: ObservableObject {
     // MARK: - Presentation helper
 
     private static func presentOnActiveScene(_ vc: UIViewController) {
-        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+        // Pick the foreground-active scene specifically — `.first` can return a background or
+        // external-display scene (iPad multi-window, AirPlay), presenting onto the wrong window.
+        let scenes = UIApplication.shared.connectedScenes
+        guard let scene = (scenes.first { $0.activationState == .foregroundActive } ?? scenes.first) as? UIWindowScene,
               let root = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController
         else { return }
         // Walk to the topmost presented controller so we don't try to present over a sheet

@@ -37,7 +37,7 @@ enum SharedTimelinePublisher {
         let unseen = pool.filter { !seen.contains($0.id) }
         let sequence = unseen.isEmpty ? pool : (unseen + pool.filter { seen.contains($0.id) })
 
-        let cal = Calendar.current
+        let cal = dayCalendar(for: profile)
         let now = Date()
         let startOfDay = cal.startOfDay(for: now)
 
@@ -90,8 +90,16 @@ enum SharedTimelinePublisher {
         }
     }
 
+    /// Day-boundary calendar anchored to the user's locked streak timezone, so the widget's
+    /// "today" agrees with the streak / daily-goal logic (which use UserProfileStore.dayCalendar).
+    private static func dayCalendar(for profile: UserProfile) -> Calendar {
+        var cal = Calendar(identifier: .gregorian)
+        cal.timeZone = TimeZone(identifier: profile.streakTimezone ?? "") ?? .current
+        return cal
+    }
+
     private static func publishSnapshot(profile: UserProfile, isPro: Bool) {
-        let cal = Calendar.current
+        let cal = dayCalendar(for: profile)
         let learnedToday = cal.isDateInToday(profile.wordsLearnedDate) ? profile.wordsLearnedToday : 0
         let free = isPro ? nil : WordAccess.remainingFreeCount(
             seenIds: Set(profile.seenWordIds))

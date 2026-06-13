@@ -15,6 +15,9 @@ enum SharedWordStore {
         static let writtenAt  = "writtenAt_v1"
     }
 
+    // ⚠️ KEEP IN SYNC with Verbum/Core/Data/SharedWordStore.swift — these structs + the Keys/appGroupID
+    // are duplicated across the widget and app targets. Any change there MUST be mirrored here, or
+    // this widget silently fails to decode the App-Group payload and shows only a placeholder.
     struct DailyWord: Codable, Equatable {
         let date: Date
         let id: UUID

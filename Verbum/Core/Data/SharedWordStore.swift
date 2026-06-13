@@ -29,6 +29,9 @@ enum SharedWordStore {
 
     /// One day's worth of word + native-language translation for the widget / watch.
     /// Stripped to a small inline blob so we don't re-encode the entire 1000-word catalog.
+    // ⚠️ KEEP IN SYNC with VerbumWidget/SharedWordStore.swift — these structs + the Keys/appGroupID
+    // are duplicated across the app and widget targets. Any change here (fields, key names) MUST be
+    // mirrored there, or the widget silently fails to decode and falls back to a placeholder.
     struct DailyWord: Codable, Equatable {
         let date: Date            // start-of-day in user's timezone
         let id: UUID

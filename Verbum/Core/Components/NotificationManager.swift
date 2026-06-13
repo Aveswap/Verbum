@@ -12,11 +12,16 @@ enum NotificationManager {
         ]
     }
 
-    static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22, seenIds: Set<UUID> = []) {
+    /// Requests permission and schedules. `onAuthorization(granted)` runs on the main actor so the
+    /// caller can keep `profile.notificationsEnabled` honest when the user taps "Don't Allow".
+    static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22,
+                                   seenIds: Set<UUID> = [], onAuthorization: ((Bool) -> Void)? = nil) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
-            guard granted else { return }
             Task { @MainActor in
-                reschedule(count: count, startHour: startHour, endHour: endHour, seenIds: seenIds)
+                if granted {
+                    reschedule(count: count, startHour: startHour, endHour: endHour, seenIds: seenIds)
+                }
+                onAuthorization?(granted)
             }
         }
     }
@@ -56,10 +61,12 @@ enum NotificationManager {
                 content.sound = .default
                 content.badge = 1
                 var comps = DateComponents()
-                comps.hour = min(startHour + i * step, endHour)
+                let hour = min(startHour + i * step, endHour)
+                comps.hour = hour
                 // Offset the minute by index so notifications that clamp to the same hour
-                // (count > available hours) don't all fire at the exact same :00 instant.
-                comps.minute = (i * 17) % 60
+                // (count > available hours) don't all fire at the exact same :00 instant — but
+                // at the end hour keep it on :00 so the offset can't push it past endHour.
+                comps.minute = hour == endHour ? 0 : (i * 17) % 60
                 let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
                 UNUserNotificationCenter.current().add(
                     UNNotificationRequest(identifier: "verbum_\(i)", content: content, trigger: trigger)

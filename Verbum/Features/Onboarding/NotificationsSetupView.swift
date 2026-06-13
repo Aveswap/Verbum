@@ -83,6 +83,12 @@ struct NotificationsSetupView: View {
     }
 
     private func scheduleNotifications(count: Int) {
-        NotificationManager.requestAndSchedule(count: count, seenIds: Set(userProfile.profile.seenWordIds))
+        userProfile.profile.notificationCount = count
+        // Persist the flag from the ACTUAL authorization result, so Settings' toggle matches
+        // reality (previously notificationsEnabled was never set here — it stayed false even
+        // after the user allowed and notifications were scheduled).
+        NotificationManager.requestAndSchedule(count: count, seenIds: Set(userProfile.profile.seenWordIds)) { granted in
+            userProfile.profile.notificationsEnabled = granted
+        }
     }
 }

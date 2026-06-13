@@ -266,11 +266,8 @@ struct SettingsView: View {
         } message: {
             Text("This permanently deletes all your progress, streaks, and settings. This cannot be undone.")
         }
-        .alert("Couldn’t delete account", isPresented: .constant(auth.error != nil)) {
-            Button("OK") { auth.clearError() }
-        } message: {
-            Text(auth.error ?? "")
-        }
+        // auth.error (sign-in OR delete failures) is surfaced in ONE place — the inline red text
+        // in the account card above — so there's no constant-binding alert duplicating it.
     }
 
     private func sectionLabel(_ text: String) -> some View {
