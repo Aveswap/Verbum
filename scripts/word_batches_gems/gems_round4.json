@@ -120,21 +120,6 @@
   "freePool": false
  },
  {
-  "text": "umarell",
-  "phonetic": "/ˌuːməˈrɛl/",
-  "partOfSpeech": "noun",
-  "definition": "A retired man who passes the time watching construction sites, hands clasped behind his back, offering unasked-for advice.",
-  "exampleSentence": "Three umarells had gathered at the roadworks by eight, supervising a job no one had asked them to.",
-  "synonyms": "",
-  "antonyms": "",
-  "category": "People",
-  "etymology": "From the Bolognese Emilian 'umarèl' (little man); conceived by writer Danilo Masotti at dawn on 4 February 2005 in Bologna, and admitted to the Italian Zingarelli dictionary in 2021.",
-  "register": "informal",
-  "domainTags": "people, humour, Italian",
-  "language": "English",
-  "freePool": true
- },
- {
   "text": "sprezzatura",
   "phonetic": "/ˌsprɛtsəˈtʊərə/",
   "partOfSpeech": "noun",
@@ -163,21 +148,6 @@
   "domainTags": "people, walking, city",
   "language": "English",
   "freePool": true
- },
- {
-  "text": "kalsarikännit",
-  "phonetic": "/ˌkɑːlsɑːriˈkænːit/",
-  "partOfSpeech": "noun",
-  "definition": "The Finnish practice of getting pleasantly drunk at home in your underwear with no intention of going out.",
-  "exampleSentence": "After the brutal week, his only weekend plan was a determined session of kalsarikännit.",
-  "synonyms": "pantsdrunk",
-  "antonyms": "",
-  "category": "Society",
-  "etymology": "Finnish, from 'kalsari' (underpants) + 'känni' (drunkenness); anglicised as 'pantsdrunk'. The popular 'no intention of going out' gloss comes from Finland's own promotional emoji set (2015).",
-  "register": "informal",
-  "domainTags": "society, drinking, humour",
-  "language": "English",
-  "freePool": false
  },
  {
   "text": "clinomania",
@@ -716,21 +686,6 @@
   "etymology": "Scots rhyming reduplication built on 'hurkle' (to crouch, draw the limbs together); recorded in John Jamieson's dictionary of Scots (Supplement, 1825).",
   "register": "informal",
   "domainTags": "sleep, humour, Scots",
-  "language": "English",
-  "freePool": true
- },
- {
-  "text": "uitwaaien",
-  "phonetic": "/ˈaʊtˌvaɪən/",
-  "partOfSpeech": "verb",
-  "definition": "To go out walking in strong wind to clear the head and refresh oneself.",
-  "exampleSentence": "Stuffy and stuck on the essay, she went to uitwaaien along the blustery sea wall.",
-  "synonyms": "",
-  "antonyms": "",
-  "category": "General",
-  "etymology": "Dutch, from 'uit' (out) + 'waaien' (to blow, of wind); literally 'to blow out'.",
-  "register": "neutral",
-  "domainTags": "weather, walking, wellbeing",
   "language": "English",
   "freePool": true
  },

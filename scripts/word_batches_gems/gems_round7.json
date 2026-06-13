@@ -210,51 +210,6 @@
   "freePool": true
  },
  {
-  "text": "friluftsliv",
-  "phonetic": "/ˈfriːlʊftsliːv/",
-  "partOfSpeech": "noun",
-  "definition": "The unhurried, open-air life — spending regular time outdoors as an essential part of wellbeing.",
-  "exampleSentence": "Rain or shine, their weekends were devoted to friluftsliv: walking, foraging, and coffee by a fire.",
-  "synonyms": "",
-  "antonyms": "",
-  "category": "General",
-  "etymology": "Norwegian, 'fri' (free) + 'luft' (air) + 'liv' (life); coined by playwright Henrik Ibsen in his 1859 poem 'Paa Vidderne' (On the Heights).",
-  "register": "neutral",
-  "domainTags": "nature, outdoors, wellbeing",
-  "language": "English",
-  "freePool": true
- },
- {
-  "text": "Torschlusspanik",
-  "phonetic": "/ˈtoːɐ̯ʃlʊsˌpaːnɪk/",
-  "partOfSpeech": "noun",
-  "definition": "The rising panic that life's chances are closing and time is running out to seize them.",
-  "exampleSentence": "As her fortieth birthday neared, a Torschlusspanik pushed her to finally start the business.",
-  "synonyms": "",
-  "antonyms": "",
-  "category": "Psychology",
-  "etymology": "German, 'Tor' (gate) + 'Schluss' (closing) + 'Panik' (panic); from medieval city gates locking at dusk, defined in the Duden and applied to life decisions.",
-  "register": "neutral",
-  "domainTags": "time, anxiety, aging",
-  "language": "English",
-  "freePool": true
- },
- {
-  "text": "Fingerspitzengefühl",
-  "phonetic": "/ˈfɪŋɐʃpɪtsənɡəˌfyːl/",
-  "partOfSpeech": "noun",
-  "definition": "An intuitive, fingertip sensitivity for handling delicate situations or people with exactly the right touch.",
-  "exampleSentence": "Defusing the argument took real Fingerspitzengefühl, a sense of precisely when to speak and when to wait.",
-  "synonyms": "tact, finesse",
-  "antonyms": "",
-  "category": "Character",
-  "etymology": "German, literally 'fingertip feeling', from 'Fingerspitze' (fingertip) + 'Gefühl' (feeling); a sense of tact and instinct recorded in the Duden.",
-  "register": "neutral",
-  "domainTags": "tact, skill, diplomacy",
-  "language": "English",
-  "freePool": false
- },
- {
   "text": "dwam",
   "phonetic": "/dwɑːm/",
   "partOfSpeech": "noun",
@@ -553,21 +508,6 @@
   "domainTags": "style, grooming, finishing touch",
   "language": "English",
   "freePool": true
- },
- {
-  "text": "verschlimmbessern",
-  "phonetic": "/fɛɐ̯ˈʃlɪmˌbɛsɐn/",
-  "partOfSpeech": "verb",
-  "definition": "To make something worse precisely by trying to improve it.",
-  "exampleSentence": "He tried to fix the wobble and managed to verschlimmbessern the chair into firewood.",
-  "synonyms": "",
-  "antonyms": "",
-  "category": "General",
-  "etymology": "German blend of 'verschlimmern' (to worsen) + 'verbessern' (to improve); recorded in the Duden for well-meant meddling that backfires.",
-  "register": "informal",
-  "domainTags": "mistakes, irony, fixing",
-  "language": "English",
-  "freePool": false
  },
  {
   "text": "coorie",

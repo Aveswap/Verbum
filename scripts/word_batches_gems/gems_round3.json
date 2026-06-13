@@ -345,51 +345,6 @@
   "freePool": false
  },
  {
-  "text": "voorpret",
-  "phonetic": "/ˈvoːrprɛt/",
-  "partOfSpeech": "noun",
-  "definition": "The pleasure taken in anticipating something before it happens; pre-fun.",
-  "exampleSentence": "Half the joy of the trip was the voorpret of planning routes and packing the night before.",
-  "synonyms": "anticipation",
-  "antonyms": "",
-  "category": "Emotions",
-  "etymology": "Dutch, literally 'pre-fun', from 'voor' (before) + 'pret' (fun, pleasure).",
-  "register": "informal",
-  "domainTags": "emotion, joy, anticipation",
-  "language": "English",
-  "freePool": true
- },
- {
-  "text": "firgun",
-  "phonetic": "/fɪrˈɡuːn/",
-  "partOfSpeech": "noun",
-  "definition": "Generous, wholehearted delight in another person's good fortune, with no envy or ulterior motive.",
-  "exampleSentence": "When she won the prize, his firgun was so genuine it lifted the whole room.",
-  "synonyms": "",
-  "antonyms": "schadenfreude, envy",
-  "category": "Emotions",
-  "etymology": "Modern Hebrew 'firgun', from the verb 'lefargen' (to be generous toward, not to begrudge), itself rooted in Yiddish.",
-  "register": "informal",
-  "domainTags": "emotion, generosity, joy",
-  "language": "English",
-  "freePool": true
- },
- {
-  "text": "abbiocco",
-  "phonetic": "/abˈbjɔkko/",
-  "partOfSpeech": "noun",
-  "definition": "The heavy drowsiness that settles over you just after a large meal.",
-  "exampleSentence": "Sunday lunch ended in a contented abbiocco, everyone half-asleep on the sofa.",
-  "synonyms": "food coma",
-  "antonyms": "",
-  "category": "Food",
-  "etymology": "Italian, of uncertain origin, often linked to the dialect idea of 'going broody like a hen' ('chioccia'); long used in Roman and central Italian speech.",
-  "register": "informal",
-  "domainTags": "food, body, drowsiness",
-  "language": "English",
-  "freePool": true
- },
- {
   "text": "mångata",
   "phonetic": "/ˈmoːnˌɡɑːta/",
   "partOfSpeech": "noun",
@@ -508,21 +463,6 @@
   "domainTags": "body, drink, humour",
   "language": "English",
   "freePool": true
- },
- {
-  "text": "gezellig",
-  "phonetic": "/ɣəˈzɛləx/",
-  "partOfSpeech": "adjective",
-  "definition": "Warmly cosy and convivial; the snug pleasure of good company in a comfortable place.",
-  "exampleSentence": "The little café was so gezellig that we stayed three hours longer than we'd meant to.",
-  "synonyms": "cosy, convivial, snug",
-  "antonyms": "bleak, cheerless",
-  "category": "Society",
-  "etymology": "Dutch, from 'gezel' (companion, friend), related to the idea of togetherness; cognate in feeling to German 'gemütlich'.",
-  "register": "informal",
-  "domainTags": "social, comfort, mood",
-  "language": "English",
-  "freePool": false
  },
  {
   "text": "callipygian",

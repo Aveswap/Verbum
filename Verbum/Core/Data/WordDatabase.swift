@@ -66,7 +66,11 @@ final class WordDatabase: @unchecked Sendable {
     ///      all with example sentences; 29 freePool. komorebi, treppenwitz, mokita, sisu, kilig…
     /// v31: +60 dictionary-verified wow words (deep-research round 7 → en 303; gems_round7.json),
     ///      all with examples; 34 freePool. weltschmerz, zugzwang, grok, hangry, gobsmacked, cwtch…
-    static let bundledDBVersion = 31
+    /// v32: editorial — Verbum is an ENGLISH-vocabulary app, so cut 43 non-naturalized foreign
+    ///      "untranslatable" words (verschlimmbessern, Torschlusspanik, fika, …) that aren't in
+    ///      English dictionaries → en 260. Kept English-dialect/naturalized loanwords + ~15 iconic
+    ///      untranslatables (~5%: komorebi, sobremesa, sisu, tsundoku, wabi-sabi, …) as flavour.
+    static let bundledDBVersion = 32
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {

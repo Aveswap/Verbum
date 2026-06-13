@@ -315,21 +315,6 @@
   "freePool": false
  },
  {
-  "text": "zugunruhe",
-  "phonetic": "/ˈtsuːkʊnˌruːə/",
-  "partOfSpeech": "noun",
-  "definition": "The restless agitation of migratory animals as the season to travel nears.",
-  "exampleSentence": "The caged warblers fluttered with zugunruhe each autumn.",
-  "synonyms": "migratory restlessness",
-  "antonyms": "",
-  "category": "Science",
-  "etymology": "German 'Zug' (migration, move) + 'Unruhe' (restlessness); first published 1707, described by ornithologist J. A. Naumann.",
-  "register": "formal",
-  "domainTags": "birds, nature, science",
-  "language": "English",
-  "freePool": false
- },
- {
   "text": "mudlark",
   "phonetic": "/ˈmʌdlɑːk/",
   "partOfSpeech": "noun",
@@ -418,21 +403,6 @@
   "domainTags": "objects, craft",
   "language": "English",
   "freePool": false
- },
- {
-  "text": "skoal",
-  "phonetic": "/skəʊl/",
-  "partOfSpeech": "noun",
-  "definition": "A toast to someone's health.",
-  "exampleSentence": "They raised their glasses with a hearty skoal.",
-  "synonyms": "cheers, prosit",
-  "antonyms": "",
-  "category": "Communication",
-  "etymology": "From Danish/Norwegian/Swedish 'skål' (a toast), literally 'bowl, cup', from Old Norse 'skál'; in English from c.1600.",
-  "register": "informal",
-  "domainTags": "drinking, custom",
-  "language": "English",
-  "freePool": true
  },
  {
   "text": "wassail",
