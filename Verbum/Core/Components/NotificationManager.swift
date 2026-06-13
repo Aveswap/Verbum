@@ -15,7 +15,7 @@ enum NotificationManager {
     /// Requests permission and schedules. `onAuthorization(granted)` runs on the main actor so the
     /// caller can keep `profile.notificationsEnabled` honest when the user taps "Don't Allow".
     static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22,
-                                   seenIds: Set<UUID> = [], onAuthorization: ((Bool) -> Void)? = nil) {
+                                   seenIds: Set<UUID> = [], onAuthorization: (@MainActor @Sendable (Bool) -> Void)? = nil) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             Task { @MainActor in
                 if granted {

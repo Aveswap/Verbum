@@ -64,7 +64,9 @@ final class WordDatabase: @unchecked Sendable {
     ///      sentence; the catalogue is uniformly the higher-quality curated set.
     /// v30: +60 genuine "wow" concept-words (deep-research round 6 → en 243; gems_round6.json),
     ///      all with example sentences; 29 freePool. komorebi, treppenwitz, mokita, sisu, kilig…
-    static let bundledDBVersion = 30
+    /// v31: +60 dictionary-verified wow words (deep-research round 7 → en 303; gems_round7.json),
+    ///      all with examples; 34 freePool. weltschmerz, zugzwang, grok, hangry, gobsmacked, cwtch…
+    static let bundledDBVersion = 31
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
