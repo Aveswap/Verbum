@@ -1,12 +1,19 @@
 # Verbum — Project Handoff
 
-**Last updated:** 2026-06-09
+**Last updated:** 2026-06-13
 **Branch:** `main`
-**Latest commit:** Security & code-quality audit remediation — addressed all 33 findings from an external review across 6 commits (see §12). Highlights: Spotlight no longer leaks paid definitions; StoreKit stops finishing `.unverified` transactions; CloudKit merge no longer self-revives via `didSet` (new `applyMerged`) + deck-deletion tombstones; OTA install hardened (integrity + atomic replace); Game Center entitlement added; account deletion awaits the server delete; keychain hardened; unified `dayCalendar`; locked-word definitions gated in lists/search.
+**Latest commit:** Second (release-readiness) audit remediation. Release blockers fixed: bundle id is now configuration-scoped (Release→`com.verbum.app`, Debug→`com.verbumtest.app`), and the bundled DB is a single checkpointed file (no `-wal/-shm` sidecars in Resources/pbxproj). High-pri: account deletion now also cancels notifications, clears the widget store + Spotlight index; Spotlight token keyed on `version|language|isPro` (no per-launch Pro flip, purges old language); notification minute clamp + honest `notificationsEnabled`; Game Center foreground-scene fix; single auth-error channel; widget timeline on the locked `dayCalendar`; quiz distractor dedup across all quizzes; Game Center/Leaderboard gated behind `AppInfo.isGameCenterConfigured`.
 
-**Prior commits:** Paywall/StoreKit fix (`storeKitConfiguration` in scheme) · Level removal + English-only base (DB v25, en 35).
+**Catalogue:** English-only, **en 243**, DB **v30** (every word has an example sentence).
 
-> **§12 — Audit deferrals (intentional / needs-build):**
+> **§13 — Second-audit deferrals (parked / out-of-code / needs-build):**
+> - **Widget localization (#6):** widget strings stay English; deferred WITH the parked de/uk catalogues — the app is English-only now, so no user sees a non-English UI for the widget to mismatch. Wrap in `NSLocalizedString` + add a widget `.lproj` when de/uk return.
+> - **Watch target:** `VerbumWatch Watch App/` is code-only, not in `project.yml`. Decide: wire up or remove before release.
+> - **Dynamic Type / VoiceOver:** fonts are fixed `.system(size:)`; swipe feed is gesture-only. Not a rejection, but a polish pass (`@ScaledMetric`, `.accessibilityAction`) is worthwhile.
+> - **`todaysWord` calendar:** the WotD *fallback* still uses `Calendar.current` (the widget timeline now uses the locked `dayCalendar`); minor.
+> - **App Store TODOs (out of code):** set real `AppInfo.appStoreID`; flip `AppInfo.isGameCenterConfigured` true only after creating the ASC leaderboards; ensure `verbum.app/privacy` is live; mirror `PrivacyInfo.xcprivacy` in the ASC App Privacy form.
+
+> **§12 — First-audit deferrals (intentional / needs-build):**
 > - **Likes/bookmarks deletion sync (#6):** only deck deletions got tombstones; converting `likedWordIds`/`bookmarkedWordIds` to per-id LWW is a larger model+CloudKit change — defer until it can be built & unit-tested.
 > - **appleUserID storage (#8):** still in `UserProfile`/UserDefaults (pseudonymous, not synced); moving it to Keychain touches every `appleUserID` read — deferred.
 > - **Watch target (#23):** `VerbumWatch Watch App/` exists as code but is NOT in `project.yml` (not built). Either wire it up or remove the folder.
