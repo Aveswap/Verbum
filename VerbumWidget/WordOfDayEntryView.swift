@@ -77,12 +77,6 @@ struct WordOfDayEntryView: View {
                         .foregroundStyle(.white.opacity(0.92))
                         .lineLimit(4)
                         .minimumScaleFactor(0.7)
-                    if let t = word.translation {
-                        Text(t)
-                            .font(.system(size: 11).italic())
-                            .foregroundStyle(.white.opacity(0.55))
-                            .lineLimit(2)
-                    }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -123,12 +117,6 @@ struct WordOfDayEntryView: View {
                     .font(.system(size: 15))
                     .foregroundStyle(.white.opacity(0.92))
                     .lineLimit(4)
-                if let t = word.translation {
-                    Text(t)
-                        .font(.system(size: 13).italic())
-                        .foregroundStyle(.white.opacity(0.55))
-                        .lineLimit(2)
-                }
                 Spacer()
                 if let s = entry.snapshot, let free = s.freeRemaining, !s.isPro {
                     Text("\(free) free words left · Open to learn →")

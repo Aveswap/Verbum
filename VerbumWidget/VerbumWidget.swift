@@ -18,7 +18,7 @@ struct LockScreenProvider: TimelineProvider {
         SharedWordStore.DailyWord(
             date: Date(), id: UUID(),
             text: "ephemeral", phonetic: "/ɪˈfem.ər.əl/", partOfSpeech: "adj.",
-            definition: "Lasting for a very short time", translation: nil
+            definition: "Lasting for a very short time"
         )
     }
 

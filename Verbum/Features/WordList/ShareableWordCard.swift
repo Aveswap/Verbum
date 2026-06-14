@@ -4,7 +4,6 @@ import SwiftUI
 /// resulting PNG/JPEG looks crisp on Instagram / Threads / iMessage / Twitter.
 struct ShareableWordCard: View {
     let word: Word
-    let translation: String?
 
     private let cardSize = CGSize(width: 1080, height: 1080)
 
@@ -65,16 +64,6 @@ struct ShareableWordCard: View {
                     .padding(.horizontal, 80)
                     .lineLimit(4)
                     .minimumScaleFactor(0.5)
-
-                if let translation, !translation.isEmpty {
-                    Text(translation)
-                        .font(.system(size: 28, weight: .regular).italic())
-                        .foregroundColor(.white.opacity(0.55))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 80)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.6)
-                }
 
                 Spacer()
 

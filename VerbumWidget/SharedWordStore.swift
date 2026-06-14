@@ -25,7 +25,6 @@ enum SharedWordStore {
         let phonetic: String
         let partOfSpeech: String
         let definition: String
-        let translation: String?
     }
 
     struct Snapshot: Codable, Equatable {

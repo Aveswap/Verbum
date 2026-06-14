@@ -220,13 +220,6 @@ final class WordDatabase: @unchecked Sendable {
                 t.column("category",        .text).notNull().defaults(to: "").indexed()
                 t.column("etymology",       .text)
             }
-            try db.create(table: "translations", ifNotExists: true) { t in
-                t.column("word_id",    .text).notNull().references("words", onDelete: .cascade)
-                t.column("lang",       .text).notNull()
-                t.column("definition", .text).notNull()
-                t.column("example",    .text)
-                t.primaryKey(["word_id", "lang"])
-            }
             if try !db.tableExists("words_fts") {
                 // Match the Python generator's tokenizer so diacritics fold (café == cafe)
                 // and search behaves identically whether the DB is bundled or built natively.
@@ -282,50 +275,6 @@ final class WordDatabase: @unchecked Sendable {
     }
 
     func createSchema() throws { try runMigrations() }
-
-    // MARK: - Translations
-
-    struct Translation: Sendable {
-        let definition: String
-        let example: String?
-    }
-
-    func translation(wordId: UUID, lang: String) -> Translation? {
-        if let dbQueue,
-           let result = try? dbQueue.read({ db -> Translation? in
-               // COLLATE NOCASE: stored ids are lowercase (Python-built bundle) while
-               // UUID.uuidString is always uppercase — match case-insensitively so the
-               // lookup can't silently miss and fall through to the JSON fallback.
-               guard let row = try Row.fetchOne(db, sql: """
-                   SELECT definition, example FROM translations
-                   WHERE word_id = ? COLLATE NOCASE AND lang = ?
-               """, arguments: [wordId.uuidString, lang]) else { return nil }
-               return Translation(
-                   definition: row["definition"] as? String ?? "",
-                   example:    row["example"]    as? String
-               )
-           }) {
-            return result
-        }
-        return TranslationStore.shared.translation(wordId: wordId, lang: lang)
-    }
-
-    func importTranslations(_ bundle: [String: [String: [String: String?]]]) throws {
-        // bundle format: { lang: { wordId: { "d": def, "e": example? } } }
-        guard let dbQueue else { return }
-        try dbQueue.write { db in
-            for (lang, entries) in bundle {
-                for (wordId, fields) in entries {
-                    guard let def = fields["d"] as? String else { continue }
-                    let ex = fields["e"] as? String
-                    try db.execute(sql: """
-                        INSERT OR REPLACE INTO translations (word_id, lang, definition, example)
-                        VALUES (?, ?, ?, ?)
-                    """, arguments: [wordId.lowercased(), lang, def, ex])
-                }
-            }
-        }
-    }
 
     // MARK: - Import
 

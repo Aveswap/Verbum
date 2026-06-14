@@ -17,8 +17,7 @@ struct WordOfDayProvider: TimelineProvider {
                 text: "serendipity",
                 phonetic: "/ˌserənˈdɪpəti/",
                 partOfSpeech: "noun",
-                definition: "The chance occurrence of pleasant discoveries.",
-                translation: nil
+                definition: "The chance occurrence of pleasant discoveries."
             ),
             snapshot: nil
         )

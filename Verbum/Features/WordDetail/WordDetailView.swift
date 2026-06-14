@@ -80,7 +80,7 @@ struct WordDetailView: View {
                 PremiumSheet().environmentObject(subscriptions)
             }
             .sheet(isPresented: $showShare) {
-                WordShareSheet(word: word, translation: nil)
+                WordShareSheet(word: word)
             }
         }
         .preferredColorScheme(.dark)

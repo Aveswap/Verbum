@@ -80,7 +80,7 @@ struct WordFeedView: View {
                 CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)
             case .share:
                 if let word = viewModel.currentWord {
-                    WordShareSheet(word: word, translation: nil)
+                    WordShareSheet(word: word)
                 }
             case .stats:
                 StatsView().environmentObject(userProfile)

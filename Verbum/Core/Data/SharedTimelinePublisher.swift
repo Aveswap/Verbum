@@ -41,7 +41,7 @@ enum SharedTimelinePublisher {
                 guard let date = cal.date(byAdding: .hour, value: i * slotHours, to: dayStart) else { continue }
                 timeline.append(.init(
                     date: date, id: word.id, text: word.text, phonetic: word.phonetic,
-                    partOfSpeech: word.partOfSpeech, definition: word.definition, translation: nil
+                    partOfSpeech: word.partOfSpeech, definition: word.definition
                 ))
             }
         }

@@ -5,7 +5,6 @@ import UIKit
 /// affordances (ShareLink + a "Save Image" button).
 struct WordShareSheet: View {
     let word: Word
-    let translation: String?
     @Environment(\.dismiss) private var dismiss
     @State private var renderedImage: UIImage?
 
@@ -98,7 +97,7 @@ struct WordShareSheet: View {
 
     @MainActor
     private func renderImage() async {
-        let renderer = ImageRenderer(content: ShareableWordCard(word: word, translation: translation))
+        let renderer = ImageRenderer(content: ShareableWordCard(word: word))
         renderer.scale = 1
         renderedImage = renderer.uiImage
     }
