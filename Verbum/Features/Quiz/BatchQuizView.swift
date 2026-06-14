@@ -17,26 +17,27 @@ final class BatchQuizViewModel: ObservableObject {
     private let options: [[String]]
     private let correctIndices: [Int]
 
-    init(words: [Word], allWords: [Word]) {
+    init(words: [Word], seenWordsPool: [Word]) {
         self.words = words
         var opts: [[String]] = []
         var correct: [Int] = []
-        // Distractor pool stays inside the same categories as the quiz words, so the
-        // wrong-answer definitions feel related rather than random.
+        // Distractors are drawn ONLY from words the user has already seen — practice should
+        // reinforce known vocabulary, never surface new words as wrong options. Prefer the
+        // same categories as the quiz words for a thematic feel; if that subset has fewer
+        // than 3 viable distractors (early user with few learned words), widen to the full
+        // seen pool so we still ship 4 options.
         let bucketCategories = Set(words.map(\.category))
-        let distractorPool = allWords.filter { w in
-            bucketCategories.contains(w.category)
-        }
+        let sameCategoryPool = seenWordsPool.filter { bucketCategories.contains($0.category) }
         for word in words {
             let rightDef = word.definition
             // Drop distractors whose definition is textually identical to the answer, so the
             // correct index is unambiguous, then track correctness by a tag rather than by
             // string search (firstIndex(of:) would point at the wrong slot on a duplicate).
-            let wrongs = distractorPool
-                .filter { $0.id != word.id && $0.definition != rightDef }
-                .shuffled()
-                .prefix(3)
-                .map { $0.definition }
+            let primary = sameCategoryPool.filter { $0.id != word.id && $0.definition != rightDef }
+            let pool = primary.count >= 3
+                ? primary
+                : seenWordsPool.filter { $0.id != word.id && $0.definition != rightDef }
+            let wrongs = pool.shuffled().prefix(3).map(\.definition)
             var tagged: [(def: String, isCorrect: Bool)] =
                 [(rightDef, true)] + wrongs.map { ($0, false) }
             tagged.shuffle()
@@ -84,18 +85,18 @@ final class BatchQuizViewModel: ObservableObject {
 
 struct BatchQuizView: View {
     let words: [Word]
-    let allWords: [Word]
+    let seenWordsPool: [Word]
     var onFinish: (Int) -> Void   // passes points earned
 
     @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var vm: BatchQuizViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(words: [Word], allWords: [Word], onFinish: @escaping (Int) -> Void) {
+    init(words: [Word], seenWordsPool: [Word], onFinish: @escaping (Int) -> Void) {
         self.words = words
-        self.allWords = allWords
+        self.seenWordsPool = seenWordsPool
         self.onFinish = onFinish
-        _vm = StateObject(wrappedValue: BatchQuizViewModel(words: words, allWords: allWords))
+        _vm = StateObject(wrappedValue: BatchQuizViewModel(words: words, seenWordsPool: seenWordsPool))
     }
 
     var body: some View {
@@ -207,8 +208,9 @@ struct BatchQuizView: View {
                 }
                 .padding(.horizontal, AppSpacing.lg)
                 .padding(.bottom, AppSpacing.xl)
-                .transition(.move(edge: .bottom).combined(with: .opacity))
-                .animation(.spring(), value: vm.selectedAnswer)
+                // Soft fade-in only — no slide-up/spring, which made the content jump and felt cheap.
+                .transition(.opacity)
+                .animation(.easeInOut(duration: 0.2), value: vm.selectedAnswer)
             }
         }
     }

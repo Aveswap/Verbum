@@ -298,7 +298,9 @@ struct StatsView: View {
         // Generate Mon–Sun of the current week
         let weekday = cal.component(.weekday, from: today)
         let daysFromMon = (weekday + 5) % 7  // Mon=0, Sun=6
-        let monday = cal.date(byAdding: .day, value: -daysFromMon, to: today)!
+        // Calendar.date(byAdding:) can return nil at the extreme ends of the supported range; fall
+        // back to `today` so a hypothetical nil shows a 1-day week instead of crashing the screen.
+        let monday = cal.date(byAdding: .day, value: -daysFromMon, to: today) ?? today
         let weekDays = (0..<7).compactMap { cal.date(byAdding: .day, value: $0, to: monday) }
         // Localized one-letter weekday symbols (index by the date's weekday) instead of a
         // hardcoded English "M T W…", which was wrong for de/uk and other locales.

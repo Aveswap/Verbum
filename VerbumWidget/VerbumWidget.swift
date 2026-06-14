@@ -105,6 +105,13 @@ private struct LockScreenRouter: View {
     @Environment(\.widgetFamily) private var family
     let entry: LockScreenEntry
     var body: some View {
+        content
+            // Tapping the lock-screen widget opens the app straight to this word's detail
+            // (verbum://word/<uuid> → onOpenURL in VerbumApp → WordDetailView).
+            .widgetURL(entry.word.flatMap { URL(string: "verbum://word/\($0.id.uuidString)") })
+    }
+
+    @ViewBuilder private var content: some View {
         switch family {
         case .accessoryInline: VerbumWidgetInlineView(entry: entry)
         default:               VerbumWidgetRectangularView(entry: entry)

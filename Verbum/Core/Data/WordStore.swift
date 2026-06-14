@@ -352,9 +352,12 @@ class UserProfileStore: ObservableObject {
             profile.streakFreezes = min(profile.streakFreezes + 1, 3)  // cap at 3
         }
         profile.lastOpenedDate = Date()
-        // Append today to daily opens (deduplicated, trimmed to last 7 days)
-        let sevenDaysAgo = cal.date(byAdding: .day, value: -6, to: today)!
-        profile.dailyOpens.removeAll { cal.startOfDay(for: $0) < sevenDaysAgo }
+        // Append today to daily opens (deduplicated, trimmed to last 7 days).
+        // Calendar.date(byAdding:) can return nil at calendar-range extremes; skip the prune in
+        // that case rather than crashing the streak path that runs on every app open.
+        if let sevenDaysAgo = cal.date(byAdding: .day, value: -6, to: today) {
+            profile.dailyOpens.removeAll { cal.startOfDay(for: $0) < sevenDaysAgo }
+        }
         if !profile.dailyOpens.contains(where: { cal.isDate($0, inSameDayAs: today) }) {
             profile.dailyOpens.append(today)
         }

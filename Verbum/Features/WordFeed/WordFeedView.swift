@@ -105,7 +105,10 @@ struct WordFeedView: View {
         }) {
             BatchQuizView(
                 words: viewModel.currentBatchWords,
-                allWords: viewModel.words
+                // Restrict distractors to already-seen words so the batch quiz only practices
+                // vocabulary the user has actually been through. The just-swiped batch is
+                // already in seenWordIdsSet (markWordSeen runs before this sheet presents).
+                seenWordsPool: viewModel.words.filter { seenWordIdsSet.contains($0.id) }
             ) { pts in
                 userProfile.addPoints(pts)
             }
