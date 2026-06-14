@@ -70,7 +70,9 @@ final class WordDatabase: @unchecked Sendable {
     ///      "untranslatable" words (verschlimmbessern, Torschlusspanik, fika, …) that aren't in
     ///      English dictionaries → en 260. Kept English-dialect/naturalized loanwords + ~15 iconic
     ///      untranslatables (~5%: komorebi, sobremesa, sisu, tsundoku, wabi-sabi, …) as flavour.
-    static let bundledDBVersion = 32
+    /// v33: emptied the dead `translations` table (1000 stale uk/de rows from before the pivot) +
+    ///      VACUUM — bundled DB shrank 1.8 MB → 216 KB. Words unchanged (en 260).
+    static let bundledDBVersion = 33
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
