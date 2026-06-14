@@ -87,7 +87,7 @@ struct NotificationsSetupView: View {
         // Persist the flag from the ACTUAL authorization result, so Settings' toggle matches
         // reality (previously notificationsEnabled was never set here — it stayed false even
         // after the user allowed and notifications were scheduled).
-        NotificationManager.requestAndSchedule(count: count, seenIds: Set(userProfile.profile.seenWordIds)) { granted in
+        NotificationManager.requestAndSchedule(count: count, seenIds: Set(userProfile.profile.seenWordIds), calendar: userProfile.dayCalendar) { granted in
             userProfile.profile.notificationsEnabled = granted
         }
     }

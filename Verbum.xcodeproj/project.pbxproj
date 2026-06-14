@@ -16,6 +16,7 @@
 		0CF55C7C657B7F92E1DC5B4A /* SharedWordStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A4CC1EEAE1531CA32DC551 /* SharedWordStore.swift */; };
 		133E064D4F1227A2C6394B89 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6491D5127E47854DC497F5 /* ChallengeView.swift */; };
 		143A669B556D1A55EA103214 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 74131837D5B93D5692FB2461 /* PrivacyInfo.xcprivacy */; };
+		14E330D9327D45DF0B418D31 /* DailyWords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D413A6001D9773EBF97324D /* DailyWords.swift */; };
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		20C755AAB0A5499D838B467F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A94394A4ED7AC0100475478 /* AppInfo.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
@@ -134,6 +135,7 @@
 		05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		07924EA2E5FE7E90339327FB /* WordShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordShareSheet.swift; sourceTree = "<group>"; };
 		0A89258AF193132750B6539E /* WordAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccessTests.swift; sourceTree = "<group>"; };
+		0D413A6001D9773EBF97324D /* DailyWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWords.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		11C3C036C43A585DFA6405C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		1A702C3CDDC0F977DBCCF854 /* FSRS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRS.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			children = (
 				F2D34E9CAB7C4607D1B004F0 /* AuthService.swift */,
 				9043274A62A43B65329A2950 /* CloudKitSyncManager.swift */,
+				0D413A6001D9773EBF97324D /* DailyWords.swift */,
 				B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */,
 				1A702C3CDDC0F977DBCCF854 /* FSRS.swift */,
 				B7D72F92771EB30EBB1959B1 /* GameCenterService.swift */,
@@ -681,6 +684,7 @@
 				6152418B92E9EEDF172F600A /* Colors.swift in Sources */,
 				0032134F1AECB6913F2BF734 /* CommitmentView.swift in Sources */,
 				07428379FB74A3E81541F286 /* ConfettiView.swift in Sources */,
+				14E330D9327D45DF0B418D31 /* DailyWords.swift in Sources */,
 				DA4428337D5EA213220B76EA /* DatabaseDownloadManager.swift in Sources */,
 				9B7B30E93778BDA7A8B477D2 /* DatabaseStatusBanner.swift in Sources */,
 				7E38CD4971762EB3D35950F4 /* DecksView.swift in Sources */,

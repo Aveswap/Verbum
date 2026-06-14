@@ -59,7 +59,8 @@ struct VerbumApp: App {
                             count: userProfile.profile.notificationCount,
                             startHour: NotificationManager.hoursFrom(userProfile.profile.notificationStart),
                             endHour: NotificationManager.hoursFrom(userProfile.profile.notificationEnd),
-                            seenIds: Set(userProfile.profile.seenWordIds)
+                            seenIds: Set(userProfile.profile.seenWordIds),
+                            calendar: userProfile.dayCalendar
                         )
                     }
                 }
@@ -110,9 +111,11 @@ struct VerbumApp: App {
                 .onChange(of: userProfile.profile.wordsLearnedToday) { _ in
                     SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
                 }
-                // Daily-goal change alters how many words/day the widget rotates through →
-                // rebuild the full slot timeline, not just the snapshot.
+                // dailyGoal feeds the snapshot's "x of N learned"; notificationCount drives how
+                // many "words of the day" the widget rotates through (shared with notifications).
+                // Either change → rebuild the full timeline, not just the snapshot.
                 .onChange(of: userProfile.profile.dailyGoal) { _ in republishSharedTimeline() }
+                .onChange(of: userProfile.profile.notificationCount) { _ in republishSharedTimeline() }
         }
     }
 }

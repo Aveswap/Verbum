@@ -93,7 +93,7 @@ struct NotificationSettingsView: View {
                     if enabled {
                         let startHour = NotificationManager.hoursFrom(userProfile.profile.notificationStart)
                         let endHour   = NotificationManager.hoursFrom(userProfile.profile.notificationEnd)
-                        NotificationManager.requestAndSchedule(count: count, startHour: startHour, endHour: endHour, seenIds: Set(userProfile.profile.seenWordIds)) { granted in
+                        NotificationManager.requestAndSchedule(count: count, startHour: startHour, endHour: endHour, seenIds: Set(userProfile.profile.seenWordIds), calendar: userProfile.dayCalendar) { granted in
                             // Keep the stored flag + the toggle honest if the user tapped "Don't Allow".
                             if !granted {
                                 userProfile.profile.notificationsEnabled = false

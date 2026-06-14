@@ -209,7 +209,8 @@ class UserProfileStore: ObservableObject {
                 count: profile.notificationCount,
                 startHour: NotificationManager.hoursFrom(profile.notificationStart),
                 endHour: NotificationManager.hoursFrom(profile.notificationEnd),
-                seenIds: seenSet
+                seenIds: seenSet,
+                calendar: dayCalendar
             )
         }
     }

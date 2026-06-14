@@ -22,54 +22,28 @@ enum SharedTimelinePublisher {
     static let horizonDays = 2
 
     /// Build + publish the timeline + snapshot, then nudge WidgetKit to reload.
+    ///
+    /// The timeline shows the SAME "words of the day" the notifications announce — both pull from
+    /// `DailyWords.forToday` with `count = notificationCount`. There are `count` slots per day,
+    /// one word each, rotating through the day; advancing to the next day's set automatically.
     static func refresh(profile: UserProfile, isPro: Bool) {
-        let pool: [Word] = isPro ? WordRepository.shared.all : WordAccess.freePool()
-
-        guard !pool.isEmpty else {
-            SharedWordStore.writeTimeline([])
-            publishSnapshot(profile: profile, isPro: isPro)
-            return
-        }
-
-        // Unseen words lead, so the widget keeps offering words still to learn; once everything
-        // has been seen we cycle the whole pool.
-        let seen = Set(profile.seenWordIds)
-        let unseen = pool.filter { !seen.contains($0.id) }
-        let sequence = unseen.isEmpty ? pool : (unseen + pool.filter { seen.contains($0.id) })
-
         let cal = dayCalendar(for: profile)
-        let now = Date()
-        let startOfDay = cal.startOfDay(for: now)
-
-        // Distinct words per day = the daily goal; rotate every 24/goal hours (clamped ≥1h).
-        let perDay = max(1, profile.dailyGoal)
-        let slotHours = max(1, Int((24.0 / Double(perDay)).rounded()))
-        let slotsPerDay = max(1, 24 / slotHours)
-
-        // Align to the current slot so the "now" word is stable until the slot ends.
-        let hoursSinceMidnight = cal.dateComponents([.hour], from: startOfDay, to: now).hour ?? 0
-        let currentSlot = hoursSinceMidnight / slotHours
-        guard let slotStart = cal.date(byAdding: .hour, value: currentSlot * slotHours, to: startOfDay) else {
-            SharedWordStore.writeTimeline([]); publishSnapshot(profile: profile, isPro: isPro); return
-        }
-
-        // Advance the starting word each day so it isn't always the same first word.
-        let yearDay = cal.ordinality(of: .day, in: .year, for: startOfDay) ?? 1
-        let dayBase = (yearDay - 1) * slotsPerDay
+        let count = max(1, profile.notificationCount)
+        let seen = Set(profile.seenWordIds)
+        let startOfDay = cal.startOfDay(for: Date())
+        let slotHours = max(1, 24 / count)
 
         var timeline: [SharedWordStore.DailyWord] = []
-        for i in 0..<(slotsPerDay * horizonDays) {
-            guard let date = cal.date(byAdding: .hour, value: i * slotHours, to: slotStart) else { continue }
-            let word = sequence[(dayBase + currentSlot + i) % sequence.count]
-            timeline.append(.init(
-                date: date,
-                id: word.id,
-                text: word.text,
-                phonetic: word.phonetic,
-                partOfSpeech: word.partOfSpeech,
-                definition: word.definition,
-                translation: nil
-            ))
+        for dayOffset in 0..<horizonDays {
+            guard let dayStart = cal.date(byAdding: .day, value: dayOffset, to: startOfDay) else { continue }
+            let words = DailyWords.forToday(count: count, seenIds: seen, calendar: cal, isPro: isPro, now: dayStart)
+            for (i, word) in words.enumerated() {
+                guard let date = cal.date(byAdding: .hour, value: i * slotHours, to: dayStart) else { continue }
+                timeline.append(.init(
+                    date: date, id: word.id, text: word.text, phonetic: word.phonetic,
+                    partOfSpeech: word.partOfSpeech, definition: word.definition, translation: nil
+                ))
+            }
         }
         SharedWordStore.writeTimeline(timeline)
         publishSnapshot(profile: profile, isPro: isPro)

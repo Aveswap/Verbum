@@ -15,11 +15,12 @@ enum NotificationManager {
     /// Requests permission and schedules. `onAuthorization(granted)` runs on the main actor so the
     /// caller can keep `profile.notificationsEnabled` honest when the user taps "Don't Allow".
     static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22,
-                                   seenIds: Set<UUID> = [], onAuthorization: (@MainActor @Sendable (Bool) -> Void)? = nil) {
+                                   seenIds: Set<UUID> = [], calendar: Calendar = .current,
+                                   onAuthorization: (@MainActor @Sendable (Bool) -> Void)? = nil) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             Task { @MainActor in
                 if granted {
-                    reschedule(count: count, startHour: startHour, endHour: endHour, seenIds: seenIds)
+                    reschedule(count: count, startHour: startHour, endHour: endHour, seenIds: seenIds, calendar: calendar)
                 }
                 onAuthorization?(granted)
             }
@@ -27,15 +28,12 @@ enum NotificationManager {
     }
 
     @MainActor
-    static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22, seenIds: Set<UUID> = []) {
-        // Sample real words from the user's own free pool so notifications never leak paywalled
-        // words (and a free user can immediately tap-open anything the notification mentions).
-        // Prefer words the user hasn't seen yet, so each notification surfaces a genuinely NEW
-        // word; fall back to the whole pool once everything's been seen.
-        let pool = WordAccess.freePool()
-        let unseen = pool.filter { !seenIds.contains($0.id) }
-        let source = unseen.isEmpty ? pool : unseen
-        let sampledWords = Array(source.shuffled().prefix(count))
+    static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22,
+                           seenIds: Set<UUID> = [], calendar: Calendar = .current) {
+        // The SAME "words of the day" the widget shows (DailyWords.forToday) — so the daily
+        // notifications and the lock-/home-screen widget surface one shared set per day. These are
+        // free-pool/unseen-first words, so a free user can immediately tap-open anything mentioned.
+        let sampledWords = DailyWords.forToday(count: count, seenIds: seenIds, calendar: calendar)
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
