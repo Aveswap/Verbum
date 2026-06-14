@@ -19,9 +19,34 @@ class UserProfileStore: ObservableObject {
     /// server's history before the pull merges it back — the classic "lost my data" bug.
     private var hasCompletedInitialPull = false
 
+    private var pendingDailyOpen = false
+
     /// Called by CloudKitSyncManager.pull once a merge (or first-push of a new record) finishes,
     /// so subsequent local mutations are allowed to push.
-    func markInitialPullComplete() { hasCompletedInitialPull = true }
+    func markInitialPullComplete() {
+        hasCompletedInitialPull = true
+        runPendingDailyOpen()
+    }
+
+    /// Records the daily open at the RIGHT time. With no iCloud account (or once the first pull
+    /// has already merged) it runs immediately; otherwise it's deferred until the pull completes,
+    /// so the streak is computed against the merged server state — not the empty local profile on
+    /// a fresh install (which would miscount and then get clobbered by the merge).
+    func recordDailyOpenWhenReady() {
+        if profile.appleUserID == nil || hasCompletedInitialPull {
+            recordDailyOpen()
+        } else {
+            pendingDailyOpen = true
+        }
+    }
+
+    /// Runs a deferred daily open (from pull success OR failure, so an offline launch still
+    /// records the streak — best-effort against local state in that case).
+    func runPendingDailyOpen() {
+        guard pendingDailyOpen else { return }
+        pendingDailyOpen = false
+        recordDailyOpen()
+    }
 
     init() {
         if let data = UserDefaults.standard.data(forKey: key),

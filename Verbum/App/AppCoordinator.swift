@@ -30,7 +30,7 @@ struct AppCoordinator: View {
                         currentStreak: userProfile.profile.currentStreak,
                         lastOpened: userProfile.profile.lastOpenedDate
                     )
-                    userProfile.recordDailyOpen()
+                    userProfile.recordDailyOpenWhenReady()
                     Task { await auth.refreshCredentialState() }
                     // Game Center auth is triggered here (the feed), not at the app root, so its
                     // sign-in sheet can't interrupt onboarding's first run.

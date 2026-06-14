@@ -79,6 +79,10 @@ final class CloudKitSyncManager {
             await push(store.profile)
         } catch {
             logger.error("[CloudKit] pull failed: \(error, privacy: .public)")
+            // Pull failed (e.g. offline): don't mark the initial pull complete (so we don't push a
+            // non-merged profile), but still run any deferred daily open so the streak updates
+            // today — best-effort against local state.
+            store.runPendingDailyOpen()
         }
     }
 
@@ -225,8 +229,15 @@ final class CloudKitSyncManager {
         merged.settingsUpdatedAt = max(local.settingsUpdatedAt, remote.settingsUpdatedAt)
 
         // Counters: take max (monotonic, never regress).
-        merged.currentStreak   = max(local.currentStreak, remote.currentStreak)
+        // longestStreak is monotonic (a record) → max. currentStreak is NOT — it resets on a
+        // lapse — so max() would wrongly "revive" a streak the user already broke. Trust the side
+        // that opened most recently (its currentStreak reflects the latest recordDailyOpen).
         merged.longestStreak   = max(local.longestStreak, remote.longestStreak)
+        switch (local.lastOpenedDate, remote.lastOpenedDate) {
+        case let (l?, r?): merged.currentStreak = (r > l) ? remote.currentStreak : local.currentStreak
+        case (nil, _?):    merged.currentStreak = remote.currentStreak
+        default:           merged.currentStreak = local.currentStreak
+        }
         merged.totalPoints     = max(local.totalPoints, remote.totalPoints)
         merged.quarterlyPoints = max(local.quarterlyPoints, remote.quarterlyPoints)
         // Consumable balance: take the side that acted most recently as authoritative, rather
