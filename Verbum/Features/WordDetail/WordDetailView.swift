@@ -8,6 +8,9 @@ struct WordDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showPremium = false
     @State private var showShare = false
+    // Main reading text scales with Dynamic Type (base size at default, grows for large text).
+    @ScaledMetric(relativeTo: .largeTitle) private var wordTitleSize: CGFloat = 40
+    @ScaledMetric(relativeTo: .body) private var definitionSize: CGFloat = 18
 
     init(word: Word) {
         self.word = word
@@ -119,7 +122,7 @@ struct WordDetailView: View {
                         // Word header
                         VStack(spacing: AppSpacing.sm) {
                             Text(word.text)
-                                .font(AppTypography.wordTitle)
+                                .font(.system(size: wordTitleSize, weight: .bold, design: .serif))
                                 .foregroundColor(AppColors.textPrimary)
                                 .frame(maxWidth: .infinity)
 
@@ -153,7 +156,7 @@ struct WordDetailView: View {
                                 .font(.system(size: 13, weight: .semibold))
                                 .foregroundColor(AppColors.accent)
                             Text(word.definition)
-                                .font(AppTypography.definition)
+                                .font(.system(size: definitionSize, weight: .regular))
                                 .foregroundColor(AppColors.textPrimary)
                         }
                         .padding(AppSpacing.md)

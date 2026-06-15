@@ -406,6 +406,19 @@ struct WordFeedView: View {
                             activeSheet = .detail
                         }
                     }
+                    // VoiceOver: the swipe feed is gesture-only, so expose the card as one
+                    // readable element with explicit Next/Previous actions (in the rotor) — a
+                    // blind user can otherwise never advance past the first word.
+                    .accessibilityElement(children: .combine)
+                    .accessibilityLabel("\(word.text), \(word.localizedPartOfSpeech). \(word.definition)")
+                    .accessibilityHint("Double-tap for details")
+                    .accessibilityAction(named: Text("Next word")) {
+                        _ = userProfile.markWordSeen(word.id)
+                        if !viewModel.isAtEnd { withAnimation { viewModel.nextWord() } }
+                    }
+                    .accessibilityAction(named: Text("Previous word")) {
+                        if !viewModel.isAtStart { withAnimation { viewModel.previousWord() } }
+                    }
                     .id(viewModel.currentIndex)
                     .transition(.asymmetric(
                         insertion: .move(edge: viewModel.goingBack ? .top : .bottom).combined(with: .opacity),
@@ -637,6 +650,10 @@ private struct WordCardView: View {
     let seenSet: Set<UUID>
     @EnvironmentObject var userProfile: UserProfileStore
     @EnvironmentObject var subscriptions: SubscriptionManager
+    // The main reading surface scales with Dynamic Type (keeps the base size at default settings,
+    // grows for larger accessibility text) instead of being pinned in points.
+    @ScaledMetric(relativeTo: .largeTitle) private var wordTitleSize: CGFloat = 40
+    @ScaledMetric(relativeTo: .body) private var definitionSize: CGFloat = 18
 
     private var isLocked: Bool {
         !WordAccess.canAccess(word, isPro: subscriptions.isPro)
@@ -704,7 +721,7 @@ private struct WordCardView: View {
             }
 
             Text(word.text)
-                .font(AppTypography.wordTitle)
+                .font(.system(size: wordTitleSize, weight: .bold, design: .serif))
                 .foregroundColor(AppColors.textPrimary)
 
             HStack(spacing: AppSpacing.sm) {
@@ -727,7 +744,7 @@ private struct WordCardView: View {
             }
 
             Text("\(word.localizedPartOfSpeech)  \(word.definition)")
-                .font(AppTypography.definition)
+                .font(.system(size: definitionSize, weight: .regular))
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
