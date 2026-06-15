@@ -37,6 +37,12 @@ class UserProfileStore: ObservableObject {
             recordDailyOpen()
         } else {
             pendingDailyOpen = true
+            // Safety net: if the first pull neither succeeds nor fails in time (slow / hung
+            // network), record anyway so the streak isn't lost for the session. runPendingDailyOpen
+            // is idempotent, so this no-ops if the pull already handled it.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+                self?.runPendingDailyOpen()
+            }
         }
     }
 

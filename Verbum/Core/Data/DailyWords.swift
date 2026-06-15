@@ -30,9 +30,11 @@ enum DailyWords {
         }
 
         let n = min(count, seq.count)
-        // Advance the window by `n` each calendar day so today's set differs from yesterday's.
-        let yearDay = calendar.ordinality(of: .day, in: .year, for: now) ?? 1
-        let start = ((yearDay - 1) * n) % seq.count
+        // Advance the window by `n` each day so today's set differs from yesterday's. Use a
+        // continuous day number from the start-of-day epoch — NOT day-of-year, which resets on
+        // Jan 1 and would jump/duplicate the set at the year boundary.
+        let dayNumber = Int(calendar.startOfDay(for: now).timeIntervalSince1970 / 86_400)
+        let start = ((dayNumber * n) % seq.count + seq.count) % seq.count
         return (0..<n).map { seq[(start + $0) % seq.count] }
     }
 }

@@ -32,4 +32,9 @@ enum AppInfo {
     static var rateURL: URL {
         URL(string: "https://apps.apple.com/app/id\(appStoreID)?action=write-review")!
     }
+
+    /// Legal links shown on the paywall. Built once with a safe fallback so there are no
+    /// force-unwrapped `URL(string:)!` at call sites (a future typo can't crash the paywall).
+    static let privacyURL = URL(string: "https://verbum.app/privacy") ?? URL(fileURLWithPath: "/")
+    static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") ?? URL(fileURLWithPath: "/")
 }

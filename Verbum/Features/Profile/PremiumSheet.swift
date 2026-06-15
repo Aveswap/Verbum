@@ -290,13 +290,11 @@ struct PremiumSheet: View {
             .font(.system(size: 12))
             .foregroundColor(AppColors.textSecondary)
 
-            Link("Privacy Policy",
-                 destination: URL(string: "https://verbum.app/privacy")!)
+            Link("Privacy Policy", destination: AppInfo.privacyURL)
                 .font(.system(size: 12))
                 .foregroundColor(AppColors.textSecondary)
 
-            Link("Terms of Use",
-                 destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+            Link("Terms of Use", destination: AppInfo.termsURL)
                 .font(.system(size: 12))
                 .foregroundColor(AppColors.textSecondary)
         }
