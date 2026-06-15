@@ -163,9 +163,13 @@ struct WordFeedView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .openWord)) { note in
             // Deep-link from Spotlight or the widget: open the requested word's detail.
-            if let id = note.object as? UUID {
-                deepLinkWord = WordRepository.shared.word(id: id)
-            }
+            // Dismiss any sheet already up first, then present on the next runloop — two
+            // `.sheet`s competing at the same level (activeSheet + deepLinkWord) would otherwise
+            // conflict and one silently fails to present.
+            guard let id = note.object as? UUID,
+                  let word = WordRepository.shared.word(id: id) else { return }
+            activeSheet = nil
+            DispatchQueue.main.async { deepLinkWord = word }
         }
         .sheet(item: $deepLinkWord) { word in
             WordDetailView(word: word)
