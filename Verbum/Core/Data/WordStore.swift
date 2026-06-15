@@ -239,6 +239,7 @@ class UserProfileStore: ObservableObject {
         } else {
             profile.bookmarkedWordIds.append(id)
         }
+        profile.bookmarkChangedAt[id.uuidString] = Date()  // stamp every toggle for per-id LWW
     }
 
     func likeWord(_ id: UUID) {
@@ -247,6 +248,7 @@ class UserProfileStore: ObservableObject {
         } else {
             profile.likedWordIds.append(id)
         }
+        profile.likeChangedAt[id.uuidString] = Date()
     }
 
     /// Marks a word as seen. Returns true if this caused the daily goal to be reached just now.

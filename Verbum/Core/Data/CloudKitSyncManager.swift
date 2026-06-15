@@ -143,6 +143,8 @@ final class CloudKitSyncManager {
         r["challengeHighScores"]   = jsonBlob(p.challengeHighScores)
         r["streakFreezeUsedDates"] = jsonBlob(p.streakFreezeUsedDates)
         r["dailyOpens"]            = jsonBlob(p.dailyOpens)
+        r["likeChangedAt"]         = jsonBlob(p.likeChangedAt)
+        r["bookmarkChangedAt"]     = jsonBlob(p.bookmarkChangedAt)
     }
 
     private func jsonBlob<T: Encodable>(_ value: T) -> CKRecordValue? {
@@ -194,6 +196,8 @@ final class CloudKitSyncManager {
         p.challengeHighScores  = decodeBlob(r["challengeHighScores"], as: [String: Int].self, default: [:])
         p.streakFreezeUsedDates = decodeBlob(r["streakFreezeUsedDates"], as: [Date].self, default: [])
         p.dailyOpens           = decodeBlob(r["dailyOpens"], as: [Date].self, default: [])
+        p.likeChangedAt        = decodeBlob(r["likeChangedAt"], as: [String: Date].self, default: [:])
+        p.bookmarkChangedAt    = decodeBlob(r["bookmarkChangedAt"], as: [String: Date].self, default: [:])
         return p
     }
 
@@ -264,9 +268,15 @@ final class CloudKitSyncManager {
             (local.practiceGamesPlayedToday, local.practiceGamesDate),
             (remote.practiceGamesPlayedToday, remote.practiceGamesDate))
 
-        // Sets: union.
-        merged.bookmarkedWordIds = Array(Set(local.bookmarkedWordIds).union(remote.bookmarkedWordIds))
-        merged.likedWordIds      = Array(Set(local.likedWordIds).union(remote.likedWordIds))
+        // Likes/bookmarks: per-id last-write-wins (NOT union) so an un-like/un-bookmark on one
+        // device isn't resurrected by the other's stale copy.
+        (merged.likedWordIds, merged.likeChangedAt) = Self.mergeToggleSet(
+            localIds: local.likedWordIds, localTs: local.likeChangedAt,
+            remoteIds: remote.likedWordIds, remoteTs: remote.likeChangedAt)
+        (merged.bookmarkedWordIds, merged.bookmarkChangedAt) = Self.mergeToggleSet(
+            localIds: local.bookmarkedWordIds, localTs: local.bookmarkChangedAt,
+            remoteIds: remote.bookmarkedWordIds, remoteTs: remote.bookmarkChangedAt)
+        // Seen is append-only (you never "unsee") → union is correct.
         merged.seenWordIds       = Array(Set(local.seenWordIds).union(remote.seenWordIds))
         merged.streakFreezeUsedDates = Array(Set(local.streakFreezeUsedDates).union(remote.streakFreezeUsedDates))
         // dailyOpens: union, then trim to the last 7 days (matching recordDailyOpen) so a merge
@@ -326,6 +336,33 @@ final class CloudKitSyncManager {
             return (max(a.0, b.0), max(a.1, b.1))
         }
         return a.1 > b.1 ? a : b
+    }
+
+    /// Per-id last-write-wins for a toggleable id-set (likes / bookmarks). For each id the side
+    /// with the later "changed at" timestamp decides whether it's present; ids never toggled on
+    /// either side (no timestamp — e.g. legacy data) fall back to union. Returns the merged set
+    /// plus the merged timestamp map (max date per id).
+    private static func mergeToggleSet(
+        localIds: [UUID], localTs: [String: Date],
+        remoteIds: [UUID], remoteTs: [String: Date]
+    ) -> ([UUID], [String: Date]) {
+        let localSet = Set(localIds), remoteSet = Set(remoteIds)
+        var mergedTs = localTs
+        for (k, v) in remoteTs { mergedTs[k] = max(mergedTs[k] ?? .distantPast, v) }
+
+        var result = Set<UUID>()
+        for id in localSet.union(remoteSet) {
+            let key = id.uuidString
+            let lt = localTs[key], rt = remoteTs[key]
+            if lt == nil && rt == nil {
+                result.insert(id)                                   // untimestamped → union
+            } else if (rt ?? .distantPast) > (lt ?? .distantPast) {
+                if remoteSet.contains(id) { result.insert(id) }     // remote toggled later
+            } else if localSet.contains(id) {
+                result.insert(id)                                   // local toggled later (or tie)
+            }
+        }
+        return (Array(result), mergedTs)
     }
 
     private static func mergeMaxByKey(_ a: [String: Int], _ b: [String: Int]) -> [String: Int] {

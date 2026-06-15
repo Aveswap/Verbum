@@ -24,12 +24,31 @@ final class CloudKitMergeTests: XCTestCase {
         XCTAssertEqual(merge(local, remote).dailyGoal, 5)
     }
 
-    func testCountersTakeMax() {
-        var local = UserProfile();  local.currentStreak = 3; local.totalPoints = 100
-        var remote = UserProfile(); remote.currentStreak = 7; remote.totalPoints = 40
+    func testMonotonicCountersTakeMax() {
+        // totalPoints / longestStreak are records → max. currentStreak is NOT (it resets on a
+        // lapse) → it follows the side that opened most recently, not max.
+        var local = UserProfile();  local.totalPoints = 100; local.longestStreak = 9
+        var remote = UserProfile(); remote.totalPoints = 40;  remote.longestStreak = 5
         let m = merge(local, remote)
-        XCTAssertEqual(m.currentStreak, 7)
         XCTAssertEqual(m.totalPoints, 100)
+        XCTAssertEqual(m.longestStreak, 9)
+    }
+
+    func testCurrentStreakFollowsLatestOpen() {
+        // The device that opened more recently owns the live streak — even if its number is lower
+        // (a lapse). max() would wrongly revive the broken streak.
+        var local = UserProfile();  local.currentStreak = 7; local.lastOpenedDate = Date(timeIntervalSince1970: 1_000)
+        var remote = UserProfile(); remote.currentStreak = 1; remote.lastOpenedDate = Date(timeIntervalSince1970: 2_000)
+        XCTAssertEqual(merge(local, remote).currentStreak, 1)   // remote opened later → its streak
+        XCTAssertEqual(merge(remote, local).currentStreak, 1)   // order-independent
+    }
+
+    func testToggleUnlikeSticksWithTimestamp() {
+        // local un-liked `a` AFTER remote liked it → the un-like wins (no resurrection).
+        let a = UUID()
+        var local = UserProfile();  local.likedWordIds = [];  local.likeChangedAt = [a.uuidString: Date(timeIntervalSince1970: 2_000)]
+        var remote = UserProfile(); remote.likedWordIds = [a]; remote.likeChangedAt = [a.uuidString: Date(timeIntervalSince1970: 1_000)]
+        XCTAssertFalse(merge(local, remote).likedWordIds.contains(a))
     }
 
     func testSeenAndLikedAreUnioned() {

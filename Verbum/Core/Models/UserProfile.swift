@@ -19,6 +19,11 @@ struct UserProfile: Codable {
     var onboardingCompleted: Bool = false
     var bookmarkedWordIds: [UUID] = []
     var likedWordIds: [UUID] = []
+    // Last-toggle time per word id (uuidString → date) for like/bookmark. Powers a per-id
+    // last-write-wins CloudKit merge, so un-liking / un-bookmarking on one device isn't
+    // resurrected by another device's stale union. Bounded by catalogue size.
+    var likeChangedAt: [String: Date] = [:]
+    var bookmarkChangedAt: [String: Date] = [:]
     var currentStreak: Int = 0
     var longestStreak: Int = 0
     var lastOpenedDate: Date? = nil
