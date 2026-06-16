@@ -72,7 +72,10 @@ final class WordDatabase: @unchecked Sendable {
     ///      untranslatables (~5%: komorebi, sobremesa, sisu, tsundoku, wabi-sabi, …) as flavour.
     /// v33: emptied the dead `translations` table (1000 stale uk/de rows from before the pivot) +
     ///      VACUUM — bundled DB shrank 1.8 MB → 216 KB. Words unchanged (en 260).
-    static let bundledDBVersion = 33
+    /// v34: +102 rare REAL English dictionary words (deep-research batches 8+9, deduped → en 362;
+    ///      gems_round8.json). All OED/M-W/Collins headwords with examples; dropped saudade
+    ///      (foreign untranslatable). threnody, palimpsest, lacuna, sangfroid, pellucid, quiddity…
+    static let bundledDBVersion = 34
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
