@@ -2,8 +2,10 @@ import Foundation
 import Combine
 
 /// Optional over-the-air download path for the word database.
-/// NOTE: The 1,000-word DB now ships bundled in the app (see WordDatabase.seedFromBundleIfNeeded),
-/// so this manager is dormant — `startIfNeeded()` no-ops because the DB is already available.
+/// NOTE: The word DB now ships bundled and is opened read-only in place (see
+/// WordDatabase.openBundledReadOnly), so this manager is dormant — `startIfNeeded()` no-ops
+/// because the DB is already available. Note: re-enabling OTA also requires WordDatabase to
+/// prefer the installed writable copy over the bundle on launch (the read-only open ignores it).
 /// Kept as a future hook for OTA word updates; wire up `remoteURL` to a real CDN to enable it.
 @MainActor
 final class DatabaseDownloadManager: NSObject, ObservableObject {

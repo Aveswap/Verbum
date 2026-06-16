@@ -79,96 +79,34 @@ final class WordDatabase: @unchecked Sendable {
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
-        // Fast path (every launch after the first): an up-to-date writable copy already
-        // exists, so open it synchronously — the feed then has the full catalog before the
-        // first render, no skeleton flash.
-        if !needsSeeding() {
-            openIfExists()
+        // The catalogue is read-only at runtime (nothing in the app writes to `words`), so we
+        // open the bundled `words_v2.db` directly, in place, with a read-only connection. No
+        // copy into Application Support, no migration, no background seed — the full catalog is
+        // available synchronously before the first render. This is what makes the very first
+        // launch fast: the old code copied a ~280 KB DB off-main and only upgraded the feed from
+        // the words.json fallback once the copy + open + reload round-trip finished.
+        //
+        // The bundled DB already has every migration applied (v1–v3) and its FTS index built, so
+        // there is nothing to run at open time. words.json remains the fallback if this fails.
+        openBundledReadOnly()
+    }
+
+    /// Opens the bundled `words_v2.db` read-only, in place. Read-only is required because the app
+    /// bundle is not writable on device; it also documents the invariant that the catalogue is
+    /// immutable at runtime. On failure the queue stays nil and callers fall back to words.json.
+    private func openBundledReadOnly() {
+        guard let url = Bundle.main.url(forResource: "words_v2", withExtension: "db") else {
+            Logger.database.error("bundled words_v2.db not found")
             return
         }
-        // Slow path (first launch / bundled-version bump / corrupted copy): copying the
-        // bundled DB is the only heavy step and would block launch on the main thread. Do it
-        // off-main; until it finishes the app serves the bundled words.json fallback, then
-        // upgrades to the full catalog via the .wordDatabaseInstalled notification.
-        seedInBackground()
-    }
-
-    /// Same staleness test the seed uses — true when the writable copy is missing, older
-    /// than the bundled version, or empty/corrupted.
-    private func needsSeeding() -> Bool {
-        let dest = Self.databaseURL
-        let exists = FileManager.default.fileExists(atPath: dest.path)
-        let installedVersion = UserDefaults.standard.integer(forKey: Self.bundledVersionKey)
-        let isStale = !exists || installedVersion < Self.bundledDBVersion
-        let isEmpty = exists && Self.existingDatabaseIsEmpty(at: dest)
-        return isStale || isEmpty
-    }
-
-    /// Copies the bundled DB on a background queue, then opens it and announces availability
-    /// on the main thread so observers (the feed) can reload from the full catalog.
-    private func seedInBackground() {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.seedFromBundleIfNeeded()
-            DispatchQueue.main.async {
-                self.openIfExists()
-                guard self.isAvailable else { return }
-                WordRepository.shared.reloadFromDatabase()
-                NotificationCenter.default.post(name: .wordDatabaseInstalled, object: nil)
-            }
-        }
-    }
-
-    func openIfExists() {
-        let path = Self.databaseURL.path
-        guard FileManager.default.fileExists(atPath: path) else { return }
         do {
-            setQueue(try DatabaseQueue(path: path))
-            try runMigrations()
+            var config = Configuration()
+            config.readonly = true
+            setQueue(try DatabaseQueue(path: url.path, configuration: config))
         } catch {
-            Logger.database.error("open/migrate failed: \(error.localizedDescription, privacy: .public)")
-            // Don't expose a half-migrated / unopenable DB as "available" — drop the queue so
-            // isAvailable becomes false and callers fall back to the bundle / a fresh re-seed,
-            // instead of silently returning [] from every query against a broken schema.
+            Logger.database.error("bundled DB open failed: \(error.localizedDescription, privacy: .public)")
             setQueue(nil)
         }
-    }
-
-    /// Copies the bundled database into the writable location on first launch, when an app
-    /// update ships a newer bundled version, or when the existing writable copy is empty
-    /// (recovers from corrupted/aborted seeds).
-    ///
-    /// INVARIANT: `words.db` is a **disposable content cache** — re-seeding wipes it wholesale.
-    /// All user-generated state (progress, streaks, decks, reviews, settings) lives in
-    /// `UserProfile` (UserDefaults + CloudKit), NOT here, so a re-seed loses nothing the user
-    /// created. Any FUTURE writable content in this DB (OTA word packs, downloaded translations)
-    /// MUST either live in a separate file or be re-applied after a re-seed — do not assume rows
-    /// written here survive a `bundledDBVersion` bump.
-    private func seedFromBundleIfNeeded() {
-        let dest = Self.databaseURL
-        let exists = FileManager.default.fileExists(atPath: dest.path)
-        let installedVersion = UserDefaults.standard.integer(forKey: Self.bundledVersionKey)
-        let isStale = !exists || installedVersion < Self.bundledDBVersion
-        let isEmpty = exists && Self.existingDatabaseIsEmpty(at: dest)
-        guard isStale || isEmpty else { return }
-        guard let bundled = Bundle.main.url(forResource: "words_v2", withExtension: "db") else { return }
-        do {
-            if exists { try FileManager.default.removeItem(at: dest) }
-            try FileManager.default.copyItem(at: bundled, to: dest)
-            UserDefaults.standard.set(Self.bundledDBVersion, forKey: Self.bundledVersionKey)
-        } catch {
-            // Leave any existing database in place if the copy fails.
-            Logger.database.error("bundled DB seed failed: \(error.localizedDescription, privacy: .public)")
-        }
-    }
-
-    /// Returns true when the words table is missing or empty — both indicate an
-    /// unusable copy that should be replaced from the bundle.
-    private static func existingDatabaseIsEmpty(at url: URL) -> Bool {
-        guard let queue = try? DatabaseQueue(path: url.path) else { return true }
-        let count = try? queue.read { db in
-            try Int.fetchOne(db, sql: "SELECT COUNT(*) FROM words")
-        }
-        return (count ?? 0) == 0
     }
 
     // MARK: - Install
