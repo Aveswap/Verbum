@@ -376,13 +376,26 @@ struct WordFeedView: View {
 
             Spacer()
 
-            Button { activeSheet = .premium } label: {
-                Image(systemName: "crown.fill")
+            // Trailing slot is always 44×44 to keep the header balanced. Free users get
+            // the upgrade-CTA crown; Pro users get a subtle "premium active" badge so the
+            // layout feels intentional instead of empty.
+            if subscriptions.isPro {
+                Image(systemName: "checkmark.seal.fill")
                     .font(.system(size: 17))
-                    .foregroundColor(AppColors.accent)
+                    .foregroundColor(AppColors.accent.opacity(0.85))
                     .frame(width: 44, height: 44)
                     .background(AppColors.surface)
                     .clipShape(Circle())
+                    .accessibilityLabel("Premium active")
+            } else {
+                Button { activeSheet = .premium } label: {
+                    Image(systemName: "crown.fill")
+                        .font(.system(size: 17))
+                        .foregroundColor(AppColors.accent)
+                        .frame(width: 44, height: 44)
+                        .background(AppColors.surface)
+                        .clipShape(Circle())
+                }
             }
         }
         .padding(.horizontal, AppSpacing.md)
@@ -401,7 +414,9 @@ struct WordFeedView: View {
                     .environmentObject(subscriptions)
                     .offset(y: dragOffset * 0.35)
                     .rotation3DEffect(.degrees(Double(dragOffset) * 0.015), axis: (x: 1, y: 0, z: 0))
-                    .animation(.interactiveSpring(), value: dragOffset)
+                    // No implicit animation on dragOffset — it fought with the explicit
+                    // withAnimation in onEnded, producing the stutter on release. Live drag
+                    // tracks the finger directly; the release animation comes from onEnded.
                     .gesture(swipeGesture)
                     .onTapGesture {
                         if !WordAccess.canAccess(word, isPro: subscriptions.isPro) {
@@ -747,7 +762,7 @@ private struct WordCardView: View {
                 .accessibilityLabel("Pronounce \(word.text)")
             }
 
-            Text("\(word.localizedPartOfSpeech)  \(word.definition)")
+            Text("\(word.abbreviatedPartOfSpeech) \(word.definition)")
                 .font(.system(size: definitionSize, weight: .regular))
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)

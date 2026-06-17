@@ -1,8 +1,44 @@
 # Verbum — Project Handoff
 
-**Last updated:** 2026-06-13
+**Last updated:** 2026-06-18
 **Branch:** `main`
-**Latest commit:** Second (release-readiness) audit remediation. Release blockers fixed: bundle id is now configuration-scoped (Release→`com.verbum.app`, Debug→`com.verbumtest.app`), and the bundled DB is a single checkpointed file (no `-wal/-shm` sidecars in Resources/pbxproj). High-pri: account deletion now also cancels notifications, clears the widget store + Spotlight index; Spotlight token keyed on `version|language|isPro` (no per-launch Pro flip, purges old language); notification minute clamp + honest `notificationsEnabled`; Game Center foreground-scene fix; single auth-error channel; widget timeline on the locked `dayCalendar`; quiz distractor dedup across all quizzes; Game Center/Leaderboard gated behind `AppInfo.isGameCenterConfigured`.
+**Latest commit:** Personal-team local-dev cleanup + UX bug-fix pass (13 user-reported bugs). Removed widget extension target + 3 paid entitlements (Sign in with Apple / Game Center / iCloud) and stubbed `AuthService` / `GameCenterService` / `CloudKitSyncManager` so the app installs cleanly on a free Apple ID. UX: killed Next-button layout jitter in 4 quiz views by always rendering the button and toggling opacity; gated the WordFeed crown + PracticeMenu "Unlock All" behind `subscriptions.isPro`; reserved the crown slot with a Premium badge so the header doesn't shift; hardened `NameInputView` (autocorrect off, words autocapitalization, alpha-only filter, 32-char cap); switched the main feed to abbreviated parts of speech (`(n.)` / `(v.)` / `(adj.)` …); SoundManager now plays bundled `correct_chime.*` and `streak_chime.*` files only (the synthesized arpeggio that everyone hated is gone — silent until you drop in a sound file); removed swipe-card implicit animation that conflicted with the release-spring (smoother drag).
+
+> **§14 — Audio asset slot (2026-06-18):** `SoundManager` looks for `correct_chime.<m4a|mp3|wav|caf|aac>` and `streak_chime.<…>` in the main bundle. Drop a file into `Verbum/Resources/` + add to the Verbum target (Build Phases → Copy Bundle Resources) and it'll auto-play on correct quiz answers / daily-goal celebrations. No file → silent (this is intentional — see bug #1 in the 2026-06-18 fix batch).
+
+> **⚠️ LOCAL-DEV ONLY — DO NOT COMMIT:** the dev machine currently uses a **free Apple ID (Personal Team)**, which can't sign three of our entitlements AND can't reliably embed a widget extension. To get the app launching on a physical device, we are **temporarily**:
+>
+> **(a) Patched `Verbum/Verbum.entitlements`** — removed the three paid-only keys, kept only App Groups:
+> - ❌ `com.apple.developer.applesignin` (Sign in with Apple)
+> - ❌ `com.apple.developer.game-center` (Game Center)
+> - ❌ `com.apple.developer.icloud-container-identifiers` + `icloud-services: CloudKit`
+> - ✅ `com.apple.security.application-groups` (Personal Team supports this)
+>
+> **(b) Stubbed three service files** to no-op (same public API so UI code keeps compiling):
+> - `Verbum/Core/Data/CloudKitSyncManager.swift` — push/pull/deleteZone do nothing; static `merge(...)` kept intact so `CloudKitMergeTests` still pass.
+> - `Verbum/Core/Data/AuthService.swift` — sign-in result handler surfaces a friendly "disabled in local dev" message; `deleteAccount` deletes local data only.
+> - `Verbum/Core/Data/GameCenterService.swift` — `authenticate/submitScore/showLeaderboard/showFriends` all log-and-return.
+>
+> **(c) Originals preserved at `_LocalDev-Disabled/`** — copy-paste-restore, no need to rewrite:
+> - `_LocalDev-Disabled/CloudKitSyncManager.swift.original`
+> - `_LocalDev-Disabled/AuthService.swift.original`
+> - `_LocalDev-Disabled/GameCenterService.swift.original`
+> - `_LocalDev-Disabled/VerbumWidget/` (full snapshot of all 9 widget files)
+>
+> **(d) Widget target must be removed from Xcode** (manual UI step — pbxproj surgery is too risky to script):
+> - Xcode → project navigator (Cmd+1) → click `Verbum` (blue project icon at top) → TARGETS list → right-click `VerbumWidgetExtension` → **Delete** → choose **"Remove Reference"** (NOT "Move to Trash" — leaves files on disk so backup at `_LocalDev-Disabled/` is redundant).
+> - Then: Verbum target → Build Phases → "Embed Foundation Extensions" — should now be empty / remove the row if it lingers.
+> - Cmd+R should now install and launch on Personal Team without code-signing the widget bundle.
+>
+> **MUST re-enable before release** (in order):
+> 1. Restore `Verbum/Verbum.entitlements` from VCS (or re-add the 3 paid-only keys).
+> 2. In Xcode: Verbum target → Signing & Capabilities → `+ Capability` → add Sign in with Apple, Game Center, iCloud (CloudKit).
+> 3. Restore the three service files from `_LocalDev-Disabled/*.original` (overwrite the stubs in place).
+> 4. Re-add the widget target: File → New → Target → Widget Extension → name `VerbumWidget`. Then drag every file from `_LocalDev-Disabled/VerbumWidget/` back into the new target (matching Build Phases membership). Widget entitlements only need App Groups.
+> 5. Verify on device with the paid team: CloudKit pull/push, Sign in with Apple flow, Game Center auth.
+> 6. Re-run the App Store TODOs in §13 (real Game Center leaderboards in ASC, etc.).
+>
+> **Side effects while stubbed:** no cross-device profile sync, Leaderboard tab is empty, Sign in with Apple shows local-dev error, no home/lock-screen widget. All core features (feed, swipe, practice, quiz, streak, favorites, decks, history, FSRS, notifications) work normally.
 
 **Catalogue:** English-only, **en 243**, DB **v30** (every word has an example sentence).
 

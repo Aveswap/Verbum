@@ -224,20 +224,36 @@ struct FillGapView: View {
             }
             .padding(.horizontal, AppSpacing.md)
 
-            if viewModel.selectedAnswer != nil {
-                if let correct = viewModel.isCorrect, !correct, let q = viewModel.currentQuestion {
-                    Text("Correct: \(q.correct)")
-                        .font(.system(size: 14))
-                        .foregroundColor(AppColors.textSecondary)
-                }
-                PillButton(title: viewModel.questionNumber == 5 ? "See Results" : "Next") {
-                    withAnimation { viewModel.nextQuestion() }
-                }
-                .padding(.horizontal, AppSpacing.md)
+            // Always-rendered "Correct: …" slot so the Next button doesn't jump when a wrong
+            // answer reveals the hint. A non-breaking space preserves the line height while empty.
+            Text(correctHintText)
+                .font(.system(size: 14))
+                .foregroundColor(AppColors.textSecondary)
+                .opacity(shouldShowCorrectHint ? 1 : 0)
+                .animation(.easeInOut(duration: 0.2), value: viewModel.selectedAnswer)
+
+            PillButton(title: viewModel.questionNumber == 5 ? "See Results" : "Next") {
+                withAnimation { viewModel.nextQuestion() }
             }
+            .padding(.horizontal, AppSpacing.md)
+            .opacity(viewModel.selectedAnswer != nil ? 1 : 0)
+            .allowsHitTesting(viewModel.selectedAnswer != nil)
+            .accessibilityHidden(viewModel.selectedAnswer == nil)
+            .animation(.easeInOut(duration: 0.2), value: viewModel.selectedAnswer)
 
             Spacer()
         }
+    }
+
+    private var shouldShowCorrectHint: Bool {
+        viewModel.selectedAnswer != nil && viewModel.isCorrect == false
+    }
+
+    private var correctHintText: String {
+        if shouldShowCorrectHint, let q = viewModel.currentQuestion {
+            return "Correct: \(q.correct)"
+        }
+        return "\u{00A0}"   // non-breaking space — reserves the line's height when no hint
     }
 
     private func attributedSentence(_ sentence: String) -> AttributedString {

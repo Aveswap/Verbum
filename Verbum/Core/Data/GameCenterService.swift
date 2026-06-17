@@ -1,16 +1,11 @@
 import Foundation
-import GameKit
 import UIKit
 import os
 
-/// Thin wrapper around GameKit. Handles authentication and score submission
-/// for the global quarterly-points leaderboard. Gracefully no-ops if Game Center
-/// is unavailable or unauthenticated — UI stays usable.
-///
-/// Setup checklist (must be done in Xcode + App Store Connect before this works):
-/// - Enable Game Center capability in the Verbum target
-/// - Create a classic leaderboard in App Store Connect with ID matching
-///   `LeaderboardID.quarterlyPoints` below
+// ⚠️ LOCAL-DEV STUB — Game Center disabled for Personal Team builds (no paid Developer Program).
+// Original full implementation preserved at: _LocalDev-Disabled/GameCenterService.swift.original
+// Restore before release: replace this file with the original and re-enable Game Center capability.
+
 @MainActor
 final class GameCenterService: ObservableObject {
     static let shared = GameCenterService()
@@ -27,88 +22,19 @@ final class GameCenterService: ObservableObject {
 
     private init() {}
 
-    /// Triggers GameKit authentication. Apple presents a system sheet if needed;
-    /// returns silently if the user has already authenticated this session.
     func authenticate() {
-        let local = GKLocalPlayer.local
-        local.authenticateHandler = { [weak self] vc, error in
-            guard let self else { return }
-            if let vc {
-                // Present the Game Center sign-in sheet on the active scene
-                Self.presentOnActiveScene(vc)
-                return
-            }
-            if let error {
-                self.logger.error("GameCenter auth failed: \(error.localizedDescription, privacy: .public)")
-                self.isAuthenticated = false
-                return
-            }
-            self.isAuthenticated = local.isAuthenticated
-            self.displayName = local.isAuthenticated ? local.displayName : nil
-        }
+        logger.debug("[GameCenter] authenticate() stubbed — local-dev build")
     }
 
-    /// Submits a score to the given leaderboard. Silently ignored if not authenticated.
     func submitScore(_ score: Int, to leaderboardID: String) {
-        guard isAuthenticated else { return }
-        Task {
-            do {
-                try await GKLeaderboard.submitScore(
-                    score,
-                    context: 0,
-                    player: GKLocalPlayer.local,
-                    leaderboardIDs: [leaderboardID]
-                )
-            } catch {
-                logger.error("Score submit failed: \(error.localizedDescription, privacy: .public)")
-            }
-        }
+        logger.debug("[GameCenter] submitScore() stubbed — local-dev build")
     }
 
-    /// Shows Apple's native Game Center leaderboard UI. No-op if not authenticated.
     func showLeaderboard(_ leaderboardID: String = LeaderboardID.quarterlyPoints) {
-        guard isAuthenticated else { authenticate(); return }
-        let vc = GKGameCenterViewController(
-            leaderboardID: leaderboardID,
-            playerScope: .global,
-            timeScope: .allTime
-        )
-        // Dismissal must be wired by a delegate
-        vc.gameCenterDelegate = GameCenterCloseDelegate.shared
-        Self.presentOnActiveScene(vc)
+        logger.debug("[GameCenter] showLeaderboard() stubbed — local-dev build")
     }
 
-    /// Shows Apple's native Game Center friends list, where the user can send/accept friend
-    /// requests (GameKit has no public API to add friends programmatically, so this is the
-    /// supported path). No-op if not authenticated — triggers auth instead.
     func showFriends() {
-        guard isAuthenticated else { authenticate(); return }
-        let vc = GKGameCenterViewController(state: .localPlayerFriendsList)
-        vc.gameCenterDelegate = GameCenterCloseDelegate.shared
-        Self.presentOnActiveScene(vc)
-    }
-
-    // MARK: - Presentation helper
-
-    private static func presentOnActiveScene(_ vc: UIViewController) {
-        // Pick the foreground-active scene specifically — `.first` can return a background or
-        // external-display scene (iPad multi-window, AirPlay), presenting onto the wrong window.
-        let scenes = UIApplication.shared.connectedScenes
-        guard let scene = (scenes.first { $0.activationState == .foregroundActive } ?? scenes.first) as? UIWindowScene,
-              let root = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController
-        else { return }
-        // Walk to the topmost presented controller so we don't try to present over a sheet
-        var top: UIViewController = root
-        while let presented = top.presentedViewController { top = presented }
-        top.present(vc, animated: true)
-    }
-}
-
-/// Apple's GKGameCenterViewController requires a non-nil delegate for dismissal.
-@MainActor
-private final class GameCenterCloseDelegate: NSObject, GKGameCenterControllerDelegate {
-    static let shared = GameCenterCloseDelegate()
-    nonisolated func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
-        Task { @MainActor in gameCenterViewController.dismiss(animated: true) }
+        logger.debug("[GameCenter] showFriends() stubbed — local-dev build")
     }
 }

@@ -36,6 +36,25 @@ struct Word: Identifiable, Codable {
         return NSLocalizedString(key, comment: "part of speech")
     }
 
+    /// Compact dictionary-style abbreviation for the main feed — e.g. "(n.)", "(v.)", "(adj.)".
+    /// Falls back to the parenthesized raw value if the POS isn't in the standard table.
+    var abbreviatedPartOfSpeech: String {
+        switch partOfSpeech.lowercased() {
+        case "noun":      return "(n.)"
+        case "verb":      return "(v.)"
+        case "adjective": return "(adj.)"
+        case "adverb":    return "(adv.)"
+        case "phrase":    return "(phr.)"
+        case "idiom":     return "(idm.)"
+        case "preposition": return "(prep.)"
+        case "conjunction": return "(conj.)"
+        case "pronoun":   return "(pron.)"
+        case "interjection": return "(interj.)"
+        case "":          return ""
+        default:          return "(\(partOfSpeech))"
+        }
+    }
+
     /// `category` is stored canonically in English ("Science", "Emotions", …) for every catalogue;
     /// localized at display. Unknown categories fall back to the raw value.
     var localizedCategory: String {

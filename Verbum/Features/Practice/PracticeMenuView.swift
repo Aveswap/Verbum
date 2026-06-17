@@ -28,6 +28,9 @@ struct PracticeMenuView: View {
                     VStack(alignment: .leading, spacing: AppSpacing.lg) {
                         // Challenges
                         sectionHeader("CHALLENGES")
+                        // Bleed past the parent VStack's horizontal padding so the trailing
+                        // card has breathing room before the ScrollView clips — fixes the
+                        // squared-off right edge on the last card.
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: AppSpacing.sm) {
                                 ForEach(ChallengeKind.allCases) { kind in
@@ -39,7 +42,9 @@ struct PracticeMenuView: View {
                                     }
                                 }
                             }
+                            .padding(.horizontal, AppSpacing.md)
                         }
+                        .padding(.horizontal, -AppSpacing.md)
 
                         // Daily limit banner (free users only)
                         if !subscriptions.isPro {
@@ -107,13 +112,15 @@ struct PracticeMenuView: View {
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Unlock All") { showPremium = true }
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundColor(AppColors.textOnAccent)
-                        .padding(.horizontal, AppSpacing.sm)
-                        .padding(.vertical, 5)
-                        .background(AppColors.accent)
-                        .cornerRadius(20)
+                    if !subscriptions.isPro {
+                        Button("Unlock All") { showPremium = true }
+                            .font(.system(size: 13, weight: .semibold))
+                            .foregroundColor(AppColors.textOnAccent)
+                            .padding(.horizontal, AppSpacing.sm)
+                            .padding(.vertical, 5)
+                            .background(AppColors.accent)
+                            .cornerRadius(20)
+                    }
                 }
             }
         }

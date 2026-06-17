@@ -195,23 +195,23 @@ struct BatchQuizView: View {
 
             Spacer()
 
-            // Next button (appears after answer)
-            if vm.selectedAnswer != nil {
-                Button(action: vm.advance) {
-                    Text(vm.isLastQuestion ? "See Results" : "Next Word")
-                        .font(.system(size: 17, weight: .semibold))
-                        .foregroundColor(AppColors.textOnAccent)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, AppSpacing.md)
-                        .background(AppColors.accent)
-                        .cornerRadius(AppSpacing.pillRadius)
-                }
-                .padding(.horizontal, AppSpacing.lg)
-                .padding(.bottom, AppSpacing.xl)
-                // Soft fade-in only — no slide-up/spring, which made the content jump and felt cheap.
-                .transition(.opacity)
-                .animation(.easeInOut(duration: 0.2), value: vm.selectedAnswer)
+            // Next button: always rendered so it reserves space — fades in on answer instead of
+            // pushing the question above it. Disabled + hit-test-off while invisible.
+            Button(action: vm.advance) {
+                Text(vm.isLastQuestion ? "See Results" : "Next Word")
+                    .font(.system(size: 17, weight: .semibold))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, AppSpacing.md)
+                    .background(AppColors.accent)
+                    .cornerRadius(AppSpacing.pillRadius)
             }
+            .padding(.horizontal, AppSpacing.lg)
+            .padding(.bottom, AppSpacing.xl)
+            .opacity(vm.selectedAnswer != nil ? 1 : 0)
+            .allowsHitTesting(vm.selectedAnswer != nil)
+            .accessibilityHidden(vm.selectedAnswer == nil)
+            .animation(.easeInOut(duration: 0.2), value: vm.selectedAnswer)
         }
     }
 
