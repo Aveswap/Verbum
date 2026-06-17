@@ -150,21 +150,6 @@
     "freePool": true
   },
   {
-    "text": "mono no aware",
-    "phonetic": "/ˌmoʊnoʊ noʊ əˈwɑːreɪ/",
-    "partOfSpeech": "noun",
-    "definition": "The gentle, bittersweet sadness felt at the fleetingness of all beautiful things.",
-    "exampleSentence": "Watching the petals scatter, she was filled with mono no aware for the brief spring.",
-    "synonyms": "",
-    "antonyms": "",
-    "category": "Emotions",
-    "etymology": "Japanese 物の哀れ, from 'mono' (things) + 'aware' (pathos); the term was central to the eighteenth-century scholar Motoori Norinaga's literary criticism.",
-    "register": "neutral",
-    "domainTags": "impermanence, beauty, melancholy",
-    "language": "English",
-    "freePool": false
-  },
-  {
     "text": "ultracrepidarian",
     "phonetic": "/ˌʌltrəˌkrɛpɪˈdɛəriən/",
     "partOfSpeech": "adjective",
@@ -313,36 +298,6 @@
     "domainTags": "rest, idleness, mind",
     "language": "English",
     "freePool": true
-  },
-  {
-    "text": "sub rosa",
-    "phonetic": "/sʌb ˈroʊzə/",
-    "partOfSpeech": "adverb",
-    "definition": "In strict confidence; secretly and off the record.",
-    "exampleSentence": "The deal was negotiated sub rosa, months before any public announcement.",
-    "synonyms": "confidentially",
-    "antonyms": "openly",
-    "category": "Communication",
-    "etymology": "Latin, literally 'under the rose'; a rose hung above a meeting once signalled that all said beneath it was secret.",
-    "register": "formal",
-    "domainTags": "secrecy, conversation",
-    "language": "English",
-    "freePool": false
-  },
-  {
-    "text": "à la belle étoile",
-    "phonetic": "/a la bɛl eˈtwal/",
-    "partOfSpeech": "adverb",
-    "definition": "Out in the open air at night, sleeping under the bare sky and stars.",
-    "exampleSentence": "We abandoned the stuffy tent and slept à la belle étoile by the embers.",
-    "synonyms": "",
-    "antonyms": "",
-    "category": "General",
-    "etymology": "French, literally 'under the beautiful star'; spending the night outdoors with no roof but the heavens.",
-    "register": "neutral",
-    "domainTags": "travel, night, solitude",
-    "language": "English",
-    "freePool": false
   },
   {
     "text": "hugger-mugger",

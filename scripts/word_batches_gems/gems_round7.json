@@ -90,36 +90,6 @@
     "freePool": true
   },
   {
-    "text": "coup de foudre",
-    "phonetic": "/ˌkuː də ˈfuːdrə/",
-    "partOfSpeech": "noun",
-    "definition": "A sudden, overwhelming jolt of love at first sight.",
-    "exampleSentence": "They met for ten minutes at a wedding, and for him it was an undeniable coup de foudre.",
-    "synonyms": "",
-    "antonyms": "",
-    "category": "Emotions",
-    "etymology": "French, literally 'stroke of lightning'; Merriam-Webster defines it as 'an astonishing occurrence; especially: overwhelming love at first sight'.",
-    "register": "neutral",
-    "domainTags": "love, longing, infatuation",
-    "language": "English",
-    "freePool": true
-  },
-  {
-    "text": "jolie laide",
-    "phonetic": "/ˌʒɒli ˈleɪd/",
-    "partOfSpeech": "noun",
-    "definition": "A person whose unconventional, even plain features add up to a striking and magnetic beauty.",
-    "exampleSentence": "Photographers adored her as a jolie laide, all crooked nose and unforgettable, arresting face.",
-    "synonyms": "",
-    "antonyms": "",
-    "category": "People",
-    "etymology": "French, literally 'pretty-ugly', from 'jolie' (pretty) + 'laide' (ugly); Merriam-Webster glosses it as a woman 'attractive though not conventionally pretty'.",
-    "register": "neutral",
-    "domainTags": "beauty, appearance, charm",
-    "language": "English",
-    "freePool": true
-  },
-  {
     "text": "mukbang",
     "phonetic": "/ˈmʊkbaŋ/",
     "partOfSpeech": "noun",
@@ -253,21 +223,6 @@
     "domainTags": "ingenuity, problem-solving, resourcefulness",
     "language": "English",
     "freePool": false
-  },
-  {
-    "text": "dolce far niente",
-    "phonetic": "/ˌdɒltʃeɪ fɑː ˈnjɛnteɪ/",
-    "partOfSpeech": "noun",
-    "definition": "The blissful, guilt-free sweetness of pleasant idleness.",
-    "exampleSentence": "After the harvest they surrendered to dolce far niente, sprawled in the shade doing absolutely nothing.",
-    "synonyms": "pleasant idleness",
-    "antonyms": "",
-    "category": "General",
-    "etymology": "Italian, literally 'sweet doing nothing'; Merriam-Webster records its first English use in 1814, glossing it as 'pleasant relaxation in carefree idleness'.",
-    "register": "neutral",
-    "domainTags": "leisure, rest, contentment",
-    "language": "English",
-    "freePool": true
   },
   {
     "text": "cwtch",

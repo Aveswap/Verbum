@@ -225,21 +225,6 @@
     "freePool": false
   },
   {
-    "text": "hapax legomenon",
-    "phonetic": "/ˌhæpæks lɪˈɡɒmɪnɒn/",
-    "partOfSpeech": "noun",
-    "definition": "A word or form that occurs only once in an entire body of text.",
-    "exampleSentence": "Translators argued for decades over the verse because the crucial term was a hapax legomenon found nowhere else.",
-    "synonyms": "",
-    "antonyms": "",
-    "category": "Language",
-    "etymology": "Borrowed in the late 17th c. from Greek, meaning 'something said only once'; a headword in Merriam-Webster.",
-    "register": "formal",
-    "domainTags": "linguistics, scholarship, language",
-    "language": "English",
-    "freePool": false
-  },
-  {
     "text": "boustrophedon",
     "phonetic": "/ˌbuːstrəˈfiːdən/",
     "partOfSpeech": "noun",
@@ -746,21 +731,6 @@
     "etymology": "From Greek 'hypnos' ('sleep') + 'pompe' ('a sending away'); a headword in Merriam-Webster.",
     "register": "formal",
     "domainTags": "sleep, perception, mind",
-    "language": "English",
-    "freePool": false
-  },
-  {
-    "text": "jamais vu",
-    "phonetic": "/ˌʒæmeɪ ˈvuː/",
-    "partOfSpeech": "noun",
-    "definition": "The eerie sense that something perfectly familiar has become strange and unrecognizable.",
-    "exampleSentence": "She stared at the word until it dissolved into nonsense—a small fit of jamais vu.",
-    "synonyms": "",
-    "antonyms": "déjà vu",
-    "category": "Mind",
-    "etymology": "From French 'jamais vu' ('never seen'); a headword in Collins.",
-    "register": "formal",
-    "domainTags": "perception, memory, mind",
     "language": "English",
     "freePool": false
   },

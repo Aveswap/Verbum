@@ -83,7 +83,11 @@ final class WordDatabase: @unchecked Sendable {
     ///      neologisms (sonder, anemoia, compersion — blog/community coinages, not OED/M-W/Collins
     ///      headwords) and 14 pure foreign untranslatables, trimming the "flavour" loanwords back
     ///      to ~15 iconic ones (~5%: komorebi, hiraeth, sisu, wabi-sabi, toska, fernweh, tsundoku…).
-    static let bundledDBVersion = 36
+    /// v37: removed 11 multi-word foreign-language phrases that read as another language, not
+    ///      English (l'esprit de l'escalier, à la belle étoile, coup de foudre, dolce far niente,
+    ///      jolie laide, mono no aware, sub rosa, vade mecum, eminence grise, jamais vu, hapax
+    ///      legomenon) → en 434. Kept the English idiom "brown study".
+    static let bundledDBVersion = 37
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
