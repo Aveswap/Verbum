@@ -75,7 +75,11 @@ final class WordDatabase: @unchecked Sendable {
     /// v34: +102 rare REAL English dictionary words (deep-research batches 8+9, deduped → en 362;
     ///      gems_round8.json). All OED/M-W/Collins headwords with examples; dropped saudade
     ///      (foreign untranslatable). threnody, palimpsest, lacuna, sangfroid, pellucid, quiddity…
-    static let bundledDBVersion = 34
+    /// v35: +100 rare REAL English dictionary words (deep-research round 9, deduped → en 462;
+    ///      gems_round9.json). OED/M-W/Collins headwords with examples; ~5 iconic untranslatables
+    ///      kept as flavour (toska, fernweh, mudita…). syzygy, pareidolia, sfumato, interrobang,
+    ///      marcescence, gamboge, hoarfrost, aposiopesis, boustrophedon, philtrum…
+    static let bundledDBVersion = 35
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
