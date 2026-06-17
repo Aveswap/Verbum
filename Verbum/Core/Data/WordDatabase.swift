@@ -79,7 +79,11 @@ final class WordDatabase: @unchecked Sendable {
     ///      gems_round9.json). OED/M-W/Collins headwords with examples; ~5 iconic untranslatables
     ///      kept as flavour (toska, fernweh, mudita…). syzygy, pareidolia, sfumato, interrobang,
     ///      marcescence, gamboge, hoarfrost, aposiopesis, boustrophedon, philtrum…
-    static let bundledDBVersion = 35
+    /// v36: editorial cleanup — removed 17 non-dictionary entries → en 445. Cut 3 invented
+    ///      neologisms (sonder, anemoia, compersion — blog/community coinages, not OED/M-W/Collins
+    ///      headwords) and 14 pure foreign untranslatables, trimming the "flavour" loanwords back
+    ///      to ~15 iconic ones (~5%: komorebi, hiraeth, sisu, wabi-sabi, toska, fernweh, tsundoku…).
+    static let bundledDBVersion = 36
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
