@@ -314,8 +314,66 @@ struct FlowLayout<Item: Hashable, Content: View>: View {
     let content: (Item) -> Content
 
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 80), alignment: .leading)], alignment: .leading) {
+        // True wrap layout: each chip is sized to fit its content (no fixed-width column),
+        // then placed left-to-right with rows wrapping as needed. Using LazyVGrid here
+        // forced columns at a minimum width and clipped/wrapped longer chips like
+        // "comprehend" so the last letter dropped to a new line.
+        WrapFlow(spacing: AppSpacing.sm, lineSpacing: 6) {
             ForEach(items, id: \.self, content: content)
         }
+    }
+}
+
+/// Lightweight flow container (iOS 16+ Layout). Lays out subviews at their natural width,
+/// wrapping to a new line when the row's running width exceeds the container.
+struct WrapFlow: Layout {
+    var spacing: CGFloat = 8
+    var lineSpacing: CGFloat = 4
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let maxWidth = proposal.width ?? .infinity
+        let rows = arrange(subviews: subviews, in: maxWidth)
+        let height = rows.reduce(CGFloat.zero) { $0 + $1.height + lineSpacing } - (rows.isEmpty ? 0 : lineSpacing)
+        let width = rows.map(\.width).max() ?? 0
+        return CGSize(width: min(width, maxWidth), height: max(height, 0))
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        let rows = arrange(subviews: subviews, in: bounds.width)
+        var y = bounds.minY
+        for row in rows {
+            var x = bounds.minX
+            for item in row.items {
+                let size = item.size
+                item.view.place(
+                    at: CGPoint(x: x, y: y),
+                    proposal: ProposedViewSize(width: size.width, height: size.height)
+                )
+                x += size.width + spacing
+            }
+            y += row.height + lineSpacing
+        }
+    }
+
+    private struct RowItem { let view: LayoutSubview; let size: CGSize }
+    private struct Row { var items: [RowItem] = []; var width: CGFloat = 0; var height: CGFloat = 0 }
+
+    private func arrange(subviews: Subviews, in maxWidth: CGFloat) -> [Row] {
+        var rows: [Row] = []
+        var current = Row()
+        for sub in subviews {
+            let size = sub.sizeThatFits(.unspecified)
+            let projected = current.items.isEmpty ? size.width : current.width + spacing + size.width
+            if projected > maxWidth, !current.items.isEmpty {
+                rows.append(current)
+                current = Row()
+            }
+            let added = current.items.isEmpty ? size.width : current.width + spacing + size.width
+            current.items.append(RowItem(view: sub, size: size))
+            current.width = added
+            current.height = max(current.height, size.height)
+        }
+        if !current.items.isEmpty { rows.append(current) }
+        return rows
     }
 }

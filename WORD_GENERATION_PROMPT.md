@@ -26,7 +26,7 @@ TOEFL/IELTS app. We are NOT teaching common vocabulary. Every word must earn its
 being either *gorgeous*, *strange*, or *naming a feeling/phenomenon English speakers don't
 have a common word for*.
 
-Generate **a batch of 30 new gem words** that fit this aesthetic and are NOT already in the
+Generate **a batch of 70 new gem words** that fit this aesthetic and are NOT already in the
 catalogue (see exclusion list at the bottom).
 
 ## Quality bar — every word must pass ALL of these
@@ -147,5 +147,5 @@ abligurition, absquatulate, acedia, adumbrate, afterwit, aglet, aiblins, albedo,
 
 ## Now generate
 
-Produce a JSON array of **30 new gem words** following all rules above. Output **only** the
+Produce a JSON array of **70 new gem words** following all rules above. Output **only** the
 JSON — no preamble, no commentary, no markdown fences. Just the array.

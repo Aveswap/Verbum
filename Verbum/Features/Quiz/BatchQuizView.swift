@@ -86,13 +86,15 @@ final class BatchQuizViewModel: ObservableObject {
 struct BatchQuizView: View {
     let words: [Word]
     let seenWordsPool: [Word]
-    var onFinish: (Int) -> Void   // passes points earned
+    /// Reports points earned, plus the IDs of the words to resurface (only populated when the
+    /// user scored 0/5 — the swipe-mark is then rolled back so they re-encounter those words).
+    var onFinish: (Int, [UUID]) -> Void
 
     @EnvironmentObject var userProfile: UserProfileStore
     @StateObject private var vm: BatchQuizViewModel
     @Environment(\.dismiss) private var dismiss
 
-    init(words: [Word], seenWordsPool: [Word], onFinish: @escaping (Int) -> Void) {
+    init(words: [Word], seenWordsPool: [Word], onFinish: @escaping (Int, [UUID]) -> Void) {
         self.words = words
         self.seenWordsPool = seenWordsPool
         self.onFinish = onFinish
@@ -113,7 +115,7 @@ struct BatchQuizView: View {
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundColor(AppColors.textPrimary)
                     PillButton(title: "Continue") {
-                        onFinish(0)
+                        onFinish(0, [])
                         dismiss()
                     }
                     .padding(.horizontal, AppSpacing.lg)
@@ -260,7 +262,10 @@ struct BatchQuizView: View {
             Spacer()
 
             Button {
-                onFinish(vm.pointsEarned)
+                // Zero correct → tell the caller to roll these words back out of "seen"
+                // so the user re-encounters them in the feed and gets another shot.
+                let resurfaceIds = vm.correctCount == 0 ? words.map(\.id) : []
+                onFinish(vm.pointsEarned, resurfaceIds)
                 dismiss()
             } label: {
                 Text("Continue")

@@ -109,8 +109,12 @@ struct WordFeedView: View {
                 // vocabulary the user has actually been through. The just-swiped batch is
                 // already in seenWordIdsSet (markWordSeen runs before this sheet presents).
                 seenWordsPool: viewModel.words.filter { seenWordIdsSet.contains($0.id) }
-            ) { pts in
+            ) { pts, resurfaceIds in
                 userProfile.addPoints(pts)
+                // 0/5 quiz → undo the swipe-mark so those words resurface for another pass.
+                if !resurfaceIds.isEmpty {
+                    userProfile.unmarkWordsSeen(resurfaceIds)
+                }
             }
             .environmentObject(userProfile)
         }
@@ -121,6 +125,16 @@ struct WordFeedView: View {
             viewModel.dueReviewIds = userProfile.dueReviews()
             viewModel.seenWordIds = seenWordIdsSet
             viewModel.reloadFromRepository()
+            // Cold-launch deep-link: AppDelegate's `didReceive` may have fired before this
+            // view's `.onReceive(.openWord)` subscribed — drain the stashed id here.
+            if let pendingId = NotificationManager.pendingDeepLinkWordId,
+               let word = WordRepository.shared.word(id: pendingId) {
+                NotificationManager.pendingDeepLinkWordId = nil
+                DispatchQueue.main.async {
+                    activeSheet = nil
+                    deepLinkWord = word
+                }
+            }
         }
         // Banner/hint timers live in .task so they're cancelled when the feed disappears —
         // asyncAfter would still fire and flash stale UI after a dismiss.

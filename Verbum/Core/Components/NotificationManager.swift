@@ -1,6 +1,11 @@
 import UserNotifications
 
 enum NotificationManager {
+    /// Holds the word id from a notification tap when the app is cold-launched — observers
+    /// (WordFeedView) aren't subscribed yet at the moment `didReceive` fires. The feed
+    /// drains this on its first `.onAppear` so the deep-link still resolves.
+    @MainActor static var pendingDeepLinkWordId: UUID?
+
     // Localized at fire time via the swizzled main bundle (matches the UI/word language).
     private static var messages: [String] {
         [
@@ -52,6 +57,9 @@ enum NotificationManager {
                     content.title = word.text
                     let pos = posAbbreviation(word.partOfSpeech)
                     content.body = pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)"
+                    // Stash the word id so a tap can deep-link to *this exact word*.
+                    // Read in VerbumAppDelegate.userNotificationCenter(_:didReceive:).
+                    content.userInfo = ["wordId": word.id.uuidString]
                 } else {
                     content.title = "Verbum"
                     content.body = messages[i % messages.count]

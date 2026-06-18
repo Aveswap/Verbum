@@ -1,8 +1,44 @@
 import SwiftUI
 import CoreSpotlight
+import UserNotifications
+
+/// AppDelegate exists solely so we can install a `UNUserNotificationCenterDelegate` — without
+/// it, tapping a word-of-the-day notification just launches the app generically and the
+/// payload (`userInfo["wordId"]`) is lost.
+final class VerbumAppDelegate: NSObject, UIApplicationDelegate, @preconcurrency UNUserNotificationCenterDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        return true
+    }
+
+    /// Show the banner even when the app is in the foreground — otherwise iOS suppresses it
+    /// silently and the user wonders why "notifications stopped working" mid-session.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound, .badge])
+    }
+
+    /// Notification tapped → deep-link to the exact word the body described.
+    /// WordFeedView listens for `.openWord` and presents `WordDetailView` for that id.
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        if let raw = response.notification.request.content.userInfo["wordId"] as? String,
+           let id = UUID(uuidString: raw) {
+            // Cold-launch path: WordFeedView's `.onReceive(.openWord)` may not be wired up
+            // yet, so also stash the id for the feed to drain in its first `.onAppear`.
+            Task { @MainActor in NotificationManager.pendingDeepLinkWordId = id }
+            NotificationCenter.default.post(name: .openWord, object: id)
+        }
+        completionHandler()
+    }
+}
 
 @main
 struct VerbumApp: App {
+    @UIApplicationDelegateAdaptor(VerbumAppDelegate.self) private var appDelegate
     @StateObject private var userProfile: UserProfileStore
     @StateObject private var subscriptions: SubscriptionManager
     @StateObject private var auth: AuthService

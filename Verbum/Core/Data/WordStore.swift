@@ -259,6 +259,24 @@ class UserProfileStore: ObservableObject {
         return recordWordLearned()
     }
 
+    /// Rolls back a swipe-mark when the user proves they didn't actually learn the word —
+    /// currently called after a 0/5 batch quiz so those words can resurface in the feed.
+    /// Decrements today's learned-count by the number actually rolled back so the daily-goal
+    /// progress stays honest.
+    func unmarkWordsSeen(_ ids: [UUID]) {
+        var removed = 0
+        for id in ids where seenSet.contains(id) {
+            seenSet.remove(id)
+            profile.seenWordIds.removeAll { $0 == id }
+            removed += 1
+        }
+        guard removed > 0 else { return }
+        let cal = dayCalendar
+        if cal.isDateInToday(profile.wordsLearnedDate) {
+            profile.wordsLearnedToday = max(0, profile.wordsLearnedToday - removed)
+        }
+    }
+
     /// Increments today's learned-words counter. Resets at local midnight.
     /// Returns true if this swipe completed the daily goal (caller may trigger celebration).
     @discardableResult
