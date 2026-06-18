@@ -40,6 +40,11 @@ enum AppInfo {
         URL(string: "https://apps.apple.com/app/id\(appStoreID)?action=write-review")!
     }
 
+    /// Handle shown on shareable word cards. The cards are the primary distribution channel
+    /// (content-funnel account), so the call-to-action is "follow us", not the not-yet-live
+    /// website. ⚠️ Update to the real handle once the social account is registered.
+    static let socialHandle = "@verbum.words"
+
     /// Legal links shown on the paywall. Built once with a safe fallback so there are no
     /// force-unwrapped `URL(string:)!` at call sites (a future typo can't crash the paywall).
     static let privacyURL = URL(string: "https://verbum.app/privacy") ?? URL(fileURLWithPath: "/")
