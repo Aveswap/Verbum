@@ -64,9 +64,14 @@ struct SettingsView: View {
                             iconEditRow(icon: "person.fill", iconColor: .purple, label: "Name",
                                         value: userProfile.profile.name.isEmpty ? "Not set" : userProfile.profile.name) { editingName = true }
                             cardDivider
-                            iconEditRow(icon: "character.book.closed.fill", iconColor: .blue, label: "Word Language",
-                                        value: wordLanguageDisplayName(WordRepository.shared.activeLanguage)) { editingLanguage = true }
-                            cardDivider
+                            // Only show the language switcher when there's actually more than one
+                            // catalogue to switch to — the runtime catalogue is English-only, so a
+                            // single-row picker would just be dead, confusing chrome.
+                            if WordRepository.shared.availableLanguages().count > 1 {
+                                iconEditRow(icon: "character.book.closed.fill", iconColor: .blue, label: "Word Language",
+                                            value: wordLanguageDisplayName(WordRepository.shared.activeLanguage)) { editingLanguage = true }
+                                cardDivider
+                            }
                             iconEditRow(icon: "target", iconColor: .orange, label: "Daily goal",
                                         value: "\(userProfile.profile.dailyGoal) words") {
                                 dailyGoalInput = Double(userProfile.profile.dailyGoal)

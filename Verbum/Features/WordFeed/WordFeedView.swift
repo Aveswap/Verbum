@@ -702,6 +702,10 @@ private struct WordCardView: View {
     // grows for larger accessibility text) instead of being pinned in points.
     @ScaledMetric(relativeTo: .largeTitle) private var wordTitleSize: CGFloat = 40
     @ScaledMetric(relativeTo: .body) private var definitionSize: CGFloat = 18
+    // At accessibility text sizes a 3-line definition / 2-line example clips. Lift the caps so
+    // the reading surface stays fully legible (it already grows via @ScaledMetric); keep the caps
+    // at normal sizes so the card layout stays tidy.
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     private var isLocked: Bool {
         !WordAccess.canAccess(word, isPro: subscriptions.isPro)
@@ -796,7 +800,7 @@ private struct WordCardView: View {
                 .foregroundColor(AppColors.textSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, AppSpacing.xl)
-                .lineLimit(3)
+                .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 3)
 
             if let example = word.exampleSentence {
                 Text("\u{201C}\(example)\u{201D}")
@@ -804,7 +808,7 @@ private struct WordCardView: View {
                     .foregroundColor(AppColors.textSecondary.opacity(0.6))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, AppSpacing.xl)
-                    .lineLimit(2)
+                    .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 2)
             }
 
             if let etymology = word.etymology {
