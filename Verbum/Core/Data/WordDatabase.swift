@@ -90,7 +90,10 @@ final class WordDatabase: @unchecked Sendable {
     /// v38: imported gems_round10 (+70 dictionary-attested gems weighted into the under-
     ///      represented categories — Movement, Time, Literature, Body, Science, Mind, Society,
     ///      Language) → en 504.
-    static let bundledDBVersion = 38
+    /// v39: imported gems_round11 (+70 dictionary-verified gems concentrated in the still-thin
+    ///      buckets — Communication 13, Emotions 9, Science 9, Art 8, Body 7, Language 6,
+    ///      Society 6, Food 5, Psychology 4, Time 3) → en 574.
+    static let bundledDBVersion = 39
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
