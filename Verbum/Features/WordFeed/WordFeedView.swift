@@ -5,6 +5,8 @@ struct WordFeedView: View {
     @EnvironmentObject var subscriptions: SubscriptionManager
     @EnvironmentObject var auth: AuthService
     @StateObject private var viewModel = WordFeedViewModel()
+    /// HIG: respect Reduce Motion — gates the confetti burst and the repeating swipe-hint bounce.
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private enum ActiveSheet: String, Identifiable {
         case detail, profile, practice, categories, share, stats, premium, leaderboard, search
@@ -61,7 +63,7 @@ struct WordFeedView: View {
                 endOfFeedOverlay
             }
 
-            if showConfetti {
+            if showConfetti && !reduceMotion {
                 ConfettiView()
                     .ignoresSafeArea()
             }
@@ -258,7 +260,7 @@ struct WordFeedView: View {
             Spacer()
             VStack(spacing: AppSpacing.sm) {
                 Group {
-                    if #available(iOS 18.0, *) {
+                    if #available(iOS 18.0, *), !reduceMotion {
                         Image(systemName: "chevron.up")
                             .font(.system(size: 20, weight: .semibold))
                             .foregroundColor(AppColors.accent)
@@ -443,10 +445,23 @@ struct WordFeedView: View {
                     // readable element with explicit Next/Previous actions (in the rotor) — a
                     // blind user can otherwise never advance past the first word.
                     .accessibilityElement(children: .combine)
-                    .accessibilityLabel("\(word.text), \(word.localizedPartOfSpeech). \(word.definition)")
+                    // Never read a locked word's definition aloud — that would leak paid
+                    // content past the visual blur. (Latent today since the feed only holds
+                    // accessible words, but guards the moment category drill-down is wired in.)
+                    .accessibilityLabel(
+                        WordAccess.canAccess(word, isPro: subscriptions.isPro)
+                            ? "\(word.text), \(word.localizedPartOfSpeech). \(word.definition)"
+                            : "\(word.text), locked. Unlock with Verbum Premium."
+                    )
                     .accessibilityHint("Double-tap for details")
+                    // Mirror the touch swipe path exactly: only access-granted words count as
+                    // seen / toward the daily goal, and the goal celebration must fire here too
+                    // or VoiceOver users get a different learning loop than sighted users.
                     .accessibilityAction(named: Text("Next word")) {
-                        _ = userProfile.markWordSeen(word.id)
+                        if WordAccess.canAccess(word, isPro: subscriptions.isPro) {
+                            let goalJustHit = userProfile.markWordSeen(word.id)
+                            if goalJustHit { triggerGoalCelebration() }
+                        }
                         if !viewModel.isAtEnd { withAnimation { viewModel.nextWord() } }
                     }
                     .accessibilityAction(named: Text("Previous word")) {

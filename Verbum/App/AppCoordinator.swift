@@ -28,7 +28,8 @@ struct AppCoordinator: View {
                     NotificationManager.clearBadge()
                     NotificationManager.scheduleStreakReminder(
                         currentStreak: userProfile.profile.currentStreak,
-                        lastOpened: userProfile.profile.lastOpenedDate
+                        lastOpened: userProfile.profile.lastOpenedDate,
+                        calendar: userProfile.dayCalendar
                     )
                     userProfile.recordDailyOpenWhenReady()
                     Task { await auth.refreshCredentialState() }

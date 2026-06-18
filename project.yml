@@ -10,16 +10,16 @@ options:
 # in-app vocabulary-language switch at runtime (see LanguageManager).
 knownRegions: [en, de, uk]
 
-# Single source of truth for the bundle-id base. The widget + test bundle ids derive from it
-# below, so they STAY prefixed with the app id (Apple requires an embedded extension's id to be
-# `<app id>.<suffix>`). It's configuration-scoped so the switch is AUTOMATIC — no hand-editing
-# before archiving:
-#   • Release/archive → `com.verbum.app` (the production App ID that owns the iCloud container
-#     `iCloud.com.verbum.app`, App Group `group.com.verbum.app`, Keychain service and Game
-#     Center IDs — all of which are hard-wired in the entitlements).
+# Single source of truth for the bundle-id base. The test bundle id derives from it below, so it
+# STAYS prefixed with the app id. It's configuration-scoped so the switch is AUTOMATIC — no
+# hand-editing before archiving:
+#   • Release/archive → `com.verbum.app` (the production App ID; it owns the App Group
+#     `group.com.verbum.app`, declared in Verbum.entitlements).
 #   • Debug → `com.verbumtest.app` (free/dev signing).
-# Never edit the bundle id only in Xcode, or the widget id drifts and the build fails with
-# "Embedded binary's bundle identifier is not prefixed with the parent app's bundle identifier".
+# NOTE: Sign in with Apple / CloudKit / Game Center are local-dev STUBS in this cut, so their
+# entitlements (applesignin, icloud-services, icloud-container-identifiers, game-center) are
+# intentionally NOT in Verbum.entitlements yet — add them together with the real services when
+# AppInfo.isSignInConfigured / isGameCenterConfigured flip on (see _LocalDev-Disabled/*.original).
 settings:
   base:
     APP_BUNDLE_ID: com.verbum.app
@@ -40,7 +40,6 @@ targets:
     sources:
       - path: Verbum
     dependencies:
-      - target: VerbumWidgetExtension
       - package: GRDB
         product: GRDB
     settings:
@@ -60,8 +59,9 @@ targets:
       properties:
         CFBundleName: Verbum
         CFBundleDisplayName: Verbum
-        # Custom URL scheme for widget deep links (verbum://word/<uuid> → onOpenURL in VerbumApp).
-        # Lives here, not in Info.plist directly, because xcodegen regenerates Info.plist.
+        # Custom URL scheme for deep links (verbum://word/<uuid> → onOpenURL in VerbumApp),
+        # used by notification taps and Spotlight results. Lives here, not in Info.plist
+        # directly, because xcodegen regenerates Info.plist.
         CFBundleURLTypes:
           - CFBundleURLName: com.verbum.app.deeplink
             CFBundleURLSchemes: [verbum]
@@ -79,33 +79,6 @@ targets:
             green: 0.11
             blue: 0.118
             alpha: 1.0
-
-  VerbumWidgetExtension:
-    type: app-extension
-    platform: iOS
-    deploymentTarget: "16.0"
-    sources:
-      - path: VerbumWidget
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).widget
-        MARKETING_VERSION: "1.0"
-        CURRENT_PROJECT_VERSION: "1"
-        SWIFT_VERSION: "6.0"
-        SWIFT_STRICT_CONCURRENCY: complete
-        CODE_SIGN_ENTITLEMENTS: VerbumWidget/VerbumWidget.entitlements
-        DEVELOPMENT_TEAM: ""
-        CODE_SIGN_STYLE: Automatic
-        SKIP_INSTALL: "YES"
-    info:
-      path: VerbumWidget/Info.plist
-      properties:
-        CFBundleName: VerbumWidget
-        CFBundleDisplayName: Verbum Widget
-        CFBundleShortVersionString: "$(MARKETING_VERSION)"
-        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
-        NSExtension:
-          NSExtensionPointIdentifier: com.apple.widgetkit-extension
 
   VerbumTests:
     type: bundle.unit-test
@@ -131,7 +104,6 @@ schemes:
     build:
       targets:
         Verbum: all
-        VerbumWidgetExtension: all
     run:
       config: Debug
       # Enables StoreKit Testing in the simulator/dev runs, so the paywall can load the

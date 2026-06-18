@@ -103,13 +103,17 @@ enum NotificationManager {
     /// Schedules a once-off streak-at-risk notification at 20:00 today if the user
     /// hasn't opened the app today. Call this before recordDailyOpen() so lastOpened
     /// still reflects the previous session.
-    static func scheduleStreakReminder(currentStreak: Int, lastOpened: Date?) {
+    static func scheduleStreakReminder(currentStreak: Int, lastOpened: Date?,
+                                       calendar: Calendar = .current) {
         guard currentStreak > 1 else {
             UNUserNotificationCenter.current()
                 .removePendingNotificationRequests(withIdentifiers: ["verbum_streak_risk"])
             return
         }
-        let openedToday = lastOpened.map { Calendar.current.isDateInToday($0) } ?? false
+        // Use the streak-locked calendar so "did I open today?" agrees with the streak machinery
+        // (dayCalendar); Calendar.current would disagree by the TZ offset after travel/DST and
+        // fire — or suppress — the 20:00 reminder on the wrong day.
+        let openedToday = lastOpened.map { calendar.isDateInToday($0) } ?? false
         if openedToday {
             UNUserNotificationCenter.current()
                 .removePendingNotificationRequests(withIdentifiers: ["verbum_streak_risk"])

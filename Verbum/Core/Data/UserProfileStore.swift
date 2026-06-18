@@ -1,6 +1,5 @@
 import Foundation
 import Combine
-import WidgetKit
 
 @MainActor
 class UserProfileStore: ObservableObject {
@@ -377,42 +376,10 @@ class UserProfileStore: ObservableObject {
         if profile.streakTimezone == nil {
             profile.streakTimezone = TimeZone.current.identifier
         }
-        let cal = dayCalendar   // now anchored to the just-locked timezone
-        let today = cal.startOfDay(for: Date())
-        if let last = profile.lastOpenedDate {
-            let lastDay = cal.startOfDay(for: last)
-            if cal.isDate(lastDay, inSameDayAs: today) { return }
-            let diff = cal.dateComponents([.day], from: lastDay, to: today).day ?? 0
-            if diff == 1 {
-                profile.currentStreak += 1
-            } else if diff > 1, profile.streakFreezes >= (diff - 1) {
-                // Only spend freezes when they fully cover the gap — a partial burn would
-                // reset the streak AND consume the freezes for zero benefit.
-                let missedDays = diff - 1
-                profile.streakFreezes -= missedDays
-                for _ in 0..<missedDays { profile.streakFreezeUsedDates.append(Date()) }
-                profile.currentStreak += 1  // streak survives, continues
-            } else {
-                profile.currentStreak = 1
-            }
-        } else {
-            profile.currentStreak = 1
-        }
-        profile.longestStreak = max(profile.longestStreak, profile.currentStreak)
-        // Award a freeze for every 7-day streak milestone
-        if profile.currentStreak > 0, profile.currentStreak % 7 == 0 {
-            profile.streakFreezes = min(profile.streakFreezes + 1, 3)  // cap at 3
-        }
-        profile.lastOpenedDate = Date()
-        // Append today to daily opens (deduplicated, trimmed to last 7 days).
-        // Calendar.date(byAdding:) can return nil at calendar-range extremes; skip the prune in
-        // that case rather than crashing the streak path that runs on every app open.
-        if let sevenDaysAgo = cal.date(byAdding: .day, value: -6, to: today) {
-            profile.dailyOpens.removeAll { cal.startOfDay(for: $0) < sevenDaysAgo }
-        }
-        if !profile.dailyOpens.contains(where: { cal.isDate($0, inSameDayAs: today) }) {
-            profile.dailyOpens.append(today)
-        }
+        // Pure streak math lives in StreakEngine (unit-tested). nil = same calendar day as the
+        // last open, so there's nothing to persist.
+        guard let updated = StreakEngine.recordOpen(profile, calendar: dayCalendar, now: Date()) else { return }
+        profile = updated
         saveNow()
     }
 
@@ -448,13 +415,11 @@ class UserProfileStore: ObservableObject {
         UserDefaults.standard.removeObject(forKey: key)
         KeychainHelper.delete("appleEmail")
         // Tear down everything that outlives the app process, so a deleted account leaves no
-        // trace (App Review 5.1.1(v)): pending daily notifications would keep firing, the widget
-        // would keep showing the old words/streak, and Spotlight would keep surfacing them.
+        // trace (App Review 5.1.1(v)): pending daily notifications would keep firing, and
+        // Spotlight would keep surfacing them.
         NotificationManager.cancelAll()
         NotificationManager.clearBadge()
         SpotlightIndexer.deleteAll()
-        SharedWordStore.clear()
-        if #available(iOS 14.0, *) { WidgetCenter.shared.reloadAllTimelines() }
         profile = UserProfile()
         seenSet = []
     }
@@ -485,7 +450,10 @@ class UserProfileStore: ObservableObject {
     }
 
     private func checkQuarterlyReset() {
-        let cal = Calendar.current
+        // Use the streak-locked calendar (not Calendar.current) so the quarter boundary doesn't
+        // drift by the device-vs-locked timezone offset after travel/DST — every other day-
+        // boundary in this store already uses dayCalendar.
+        let cal = dayCalendar
         let now = Date()
         // Advance one exact quarter at a time until the reset date is in the future. This keeps
         // quarter boundaries from drifting (we never snap the anchor to "now") and awards the
@@ -510,8 +478,8 @@ class UserProfileStore: ObservableObject {
     }
 
     private func quarterLabel(for date: Date) -> String {
-        let month = Calendar.current.component(.month, from: date)
-        let year  = Calendar.current.component(.year, from: date)
+        let month = dayCalendar.component(.month, from: date)
+        let year  = dayCalendar.component(.year, from: date)
         return "Q\((month - 1) / 3 + 1) \(year)"
     }
 }

@@ -22,6 +22,13 @@ enum AppInfo {
     /// functionality") — mirrors `isStoreIDConfigured`.
     static let isGameCenterConfigured = false
 
+    /// Flip to `true` ONLY when the real Sign in with Apple / CloudKit services are restored
+    /// (the `_LocalDev-Disabled/*.original` implementations + entitlements). While false, the
+    /// Account section (Sign-in button, Delete Account) is hidden so a reviewer can never tap the
+    /// stubbed sign-in and see "Sign in is disabled in this local development build" — that's an
+    /// App Review 2.1/2.3.1 rejection. Mirrors `isGameCenterConfigured`.
+    static let isSignInConfigured = false
+
     /// App Store product page. Used for the friends invite/share link.
     static var appStoreURL: URL {
         // Force-unwrap is safe: the string is built from a digit constant, always a valid URL.

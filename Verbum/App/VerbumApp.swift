@@ -57,15 +57,6 @@ struct VerbumApp: App {
         _auth = StateObject(wrappedValue: AuthService(profileStore: store))
     }
 
-    /// Re-publishes the 14-day timeline + snapshot whenever profile/sub state changes.
-    @MainActor
-    private func republishSharedTimeline() {
-        SharedTimelinePublisher.refresh(
-            profile: userProfile.profile,
-            isPro: subscriptions.isPro
-        )
-    }
-
     var body: some Scene {
         WindowGroup {
             AppCoordinator()
@@ -80,13 +71,8 @@ struct VerbumApp: App {
                 .id(language.language)
                 .preferredColorScheme(.dark)
                 .onAppear {
-                    // Publish a fresh rotating word timeline for widget + watch on every launch.
                     // (Game Center auth is deferred to the feed so its sheet can't interrupt
                     // onboarding — see AppCoordinator.)
-                    SharedTimelinePublisher.refresh(
-                        profile: userProfile.profile,
-                        isPro: subscriptions.isPro
-                    )
                     // Re-issue the daily word notifications so they reflect the current catalogue
                     // and language — this also clears stale notifications scheduled by an older
                     // build (e.g. German words left over from before the English-only catalogue).
@@ -111,26 +97,22 @@ struct VerbumApp: App {
                     }
                 }
                 .onOpenURL { url in
-                    // Widget tap: verbum://word/<uuid> → open that word's detail.
+                    // External deep link: verbum://word/<uuid> → open that word's detail.
                     guard url.scheme == "verbum", url.host == "word",
                           let id = UUID(uuidString: url.lastPathComponent) else { return }
                     NotificationCenter.default.post(name: .openWord, object: id)
                 }
                 .onChange(of: scenePhase) { phase in
                     guard phase == .active else { return }
-                    // Re-anchor the widget's rotating timeline to "now" + current seen state on
-                    // every foreground, so words keep rotating even if the app isn't opened daily.
-                    republishSharedTimeline()
                     // Pull on every foreground (not just at sign-in) so edits made on another
                     // device show up here without re-authenticating. Cheap: networked + LWW merge.
                     if userProfile.profile.appleUserID != nil {
                         Task { await userProfile.cloudKit.pull(into: userProfile) }
                     }
                 }
-                // isPro changes the word pool → rebuild the rotating timeline, and re-index
-                // Spotlight so paid definitions appear (Pro) or are re-locked (lapse).
+                // isPro changes the word pool → re-index Spotlight so paid definitions appear
+                // (Pro) or are re-locked (lapse).
                 .onChange(of: subscriptions.isPro) { isPro in
-                    republishSharedTimeline()
                     SpotlightIndexer.indexIfNeeded(
                         words: WordRepository.shared.all,
                         freeIds: Set(WordAccess.freePool().map(\.id)),
@@ -139,19 +121,6 @@ struct VerbumApp: App {
                         version: WordDatabase.bundledDBVersion
                     )
                 }
-                // Streak / daily counter only affect the snapshot — skip rebuilding the whole
-                // rotating word timeline on every single swipe.
-                .onChange(of: userProfile.profile.currentStreak) { _ in
-                    SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
-                }
-                .onChange(of: userProfile.profile.wordsLearnedToday) { _ in
-                    SharedTimelinePublisher.refreshSnapshotOnly(profile: userProfile.profile, isPro: subscriptions.isPro)
-                }
-                // dailyGoal feeds the snapshot's "x of N learned"; notificationCount drives how
-                // many "words of the day" the widget rotates through (shared with notifications).
-                // Either change → rebuild the full timeline, not just the snapshot.
-                .onChange(of: userProfile.profile.dailyGoal) { _ in republishSharedTimeline() }
-                .onChange(of: userProfile.profile.notificationCount) { _ in republishSharedTimeline() }
         }
     }
 }

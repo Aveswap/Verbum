@@ -106,7 +106,10 @@ struct SettingsView: View {
                             DatabaseStatusBanner()
                         }
 
-                        // ACCOUNT
+                        // ACCOUNT — hidden entirely while auth is a local-dev stub, so the
+                        // Sign in with Apple button (which returns a dev-only error) can't reach a
+                        // reviewer. Re-appears when AppInfo.isSignInConfigured flips on restore.
+                        if AppInfo.isSignInConfigured {
                         sectionLabel("Account")
                         settingsCard {
                             if auth.isSignedIn {
@@ -160,6 +163,7 @@ struct SettingsView: View {
                                 }
                             }
                         }
+                        }  // end if AppInfo.isSignInConfigured (ACCOUNT section)
 
                         // SOCIAL
                         sectionLabel("Community")
