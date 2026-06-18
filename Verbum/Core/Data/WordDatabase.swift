@@ -87,7 +87,10 @@ final class WordDatabase: @unchecked Sendable {
     ///      English (l'esprit de l'escalier, à la belle étoile, coup de foudre, dolce far niente,
     ///      jolie laide, mono no aware, sub rosa, vade mecum, eminence grise, jamais vu, hapax
     ///      legomenon) → en 434. Kept the English idiom "brown study".
-    static let bundledDBVersion = 37
+    /// v38: imported gems_round10 (+70 dictionary-attested gems weighted into the under-
+    ///      represented categories — Movement, Time, Literature, Body, Science, Mind, Society,
+    ///      Language) → en 504.
+    static let bundledDBVersion = 38
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
