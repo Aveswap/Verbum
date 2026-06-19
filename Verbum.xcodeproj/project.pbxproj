@@ -18,6 +18,7 @@
 		17BB0029E62D11E528FEA803 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */; };
 		20C755AAB0A5499D838B467F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A94394A4ED7AC0100475478 /* AppInfo.swift */; };
 		217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD61BA2BD6F7F8B9F65F7809 /* WordDatabase.swift */; };
+		23F6B76E121B6D3AC88978EB /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436A78F6FA391BCA15FDAC8 /* Analytics.swift */; };
 		2BCF84DC074AD623803F020B /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4A5A7958B8B59F1F6A34F /* SpotlightIndexer.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
 		2D340578381485FD8894507E /* VerbumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE0AC736303A807180D482 /* VerbumApp.swift */; };
@@ -147,6 +148,7 @@
 		7EF4A5A7958B8B59F1F6A34F /* SpotlightIndexer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightIndexer.swift; sourceTree = "<group>"; };
 		837A7A327A614F779F75B887 /* OnboardingFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlow.swift; sourceTree = "<group>"; };
 		83DE9B380B2F58FE8FC45A4F /* UserProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileStore.swift; sourceTree = "<group>"; };
+		8436A78F6FA391BCA15FDAC8 /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		87620CA6EA78E01907CAC03C /* WordFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedViewModel.swift; sourceTree = "<group>"; };
 		87DE072F4CCDB4928A7EA0CB /* CategoryWordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWordListView.swift; sourceTree = "<group>"; };
 		8FCA2BBCF7427AC019012D6D /* WordAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccess.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 		5CED0C16C7232577A5E34EA3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8436A78F6FA391BCA15FDAC8 /* Analytics.swift */,
 				EEBBDCED3924638D2D69CDCC /* ConfettiView.swift */,
 				AB2B1865D6486015904758FA /* DatabaseStatusBanner.swift */,
 				0506F780D4C3F3F5705BCD8C /* HapticManager.swift */,
@@ -576,6 +579,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F6B76E121B6D3AC88978EB /* Analytics.swift in Sources */,
 				869F5F5C647E47083B5A3C54 /* AppCoordinator.swift in Sources */,
 				20C755AAB0A5499D838B467F /* AppInfo.swift in Sources */,
 				DB72D941E4E59C2AD805868D /* AuthService.swift in Sources */,

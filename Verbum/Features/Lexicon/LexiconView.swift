@@ -54,7 +54,10 @@ struct LexiconView: View {
                     .font(.system(size: 22, weight: .bold, design: .serif))
                     .foregroundColor(AppColors.textPrimary)
                 Spacer()
-                Button { shareWord = word } label: {
+                Button {
+                    Analytics.log(.cardShared, ["from": "lexicon"])
+                    shareWord = word
+                } label: {
                     Image(systemName: "square.and.arrow.up")
                         .font(.system(size: 16))
                         .foregroundColor(AppColors.textSecondary)
@@ -151,7 +154,9 @@ struct LexiconNoteSheet: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        userProfile.setNote(text, for: word.id)
+                        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+                        userProfile.setNote(trimmed, for: word.id)
+                        if !trimmed.isEmpty { Analytics.log(.noteAdded) }
                         HapticManager.success()
                         dismiss()
                     }.foregroundColor(AppColors.accent)

@@ -25,6 +25,7 @@ struct AppCoordinator: View {
         if userProfile.profile.onboardingCompleted {
             WordFeedView()
                 .onAppear {
+                    Analytics.log(.appOpen)   // D7 unprompted-return signal
                     NotificationManager.clearBadge()
                     NotificationManager.scheduleStreakReminder(
                         currentStreak: userProfile.profile.currentStreak,

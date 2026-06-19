@@ -652,6 +652,7 @@ struct WordFeedView: View {
                     // Free users can only share words they actually have access to —
                     // otherwise the "shareable card" would expose locked premium content.
                     if WordAccess.canAccess(word, isPro: subscriptions.isPro) {
+                        Analytics.log(.cardShared, ["from": "feed"])
                         activeSheet = .share
                     } else {
                         activeSheet = .premium
@@ -681,7 +682,10 @@ struct WordFeedView: View {
                     withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { bookmarkScale = 1.0 }
                     // First time a word is claimed → invite a personal note. Optional & skippable:
                     // the note ("why this word is mine") is what turns a saved word into *yours*.
-                    if !wasClaimed { noteWord = word }
+                    if !wasClaimed {
+                        Analytics.log(.wordClaimed)
+                        noteWord = word
+                    }
                 } label: {
                     Image(systemName: userProfile.isClaimed(word.id) ? "bookmark.fill" : "bookmark")
                         .font(.system(size: 22))
