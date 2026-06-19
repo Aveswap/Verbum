@@ -51,6 +51,22 @@ final class CloudKitMergeTests: XCTestCase {
         XCTAssertFalse(merge(local, remote).likedWordIds.contains(a))
     }
 
+    func testLexiconNoteKeepsNewerEdit() {
+        // Editing a word's personal note on the device that wrote it later wins.
+        let a = UUID()
+        var local = UserProfile();  local.wordNotes = [a.uuidString: "old"];   local.noteChangedAt = [a.uuidString: Date(timeIntervalSince1970: 1_000)]
+        var remote = UserProfile(); remote.wordNotes = [a.uuidString: "new"];  remote.noteChangedAt = [a.uuidString: Date(timeIntervalSince1970: 2_000)]
+        XCTAssertEqual(merge(local, remote).wordNotes[a.uuidString], "new")
+    }
+
+    func testLexiconNoteClearWinsWhenNewer() {
+        // Clearing a note (later) must not be resurrected by another device's stale note.
+        let a = UUID()
+        var local = UserProfile();  local.wordNotes = [:];                      local.noteChangedAt = [a.uuidString: Date(timeIntervalSince1970: 2_000)]
+        var remote = UserProfile(); remote.wordNotes = [a.uuidString: "stale"]; remote.noteChangedAt = [a.uuidString: Date(timeIntervalSince1970: 1_000)]
+        XCTAssertNil(merge(local, remote).wordNotes[a.uuidString])
+    }
+
     func testSeenAndLikedAreUnioned() {
         let a = UUID(), b = UUID(), c = UUID()
         var local = UserProfile();  local.seenWordIds = [a, b]; local.likedWordIds = [a]

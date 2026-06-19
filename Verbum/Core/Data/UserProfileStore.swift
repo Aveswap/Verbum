@@ -250,6 +250,27 @@ class UserProfileStore: ObservableObject {
         profile.likeChangedAt[id.uuidString] = Date()
     }
 
+    // MARK: - Lexicon (claim = bookmark, + a personal note)
+
+    /// "Claim" a word into the personal lexicon. Same underlying set as bookmarks, reframed: the
+    /// lexicon is the words the user has made theirs. Toggles.
+    func claimWord(_ id: UUID) { bookmarkWord(id) }
+    func isClaimed(_ id: UUID) -> Bool { profile.bookmarkedWordIds.contains(id) }
+
+    /// The user's personal "why this word is mine" note for a word. Setting an empty string clears
+    /// it. Mutating `profile` triggers the debounced local save + CloudKit push (see didSet).
+    func setNote(_ text: String, for id: UUID) {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            profile.wordNotes.removeValue(forKey: id.uuidString)
+        } else {
+            profile.wordNotes[id.uuidString] = trimmed
+        }
+        profile.noteChangedAt[id.uuidString] = Date()
+    }
+
+    func note(for id: UUID) -> String { profile.wordNotes[id.uuidString] ?? "" }
+
     /// Marks a word as seen. Returns true if this caused the daily goal to be reached just now.
     @discardableResult
     func markWordSeen(_ id: UUID) -> Bool {

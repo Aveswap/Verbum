@@ -113,6 +113,10 @@ final class CloudKitSyncManager {
         merged.wordMastery = Self.mergeMaxByKey(local.wordMastery, remote.wordMastery)
         merged.challengeHighScores = Self.mergeMaxByKey(local.challengeHighScores, remote.challengeHighScores)
 
+        (merged.wordNotes, merged.noteChangedAt) = Self.mergeNotesByRecency(
+            localVals: local.wordNotes, localTs: local.noteChangedAt,
+            remoteVals: remote.wordNotes, remoteTs: remote.noteChangedAt)
+
         let deletedIds = Set(local.deletedDeckIds).union(remote.deletedDeckIds)
         merged.deletedDeckIds = Array(deletedIds)
 
@@ -164,5 +168,23 @@ final class CloudKitSyncManager {
         var out = a
         for (k, v) in b { out[k] = max(out[k] ?? Int.min, v) }
         return out
+    }
+
+    /// Per-key last-write-wins merge for the lexicon notes. The newest `noteChangedAt` wins the
+    /// value; a cleared note (empty string) with a newer timestamp correctly removes it. Timestamps
+    /// are unioned with max so a later edit always supersedes an earlier one.
+    private static func mergeNotesByRecency(
+        localVals: [String: String], localTs: [String: Date],
+        remoteVals: [String: String], remoteTs: [String: Date]
+    ) -> ([String: String], [String: Date]) {
+        var ts = localTs
+        for (k, v) in remoteTs { ts[k] = max(ts[k] ?? .distantPast, v) }
+        var vals = localVals
+        for k in Set(localVals.keys).union(remoteVals.keys) {
+            let lt = localTs[k] ?? .distantPast
+            let rt = remoteTs[k] ?? .distantPast
+            if rt > lt { vals[k] = remoteVals[k] }
+        }
+        return (vals.filter { !$0.value.isEmpty }, ts)   // drop cleared notes
     }
 }

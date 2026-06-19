@@ -24,6 +24,11 @@ struct UserProfile: Codable {
     // resurrected by another device's stale union. Bounded by catalogue size.
     var likeChangedAt: [String: Date] = [:]
     var bookmarkChangedAt: [String: Date] = [:]
+    // Personal lexicon = bookmarked words, reframed as words the user "claims". `wordNotes` holds
+    // the user's own "why this word is mine" line per word id (uuidString → note); `noteChangedAt`
+    // powers a per-key last-write-wins CloudKit merge so an edit/clear on one device isn't lost.
+    var wordNotes: [String: String] = [:]
+    var noteChangedAt: [String: Date] = [:]
     var currentStreak: Int = 0
     var longestStreak: Int = 0
     var lastOpenedDate: Date? = nil
