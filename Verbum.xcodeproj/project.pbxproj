@@ -40,6 +40,7 @@
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
 		6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */; };
 		679B7435A65EE128E3BDFD9D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FD4DC7155AFE3B84443544BC /* PrivacyInfo.xcprivacy */; };
+		69AF0C54B6B439ABB9F4B381 /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8A2E16B29E4EF015D8DA84 /* LexiconView.swift */; };
 		6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77E8835D95DB845DF4A1B83 /* WordListView.swift */; };
 		6E092B37913B03EA75FFA430 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D8D8BF95F826798C83F6C /* SubscriptionManager.swift */; };
 		77C3E860E20CA6C0C9C099AF /* Logger+Verbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58662E08BA73B725EB7F57A5 /* Logger+Verbum.swift */; };
@@ -106,6 +107,7 @@
 		07924EA2E5FE7E90339327FB /* WordShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordShareSheet.swift; sourceTree = "<group>"; };
 		0A89258AF193132750B6539E /* WordAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccessTests.swift; sourceTree = "<group>"; };
 		0D413A6001D9773EBF97324D /* DailyWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWords.swift; sourceTree = "<group>"; };
+		0D8A2E16B29E4EF015D8DA84 /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		11C3C036C43A585DFA6405C3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		1A702C3CDDC0F977DBCCF854 /* FSRS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSRS.swift; sourceTree = "<group>"; };
@@ -310,6 +312,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		7C4CF307C523C12C87B75878 /* Lexicon */ = {
+			isa = PBXGroup;
+			children = (
+				0D8A2E16B29E4EF015D8DA84 /* LexiconView.swift */,
+			);
+			path = Lexicon;
+			sourceTree = "<group>";
+		};
 		7C7FB6E41802C5F3524D7DEF = {
 			isa = PBXGroup;
 			children = (
@@ -397,6 +407,7 @@
 			children = (
 				D9FF4298AFE0C1FEB4F861CF /* Categories */,
 				3683F68C7753E78046E0E520 /* Leaderboard */,
+				7C4CF307C523C12C87B75878 /* Lexicon */,
 				47D73899F0875BEF171CC980 /* Onboarding */,
 				FED6F90E5FCF8CF293534703 /* Practice */,
 				E14499B24D82DDB52E004ABA /* Profile */,
@@ -592,6 +603,7 @@
 				8BD9683CC097F78400A883A2 /* KeychainHelper.swift in Sources */,
 				B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */,
 				C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */,
+				69AF0C54B6B439ABB9F4B381 /* LexiconView.swift in Sources */,
 				9C07D77964AD69422176D390 /* LikedView.swift in Sources */,
 				77C3E860E20CA6C0C9C099AF /* Logger+Verbum.swift in Sources */,
 				6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */,

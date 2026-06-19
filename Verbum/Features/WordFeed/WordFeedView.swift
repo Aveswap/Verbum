@@ -9,7 +9,7 @@ struct WordFeedView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private enum ActiveSheet: String, Identifiable {
-        case detail, profile, practice, categories, share, stats, premium, leaderboard, search
+        case detail, profile, practice, categories, share, stats, premium, leaderboard, search, lexicon
         var id: RawValue { rawValue }
     }
 
@@ -29,6 +29,8 @@ struct WordFeedView: View {
     @State private var showConfetti = false
     @State private var showGoalToast = false
     @State private var deepLinkWord: Word?
+    /// Word whose personal-note sheet is open (presented after a first claim, or from the Lexicon).
+    @State private var noteWord: Word?
 
     var body: some View {
         ZStack {
@@ -92,6 +94,10 @@ struct WordFeedView: View {
                 LeaderboardView().environmentObject(userProfile)
             case .search:
                 SearchView()
+                    .environmentObject(userProfile)
+                    .environmentObject(subscriptions)
+            case .lexicon:
+                LexiconView()
                     .environmentObject(userProfile)
                     .environmentObject(subscriptions)
             }
@@ -354,6 +360,16 @@ struct WordFeedView: View {
                     .clipShape(Circle())
             }
             .accessibilityLabel("Search learned words")
+
+            Button { activeSheet = .lexicon } label: {
+                Image(systemName: "books.vertical.fill")
+                    .font(.system(size: 17))
+                    .foregroundColor(AppColors.textPrimary)
+                    .frame(width: 44, height: 44)
+                    .background(AppColors.surface)
+                    .clipShape(Circle())
+            }
+            .accessibilityLabel("My lexicon")
 
             Spacer()
 
@@ -659,18 +675,25 @@ struct WordFeedView: View {
                 .accessibilityLabel(userProfile.profile.likedWordIds.contains(word.id) ? "Unlike word" : "Like word")
                 Button {
                     HapticManager.impact(.medium)
-                    userProfile.bookmarkWord(word.id)
+                    let wasClaimed = userProfile.isClaimed(word.id)
+                    userProfile.claimWord(word.id)
                     bookmarkScale = 1.4
                     withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { bookmarkScale = 1.0 }
+                    // First time a word is claimed → invite a personal note. Optional & skippable:
+                    // the note ("why this word is mine") is what turns a saved word into *yours*.
+                    if !wasClaimed { noteWord = word }
                 } label: {
-                    Image(systemName: userProfile.profile.bookmarkedWordIds.contains(word.id) ? "bookmark.fill" : "bookmark")
+                    Image(systemName: userProfile.isClaimed(word.id) ? "bookmark.fill" : "bookmark")
                         .font(.system(size: 22))
-                        .foregroundColor(userProfile.profile.bookmarkedWordIds.contains(word.id) ? AppColors.accent : AppColors.textSecondary)
+                        .foregroundColor(userProfile.isClaimed(word.id) ? AppColors.accent : AppColors.textSecondary)
                         .scaleEffect(bookmarkScale)
                 }
-                .accessibilityLabel(userProfile.profile.bookmarkedWordIds.contains(word.id) ? "Remove bookmark" : "Bookmark word")
+                .accessibilityLabel(userProfile.isClaimed(word.id) ? "Remove from lexicon" : "Claim into lexicon")
             }
             .padding(.vertical, AppSpacing.md)
+            .sheet(item: $noteWord) { w in
+                LexiconNoteSheet(word: w).environmentObject(userProfile)
+            }
         }
     }
 
