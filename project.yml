@@ -68,6 +68,9 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         ITSAppUsesNonExemptEncryption: false
+        # Required because the share sheet's "Save Image" calls UIImageWriteToSavedPhotosAlbum —
+        # without this string iOS crashes the app the moment the photo-add permission is requested.
+        NSPhotoLibraryAddUsageDescription: "Verbum saves your word cards to your photo library so you can share them."
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [en, de, uk]
         UISupportedInterfaceOrientations:

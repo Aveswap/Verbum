@@ -39,6 +39,8 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Verbum saves your word cards to your photo library so you can share them.</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIBackgroundColor</key>

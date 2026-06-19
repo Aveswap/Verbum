@@ -1,5 +1,6 @@
 import UIKit
 import CoreHaptics
+import os
 
 enum HapticManager {
 
@@ -128,9 +129,7 @@ enum HapticManager {
             let player = try engine.makePlayer(with: pattern)
             try player.start(atTime: CHHapticTimeImmediate)
         } catch {
-            #if DEBUG
-            print("[HapticManager] play failed: \(error)")
-            #endif
+            Logger.haptics.debug("play failed: \(error.localizedDescription, privacy: .public)")
         }
     }
 }
