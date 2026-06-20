@@ -132,6 +132,7 @@ class UserProfileStore: ObservableObject {
             || a.selectedTheme != b.selectedTheme
             || a.dailyGoal != b.dailyGoal
             || a.onboardingCompleted != b.onboardingCompleted
+            || a.quizEnabled != b.quizEnabled
     }
 
     private func scheduleSaveWork() {

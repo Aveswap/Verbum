@@ -31,6 +31,8 @@ struct WordFeedView: View {
     @State private var deepLinkWord: Word?
     /// Word whose personal-note sheet is open (presented after a first claim, or from the Lexicon).
     @State private var noteWord: Word?
+    /// Drives the Instagram-style heart burst on a double-tap like.
+    @State private var likeBurst = false
 
     var body: some View {
         ZStack {
@@ -450,6 +452,27 @@ struct WordFeedView: View {
                     // withAnimation in onEnded, producing the stutter on release. Live drag
                     // tracks the finger directly; the release animation comes from onEnded.
                     .gesture(swipeGesture)
+                    // Instagram-style heart that pops on a double-tap like.
+                    .overlay {
+                        if likeBurst {
+                            Image(systemName: "heart.fill")
+                                .font(.system(size: 120))
+                                .foregroundColor(.white.opacity(0.92))
+                                .shadow(color: .black.opacity(0.25), radius: 12)
+                                .transition(.scale(scale: 0.4).combined(with: .opacity))
+                                .allowsHitTesting(false)
+                        }
+                    }
+                    // Double-tap to like (sets a like, never un-likes — like Instagram).
+                    .onTapGesture(count: 2) {
+                        guard WordAccess.canAccess(word, isPro: subscriptions.isPro) else { return }
+                        if !userProfile.profile.likedWordIds.contains(word.id) {
+                            userProfile.likeWord(word.id)
+                        }
+                        HapticManager.impact(.soft)
+                        triggerLikeBurst()
+                    }
+                    // Single tap → learn more (replaces the old "i" icon).
                     .onTapGesture {
                         if !WordAccess.canAccess(word, isPro: subscriptions.isPro) {
                             activeSheet = .premium
@@ -558,7 +581,7 @@ struct WordFeedView: View {
                     resetActionScales()
                     greenFlashOpacity = 0.07
                     withAnimation(.easeOut(duration: 0.4)) { greenFlashOpacity = 0 }
-                    if viewModel.isEndOfBatch {
+                    if userProfile.profile.quizEnabled && viewModel.isEndOfBatch {
                         // Include the card currently in front — nextWord() hasn't appended it
                         // yet, so without this it's the one word excluded from its own batch.
                         if let w = viewModel.currentWord,
@@ -572,7 +595,8 @@ struct WordFeedView: View {
                         withAnimation(.spring()) { showEndOfFeed = true }
                     } else {
                         withAnimation(.spring(response: 0.35, dampingFraction: 0.75, blendDuration: 0)) { viewModel.nextWord() }
-                        if viewModel.swipesSinceLastQuiz == 3 {
+                        // Heads-up that a quiz comes after the next word — only when quiz is on.
+                        if userProfile.profile.quizEnabled && viewModel.swipesSinceLastQuiz == 3 {
                             withAnimation { showQuizToast = true }
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 withAnimation { showQuizToast = false }
@@ -595,6 +619,14 @@ struct WordFeedView: View {
     private func resetActionScales() {
         likeScale = 1.0
         bookmarkScale = 1.0
+    }
+
+    /// Pops the double-tap heart, then fades it out.
+    private func triggerLikeBurst() {
+        withAnimation(.spring(response: 0.28, dampingFraction: 0.55)) { likeBurst = true }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
+            withAnimation(.easeOut(duration: 0.3)) { likeBurst = false }
+        }
     }
 
     /// Triggers confetti + toast + haptic for hitting the daily goal.
@@ -642,57 +674,38 @@ struct WordFeedView: View {
     @ViewBuilder
     private var actionRow: some View {
         if let word = viewModel.currentWord {
-            HStack(spacing: AppSpacing.xl) {
-                Button { activeSheet = .detail } label: {
-                    Image(systemName: "info.circle")
-                        .actionIcon()
+            // Only two actions now: Save (claim into lexicon) and Share. Info moved to a single
+            // tap on the word; like is a double-tap on the card (see wordArea).
+            HStack(spacing: 64) {
+                FeedActionButton(
+                    icon: userProfile.isClaimed(word.id) ? "bookmark.fill" : "bookmark",
+                    label: "Save",
+                    active: userProfile.isClaimed(word.id),
+                    scale: bookmarkScale
+                ) {
+                    HapticManager.impact(.medium)
+                    let wasClaimed = userProfile.isClaimed(word.id)
+                    userProfile.claimWord(word.id)
+                    bookmarkScale = 1.4
+                    withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { bookmarkScale = 1.0 }
+                    // First claim → invite a personal note ("why this word is mine"); optional.
+                    if !wasClaimed {
+                        Analytics.log(.wordClaimed)
+                        noteWord = word
+                    }
                 }
-                .accessibilityLabel("Word details")
-                Button {
-                    // Free users can only share words they actually have access to —
-                    // otherwise the "shareable card" would expose locked premium content.
+                .accessibilityLabel(userProfile.isClaimed(word.id) ? "Remove from lexicon" : "Claim into lexicon")
+
+                FeedActionButton(icon: "square.and.arrow.up", label: "Share", active: false, scale: 1) {
+                    // Free users can only share words they actually have access to.
                     if WordAccess.canAccess(word, isPro: subscriptions.isPro) {
                         Analytics.log(.cardShared, ["from": "feed"])
                         activeSheet = .share
                     } else {
                         activeSheet = .premium
                     }
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                        .actionIcon()
                 }
                 .accessibilityLabel("Share word")
-                Button {
-                    HapticManager.impact(.soft)
-                    userProfile.likeWord(word.id)
-                    likeScale = 1.4
-                    withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { likeScale = 1.0 }
-                } label: {
-                    Image(systemName: userProfile.profile.likedWordIds.contains(word.id) ? "heart.fill" : "heart")
-                        .font(.system(size: 22))
-                        .foregroundColor(userProfile.profile.likedWordIds.contains(word.id) ? .red : AppColors.textSecondary)
-                        .scaleEffect(likeScale)
-                }
-                .accessibilityLabel(userProfile.profile.likedWordIds.contains(word.id) ? "Unlike word" : "Like word")
-                Button {
-                    HapticManager.impact(.medium)
-                    let wasClaimed = userProfile.isClaimed(word.id)
-                    userProfile.claimWord(word.id)
-                    bookmarkScale = 1.4
-                    withAnimation(.interpolatingSpring(stiffness: 400, damping: 10)) { bookmarkScale = 1.0 }
-                    // First time a word is claimed → invite a personal note. Optional & skippable:
-                    // the note ("why this word is mine") is what turns a saved word into *yours*.
-                    if !wasClaimed {
-                        Analytics.log(.wordClaimed)
-                        noteWord = word
-                    }
-                } label: {
-                    Image(systemName: userProfile.isClaimed(word.id) ? "bookmark.fill" : "bookmark")
-                        .font(.system(size: 22))
-                        .foregroundColor(userProfile.isClaimed(word.id) ? AppColors.accent : AppColors.textSecondary)
-                        .scaleEffect(bookmarkScale)
-                }
-                .accessibilityLabel(userProfile.isClaimed(word.id) ? "Remove from lexicon" : "Claim into lexicon")
             }
             .padding(.vertical, AppSpacing.md)
             .sheet(item: $noteWord) { w in
@@ -715,6 +728,32 @@ struct WordFeedView: View {
             Spacer()
         }
         .padding(.bottom, AppSpacing.lg)
+    }
+}
+
+// MARK: - Feed action button (Save / Share)
+private struct FeedActionButton: View {
+    let icon: String
+    let label: String
+    let active: Bool
+    var scale: CGFloat = 1
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 5) {
+                Image(systemName: icon)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(active ? AppColors.accent : AppColors.textPrimary)
+                    .frame(width: 54, height: 54)
+                    .background(AppColors.surface)
+                    .clipShape(Circle())
+                    .scaleEffect(scale)
+                Text(label)
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+        }
     }
 }
 

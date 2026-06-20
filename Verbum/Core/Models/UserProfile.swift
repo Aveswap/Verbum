@@ -17,6 +17,9 @@ struct UserProfile: Codable {
     var notificationEnd: String = "22:00"
     var selectedTheme: AppTheme = .dark
     var onboardingCompleted: Bool = false
+    // Gameplay is opt-in. When false (default) the feed is pure: no batch quiz after 5 swipes,
+    // and the gamification surfaces (Practice games, streaks, badges, ranking) stay out of the way.
+    var quizEnabled: Bool = false
     var bookmarkedWordIds: [UUID] = []
     var likedWordIds: [UUID] = []
     // Last-toggle time per word id (uuidString → date) for like/bookmark. Powers a per-id
