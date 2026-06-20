@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var showLiked = false
     @State private var showReminders = false
     @State private var showLeaderboard = false
+    @State private var showPractice = false
 
     var body: some View {
         NavigationView {
@@ -26,6 +27,7 @@ struct ProfileView: View {
                         } else {
                             premiumCard
                         }
+                        practiceCard
                         streakCard
                         pointsCard
                         customizeSection
@@ -66,6 +68,36 @@ struct ProfileView: View {
         }
         .sheet(isPresented: $showLeaderboard) {
             LeaderboardView().environmentObject(userProfile)
+        }
+        .sheet(isPresented: $showPractice) {
+            PracticeMenuView().environmentObject(userProfile).environmentObject(subscriptions)
+        }
+    }
+
+    // MARK: - Practice (games hub)
+    private var practiceCard: some View {
+        Button { showPractice = true } label: {
+            HStack(spacing: AppSpacing.md) {
+                Image(systemName: "gamecontroller.fill")
+                    .font(.system(size: 24))
+                    .foregroundColor(AppColors.textOnAccent)
+                    .frame(width: 48, height: 48)
+                    .background(AppColors.accent)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Practice")
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("Games, challenges & words you'll soon forget")
+                        .font(.system(size: 13))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").foregroundColor(AppColors.textSecondary)
+            }
+            .padding(AppSpacing.md)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
         }
     }
 
