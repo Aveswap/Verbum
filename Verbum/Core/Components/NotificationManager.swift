@@ -52,20 +52,13 @@ enum NotificationManager {
             for i in 0..<count {
                 let content = UNMutableNotificationContent()
                 if let word = sampledWords[safe: i] {
-                    // Layout (matches the long-press expanded card the user asked for):
-                    //   • App name "Verbum" — comes from CFBundleDisplayName, set by iOS.
-                    //   • title  → the word itself (big bold headline)
-                    //   • body   → "(pos.) definition" on the first line, then a blank line, then
-                    //              "(example sentence)" so the two paragraphs read as separate
-                    //              blocks in both the banner and the long-press preview.
+                    // Layout the user asked for:
+                    //   • App name "Verbum" — the system header (from CFBundleDisplayName).
+                    //   • title → the word itself (bold headline).
+                    //   • body  → "(n.) definition" — just the part of speech + meaning, no example.
                     content.title = word.text
                     let pos = posAbbreviation(word.partOfSpeech)
-                    let meaning = pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)"
-                    if let example = word.exampleSentence, !example.isEmpty {
-                        content.body = "\(meaning)\n\n(\(example))"
-                    } else {
-                        content.body = meaning
-                    }
+                    content.body = pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)"
                     // Stash the word id so a tap can deep-link to *this exact word*.
                     // Read in VerbumAppDelegate.userNotificationCenter(_:didReceive:).
                     content.userInfo = ["wordId": word.id.uuidString]

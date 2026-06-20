@@ -237,7 +237,7 @@ struct WordDetailView: View {
                         }
 
                         // Etymology (shown when present)
-                        if let etymology = word.etymology {
+                        if let etymology = word.displayEtymology {
                             VStack(alignment: .leading, spacing: AppSpacing.sm) {
                                 HStack(spacing: 6) {
                                     Image(systemName: "book.closed.fill")

@@ -844,19 +844,6 @@ private struct WordCardView: View {
                 .accessibilityLabel("Pronounce \(word.text)")
             }
 
-            // Cross-user likes, visible right on the card. Placeholder count until VERBUM_BACKEND
-            // is live; the heart fills red when *you* like it (double-tap the card).
-            HStack(spacing: 5) {
-                let liked = userProfile.profile.likedWordIds.contains(word.id)
-                Image(systemName: liked ? "heart.fill" : "heart")
-                    .font(.system(size: 14))
-                    .foregroundColor(.red)
-                Text(WordLikeDisplay.formatted(WordLikeDisplay.placeholderCount(for: word) + (liked ? 1 : 0)))
-                    .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(AppColors.textSecondary)
-            }
-            .accessibilityLabel("\(WordLikeDisplay.placeholderCount(for: word)) likes")
-
             Text("\(word.abbreviatedPartOfSpeech) \(word.definition)")
                 .font(.system(size: definitionSize, weight: .regular))
                 .foregroundColor(AppColors.textSecondary)
@@ -873,7 +860,7 @@ private struct WordCardView: View {
                     .lineLimit(dynamicTypeSize.isAccessibilitySize ? nil : 2)
             }
 
-            if let etymology = word.etymology {
+            if let etymology = word.displayEtymology {
                 HStack(spacing: 4) {
                     Image(systemName: "book.closed")
                         .font(.system(size: 10))
@@ -888,6 +875,22 @@ private struct WordCardView: View {
             }
 
             Spacer()
+
+            // Likes — bottom-left, Instagram-style. Grey until *you* like it; red once you do.
+            // Placeholder count until VERBUM_BACKEND is live. (Like via double-tap on the card.)
+            let liked = userProfile.profile.likedWordIds.contains(word.id)
+            HStack(spacing: 6) {
+                Image(systemName: liked ? "heart.fill" : "heart")
+                    .font(.system(size: 18))
+                    .foregroundColor(liked ? .red : AppColors.textSecondary)
+                Text(WordLikeDisplay.formatted(WordLikeDisplay.placeholderCount(for: word) + (liked ? 1 : 0)))
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, AppSpacing.lg)
+            .padding(.bottom, AppSpacing.xs)
+            .accessibilityLabel(liked ? "Liked" : "Likes")
         }
     }
 }

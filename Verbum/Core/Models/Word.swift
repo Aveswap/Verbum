@@ -61,6 +61,24 @@ struct Word: Identifiable, Codable {
         category.isEmpty ? category : NSLocalizedString(category, comment: "word category")
     }
 
+    /// Etymology for display, with dictionary-citation clauses stripped (e.g. "; a headword in
+    /// Merriam-Webster", "and in the Oxford English Dictionary"). We rely on those sources when
+    /// curating words, but they aren't interesting trivia to read on the card.
+    var displayEtymology: String? {
+        guard let raw = etymology?.trimmingCharacters(in: .whitespacesAndNewlines), !raw.isEmpty else { return nil }
+        let dictClause = "(,?\\s*(and\\s+)?(also\\s+)?(now\\s+)?(a\\s+)?(headword\\s+)?in\\s+)?(the\\s+)?(Merriam[\\s-]?Webster|Oxford English Dictionary|the OED|OED|Collins)[^;.]*"
+        let cleaned = raw.components(separatedBy: ";").compactMap { frag -> String? in
+            var f = frag
+            while let r = f.range(of: dictClause, options: [.regularExpression, .caseInsensitive]) {
+                f.removeSubrange(r)
+            }
+            let t = f.trimmingCharacters(in: CharacterSet(charactersIn: " ,.;"))
+            return t.isEmpty ? nil : t
+        }
+        guard !cleaned.isEmpty else { return nil }
+        return cleaned.joined(separator: "; ") + "."
+    }
+
     init(
         id: UUID, text: String, phonetic: String, partOfSpeech: String,
         definition: String, exampleSentence: String?, synonyms: [String],
