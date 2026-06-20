@@ -357,27 +357,38 @@ struct WordFeedView: View {
 
             Spacer()
 
-            // Center hub: the brain opens Search + My Lexicon (Discover). When gameplay is opted
-            // in it also shows the 5-word quiz progress; otherwise the feed stays minimal.
-            Menu {
-                Button { activeSheet = .search } label: { Label("Search words", systemImage: "magnifyingglass") }
-                Button { activeSheet = .lexicon } label: { Label("My Lexicon", systemImage: "books.vertical.fill") }
-            } label: {
-                VStack(spacing: 2) {
-                    Image(systemName: "brain")
-                        .font(.system(size: 18))
-                        .foregroundColor(AppColors.textPrimary)
-                    if userProfile.profile.quizEnabled {
-                        Text("\(viewModel.batchProgress)/5")
-                            .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(AppColors.textSecondary)
+            // The familiar center progress — now tappable: opens My Lexicon (with search inside it).
+            Button { activeSheet = .lexicon } label: {
+                VStack(spacing: 4) {
+                    WordProgressBar(current: viewModel.batchProgress, total: 5)
+                    HStack(spacing: 4) {
+                        let remaining = viewModel.remainingFreeCount(seenIds: seenWordIdsSet)
+                        if !subscriptions.isPro, remaining <= 5, remaining > 0 {
+                            Image(systemName: "lock.open.fill")
+                                .font(.system(size: 9))
+                                .foregroundColor(.orange)
+                            Text(String(format: NSLocalizedString("%lld free words left", comment: "free words remaining"), remaining))
+                                .font(.system(size: 10, weight: .semibold))
+                                .foregroundColor(.orange)
+                        } else {
+                            Image(systemName: userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? "checkmark.circle.fill" : "target")
+                                .font(.system(size: 9))
+                                .foregroundColor(userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? .green : AppColors.textSecondary)
+                            Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
+                                .font(.system(size: 10))
+                                .foregroundColor(AppColors.textSecondary)
+                            let due = userProfile.dueTodayCount()
+                            if due > 0 {
+                                Text("· \(due) due")
+                                    .font(.system(size: 10, weight: .semibold))
+                                    .foregroundColor(AppColors.accent)
+                            }
+                        }
                     }
                 }
-                .frame(width: 56, height: 44)
-                .background(AppColors.surface)
-                .clipShape(RoundedRectangle(cornerRadius: 14))
+                .frame(width: 180)
             }
-            .accessibilityLabel("Search and my lexicon")
+            .accessibilityLabel("My lexicon and search")
 
             Spacer()
 
@@ -428,8 +439,8 @@ struct WordFeedView: View {
                         if likeBurst {
                             Image(systemName: "heart.fill")
                                 .font(.system(size: 120))
-                                .foregroundColor(.white.opacity(0.92))
-                                .shadow(color: .black.opacity(0.25), radius: 12)
+                                .foregroundColor(.red)
+                                .shadow(color: .black.opacity(0.3), radius: 14)
                                 .transition(.scale(scale: 0.4).combined(with: .opacity))
                                 .allowsHitTesting(false)
                         }
@@ -832,6 +843,19 @@ private struct WordCardView: View {
                 }
                 .accessibilityLabel("Pronounce \(word.text)")
             }
+
+            // Cross-user likes, visible right on the card. Placeholder count until VERBUM_BACKEND
+            // is live; the heart fills red when *you* like it (double-tap the card).
+            HStack(spacing: 5) {
+                let liked = userProfile.profile.likedWordIds.contains(word.id)
+                Image(systemName: liked ? "heart.fill" : "heart")
+                    .font(.system(size: 14))
+                    .foregroundColor(.red)
+                Text(WordLikeDisplay.formatted(WordLikeDisplay.placeholderCount(for: word) + (liked ? 1 : 0)))
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundColor(AppColors.textSecondary)
+            }
+            .accessibilityLabel("\(WordLikeDisplay.placeholderCount(for: word)) likes")
 
             Text("\(word.abbreviatedPartOfSpeech) \(word.definition)")
                 .font(.system(size: definitionSize, weight: .regular))

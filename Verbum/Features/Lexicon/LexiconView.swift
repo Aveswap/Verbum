@@ -9,11 +9,22 @@ struct LexiconView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var editingWord: Word?
     @State private var shareWord: Word?
+    @State private var query = ""
 
-    /// Claimed words, most-recently-claimed first, resolved against the live catalogue.
+    private var isSearching: Bool { !query.trimmingCharacters(in: .whitespaces).isEmpty }
+
+    /// Claimed words, most-recently-claimed first, filtered by the in-lexicon search (text /
+    /// definition / your note).
     private var claimedWords: [Word] {
         let byId = Dictionary(WordRepository.shared.all.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
-        return userProfile.profile.bookmarkedWordIds.reversed().compactMap { byId[$0] }
+        let all = userProfile.profile.bookmarkedWordIds.reversed().compactMap { byId[$0] }
+        guard isSearching else { return all }
+        let q = query.lowercased()
+        return all.filter {
+            $0.text.lowercased().contains(q)
+            || $0.definition.lowercased().contains(q)
+            || userProfile.note(for: $0.id).lowercased().contains(q)
+        }
     }
 
     var body: some View {
@@ -21,7 +32,13 @@ struct LexiconView: View {
             ZStack {
                 AppColors.background.ignoresSafeArea()
                 if claimedWords.isEmpty {
-                    emptyState
+                    if isSearching {
+                        Text("No words match \u{201C}\(query)\u{201D}")
+                            .font(.system(size: 15))
+                            .foregroundColor(AppColors.textSecondary)
+                    } else {
+                        emptyState
+                    }
                 } else {
                     ScrollView {
                         LazyVStack(spacing: AppSpacing.md) {
@@ -33,6 +50,7 @@ struct LexiconView: View {
             }
             .navigationTitle("My Lexicon")
             .navigationBarTitleDisplayMode(.inline)
+            .searchable(text: $query, prompt: "Search your lexicon")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button { dismiss() } label: {
