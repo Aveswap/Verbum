@@ -117,6 +117,10 @@ final class CloudKitSyncManager {
             localVals: local.wordNotes, localTs: local.noteChangedAt,
             remoteVals: remote.wordNotes, remoteTs: remote.noteChangedAt)
 
+        // Trial anchor: take the earliest real first-launch so the 7-day games trial can't be
+        // reset by reinstalling on a new device.
+        merged.firstLaunchDate = [local.firstLaunchDate, remote.firstLaunchDate].compactMap { $0 }.min()
+
         let deletedIds = Set(local.deletedDeckIds).union(remote.deletedDeckIds)
         merged.deletedDeckIds = Array(deletedIds)
 

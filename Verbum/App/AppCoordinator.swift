@@ -26,6 +26,7 @@ struct AppCoordinator: View {
             WordFeedView()
                 .onAppear {
                     Analytics.log(.appOpen)   // D7 unprompted-return signal
+                    userProfile.markFirstLaunchIfNeeded()   // anchor the 7-day games trial
                     NotificationManager.clearBadge()
                     NotificationManager.scheduleStreakReminder(
                         currentStreak: userProfile.profile.currentStreak,

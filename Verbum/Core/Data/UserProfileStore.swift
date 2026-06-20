@@ -272,6 +272,29 @@ class UserProfileStore: ObservableObject {
 
     func note(for id: UUID) -> String { profile.wordNotes[id.uuidString] ?? "" }
 
+    // MARK: - Games trial (7 free days from first launch)
+
+    /// True while the 7-day free-games window (from first launch) is open. Nil anchor = not set
+    /// yet → treat as active until markFirstLaunchIfNeeded() runs.
+    var gamesTrialActive: Bool {
+        guard let start = profile.firstLaunchDate else { return true }
+        let end = dayCalendar.date(byAdding: .day, value: 7, to: dayCalendar.startOfDay(for: start)) ?? start
+        return Date() < end
+    }
+
+    var gamesTrialDaysLeft: Int {
+        guard let start = profile.firstLaunchDate else { return 7 }
+        let end = dayCalendar.date(byAdding: .day, value: 7, to: dayCalendar.startOfDay(for: start)) ?? start
+        return max(0, Int(ceil(end.timeIntervalSince(Date()) / 86_400)))
+    }
+
+    /// Anchors the trial on the very first launch and schedules a "trial ending" reminder.
+    func markFirstLaunchIfNeeded() {
+        guard profile.firstLaunchDate == nil else { return }
+        profile.firstLaunchDate = Date()
+        NotificationManager.scheduleTrialReminder(daysFromNow: 6)
+    }
+
     /// Marks a word as seen. Returns true if this caused the daily goal to be reached just now.
     @discardableResult
     func markWordSeen(_ id: UUID) -> Bool {

@@ -20,6 +20,9 @@ struct UserProfile: Codable {
     // Gameplay is opt-in. When false (default) the feed is pure: no batch quiz after 5 swipes,
     // and the gamification surfaces (Practice games, streaks, badges, ranking) stay out of the way.
     var quizEnabled: Bool = false
+    // First time the app was opened — anchors the 7-day free-games trial. Synced (earliest wins)
+    // so the trial doesn't reset on a new device.
+    var firstLaunchDate: Date? = nil
     var bookmarkedWordIds: [UUID] = []
     var likedWordIds: [UUID] = []
     // Last-toggle time per word id (uuidString → date) for like/bookmark. Powers a per-id

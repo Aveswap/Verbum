@@ -137,6 +137,25 @@ enum NotificationManager {
         }
     }
 
+    /// One-off local reminder that the 7-day free-games trial is ending (fires ~`daysFromNow`
+    /// at the next opportunity). Local only — no server needed.
+    static func scheduleTrialReminder(daysFromNow: Int) {
+        let content = UNMutableNotificationContent()
+        content.title = "Verbum"
+        content.body = NSLocalizedString("Your 7-day free games trial is ending soon — go Premium to keep playing.", comment: "trial reminder")
+        content.sound = .default
+        let interval = max(60, Double(daysFromNow) * 86_400)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            guard settings.authorizationStatus == .authorized else { return }
+            UNUserNotificationCenter.current()
+                .removePendingNotificationRequests(withIdentifiers: ["verbum_trial_reminder"])
+            UNUserNotificationCenter.current().add(
+                UNNotificationRequest(identifier: "verbum_trial_reminder", content: content, trigger: trigger)
+            )
+        }
+    }
+
     static func hoursFrom(_ timeString: String) -> Int {
         Int(timeString.prefix(2)) ?? 9
     }

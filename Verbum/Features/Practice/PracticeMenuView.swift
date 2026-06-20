@@ -11,12 +11,11 @@ struct PracticeMenuView: View {
     @State private var showPremium = false
     @State private var activeChallenge: ChallengeKind?
 
-    private var gamesRemaining: Int { userProfile.practiceGamesRemaining() }
-    private var canPlay: Bool { subscriptions.isPro || gamesRemaining > 0 }
+    // Games are free for the 7-day trial (from first launch), then Premium-only.
+    private var canPlay: Bool { subscriptions.isPro || userProfile.gamesTrialActive }
 
     private func startGame(_ action: @escaping () -> Void) {
         guard canPlay else { showPremium = true; return }
-        if !subscriptions.isPro { userProfile.recordPracticeGame() }
         action()
     }
 
@@ -57,18 +56,20 @@ struct PracticeMenuView: View {
                         }
                         .padding(.horizontal, -AppSpacing.md)
 
-                        // Daily limit banner (free users only)
+                        // 7-day free-games trial banner (free users only)
                         if !subscriptions.isPro {
                             HStack {
-                                Image(systemName: canPlay ? "gamecontroller" : "lock.fill")
+                                Image(systemName: canPlay ? "gift.fill" : "lock.fill")
                                     .foregroundColor(canPlay ? AppColors.accent : AppColors.locked)
                                     .font(.system(size: 15))
                                 if canPlay {
-                                    Text("\(gamesRemaining) of \(UserProfile.freePracticeLimit) sessions left today")
+                                    Text(userProfile.gamesTrialDaysLeft <= 1
+                                         ? "Last day of free games"
+                                         : "\(userProfile.gamesTrialDaysLeft) days of free games left")
                                         .font(.system(size: 13))
                                         .foregroundColor(AppColors.textSecondary)
                                 } else {
-                                    Text("Daily limit reached · Resets at midnight")
+                                    Text("Free trial ended · Unlock to keep playing")
                                         .font(.system(size: 13))
                                         .foregroundColor(AppColors.textSecondary)
                                 }
