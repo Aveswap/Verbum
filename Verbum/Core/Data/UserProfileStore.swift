@@ -384,6 +384,25 @@ class UserProfileStore: ObservableObject {
     }
 
     /// Count of reviews due today (for surface badges).
+    /// "Words you'll soon forget" — most likely to be forgotten, resolved to real catalogue words:
+    /// FSRS-due first (oldest), then claimed (lexicon) words by soonest review date, then a
+    /// recently-seen fallback so the review always has enough to run. Capped at `limit`.
+    func wordsToReview(limit: Int = 12) -> [Word] {
+        let byId = Dictionary(WordRepository.shared.all.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+        var ordered: [UUID] = []
+        var seen = Set<UUID>()
+        for id in dueReviews() where seen.insert(id).inserted { ordered.append(id) }
+        let claimedSorted = profile.bookmarkedWordIds.sorted { a, b in
+            (profile.reviews[a.uuidString]?.dueDate ?? .distantFuture) <
+            (profile.reviews[b.uuidString]?.dueDate ?? .distantFuture)
+        }
+        for id in claimedSorted where seen.insert(id).inserted { ordered.append(id) }
+        if ordered.count < 4 {
+            for id in profile.seenWordIds.reversed() where seen.insert(id).inserted { ordered.append(id) }
+        }
+        return ordered.prefix(limit).compactMap { byId[$0] }
+    }
+
     func dueTodayCount(now: Date = Date()) -> Int {
         profile.reviews.values.filter { $0.state != .new && $0.dueDate <= now }.count
     }

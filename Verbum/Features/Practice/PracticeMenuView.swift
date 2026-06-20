@@ -5,6 +5,8 @@ struct PracticeMenuView: View {
     @EnvironmentObject var userProfile: UserProfileStore
     @EnvironmentObject var subscriptions: SubscriptionManager
     @State private var showQuiz = false
+    @State private var showReviewQuiz = false
+    @State private var reviewWords: [Word] = []
     @State private var showFillGap = false
     @State private var showSynonyms = false
     @State private var showGuessWord = false
@@ -33,7 +35,10 @@ struct PracticeMenuView: View {
                                     subtitle: "Review the ones slipping from memory",
                                     icon: "hourglass",
                                     isLocked: !canPlay) {
-                            startGame { showQuiz = true }
+                            startGame {
+                                reviewWords = userProfile.wordsToReview(limit: 12)
+                                showReviewQuiz = true
+                            }
                         }
 
                         // Challenges
@@ -140,6 +145,12 @@ struct PracticeMenuView: View {
         .sheet(isPresented: $showQuiz) {
             QuizView(seenIds: Set(userProfile.profile.seenWordIds),
                      isPro: subscriptions.isPro)
+        }
+        .sheet(isPresented: $showReviewQuiz) {
+            // "Words you'll soon forget" — quiz seeded from FSRS-fading claimed words.
+            QuizView(seenIds: Set(userProfile.profile.seenWordIds),
+                     isPro: subscriptions.isPro,
+                     words: reviewWords)
         }
         .sheet(isPresented: $showFillGap) {
             FillGapView(seenIds: Set(userProfile.profile.seenWordIds),

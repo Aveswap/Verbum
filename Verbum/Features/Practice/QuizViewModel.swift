@@ -23,13 +23,18 @@ class QuizViewModel: ObservableObject {
     /// Words already asked this session — prevents the same word appearing twice.
     private var asked = Set<UUID>()
 
-    init(seenIds: Set<UUID>, isPro: Bool) {
-        // Pool = words the user has seen AND still has access to.
-        // After the locked-as-seen bug fix, the two sets already line up — the
-        // extra canAccess check is defensive in case of stale persisted data.
-        self.pool = WordRepository.shared.all.filter { word in
-            seenIds.contains(word.id) &&
-            WordAccess.canAccess(word, isPro: isPro)
+    init(seenIds: Set<UUID>, isPro: Bool, words: [Word]? = nil) {
+        // An explicit set (e.g. "words you'll soon forget" — FSRS-fading claimed words) takes
+        // priority when it has enough accessible words; otherwise fall back to the seen pool.
+        let explicit = (words ?? []).filter { WordAccess.canAccess($0, isPro: isPro) }
+        if explicit.count >= 4 {
+            self.pool = explicit
+        } else {
+            // Pool = words the user has seen AND still has access to.
+            self.pool = WordRepository.shared.all.filter { word in
+                seenIds.contains(word.id) &&
+                WordAccess.canAccess(word, isPro: isPro)
+            }
         }
         if pool.count < 4 {
             insufficientWords = true
