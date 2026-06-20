@@ -205,6 +205,8 @@ struct ChallengeView: View {
     @Environment(\.dismiss) private var dismiss
     @StateObject private var vm: ChallengeViewModel
     let kind: ChallengeKind
+    /// The player's global medal for this challenge, if top-3 (nil unless the backend is enabled).
+    @State private var medal: Medal?
 
     init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool) {
         self.kind = kind
@@ -265,6 +267,11 @@ struct ChallengeView: View {
                     .font(.system(size: 13))
                     .foregroundColor(AppColors.textSecondary)
             }
+            if let medal {
+                Text("\(medal.symbol) You're #\(medal == .gold ? 1 : medal == .silver ? 2 : 3) in the world")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(Color(hex: medal.hex))
+            }
             Spacer()
             PillButton(title: "Done") {
                 if newHigh {
@@ -274,6 +281,13 @@ struct ChallengeView: View {
             }
             .padding(.horizontal, AppSpacing.lg)
             .padding(.bottom, AppSpacing.xl)
+        }
+        .onAppear {
+            // Submit to the global leaderboard + check for a medal (dormant unless backend on).
+            Leaderboards.service.submit(score: vm.score, for: kind)
+        }
+        .task {
+            medal = await Leaderboards.medal(for: kind)
         }
     }
 

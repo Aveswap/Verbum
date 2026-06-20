@@ -8,6 +8,8 @@ struct WordDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showPremium = false
     @State private var showShare = false
+    /// Cross-user like count (nil unless the backend is enabled).
+    @State private var otherLikes: Int?
     // Main reading text scales with Dynamic Type (base size at default, grows for large text).
     @ScaledMetric(relativeTo: .largeTitle) private var wordTitleSize: CGFloat = 40
     @ScaledMetric(relativeTo: .body) private var definitionSize: CGFloat = 18
@@ -22,6 +24,11 @@ struct WordDetailView: View {
     }
 
     var body: some View {
+        content
+            .task { otherLikes = await PublicLikes.service.likeCount(wordID: word.id) }
+    }
+
+    private var content: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
@@ -158,6 +165,12 @@ struct WordDetailView: View {
                             Text(word.definition)
                                 .font(.system(size: definitionSize, weight: .regular))
                                 .foregroundColor(AppColors.textPrimary)
+                            // Cross-user likes — shown only when the backend is enabled & returns a count.
+                            if let likes = otherLikes, likes > 0 {
+                                Label("\(likes) \(likes == 1 ? "person" : "people") loved this", systemImage: "heart.fill")
+                                    .font(.system(size: 12, weight: .medium))
+                                    .foregroundColor(.pink)
+                            }
                         }
                         .padding(AppSpacing.md)
                         .frame(maxWidth: .infinity, alignment: .leading)

@@ -439,6 +439,7 @@ struct WordFeedView: View {
                         guard WordAccess.canAccess(word, isPro: subscriptions.isPro) else { return }
                         if !userProfile.profile.likedWordIds.contains(word.id) {
                             userProfile.likeWord(word.id)
+                            PublicLikes.service.like(wordID: word.id)   // cross-user (dormant unless backend on)
                         }
                         HapticManager.impact(.soft)
                         triggerLikeBurst()

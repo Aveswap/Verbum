@@ -32,6 +32,7 @@
 		41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */; };
 		415BBCB7DFABF2CC1FAC62B3 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF790BB6AB4C75379219B4AC /* Typography.swift */; };
 		4197BE7D6A97E97B4E1D3B1A /* CloudKitSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9043274A62A43B65329A2950 /* CloudKitSyncManager.swift */; };
+		4609EE3633DE85BAA29CAB31 /* Backend.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2675B0FD083252A497A1252 /* Backend.swift */; };
 		4DEB60027F2328402FD8D116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5189B465BCE9B4F0634218B /* Assets.xcassets */; };
 		4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D998E15B1BDA53EAD060209F /* CategoriesView.swift */; };
 		506F22E3AD9EDD8BF8C0D97B /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC7F5F28B7CA69B1A0BDFD /* Badge.swift */; };
@@ -40,6 +41,7 @@
 		5C904B2C6C46DDFE5327925B /* UserProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE9B380B2F58FE8FC45A4F /* UserProfileStore.swift */; };
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
 		6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */; };
+		631F78172401EF3DCA87A78A /* LeaderboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C290DA0E39F7F35C41F51B7C /* LeaderboardService.swift */; };
 		679B7435A65EE128E3BDFD9D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FD4DC7155AFE3B84443544BC /* PrivacyInfo.xcprivacy */; };
 		69AF0C54B6B439ABB9F4B381 /* LexiconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8A2E16B29E4EF015D8DA84 /* LexiconView.swift */; };
 		6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77E8835D95DB845DF4A1B83 /* WordListView.swift */; };
@@ -62,6 +64,7 @@
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
+		ACAE324CD8891E1842F7BEE1 /* PublicLikesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B8DE60045DE5577F72714 /* PublicLikesService.swift */; };
 		B0CC5FC274154F9F7F31DAC5 /* FSRSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5C8FB3E44D1DEB2BB3CBF /* FSRSTests.swift */; };
 		B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A371834A2FF448E0B35FC50 /* LanguageManager.swift */; };
 		B33E6587464D1EEEF0AE1E32 /* CloudKitMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */; };
@@ -167,14 +170,17 @@
 		B9B96A9B8319C8AE14CFB5C7 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		BA8E9091A467ADE090DC3610 /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
 		BDB995E5C7ACF204C7AF058B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C05B8DE60045DE5577F72714 /* PublicLikesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicLikesService.swift; sourceTree = "<group>"; };
 		C21B3590E4FD7FF17ACFAA57 /* Verbum.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Verbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28C193C7BC73D85820163A1 /* WordFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedView.swift; sourceTree = "<group>"; };
+		C290DA0E39F7F35C41F51B7C /* LeaderboardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardService.swift; sourceTree = "<group>"; };
 		C7CD9166BA32297E2C16426C /* LikedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedView.swift; sourceTree = "<group>"; };
 		C8BE0AC736303A807180D482 /* VerbumApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerbumApp.swift; sourceTree = "<group>"; };
 		CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		CE6B561C54D1682C7E76E313 /* DailyWordsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWordsTests.swift; sourceTree = "<group>"; };
 		D1B2F39F12BBD577ADC37AC9 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D998E15B1BDA53EAD060209F /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		E2675B0FD083252A497A1252 /* Backend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backend.swift; sourceTree = "<group>"; };
 		E5189B465BCE9B4F0634218B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E77E8835D95DB845DF4A1B83 /* WordListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListView.swift; sourceTree = "<group>"; };
 		E82521C06E09CBA22341217D /* StreakEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEngine.swift; sourceTree = "<group>"; };
@@ -379,12 +385,15 @@
 			isa = PBXGroup;
 			children = (
 				F2D34E9CAB7C4607D1B004F0 /* AuthService.swift */,
+				E2675B0FD083252A497A1252 /* Backend.swift */,
 				9043274A62A43B65329A2950 /* CloudKitSyncManager.swift */,
 				0D413A6001D9773EBF97324D /* DailyWords.swift */,
 				B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */,
 				1A702C3CDDC0F977DBCCF854 /* FSRS.swift */,
 				B7D72F92771EB30EBB1959B1 /* GameCenterService.swift */,
 				A5C20A9DD30AFD69BB3317B6 /* KeychainHelper.swift */,
+				C290DA0E39F7F35C41F51B7C /* LeaderboardService.swift */,
+				C05B8DE60045DE5577F72714 /* PublicLikesService.swift */,
 				7EF4A5A7958B8B59F1F6A34F /* SpotlightIndexer.swift */,
 				E82521C06E09CBA22341217D /* StreakEngine.swift */,
 				3A0D8D8BF95F826798C83F6C /* SubscriptionManager.swift */,
@@ -583,6 +592,7 @@
 				869F5F5C647E47083B5A3C54 /* AppCoordinator.swift in Sources */,
 				20C755AAB0A5499D838B467F /* AppInfo.swift in Sources */,
 				DB72D941E4E59C2AD805868D /* AuthService.swift in Sources */,
+				4609EE3633DE85BAA29CAB31 /* Backend.swift in Sources */,
 				506F22E3AD9EDD8BF8C0D97B /* Badge.swift in Sources */,
 				963AE7507F748C374F47FB23 /* BatchQuizView.swift in Sources */,
 				4FC414CC91A918A25DF49891 /* CategoriesView.swift in Sources */,
@@ -606,6 +616,7 @@
 				930B261EDA1014D495490311 /* InsufficientWordsView.swift in Sources */,
 				8BD9683CC097F78400A883A2 /* KeychainHelper.swift in Sources */,
 				B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */,
+				631F78172401EF3DCA87A78A /* LeaderboardService.swift in Sources */,
 				C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */,
 				69AF0C54B6B439ABB9F4B381 /* LexiconView.swift in Sources */,
 				9C07D77964AD69422176D390 /* LikedView.swift in Sources */,
@@ -620,6 +631,7 @@
 				2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */,
 				A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */,
 				043DF0EEE7D9F8A442869F87 /* ProgressBar.swift in Sources */,
+				ACAE324CD8891E1842F7BEE1 /* PublicLikesService.swift in Sources */,
 				DD9EE0D1A601D7F6A5EBC12A /* QuizView.swift in Sources */,
 				DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */,
 				9BAB5DC37B7C07F4940E9DDB /* SearchView.swift in Sources */,
