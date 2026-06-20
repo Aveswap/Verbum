@@ -11,6 +11,7 @@ struct PracticeMenuView: View {
     @State private var showSynonyms = false
     @State private var showGuessWord = false
     @State private var showPremium = false
+    @State private var showLeaderboard = false
     @State private var activeChallenge: ChallengeKind?
 
     // Games are free for the 7-day trial (from first launch), then Premium-only.
@@ -21,12 +22,69 @@ struct PracticeMenuView: View {
         action()
     }
 
+    // Streak + quarterly badge status (moved here from the profile — gamification lives in Practice).
+    private var statsHeader: some View {
+        let tier = UserProfileStore.badgeTier(for: userProfile.profile.quarterlyPoints)
+        return VStack(spacing: AppSpacing.sm) {
+            HStack(spacing: AppSpacing.md) {
+                Text("🔥").font(.system(size: 30))
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(userProfile.profile.currentStreak) day streak")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(AppColors.textPrimary)
+                    Text("Best: \(userProfile.profile.longestStreak)")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+                Spacer()
+                if userProfile.profile.streakFreezes > 0 {
+                    HStack(spacing: 4) {
+                        Image(systemName: "snowflake").font(.system(size: 13, weight: .semibold))
+                        Text("\(userProfile.profile.streakFreezes)").font(.system(size: 15, weight: .bold))
+                    }.foregroundColor(.cyan)
+                }
+            }
+            .padding(AppSpacing.md)
+            .frame(maxWidth: .infinity)
+            .background(AppColors.surface)
+            .cornerRadius(AppSpacing.cornerRadius)
+
+            Button { showLeaderboard = true } label: {
+                HStack(spacing: AppSpacing.md) {
+                    Text(tier?.emoji ?? "🏆").font(.system(size: 26))
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(tier.map { "\($0.label) Badge" } ?? "No Badge Yet")
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundColor(tier?.color ?? AppColors.textPrimary)
+                        Text("This quarter")
+                            .font(.system(size: 12))
+                            .foregroundColor(AppColors.textSecondary)
+                    }
+                    Spacer()
+                    Text("\(userProfile.profile.quarterlyPoints) pts")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(AppColors.accent)
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+                .padding(AppSpacing.md)
+                .frame(maxWidth: .infinity)
+                .background(AppColors.surface)
+                .cornerRadius(AppSpacing.cornerRadius)
+            }
+        }
+    }
+
     var body: some View {
         NavigationView {
             ZStack {
                 AppColors.background.ignoresSafeArea()
                 ScrollView {
                     VStack(alignment: .leading, spacing: AppSpacing.lg) {
+                        // Streak + badge status — gamification lives in Practice, not on the feed.
+                        statsHeader
+
                         // Personalised review of the user's OWN words that FSRS says are fading.
                         // The council's north star: play on words you claimed, not generic ones.
                         // TODO: seed this quiz specifically from FSRS-due / fading claimed words.
@@ -151,6 +209,9 @@ struct PracticeMenuView: View {
             QuizView(seenIds: Set(userProfile.profile.seenWordIds),
                      isPro: subscriptions.isPro,
                      words: reviewWords)
+        }
+        .sheet(isPresented: $showLeaderboard) {
+            LeaderboardView().environmentObject(userProfile)
         }
         .sheet(isPresented: $showFillGap) {
             FillGapView(seenIds: Set(userProfile.profile.seenWordIds),
