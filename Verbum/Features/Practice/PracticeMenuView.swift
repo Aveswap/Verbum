@@ -26,6 +26,17 @@ struct PracticeMenuView: View {
                 AppColors.background.ignoresSafeArea()
                 ScrollView {
                     VStack(alignment: .leading, spacing: AppSpacing.lg) {
+                        // Personalised review of the user's OWN words that FSRS says are fading.
+                        // The council's north star: play on words you claimed, not generic ones.
+                        // TODO: seed this quiz specifically from FSRS-due / fading claimed words.
+                        sectionHeader("WORDS YOU'LL SOON FORGET")
+                        PracticeRow(title: "Refresh fading words",
+                                    subtitle: "Review the ones slipping from memory",
+                                    icon: "hourglass",
+                                    isLocked: !canPlay) {
+                            startGame { showQuiz = true }
+                        }
+
                         // Challenges
                         sectionHeader("CHALLENGES")
                         // Bleed past the parent VStack's horizontal padding so the trailing
