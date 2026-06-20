@@ -92,6 +92,24 @@ struct SettingsView: View {
                                     .tint(AppColors.accent)
                             }
                             cardDivider
+                            HStack(spacing: AppSpacing.sm) {
+                                Image(systemName: "gamecontroller.fill")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.green)
+                                    .frame(width: 28)
+                                Toggle(isOn: $userProfile.profile.quizEnabled) {
+                                    VStack(alignment: .leading, spacing: 1) {
+                                        Text("Gameplay & quizzes")
+                                            .font(.system(size: 16))
+                                            .foregroundColor(AppColors.textPrimary)
+                                        Text("Streaks, the after-5 quiz, badges & ranking")
+                                            .font(.system(size: 12))
+                                            .foregroundColor(AppColors.textSecondary)
+                                    }
+                                }
+                                .tint(AppColors.accent)
+                            }
+                            cardDivider
                             NavigationLink(destination: NotificationSettingsView().environmentObject(userProfile)) {
                                 HStack(spacing: AppSpacing.sm) {
                                     Image(systemName: "bell.fill")
