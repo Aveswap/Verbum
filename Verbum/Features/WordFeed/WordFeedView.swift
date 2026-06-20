@@ -45,10 +45,12 @@ struct WordFeedView: View {
 
             VStack(spacing: 0) {
                 topBar
-                if showStreakBanner { streakBanner }
+                // Streaks are gameplay — only shown when the user opts into gameplay.
+                if userProfile.profile.quizEnabled && showStreakBanner { streakBanner }
                 wordArea
                 actionRow
-                bottomNav
+                // Bottom nav (Categories/Practice/Ranking/Stats) removed — the feed is now a
+                // pure swipe surface. Those live behind the profile → Practice hub.
             }
 
             if showQuizToast {
@@ -353,60 +355,29 @@ struct WordFeedView: View {
             }
             .accessibilityLabel("Profile")
 
-            Button { activeSheet = .search } label: {
-                Image(systemName: "magnifyingglass")
-                    .font(.system(size: 17))
-                    .foregroundColor(AppColors.textPrimary)
-                    .frame(width: 44, height: 44)
-                    .background(AppColors.surface)
-                    .clipShape(Circle())
-            }
-            .accessibilityLabel("Search learned words")
-
-            Button { activeSheet = .lexicon } label: {
-                Image(systemName: "books.vertical.fill")
-                    .font(.system(size: 17))
-                    .foregroundColor(AppColors.textPrimary)
-                    .frame(width: 44, height: 44)
-                    .background(AppColors.surface)
-                    .clipShape(Circle())
-            }
-            .accessibilityLabel("My lexicon")
-
             Spacer()
 
-            VStack(spacing: 4) {
-                WordProgressBar(
-                    current: viewModel.batchProgress,
-                    total: 5
-                )
-                HStack(spacing: 4) {
-                    let remaining = viewModel.remainingFreeCount(seenIds: seenWordIdsSet)
-                    if !subscriptions.isPro, remaining <= 5, remaining > 0 {
-                        // Final-five warning — urgency before the paywall
-                        Image(systemName: "lock.open.fill")
-                            .font(.system(size: 9))
-                            .foregroundColor(.orange)
-                        Text(String(format: NSLocalizedString("%lld free words left", comment: "free words remaining"), remaining))
-                            .font(.system(size: 10, weight: .semibold))
-                            .foregroundColor(.orange)
-                    } else {
-                        Image(systemName: userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? "checkmark.circle.fill" : "target")
-                            .font(.system(size: 9))
-                            .foregroundColor(userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? .green : AppColors.textSecondary)
-                        Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
-                            .font(.system(size: 10))
+            // Center hub: the brain opens Search + My Lexicon (Discover). When gameplay is opted
+            // in it also shows the 5-word quiz progress; otherwise the feed stays minimal.
+            Menu {
+                Button { activeSheet = .search } label: { Label("Search words", systemImage: "magnifyingglass") }
+                Button { activeSheet = .lexicon } label: { Label("My Lexicon", systemImage: "books.vertical.fill") }
+            } label: {
+                VStack(spacing: 2) {
+                    Image(systemName: "brain")
+                        .font(.system(size: 18))
+                        .foregroundColor(AppColors.textPrimary)
+                    if userProfile.profile.quizEnabled {
+                        Text("\(viewModel.batchProgress)/5")
+                            .font(.system(size: 10, weight: .medium))
                             .foregroundColor(AppColors.textSecondary)
-                        let due = userProfile.dueTodayCount()
-                        if due > 0 {
-                            Text("· \(due) due")
-                                .font(.system(size: 10, weight: .semibold))
-                                .foregroundColor(AppColors.accent)
-                        }
                     }
                 }
+                .frame(width: 56, height: 44)
+                .background(AppColors.surface)
+                .clipShape(RoundedRectangle(cornerRadius: 14))
             }
-            .frame(width: 180)
+            .accessibilityLabel("Search and my lexicon")
 
             Spacer()
 
