@@ -93,7 +93,9 @@ final class WordDatabase: @unchecked Sendable {
     /// v39: imported gems_round11 (+70 dictionary-verified gems concentrated in the still-thin
     ///      buckets — Communication 13, Emotions 9, Science 9, Art 8, Body 7, Language 6,
     ///      Society 6, Food 5, Psychology 4, Time 3) → en 574.
-    static let bundledDBVersion = 39
+    /// v40: imported gems_round12 (+100 emotion/nature/sensory "wow" words — twilight & weather,
+    ///      landscape, water, melancholy & joy feelings, untranslatables like hygge) → en 674.
+    static let bundledDBVersion = 40
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
