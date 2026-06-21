@@ -99,8 +99,9 @@ struct WordShareSheet: View {
                 }
 
                 Button {
-                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-                    HapticManager.success()
+                    // Save with a real completion so the haptic reflects the actual result —
+                    // a nil completion fired "success" even when the add was denied or failed.
+                    ImageSaver.shared.save(image)
                 } label: {
                     Label("Save", systemImage: "square.and.arrow.down")
                         .font(.system(size: 16, weight: .semibold))
@@ -120,5 +121,25 @@ struct WordShareSheet: View {
         let renderer = ImageRenderer(content: ShareableWordCard(word: word, format: format))
         renderer.scale = 1
         renderedImage = renderer.uiImage
+    }
+}
+
+/// Saves a `UIImage` to the photo library and reports success/failure via haptics. A singleton so
+/// it outlives the SwiftUI button closure until `UIImageWriteToSavedPhotosAlbum` calls back.
+private final class ImageSaver: NSObject, @unchecked Sendable {
+    static let shared = ImageSaver()
+
+    func save(_ image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(
+            image, self,
+            #selector(didFinish(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
+    @objc private func didFinish(_ image: UIImage,
+                                 didFinishSavingWithError error: Error?,
+                                 contextInfo: UnsafeRawPointer) {
+        Task { @MainActor in
+            if error == nil { HapticManager.success() } else { HapticManager.error() }
+        }
     }
 }

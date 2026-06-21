@@ -37,7 +37,14 @@ enum StreakEngine {
                 // reset the streak AND consume the freezes for zero benefit.
                 let missedDays = diff - 1
                 profile.streakFreezes -= missedDays
-                for _ in 0..<missedDays { profile.streakFreezeUsedDates.append(now) }
+                // Record the ACTUAL missed calendar days (start-of-day), not `now` repeated:
+                // distinct dates are meaningful and survive the Set-union CloudKit merge instead
+                // of collapsing to a single entry.
+                for k in 1...missedDays {
+                    if let missed = cal.date(byAdding: .day, value: k, to: lastDay) {
+                        profile.streakFreezeUsedDates.append(cal.startOfDay(for: missed))
+                    }
+                }
                 profile.currentStreak += 1  // streak survives, continues
             } else {
                 profile.currentStreak = 1

@@ -78,6 +78,62 @@ struct UserProfile: Codable {
     var challengeHighScores: [String: Int] = [:]
 
     static let freePracticeLimit = 3
+
+    init() {}
+
+    /// Graceful decode — every key is optional-with-default. Without this, the *synthesized*
+    /// decoder throws `keyNotFound` for any non-optional field missing from older persisted JSON,
+    /// and `UserProfileStore`'s `try?` then silently falls back to a blank `UserProfile()` —
+    /// wiping streak, bookmarks, notes and points the first time a shipped build adds a field.
+    /// Mirrors the same defaults as the property initialisers above.
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        name = try c.decodeIfPresent(String.self, forKey: .name) ?? ""
+        age = try c.decodeIfPresent(AgeRange.self, forKey: .age)
+        gender = try c.decodeIfPresent(Gender.self, forKey: .gender)
+        nativeLanguage = try c.decodeIfPresent(NativeLanguage.self, forKey: .nativeLanguage)
+        wordLanguage = try c.decodeIfPresent(String.self, forKey: .wordLanguage) ?? ""
+        appleUserID = try c.decodeIfPresent(String.self, forKey: .appleUserID)
+        wordsPerWeek = try c.decodeIfPresent(Int.self, forKey: .wordsPerWeek) ?? 30
+        notificationsEnabled = try c.decodeIfPresent(Bool.self, forKey: .notificationsEnabled) ?? false
+        notificationCount = try c.decodeIfPresent(Int.self, forKey: .notificationCount) ?? 3
+        notificationStart = try c.decodeIfPresent(String.self, forKey: .notificationStart) ?? "09:00"
+        notificationEnd = try c.decodeIfPresent(String.self, forKey: .notificationEnd) ?? "22:00"
+        selectedTheme = try c.decodeIfPresent(AppTheme.self, forKey: .selectedTheme) ?? .dark
+        onboardingCompleted = try c.decodeIfPresent(Bool.self, forKey: .onboardingCompleted) ?? false
+        quizEnabled = try c.decodeIfPresent(Bool.self, forKey: .quizEnabled) ?? false
+        firstLaunchDate = try c.decodeIfPresent(Date.self, forKey: .firstLaunchDate)
+        bookmarkedWordIds = try c.decodeIfPresent([UUID].self, forKey: .bookmarkedWordIds) ?? []
+        likedWordIds = try c.decodeIfPresent([UUID].self, forKey: .likedWordIds) ?? []
+        likeChangedAt = try c.decodeIfPresent([String: Date].self, forKey: .likeChangedAt) ?? [:]
+        bookmarkChangedAt = try c.decodeIfPresent([String: Date].self, forKey: .bookmarkChangedAt) ?? [:]
+        wordNotes = try c.decodeIfPresent([String: String].self, forKey: .wordNotes) ?? [:]
+        noteChangedAt = try c.decodeIfPresent([String: Date].self, forKey: .noteChangedAt) ?? [:]
+        currentStreak = try c.decodeIfPresent(Int.self, forKey: .currentStreak) ?? 0
+        longestStreak = try c.decodeIfPresent(Int.self, forKey: .longestStreak) ?? 0
+        lastOpenedDate = try c.decodeIfPresent(Date.self, forKey: .lastOpenedDate)
+        streakTimezone = try c.decodeIfPresent(String.self, forKey: .streakTimezone)
+        profileUpdatedAt = try c.decodeIfPresent(Date.self, forKey: .profileUpdatedAt) ?? .distantPast
+        settingsUpdatedAt = try c.decodeIfPresent(Date.self, forKey: .settingsUpdatedAt) ?? .distantPast
+        streakFreezes = try c.decodeIfPresent(Int.self, forKey: .streakFreezes) ?? 0
+        streakFreezeUsedDates = try c.decodeIfPresent([Date].self, forKey: .streakFreezeUsedDates) ?? []
+        seenWordIds = try c.decodeIfPresent([UUID].self, forKey: .seenWordIds) ?? []
+        totalPoints = try c.decodeIfPresent(Int.self, forKey: .totalPoints) ?? 0
+        quarterlyPoints = try c.decodeIfPresent(Int.self, forKey: .quarterlyPoints) ?? 0
+        quarterlyResetDate = try c.decodeIfPresent(Date.self, forKey: .quarterlyResetDate) ?? Date()
+        earnedBadges = try c.decodeIfPresent([EarnedBadge].self, forKey: .earnedBadges) ?? []
+        practiceGamesPlayedToday = try c.decodeIfPresent(Int.self, forKey: .practiceGamesPlayedToday) ?? 0
+        practiceGamesDate = try c.decodeIfPresent(Date.self, forKey: .practiceGamesDate) ?? .distantPast
+        dailyOpens = try c.decodeIfPresent([Date].self, forKey: .dailyOpens) ?? []
+        dailyGoal = try c.decodeIfPresent(Int.self, forKey: .dailyGoal) ?? 5
+        wordsLearnedToday = try c.decodeIfPresent(Int.self, forKey: .wordsLearnedToday) ?? 0
+        wordsLearnedDate = try c.decodeIfPresent(Date.self, forKey: .wordsLearnedDate) ?? .distantPast
+        wordMastery = try c.decodeIfPresent([String: Int].self, forKey: .wordMastery) ?? [:]
+        decks = try c.decodeIfPresent([WordDeck].self, forKey: .decks) ?? []
+        deletedDeckIds = try c.decodeIfPresent([UUID].self, forKey: .deletedDeckIds) ?? []
+        reviews = try c.decodeIfPresent([String: WordReview].self, forKey: .reviews) ?? [:]
+        challengeHighScores = try c.decodeIfPresent([String: Int].self, forKey: .challengeHighScores) ?? [:]
+    }
 }
 
 /// Per-word FSRS-4.5 spaced-repetition state.

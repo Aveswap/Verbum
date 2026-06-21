@@ -16,7 +16,6 @@ struct WordFeedView: View {
     @State private var activeSheet: ActiveSheet?
     @State private var showBatchQuiz = false
     @State private var dragOffset: CGFloat = 0
-    @State private var likeScale: CGFloat = 1.0
     @State private var bookmarkScale: CGFloat = 1.0
     @State private var showStreakBanner = false
     @AppStorage("hasSeenSwipeHint") private var hasSeenSwipeHint = false
@@ -142,7 +141,7 @@ struct WordFeedView: View {
             if let pendingId = NotificationManager.pendingDeepLinkWordId,
                let word = WordRepository.shared.word(id: pendingId) {
                 NotificationManager.pendingDeepLinkWordId = nil
-                DispatchQueue.main.async {
+                Task { @MainActor in
                     activeSheet = nil
                     deepLinkWord = word
                 }
@@ -195,7 +194,7 @@ struct WordFeedView: View {
             guard let id = note.object as? UUID,
                   let word = WordRepository.shared.word(id: id) else { return }
             activeSheet = nil
-            DispatchQueue.main.async { deepLinkWord = word }
+            Task { @MainActor in deepLinkWord = word }
         }
         .sheet(item: $deepLinkWord) { word in
             WordDetailView(word: word)
@@ -357,38 +356,23 @@ struct WordFeedView: View {
 
             Spacer()
 
-            // The familiar center progress — now tappable: opens My Lexicon (with search inside it).
+            // Center: My Lexicon — a brain icon + label that opens the personal lexicon page.
+            // (Replaced the old "x/5 words today" progress: the feed is now pure swipe-and-save,
+            // with no daily-goal pressure surfaced on the main screen.)
             Button { activeSheet = .lexicon } label: {
-                VStack(spacing: 4) {
-                    WordProgressBar(current: viewModel.batchProgress, total: 5)
-                    HStack(spacing: 4) {
-                        let remaining = viewModel.remainingFreeCount(seenIds: seenWordIdsSet)
-                        if !subscriptions.isPro, remaining <= 5, remaining > 0 {
-                            Image(systemName: "lock.open.fill")
-                                .font(.system(size: 9))
-                                .foregroundColor(.orange)
-                            Text(String(format: NSLocalizedString("%lld free words left", comment: "free words remaining"), remaining))
-                                .font(.system(size: 10, weight: .semibold))
-                                .foregroundColor(.orange)
-                        } else {
-                            Image(systemName: userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? "checkmark.circle.fill" : "target")
-                                .font(.system(size: 9))
-                                .foregroundColor(userProfile.wordsLearnedToday >= userProfile.profile.dailyGoal ? .green : AppColors.textSecondary)
-                            Text("\(userProfile.wordsLearnedToday)/\(userProfile.profile.dailyGoal) today")
-                                .font(.system(size: 10))
-                                .foregroundColor(AppColors.textSecondary)
-                            let due = userProfile.dueTodayCount()
-                            if due > 0 {
-                                Text("· \(due) due")
-                                    .font(.system(size: 10, weight: .semibold))
-                                    .foregroundColor(AppColors.accent)
-                            }
-                        }
-                    }
+                HStack(spacing: 6) {
+                    Image(systemName: "brain.head.profile")
+                        .font(.system(size: 16, weight: .semibold))
+                    Text("My Lexicon")
+                        .font(.system(size: 15, weight: .semibold))
                 }
-                .frame(width: 180)
+                .foregroundColor(AppColors.textPrimary)
+                .padding(.horizontal, AppSpacing.md)
+                .frame(height: 44)
+                .background(AppColors.surface)
+                .clipShape(Capsule())
             }
-            .accessibilityLabel("My lexicon and search")
+            .accessibilityLabel("My lexicon")
 
             Spacer()
 
@@ -489,6 +473,17 @@ struct WordFeedView: View {
                     .accessibilityAction(named: Text("Previous word")) {
                         if !viewModel.isAtStart { withAnimation { viewModel.previousWord() } }
                     }
+                    // Like is bound to double-tap, which VoiceOver claims as "activate" — so a
+                    // blind user can't otherwise like a word. Expose it explicitly in the rotor.
+                    .accessibilityAction(named: Text("Like")) {
+                        guard WordAccess.canAccess(word, isPro: subscriptions.isPro) else { return }
+                        if !userProfile.profile.likedWordIds.contains(word.id) {
+                            userProfile.likeWord(word.id)
+                            PublicLikes.service.like(wordID: word.id)
+                        }
+                        HapticManager.impact(.soft)
+                        triggerLikeBurst()
+                    }
                     .id(viewModel.currentIndex)
                     .transition(.asymmetric(
                         insertion: .move(edge: viewModel.goingBack ? .top : .bottom).combined(with: .opacity),
@@ -581,7 +576,8 @@ struct WordFeedView: View {
                         // Heads-up that a quiz comes after the next word — only when quiz is on.
                         if userProfile.profile.quizEnabled && viewModel.swipesSinceLastQuiz == 3 {
                             withAnimation { showQuizToast = true }
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            Task { @MainActor in
+                                try? await Task.sleep(for: .seconds(2))
                                 withAnimation { showQuizToast = false }
                             }
                         }
@@ -600,14 +596,14 @@ struct WordFeedView: View {
     }
 
     private func resetActionScales() {
-        likeScale = 1.0
         bookmarkScale = 1.0
     }
 
     /// Pops the double-tap heart, then fades it out.
     private func triggerLikeBurst() {
         withAnimation(.spring(response: 0.28, dampingFraction: 0.55)) { likeBurst = true }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
+        Task { @MainActor in
+            try? await Task.sleep(for: .milliseconds(550))
             withAnimation(.easeOut(duration: 0.3)) { likeBurst = false }
         }
     }
@@ -620,10 +616,12 @@ struct WordFeedView: View {
             showConfetti = true
             showGoalToast = true
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(2.5))
             withAnimation { showConfetti = false }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(3.0))
             withAnimation { showGoalToast = false }
         }
     }
@@ -657,9 +655,14 @@ struct WordFeedView: View {
     @ViewBuilder
     private var actionRow: some View {
         if let word = viewModel.currentWord {
-            // Only two actions now: Save (claim into lexicon) and Share. Info moved to a single
-            // tap on the word; like is a double-tap on the card (see wordArea).
-            HStack(spacing: 64) {
+            // Three actions: Practice (opt-in training on words already seen), Save (claim into
+            // lexicon) and Share. Info is a single tap on the word; like is a double-tap on the card.
+            HStack(spacing: 48) {
+                FeedActionButton(icon: "graduationcap.fill", label: "Practice", active: false, scale: 1) {
+                    activeSheet = .practice
+                }
+                .accessibilityLabel("Practice")
+
                 FeedActionButton(
                     icon: userProfile.isClaimed(word.id) ? "bookmark.fill" : "bookmark",
                     label: "Save",
@@ -697,21 +700,6 @@ struct WordFeedView: View {
         }
     }
 
-    // MARK: - Bottom Nav
-    private var bottomNav: some View {
-        HStack {
-            Spacer()
-            BottomNavButton(icon: "square.grid.2x2", label: "Categories") { activeSheet = .categories }
-            Spacer()
-            BottomNavButton(icon: "graduationcap", label: "Practice") { activeSheet = .practice }
-            Spacer()
-            BottomNavButton(icon: "trophy", label: "Ranking") { activeSheet = .leaderboard }
-            Spacer()
-            BottomNavButton(icon: "chart.bar", label: "Stats") { activeSheet = .stats }
-            Spacer()
-        }
-        .padding(.bottom, AppSpacing.lg)
-    }
 }
 
 // MARK: - Feed action button (Save / Share)
@@ -874,10 +862,9 @@ private struct WordCardView: View {
                 .padding(.horizontal, AppSpacing.xl)
             }
 
-            Spacer()
-
-            // Likes — bottom-left, Instagram-style. Grey until *you* like it; red once you do.
-            // Placeholder count until VERBUM_BACKEND is live. (Like via double-tap on the card.)
+            // Likes — directly under the etymology, left-aligned, Instagram-style. Grey until
+            // *you* like it; red once you do. Placeholder count until VERBUM_BACKEND is live.
+            // (Double-tap the card to like.)
             let liked = userProfile.profile.likedWordIds.contains(word.id)
             HStack(spacing: 6) {
                 Image(systemName: liked ? "heart.fill" : "heart")
@@ -889,36 +876,11 @@ private struct WordCardView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, AppSpacing.lg)
-            .padding(.bottom, AppSpacing.xs)
+            .padding(.top, AppSpacing.sm)
             .accessibilityLabel(liked ? "Liked" : "Likes")
+
+            Spacer()
         }
-    }
-}
-
-// MARK: - Bottom Nav Button
-private struct BottomNavButton: View {
-    let icon: String
-    let label: String
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 4) {
-                Image(systemName: icon)
-                    .font(.system(size: 22))
-                    .foregroundColor(AppColors.textSecondary)
-                Text(label)
-                    .font(.system(size: 10))
-                    .foregroundColor(AppColors.textSecondary)
-            }
-        }
-    }
-}
-
-// MARK: - Helpers
-private extension Image {
-    func actionIcon() -> some View {
-        self.font(.system(size: 22)).foregroundColor(AppColors.textSecondary)
     }
 }
 

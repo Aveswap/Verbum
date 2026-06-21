@@ -52,7 +52,21 @@ final class ChallengeViewModel: ObservableObject {
     @Published var isFinished = false
     @Published var insufficientWords = false
 
+    /// Count of correctly-answered words that were "fading" (FSRS-due) at answer time — each is
+    /// worth a memory bonus. The host view supplies `isDue` (reads the profile's review state).
+    @Published var bonusCount = 0
+    var isDue: ((UUID) -> Bool)?
+
     var onAnswer: ((UUID, Bool) -> Void)?
+
+    /// Quarterly-leaderboard points earned this run: 10 per correct answer + 10 per fading word
+    /// re-remembered. Perfection is all-or-nothing — a forfeited run (any miss) scores 0.
+    var earnedPoints: Int {
+        switch kind {
+        case .perfection: return score >= 10 ? (score + bonusCount) * 10 : 0
+        case .rush, .sprint: return (score + bonusCount) * 10
+        }
+    }
 
     // `nonisolated(unsafe)`: Timer.invalidate() is thread-safe per docs, and the deinit hop
     // is the only off-MainActor access — every other use is on the @MainActor class.
@@ -110,6 +124,8 @@ final class ChallengeViewModel: ObservableObject {
         guard selectedAnswer == nil, let q = current else { return }
         selectedAnswer = answer
         let correct = answer == q.correct
+        // Check "was fading" BEFORE onAnswer records the review (which resets the due date).
+        if correct, isDue?(q.word.id) == true { bonusCount += 1 }
         onAnswer?(q.word.id, correct)
         if correct {
             score += 1
@@ -207,6 +223,8 @@ struct ChallengeView: View {
     let kind: ChallengeKind
     /// The player's global medal for this challenge, if top-3 (nil unless the backend is enabled).
     @State private var medal: Medal?
+    /// Guards the one-time quarterly-points award (finishedView.onAppear can fire more than once).
+    @State private var pointsAwarded = false
 
     init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool) {
         self.kind = kind
@@ -238,6 +256,7 @@ struct ChallengeView: View {
         }
         .preferredColorScheme(.dark)
         .onAppear {
+            vm.isDue = { id in userProfile.isDue(id) }
             vm.onAnswer = { id, correct in
                 userProfile.recordReview(id, rating: correct ? .good : .again)
             }
@@ -262,6 +281,17 @@ struct ChallengeView: View {
             Text(scoreLabel)
                 .font(.system(size: 16))
                 .foregroundColor(AppColors.textSecondary)
+            // Quarterly-leaderboard points earned this run (+ memory bonus, if any).
+            VStack(spacing: 2) {
+                Text("+\(vm.earnedPoints) pts")
+                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                    .foregroundColor(AppColors.accent)
+                if vm.bonusCount > 0 && vm.earnedPoints > 0 {
+                    Text(String(format: NSLocalizedString("includes +%lld memory bonus", comment: "challenge bonus"), vm.bonusCount * 10))
+                        .font(.system(size: 12))
+                        .foregroundColor(AppColors.textSecondary)
+                }
+            }
             if !newHigh && highScore > 0 {
                 Text("Best: \(highScore)")
                     .font(.system(size: 13))
@@ -283,6 +313,11 @@ struct ChallengeView: View {
             .padding(.bottom, AppSpacing.xl)
         }
         .onAppear {
+            // Award quarterly-leaderboard points once (feeds the points leaderboard + quarter reset).
+            if !pointsAwarded {
+                pointsAwarded = true
+                if vm.earnedPoints > 0 { userProfile.addPoints(vm.earnedPoints) }
+            }
             // Submit to the global leaderboard + check for a medal (dormant unless backend on).
             Leaderboards.service.submit(score: vm.score, for: kind)
         }

@@ -47,8 +47,6 @@ struct ConfettiView: View {
                     let x = p.x * size.width + p.dx * localT * 60
                     let rot = p.rotationSpeed * localT
                     let opacity = max(0, 1 - progress * 0.8)
-                    var rect = CGRect(x: x - p.size / 2, y: y - p.size / 2, width: p.size, height: p.size)
-                    rect = rect.applying(CGAffineTransform(rotationAngle: rot))
                     let path = Path(roundedRect: CGRect(x: x - p.size / 2, y: y - p.size / 2, width: p.size, height: p.size * 0.4),
                                     cornerRadius: 1)
                     var transformed = path

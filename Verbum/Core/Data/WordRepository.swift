@@ -61,7 +61,9 @@ final class WordRepository: ObservableObject {
         // init re-enters the same `dispatch_once`, which traps as a recursive init deadlock.
         let snapshot = all
         let lang = activeLanguage
-        DispatchQueue.main.async {
+        // Deferred to the next runloop tick via a MainActor Task (not a nonisolated Dispatch
+        // closure, which Swift 6 strict concurrency rejects for touching @MainActor state).
+        Task { @MainActor in
             // Use the last verified Pro state (not a hardcoded false) so a returning Pro user
             // indexes full descriptions immediately — no per-launch downgrade-then-re-upgrade
             // flip with VerbumApp's isPro observer.

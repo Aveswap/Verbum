@@ -71,12 +71,18 @@ final class CloudKitSyncManager {
             merged.lastOpenedDate = remote.lastOpenedDate ?? local.lastOpenedDate
         }
 
+        // Day-boundary calendar locked to the streak timezone (not Calendar.current) so the
+        // daily-counter and dailyOpens windows agree across devices in different timezones —
+        // matching UserProfileStore.dayCalendar used everywhere else.
+        var dayCal = Calendar(identifier: .gregorian)
+        dayCal.timeZone = TimeZone(identifier: merged.streakTimezone ?? "") ?? .current
+
         (merged.wordsLearnedToday, merged.wordsLearnedDate) = Self.mergeDailyCounter(
             (local.wordsLearnedToday, local.wordsLearnedDate),
-            (remote.wordsLearnedToday, remote.wordsLearnedDate))
+            (remote.wordsLearnedToday, remote.wordsLearnedDate), calendar: dayCal)
         (merged.practiceGamesPlayedToday, merged.practiceGamesDate) = Self.mergeDailyCounter(
             (local.practiceGamesPlayedToday, local.practiceGamesDate),
-            (remote.practiceGamesPlayedToday, remote.practiceGamesDate))
+            (remote.practiceGamesPlayedToday, remote.practiceGamesDate), calendar: dayCal)
 
         (merged.likedWordIds, merged.likeChangedAt) = Self.mergeToggleSet(
             localIds: local.likedWordIds, localTs: local.likeChangedAt,
@@ -88,8 +94,7 @@ final class CloudKitSyncManager {
         merged.streakFreezeUsedDates = Array(Set(local.streakFreezeUsedDates).union(remote.streakFreezeUsedDates))
         let unionOpens = Set(local.dailyOpens).union(remote.dailyOpens)
         if let newest = unionOpens.max() {
-            let cal = Calendar.current
-            let cutoff = cal.date(byAdding: .day, value: -6, to: cal.startOfDay(for: newest)) ?? .distantPast
+            let cutoff = dayCal.date(byAdding: .day, value: -6, to: dayCal.startOfDay(for: newest)) ?? .distantPast
             merged.dailyOpens = unionOpens.filter { $0 >= cutoff }.sorted()
         } else {
             merged.dailyOpens = []
@@ -138,8 +143,8 @@ final class CloudKitSyncManager {
         return merged
     }
 
-    private static func mergeDailyCounter(_ a: (Int, Date), _ b: (Int, Date)) -> (Int, Date) {
-        if Calendar.current.isDate(a.1, inSameDayAs: b.1) {
+    private static func mergeDailyCounter(_ a: (Int, Date), _ b: (Int, Date), calendar cal: Calendar) -> (Int, Date) {
+        if cal.isDate(a.1, inSameDayAs: b.1) {
             return (max(a.0, b.0), max(a.1, b.1))
         }
         return a.1 > b.1 ? a : b

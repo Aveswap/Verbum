@@ -9,8 +9,10 @@ class UserProfileStore: ObservableObject {
 
     let cloudKit = CloudKitSyncManager()
     private let key = "userProfile"
-    private var saveWorkItem: DispatchWorkItem?
-    private var cloudKitWorkItem: DispatchWorkItem?
+    // Cancellable debounce timers as MainActor Tasks (not DispatchWorkItem): the work touches
+    // @MainActor state, which Swift 6 strict concurrency forbids from a nonisolated Dispatch closure.
+    private var saveTask: Task<Void, Never>?
+    private var cloudKitTask: Task<Void, Never>?
     private var seenSet: Set<UUID> = []
 
     /// Pushes are suppressed until the first CloudKit pull has completed. Without this, the
@@ -39,7 +41,8 @@ class UserProfileStore: ObservableObject {
             // Safety net: if the first pull neither succeeds nor fails in time (slow / hung
             // network), record anyway so the streak isn't lost for the session. runPendingDailyOpen
             // is idempotent, so this no-ops if the pull already handled it.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6) { [weak self] in
+            Task { @MainActor [weak self] in
+                try? await Task.sleep(for: .seconds(6))
                 self?.runPendingDailyOpen()
             }
         }
@@ -136,30 +139,29 @@ class UserProfileStore: ObservableObject {
     }
 
     private func scheduleSaveWork() {
-        saveWorkItem?.cancel()
-        let item = DispatchWorkItem { [weak self] in
+        saveTask?.cancel()
+        saveTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .milliseconds(500))
+            guard !Task.isCancelled else { return }
             self?.persistLocally()
         }
-        saveWorkItem = item
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: item)
         scheduleCloudKitPush()
     }
 
     private func scheduleCloudKitPush() {
         guard profile.appleUserID != nil, hasCompletedInitialPull else { return }
-        cloudKitWorkItem?.cancel()
-        let item = DispatchWorkItem { [weak self] in
-            guard let self else { return }
+        cloudKitTask?.cancel()
+        cloudKitTask = Task { @MainActor [weak self] in
+            try? await Task.sleep(for: .seconds(10))
+            guard let self, !Task.isCancelled else { return }
             let snapshot = self.profile
-            Task { await self.cloudKit.push(snapshot) }
+            await self.cloudKit.push(snapshot)
         }
-        cloudKitWorkItem = item
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: item)
     }
 
     func saveNow() {
-        saveWorkItem?.cancel()
-        cloudKitWorkItem?.cancel()
+        saveTask?.cancel()
+        cloudKitTask?.cancel()
         persist()
     }
 
@@ -407,6 +409,14 @@ class UserProfileStore: ObservableObject {
         profile.reviews.values.filter { $0.state != .new && $0.dueDate <= now }.count
     }
 
+    /// True if this word is currently "fading" — it has been reviewed before and its FSRS due
+    /// date has passed (the user was about to forget it). Powers the challenge bonus that rewards
+    /// re-remembering a fading word. False for brand-new words (no review history yet).
+    func isDue(_ id: UUID, now: Date = Date()) -> Bool {
+        guard let review = profile.reviews[id.uuidString] else { return false }
+        return review.state != .new && review.dueDate <= now
+    }
+
     // MARK: - Decks
 
     func createDeck(name: String, icon: String = "books.vertical") {
@@ -452,25 +462,6 @@ class UserProfileStore: ObservableObject {
     func resetOnboarding() {
         profile.onboardingCompleted = false
         saveNow()
-    }
-
-    // MARK: - Practice gate
-
-    func practiceGamesRemaining() -> Int {
-        resetPracticeIfNewDay()
-        return max(0, UserProfile.freePracticeLimit - profile.practiceGamesPlayedToday)
-    }
-
-    func recordPracticeGame() {
-        resetPracticeIfNewDay()
-        profile.practiceGamesPlayedToday += 1
-        saveNow()
-    }
-
-    private func resetPracticeIfNewDay() {
-        guard !dayCalendar.isDateInToday(profile.practiceGamesDate) else { return }
-        profile.practiceGamesPlayedToday = 0
-        profile.practiceGamesDate = Date()
     }
 
     // MARK: - Account Deletion

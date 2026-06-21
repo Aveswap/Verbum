@@ -30,12 +30,14 @@ final class SubscriptionManager: ObservableObject {
 
     /// Persisted across launches so a lapse that happened while the app was closed is also
     /// surfaced on next open (not just mid-session expiry).
-    private static let wasProKey = "verbum.wasPro"
+    nonisolated private static let wasProKey = "verbum.wasPro"
 
     /// Best-guess Pro state before the async entitlement check completes — the last verified
     /// value from a previous launch. Lets cold-start work (e.g. Spotlight indexing) use the
     /// right access view immediately instead of defaulting to "free" and then flipping.
-    static var lastKnownPro: Bool { UserDefaults.standard.bool(forKey: wasProKey) }
+    /// `nonisolated`: reads only thread-safe `UserDefaults`, so callers off the main actor
+    /// (e.g. the Spotlight indexer) can read it without a cross-actor hop.
+    nonisolated static var lastKnownPro: Bool { UserDefaults.standard.bool(forKey: wasProKey) }
 
     private var updatesTask: Task<Void, Never>?
     private var initTask: Task<Void, Never>?

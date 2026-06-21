@@ -23,7 +23,7 @@ enum WordLikeDisplay {
     static func placeholderCount(for word: Word) -> Int {
         var h = 5381
         for b in word.text.utf8 { h = ((h << 5) &+ h) &+ Int(b) }
-        return 80 + abs(h) % 9200   // ~80–9,280, stable per word
+        return 80 + abs(h % 9200)   // ~80–9,280, stable per word (abs after %, so Int.min can't trap)
     }
 
     static func formatted(_ n: Int) -> String {

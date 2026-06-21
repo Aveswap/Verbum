@@ -56,10 +56,19 @@ enum SpeechService {
     /// the session is only made active lazily, around an actual `speak()`.
     static func configureAudioSession() {
         do {
+            // `.allowBluetoothHFP` is the iOS 18+ spelling; on 16/17 use the long-standing
+            // `.allowBluetooth` (same HFP routing). Guarding keeps it building at the 16.0 target
+            // without the iOS 18 deprecation warning.
+            var options: AVAudioSession.CategoryOptions = [.mixWithOthers]
+            if #available(iOS 18.0, *) {
+                options.insert(.allowBluetoothHFP)
+            } else {
+                options.insert(.allowBluetooth)
+            }
             try AVAudioSession.sharedInstance().setCategory(
                 .playback,
                 mode: .voicePrompt,
-                options: [.mixWithOthers, .allowBluetoothHFP]
+                options: options
             )
         } catch {
             Logger.speech.error("audio session category setup failed: \(error.localizedDescription, privacy: .public)")
