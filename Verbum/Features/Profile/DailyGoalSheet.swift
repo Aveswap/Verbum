@@ -1,69 +1,7 @@
 import SwiftUI
-import UIKit
 
-// Settings were merged into ProfileView (the single top-left hub). This file now only holds the
-// shared sub-sheets that hub presents.
-
-// MARK: - Word Language
-
-/// Localized display name for a vocabulary language code (BCP-47 base).
-func wordLanguageDisplayName(_ code: String) -> String {
-    switch code {
-    case "en": return "English"
-    case "uk": return "Українська"
-    case "de": return "Deutsch"
-    case "it": return "Italiano"
-    case "fr": return "Français"
-    default:   return Locale.current.localizedString(forLanguageCode: code) ?? code.uppercased()
-    }
-}
-
-struct WordLanguagePickerSheet: View {
-    let available: [String]
-    let selected: String
-    let onSelect: (String) -> Void
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        NavigationView {
-            ZStack {
-                AppColors.background.ignoresSafeArea()
-                List {
-                    ForEach(available, id: \.self) { code in
-                        Button {
-                            onSelect(code)
-                        } label: {
-                            HStack {
-                                Text(wordLanguageDisplayName(code))
-                                    .foregroundColor(AppColors.textPrimary)
-                                Spacer()
-                                if selected == code {
-                                    Image(systemName: "checkmark")
-                                        .foregroundColor(AppColors.accent)
-                                }
-                            }
-                        }
-                    }
-                }
-                .scrollContentBackground(.hidden)
-                .background(AppColors.background)
-            }
-            .navigationTitle("Word Language")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button { dismiss() } label: {
-                        Image(systemName: "xmark").foregroundColor(AppColors.textSecondary)
-                    }
-                }
-            }
-        }
-        .preferredColorScheme(.dark)
-    }
-}
-
-// MARK: - Daily Goal Sheet
-
+/// Slider sheet for editing the daily learning goal. Presented from the Profile hub
+/// (the app settings were merged into ProfileView).
 struct DailyGoalSheet: View {
     @State private var value: Double
     let onSave: (Int) -> Void

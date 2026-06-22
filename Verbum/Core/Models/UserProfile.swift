@@ -49,10 +49,6 @@ struct UserProfile: Codable {
     var quarterlyResetDate: Date = Date()
     var earnedBadges: [EarnedBadge] = []
 
-    // Practice gate — resets at local midnight each day
-    var practiceGamesPlayedToday: Int = 0
-    var practiceGamesDate: Date = .distantPast
-
     // Daily opens: up to one date per calendar day, trimmed to last 7 days
     var dailyOpens: [Date] = []
 
@@ -76,8 +72,6 @@ struct UserProfile: Codable {
 
     // Challenge high scores keyed by ChallengeKind rawValue
     var challengeHighScores: [String: Int] = [:]
-
-    static let freePracticeLimit = 3
 
     init() {}
 
@@ -122,8 +116,6 @@ struct UserProfile: Codable {
         quarterlyPoints = try c.decodeIfPresent(Int.self, forKey: .quarterlyPoints) ?? 0
         quarterlyResetDate = try c.decodeIfPresent(Date.self, forKey: .quarterlyResetDate) ?? Date()
         earnedBadges = try c.decodeIfPresent([EarnedBadge].self, forKey: .earnedBadges) ?? []
-        practiceGamesPlayedToday = try c.decodeIfPresent(Int.self, forKey: .practiceGamesPlayedToday) ?? 0
-        practiceGamesDate = try c.decodeIfPresent(Date.self, forKey: .practiceGamesDate) ?? .distantPast
         dailyOpens = try c.decodeIfPresent([Date].self, forKey: .dailyOpens) ?? []
         dailyGoal = try c.decodeIfPresent(Int.self, forKey: .dailyGoal) ?? 5
         wordsLearnedToday = try c.decodeIfPresent(Int.self, forKey: .wordsLearnedToday) ?? 0

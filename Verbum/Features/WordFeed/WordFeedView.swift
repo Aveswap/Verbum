@@ -9,7 +9,7 @@ struct WordFeedView: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     private enum ActiveSheet: String, Identifiable {
-        case detail, profile, practice, categories, share, stats, premium, leaderboard, search, lexicon
+        case detail, profile, practice, share, premium, leaderboard, lexicon
         var id: RawValue { rawValue }
     }
 
@@ -83,22 +83,14 @@ struct WordFeedView: View {
                 ProfileView().environmentObject(userProfile).environmentObject(subscriptions).environmentObject(auth)
             case .practice:
                 PracticeMenuView().environmentObject(userProfile).environmentObject(subscriptions)
-            case .categories:
-                CategoriesView().environmentObject(userProfile).environmentObject(subscriptions)
             case .share:
                 if let word = viewModel.currentWord {
                     WordShareSheet(word: word)
                 }
-            case .stats:
-                StatsView().environmentObject(userProfile)
             case .premium:
                 PremiumSheet().environmentObject(subscriptions)
             case .leaderboard:
                 LeaderboardView().environmentObject(userProfile)
-            case .search:
-                SearchView()
-                    .environmentObject(userProfile)
-                    .environmentObject(subscriptions)
             case .lexicon:
                 LexiconView()
                     .environmentObject(userProfile)

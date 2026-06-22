@@ -13,8 +13,7 @@ enum WordAccess {
     /// Number of free words a user gets (per active language).
     static let freeLimit = 50
 
-    /// DB `category` values that live behind a premium bucket in CategoriesView.
-    /// Free users never see these.
+    /// DB `category` values that live behind the premium bucket. Free users never see these.
     static let premiumDbCategories: Set<String> = [
         "Technology", "Science", "Literature", "Society"
     ]

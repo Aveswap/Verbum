@@ -203,26 +203,6 @@ class UserProfileStore: ObservableObject {
         LanguageManager.shared.bootstrap(resolved)
     }
 
-    /// Switches the active vocabulary language (from the in-app picker) and reloads.
-    func setWordLanguage(_ language: String) {
-        guard !language.isEmpty, language != profile.wordLanguage else { return }
-        profile.wordLanguage = language
-        WordRepository.shared.setLanguage(language)
-        // Switch the whole interface to match the new vocabulary language, live.
-        LanguageManager.shared.apply(language)
-        // Refresh the daily word notifications so they sample from the new language's pool;
-        // the existing repeating triggers would otherwise keep firing the old language.
-        if profile.notificationsEnabled {
-            NotificationManager.reschedule(
-                count: profile.notificationCount,
-                startHour: NotificationManager.hoursFrom(profile.notificationStart),
-                endHour: NotificationManager.hoursFrom(profile.notificationEnd),
-                seenIds: seenSet,
-                calendar: dayCalendar
-            )
-        }
-    }
-
     static func resolveWordLanguage(stored: String, available: [String]) -> String {
         if !stored.isEmpty, available.contains(stored) { return stored }
         let device = Locale.preferredLanguages.first

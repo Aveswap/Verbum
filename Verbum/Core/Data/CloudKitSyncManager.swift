@@ -80,9 +80,6 @@ final class CloudKitSyncManager {
         (merged.wordsLearnedToday, merged.wordsLearnedDate) = Self.mergeDailyCounter(
             (local.wordsLearnedToday, local.wordsLearnedDate),
             (remote.wordsLearnedToday, remote.wordsLearnedDate), calendar: dayCal)
-        (merged.practiceGamesPlayedToday, merged.practiceGamesDate) = Self.mergeDailyCounter(
-            (local.practiceGamesPlayedToday, local.practiceGamesDate),
-            (remote.practiceGamesPlayedToday, remote.practiceGamesDate), calendar: dayCal)
 
         (merged.likedWordIds, merged.likeChangedAt) = Self.mergeToggleSet(
             localIds: local.likedWordIds, localTs: local.likeChangedAt,
