@@ -64,20 +64,23 @@ enum NotificationManager {
                     ? (sourceWords.isEmpty ? nil : sourceWords[i % sourceWords.count])
                     : sourceWords[safe: i]
                 if let word {
-                    // App name "Verbum" is the system header (CFBundleDisplayName); title is the
-                    // word; body is "(n.) definition". Saved words also get a "From your lexicon"
-                    // subtitle so the reminder reads as your own word coming back.
-                    content.title = word.text
-                    if usingPersonal {
-                        content.subtitle = NSLocalizedString("From your lexicon", comment: "notification subtitle")
-                    }
+                    // Competitor-style layout: leave the title EMPTY so the system header shows the
+                    // app display name ("Verbum"), then stack the word, its "(pos) definition", and
+                    // the example sentence (in parens) on their own body lines — richer than a bare
+                    // word title and keeps the brand name visible.
+                    content.title = ""
                     let pos = posAbbreviation(word.partOfSpeech)
-                    content.body = pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)"
+                    var lines = [word.text]
+                    lines.append(pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)")
+                    if let ex = word.exampleSentence?.trimmingCharacters(in: .whitespacesAndNewlines), !ex.isEmpty {
+                        lines.append("(\(ex))")
+                    }
+                    content.body = lines.joined(separator: "\n")
                     // Stash the word id so a tap deep-links to *this exact word*
                     // (read in VerbumAppDelegate.userNotificationCenter(_:didReceive:)).
                     content.userInfo = ["wordId": word.id.uuidString]
                 } else {
-                    content.title = "Verbum"
+                    content.title = ""
                     content.body = messages[i % messages.count]
                 }
                 content.sound = .default
