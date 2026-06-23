@@ -42,6 +42,9 @@ targets:
     dependencies:
       - package: GRDB
         product: GRDB
+      # Widget extension that hosts the word-spotlight Live Activity (Dynamic Island).
+      - target: VerbumWidgets
+        embed: true
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID)
@@ -68,6 +71,8 @@ targets:
         CFBundleShortVersionString: "$(MARKETING_VERSION)"
         CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         ITSAppUsesNonExemptEncryption: false
+        # Lets the app start Live Activities (word spotlight in the Dynamic Island / Lock Screen).
+        NSSupportsLiveActivities: true
         # Required because the share sheet's "Save Image" calls UIImageWriteToSavedPhotosAlbum —
         # without this string iOS crashes the app the moment the photo-add permission is requested.
         NSPhotoLibraryAddUsageDescription: "Verbum saves your word cards to your photo library so you can share them."
@@ -82,6 +87,34 @@ targets:
             green: 0.11
             blue: 0.118
             alpha: 1.0
+
+  VerbumWidgets:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources:
+      - path: VerbumWidgets
+      # Shared with the app target (which globs Verbum/) — the Live Activity payload.
+      - path: Verbum/Core/LiveActivity/WordActivityAttributes.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).widgets
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "6.0"
+        SWIFT_STRICT_CONCURRENCY: complete
+        TARGETED_DEVICE_FAMILY: "1,2"
+        DEVELOPMENT_TEAM: ""
+        CODE_SIGN_STYLE: Automatic
+    info:
+      path: VerbumWidgets/Info.plist
+      properties:
+        CFBundleName: VerbumWidgets
+        CFBundleDisplayName: Verbum
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
 
   VerbumTests:
     type: bundle.unit-test

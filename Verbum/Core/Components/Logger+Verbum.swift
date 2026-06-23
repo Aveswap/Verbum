@@ -11,4 +11,5 @@ extension Logger {
     static let speech        = Logger(subsystem: subsystem, category: "Speech")
     static let spotlight     = Logger(subsystem: subsystem, category: "Spotlight")
     static let haptics       = Logger(subsystem: subsystem, category: "Haptics")
+    static let liveActivity  = Logger(subsystem: subsystem, category: "LiveActivity")
 }

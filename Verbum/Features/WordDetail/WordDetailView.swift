@@ -52,6 +52,18 @@ struct WordDetailView: View {
                                     .foregroundColor(AppColors.textSecondary)
                             }
                             .accessibilityLabel("Share word")
+                            // Pin this word to the Dynamic Island / Lock Screen (Live Activity).
+                            // Hidden when Live Activities are unavailable/disabled.
+                            if LiveActivityManager.isAvailable {
+                                Button {
+                                    LiveActivityManager.pin(word)
+                                    HapticManager.success()
+                                } label: {
+                                    Image(systemName: "pin")
+                                        .foregroundColor(AppColors.textSecondary)
+                                }
+                                .accessibilityLabel("Pin to Dynamic Island")
+                            }
                             if !userProfile.profile.decks.isEmpty {
                                 Menu {
                                     ForEach(userProfile.profile.decks) { deck in
