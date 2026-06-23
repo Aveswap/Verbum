@@ -397,6 +397,19 @@ class UserProfileStore: ObservableObject {
         return review.state != .new && review.dueDate <= now
     }
 
+    /// Words to resurface in the daily reminder: the user's claimed (lexicon) words, FSRS-fading
+    /// ones first, so a notification nudges the words they're about to forget — "still yours?".
+    /// Empty when nothing is claimed yet (the caller then falls back to a word-of-the-day).
+    func reminderWords(limit: Int) -> [Word] {
+        guard !profile.bookmarkedWordIds.isEmpty else { return [] }
+        let byId = Dictionary(WordRepository.shared.all.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
+        let faded = profile.bookmarkedWordIds.sorted { a, b in
+            (profile.reviews[a.uuidString]?.dueDate ?? .distantFuture) <
+            (profile.reviews[b.uuidString]?.dueDate ?? .distantFuture)
+        }
+        return faded.prefix(max(1, limit)).compactMap { byId[$0] }
+    }
+
     // MARK: - Decks
 
     func createDeck(name: String, icon: String = "books.vertical") {

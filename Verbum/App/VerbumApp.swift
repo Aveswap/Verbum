@@ -82,6 +82,7 @@ struct VerbumApp: App {
                             startHour: NotificationManager.hoursFrom(userProfile.profile.notificationStart),
                             endHour: NotificationManager.hoursFrom(userProfile.profile.notificationEnd),
                             seenIds: Set(userProfile.profile.seenWordIds),
+                            personalWords: userProfile.reminderWords(limit: userProfile.profile.notificationCount),
                             calendar: userProfile.dayCalendar
                         )
                     }

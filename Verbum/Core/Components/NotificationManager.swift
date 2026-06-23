@@ -20,12 +20,14 @@ enum NotificationManager {
     /// Requests permission and schedules. `onAuthorization(granted)` runs on the main actor so the
     /// caller can keep `profile.notificationsEnabled` honest when the user taps "Don't Allow".
     static func requestAndSchedule(count: Int, startHour: Int = 9, endHour: Int = 22,
-                                   seenIds: Set<UUID> = [], calendar: Calendar = .current,
+                                   seenIds: Set<UUID> = [], personalWords: [Word] = [],
+                                   calendar: Calendar = .current,
                                    onAuthorization: (@MainActor @Sendable (Bool) -> Void)? = nil) {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             Task { @MainActor in
                 if granted {
-                    reschedule(count: count, startHour: startHour, endHour: endHour, seenIds: seenIds, calendar: calendar)
+                    reschedule(count: count, startHour: startHour, endHour: endHour,
+                               seenIds: seenIds, personalWords: personalWords, calendar: calendar)
                 }
                 onAuthorization?(granted)
             }
@@ -34,11 +36,16 @@ enum NotificationManager {
 
     @MainActor
     static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22,
-                           seenIds: Set<UUID> = [], calendar: Calendar = .current) {
-        // The SAME "words of the day" the widget shows (DailyWords.forToday) — so the daily
-        // notifications and the lock-/home-screen widget surface one shared set per day. These are
-        // free-pool/unseen-first words, so a free user can immediately tap-open anything mentioned.
-        let sampledWords = DailyWords.forToday(count: count, seenIds: seenIds, calendar: calendar)
+                           seenIds: Set<UUID> = [], personalWords: [Word] = [],
+                           calendar: Calendar = .current) {
+        // Prefer the user's own saved (lexicon) words, fading-first: a reminder that resurfaces a
+        // word you claimed ("still yours?") is a far stronger reason to return than a generic word
+        // of the day. Falls back to the shared word-of-the-day (DailyWords.forToday — free-pool/
+        // unseen-first, tap-openable by free users) when nothing is claimed yet.
+        let usingPersonal = !personalWords.isEmpty
+        let sourceWords = usingPersonal
+            ? personalWords
+            : DailyWords.forToday(count: count, seenIds: seenIds, calendar: calendar)
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
@@ -51,16 +58,23 @@ enum NotificationManager {
             let step = max(span / max(count, 1), 1)
             for i in 0..<count {
                 let content = UNMutableNotificationContent()
-                if let word = sampledWords[safe: i] {
-                    // Layout the user asked for:
-                    //   • App name "Verbum" — the system header (from CFBundleDisplayName).
-                    //   • title → the word itself (bold headline).
-                    //   • body  → "(n.) definition" — just the part of speech + meaning, no example.
+                // Cycle through saved words so every slot resurfaces one even when only a few are
+                // claimed; the word-of-the-day path stays index-based.
+                let word: Word? = usingPersonal
+                    ? (sourceWords.isEmpty ? nil : sourceWords[i % sourceWords.count])
+                    : sourceWords[safe: i]
+                if let word {
+                    // App name "Verbum" is the system header (CFBundleDisplayName); title is the
+                    // word; body is "(n.) definition". Saved words also get a "From your lexicon"
+                    // subtitle so the reminder reads as your own word coming back.
                     content.title = word.text
+                    if usingPersonal {
+                        content.subtitle = NSLocalizedString("From your lexicon", comment: "notification subtitle")
+                    }
                     let pos = posAbbreviation(word.partOfSpeech)
                     content.body = pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)"
-                    // Stash the word id so a tap can deep-link to *this exact word*.
-                    // Read in VerbumAppDelegate.userNotificationCenter(_:didReceive:).
+                    // Stash the word id so a tap deep-links to *this exact word*
+                    // (read in VerbumAppDelegate.userNotificationCenter(_:didReceive:)).
                     content.userInfo = ["wordId": word.id.uuidString]
                 } else {
                     content.title = "Verbum"
