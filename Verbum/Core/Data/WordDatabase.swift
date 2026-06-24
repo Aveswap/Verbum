@@ -96,7 +96,8 @@ final class WordDatabase: @unchecked Sendable {
     /// v40: imported gems_round12 (+100 emotion/nature/sensory "wow" words — twilight & weather,
     ///      landscape, water, melancholy & joy feelings, untranslatables like hygge) → en 674.
     /// v41: imported gems_round13 (+100 more "wow" words — bibelot, ruth, desuetude, …) → en 774.
-    static let bundledDBVersion = 41
+    /// v42: imported gems_round14 (+100 more "wow" words — mono no aware, hwyl, tristesse, …) → en 874.
+    static let bundledDBVersion = 42
     private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
