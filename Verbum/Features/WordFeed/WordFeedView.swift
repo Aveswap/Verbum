@@ -32,6 +32,9 @@ struct WordFeedView: View {
     @State private var noteWord: Word?
     /// Drives the Instagram-style heart burst on a double-tap like.
     @State private var likeBurst = false
+    /// Real cross-user like count for the current word (nil unless VERBUM_BACKEND is live). Never a
+    /// fabricated placeholder — the card shows a number only when this is a real backend value.
+    @State private var currentWordLikes: Int?
 
     var body: some View {
         ZStack {
@@ -157,6 +160,12 @@ struct WordFeedView: View {
             guard !Task.isCancelled else { return }
             withAnimation { showSwipeHint = false }
             hasSeenSwipeHint = true
+        }
+        // Fetch the REAL cross-user like count for the current word (nil — and so no number shown —
+        // unless VERBUM_BACKEND is live; the no-op service returns nil instantly when it's off).
+        .task(id: viewModel.currentWord?.id) {
+            guard let id = viewModel.currentWord?.id else { currentWordLikes = nil; return }
+            currentWordLikes = await PublicLikes.service.likeCount(wordID: id)
         }
         .onChange(of: userProfile.profile.seenWordIds) { newValue in
             seenWordIdsSet = Set(newValue)
@@ -855,16 +864,19 @@ private struct WordCardView: View {
             }
 
             // Likes — directly under the etymology, left-aligned, Instagram-style. Grey until
-            // *you* like it; red once you do. Placeholder count until VERBUM_BACKEND is live.
-            // (Double-tap the card to like.)
+            // *you* like it; red once you do. The COUNT is shown only when the cross-user backend
+            // (VERBUM_BACKEND) returns a real number — never a fabricated placeholder (App Store
+            // 1.1.6 / 2.3.1). (Double-tap the card to like.)
             let liked = userProfile.profile.likedWordIds.contains(word.id)
             HStack(spacing: 6) {
                 Image(systemName: liked ? "heart.fill" : "heart")
                     .font(.system(size: 18))
                     .foregroundColor(liked ? .red : AppColors.textSecondary)
-                Text(WordLikeDisplay.formatted(WordLikeDisplay.placeholderCount(for: word) + (liked ? 1 : 0)))
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(AppColors.textSecondary)
+                if word.id == viewModel.currentWord?.id, let count = currentWordLikes, count > 0 {
+                    Text(WordLikeDisplay.formatted(count + (liked ? 1 : 0)))
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundColor(AppColors.textSecondary)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, AppSpacing.lg)

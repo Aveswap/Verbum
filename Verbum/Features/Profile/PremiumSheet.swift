@@ -268,9 +268,12 @@ struct PremiumSheet: View {
             .padding(.top, AppSpacing.sm)
 
             if selectedProductID != SubscriptionManager.lifetimeID {
+                // Full auto-renew disclosure (Guideline 3.1.2) — the price/period are shown in the
+                // plan rows above; this states charge-at-confirmation, the renewal charge window,
+                // and how to cancel. Keep all elements if you edit the copy.
                 Text(LocalizedStringKey(hasFreeTrial
-                     ? "Free trial, then auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal."
-                     : "Auto-renews. Cancel anytime in Apple ID settings at least 24 hours before renewal."))
+                     ? "Includes a free trial, then auto-renews at the price above until cancelled. Payment is charged to your Apple ID at confirmation of purchase; your account is charged for renewal within 24 hours before each period ends. Cancel anytime, at least 24 hours before renewal, in your Apple ID Account Settings. Any unused trial time is forfeited when you subscribe."
+                     : "Auto-renews at the price above until cancelled. Payment is charged to your Apple ID at confirmation of purchase; your account is charged for renewal within 24 hours before each period ends. Cancel anytime, at least 24 hours before renewal, in your Apple ID Account Settings."))
                     .font(.system(size: 10))
                     .foregroundColor(AppColors.textSecondary)
                     .multilineTextAlignment(.center)

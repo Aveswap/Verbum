@@ -15,17 +15,11 @@ struct NoLikesService: PublicLikesService {
     func likeCount(wordID: UUID) async -> Int? { nil }
 }
 
-/// Display helper for the like count shown on the card. Until the real cross-user backend
-/// (VERBUM_BACKEND) is live, we show a STABLE, realistic-looking placeholder so the design is
-/// visible. Deterministic per word so the number never jumps around. TODO: drop the placeholder
-/// once likeCount() returns real numbers.
+/// Display helper for the cross-user like count. We only ever render a REAL number returned by the
+/// backend (`likeCount`) — never a fabricated placeholder, which would be false engagement data and
+/// an App Store rejection risk (Guidelines 1.1.6 / 2.3.1). When the backend is off the count is
+/// simply hidden.
 enum WordLikeDisplay {
-    static func placeholderCount(for word: Word) -> Int {
-        var h = 5381
-        for b in word.text.utf8 { h = ((h << 5) &+ h) &+ Int(b) }
-        return 80 + abs(h % 9200)   // ~80–9,280, stable per word (abs after %, so Int.min can't trap)
-    }
-
     static func formatted(_ n: Int) -> String {
         if n >= 1000 { return String(format: "%.1fk", Double(n) / 1000) }
         return "\(n)"

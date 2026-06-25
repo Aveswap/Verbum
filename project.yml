@@ -54,7 +54,7 @@ targets:
         SWIFT_STRICT_CONCURRENCY: complete
         CODE_SIGN_ENTITLEMENTS: Verbum/Verbum.entitlements
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        TARGETED_DEVICE_FAMILY: "1,2"
+        TARGETED_DEVICE_FAMILY: "1"
         DEVELOPMENT_TEAM: ""
         CODE_SIGN_STYLE: Automatic
     info:
@@ -95,7 +95,7 @@ targets:
     sources:
       - path: VerbumWidgets
       # Shared with the app target (which globs Verbum/) — the Live Activity payload.
-      - path: Verbum/Core/LiveActivity/WordActivityAttributes.swift
+      - path: Verbum/Core/LiveActivity/RushActivityAttributes.swift
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: $(APP_BUNDLE_ID).widgets
@@ -103,7 +103,7 @@ targets:
         CURRENT_PROJECT_VERSION: "1"
         SWIFT_VERSION: "6.0"
         SWIFT_STRICT_CONCURRENCY: complete
-        TARGETED_DEVICE_FAMILY: "1,2"
+        TARGETED_DEVICE_FAMILY: "1"
         DEVELOPMENT_TEAM: ""
         CODE_SIGN_STYLE: Automatic
     info:

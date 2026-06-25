@@ -75,6 +75,9 @@ final class ChallengeViewModel: ObservableObject {
     /// can outlast the pool, so on exhaustion we start a fresh round rather than stop,
     /// just never repeating the current word back-to-back.
     private var asked = Set<UUID>()
+    /// Absolute deadline for the Rush run — mirrored into the Live Activity so the Dynamic
+    /// Island timer renders self-updating via `Text(timerInterval:)`.
+    private var rushEndDate: Date?
 
     init(kind: ChallengeKind, seenIds: Set<UUID>, isPro: Bool) {
         self.kind = kind
@@ -96,7 +99,10 @@ final class ChallengeViewModel: ObservableObject {
         switch kind {
         case .rush:
             timeRemaining = 60
+            let endDate = Date().addingTimeInterval(60)
+            rushEndDate = endDate
             startGlobalTimer()
+            LiveActivityManager.startRush(endDate: endDate)
         case .sprint:
             timeRemaining = 5  // per-question
         case .perfection:
@@ -130,6 +136,9 @@ final class ChallengeViewModel: ObservableObject {
         if correct {
             score += 1
             HapticManager.success()
+            if kind == .rush, let endDate = rushEndDate {
+                LiveActivityManager.updateRush(score: score, endDate: endDate)
+            }
             advance()
         } else {
             HapticManager.error()
@@ -176,10 +185,14 @@ final class ChallengeViewModel: ObservableObject {
 
     private func startGlobalTimer() {
         timer?.invalidate()
+        // Derive `timeRemaining` from the absolute `rushEndDate` on every tick instead of
+        // decrementing by a fixed 0.1 — this keeps the in-app display in sync with the
+        // Dynamic Island timer (which is also driven by `endDate`). Pure decrement drifts
+        // because `Timer` is not fire-precise; absolute math doesn't.
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { [weak self] _ in
             Task { @MainActor in
-                guard let self else { return }
-                self.timeRemaining -= 0.1
+                guard let self, let endDate = self.rushEndDate else { return }
+                self.timeRemaining = max(0, endDate.timeIntervalSinceNow)
                 if self.timeRemaining <= 0 { self.finish() }
             }
         }
@@ -210,9 +223,11 @@ final class ChallengeViewModel: ObservableObject {
     /// Invalidates the run-loop timer on the main actor. Called from `onDisappear` so the timer
     /// is always torn down deterministically on the thread that scheduled it — `deinit` (which
     /// can run off-main) is then only a defensive backstop, not the primary teardown path.
+    /// Also ends any Rush Live Activity so it doesn't outlive the screen.
     func stopTimer() {
         timer?.invalidate()
         timer = nil
+        LiveActivityManager.endAll()
     }
 }
 

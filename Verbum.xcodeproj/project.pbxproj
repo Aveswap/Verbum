@@ -20,7 +20,6 @@
 		23F6B76E121B6D3AC88978EB /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8436A78F6FA391BCA15FDAC8 /* Analytics.swift */; };
 		2BCF84DC074AD623803F020B /* SpotlightIndexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EF4A5A7958B8B59F1F6A34F /* SpotlightIndexer.swift */; };
 		2C4AAF9E271CC6901F98EC57 /* ProfileSetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3D27E0CD5A912513A4B2D /* ProfileSetupViews.swift */; };
-		2CBB28D9CA75656BE05F9225 /* WordActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40166333EA0CCF41EEBB6DD /* WordActivityAttributes.swift */; };
 		2D340578381485FD8894507E /* VerbumApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BE0AC736303A807180D482 /* VerbumApp.swift */; };
 		2FBE902D8E472DD311783D17 /* words.json in Resources */ = {isa = PBXBuildFile; fileRef = 7065EA90832D7B55B091ECF2 /* words.json */; };
 		31BC24E2659C816519EBB17A /* words_v2.db in Resources */ = {isa = PBXBuildFile; fileRef = EECE110E8ADA8FA5F54C7A95 /* words_v2.db */; };
@@ -39,6 +38,7 @@
 		5B867A4ED94322BBB09B35C8 /* WordAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCA2BBCF7427AC019012D6D /* WordAccess.swift */; };
 		5C904B2C6C46DDFE5327925B /* UserProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83DE9B380B2F58FE8FC45A4F /* UserProfileStore.swift */; };
 		6152418B92E9EEDF172F600A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CE3026DC6F136C89050F6 /* Colors.swift */; };
+		62283EA0E886702EB91FD3DB /* RushChallengeLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CDA61CF5B42FFB410FF9B1 /* RushChallengeLiveActivity.swift */; };
 		6262D1F17263EA0113DB6D33 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3FA109C5CBF3483AE956A1 /* NotificationManager.swift */; };
 		631F78172401EF3DCA87A78A /* LeaderboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C290DA0E39F7F35C41F51B7C /* LeaderboardService.swift */; };
 		679B7435A65EE128E3BDFD9D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FD4DC7155AFE3B84443544BC /* PrivacyInfo.xcprivacy */; };
@@ -46,6 +46,7 @@
 		6C687920C5C06F2C0EB8E01C /* WordListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77E8835D95DB845DF4A1B83 /* WordListView.swift */; };
 		6E092B37913B03EA75FFA430 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0D8D8BF95F826798C83F6C /* SubscriptionManager.swift */; };
 		6F458CFAF688AA5F97DFB4CC /* DailyGoalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E4336CF176F1678C49B2ED /* DailyGoalSheet.swift */; };
+		7091FF9C0F8B8B238E490C81 /* RushActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924E3DB220AE8E06C3A75757 /* RushActivityAttributes.swift */; };
 		7323135D96DB90B24FBAC5B7 /* VerbumWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 197027235F35CC5A5A2C39B9 /* VerbumWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		77C3E860E20CA6C0C9C099AF /* Logger+Verbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58662E08BA73B725EB7F57A5 /* Logger+Verbum.swift */; };
 		83E469F0405852685C17601A /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCA694741309C6D900CD665 /* WelcomeView.swift */; };
@@ -61,22 +62,22 @@
 		9C07D77964AD69422176D390 /* LikedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD9166BA32297E2C16426C /* LikedView.swift */; };
 		A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B6DEE253BAE83C18158646A /* SoundManager.swift */; };
 		A8F6F4E86EDFD68962B9D751 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A60EE41CA03C91B64D6107 /* ProfileView.swift */; };
-		AC3BB75822B16C05E2F0618F /* WordActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40166333EA0CCF41EEBB6DD /* WordActivityAttributes.swift */; };
 		ACAE324CD8891E1842F7BEE1 /* PublicLikesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05B8DE60045DE5577F72714 /* PublicLikesService.swift */; };
 		B0CC5FC274154F9F7F31DAC5 /* FSRSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE5C8FB3E44D1DEB2BB3CBF /* FSRSTests.swift */; };
 		B0F7E3D033A30F34FDF234AE /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A371834A2FF448E0B35FC50 /* LanguageManager.swift */; };
 		B33E6587464D1EEEF0AE1E32 /* CloudKitMergeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */; };
 		B34C314DAD58876A5171C3C3 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38066EA4774B8AB41DA9D6CF /* FavoritesView.swift */; };
 		BA17D3B8C8F4328C549244F6 /* PracticeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357806ACCB3D66F2867A3E80 /* PracticeMenuView.swift */; };
-		BC0AF456F0730EF1A52772CF /* WordSpotlightLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAA4731AC2218A8520B52B9 /* WordSpotlightLiveActivity.swift */; };
 		BDF7654ADC4543802C8F6AC5 /* StreakEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216C9B6500E989C707711222 /* StreakEngineTests.swift */; };
 		C0D846C0FB617A42B06CB2DD /* PillButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E579B213FF7BFC07CA00913 /* PillButton.swift */; };
 		C1ABEA8BB748FBA001BFB65B /* NotificationSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 626B6BE3FF009B4C26107D5A /* NotificationSettingsView.swift */; };
 		C2D154D2972BE298747DAEB7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF39C6A2496F507062F7F84 /* UserProfile.swift */; };
+		C452C682E4A8D2CB326FB4D6 /* RushActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924E3DB220AE8E06C3A75757 /* RushActivityAttributes.swift */; };
 		C76EBA2112E804C4EDD78D04 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A07099C0B9D49EADC6F4E46 /* LeaderboardView.swift */; };
 		CA3F72820D079F4A273DF81C /* SpeechService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F09EE31DA00E08C4A28E84 /* SpeechService.swift */; };
 		CB4E02452D7AF27A653779E5 /* WordShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07924EA2E5FE7E90339327FB /* WordShareSheet.swift */; };
 		CDA891937B0F08CDEC7E0D8E /* StreakEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82521C06E09CBA22341217D /* StreakEngine.swift */; };
+		D15230E87A59377E89CCF7E2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 0BE66DEDF9A600D3297A85D0 /* PrivacyInfo.xcprivacy */; };
 		D35923D0663FCF28916789B7 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407BFE1DC6BC631FE00C1392 /* Spacing.swift */; };
 		DA4428337D5EA213220B76EA /* DatabaseDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */; };
 		DB72D941E4E59C2AD805868D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2D34E9CAB7C4607D1B004F0 /* AuthService.swift */; };
@@ -130,6 +131,7 @@
 		05F3824B4FCFF9A94E3B6FF3 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		07924EA2E5FE7E90339327FB /* WordShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordShareSheet.swift; sourceTree = "<group>"; };
 		0A89258AF193132750B6539E /* WordAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccessTests.swift; sourceTree = "<group>"; };
+		0BE66DEDF9A600D3297A85D0 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		0D413A6001D9773EBF97324D /* DailyWords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWords.swift; sourceTree = "<group>"; };
 		0D8A2E16B29E4EF015D8DA84 /* LexiconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiconView.swift; sourceTree = "<group>"; };
 		0D8B7721046486BB75B8E066 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		3E6491D5127E47854DC497F5 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		405F392D2DD54DAC3CADF013 /* WordDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailViewModel.swift; sourceTree = "<group>"; };
 		407BFE1DC6BC631FE00C1392 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
+		46CDA61CF5B42FFB410FF9B1 /* RushChallengeLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushChallengeLiveActivity.swift; sourceTree = "<group>"; };
 		4890BA067A085C87BA00DAB4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		4940C88040FD8E5FC518EE9F /* WordDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailView.swift; sourceTree = "<group>"; };
 		4A371834A2FF448E0B35FC50 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
@@ -164,7 +167,6 @@
 		693E65753117638048641719 /* NotificationsSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSetupView.swift; sourceTree = "<group>"; };
 		6BF39C6A2496F507062F7F84 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		6BFBB9BEBA3B91AE522BAFA8 /* CloudKitMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitMergeTests.swift; sourceTree = "<group>"; };
-		6DAA4731AC2218A8520B52B9 /* WordSpotlightLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordSpotlightLiveActivity.swift; sourceTree = "<group>"; };
 		6DFFC1788A87089728F16A36 /* GuessWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWordView.swift; sourceTree = "<group>"; };
 		6EC13E4500753104AE3E6E0C /* VerbumTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = VerbumTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7065EA90832D7B55B091ECF2 /* words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = words.json; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		87620CA6EA78E01907CAC03C /* WordFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordFeedViewModel.swift; sourceTree = "<group>"; };
 		8FCA2BBCF7427AC019012D6D /* WordAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAccess.swift; sourceTree = "<group>"; };
 		9043274A62A43B65329A2950 /* CloudKitSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitSyncManager.swift; sourceTree = "<group>"; };
+		924E3DB220AE8E06C3A75757 /* RushActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RushActivityAttributes.swift; sourceTree = "<group>"; };
 		A00F070C603FE504217EDA4A /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
 		A5C20A9DD30AFD69BB3317B6 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		A7F09EE31DA00E08C4A28E84 /* SpeechService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechService.swift; sourceTree = "<group>"; };
@@ -185,7 +188,6 @@
 		B076C6BB7303D36882CE3CD5 /* DatabaseDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseDownloadManager.swift; sourceTree = "<group>"; };
 		B0A60EE41CA03C91B64D6107 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		B30774A2D9419603F01BD410 /* BatchQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchQuizView.swift; sourceTree = "<group>"; };
-		B40166333EA0CCF41EEBB6DD /* WordActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordActivityAttributes.swift; sourceTree = "<group>"; };
 		B40971FC207D1701A44859D9 /* PremiumSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumSheet.swift; sourceTree = "<group>"; };
 		B7D72F92771EB30EBB1959B1 /* GameCenterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCenterService.swift; sourceTree = "<group>"; };
 		BA8E9091A467ADE090DC3610 /* WordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordRepository.swift; sourceTree = "<group>"; };
@@ -261,7 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				5D3AC19037D4F063E3185118 /* LiveActivityManager.swift */,
-				B40166333EA0CCF41EEBB6DD /* WordActivityAttributes.swift */,
+				924E3DB220AE8E06C3A75757 /* RushActivityAttributes.swift */,
 			);
 			path = LiveActivity;
 			sourceTree = "<group>";
@@ -465,8 +467,9 @@
 			isa = PBXGroup;
 			children = (
 				0DBCBD6620CF9032CB9C38C8 /* Info.plist */,
+				0BE66DEDF9A600D3297A85D0 /* PrivacyInfo.xcprivacy */,
+				46CDA61CF5B42FFB410FF9B1 /* RushChallengeLiveActivity.swift */,
 				ED603340C10C06A6AA11C1FC /* VerbumWidgetsBundle.swift */,
-				6DAA4731AC2218A8520B52B9 /* WordSpotlightLiveActivity.swift */,
 			);
 			path = VerbumWidgets;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 			buildConfigurationList = 804D920DAD7380115FF8913E /* Build configuration list for PBXNativeTarget "VerbumWidgets" */;
 			buildPhases = (
 				A58E60E436A31C5A203D8ED1 /* Sources */,
+				A9D3E37BEB878BBD6A532833 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -609,6 +613,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A9D3E37BEB878BBD6A532833 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D15230E87A59377E89CCF7E2 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAA52573C1682DAFDA089E31 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -673,6 +685,7 @@
 				ACAE324CD8891E1842F7BEE1 /* PublicLikesService.swift in Sources */,
 				DD9EE0D1A601D7F6A5EBC12A /* QuizView.swift in Sources */,
 				DBF873E677CDEFF6370C676E /* QuizViewModel.swift in Sources */,
+				C452C682E4A8D2CB326FB4D6 /* RushActivityAttributes.swift in Sources */,
 				F9BFA19E4D92D4D6E2DE0353 /* ShareableWordCard.swift in Sources */,
 				A2D6502521FF557E366F1EEE /* SoundManager.swift in Sources */,
 				D35923D0663FCF28916789B7 /* Spacing.swift in Sources */,
@@ -688,7 +701,6 @@
 				83E469F0405852685C17601A /* WelcomeView.swift in Sources */,
 				369E231F75B7C8CA0D4DF87F /* Word.swift in Sources */,
 				5B867A4ED94322BBB09B35C8 /* WordAccess.swift in Sources */,
-				2CBB28D9CA75656BE05F9225 /* WordActivityAttributes.swift in Sources */,
 				217902B9D01EBDC2ED0FAC11 /* WordDatabase.swift in Sources */,
 				E634F2266613A3AD00BC31D0 /* WordDetailView.swift in Sources */,
 				41032E0D877D4385FFB1E1EE /* WordDetailViewModel.swift in Sources */,
@@ -716,9 +728,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7091FF9C0F8B8B238E490C81 /* RushActivityAttributes.swift in Sources */,
+				62283EA0E886702EB91FD3DB /* RushChallengeLiveActivity.swift in Sources */,
 				0F986D49BAF00EA2D3EEB46F /* VerbumWidgetsBundle.swift in Sources */,
-				AC3BB75822B16C05E2F0618F /* WordActivityAttributes.swift in Sources */,
-				BC0AF456F0730EF1A52772CF /* WordSpotlightLiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,7 +793,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -827,7 +839,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -928,7 +940,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1014,7 +1026,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
