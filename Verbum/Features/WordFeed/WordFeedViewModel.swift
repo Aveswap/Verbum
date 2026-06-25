@@ -102,8 +102,11 @@ class WordFeedViewModel: ObservableObject {
             // returning users get new content, not repeats.
             words = prependDueReviews(unseenFirst(WordRepository.shared.all))
         } else {
-            // Free, no filter: the free 50 in freq-rank order.
-            words = WordAccess.freePool()
+            // Free, no filter: the free 50, smart-ordered exactly like the Pro feed — FSRS-due
+            // reviews first, then unseen words (shuffled), then already-seen (shuffled). Without
+            // this the free user saw the pool in a fixed freq-rank sequence every launch (felt
+            // like a static, alphabetical-ish list); now it's varied and surfaces new words first.
+            words = prependDueReviews(unseenFirst(WordAccess.freePool()))
         }
         goingBack = false
         currentIndex = 0
