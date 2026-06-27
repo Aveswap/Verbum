@@ -31,18 +31,35 @@ enum WordAccess {
         poolIdCache = nil
     }
 
-    /// Top `freeLimit` words of the active language, ordered by frequencyRank ASC (stable
-    /// text tiebreaker so the same set is chosen across launches even when ranks are nil).
+    /// Hand-curated opening words — the "trailer" a brand-new free user meets, in this exact order.
+    /// These are GUARANTEED free and shown FIRST regardless of frequencyRank or premium category,
+    /// so the most stunning words lead and the first impression is designed, not random. Durable
+    /// across word re-imports (it keys on text, not on rank). Lowercased. Extend toward ~50 to fully
+    /// curate the free sample; the rest of the pool fills by frequencyRank.
+    static let curatedFront: [String] = [
+        "petrichor", "hiraeth", "gloaming", "saudade", "susurrus",
+        "hygge", "komorebi", "mellifluous", "ineffable", "serendipity",
+    ]
+
+    /// The free pool: the curated front first (forced free, in order), then filled to `freeLimit`
+    /// from the remaining non-premium words by frequencyRank ASC (stable text tiebreaker).
     static func freePool() -> [Word] {
         if let cached = poolCache { return cached }
-        let candidates = catalogProvider().filter { !premiumDbCategories.contains($0.category) }
-        let sorted = candidates.sorted { a, b in
-            let ar = a.frequencyRank ?? Int.max
-            let br = b.frequencyRank ?? Int.max
-            if ar != br { return ar < br }
-            return a.text.lowercased() < b.text.lowercased()
-        }
-        let pool = Array(sorted.prefix(freeLimit))
+        let all = catalogProvider()
+        // 1) Curated front, resolved in curated order — forced in even if their category is premium.
+        let byText = Dictionary(all.map { ($0.text.lowercased(), $0) }, uniquingKeysWith: { a, _ in a })
+        let front = curatedFront.compactMap { byText[$0] }
+        let frontIds = Set(front.map(\.id))
+        // 2) Fill the rest by frequencyRank, excluding premium categories and the curated front.
+        let rest = all
+            .filter { !premiumDbCategories.contains($0.category) && !frontIds.contains($0.id) }
+            .sorted { a, b in
+                let ar = a.frequencyRank ?? Int.max
+                let br = b.frequencyRank ?? Int.max
+                if ar != br { return ar < br }
+                return a.text.lowercased() < b.text.lowercased()
+            }
+        let pool = Array((front + rest).prefix(freeLimit))
         poolCache = pool
         poolIdCache = Set(pool.map(\.id))
         return pool

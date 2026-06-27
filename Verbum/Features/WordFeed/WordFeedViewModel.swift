@@ -1,4 +1,5 @@
 import Foundation
+import os
 
 @MainActor
 class WordFeedViewModel: ObservableObject {
@@ -93,24 +94,43 @@ class WordFeedViewModel: ObservableObject {
     func restartFeed() {
         // No difficulty levels: the feed is the whole active-language catalogue.
         // Free users get WordAccess.freePool() (top 50 by freq-rank); Pro gets everything,
-        // unseen-first. A category filter (category drill-down) narrows it.
+        // unseen-first. A category filter (category drill-down) narrows it. Shuffle is applied
+        // *inside each group* (due / unseen / seen) — never across groups — so the "review →
+        // unseen → seen" priority stays intact while order *within* a group is randomized.
         if let ct = categoryFilter {
             let pool = WordRepository.shared.all.filter { $0.category == ct }
-            words = prependDueReviews(pool.shuffled())
+            words = prependDueReviews(Self.shuffle(pool))
         } else if isPro {
-            // Pro, no filter: full catalogue, unseen words first (each group shuffled) so
-            // returning users get new content, not repeats.
             words = prependDueReviews(unseenFirst(WordRepository.shared.all))
         } else {
-            // Free, no filter: the free 50, smart-ordered exactly like the Pro feed — FSRS-due
-            // reviews first, then unseen words (shuffled), then already-seen (shuffled). Without
-            // this the free user saw the pool in a fixed freq-rank sequence every launch (felt
-            // like a static, alphabetical-ish list); now it's varied and surfaces new words first.
-            words = prependDueReviews(unseenFirst(WordAccess.freePool()))
+            // Free: keep the curated free-pool order (the hand-picked "trailer") for unseen words —
+            // never shuffle the front; that opening is the conversion moment. Already-seen words
+            // still get shuffled for variety on repeat sessions.
+            words = prependDueReviews(unseenFirst(WordAccess.freePool(), preserveUnseenOrder: true))
         }
         goingBack = false
         currentIndex = 0
         resetBatchCounter()
+        // Build-verification log: lets us prove the Fisher-Yates path actually runs on device.
+        // If you see this in Console with non-row-order `first5`, the shuffle is alive.
+        let logger = Logger(subsystem: "com.verbum.app", category: "Feed")
+        let first5 = words.prefix(5).map(\.text).joined(separator: ", ")
+        logger.info("FY_SHUFFLE_v2 isPro=\(self.isPro, privacy: .public) seen=\(self.seenWordIds.count, privacy: .public) due=\(self.dueReviewIds.count, privacy: .public) total=\(self.words.count, privacy: .public) first5=[\(first5, privacy: .public)]")
+    }
+
+    /// Defensive Fisher-Yates shuffle with a fresh `SystemRandomNumberGenerator`. Used in place
+    /// of `Array.shuffled()` so the feed order is guaranteed non-deterministic at runtime — if
+    /// `Sequence.shuffled()` ever returns identity (compiler regression, deterministic RNG,
+    /// extension overload elsewhere in the build), this still randomizes.
+    static func shuffle(_ pool: [Word]) -> [Word] {
+        guard pool.count > 1 else { return pool }
+        var out = pool
+        var rng = SystemRandomNumberGenerator()
+        for i in stride(from: out.count - 1, through: 1, by: -1) {
+            let j = Int.random(in: 0...i, using: &rng)
+            out.swapAt(i, j)
+        }
+        return out
     }
 
     /// Count of free pool words the user hasn't yet swiped at their current level.
@@ -133,14 +153,56 @@ class WordFeedViewModel: ObservableObject {
         !isPro && words.isEmpty && !WordRepository.shared.all.isEmpty && WordAccess.freePool().isEmpty
     }
 
-    /// Orders a pool so words the user hasn't swiped yet come first (shuffled), followed by
-    /// already-seen words (shuffled) — so a returning Pro user keeps getting new vocabulary
-    /// before the app starts recycling familiar words.
-    private func unseenFirst(_ pool: [Word]) -> [Word] {
-        guard !seenWordIds.isEmpty else { return pool.shuffled() }
-        let unseen = pool.filter { !seenWordIds.contains($0.id) }.shuffled()
-        let seen   = pool.filter {  seenWordIds.contains($0.id) }.shuffled()
+    /// Orders a pool so words the user hasn't swiped yet come first, followed by already-seen
+    /// words — so a returning Pro user keeps getting new vocabulary before the app starts
+    /// recycling familiar words. Within each group we use a *letter-stratified* shuffle (not a
+    /// flat shuffle) — without it, a user whose unseen subset is dominated by one letter
+    /// (e.g. recent vocabulary rounds added words alphabetically) gets a long alphabet-clustered
+    /// streak even with a perfect Fisher-Yates: the data itself is monochromatic. Stratification
+    /// interleaves first letters so the feed *feels* varied even when the unseen pool isn't.
+    private func unseenFirst(_ pool: [Word], preserveUnseenOrder: Bool = false) -> [Word] {
+        guard !seenWordIds.isEmpty else {
+            // First session: keep the incoming order verbatim when asked (the curated free trailer),
+            // otherwise stratify for variety (Pro's full-catalogue feed).
+            return preserveUnseenOrder ? pool : Self.diversify(pool)
+        }
+        let unseenRaw = pool.filter { !seenWordIds.contains($0.id) }
+        let unseen = preserveUnseenOrder ? unseenRaw : Self.diversify(unseenRaw)
+        let seen   = Self.diversify(pool.filter {  seenWordIds.contains($0.id) })
         return unseen + seen
+    }
+
+    /// Letter-stratified shuffle: groups words by first letter, shuffles inside each group, then
+    /// round-robins across groups (with the group order itself re-shuffled each round). The
+    /// result is a randomized stream where consecutive cards almost never share a first letter
+    /// — until one group is exhausted, after which the remaining cards rotate among whatever's
+    /// left. Falls back to a plain Fisher-Yates when the pool spans ≤1 letter or ≤1 word.
+    static func diversify(_ pool: [Word]) -> [Word] {
+        guard pool.count > 1 else { return pool }
+        var buckets: [Character: [Word]] = [:]
+        for word in pool {
+            let key = Character(word.text.prefix(1).lowercased())
+            buckets[key, default: []].append(word)
+        }
+        guard buckets.count > 1 else { return Self.shuffle(pool) }
+        for (k, v) in buckets { buckets[k] = Self.shuffle(v) }
+        var rng = SystemRandomNumberGenerator()
+        var result: [Word] = []
+        result.reserveCapacity(pool.count)
+        while !buckets.isEmpty {
+            // Randomize the letter order *each round* so we don't always hit a→b→c…
+            let letters = buckets.keys.shuffled(using: &rng)
+            for letter in letters {
+                guard var words = buckets[letter], !words.isEmpty else { continue }
+                result.append(words.removeFirst())
+                if words.isEmpty {
+                    buckets.removeValue(forKey: letter)
+                } else {
+                    buckets[letter] = words
+                }
+            }
+        }
+        return result
     }
 
     /// Front-loads up to 10 FSRS-due reviews ahead of the rest of the feed.
