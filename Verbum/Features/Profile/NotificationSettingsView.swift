@@ -93,7 +93,9 @@ struct NotificationSettingsView: View {
                     if enabled {
                         let startHour = NotificationManager.hoursFrom(userProfile.profile.notificationStart)
                         let endHour   = NotificationManager.hoursFrom(userProfile.profile.notificationEnd)
-                        NotificationManager.requestAndSchedule(count: count, startHour: startHour, endHour: endHour, seenIds: Set(userProfile.profile.seenWordIds), personalWords: userProfile.reminderWords(limit: count), calendar: userProfile.dayCalendar) { granted in
+                        // A generous pool (not just `count`) so the rolling day-to-day rotation
+                        // (see NotificationManager.reschedule) surfaces different words over time.
+                        NotificationManager.requestAndSchedule(count: count, startHour: startHour, endHour: endHour, seenIds: Set(userProfile.profile.seenWordIds), personalWords: userProfile.reminderWords(limit: 50), calendar: userProfile.dayCalendar) { granted in
                             // Keep the stored flag + the toggle honest if the user tapped "Don't Allow".
                             if !granted {
                                 userProfile.profile.notificationsEnabled = false

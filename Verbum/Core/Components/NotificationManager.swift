@@ -34,68 +34,97 @@ enum NotificationManager {
         }
     }
 
+    /// How many days ahead to pre-schedule. Rolling, not repeating — see the design note below.
+    /// Apple caps an app at 64 pending local notifications; `numDays(for:)` shrinks this so
+    /// `count * numDays` always leaves headroom for the streak-risk + trial reminders.
+    private static func numDays(for count: Int) -> Int {
+        max(1, min(7, 60 / max(count, 1)))
+    }
+
+    /// Schedules the next `numDays(for: count)` days of word notifications, each day with its own
+    /// content, `repeats: false`.
+    ///
+    /// Why not one `repeats: true` trigger per slot (the old design): a repeating trigger bakes its
+    /// `content` in ONCE and iOS re-fires that exact same text forever — so the "word of the day"
+    /// notification silently froze on whatever word was current at the last reschedule() call, and
+    /// since that only reruns at a true cold app launch (SwiftUI's root `.onAppear` does not refire
+    /// on mere foregrounding), most users saw the identical word for days/weeks. Scheduling real,
+    /// distinct, non-repeating notifications for each of the next several days — refreshed on every
+    /// foreground (see VerbumApp) — fixes that: content actually differs day to day.
+    ///
+    /// Word selection per day:
+    ///   - Personal (claimed) words: slide the `count`-wide window one word further each day
+    ///     (`(day + slot) % pool.count`) so the SET shown differs daily, not just the time slot.
+    ///   - Fallback (nothing claimed yet): `DailyWords.forToday(now:)` for that future calendar day
+    ///     — it already varies deterministically by date.
     @MainActor
     static func reschedule(count: Int, startHour: Int = 9, endHour: Int = 22,
                            seenIds: Set<UUID> = [], personalWords: [Word] = [],
                            calendar: Calendar = .current) {
-        // Prefer the user's own saved (lexicon) words, fading-first: a reminder that resurfaces a
-        // word you claimed ("still yours?") is a far stronger reason to return than a generic word
-        // of the day. Falls back to the shared word-of-the-day (DailyWords.forToday — free-pool/
-        // unseen-first, tap-openable by free users) when nothing is claimed yet.
         let usingPersonal = !personalWords.isEmpty
-        let sourceWords = usingPersonal
-            ? personalWords
-            : DailyWords.forToday(count: count, seenIds: seenIds, calendar: calendar)
+        let days = numDays(for: count)
 
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             guard settings.authorizationStatus == .authorized else { return }
-            // Remove ONLY the daily word slots (verbum_0…23), never the separately-scheduled
-            // "verbum_streak_risk" reminder — wiping all pending requests here used to silently
-            // cancel a streak-save notification whenever the user touched notification settings.
-            let dailyIds = (0..<24).map { "verbum_\($0)" }
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: dailyIds)
-            let span = max(endHour - startHour, 1)
-            let step = max(span / max(count, 1), 1)
-            for i in 0..<count {
-                let content = UNMutableNotificationContent()
-                // Cycle through saved words so every slot resurfaces one even when only a few are
-                // claimed; the word-of-the-day path stays index-based.
-                let word: Word? = usingPersonal
-                    ? (sourceWords.isEmpty ? nil : sourceWords[i % sourceWords.count])
-                    : sourceWords[safe: i]
-                if let word {
-                    // Competitor-style layout: leave the title EMPTY so the system header shows the
-                    // app display name ("Verbum"), then stack the word, its "(pos) definition", and
-                    // the example sentence (in parens) on their own body lines — richer than a bare
-                    // word title and keeps the brand name visible.
-                    content.title = ""
-                    let pos = posAbbreviation(word.partOfSpeech)
-                    var lines = [word.text]
-                    lines.append(pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)")
-                    if let ex = word.exampleSentence?.trimmingCharacters(in: .whitespacesAndNewlines), !ex.isEmpty {
-                        lines.append("(\(ex))")
-                    }
-                    content.body = lines.joined(separator: "\n")
-                    // Stash the word id so a tap deep-links to *this exact word*
-                    // (read in VerbumAppDelegate.userNotificationCenter(_:didReceive:)).
-                    content.userInfo = ["wordId": word.id.uuidString]
-                } else {
-                    content.title = ""
-                    content.body = messages[i % messages.count]
+            UNUserNotificationCenter.current().getPendingNotificationRequests { pending in
+                // Clear every previously-scheduled daily-word slot — the old "verbum_0…23" scheme
+                // AND this rolling "verbum_d{day}_{slot}" scheme — but never the separately-
+                // scheduled "verbum_streak_risk" / "verbum_trial_reminder" reminders (wiping those
+                // here used to silently cancel a streak-save notification on any settings touch).
+                let staleIds = pending.map(\.identifier).filter {
+                    $0.hasPrefix("verbum_") && $0 != "verbum_streak_risk" && $0 != "verbum_trial_reminder"
                 }
-                content.sound = .default
-                content.badge = 1
-                var comps = DateComponents()
-                let hour = min(startHour + i * step, endHour)
-                comps.hour = hour
-                // Offset the minute by index so notifications that clamp to the same hour
-                // (count > available hours) don't all fire at the exact same :00 instant — but
-                // at the end hour keep it on :00 so the offset can't push it past endHour.
-                comps.minute = hour == endHour ? 0 : (i * 17) % 60
-                let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
-                UNUserNotificationCenter.current().add(
-                    UNNotificationRequest(identifier: "verbum_\(i)", content: content, trigger: trigger)
-                )
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: staleIds)
+
+                let span = max(endHour - startHour, 1)
+                let step = max(span / max(count, 1), 1)
+                let today = calendar.startOfDay(for: Date())
+
+                for day in 0..<days {
+                    guard let dayDate = calendar.date(byAdding: .day, value: day, to: today) else { continue }
+                    let dayWords: [Word] = usingPersonal
+                        ? (0..<count).map { personalWords[(day + $0) % personalWords.count] }
+                        : DailyWords.forToday(count: count, seenIds: seenIds, calendar: calendar, now: dayDate)
+
+                    for i in 0..<count {
+                        let content = UNMutableNotificationContent()
+                        let word: Word? = dayWords[safe: i]
+                        if let word {
+                            // Competitor-style layout: leave the title EMPTY so the system header
+                            // shows the app display name ("Verbum"), then stack the word, its
+                            // "(pos) definition", and the example sentence (in parens) as body lines.
+                            content.title = ""
+                            let pos = posAbbreviation(word.partOfSpeech)
+                            var lines = [word.text]
+                            lines.append(pos.isEmpty ? word.definition : "(\(pos)) \(word.definition)")
+                            if let ex = word.exampleSentence?.trimmingCharacters(in: .whitespacesAndNewlines), !ex.isEmpty {
+                                lines.append("(\(ex))")
+                            }
+                            content.body = lines.joined(separator: "\n")
+                            // Stash the word id so a tap deep-links to *this exact word* — the SAME
+                            // word this notification displayed, never a different one (read in
+                            // VerbumAppDelegate.userNotificationCenter(_:didReceive:)).
+                            content.userInfo = ["wordId": word.id.uuidString]
+                        } else {
+                            content.title = ""
+                            content.body = messages[i % messages.count]
+                        }
+                        content.sound = .default
+                        content.badge = 1
+
+                        var comps = calendar.dateComponents([.year, .month, .day], from: dayDate)
+                        let hour = min(startHour + i * step, endHour)
+                        comps.hour = hour
+                        // Offset the minute by index so notifications that clamp to the same hour
+                        // (count > available hours) don't all fire at the exact same :00 instant —
+                        // but at the end hour keep it on :00 so the offset can't push past endHour.
+                        comps.minute = hour == endHour ? 0 : (i * 17) % 60
+                        let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+                        UNUserNotificationCenter.current().add(
+                            UNNotificationRequest(identifier: "verbum_d\(day)_\(i)", content: content, trigger: trigger)
+                        )
+                    }
+                }
             }
         }
     }

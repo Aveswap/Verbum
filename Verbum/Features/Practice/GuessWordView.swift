@@ -185,12 +185,16 @@ struct GuessWordView: View {
             }
             .padding(.horizontal, AppSpacing.md)
 
-            if viewModel.selectedAnswer != nil {
-                PillButton(title: viewModel.questionNumber == 5 ? "See Results" : "Next") {
-                    withAnimation { viewModel.nextQuestion() }
-                }
-                .padding(.horizontal, AppSpacing.md)
+            // Always rendered so it reserves space — fades in on answer instead of pushing the
+            // definition card and options above it (matches QuizView/FillGapView/SynonymsView).
+            PillButton(title: viewModel.questionNumber == 5 ? "See Results" : "Next") {
+                withAnimation { viewModel.nextQuestion() }
             }
+            .padding(.horizontal, AppSpacing.md)
+            .opacity(viewModel.selectedAnswer != nil ? 1 : 0)
+            .allowsHitTesting(viewModel.selectedAnswer != nil)
+            .accessibilityHidden(viewModel.selectedAnswer == nil)
+            .animation(.easeInOut(duration: 0.2), value: viewModel.selectedAnswer)
 
             Spacer()
         }

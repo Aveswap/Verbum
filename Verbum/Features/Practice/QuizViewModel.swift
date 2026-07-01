@@ -46,9 +46,7 @@ class QuizViewModel: ObservableObject {
 
     func nextQuestion() {
         guard questionNumber < totalQuestions else { isFinished = true; return }
-        // Exclude already-asked words so a word can't repeat within the session.
-        let candidates = pool.filter { !asked.contains($0.id) }
-        guard let word = candidates.randomElement() else { isFinished = true; return }
+        guard let word = pickWord() else { isFinished = true; return }
         asked.insert(word.id)
         // Exclude distractors whose definition matches the answer, so the correct option is
         // unambiguous when two words share a definition string.
@@ -59,6 +57,16 @@ class QuizViewModel: ObservableObject {
         selectedAnswer = nil
         isCorrect = nil
         questionNumber += 1
+    }
+
+    /// Picks the next word, avoiding repeats within the session where possible. With the minimum
+    /// allowed pool (4 words) and 5 fixed questions, the 5th pick has no unused word left — rather
+    /// than ending the quiz early on question 4 (which left "Score: X / 5" showing the wrong
+    /// denominator), allow a repeat there, just never the word that was *just* asked.
+    private func pickWord() -> Word? {
+        let unused = pool.filter { !asked.contains($0.id) }
+        if let word = unused.randomElement() { return word }
+        return pool.filter { $0.id != currentQuestion?.word.id }.randomElement() ?? pool.randomElement()
     }
 
     func selectAnswer(_ answer: String) {

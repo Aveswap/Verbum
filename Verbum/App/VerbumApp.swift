@@ -44,6 +44,9 @@ struct VerbumApp: App {
     @StateObject private var auth: AuthService
     @StateObject private var language = LanguageManager.shared
     @Environment(\.scenePhase) private var scenePhase
+    /// Epoch seconds of the last notification reschedule — throttles `rescheduleNotificationsIfNeeded()`
+    /// to once per calendar day so a burst of foregroundings doesn't churn UNUserNotificationCenter.
+    @AppStorage("verbum.lastNotifRescheduleAt") private var lastNotifRescheduleAt: Double = 0
 
     init() {
         let store = UserProfileStore()
@@ -73,19 +76,7 @@ struct VerbumApp: App {
                 .onAppear {
                     // (Game Center auth is deferred to the feed so its sheet can't interrupt
                     // onboarding — see AppCoordinator.)
-                    // Re-issue the daily word notifications so they reflect the current catalogue
-                    // and language — this also clears stale notifications scheduled by an older
-                    // build (e.g. German words left over from before the English-only catalogue).
-                    if userProfile.profile.notificationsEnabled {
-                        NotificationManager.reschedule(
-                            count: userProfile.profile.notificationCount,
-                            startHour: NotificationManager.hoursFrom(userProfile.profile.notificationStart),
-                            endHour: NotificationManager.hoursFrom(userProfile.profile.notificationEnd),
-                            seenIds: Set(userProfile.profile.seenWordIds),
-                            personalWords: userProfile.reminderWords(limit: userProfile.profile.notificationCount),
-                            calendar: userProfile.dayCalendar
-                        )
-                    }
+                    rescheduleNotificationsIfNeeded()
                 }
                 .onReceive(auth.$isSignedIn) { signedIn in
                     guard signedIn else { return }
@@ -110,6 +101,11 @@ struct VerbumApp: App {
                     if userProfile.profile.appleUserID != nil {
                         Task { await userProfile.cloudKit.pull(into: userProfile) }
                     }
+                    // The rolling notification window (see NotificationManager.reschedule) only
+                    // needs refreshing once a day — SwiftUI's root `.onAppear` alone doesn't refire
+                    // on mere foregrounding, so without this a user who never force-quits the app
+                    // would keep the window from advancing/rotating.
+                    rescheduleNotificationsIfNeeded()
                 }
                 // isPro changes the word pool → re-index Spotlight so paid definitions appear
                 // (Pro) or are re-locked (lapse).
@@ -123,5 +119,26 @@ struct VerbumApp: App {
                     )
                 }
         }
+    }
+
+    /// Re-issues the rolling notification window (see NotificationManager.reschedule) at most once
+    /// per calendar day. Called from both cold launch and every foreground, so a returning user's
+    /// window keeps advancing/rotating without spamming UNUserNotificationCenter on rapid
+    /// background/foreground cycles within the same day.
+    private func rescheduleNotificationsIfNeeded() {
+        guard userProfile.profile.notificationsEnabled else { return }
+        let last = Date(timeIntervalSince1970: lastNotifRescheduleAt)
+        guard !userProfile.dayCalendar.isDateInToday(last) else { return }
+        lastNotifRescheduleAt = Date().timeIntervalSince1970
+        NotificationManager.reschedule(
+            count: userProfile.profile.notificationCount,
+            startHour: NotificationManager.hoursFrom(userProfile.profile.notificationStart),
+            endHour: NotificationManager.hoursFrom(userProfile.profile.notificationEnd),
+            seenIds: Set(userProfile.profile.seenWordIds),
+            // A generous pool (not just today's slot count) so the day-to-day rotation actually
+            // surfaces different WORDS over time, not just the same few reordered.
+            personalWords: userProfile.reminderWords(limit: 50),
+            calendar: userProfile.dayCalendar
+        )
     }
 }

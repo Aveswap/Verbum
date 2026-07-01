@@ -410,7 +410,7 @@ struct WordFeedView: View {
                 paywallCard
                     .gesture(TapGesture().onEnded { activeSheet = .premium })
             } else if let word = viewModel.currentWord {
-                WordCardView(word: word, viewModel: viewModel, seenSet: seenWordIdsSet)
+                WordCardView(word: word, viewModel: viewModel, seenSet: seenWordIdsSet, currentWordLikes: currentWordLikes)
                     .environmentObject(userProfile)
                     .environmentObject(subscriptions)
                     .offset(y: dragOffset * 0.35)
@@ -734,6 +734,7 @@ private struct WordCardView: View {
     let word: Word
     let viewModel: WordFeedViewModel
     let seenSet: Set<UUID>
+    let currentWordLikes: Int?
     @EnvironmentObject var userProfile: UserProfileStore
     @EnvironmentObject var subscriptions: SubscriptionManager
     // The main reading surface scales with Dynamic Type (keeps the base size at default settings,

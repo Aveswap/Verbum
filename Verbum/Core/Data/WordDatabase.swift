@@ -19,15 +19,6 @@ final class WordDatabase: @unchecked Sendable {
     var dbQueue: DatabaseQueue? { queueLock.withLock { $0 } }
     private func setQueue(_ queue: DatabaseQueue?) { queueLock.withLock { $0 = queue } }
 
-    static var databaseURL: URL {
-        let dir = FileManager.default.urls(for: .applicationSupportDirectory,
-                                           in: .userDomainMask)[0]
-                             .appendingPathComponent("Verbum", isDirectory: true)
-        try? FileManager.default.createDirectory(at: dir,
-                                                  withIntermediateDirectories: true)
-        return dir.appendingPathComponent("words.db")
-    }
-
     var isAvailable: Bool { dbQueue != nil }
 
     /// Bump this whenever Resources/words_v2.db is updated so an app update
@@ -99,7 +90,6 @@ final class WordDatabase: @unchecked Sendable {
     /// v42: imported gems_round14 (+100 more "wow" words — mono no aware, hwyl, tristesse, …) → en 874.
     /// v43: imported gems_round15 (+100 more, deeper cuts — scunner, thrawn, wheesht, …) → en 974.
     static let bundledDBVersion = 43
-    private static let bundledVersionKey = "verbum.bundledDBVersion"
 
     private init() {
         // The catalogue is read-only at runtime (nothing in the app writes to `words`), so we
@@ -129,149 +119,6 @@ final class WordDatabase: @unchecked Sendable {
         } catch {
             Logger.database.error("bundled DB open failed: \(error.localizedDescription, privacy: .public)")
             setQueue(nil)
-        }
-    }
-
-    // MARK: - Install
-
-    enum InstallError: Error { case downloadedDatabaseInvalid }
-
-    /// Validates a downloaded DB, then atomically swaps it into place and opens it.
-    ///
-    /// SECURITY: a production OTA pipeline MUST verify a SHA-256 (or signature) from a *signed
-    /// manifest* before calling this — the sanity check below authenticates the file's *shape*,
-    /// not its *source*, so it does not by itself defend against a compromised CDN / MITM. See
-    /// `DatabaseDownloadManager`. Until that exists, the OTA path stays dormant (DB is bundled).
-    func install(from tempURL: URL) throws {
-        // 1) Integrity sanity check BEFORE touching the live DB: it must open as SQLite and hold
-        //    words. Rejects truncated / corrupt / empty payloads. Scoped so the probe handle is
-        //    released before the swap.
-        do {
-            let probe = try DatabaseQueue(path: tempURL.path)
-            let count = (try? probe.read { try Int.fetchOne($0, sql: "SELECT COUNT(*) FROM words") }) ?? 0
-            guard count > 0 else { throw InstallError.downloadedDatabaseInvalid }
-        }
-
-        // 2) Atomic replace — a crash mid-swap must never leave the user with no database.
-        let dest = Self.databaseURL
-        setQueue(nil)  // release our open handle so the live file can be replaced
-        if FileManager.default.fileExists(atPath: dest.path) {
-            _ = try FileManager.default.replaceItemAt(dest, withItemAt: tempURL)
-        } else {
-            try FileManager.default.moveItem(at: tempURL, to: dest)
-        }
-        setQueue(try DatabaseQueue(path: dest.path))
-        try runMigrations()
-
-        // 3) Mark installed so the next launch's seed doesn't clobber this copy with the bundle.
-        UserDefaults.standard.set(Self.bundledDBVersion, forKey: Self.bundledVersionKey)
-    }
-
-    // MARK: - Migrations
-
-    private static var migrator: DatabaseMigrator {
-        var m = DatabaseMigrator()
-
-        m.registerMigration("v1_createWords") { db in
-            try db.create(table: "words", ifNotExists: true) { t in
-                t.column("id",              .text).primaryKey()
-                t.column("text",            .text).notNull()
-                t.column("phonetic",        .text).notNull().defaults(to: "")
-                t.column("partOfSpeech",    .text).notNull().defaults(to: "")
-                t.column("definition",      .text).notNull()
-                t.column("exampleSentence", .text)
-                t.column("synonyms",        .text).notNull().defaults(to: "[]")
-                t.column("category",        .text).notNull().defaults(to: "").indexed()
-                t.column("etymology",       .text)
-            }
-            if try !db.tableExists("words_fts") {
-                // Match the Python generator's tokenizer so diacritics fold (café == cafe)
-                // and search behaves identically whether the DB is bundled or built natively.
-                try db.execute(sql: """
-                    CREATE VIRTUAL TABLE words_fts USING fts5(
-                        text, definition, category,
-                        content=words, content_rowid=rowid,
-                        tokenize='unicode61 remove_diacritics 2'
-                    )
-                """)
-            }
-        }
-
-        m.registerMigration("v2_enrichment") { db in
-            try db.alter(table: "words") { t in
-                t.add(column: "frequencyRank", .integer)
-                t.add(column: "antonyms",      .text)
-                t.add(column: "collocations",  .text)
-                t.add(column: "register",      .text)
-                t.add(column: "domainTags",    .text)
-            }
-        }
-
-        // v3: per-language catalogues. Existing rows are English; new languages add rows.
-        m.registerMigration("v3_language") { db in
-            try db.alter(table: "words") { t in
-                t.add(column: "language", .text).notNull().defaults(to: "en")
-            }
-            try db.create(index: "words_language_idx", on: "words",
-                          columns: ["language"], ifNotExists: true)
-        }
-
-        return m
-    }
-
-    func runMigrations() throws {
-        guard let dbQueue else { return }
-        try Self.migrator.migrate(dbQueue)
-        // Surface schema drift: if the code expects migrations the DB doesn't have applied
-        // (e.g. a forward-rolled bundled DB opened by an older build, or a half-applied
-        // migration), log it rather than failing silently with mysterious query errors.
-        if let applied = try? dbQueue.read({ try Self.migrator.appliedIdentifiers($0) }) {
-            let expected = Set(Self.migrator.migrations)
-            let missing = expected.subtracting(applied)
-            let unknown = applied.subtracting(expected)
-            if !missing.isEmpty {
-                Logger.database.error("migration drift: expected-but-not-applied \(missing.sorted().joined(separator: ", "), privacy: .public)")
-            }
-            if !unknown.isEmpty {
-                Logger.database.error("migration drift: applied-but-unknown \(unknown.sorted().joined(separator: ", "), privacy: .public)")
-            }
-        }
-    }
-
-    func createSchema() throws { try runMigrations() }
-
-    // MARK: - Import
-
-    func importWords(_ words: [Word]) throws {
-        guard let dbQueue else { return }
-        let enc = JSONEncoder()
-        func jsonStr<T: Encodable>(_ v: T) -> String? {
-            (try? enc.encode(v)).flatMap { String(data: $0, encoding: .utf8) }
-        }
-        try dbQueue.write { db in
-            for word in words {
-                try db.execute(sql: """
-                    INSERT OR REPLACE INTO words
-                    (id, text, phonetic, partOfSpeech, definition,
-                     exampleSentence, synonyms, category, etymology,
-                     frequencyRank, antonyms, collocations, register, domainTags, language)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, arguments: [
-                    // Lowercase to match the bundled DB convention — the primary key is
-                    // case-sensitive, so mixing casings would create duplicate word rows.
-                    word.id.uuidString.lowercased(), word.text, word.phonetic,
-                    word.partOfSpeech, word.definition,
-                    word.exampleSentence, jsonStr(word.synonyms) ?? "[]",
-                    word.category, word.etymology,
-                    word.frequencyRank,
-                    jsonStr(word.antonyms) ?? "[]",
-                    jsonStr(word.collocations) ?? "[]",
-                    word.register?.rawValue,
-                    jsonStr(word.domainTags) ?? "[]",
-                    word.language
-                ])
-            }
-            try db.execute(sql: "INSERT INTO words_fts(words_fts) VALUES('rebuild')")
         }
     }
 
